@@ -43,7 +43,7 @@ function Layout ({ children }) {
         <nav className="flex">
           <ul className="nav flex flex-wrap gap-y-6">
             { NAVIGATION.map(nav => (
-              <li className="nav-item w-28">
+              <li key={nav.label} className="nav-item w-28">
                 <Link href={nav.href} passHref={true}>
                   <a className="inline-flex flex-col items-center">
                     <div className="iso">
@@ -58,7 +58,7 @@ function Layout ({ children }) {
         </nav>
       </header>
 
-      <main className="flex flex-col w-full flex-1 px-8 text-center">
+      <main className="flex flex-col w-full flex-1 px-8">
         { children }
       </main>
 

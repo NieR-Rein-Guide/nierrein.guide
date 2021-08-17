@@ -12,11 +12,15 @@ h1, h2, h3, h4, h5, h6, .serif {
 }
 
 code {
-  color: black;
+  color: #94918b;
 }
 
-img, svg {
+img {
   height: 100%;
+  width: auto;
+}
+
+svg {
   width: auto;
 }
 
@@ -74,11 +78,15 @@ main {
 
 section {
   background-color: #1a1819;
-  @apply relative p-12;
+  @apply relative p-12 pt-16;
 
   > h1, h2, h3, h4, h5, h6 {
-    @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6;
+    @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl;
     background-color: #94918b;
     color: #000;
   }
+}
+
+footer {
+  margin-top: 64px;
 }

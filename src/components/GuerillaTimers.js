@@ -41,16 +41,11 @@ const TimerRow = ({ guerilla }) => {
   )
 }
 
-// 5h
-// 7h
-// 16h
-// 22h
-
 function GuerillaTimers() {
   return (
     <section className="flex items-start flex-col my-24">
-      <h2 className="mb-2 text-2xl">Guerilla Timer</h2>
-      {GUERILLAS.map(guerilla => <TimerRow guerilla={guerilla} /> )}
+      <h2>Guerilla Timer (WIP)</h2>
+      {GUERILLAS.map(guerilla => <TimerRow key={guerilla.start} guerilla={guerilla} /> )}
     </section>
   )
 }
