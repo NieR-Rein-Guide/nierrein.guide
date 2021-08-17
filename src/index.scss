@@ -1,0 +1,84 @@
+html, body {
+  color: #FFF;
+  background-color: #000;
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6, .serif {
+  letter-spacing: -0.5px;
+  font-family: 'Cormorant', serif;
+  line-height: 1;
+  font-weight: 500;
+}
+
+code {
+  color: black;
+}
+
+img, svg {
+  height: 100%;
+  width: auto;
+}
+
+header {
+  background-color: RGBA(26, 24, 25, 0.5);
+  margin: 32px 0;
+  width: 95%;
+  border-radius: 32px;
+}
+
+.logo {
+  img {
+    @apply transform scale-125 transition-transform ease-in-out;
+  }
+
+  &:hover {
+    img {
+      @apply scale-150;
+    }
+  }
+}
+
+.nav {
+  li {
+    .iso {
+      height: 50px;
+      width: 50px;
+      background-color: #1a1819;
+      transform: rotate(45deg);
+
+      img {
+        transform: rotate(-45deg) scale(1.5);
+      }
+    }
+  }
+}
+
+.nav-item {
+  .iso {
+    @apply transition-colors ease-in-out;
+  }
+
+  &:hover {
+    .iso {
+      background-color: #94918b;
+    }
+  }
+}
+
+main {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+section {
+  background-color: #1a1819;
+  @apply relative p-12;
+
+  > h1, h2, h3, h4, h5, h6 {
+    @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6;
+    background-color: #94918b;
+    color: #000;
+  }
+}
