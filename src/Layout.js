@@ -31,31 +31,33 @@ function Layout ({ children }) {
         </nav>
       </header>
 
-      <main className="flex flex-col w-full flex-1 px-8">
+      <main className="container flex flex-col w-full flex-1">
         { children }
       </main>
 
       <footer className="flex flex-col items-center justify-center w-full py-14 border-t border-white border-opacity-20 px-6">
-        <section className="flex flex-col flex-wrap mt-14 w-full md:w-3/4">
-          <h2>Wonderful people that are working on this website</h2>
+        <div className="container">
+          <section className="flex flex-col flex-wrap mt-14 w-full">
+            <h2>Wonderful people that are working on this website</h2>
 
-          <ul className="grid grid-cols-1 md:grid-cols-4 gap-y-6">
-            {CREDITS.map(credit => (
-              <li className="flex items-center gap-x-6">
-                <img height="64" width="64" className="h-16" src={`/credits/${credit.name.toLowerCase()}.png`} />
-                <a href={credit.link} rel="noopener noreferrer" target="_blank" className="serif text-2xl">
-                  {credit.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+            <ul className="grid grid-cols-1 md:grid-cols-4 gap-y-6">
+              {CREDITS.map(credit => (
+                <li className="flex items-center gap-x-6">
+                  <img height="64" width="64" className="h-16" src={`/credits/${credit.name.toLowerCase()}.png`} />
+                  <a href={credit.link} rel="noopener noreferrer" target="_blank" className="serif text-2xl">
+                    {credit.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
 
-          <p className="mt-4">If you are missing please let us know on our Discord !</p>
-        </section>
+            <p className="mt-4">If you are missing please let us know on our Discord !</p>
+          </section>
 
-        <div className="text-center mt-8">
-          <p>NieR Re[in] Guide is not affiliated with or endorsed by SQUARE ENIX CO. LTD.</p>
-          <p>All game assets used belongs to © SQUARE ENIX CO. LTD.</p>
+          <div className="text-center mt-8">
+            <p>NieR Re[in] Guide is not affiliated with or endorsed by SQUARE ENIX CO. LTD.</p>
+            <p>All game assets used belongs to © SQUARE ENIX CO. LTD.</p>
+          </div>
         </div>
       </footer>
     </div>

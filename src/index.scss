@@ -74,8 +74,8 @@ header {
   }
 }
 
-main {
-  width: 100%;
+.container {
+  @apply w-full px-8;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -100,5 +100,13 @@ footer {
     &:hover {
       text-decoration: none;
     }
+  }
+}
+
+.hover-bg {
+  @apply transition-colors rounded-md;
+
+  &:hover, &:focus {
+    background-color: rgba(255, 255, 255, 0.1);
   }
 }
