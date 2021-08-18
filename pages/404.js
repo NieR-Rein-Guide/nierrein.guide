@@ -1,9 +1,9 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
-import Layout from '../src/Layout'
+import Head from "next/head";
+import { useRouter } from "next/router";
+import Layout from "../src/Layout";
 
 export default function NotFound() {
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Layout>
@@ -12,8 +12,13 @@ export default function NotFound() {
       </Head>
 
       <div className="text-center">
-        <h2 className="text-4xl">Uh oh. <code>{router.asPath}</code> leads to an unknown location of the Cage... <br/>Do we even exists ?<br/>What is life ?</h2>
+        <h2 className="text-4xl">
+          Uh oh. <code>{router.asPath}</code> leads to an unknown location of
+          the Cage... <br />
+          Do we even exists ?<br />
+          What is life ?
+        </h2>
       </div>
     </Layout>
-  )
+  );
 }
