@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Layout from '../src/Layout'
 import { RiRedditLine } from 'react-icons/ri'
 
-import GuerillaTimers from '../src/components/GuerillaTimers'
+import GuerillaTimers from '../components/GuerillaTimers'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
@@ -20,7 +20,7 @@ export default function Home() {
         <img src="/launched.jpg" alt="NieR Re[in]carnation Launched !" />
       </div>
 
-      <div className="flex justify-between flex-wrap gap-8">
+      <div className="flex items-start justify-between flex-wrap gap-8 my-24">
         {renderClientSideComponents && <GuerillaTimers />}
 
 
