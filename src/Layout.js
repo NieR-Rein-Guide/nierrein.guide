@@ -35,7 +35,7 @@ function Layout({ children }) {
 
       <main className="container flex flex-col w-full flex-1">{children}</main>
 
-      <footer className="flex flex-col items-center justify-center w-full py-14 border-t border-white border-opacity-20 px-6">
+      <footer className="flex flex-col items-center justify-center w-full py-14 border-t border-white border-opacity-20">
         <div className="container">
           <section className="flex flex-col flex-wrap mt-14 w-full">
             <h2>Wonderful people that are working on this website</h2>
@@ -48,6 +48,7 @@ function Layout({ children }) {
                     width="64"
                     className="h-16"
                     src={`/credits/${credit.name.toLowerCase()}.png`}
+                    alt={`NieR Avatar of ${credit.name}`}
                   />
                   <a
                     href={credit.link}

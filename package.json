@@ -4,7 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src components pages"
+    "lint": "eslint src components pages",
+    "fix": "eslint src components pages --fix"
   },
   "dependencies": {
     "date-fns": "^2.23.0",
