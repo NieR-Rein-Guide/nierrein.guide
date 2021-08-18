@@ -11,6 +11,10 @@ h1, h2, h3, h4, h5, h6, .serif {
   font-weight: 500;
 }
 
+.serif {
+  font-family: 'Cormorant', serif;
+}
+
 code {
   color: #94918b;
 }
@@ -33,12 +37,12 @@ header {
 
 .logo {
   img {
-    @apply transform scale-125 transition-transform ease-in-out;
+    @apply transform scale-100 transition-transform ease-in-out;
   }
 
   &:hover {
     img {
-      @apply scale-150;
+      @apply scale-125;
     }
   }
 }
@@ -89,4 +93,12 @@ section {
 
 footer {
   margin-top: 64px;
+
+  a {
+    text-decoration: underline dotted;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 }
