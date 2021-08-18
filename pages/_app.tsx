@@ -1,5 +1,5 @@
 import "tailwindcss/tailwind.css";
-import "../src/index.scss";
+import "../src/styles/index.scss";
 
 function MyApp({ Component, pageProps, otherProp }) {
   return (
