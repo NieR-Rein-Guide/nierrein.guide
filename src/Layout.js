@@ -35,14 +35,14 @@ function Layout ({ children }) {
         { children }
       </main>
 
-      <footer className="flex flex-col items-center justify-center w-full py-14 border-t border-white border-opacity-20">
-        <section className="flex flex-col flex-wrap mt-14 w-3/4">
+      <footer className="flex flex-col items-center justify-center w-full py-14 border-t border-white border-opacity-20 px-6">
+        <section className="flex flex-col flex-wrap mt-14 w-full md:w-3/4">
           <h2>Wonderful people that are working on this website</h2>
 
-          <ul className="grid grid-cols-1 m:grid-cols-4 gap-y-6">
+          <ul className="grid grid-cols-1 md:grid-cols-4 gap-y-6">
             {CREDITS.map(credit => (
               <li className="flex items-center gap-x-6">
-                <img height="64" width="64" className="h-16" src={`/credits/${credit.name}.png`} />
+                <img height="64" width="64" className="h-16" src={`/credits/${credit.name.toLowerCase()}.png`} />
                 <a href={credit.link} rel="noopener noreferrer" target="_blank" className="serif text-2xl">
                   {credit.name}
                 </a>
