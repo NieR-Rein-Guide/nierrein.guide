@@ -16,6 +16,9 @@
     "react-icons": "^4.2.0"
   },
   "devDependencies": {
+    "@types/react": "^17.0.18",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "@typescript-eslint/parser": "^4.29.2",
     "autoprefixer": "^10.2.6",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.0",

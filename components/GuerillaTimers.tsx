@@ -33,11 +33,11 @@ const GUERILLAS = [
 const TimerRow = ({ guerilla }) => {
   const now = new Date();
 
-  var startDate = new Date();
+  let startDate = new Date();
   startDate.setHours(guerilla.start[0], guerilla.start[1], 0, 0);
   startDate = zonedTimeToUtc(startDate, PT);
 
-  var endDate = new Date();
+  let endDate = new Date();
   endDate.setHours(guerilla.end[0], guerilla.end[1], 0, 0);
   endDate = zonedTimeToUtc(endDate, PT);
 
@@ -71,7 +71,7 @@ function GuerillaTimers() {
     <section className="flex items-start flex-col my-24">
       <h2>Guerilla Timer (WIP)</h2>
       {GUERILLAS.map((guerilla) => (
-        <TimerRow key={guerilla.start} guerilla={guerilla} />
+        <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
       ))}
     </section>
   );

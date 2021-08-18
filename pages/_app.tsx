@@ -1,7 +1,7 @@
 import "tailwindcss/tailwind.css";
 import "../src/index.scss";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, otherProp }) {
   return (
     <>
       <Component {...pageProps} />
