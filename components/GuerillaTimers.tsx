@@ -98,8 +98,14 @@ const TimerRow = ({ guerilla }) => {
 
   return (
     <span className="border border-beige-dark p-4 flex">
-    <span>{guerillaTypes(endDate.getDay(), guerilla.start[1]).map(weapon=>(
-        <img src={weaponToIcon(weapon)} className="h-16"/>
+    <span>{guerillaTypes(endDate.getDay(), guerilla.start[1]).map((weapon, index)=>(
+        <img
+          src={weaponToIcon(weapon)}
+          alt={`${weapon} icon`}
+          title={weapon}
+          className="h-16" 
+          key={index} 
+          />
     ))}</span>
     <div className="grid grid-cols-3 place-items-center ">
       

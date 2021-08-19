@@ -24,7 +24,7 @@ function StatsOfLevel({label, stats}) {
   )
 }
 
-function CharacterInfo({character}) {
+function CharacterInfo({character}: {character: any}): JSX.Element {
   return (
     <div className="flex flex-col md:flex-row gap-8 md:p-6 background-repeat"
       style={{
@@ -39,10 +39,13 @@ function CharacterInfo({character}) {
           alt={`${character.name} (${character.costumeName}) illustration`}/>
         
         <span className="flex absolute top-2 left-2">
-          {Array.from({length: character.stars}).map(() =>(
-            <img style={{
+          {Array.from({length: character.stars}).map((_, index) =>(
+            <img key={index} style={{
               marginRight: "-8px"
-            }} className="w-8 h-8" src="/ui/actor/ma001001_01_actor_icon.png"/>
+            }} 
+            className="w-8 h-8" src="/ui/actor/ma001001_01_actor_icon.png"
+            alt="Mama icon used as star"
+            />
           ))}
         </span>
         <span className="w-4 h-4 absolute top-2 right-2 border-t-2 border-r-2"></span>
