@@ -1,9 +1,6 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
 
 import Layout from "../src/Layout";
-import GuerillaTimers from "../components/GuerillaTimers";
-import Socials from "../components/Socials";
 import CHARACTERS from "../models/character";
 import CharacterInfo from "../components/CharacterInfo";
 
