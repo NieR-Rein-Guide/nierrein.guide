@@ -8,11 +8,6 @@ import CHARACTERS from "../models/character";
 import CharacterInfo from "../components/CharacterInfo";
 
 export default function Home() {
-  const [renderClientSideComponents, setRenderClientSideComponents] =
-    useState(false);
-
-  useEffect(() => setRenderClientSideComponents(true), []);
-
   return (
     <Layout>
       <Head>
