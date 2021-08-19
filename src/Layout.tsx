@@ -40,7 +40,7 @@ function Layout({ children }) {
           <section className="flex flex-col flex-wrap mt-14 w-full">
             <h2>Wonderful people that are working on this website</h2>
 
-            <ul className="grid grid-cols-1 md:grid-cols-4 gap-y-6">
+            <ul className="grid grid-cols-2 place-items-center md:grid-cols-4 gap-y-6">
               {CREDITS.map((credit) => (
                 <li className="flex items-center gap-x-6" key={credit.name}>
                   <img
