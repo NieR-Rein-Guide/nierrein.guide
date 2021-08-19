@@ -91,6 +91,18 @@ export default function Database({ models }) {
                 />
                 <button className="btn" onClick={nextModel}>Next</button>
               </div>
+
+              <div className="mt-4">
+                <p>
+                  This page is currently <b>experimental</b>. Please enable *Hardware Acceleration* on your browser for better performance.
+                  <br />Known issues :
+                </p>
+                <ul>
+                  <li>Previous button doesn't rework, refresh the page to "fix"</li>
+                  <li>UX sucks. I'm sorry</li>
+                  <li>If you cannot see the model it is likely black on black or off camera</li>
+                </ul>
+              </div>
             </section>
 
             <ErrorBoundary>
