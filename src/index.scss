@@ -38,14 +38,20 @@ svg {
 
 header > div {
   background-color: RGBA(26, 24, 25, 0.5);
-  margin: 32px 0;
+  margin: 64px 0 32px;
   width: 95%;
   border-radius: 32px;
 }
 
 .logo {
+  @apply relative;
+
   img {
-    @apply transform scale-100 transition-transform ease-out-cubic;
+    @apply z-0 absolute -top-16 left-1/2 transform -translate-x-1/2 scale-100 transition-transform ease-out-cubic;
+  }
+
+  h1 {
+    @apply z-10 drop-shadow-xl mt-4;
   }
 
   &:hover {

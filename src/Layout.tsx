@@ -3,7 +3,7 @@ import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { CREDITS, NAVIGATION } from "../constants";
 
-function Layout({ children }) {
+function Layout({ children, className }) {
   const router = useRouter()
 
   return (
@@ -38,7 +38,7 @@ function Layout({ children }) {
         </div>
       </header>
 
-      <main className="container flex flex-col w-full flex-1">{children}</main>
+      <main className={classNames('container flex flex-col w-full flex-1', className)}>{children}</main>
 
       <footer className="flex flex-col items-center justify-center w-full py-14 border-t border-white border-opacity-20">
         <div className="container">
