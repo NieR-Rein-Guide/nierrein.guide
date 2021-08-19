@@ -1,11 +1,11 @@
 import Layout from "../src/Layout";
-import CharacterGrid from "../src/components/CharacterGrid";
+import CardGrid from "../src/components/CardGrid";
 
 export default function charactersPage()
 {
     return (
         <Layout>
-            <CharacterGrid></CharacterGrid>
+            <CardGrid></CardGrid>
         </Layout>
     );
 }

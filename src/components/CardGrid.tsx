@@ -1,4 +1,4 @@
-import styles from "../styles/characterGrid.module.scss";
+import styles from "../styles/cardGrid.module.scss";
 
 export default function CharacterGrid()
 {
