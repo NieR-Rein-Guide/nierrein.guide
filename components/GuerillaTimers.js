@@ -30,6 +30,34 @@ const GUERILLAS = [
   },
 ];
 
+
+const guerillaTypes = (dayOfWeek, startHour) => {
+  switch (dayOfWeek) {
+    case 1: return ["sword"]
+    case 2: return ["greatsword"]
+    case 3: return ["gun"]
+    case 4: return ["spear"]
+    case 5: return ["fist"]
+    case 6: return ["staff"]
+  }
+  // 7 or 13
+  if (startHour < 16) {
+    return ["sword", "greatsword", "gun"]
+  }
+  return ["spear", "fist", "staff"]  
+}
+
+const weaponToIcon = (weapon) => {
+  switch (weapon) {
+    case "sword": return "/ui/material/material321001_standard.png"
+    case "greatsword": return "/ui/material/material321002_standard.png"
+    case "spear": return "/ui/material/material321003_standard.png"
+    case "fist": return "/ui/material/material321004_standard.png"
+    case "staff": return "/ui/material/material321005_standard.png"
+    case "gun": return "/ui/material/material321006_standard.png"
+  }
+}
+
 const TimerRow = ({ guerilla }) => {
   const now = new Date();
 
@@ -52,7 +80,10 @@ const TimerRow = ({ guerilla }) => {
   });
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 items-center">
+      <span>{guerillaTypes(endDate.getDay(), guerilla.start[1]).map(weapon=>(
+        <img src={weaponToIcon(weapon)} className="h-16"/>
+      ))}</span>
       <span className="w-32">{timeFormat.format(startDate)}</span>
       <span className="w-32">{timeFormat.format(endDate)}</span>
       <span>
