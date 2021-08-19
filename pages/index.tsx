@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
 import Head from "next/head";
+import dynamic from 'next/dynamic'
 
 import Layout from "../src/Layout";
-import GuerillaTimers from "../components/GuerillaTimers";
 import Socials from "../components/Socials";
+import JoinUs from "../components/JoinUs";
+
+const GuerillaTimersWithNoSSR = dynamic(
+  () => import('../components/GuerillaTimers'),
+  { ssr: false }
+)
 
 export default function Home() {
-  const [renderClientSideComponents, setRenderClientSideComponents] =
-    useState(false);
-
-  useEffect(() => setRenderClientSideComponents(true), []);
-
   return (
     <Layout>
       <Head>
@@ -21,21 +21,9 @@ export default function Home() {
         <img src="/launched.jpg" alt="NieR Re[in]carnation Launched !" />
       </div>
 
-      <div className="flex items-start justify-between flex-wrap gap-8 my-24">
-        {renderClientSideComponents && <GuerillaTimers />}
-
-        <div>
-          <iframe
-            src="https://docs.google.com/forms/d/e/1FAIpQLSf6QVNcP_iD3D3z4CZmo3vi7Y9N2BgcAdkNWTEWaM_XcMOKWA/viewform?embedded=true"
-            width="500"
-            height="500"
-            frameBorder="0"
-            marginHeight={0}
-            marginWidth={0}
-          >
-            Loading…
-          </iframe>
-        </div>
+      <div className="grid grid-cols-1 lg::grid-cols-2 gap-8 my-24">
+        <GuerillaTimersWithNoSSR />
+        <JoinUs />
       </div>
 
       <Socials />
