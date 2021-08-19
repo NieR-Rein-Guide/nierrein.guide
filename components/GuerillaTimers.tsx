@@ -46,6 +46,34 @@ const timeFormat = new Intl.DateTimeFormat(navigator.language, {
   timeStyle: "short",
 });
 
+
+const guerillaTypes = (dayOfWeek: number, startHour: number): string[] => {
+  switch (dayOfWeek) {
+    case 1: return ["sword"]
+    case 2: return ["greatsword"]
+    case 3: return ["gun"]
+    case 4: return ["spear"]
+    case 5: return ["fist"]
+    case 6: return ["staff"]
+  }
+  // 7 or 13
+  if (startHour < 16) {
+    return ["sword", "greatsword", "gun"]
+  }
+  return ["spear", "fist", "staff"]  
+}
+
+const weaponToIcon = (weapon: string): string => {
+  switch (weapon) {
+    case "sword": return "/ui/material/material321001_standard.png"
+    case "greatsword": return "/ui/material/material321002_standard.png"
+    case "spear": return "/ui/material/material321003_standard.png"
+    case "fist": return "/ui/material/material321004_standard.png"
+    case "staff": return "/ui/material/material321005_standard.png"
+    case "gun": return "/ui/material/material321006_standard.png"
+  }
+}
+
 const TimerRow = ({ guerilla }) => {
   const now = new Date();
 
@@ -69,7 +97,12 @@ const TimerRow = ({ guerilla }) => {
   guerilla.endDate = endDate
 
   return (
-    <div className="grid grid-cols-3 place-items-center border border-beige-dark p-4">
+    <span className="border border-beige-dark p-4 flex">
+    <span>{guerillaTypes(endDate.getDay(), guerilla.start[1]).map(weapon=>(
+        <img src={weaponToIcon(weapon)} className="h-16"/>
+    ))}</span>
+    <div className="grid grid-cols-3 place-items-center ">
+      
       <span className="md:w-48 text-right">
         {timeFormat.format(startDate)} to {timeFormat.format(endDate)}
       </span>
@@ -84,6 +117,7 @@ const TimerRow = ({ guerilla }) => {
         })}
       </span>
     </div>
+    </span>
   );
 };
 
