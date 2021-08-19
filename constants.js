@@ -23,7 +23,12 @@ export const NAVIGATION = [
     label: 'Database',
     href: '/database',
     iconUrl: '/ui/consumable_item/consumable110007_standard.png',
-  }
+  },
+  {
+    label: 'Fan Content',
+    href: '/fan-content',
+    iconUrl: '/ui/important_item/important100001_standard.png',
+  },
 ]
 
 export const CREDITS = [
