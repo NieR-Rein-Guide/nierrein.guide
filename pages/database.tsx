@@ -94,7 +94,7 @@ export default function Database({ models }) {
             </section>
 
             <ErrorBoundary>
-              <div className="h-screen">
+              <div style={{ height: '50vh' }}>
                 <ModelWithNoSSR path={path} />
               </div>
             </ErrorBoundary>

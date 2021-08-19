@@ -4,23 +4,30 @@ import { useFBX, Html, useProgress, PerspectiveCamera, OrbitControls } from '@re
 
 export default function Scene({ path }) {
   return (
-    <Canvas style={{ cursor: 'grab' }}>
+    <Canvas className="border border-beige-dark" style={{ cursor: 'grab' }}>
       <PerspectiveCamera
         makeDefault
-        position={[0, 0, 4]} />
+        position={[0, 1, 10]} zoom={4} />
       <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
       <ambientLight />
 
-      <Suspense fallback={<Loader />}>
-        <Model path={path} />
-      </Suspense>
+      <group position={[0, -1, 0]}>
+        <Suspense fallback={<Loader />}>
+          <Model path={path} />
+        </Suspense>
+      </group>
     </Canvas>
   )
 }
 
 function Model({ path }) {
   const fbx = useFBX(path)
-  return <primitive object={fbx} dispose={null} />
+  return (
+    <primitive
+      key={path}
+      object={fbx}
+      dispose={null} />
+  )
 }
 
 function Loader() {
