@@ -31,6 +31,7 @@
     "prettier": "^2.3.2",
     "sass": "^1.38.0",
     "tailwindcss": "^2.2.4",
-    "tailwindcss-easing": "^0.1.3"
+    "tailwindcss-easing": "^0.1.3",
+    "typescript": "^4.3.5"
   }
 }
