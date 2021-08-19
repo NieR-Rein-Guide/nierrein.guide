@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { useFBX, Html, useProgress, PerspectiveCamera, OrbitControls } from '@react-three/drei'
 
@@ -10,6 +10,7 @@ export default function Scene({ path }) {
         position={[0, 0, 4]} />
       <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
       <ambientLight />
+
       <Suspense fallback={<Loader />}>
         <Model path={path} />
       </Suspense>
