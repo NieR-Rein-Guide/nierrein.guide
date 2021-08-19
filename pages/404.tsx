@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import Layout from "../src/Layout";
 
-export default function NotFound() {
+export default function NotFound(): JSX.Element {
   const router = useRouter();
 
   return (
