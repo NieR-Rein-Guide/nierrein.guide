@@ -1,21 +1,28 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { useFBX } from '@react-three/drei'
+import { useFBX, Html, useProgress, PerspectiveCamera, OrbitControls } from '@react-three/drei'
 
-export default function Scene() {
-
+export default function Scene({ path }) {
   return (
-    <Canvas>
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <Suspense fallback={<p>Loading...</p>}>
-          <Model />
-        </Suspense>
-      </Canvas>
+    <Canvas style={{ cursor: 'grab' }}>
+      <PerspectiveCamera
+        makeDefault
+        position={[0, 0, 4]} />
+      <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
+      <ambientLight />
+      <Suspense fallback={<Loader />}>
+        <Model path={path} />
+      </Suspense>
+    </Canvas>
   )
 }
 
-function Model() {
-  const fbx = useFBX('/model/model.fbx')
+function Model({ path }) {
+  const fbx = useFBX(path)
   return <primitive object={fbx} dispose={null} />
+}
+
+function Loader() {
+  const { progress } = useProgress()
+  return <Html center>{progress} % loaded</Html>
 }
