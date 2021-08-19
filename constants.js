@@ -40,4 +40,7 @@ export const CREDITS = [
     name: 'fran',
     link: 'https://bbh-l.carrd.co/'
   },
+  {
+    name: 'Mayge'
+  },
 ]

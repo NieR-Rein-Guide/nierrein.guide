@@ -1,3 +1,4 @@
+import link from "next/link";
 import Link from "next/link";
 import { CREDITS, NAVIGATION } from "../constants";
 
@@ -49,19 +50,23 @@ function Layout({ children }) {
                     src={`/credits/${credit.name.toLowerCase()}.png`}
                     alt={`NieR Avatar of ${credit.name}`}
                   />
-                  <a
-                    href={credit.link}
-                    rel="noopener noreferrer"
-                    target="_blank"
-                    className="serif text-2xl"
-                  >
-                    {credit.name}
-                  </a>
+                  {credit.link && (
+                    <a
+                      href={credit.link}
+                      rel="noopener noreferrer"
+                      target="_blank"
+                      className="serif text-2xl"
+                    >
+                      {credit.name}
+                    </a>
+                  ) || (
+                    <span>{credit.name}</span>
+                  )}
                 </li>
               ))}
             </ul>
 
-            <p className="mt-4">
+            <p className="mt-8">
               If you are missing please let us know on our Discord !
             </p>
           </section>

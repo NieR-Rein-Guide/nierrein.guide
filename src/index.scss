@@ -11,12 +11,18 @@ h1, h2, h3, h4, h5, h6, .serif {
   font-weight: 500;
 }
 
+.surface {
+  @apply px-6 py-4;
+  background-color: theme('colors.beige.dark');
+  color: #000;
+}
+
 .serif {
   font-family: 'Cormorant', serif;
 }
 
 code {
-  color: #94918b;
+  color: theme('colors.beige.dark');
 }
 
 img {
@@ -52,7 +58,7 @@ header {
     .iso {
       height: 50px;
       width: 50px;
-      background-color: #1a1819;
+      background-color: theme('colors.beige.darker');
       transform: rotate(45deg);
 
       img {
@@ -69,7 +75,7 @@ header {
 
   &:hover {
     .iso {
-      background-color: #94918b;
+      background-color: theme('colors.beige.dark');
     }
   }
 }
@@ -81,12 +87,12 @@ header {
 }
 
 section {
-  background-color: #1a1819;
+  background-color: theme('colors.beige.darker');
   @apply relative p-12 pt-16;
 
-  > h1, h2, h3, h4, h5, h6 {
+  > h1, > h2, > h3, > h4, > h5, > h6 {
     @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl;
-    background-color: #94918b;
+    background-color: theme('colors.beige.dark');
     color: #000;
   }
 }
@@ -113,5 +119,5 @@ footer {
 
 .btn {
   @apply py-4 px-6 inline-flex items-center gap-2;
-  border: 1px solid #94918b;
+  border: 1px solid theme('colors.beige.dark');
 }
