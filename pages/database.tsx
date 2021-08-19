@@ -1,5 +1,5 @@
-import { Bound } from 'react'
 import Head from "next/head";
+import { Tabs,TabList, TabPanels, TabPanel, Tab } from '@reach/tabs'
 import Layout from "../src/Layout";
 import dynamic from 'next/dynamic'
 import ErrorBoundary from '../components/Error'
@@ -16,11 +16,22 @@ export default function Database() {
         <title>Database - NieR Re[in] Guide</title>
       </Head>
 
-      <ErrorBoundary>
-        <div className="h-screen">
-          <ModelWithNoSSR path="/model/model.fbx" />
-        </div>
-      </ErrorBoundary>
+
+      <Tabs defaultIndex={0}>
+        <TabList className="flex justify-around w-1/2 mx-auto">
+          <Tab index={0} className="hover-bg px-4 py-2">3D Models</Tab>
+        </TabList>
+
+        <TabPanels>
+          <TabPanel>
+            <ErrorBoundary>
+              <div className="h-screen">
+                <ModelWithNoSSR path="/model/model.fbx" />
+              </div>
+            </ErrorBoundary>
+          </TabPanel>
+        </TabPanels>
+      </Tabs>
     </Layout>
   );
 }
