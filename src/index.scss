@@ -1,3 +1,5 @@
+@import './nprogress.scss';
+
 html, body {
   color: #FFF;
   background-color: #000;
@@ -34,7 +36,7 @@ svg {
   width: auto;
 }
 
-header {
+header > div {
   background-color: RGBA(26, 24, 25, 0.5);
   margin: 32px 0;
   width: 95%;
@@ -43,7 +45,7 @@ header {
 
 .logo {
   img {
-    @apply transform scale-100 transition-transform ease-in-out;
+    @apply transform scale-100 transition-transform ease-out-cubic;
   }
 
   &:hover {
@@ -70,10 +72,10 @@ header {
 
 .nav-item {
   .iso {
-    @apply transition-colors ease-in-out;
+    @apply transition-colors ease-out-cubic;
   }
 
-  &:hover {
+  &:hover, .active {
     .iso {
       background-color: theme('colors.beige.dark');
     }
@@ -112,7 +114,7 @@ footer {
 .hover-bg {
   @apply transition-colors rounded-md;
 
-  &:hover, &:focus {
+  &:hover, &:focus, &.active, &[aria-selected="true"] {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
@@ -120,4 +122,28 @@ footer {
 .btn {
   @apply py-4 px-6 inline-flex items-center gap-2;
   border: 1px solid theme('colors.beige.dark');
+}
+
+.sidenav {
+  ul {
+    @apply rounded-md border border-beige-dark border-opacity-30;
+
+    > a, > li {
+      @apply block px-5 py-3 transition-colors bg-beige-darker;
+    }
+
+    > a {
+      svg {
+        @apply transform -translate-x-4 transition-transform ease-out-cubic;
+      }
+
+      &:hover, &:focus {
+        @apply bg-opacity-80;
+
+        svg {
+          @apply translate-x-0;
+        }
+      }
+    }
+  }
 }

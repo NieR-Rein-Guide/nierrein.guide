@@ -1,36 +1,41 @@
-import link from "next/link";
+import classNames from "classnames";
+import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { CREDITS, NAVIGATION } from "../constants";
 
 function Layout({ children }) {
+  const router = useRouter()
+
   return (
     <div className="flex flex-col items-center justify-center min-h-screen h-full">
-      <header className="flex justify-between items-center flex-wrap gap-y-8 px-8 py-6">
-        <Link href="/" passHref={true}>
-          <a className="logo flex items-center">
-            <img className="h-20 mr-4" src="/logo-256.png" alt="gem" />
-            <h1 className="text-3xl">NieR Re[in] Guide</h1>
-          </a>
-        </Link>
+      <header className="container">
+        <div className="flex flex-col justify-center items-center flex-wrap gap-y-8 px-8 py-6">
+          <Link href="/" passHref={true}>
+            <a className="logo flex items-center">
+              <img className="h-20 mr-4" src="/logo-256.png" alt="gem" />
+              <h1 className="text-3xl">NieR Re[in] Guide</h1>
+            </a>
+          </Link>
 
-        <nav className="flex">
-          <ul className="nav flex flex-wrap gap-y-6">
-            {NAVIGATION.map((nav) => (
-              <li key={nav.label} className="nav-item w-28">
-                <Link href={nav.href} passHref={true}>
-                  <a className="inline-flex flex-col items-center">
-                    <div className="iso">
-                      <img className="icon" src={nav.iconUrl} alt="icon" />
-                    </div>
-                    <span className="mt-4 text-center serif text-xl">
-                      {nav.label}
-                    </span>
-                  </a>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <nav className="flex">
+            <ul className="nav flex justify-center flex-wrap gap-y-6">
+              {NAVIGATION.map((nav) => (
+                <li key={nav.label} className="nav-item w-28">
+                  <Link href={nav.href} passHref={true}>
+                    <a className={classNames('inline-flex flex-col items-center', router.asPath === nav.href ? 'active' : null)}>
+                      <div className="iso">
+                        <img className="icon" src={nav.iconUrl} alt="icon" />
+                      </div>
+                      <span className="mt-4 text-center serif text-xl">
+                        {nav.label}
+                      </span>
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        </div>
       </header>
 
       <main className="container flex flex-col w-full flex-1">{children}</main>
@@ -60,7 +65,7 @@ function Layout({ children }) {
                       {credit.name}
                     </a>
                   ) || (
-                    <span>{credit.name}</span>
+                    <span className="serif text-2xl">{credit.name}</span>
                   )}
                 </li>
               ))}

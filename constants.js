@@ -1,8 +1,8 @@
 export const NAVIGATION = [
   {
-    label: 'Characters',
-    href: '/characters',
-    iconUrl: '/ui/consumable_item/consumable100001_standard.png',
+    label: 'Guides',
+    href: '/guides',
+    iconUrl: '/ui/consumable_item/consumable110003_standard.png',
   },
   {
     label: 'Loadouts',
@@ -15,9 +15,9 @@ export const NAVIGATION = [
     iconUrl: '/ui/consumable_item/consumable110002_standard.png',
   },
   {
-    label: 'Guides',
-    href: '/guides',
-    iconUrl: '/ui/consumable_item/consumable110003_standard.png',
+    label: 'Characters',
+    href: '/characters',
+    iconUrl: '/ui/consumable_item/consumable100001_standard.png',
   },
   {
     label: 'Database',

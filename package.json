@@ -8,9 +8,12 @@
     "fix": "eslint src components pages --fix"
   },
   "dependencies": {
+    "@reach/tabs": "^0.16.1",
+    "classnames": "^2.3.1",
     "date-fns": "^2.23.0",
     "date-fns-tz": "^1.1.6",
     "next": "latest",
+    "nprogress": "^0.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
@@ -27,6 +30,7 @@
     "postcss": "^8.3.5",
     "prettier": "^2.3.2",
     "sass": "^1.38.0",
-    "tailwindcss": "^2.2.4"
+    "tailwindcss": "^2.2.4",
+    "tailwindcss-easing": "^0.1.3"
   }
 }
