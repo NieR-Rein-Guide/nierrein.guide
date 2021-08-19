@@ -3,7 +3,12 @@ import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { CREDITS, NAVIGATION } from "../constants";
 
-function Layout({ children, className }) {
+interface LayoutProps {
+  children: React.ReactNode
+  className?: string
+}
+
+function Layout({ children, className }: LayoutProps) {
   const router = useRouter()
 
   return (
