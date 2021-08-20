@@ -1,10 +1,12 @@
 import classNames from "classnames";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import { NAVIGATION } from "config/constants"
+import { NAVIGATION } from "config/constants";
 
 export default function Header() {
-  const router = useRouter()
+  const router = useRouter();
+
+  console.log(router);
 
   return (
     <header className="container">
@@ -12,7 +14,7 @@ export default function Header() {
         <Link href="/" passHref={true}>
           <a className="logo flex items-center">
             <img className="h-20 mr-4" src="/logo-256.png" alt="gem" />
-            <h1 className="text-3xl">NieR Re[in] Guide</h1>
+            <h1 className="text-3xl text-center">NieR Re[in] Guide</h1>
           </a>
         </Link>
 
@@ -21,7 +23,12 @@ export default function Header() {
             {NAVIGATION.map((nav) => (
               <li key={nav.label} className="nav-item w-28">
                 <Link href={nav.href} passHref={true}>
-                  <a className={classNames('inline-flex flex-col items-center', router.asPath === nav.href ? 'active' : null)}>
+                  <a
+                    className={classNames(
+                      "inline-flex flex-col items-center",
+                      router.asPath === nav.href ? "active" : null
+                    )}
+                  >
                     <div className="iso">
                       <img className="icon" src={nav.iconUrl} alt="icon" />
                     </div>
@@ -36,5 +43,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-  )
+  );
 }

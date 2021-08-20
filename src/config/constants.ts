@@ -46,3 +46,5 @@ export const CREDITS = [
     name: 'Mayge'
   },
 ]
+
+export const GITHUB_REPO_LINK = 'https://github.com/NieR-Rein-Guide/nierrein.guide'
