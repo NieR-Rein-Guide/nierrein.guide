@@ -5,7 +5,6 @@ import { closestTo } from "date-fns/esm";
 import { enUS, fr } from "date-fns/locale";
 import { useEffect, useState } from "react";
 import SVG from 'react-inlinesvg'
-import { PT } from '../../constants'
 
 function locale() {
   const loc = { enUS, fr }[navigator.language];
