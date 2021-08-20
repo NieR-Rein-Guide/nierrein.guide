@@ -2,8 +2,6 @@ import { zonedTimeToUtc } from "date-fns-tz";
 import React from "react";
 import SVG from 'react-inlinesvg'
 
-const PT = "US/Pacific";
-
 // used for listing all daily types
 const DAYS_OF_WEEK = Array.from(Array(7).keys())
 

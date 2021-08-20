@@ -44,3 +44,6 @@ export const CREDITS = [
     name: 'Mayge'
   },
 ]
+
+// In-game timer timezone
+export const PT = "US/Pacific";
