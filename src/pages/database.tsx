@@ -1,15 +1,15 @@
 import Head from "next/head";
 import { Tabs,TabList, TabPanels, TabPanel, Tab } from '@reach/tabs'
 import dynamic from 'next/dynamic'
-import { listFolders, listModelsTypes } from '../src/libs/s3'
-import Layout from "../src/Layout";
+import { listFolders, listModelsTypes } from '../libs/s3'
+import Layout from "../Layout";
 import ErrorBoundary from '@components/Error'
 import { useState } from "react";
 import classNames from "classnames";
 import { useEffect } from "react";
 
 const ModelWithNoSSR = dynamic(
-  () => import('../src/components/Model'),
+  () => import('../components/Model'),
   { ssr: false }
 )
 

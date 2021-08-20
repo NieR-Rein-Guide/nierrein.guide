@@ -1,12 +1,12 @@
 import Head from "next/head";
 import dynamic from 'next/dynamic'
 
-import Layout from "../src/Layout";
+import Layout from "../Layout";
 import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
 
 const GuerillaTimersWithNoSSR = dynamic(
-  () => import('../src/components/GuerillaTimers'),
+  () => import('../components/GuerillaTimers'),
   { ssr: false }
 )
 

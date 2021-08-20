@@ -4,8 +4,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src pages",
-    "fix": "eslint src pages --fix"
+    "lint": "eslint src",
+    "fix": "eslint src --fix"
   },
   "engines": {
     "node": "16.x"
