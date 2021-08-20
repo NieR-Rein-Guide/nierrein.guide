@@ -1,6 +1,6 @@
 import "tailwindcss/tailwind.css";
-import "../src/index.scss";
-import NProgress from '../components/nprogress'
+import "@styles/index.scss";
+import NProgress from '@components/nprogress'
 
 function MyApp({ Component, pageProps, otherProp }) {
   return (

@@ -1,4 +1,4 @@
-@import './nprogress.scss';
+@import 'nprogress.scss';
 
 html, body {
   color: #FFF;
@@ -38,7 +38,7 @@ svg {
 
 header > div {
   background-color: RGBA(26, 24, 25, 0.5);
-  margin: 64px 0 32px;
+  margin: 64px auto 32px auto;
   width: 95%;
   border-radius: 32px;
 }
@@ -128,6 +128,10 @@ footer {
 .btn {
   @apply py-4 px-6 inline-flex items-center gap-2;
   border: 1px solid theme('colors.beige.dark');
+
+  &:hover, &:focus, &.active, &[aria-selected="true"] {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .sidenav {
