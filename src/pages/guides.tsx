@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Layout from "../src/Layout";
+import Layout from "../Layout";
 import { Tabs,TabList, TabPanels, TabPanel, Tab } from '@reach/tabs'
 import SVG from 'react-inlinesvg'
 
