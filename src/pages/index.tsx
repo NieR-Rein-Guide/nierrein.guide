@@ -10,6 +10,11 @@ const GuerillaTimersWithNoSSR = dynamic(
   { ssr: false }
 )
 
+const DailyInfoWithNoSSR = dynamic(
+  () => import('../components/DailyInfo'),
+  { ssr: false }
+)
+
 export default function Home() {
   return (
     <Layout>
@@ -23,6 +28,7 @@ export default function Home() {
 
       <div className="grid grid-cols-1 lg::grid-cols-2 gap-8 my-24">
         <GuerillaTimersWithNoSSR />
+        <DailyInfoWithNoSSR />
         <JoinUs />
       </div>
 
