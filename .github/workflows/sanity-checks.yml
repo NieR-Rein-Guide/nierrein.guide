@@ -28,3 +28,8 @@ jobs:
         run: npm run lint
       - name: make a build
         run: npm run build
+        env:
+          S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
+          S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
+          REGION: ${{ secrets.REGION }}
+          S3_DOMAIN: ${{ secrets.S3_DOMAIN }}
