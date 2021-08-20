@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import Layout from "../src/Layout";
-import CHARACTERS from "../models/character";
+import CHARACTERS from "@models/character";
 import CharacterInfo from "@components/CharacterInfo";
 
 export default function Home() {
