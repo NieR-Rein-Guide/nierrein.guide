@@ -16,8 +16,8 @@ export default function Header() {
           </a>
         </Link>
 
-        <nav className="flex">
-          <ul className="nav flex justify-center flex-wrap gap-y-6">
+        <nav className="nav">
+          <ul>
             {NAVIGATION.map((nav) => (
               <li key={nav.label} className="nav-item w-28">
                 <Link href={nav.href} passHref={true}>

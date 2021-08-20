@@ -168,9 +168,9 @@ function GuerillaTimers() {
         {GUERILLAS.map((guerilla) => (
           <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
         ))}
-        <div className="grid grid-cols-3 place-items-center">
-          <span className="w-48 text-center">
-            Local time
+        <div className="grid grid-cols-1 place-items-center mt-4">
+          <span>
+            The displayed times are local (converted from the game timezone)
           </span>
         </div>
       </div>

@@ -6,10 +6,10 @@ function Socials() {
       <h2>Links</h2>
 
       <ul className="grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-12 gap-6 mt-6">
-        <li>
+        <li className="w-full text-center">
           <a
-            className="flex flex-col gap-y-2 p-8 hover-bg"
-            href="https://discord.gg/swgHJJdt7f"
+            className="flex flex-col gap-y-2 hover-bg py-8"
+            href=""
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -17,9 +17,9 @@ function Socials() {
             <span>Our Discord</span>
           </a>
         </li>
-        <li>
+        <li className="w-full text-center">
           <a
-            className="flex flex-col gap-y-2 p-8 hover-bg"
+            className="flex flex-col gap-y-2 hover-bg py-8"
             href="https://discord.gg/4QTuC6xR82"
             rel="noopener noreferrer"
             target="_blank"
@@ -28,9 +28,9 @@ function Socials() {
             <span>Official Discord</span>
           </a>
         </li>
-        <li>
+        <li className="w-full text-center">
           <a
-            className="flex flex-col gap-y-2 p-8 hover-bg"
+            className="flex flex-col gap-y-2 hover-bg py-8"
             href="https://discord.gg/MA4yhvF"
             rel="noopener noreferrer"
             target="_blank"
@@ -39,9 +39,9 @@ function Socials() {
             <span>Unofficial Discord</span>
           </a>
         </li>
-        <li>
+        <li className="w-full text-center">
           <a
-            className="flex flex-col gap-y-2 p-8 hover-bg"
+            className="flex flex-col gap-y-2 hover-bg py-8"
             href="https://www.reddit.com/r/NieRReincarnation/"
             rel="noopener noreferrer"
             target="_blank"
