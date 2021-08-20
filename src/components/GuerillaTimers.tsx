@@ -1,3 +1,4 @@
+import { GAME_TIMEZONE } from "@config/constants";
 import { formatDistanceToNow } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
 import { closestTo } from "date-fns/esm";
@@ -10,9 +11,6 @@ function locale() {
   if (!loc) return enUS;
   return loc;
 }
-
-// timezone of the guerilla hours below
-const PT = "US/Pacific";
 
 interface Guerilla {
   start: number[]
@@ -60,7 +58,7 @@ const guerillaTypes = (dayOfWeek: number, startHour: number): string[] => {
   if (startHour < 16) {
     return ["sword", "greatsword", "gun"]
   }
-  return ["spear", "fist", "staff"]  
+  return ["spear", "fist", "staff"]
 }
 
 const weaponToIcon = (weapon: string): string => {
@@ -79,11 +77,11 @@ const TimerRow = ({ guerilla }) => {
 
   let startDate = new Date();
   startDate.setHours(guerilla.start[0], guerilla.start[1], 0, 0);
-  startDate = zonedTimeToUtc(startDate, PT);
+  startDate = zonedTimeToUtc(startDate, GAME_TIMEZONE);
 
   let endDate = new Date();
   endDate.setHours(guerilla.end[0], guerilla.end[1], 0, 0);
-  endDate = zonedTimeToUtc(endDate, PT);
+  endDate = zonedTimeToUtc(endDate, GAME_TIMEZONE);
 
   // no more "about 4 hours ago"
   if (now > endDate) {
@@ -103,12 +101,12 @@ const TimerRow = ({ guerilla }) => {
           src={weaponToIcon(weapon)}
           alt={`${weapon} icon`}
           title={weapon}
-          className="h-16" 
-          key={index} 
+          className="h-16"
+          key={index}
           />
     ))}</span>
     <div className="grid grid-cols-3 place-items-center ">
-      
+
       <span className="md:w-48 text-right">
         {timeFormat.format(startDate)} to {timeFormat.format(endDate)}
       </span>
@@ -170,9 +168,9 @@ function GuerillaTimers() {
         {GUERILLAS.map((guerilla) => (
           <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
         ))}
-        <div className="grid grid-cols-3 place-items-center">
-          <span className="w-48 text-center">
-            Local time
+        <div className="grid grid-cols-1 place-items-center mt-4">
+          <span>
+            The displayed times are local (converted from the game timezone)
           </span>
         </div>
       </div>

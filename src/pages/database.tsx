@@ -1,15 +1,15 @@
 import Head from "next/head";
 import { Tabs,TabList, TabPanels, TabPanel, Tab } from '@reach/tabs'
 import dynamic from 'next/dynamic'
-import { listFolders, listModelsTypes } from '../libs/s3'
-import Layout from "../Layout";
+import { listFolders, listModelsTypes } from '@libs/s3'
+import Layout from "@components/Layout";
 import ErrorBoundary from '@components/Error'
 import { useState } from "react";
 import classNames from "classnames";
 import { useEffect } from "react";
 
 const ModelWithNoSSR = dynamic(
-  () => import('../components/Model'),
+  () => import('@components/Model'),
   { ssr: false }
 )
 
@@ -98,7 +98,7 @@ export default function Database({ models }) {
                   <br />Known issues :
                 </p>
                 <ul>
-                  <li>Previous button doesn't rework, refresh the page to "fix"</li>
+                  <li>Previous button doesn't work, refresh the page to "fix"</li>
                   <li>UX sucks. I'm sorry</li>
                   <li>If you cannot see the model it is likely black on black or off camera</li>
                 </ul>

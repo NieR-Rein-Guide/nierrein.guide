@@ -1,3 +1,5 @@
+![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/NieR-Rein-Guide/nierrein.guide/Sanity%20Checks/main?label=lint&style=flat-square)
+
 # https://nierrein.guide/
 
 This is the frontend of https://nierrein.guide/.
@@ -7,14 +9,17 @@ You can join our Discord server to chat and contribute : https://discord.gg/swgH
 
 ## Features
 
-- All characters
+- Guides (How to...)
 - Loadouts (presets of teams for PvE, PvP, Dungeons...)
 - Tier lists (for PvE and PvP)
-- Guides (How to...)
-- Database (An index of all datamined assets, and more)
-- Fan arts
+- Characters and their costumes
+- Database (3D Model viewer and all datamined assets)
+- Fan Content (Art, Videos, etc.)
 
-## How to use
+## How to install the project ?
+
+### Requirements
+- Node.js (> 16.x)
 
 ```bash
 npm install

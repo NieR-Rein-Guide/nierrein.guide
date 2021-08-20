@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import Layout from "../Layout";
+import Layout from "@components/Layout";
 import CHARACTERS from "@models/character";
 import CharacterInfo from "@components/CharacterInfo";
 
