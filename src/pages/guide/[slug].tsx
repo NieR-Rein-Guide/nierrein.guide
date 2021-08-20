@@ -35,11 +35,13 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
               src={guide.avatarUrl}
               alt="Avatar"
               className="rounded-full bg-beige h-10 md:h-12"
+              height="48"
+              width="48"
             />
             <p>Written by {guide.author}</p>
           </div>
 
-          <div>
+          <div className="md:text-right">
             {guide.updatedAt && (
               <p>
                 Updated {formatDistanceToNow(new Date(guide.updatedAt))} ago

@@ -48,3 +48,10 @@ export const CREDITS = [
 ]
 
 export const GITHUB_REPO_LINK = 'https://github.com/NieR-Rein-Guide/nierrein.guide'
+
+export const meta = {
+  title: 'NieR Re[in] Global Guide & Database',
+  description: 'Brings you free, high quality content : Guides, updated tierlists, complete databases, 3d model viewer and more!',
+  url: 'https://nierrein.guide/',
+  cover: 'https://nierrein.guide/cover.jpg'
+}
