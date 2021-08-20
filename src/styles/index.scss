@@ -1,30 +1,39 @@
-@import 'nprogress.scss';
+@import "nprogress.scss";
 
-html, body {
-  color: #FFF;
+@import "./components/";
+
+html,
+body {
+  color: #fff;
   background-color: #000;
   height: 100%;
 }
 
-h1, h2, h3, h4, h5, h6, .serif {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.serif {
   letter-spacing: -0.5px;
-  font-family: 'Cormorant', serif;
+  font-family: "Cormorant", serif;
   line-height: 1;
   font-weight: 500;
 }
 
 .surface {
   @apply px-6 py-4;
-  background-color: theme('colors.beige.dark');
+  background-color: theme("colors.beige.dark");
   color: #000;
 }
 
 .serif {
-  font-family: 'Cormorant', serif;
+  font-family: "Cormorant", serif;
 }
 
 code {
-  color: theme('colors.beige.dark');
+  color: theme("colors.beige.dark");
 }
 
 img {
@@ -37,10 +46,13 @@ svg {
 }
 
 header > div {
+  @apply mt-32 mb-8 mx-auto;
   background-color: RGBA(26, 24, 25, 0.5);
-  margin: 64px auto 32px auto;
-  width: 95%;
   border-radius: 32px;
+
+  @screen md {
+    @apply mt-16;
+  }
 }
 
 .logo {
@@ -64,7 +76,15 @@ header > div {
 .nav {
   ul {
     @apply grid gap-y-8;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+
+    @screen sm {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @screen md {
+      grid-template-columns: repeat(3, 1fr);
+    }
 
     @screen lg {
       grid-template-columns: repeat(6, 1fr);
@@ -75,7 +95,7 @@ header > div {
     .iso {
       height: 50px;
       width: 50px;
-      background-color: theme('colors.beige.darker');
+      background-color: theme("colors.beige.darker");
       transform: rotate(45deg);
 
       img {
@@ -92,9 +112,10 @@ header > div {
     @apply transition-colors ease-out-cubic;
   }
 
-  &:hover, .active {
+  &:hover,
+  .active {
     .iso {
-      background-color: theme('colors.beige.dark');
+      background-color: theme("colors.beige.dark");
     }
   }
 }
@@ -106,12 +127,17 @@ header > div {
 }
 
 section {
-  background-color: theme('colors.beige.darker');
+  background-color: theme("colors.beige.darker");
   @apply relative p-12 pt-16;
 
-  > h1, > h2, > h3, > h4, > h5, > h6 {
+  > h1,
+  > h2,
+  > h3,
+  > h4,
+  > h5,
+  > h6 {
     @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl;
-    background-color: theme('colors.beige.dark');
+    background-color: theme("colors.beige.dark");
     color: #000;
   }
 }
@@ -131,16 +157,10 @@ footer {
 .hover-bg {
   @apply transition-colors rounded-md;
 
-  &:hover, &:focus, &.active, &[aria-selected="true"] {
-    background-color: rgba(255, 255, 255, 0.1);
-  }
-}
-
-.btn {
-  @apply py-4 px-6 inline-flex items-center gap-2;
-  border: 1px solid theme('colors.beige.dark');
-
-  &:hover, &:focus, &.active, &[aria-selected="true"] {
+  &:hover,
+  &:focus,
+  &.active,
+  &[aria-selected="true"] {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
@@ -149,7 +169,8 @@ footer {
   ul {
     @apply rounded-md border border-beige-dark border-opacity-30;
 
-    > a, > li {
+    > a,
+    > li {
       @apply block px-5 py-3 transition-colors bg-beige-darker;
     }
 
@@ -158,7 +179,8 @@ footer {
         @apply transform -translate-x-4 transition-transform ease-out-cubic;
       }
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         @apply bg-opacity-80;
 
         svg {
