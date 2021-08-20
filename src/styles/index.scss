@@ -1,3 +1,5 @@
+@import './nprogress.scss';
+
 html, body {
   color: #FFF;
   background-color: #000;
@@ -11,12 +13,18 @@ h1, h2, h3, h4, h5, h6, .serif {
   font-weight: 500;
 }
 
+.surface {
+  @apply px-6 py-4;
+  background-color: theme('colors.beige.dark');
+  color: #000;
+}
+
 .serif {
   font-family: 'Cormorant', serif;
 }
 
 code {
-  color: #94918b;
+  color: theme('colors.beige.dark');
 }
 
 img {
@@ -28,16 +36,22 @@ svg {
   width: auto;
 }
 
-header {
+header > div {
   background-color: RGBA(26, 24, 25, 0.5);
-  margin: 32px 0;
+  margin: 64px auto 32px auto;
   width: 95%;
   border-radius: 32px;
 }
 
 .logo {
+  @apply relative;
+
   img {
-    @apply transform scale-100 transition-transform ease-in-out;
+    @apply z-0 absolute -top-16 left-1/2 transform -translate-x-1/2 scale-100 transition-transform ease-out-cubic;
+  }
+
+  h1 {
+    @apply z-10 drop-shadow-xl mt-4;
   }
 
   &:hover {
@@ -52,7 +66,7 @@ header {
     .iso {
       height: 50px;
       width: 50px;
-      background-color: #1a1819;
+      background-color: theme('colors.beige.darker');
       transform: rotate(45deg);
 
       img {
@@ -64,12 +78,12 @@ header {
 
 .nav-item {
   .iso {
-    @apply transition-colors ease-in-out;
+    @apply transition-colors ease-out-cubic;
   }
 
-  &:hover {
+  &:hover, .active {
     .iso {
-      background-color: #94918b;
+      background-color: theme('colors.beige.dark');
     }
   }
 }
@@ -81,12 +95,12 @@ header {
 }
 
 section {
-  background-color: #1a1819;
+  background-color: theme('colors.beige.darker');
   @apply relative p-12 pt-16;
 
-  > h1, h2, h3, h4, h5, h6 {
+  > h1, > h2, > h3, > h4, > h5, > h6 {
     @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl;
-    background-color: #94918b;
+    background-color: theme('colors.beige.dark');
     color: #000;
   }
 }
@@ -106,12 +120,40 @@ footer {
 .hover-bg {
   @apply transition-colors rounded-md;
 
-  &:hover, &:focus {
+  &:hover, &:focus, &.active, &[aria-selected="true"] {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
 
 .btn {
   @apply py-4 px-6 inline-flex items-center gap-2;
-  border: 1px solid #94918b;
+  border: 1px solid theme('colors.beige.dark');
+
+  &:hover, &:focus, &.active, &[aria-selected="true"] {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.sidenav {
+  ul {
+    @apply rounded-md border border-beige-dark border-opacity-30;
+
+    > a, > li {
+      @apply block px-5 py-3 transition-colors bg-beige-darker;
+    }
+
+    > a {
+      svg {
+        @apply transform -translate-x-4 transition-transform ease-out-cubic;
+      }
+
+      &:hover, &:focus {
+        @apply bg-opacity-80;
+
+        svg {
+          @apply translate-x-0;
+        }
+      }
+    }
+  }
 }

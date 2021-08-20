@@ -1,6 +1,9 @@
 import { formatDistanceToNow } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
+import { closestTo } from "date-fns/esm";
 import { enUS, fr } from "date-fns/locale";
+import { useEffect, useState } from "react";
+import SVG from 'react-inlinesvg'
 
 function locale() {
   const loc = { enUS, fr }[navigator.language];
@@ -11,7 +14,16 @@ function locale() {
 // timezone of the guerilla hours below
 const PT = "US/Pacific";
 
-const GUERILLAS = [
+interface Guerilla {
+  start: number[]
+  end: number[]
+  startDate?: Date
+  endDate?: Date
+}
+
+type GuerillasList = Guerilla[]
+
+const GUERILLAS: GuerillasList = [
   {
     start: [7, 0],
     end: [8, 0],
@@ -30,6 +42,38 @@ const GUERILLAS = [
   },
 ];
 
+const timeFormat = new Intl.DateTimeFormat(navigator.language, {
+  timeStyle: "short",
+});
+
+
+const guerillaTypes = (dayOfWeek: number, startHour: number): string[] => {
+  switch (dayOfWeek) {
+    case 1: return ["sword"]
+    case 2: return ["greatsword"]
+    case 3: return ["gun"]
+    case 4: return ["spear"]
+    case 5: return ["fist"]
+    case 6: return ["staff"]
+  }
+  // 7 or 13
+  if (startHour < 16) {
+    return ["sword", "greatsword", "gun"]
+  }
+  return ["spear", "fist", "staff"]  
+}
+
+const weaponToIcon = (weapon: string): string => {
+  switch (weapon) {
+    case "sword": return "/ui/material/material321001_standard.png"
+    case "greatsword": return "/ui/material/material321002_standard.png"
+    case "spear": return "/ui/material/material321003_standard.png"
+    case "fist": return "/ui/material/material321004_standard.png"
+    case "staff": return "/ui/material/material321005_standard.png"
+    case "gun": return "/ui/material/material321006_standard.png"
+  }
+}
+
 const TimerRow = ({ guerilla }) => {
   const now = new Date();
 
@@ -47,15 +91,31 @@ const TimerRow = ({ guerilla }) => {
     endDate.setDate(endDate.getDate() + 1);
   }
 
-  const timeFormat = new Intl.DateTimeFormat(navigator.language, {
-    timeStyle: "short",
-  });
+  // Add these properties to the array so we can use them in the parent component
+  // @todo refactor using a store
+  guerilla.startDate = startDate
+  guerilla.endDate = endDate
 
   return (
-    <div className="flex gap-4">
-      <span className="w-32">{timeFormat.format(startDate)}</span>
-      <span className="w-32">{timeFormat.format(endDate)}</span>
-      <span>
+    <span className="border border-beige-dark p-4 flex">
+    <span>{guerillaTypes(endDate.getDay(), guerilla.start[1]).map((weapon, index)=>(
+        <img
+          src={weaponToIcon(weapon)}
+          alt={`${weapon} icon`}
+          title={weapon}
+          className="h-16" 
+          key={index} 
+          />
+    ))}</span>
+    <div className="grid grid-cols-3 place-items-center ">
+      
+      <span className="md:w-48 text-right">
+        {timeFormat.format(startDate)} to {timeFormat.format(endDate)}
+      </span>
+
+      <SVG src="/decorations/squares.svg" className="text-beige h-4 mx-4" />
+
+      <span className="md:w-48 text-left">
         {formatDistanceToNow(startDate, {
           includeSeconds: true,
           addSuffix: true,
@@ -63,16 +123,59 @@ const TimerRow = ({ guerilla }) => {
         })}
       </span>
     </div>
+    </span>
   );
 };
 
 function GuerillaTimers() {
+  const [nextGuerilla, setNextGuerilla] = useState(null)
+
+  useEffect(() => {
+    const interval = updateNextGuerilla()
+
+    return () => clearInterval(interval)
+  })
+
+  function updateNextGuerilla() {
+    return setInterval(() => {
+      if (GUERILLAS.every((guerilla) => guerilla.startDate)) {
+        const now = new Date()
+        const startDates = GUERILLAS
+          .map(guerilla => guerilla.startDate)
+          .filter(date => now < date) // Filter past dates (i.e 1 minute ago)
+
+        const nextGuerilla = closestTo(new Date(), startDates)
+        setNextGuerilla(nextGuerilla)
+      }
+    }, 1000)
+  }
+
   return (
     <section className="flex items-start flex-col my-24">
-      <h2>Guerilla Timer (WIP)</h2>
-      {GUERILLAS.map((guerilla) => (
-        <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
-      ))}
+      <img className="absolute -left-12 top-0 transform -translate-y-1/2 h-auto" src="/ui/ability/ability100001_standard.png" alt="Guerilla" />
+      <h2>Guerilla Timer</h2>
+
+      <div className="flex justify-center items-center w-full mb-6">
+        <h3 className="surface serif text-3xl text-center">
+          Next Guerilla is{' '}
+          {nextGuerilla && formatDistanceToNow(nextGuerilla, {
+            includeSeconds: true,
+            addSuffix: true,
+            locale: locale(),
+          })}
+        </h3>
+      </div>
+
+      <div className="grid grid-cols-1 place-items-center gap-y-4 w-full">
+        {GUERILLAS.map((guerilla) => (
+          <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
+        ))}
+        <div className="grid grid-cols-3 place-items-center">
+          <span className="w-48 text-center">
+            Local time
+          </span>
+        </div>
+      </div>
     </section>
   );
 }
