@@ -1,3 +1,5 @@
+export const GAME_TIMEZONE = "US/Pacific";
+
 export const NAVIGATION = [
   {
     label: 'Guides',

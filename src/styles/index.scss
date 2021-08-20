@@ -62,6 +62,15 @@ header > div {
 }
 
 .nav {
+  ul {
+    @apply grid gap-y-8;
+    grid-template-columns: repeat(3, 1fr);
+
+    @screen lg {
+      grid-template-columns: repeat(6, 1fr);
+    }
+  }
+
   li {
     .iso {
       height: 50px;
@@ -77,6 +86,8 @@ header > div {
 }
 
 .nav-item {
+  @apply flex justify-center;
+
   .iso {
     @apply transition-colors ease-out-cubic;
   }
