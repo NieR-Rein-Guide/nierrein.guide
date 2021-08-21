@@ -92,7 +92,7 @@ function CharacterCostumes({
   )
 }
 
-export default function Home() {
+export default function CharactersPage() {
 
 
   const [currentCostume, setCostume] = useState(
@@ -102,7 +102,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>NieR Re[in] Global Guide & Database</title>
+        <title>Characters - NieR Re[in] Global Guide & Database</title>
       </Head>
 
       <CharacterRows {...{ setCostume, currentCostume }} />
