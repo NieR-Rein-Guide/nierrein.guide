@@ -5,7 +5,7 @@ import Corners from "@components/decorations/Corners";
 import Link from "next/link";
 import { Guide } from "../../types/models/guide";
 import { formatDistanceToNow } from "date-fns";
-import { getGuide } from "@libs/api";
+import { getAllGuides, getGuide } from "@libs/api";
 import marked from "marked";
 
 interface GuideProps {
@@ -77,9 +77,9 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const { GUIDES } = await import("@models/guide");
+  const guides = await getAllGuides();
 
-  const paths = GUIDES.map((guide) => ({
+  const paths = guides.map((guide) => ({
     params: { slug: guide.slug },
   }));
 
