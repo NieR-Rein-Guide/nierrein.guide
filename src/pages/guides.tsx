@@ -1,9 +1,7 @@
 import Head from "next/head";
 import Layout from "@components/Layout";
 import SVG from "react-inlinesvg";
-import { GUIDES } from "@models/guide";
-import { getAllGuides } from "@libs/api";
-import { Guide } from "../types/models/guide";
+import { getAllGuides, Guide } from "@models/guide";
 
 interface GuidesProps {
   topics: Guide[];

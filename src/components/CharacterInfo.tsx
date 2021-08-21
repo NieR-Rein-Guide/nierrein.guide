@@ -1,6 +1,6 @@
 import Corners from "./decorations/Corners";
 
-import { CostumeInfo, Stats } from '@models/character'
+import { CostumeInfo, Stats } from "@models/character";
 
 function SingleStat({ name, value }) {
   return (
@@ -11,18 +11,18 @@ function SingleStat({ name, value }) {
   );
 }
 
-function StatsOfLevel({ label, stats }: { label: string, stats: Stats }) {
+function StatsOfLevel({ label, stats }: { label: string; stats: Stats }) {
   return (
     <div className="flex-1">
       <span className="mb-4 text-lg">{label}</span>
       <div className="flex flex-col">
-        <SingleStat name="Force" value={stats.force ?? '???'} />
-        <SingleStat name="HP" value={stats.hp ?? '???'} />
-        <SingleStat name="Attack" value={stats.attack ?? '???'} />
-        <SingleStat name="Defense" value={stats.defence ?? '???'} />
-        <SingleStat name="Agility" value={stats.agility ?? '???'} />
-        <SingleStat name="Crit" value={stats.criticalRate ?? '???' + " %"} />
-        <SingleStat name="Cdmg" value={stats.criticalDamage ?? '???' + " %"} />
+        <SingleStat name="Force" value={stats.force ?? "???"} />
+        <SingleStat name="HP" value={stats.hp ?? "???"} />
+        <SingleStat name="Attack" value={stats.attack ?? "???"} />
+        <SingleStat name="Defense" value={stats.defence ?? "???"} />
+        <SingleStat name="Agility" value={stats.agility ?? "???"} />
+        <SingleStat name="Crit" value={stats.criticalRate ?? "???" + " %"} />
+        <SingleStat name="Cdmg" value={stats.criticalDamage ?? "???" + " %"} />
       </div>
     </div>
   );
@@ -40,7 +40,9 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
         <img
           className="h-auto my-auto"
           src={costume.illustrationURL}
-          alt={`${costume.character} (${costume.name.en}) illustration`} />
+          alt={`${costume.character} (${costume.name.en}) illustration`}
+          loading="lazy"
+        />
 
         <span className="flex absolute top-2 left-2">
           {Array.from({ length: costume.stars }).map((_, index) => (
@@ -52,6 +54,7 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
               className="w-8 h-8"
               src="/ui/actor/ma001001_01_actor_icon.png"
               alt="Mama icon used as star"
+              loading="lazy"
             />
           ))}
         </span>
@@ -59,9 +62,7 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
         <Corners />
 
         <div className="w-12 h-12 absolute bottom-4 right-4 border bg-white bg-opacity-25 flex">
-          <span className="self-center justify-self-center mx-auto">
-            SSS+
-          </span>
+          <span className="self-center justify-self-center mx-auto">SSS+</span>
         </div>
       </div>
       <div className="flex-1">
@@ -69,11 +70,10 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
           <span className="uppercase px-1 text-black bg-beige">
             {costume.character}
           </span>
-          <span className="pl-2 uppercase text-beige">
-            {costume.name.en}
-          </span>
+          <span className="pl-2 uppercase text-beige">{costume.name.en}</span>
         </div>
-        <p className="whitespace-pre-wrap text-sm mt-2"
+        <p
+          className="whitespace-pre-wrap text-sm mt-2"
           style={{
             color: "lightgrey",
           }}

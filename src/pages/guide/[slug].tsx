@@ -3,9 +3,8 @@ import SVG from "react-inlinesvg";
 import Layout from "@components/Layout";
 import Corners from "@components/decorations/Corners";
 import Link from "next/link";
-import { Guide } from "../../types/models/guide";
 import { formatDistanceToNow } from "date-fns";
-import { getAllGuides, getGuide } from "@libs/api";
+import { getAllGuides, getGuide, Guide } from "@models/guide";
 import marked from "marked";
 
 interface GuideProps {

@@ -16,6 +16,7 @@ export default function Footer() {
                   className="h-16"
                   src={`/credits/${credit.name.toLowerCase()}.png`}
                   alt={`NieR Avatar of ${credit.name}`}
+                  loading="lazy"
                 />
                 {(credit.link && (
                   <a
