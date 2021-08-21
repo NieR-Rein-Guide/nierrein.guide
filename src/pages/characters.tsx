@@ -79,13 +79,45 @@ function CharacterCostumes({
   currentCostume: CostumeInfo,
   setCostume: Dispatch<SetStateAction<CostumeInfo>>,
 }) {
+  const sorted = typedCharacters.get(currentCostume.character)
+    .sort((a,b) => a.stars-b.stars);
+  const byStars = sorted.reduce((acc, elem) => {
+    if (acc.has(elem.stars)) {
+        acc.get(elem.stars).push(elem)
+    } else {
+        acc.set(elem.stars, [elem])
+    }
+    return acc
+  }, new Map<number, CostumeInfo[]>())
+  const costumes = Array.from(byStars.entries())
+
   return (
-    <div className="flex flex-wrap justify-center gap-2 my-2">
-      {typedCharacters.get(currentCostume.character).map(costume => (
-        <div key={costume.id}
-          className={`flex items-center border-beige border-2 p-2 ${currentCostume.id == costume.id ? '' : 'border-opacity-30'}`}
-          onClick={() => setCostume(costume)}>
-          {costume.name.en}
+    <div className="gap-2 my-2 ml-6">
+      {costumes.map(([stars, costumes]) => (
+        <div className="flex flex-row" key={stars}>
+          <span className="flex flex-row">
+            {Array.from({ length: stars }).map((_, index) => (
+              <img
+              key={index}
+              className="w-8 h-8"
+              src="/ui/actor/ma001001_01_actor_icon.png"
+              alt="Mama icon used as star"
+              />
+            ))}
+            {Array.from({ length: 5-stars }).map((_, index) => (
+              <span
+              key={index}
+              className="w-8 h-8"
+              />
+            ))}
+          </span>
+          {costumes.map(costume => (
+            <div key={costume.id}
+            className={`flex items-center border-beige border-2 p-2 ${currentCostume.id == costume.id ? '' : 'border-opacity-30'}`}
+            onClick={() => setCostume(costume)}>
+              {costume.name.en}
+            </div>
+          ))}
         </div>
       ))}
     </div>
