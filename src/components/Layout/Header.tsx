@@ -6,8 +6,6 @@ import { NAVIGATION } from "config/constants";
 export default function Header() {
   const router = useRouter();
 
-  console.log(router);
-
   return (
     <header className="container">
       <div className="flex flex-col justify-center items-center flex-wrap gap-y-8 px-8 py-6">

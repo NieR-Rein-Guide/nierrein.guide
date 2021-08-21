@@ -5,6 +5,8 @@ import Corners from "@components/decorations/Corners";
 import Link from "next/link";
 import { Guide } from "../../types/models/guide";
 import { formatDistanceToNow } from "date-fns";
+import { getGuide } from "@libs/api";
+import marked from "marked";
 
 interface GuideProps {
   guide: Guide;
@@ -32,22 +34,22 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
         <div className="flex flex-wrap justify-between gap-y-4 mt-4">
           <div className="flex items-center gap-x-4">
             <img
-              src={guide.avatarUrl}
+              src="/ui/character/character001004_standard.png"
               alt="Avatar"
               className="rounded-full bg-beige h-10 md:h-12"
               height="48"
               width="48"
             />
-            <p>Written by {guide.author}</p>
+            <p>Written by Admin</p>
           </div>
 
           <div className="md:text-right">
-            {guide.updatedAt && (
+            {guide.updated_at && (
               <p>
-                Updated {formatDistanceToNow(new Date(guide.updatedAt))} ago
+                Updated {formatDistanceToNow(new Date(guide.updated_at))} ago
               </p>
             )}
-            <p>Published {new Date(guide.createdAt).toLocaleDateString()}</p>
+            <p>Published {new Date(guide.published_at).toLocaleDateString()}</p>
           </div>
         </div>
       </div>
@@ -57,7 +59,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
 
         <div
           className="wysiwyg"
-          dangerouslySetInnerHTML={{ __html: guide.content }}
+          dangerouslySetInnerHTML={{ __html: marked(guide.content) }}
         ></div>
       </article>
     </Layout>
@@ -65,8 +67,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
 }
 
 export async function getStaticProps(context) {
-  const { GUIDES } = await import("@models/guide");
-  const guide = GUIDES.find((guide) => guide.slug === context.params.slug);
+  const guide = await getGuide(context.params.slug);
 
   return {
     props: {
@@ -77,11 +78,10 @@ export async function getStaticProps(context) {
 
 export async function getStaticPaths() {
   const { GUIDES } = await import("@models/guide");
+
   const paths = GUIDES.map((guide) => ({
     params: { slug: guide.slug },
   }));
-
-  console.log(paths);
 
   return {
     paths,
