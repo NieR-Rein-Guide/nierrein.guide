@@ -29,7 +29,7 @@ function CharacterRows({
     <div className="relative self-center h-32 mt-20 mb-20">
       <div className="flex">
         {firstRow.map((costume) =>
-          <div className="relative" onClick={() => {
+          <div key={costume.id} className="relative" onClick={() => {
             setCostume(costume)
           }}>
             <div className={`absolute text-sm bottom-20 right-0 flex justify-center text-white ${costume.character == currentCostume.character ? '' : 'text-opacity-60'}`} style={{ width: '56px' }}>
@@ -51,7 +51,7 @@ function CharacterRows({
         top: '42px',
       }}>
         {secondRow.map((costume) =>
-          <div className="relative" onClick={() => {
+          <div key={costume.id} className="relative" onClick={() => {
             setCostume(costume)
           }}>
             <div className={`absolute text-sm top-20 right-0 flex justify-center text-white ${costume.character == currentCostume.character ? '' : 'text-opacity-60'}`} style={{ width: '56px' }}>
