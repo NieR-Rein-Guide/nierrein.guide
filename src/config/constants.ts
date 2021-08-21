@@ -62,6 +62,9 @@ export const CREDITS = [
   },
   {
     name: 'Keek'
+  },
+  {
+    name: 'Halomasterpro'
   }
 ].sort((a, b) => a.name.localeCompare(b.name))
 
