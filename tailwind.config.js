@@ -6,10 +6,13 @@ module.exports = {
       colors: {
         beige: {
           DEFAULT: '#bda699',
+          light: '#b8b6a5',
           dark: '#94918b',
           darker: '#1a1819',
         },
-
+        brown: {
+          DEFAULT: '#4a4341',
+        }
       }
     },
   },

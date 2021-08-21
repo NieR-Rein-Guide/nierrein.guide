@@ -83,6 +83,10 @@ export const CREDITS = [
     name: 'PostPwnedTV',
     link: 'https://www.youtube.com/channel/UCnGiUC0o44YB60xAs-U6neg'
   },
+  {
+    name: 'Luna',
+    link: 'https://www.leveleditors.net/'
+  }
 ].sort((a, b) => a.name.localeCompare(b.name))
 
 export const GITHUB_REPO_LINK = 'https://github.com/NieR-Rein-Guide/nierrein.guide'
