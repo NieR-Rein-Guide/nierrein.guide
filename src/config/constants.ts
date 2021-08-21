@@ -66,7 +66,23 @@ export const CREDITS = [
   {
     name: 'Halomasterpro',
     link: 'https://www.twitch.tv/halomasterpro'
-  }
+  },
+  {
+    name: 'H\'YueWa',
+    link: 'https://twitter.com/hyuewa'
+  },
+  {
+    name: 'NightDrawn',
+    link: 'https://www.youtube.com/channel/UCpbi_Hbhf4jteSFpTs5MPKg'
+  },
+  {
+    name: 'val_pinkman',
+    link: 'https://dr0p.me/'
+  },
+  {
+    name: 'PostPwnedTV',
+    link: 'https://www.youtube.com/channel/UCnGiUC0o44YB60xAs-U6neg'
+  },
 ].sort((a, b) => a.name.localeCompare(b.name))
 
 export const GITHUB_REPO_LINK = 'https://github.com/NieR-Rein-Guide/nierrein.guide'
