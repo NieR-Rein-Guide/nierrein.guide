@@ -33,6 +33,9 @@ class CostumeInfo {
         return `/character/ch${this.id.toString().padStart(6, '0')}_full.png`
     }
     get iconURL(): string {
+        switch(this.id) {
+            case 1003: return `/ui/actor/ch001003_01_actor_icon.png` // 2P
+        }
         // id = 19005
         const id = Math.floor(this.id/1000)*1000 + 1
         // id = 19001
