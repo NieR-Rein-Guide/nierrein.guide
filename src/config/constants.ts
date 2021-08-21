@@ -64,7 +64,8 @@ export const CREDITS = [
     name: 'Keek'
   },
   {
-    name: 'Halomasterpro'
+    name: 'Halomasterpro',
+    link: 'https://www.twitch.tv/halomasterpro'
   }
 ].sort((a, b) => a.name.localeCompare(b.name))
 
