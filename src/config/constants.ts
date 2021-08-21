@@ -45,7 +45,25 @@ export const CREDITS = [
   {
     name: 'Mayge'
   },
-]
+  {
+    name: 'Keitio'
+  },
+  {
+    name: 'Naikyo'
+  },
+  {
+    name: 'arcadewe'
+  },
+  {
+    name: 'jonbttt'
+  },
+  {
+    name: 'dvsshadow'
+  },
+  {
+    name: 'Keek'
+  }
+].sort((a, b) => a.name.localeCompare(b.name))
 
 export const GITHUB_REPO_LINK = 'https://github.com/NieR-Rein-Guide/nierrein.guide'
 
