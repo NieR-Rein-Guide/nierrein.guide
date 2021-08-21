@@ -1,57 +1,5 @@
 import allCostumes from './characters_stub.json'
 
-const characters = [
-    "A2",
-]
-
-const stubCostumes = [
-    {
-        "name": "A2",
-        "costumeName": "Vengeful Attacker",
-        "story": `An Attacker-type android that deserted YoRHa. Attacker types mainly specialize in close-quarter combat, and served as models for the B-types which were later formally deployed.
-
-All A-type models can access a special function call Berserker mode that offers an explosive increase in attack power at the expense of defense.
-
-This mode was not part of the loadout package for the later B-types.`,
-        "skillName": "Low Horizon Bludgeon",
-        "lvlOneStats":{
-            "force": 534,
-            "hp": 2247,
-            "attack": 180,
-            "defense": 190,
-            "agility": 1000,
-            "crit": 10,
-            "cdmg": 150,
-        },
-        "lvlMaxStats":{
-            "force": 6582,
-            "hp": 27481,
-            "attack": 2218,
-            "defense": 2347,
-            "agility": 1000,
-            "crit": 10,
-            "cdmg": 150,
-        },
-        "lvlAscStats":{
-            "force": 9251,
-            "hp": 34979,
-            "attack": 3274,
-            "defense": 3184,
-            "agility": 1000,
-            "crit": 10,
-            "cdmg": 150,
-        },
-        "stars": 3,
-        "mainWeapon": "2h sword",
-        "tier": "SSS+",
-        "illustration": "/character/ch003001_full.png"
-    }
-];
-
-export default stubCostumes;
-
-export {allCostumes}
-
 class Stats {
     force: number
     hp: number
@@ -84,14 +32,22 @@ class CostumeInfo {
     get illustrationURL(): string {
         return `/character/ch${this.id.toString().padStart(6, '0')}_full.png`
     }
+    get iconURL(): string {
+        // id = 19005
+        const id = Math.floor(this.id/1000)*1000 + 1
+        // id = 19001
+        const v = `/ui/actor/ch${id.toString().padStart(6, '0')}_01_actor_icon.png`
+
+        return v;
+    }
 
     constructor(values: any) {
         this.character = values.character
         this.name = values.name
         this.description = values.description
         this.stars = values.stars
-        this.statsLvl1 = values.stats
-        this.statsMax = values.stats
+        this.statsLvl1 = new Stats()
+        this.statsMax = new Stats()
         this.statsMaxAsc = values.stats
         this.skills = values.skills
         this.abilities = values.abilities
@@ -116,7 +72,5 @@ const typedCharacters = typedCostumes.reduce((acc, elem) => {
     }
     return acc
 }, new Map<CharacterName, CostumeInfo[]>())
-
-console.log(typedCharacters)
 
 export {typedCostumes, typedCharacters}

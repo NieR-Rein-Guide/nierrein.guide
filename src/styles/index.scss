@@ -121,11 +121,17 @@ header > div {
 }
 
 .iso-bg {
+  border: 2px solid;
+  border-color: theme('colors.beige.darker');
+  &.active {
+    border-color: theme('colors.beige.DEFAULT');
+  }
   background-color: theme('colors.beige.darker');
   width: 56px;
   height: 56px;
   margin-left: 24px;
   transform: rotateZ(45deg);
+  box-sizing: border-box;
   img {
     transform: rotateZ(-45deg) translateY(-12px);
   }

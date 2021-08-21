@@ -16,19 +16,19 @@ function StatsOfLevel({ label, stats }: { label: string, stats: Stats }) {
     <div className="flex-1">
       <span className="mb-4 text-lg">{label}</span>
       <div className="flex flex-col">
-        <SingleStat name="Force" value={stats.force} />
-        <SingleStat name="HP" value={stats.hp} />
-        <SingleStat name="Attack" value={stats.attack} />
-        <SingleStat name="Defense" value={stats.defence} />
-        <SingleStat name="Agility" value={stats.agility} />
-        <SingleStat name="Crit" value={stats.criticalRate + " %"} />
-        <SingleStat name="Cdmg" value={stats.criticalDamage + " %"} />
+        <SingleStat name="Force" value={stats.force ?? '???'} />
+        <SingleStat name="HP" value={stats.hp ?? '???'} />
+        <SingleStat name="Attack" value={stats.attack ?? '???'} />
+        <SingleStat name="Defense" value={stats.defence ?? '???'} />
+        <SingleStat name="Agility" value={stats.agility ?? '???'} />
+        <SingleStat name="Crit" value={stats.criticalRate ?? '???' + " %"} />
+        <SingleStat name="Cdmg" value={stats.criticalDamage ?? '???' + " %"} />
       </div>
     </div>
   );
 }
 
-function CharacterInfo({ character }: { character: CostumeInfo }): JSX.Element {
+function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
   return (
     <div
       className="flex flex-col md:flex-row gap-8 md:p-6 background-repeat"
@@ -39,11 +39,11 @@ function CharacterInfo({ character }: { character: CostumeInfo }): JSX.Element {
       <div className="flex-1 h-auto relative bg-center bg-cover bg-white bg-opacity-25 border-2  flex">
         <img
           className="h-auto my-auto"
-          src={character.illustrationURL}
-          alt={`${character.character} (${character.name.en}) illustration`} />
+          src={costume.illustrationURL}
+          alt={`${costume.character} (${costume.name.en}) illustration`} />
 
         <span className="flex absolute top-2 left-2">
-          {Array.from({ length: character.stars }).map((_, index) => (
+          {Array.from({ length: costume.stars }).map((_, index) => (
             <img
               key={index}
               style={{
@@ -65,31 +65,33 @@ function CharacterInfo({ character }: { character: CostumeInfo }): JSX.Element {
         </div>
       </div>
       <div className="flex-1">
-        <span className="uppercase px-1 text-black bg-beige">
-          {character.character}
-        </span>
-        <span className="pl-2 uppercase text-beige">
-          {character.name.en}
-        </span>
-        <p className="whitespace-pre-wrap"
+        <div className="text-xl">
+          <span className="uppercase px-1 text-black bg-beige">
+            {costume.character}
+          </span>
+          <span className="pl-2 uppercase text-beige">
+            {costume.name.en}
+          </span>
+        </div>
+        <p className="whitespace-pre-wrap text-sm mt-2"
           style={{
             color: "lightgrey",
           }}
-          dangerouslySetInnerHTML={{ __html: character.description.en }}
+          dangerouslySetInnerHTML={{ __html: costume.description.en }}
         ></p>
         <div className="mt-4">
           <strong>Character skill:</strong>
-          <p>{character.skills}</p>
+          <p>{costume.skills}</p>
         </div>
         <hr />
         <div className="flex flex-col md:flex-row mt-3 gap-6">
-          <StatsOfLevel stats={character.statsLvl1} label="LVL 01" />
-          <StatsOfLevel stats={character.statsMax} label="LVL MAX (no asc)" />
-          <StatsOfLevel stats={character.statsMaxAsc} label="LVL MAX (w/ asc)" />
+          <StatsOfLevel stats={costume.statsLvl1} label="LVL 01" />
+          <StatsOfLevel stats={costume.statsMax} label="LVL MAX (no asc)" />
+          <StatsOfLevel stats={costume.statsMaxAsc} label="LVL MAX (w/ asc)" />
         </div>
       </div>
     </div>
   );
 }
 
-export default CharacterInfo;
+export default CostumeDetails;
