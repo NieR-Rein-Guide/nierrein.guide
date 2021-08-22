@@ -88,7 +88,7 @@ const weaponToIcon = (weapon: string): string => {
   }
 };
 
-function DailyRow({ dayOfWeek }: DailyRowProps) {
+function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
   const dailyInfo = dailyTypes(dayOfWeek.getDay());
   const gems = dailyInfo.gems;
   const weaponUpgrades = dailyInfo.weaponUpgrades;
