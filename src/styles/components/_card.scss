@@ -1,17 +1,7 @@
-.card-container{
-    height: 0;
-    padding-top: 177%;
-    position: relative;
-}
-
 .card{
-    position: absolute;
-    top: 0;
-    left: 0;
     background-color: theme("colors.beige.dark");
-    height: 100%;
-    width: 100%;
     overflow: hidden;
+    aspect-ratio: 9 / 16;
 }
 
 .card img{
