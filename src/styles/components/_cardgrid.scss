@@ -13,35 +13,3 @@
     width: 100%;
     padding-top: 56.25%;
 }
-
-.card-container
-{
-    // background-color: indigo;
-    width: 20%;
-    //padding: 20px;
-    // width: 180px;
-    // height: 320px;
-}
-
-.card{
-    height: 0;
-    padding-top: 177%;
-    position: relative;
-}
-
-.card-holder-temp{
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: theme("colors.beige.dark");
-    height: 100%;
-    width: fit-content;
-    overflow: hidden;
-}
-
-.card-holder-temp img{
-    position: relative;
-    object-fit: cover;
-    height: 200%;
-    top: -25%;
-}
