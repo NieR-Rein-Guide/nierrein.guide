@@ -91,8 +91,8 @@ const TimerRow = ({ guerilla }): JSX.Element => {
   guerilla.endDate = endDate;
 
   return (
-    <span className="border border-beige-dark p-4 flex">
-      <span className="flex w-48 justify-center">
+    <div className="w-full border border-beige-dark p-4 flex flex-col-reverse md:flex-row md:w-auto">
+      <div className="flex w-48 justify-center mt-2 mx-auto md:mt-0 ">
         {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
           (weapon, index) => (
             <div key={index} className="w-16 h-16 relative">
@@ -105,8 +105,8 @@ const TimerRow = ({ guerilla }): JSX.Element => {
             </div>
           )
         )}
-      </span>
-      <div className="grid grid-cols-3 place-items-center ">
+      </div>
+      <div className="grid grid-cols-1 gap-y-2 md:grid-cols-3 place-items-center ">
         <span className="md:w-48 text-right">
           {timeFormat.format(startDate)} to {timeFormat.format(endDate)}
         </span>
@@ -121,7 +121,7 @@ const TimerRow = ({ guerilla }): JSX.Element => {
           })}
         </span>
       </div>
-    </span>
+    </div>
   );
 };
 
@@ -174,7 +174,7 @@ function GuerillaTimers(): JSX.Element {
           <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
         ))}
         <div className="grid grid-cols-1 place-items-center mt-4">
-          <span>
+          <span className="text-center">
             The displayed times are local (converted from the game timezone)
           </span>
         </div>
