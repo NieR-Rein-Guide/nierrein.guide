@@ -4,7 +4,48 @@ import Layout from "@components/Layout";
 import { CostumeInfo, typedCharacters } from "@models/character";
 import CostumeDetails from "@components/CharacterInfo";
 import { Dispatch, SetStateAction, useState } from "react";
+import Image from 'next/image'
+import MamaStar from "@components/decorations/MamaStar";
+import React from "react";
 
+
+function CharacterDiamond({
+  costume,
+  setCostume,
+  active,
+  labelTop,
+}: {
+  costume: CostumeInfo,
+  setCostume: Dispatch<SetStateAction<CostumeInfo>>,
+  active: boolean
+  labelTop: boolean
+}): JSX.Element {
+  const onClick = () => { setCostume(costume) }
+
+  return <div className="relative">
+    <div
+      className={`absolute text-sm pointer-events-auto ${labelTop ? 'bottom-20' : 'top-20'} right-0 flex justify-center text-white ${active ? '' : 'text-opacity-60'}`}
+      style={{ width: '56px' }}
+      onClick={onClick}
+      >
+      {costume.character}
+    </div>
+    <div
+      className={`pointer-events-auto overflow-hidden iso-bg ${active ? 'active' : ''}`}
+      onClick={onClick}>
+      <img style={{
+          minWidth: '74px',
+          maxWidth: '74px',
+          minHeight: '74px',
+          maxHeight: '74px',
+        }}
+        className="select-none"
+        alt={costume.character}
+        title={costume.character}
+        src={costume.iconURL} />
+    </div>
+  </div>
+}
 
 function CharacterRows({
   currentCostume,
@@ -27,45 +68,21 @@ function CharacterRows({
   
   return (
     <div className="relative self-center h-32 mt-20 mb-20">
-      <div className="flex">
+      <div className="flex gap-6 pointer-events-none">
         {firstRow.map((costume) =>
-          <div key={costume.id} className="relative" onClick={() => {
-            setCostume(costume)
-          }}>
-            <div className={`absolute text-sm bottom-20 right-0 flex justify-center text-white ${costume.character == currentCostume.character ? '' : 'text-opacity-60'}`} style={{ width: '56px' }}>
-              {costume.character}
-            </div>
-            <div className={`iso-bg ${costume.character == currentCostume.character ? 'active' : ''}`}>
-              <img style={{
-                minWidth: '74px',
-                maxWidth: '74px',
-                minHeight: '74px',
-                maxHeight: '74px',
-              }} title={costume.character} src={costume.iconURL} key={costume.character} />
-            </div>
-          </div>
+          <React.Fragment key={costume.id}>
+            <CharacterDiamond {...{costume, setCostume}} active={costume.character == currentCostume.character} labelTop={true}/>
+          </React.Fragment>
         )}
       </div>
-      <div className="absolute flex" style={{
+      <div className="absolute flex gap-6 pointer-events-none" style={{
         left: '-40px',
         top: '42px',
       }}>
         {secondRow.map((costume) =>
-          <div key={costume.id} className="relative" onClick={() => {
-            setCostume(costume)
-          }}>
-            <div className={`absolute text-sm top-20 right-0 flex justify-center text-white ${costume.character == currentCostume.character ? '' : 'text-opacity-60'}`} style={{ width: '56px' }}>
-              {costume.character}
-            </div>
-            <div className={`iso-bg ${costume.character == currentCostume.character ? 'active' : ''}`} >
-              <img style={{
-                minWidth: '74px',
-                maxWidth: '74px',
-                minHeight: '74px',
-                maxHeight: '74px',
-              }} title={costume.character} src={costume.iconURL} key={costume.character} />
-            </div>
-          </div>
+          <React.Fragment key={costume.id}>
+            <CharacterDiamond {...{costume, setCostume}} active={costume.character == currentCostume.character} labelTop={false}/>
+          </React.Fragment>
         )}
       </div>
     </div>
@@ -97,18 +114,12 @@ function CharacterCostumes({
         <div className="flex flex-row" key={stars}>
           <span className="flex flex-row">
             {Array.from({ length: stars }).map((_, index) => (
-              <img
-              key={index}
-              className="w-8 h-8"
-              src="/ui/actor/ma001001_01_actor_icon.png"
-              alt="Mama icon used as star"
-              />
+              <div className="w-8 h-8" key={index}>
+                <MamaStar/>
+              </div>
             ))}
             {Array.from({ length: 5-stars }).map((_, index) => (
-              <span
-              key={index}
-              className="w-8 h-8"
-              />
+              <div className="w-8 h-8" key={index}></div>
             ))}
           </span>
           {costumes.map(costume => (

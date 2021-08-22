@@ -1,6 +1,10 @@
 import Corners from "./decorations/Corners";
 
 import { CostumeInfo, Stats } from '@models/character'
+import Image from 'next/image'
+import MamaStar from "./decorations/MamaStar";
+import Rank from "./decorations/Rank";
+
 
 function SingleStat({ name, value }) {
   return (
@@ -37,31 +41,24 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
       }}
     >
       <div className="flex-1 h-auto relative bg-center bg-cover bg-white bg-opacity-25 border-2  flex">
-        <img
-          className="h-auto my-auto"
+        <Image
+          layout="fill"
+          objectFit="contain"
           src={costume.illustrationURL}
           alt={`${costume.character} (${costume.name.en}) illustration`} />
 
         <span className="flex absolute top-2 left-2">
           {Array.from({ length: costume.stars }).map((_, index) => (
-            <img
-              key={index}
-              style={{
-                marginRight: "-8px",
-              }}
-              className="w-8 h-8"
-              src="/ui/actor/ma001001_01_actor_icon.png"
-              alt="Mama icon used as star"
-            />
+            <div className="w-8 h-8" key={index}>
+              <MamaStar/>
+            </div>
           ))}
         </span>
 
         <Corners />
 
-        <div className="w-12 h-12 absolute bottom-4 right-4 border bg-white bg-opacity-25 flex">
-          <span className="self-center justify-self-center mx-auto">
-            SSS+
-          </span>
+        <div className="absolute bottom-4 right-4 border bg-beige-darker w-12 h-12 p-1">
+            <Rank rank="S"/>
         </div>
       </div>
       <div className="flex-1">
