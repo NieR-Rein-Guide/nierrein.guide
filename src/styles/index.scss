@@ -36,11 +36,6 @@ code {
   color: theme("colors.beige.dark");
 }
 
-img {
-  height: 100%;
-  width: auto;
-}
-
 svg {
   width: auto;
 }
@@ -145,7 +140,7 @@ header > div {
 
 section {
   background-color: theme("colors.beige.darker");
-  @apply relative p-12 pt-16;
+  @apply relative p-4 pt-12 md:p-12 md:pt-16;
 
   > h1,
   > h2,

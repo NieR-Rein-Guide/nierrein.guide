@@ -1,0 +1,33 @@
+.input-field {
+  @apply border border-beige-dark p-1 inline-block ease-out-cubic;
+
+  clip-path: polygon(
+    calc(0% + 5px) calc(0% + 5px),
+    /* top left */ calc(100% - 5px) calc(0% + 5px),
+    /* top right */ calc(100% - 5px) calc(100% - 5px),
+    /* bottom right */ calc(0% + 5px) calc(100% - 5px) /* bottom left */
+  );
+  transition: clip-path 0.4s;
+
+  &:hover,
+  &:focus-within {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+input[type="text"],
+input[type="url"] {
+  @apply bg-beige-darker border border-beige px-2 py-4 w-full;
+
+  &:focus {
+    @apply outline-none;
+  }
+}
+
+.input-file {
+  @apply font-semibold inline-block border border-beige-dark px-2 py-4 cursor-pointer w-full bg-beige-dark;
+}
+
+input[type="file"] {
+  @apply sr-only;
+}
