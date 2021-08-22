@@ -1,56 +1,58 @@
 import Head from "next/head";
-import { Tabs,TabList, TabPanels, TabPanel, Tab } from '@reach/tabs'
-import dynamic from 'next/dynamic'
-import { listFolders, listModelsTypes } from '@libs/s3'
+import { Tabs, TabList, TabPanels, TabPanel, Tab } from "@reach/tabs";
+import dynamic from "next/dynamic";
+import { listFolders, listModelsTypes } from "@libs/s3";
 import Layout from "@components/Layout";
-import ErrorBoundary from '@components/Error'
+import ErrorBoundary from "@components/Error";
 import { useState } from "react";
 import classNames from "classnames";
 import { useEffect } from "react";
 
-const ModelWithNoSSR = dynamic(
-  () => import('@components/Model'),
-  { ssr: false }
-)
+const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
+  ssr: false,
+});
 
-function getModelPath(type = 'character', folderName = 'sk_ch031001') {
-  return `https://s3.eu-central-1.wasabisys.com/models/${type}/${folderName}/${folderName}.fbx`
+function getModelPath(type = "character", folderName = "sk_ch031001") {
+  return `https://s3.eu-central-1.wasabisys.com/models/${type}/${folderName}/${folderName}.fbx`;
 }
 
 export default function Database({ models }) {
   // Character, Companion, Misc, Monster, Weapon
-  const [selectedModelType, setSelectedModelType] = useState(models[0].displayName)
+  const [selectedModelType, setSelectedModelType] = useState(
+    models[0].displayName
+  );
 
   // The index of the 3D model
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // The 3D model path to load
-  const [path, setPath] = useState(getModelPath())
+  const [path, setPath] = useState(getModelPath());
 
   useEffect(() => {
-    const modelType = models.find(model => model.displayName === selectedModelType)
-    const Prefix = modelType.models[currentIndex].Prefix
-    console.log(Prefix)
+    const modelType = models.find(
+      (model) => model.displayName === selectedModelType
+    );
+    const Prefix = modelType.models[currentIndex].Prefix;
 
-    const [type, folderName] = Prefix.split('/')
-    setPath(getModelPath(type, folderName))
-  }, [currentIndex, models, selectedModelType])
+    const [type, folderName] = Prefix.split("/");
+    setPath(getModelPath(type, folderName));
+  }, [currentIndex, models, selectedModelType]);
 
-  function handleModelTypeClick(type){
-    setSelectedModelType(type)
-    setCurrentIndex(0)
+  function handleModelTypeClick(type) {
+    setSelectedModelType(type);
+    setCurrentIndex(0);
   }
 
   function nextModel() {
-    setCurrentIndex(currentIndex + 1)
+    setCurrentIndex(currentIndex + 1);
   }
 
   function previousModel() {
     if (currentIndex === 0) {
-      return
+      return;
     }
 
-    setCurrentIndex(currentIndex - 1)
+    setCurrentIndex(currentIndex - 1);
   }
 
   return (
@@ -59,10 +61,11 @@ export default function Database({ models }) {
         <title>Database - NieR Re[in] Guide</title>
       </Head>
 
-
       <Tabs defaultIndex={0}>
         <TabList className="flex justify-around w-1/2 mx-auto">
-          <Tab index={0} className="hover-bg px-4 py-2">3D Models</Tab>
+          <Tab index={0} className="hover-bg px-4 py-2">
+            3D Models
+          </Tab>
         </TabList>
 
         <TabPanels>
@@ -71,17 +74,27 @@ export default function Database({ models }) {
               <h2>Select a model</h2>
 
               <ul className="flex justify-center gap-4 mt-6">
-                {models.map(model => (
+                {models.map((model) => (
                   <li key={model.displayName}>
-                    <button onClick={() => handleModelTypeClick(model.displayName)} className={classNames('btn', model.displayName === selectedModelType ? 'active' : null)}>
-                      {model.displayName}s<br/>({model.models.length} results)
+                    <button
+                      onClick={() => handleModelTypeClick(model.displayName)}
+                      className={classNames(
+                        "btn",
+                        model.displayName === selectedModelType
+                          ? "active"
+                          : null
+                      )}
+                    >
+                      {model.displayName}s<br />({model.models.length} results)
                     </button>
                   </li>
                 ))}
               </ul>
 
               <div className="flex justify-center mt-4">
-                <button className="btn" onClick={previousModel}>Previous</button>
+                <button className="btn" onClick={previousModel}>
+                  Previous
+                </button>
                 <input
                   className="btn"
                   type="text"
@@ -89,24 +102,34 @@ export default function Database({ models }) {
                   placeholder="Model ID"
                   disabled
                 />
-                <button className="btn" onClick={nextModel}>Next</button>
+                <button className="btn" onClick={nextModel}>
+                  Next
+                </button>
               </div>
 
               <div className="mt-4">
                 <p>
-                  This page is currently <b>experimental</b>. Please enable *Hardware Acceleration* on your browser for better performance.
-                  <br />Known issues :
+                  This page is currently <b>experimental</b>. Please enable
+                  *Hardware Acceleration* on your browser for better
+                  performance.
+                  <br />
+                  Known issues :
                 </p>
                 <ul>
-                  <li>Previous button doesn't work, refresh the page to "fix"</li>
+                  <li>
+                    Previous button doesn't work, refresh the page to "fix"
+                  </li>
                   <li>UX sucks. I'm sorry</li>
-                  <li>If you cannot see the model it is likely black on black or off camera</li>
+                  <li>
+                    If you cannot see the model it is likely black on black or
+                    off camera
+                  </li>
                 </ul>
               </div>
             </section>
 
             <ErrorBoundary>
-              <div style={{ height: '50vh' }}>
+              <div style={{ height: "50vh" }}>
                 <ModelWithNoSSR path={path} />
               </div>
             </ErrorBoundary>
@@ -119,25 +142,25 @@ export default function Database({ models }) {
 
 export async function getStaticProps(context) {
   // List all the models types (weapons, characters, ..)
-  const modelsTypes = await listModelsTypes()
+  const modelsTypes = await listModelsTypes();
 
   // Fetch all the subfolders (the models)
-  const modelsFetches = modelsTypes.map(model => listFolders(model))
-  const modelsData = await Promise.all(modelsFetches)
+  const modelsFetches = modelsTypes.map((model) => listFolders(model));
+  const modelsData = await Promise.all(modelsFetches);
 
-  const models = modelsData.map(model => ({
+  const models = modelsData.map((model) => ({
     displayName: formatObjectName(model.Prefix),
     name: model.Prefix,
-    models: model.CommonPrefixes
-  }))
+    models: model.CommonPrefixes,
+  }));
 
   return {
     props: {
       models,
     },
-  }
+  };
 }
 
 function formatObjectName(str) {
-  return str.charAt(0).toUpperCase() + str.slice(1).replace('/', '')
+  return str.charAt(0).toUpperCase() + str.slice(1).replace("/", "");
 }

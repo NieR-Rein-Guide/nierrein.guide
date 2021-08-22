@@ -1,0 +1,289 @@
+/*! wysiwyg.css v0.0.3 | MIT License | github.com/jgthms/wysiwyg.css */
+.wysiwyg {
+  line-height: 1.6;
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    border-bottom: 1px solid;
+  }
+
+  abbr {
+    border-bottom: 1px dotted;
+    cursor: help;
+  }
+
+  cite {
+    font-style: italic;
+  }
+
+  hr {
+    background: #e6e6e6;
+    border: none;
+    display: block;
+    height: 1px;
+    margin-bottom: 1.4em;
+    margin-top: 1.4em;
+  }
+
+  img {
+    vertical-align: text-bottom;
+  }
+
+  ins {
+    background-color: lime;
+    text-decoration: none;
+  }
+
+  mark {
+    background-color: #ff0;
+  }
+
+  small {
+    font-size: 0.8em;
+  }
+
+  strong {
+    font-weight: 700;
+  }
+
+  sub,
+  sup {
+    font-size: 0.8em;
+  }
+
+  sub {
+    vertical-align: sub;
+  }
+
+  sup {
+    vertical-align: super;
+  }
+
+  p,
+  dl,
+  ol,
+  ul,
+  blockquote,
+  pre,
+  table {
+    margin-bottom: 1.4em;
+  }
+
+  p:last-child,
+  dl:last-child,
+  ol:last-child,
+  ul:last-child,
+  blockquote:last-child,
+  pre:last-child,
+  table:last-child {
+    margin-bottom: 0;
+  }
+
+  p:empty {
+    display: none;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: ui-sans-serif, system, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  h1:first-child,
+  h2:first-child,
+  h3:first-child,
+  h4:first-child,
+  h5:first-child,
+  h6:first-child {
+    margin-top: 0;
+  }
+
+  h1 {
+    font-size: 2.4em;
+    margin-bottom: 0.58333em;
+    margin-top: 0.58333em;
+    line-height: 1;
+  }
+
+  h2 {
+    font-size: 1.6em;
+    margin-bottom: 0.875em;
+    margin-top: 1.75em;
+    line-height: 1.1;
+  }
+
+  h3 {
+    font-size: 1.3em;
+    margin-bottom: 1.07692em;
+    margin-top: 1.07692em;
+  }
+
+  h4 {
+    font-size: 1.2em;
+    margin-bottom: 1.16667em;
+    margin-top: 1.16667em;
+  }
+
+  h5 {
+    font-size: 1.1em;
+    margin-bottom: 1.27273em;
+    margin-top: 1.27273em;
+  }
+
+  h6 {
+    font-size: 1em;
+    margin-bottom: 1.4em;
+    margin-top: 1.4em;
+  }
+
+  dd {
+    margin-left: 1.4em;
+  }
+
+  ol,
+  ul {
+    list-style-position: outside;
+    margin-left: 1.4em;
+  }
+
+  ol {
+    @apply list-none ml-0;
+
+    li {
+      @apply flex items-center;
+
+      &::before {
+        @apply bg-beige w-3 h-3;
+        content: "";
+        display: inline-block;
+        background-repeat: no-repeat;
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  ul {
+    @apply list-none ml-0;
+
+    li {
+      @apply flex items-center;
+
+      &::before {
+        @apply text-beige;
+        content: "";
+        display: inline-block;
+        height: 1em;
+        width: 1em;
+        background-image: url("/decorations/square-right.svg");
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  blockquote {
+    border-left: 4px solid #e6e6e6;
+    padding: 0.6em 1.2em;
+  }
+
+  blockquote p {
+    margin-bottom: 0;
+  }
+
+  code,
+  kbd,
+  samp,
+  pre {
+    @apply border-4 border-beige-light bg-brown text-beige-light px-2 py-2;
+    -moz-osx-font-smoothing: auto;
+    -webkit-font-smoothing: auto;
+    font-size: 0.9em;
+  }
+
+  code,
+  kbd,
+  samp {
+    border-radius: 3px;
+    line-height: 1.77778;
+    padding: 0.1em 0.4em 0.2em;
+    vertical-align: baseline;
+  }
+
+  pre {
+    overflow: auto;
+    padding: 1em 1.2em;
+  }
+
+  pre code {
+    background: none;
+    font-size: 1em;
+    line-height: 1em;
+  }
+
+  figure {
+    margin-bottom: 2.8em;
+    text-align: center;
+  }
+
+  figure:first-child {
+    margin-top: 0;
+  }
+
+  figure:last-child {
+    margin-bottom: 0;
+  }
+
+  figcaption {
+    font-size: 0.8em;
+    margin-top: 0.875em;
+  }
+
+  table {
+    width: 100%;
+  }
+
+  table pre {
+    white-space: pre-wrap;
+  }
+
+  th,
+  td {
+    font-size: 1em;
+    padding: 0.7em;
+    border: 1px solid #e6e6e6;
+    line-height: 1.4;
+  }
+
+  thead tr,
+  tfoot tr {
+    background-color: #f5f5f5;
+  }
+
+  thead th,
+  thead td,
+  tfoot th,
+  tfoot td {
+    font-size: 0.9em;
+    padding: 0.77778em;
+  }
+
+  thead th code,
+  thead td code,
+  tfoot th code,
+  tfoot td code {
+    background-color: #fff;
+  }
+
+  tbody tr {
+    background-color: #fff;
+  }
+}

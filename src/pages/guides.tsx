@@ -1,9 +1,13 @@
 import Head from "next/head";
 import Layout from "@components/Layout";
 import SVG from "react-inlinesvg";
-import { GUIDES } from "@models/guide";
+import { getAllGuides, Guide } from "@models/guide";
 
-export default function Guides({ topics }): JSX.Element {
+interface GuidesProps {
+  topics: Guide[];
+}
+
+export default function Guides({ topics }: GuidesProps): JSX.Element {
   return (
     <Layout>
       <Head>
@@ -28,7 +32,7 @@ export default function Guides({ topics }): JSX.Element {
 }
 
 export async function getStaticProps(context) {
-  const topics = GUIDES.map((guide) => ({
+  const topics = (await getAllGuides()).map((guide) => ({
     slug: guide.slug,
     title: guide.title,
   }));

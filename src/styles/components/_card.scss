@@ -1,0 +1,12 @@
+.card{
+    background-color: theme("colors.beige.dark");
+    overflow: hidden;
+    aspect-ratio: 9 / 16;
+}
+
+.card img{
+    position: relative;
+    object-fit: cover;
+    height: 200%;
+    top: -25%;
+}

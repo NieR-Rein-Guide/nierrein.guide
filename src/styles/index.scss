@@ -1,6 +1,6 @@
 @import "nprogress.scss";
-
-@import "./components/";
+@import "components";
+@import "dist";
 
 html,
 body {
@@ -117,11 +117,11 @@ header > div {
 
 .iso-bg {
   border: 2px solid;
-  border-color: theme('colors.beige.darker');
+  border-color: theme("colors.beige.darker");
   &.active {
-    border-color: theme('colors.beige.DEFAULT');
+    border-color: theme("colors.beige.DEFAULT");
   }
-  background-color: theme('colors.beige.darker');
+  background-color: theme("colors.beige.darker");
   width: 56px;
   height: 56px;
   // margin-left: 24px;

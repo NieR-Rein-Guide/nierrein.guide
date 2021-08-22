@@ -66,6 +66,26 @@ export const CREDITS = [
   {
     name: 'Halomasterpro',
     link: 'https://www.twitch.tv/halomasterpro'
+  },
+  {
+    name: 'H\'YueWa',
+    link: 'https://twitter.com/hyuewa'
+  },
+  {
+    name: 'NightDrawn',
+    link: 'https://www.youtube.com/channel/UCpbi_Hbhf4jteSFpTs5MPKg'
+  },
+  {
+    name: 'val_pinkman',
+    link: 'https://dr0p.me/'
+  },
+  {
+    name: 'PostPwnedTV',
+    link: 'https://www.youtube.com/channel/UCnGiUC0o44YB60xAs-U6neg'
+  },
+  {
+    name: 'Luna',
+    link: 'https://www.leveleditors.net/'
   }
 ].sort((a, b) => a.name.localeCompare(b.name))
 
