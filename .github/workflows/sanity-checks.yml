@@ -33,3 +33,4 @@ jobs:
           S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
           REGION: ${{ secrets.REGION }}
           S3_DOMAIN: ${{ secrets.S3_DOMAIN }}
+          GRAPHQL_API_ENDPOINT: ${{ secrets.GRAPHQL_API_ENDPOINT }}

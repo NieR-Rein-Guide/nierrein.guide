@@ -1,11 +1,7 @@
 import Head from "next/head";
 import Layout from "@components/Layout";
 import Corners from "@components/decorations/Corners";
-import {
-  FanContent,
-  getAllFanContents,
-  submitFanContent,
-} from "@models/fancontent";
+import { FanContent, getAllFanContents } from "@models/fancontent";
 import { useState } from "react";
 import { useReducer } from "react";
 
@@ -87,6 +83,7 @@ export default function FanContentPage({
           <form className="flex flex-col gap-4 border border-beige p-4">
             <div className="input-field">
               <input
+                value={form.author}
                 type="text"
                 placeholder="Author name"
                 onChange={(event) => {
@@ -97,6 +94,7 @@ export default function FanContentPage({
 
             <div className="input-field">
               <input
+                value={form.link}
                 type="url"
                 placeholder="Source or portfolio link"
                 onChange={(event) => {
