@@ -5,6 +5,8 @@ import { closestTo } from "date-fns/esm";
 import { enUS, fr } from "date-fns/locale";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
+import Image from "next/image";
+import { weaponToIcon } from "./DailyInfo";
 
 function locale() {
   const loc = { enUS, fr }[navigator.language];
@@ -66,23 +68,6 @@ const guerillaTypes = (dayOfWeek: number, startHour: number): string[] => {
   return ["spear", "fist", "staff"];
 };
 
-const weaponToIcon = (weapon: string): string => {
-  switch (weapon) {
-    case "sword":
-      return "/ui/material/material321001_standard.png";
-    case "greatsword":
-      return "/ui/material/material321002_standard.png";
-    case "spear":
-      return "/ui/material/material321003_standard.png";
-    case "fist":
-      return "/ui/material/material321004_standard.png";
-    case "staff":
-      return "/ui/material/material321005_standard.png";
-    case "gun":
-      return "/ui/material/material321006_standard.png";
-  }
-};
-
 const TimerRow = ({ guerilla }): JSX.Element => {
   const now = new Date();
 
@@ -107,16 +92,17 @@ const TimerRow = ({ guerilla }): JSX.Element => {
 
   return (
     <span className="border border-beige-dark p-4 flex">
-      <span>
+      <span className="flex w-48 justify-center">
         {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
           (weapon, index) => (
-            <img
-              src={weaponToIcon(weapon)}
-              alt={`${weapon} icon`}
-              title={weapon}
-              className="h-16"
-              key={index}
-            />
+            <div key={index} className="w-16 h-16 relative">
+              <Image
+                key={index}
+                src={weaponToIcon(weapon)}
+                alt={`${weapon} icon`}
+                title={weapon}
+              />
+            </div>
           )
         )}
       </span>

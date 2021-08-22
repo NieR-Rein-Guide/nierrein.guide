@@ -1,35 +1,42 @@
 export const GAME_TIMEZONE = "US/Pacific";
 
+import guidesIcon from '../../public/ui/consumable_item/consumable110003_standard.png'
+import loadoutsIcon from '../../public/ui/consumable_item/consumable110001_standard.png'
+import tierlistIcon from '../../public/ui/consumable_item/consumable110002_standard.png'
+import charactersIcon from '../../public/ui/consumable_item/consumable100001_standard.png'
+import databaseIcon from '../../public/ui/consumable_item/consumable110007_standard.png'
+import fanContentIcon from '../../public/ui/important_item/important100001_standard.png'
+
 export const NAVIGATION = [
   {
     label: 'Guides',
     href: '/guides',
-    iconUrl: '/ui/consumable_item/consumable110003_standard.png',
+    icon: guidesIcon,
   },
   {
     label: 'Loadouts',
     href: '/loadouts',
-    iconUrl: '/ui/consumable_item/consumable110001_standard.png',
+    icon: loadoutsIcon,
   },
   {
     label: 'Tier list',
     href: '/tierlist',
-    iconUrl: '/ui/consumable_item/consumable110002_standard.png',
+    icon: tierlistIcon,
   },
   {
     label: 'Characters',
     href: '/characters',
-    iconUrl: '/ui/consumable_item/consumable100001_standard.png',
+    icon: charactersIcon,
   },
   {
     label: 'Database',
     href: '/database',
-    iconUrl: '/ui/consumable_item/consumable110007_standard.png',
+    icon: databaseIcon,
   },
   {
     label: 'Fan Content',
     href: '/fan-content',
-    iconUrl: '/ui/important_item/important100001_standard.png',
+    icon: fanContentIcon,
   },
 ]
 

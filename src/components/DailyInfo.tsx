@@ -3,6 +3,7 @@ import { utcToZonedTime } from "date-fns-tz/esm";
 import format from "date-fns/esm/format";
 import React from "react";
 import SVG from "react-inlinesvg";
+import Image from "next/image";
 
 // used for listing all daily types
 const DAYS_OF_WEEK = Array.from(Array(7).keys());
@@ -56,37 +57,52 @@ const dailyTypes = (dayOfWeek: number): DailyInfo => {
   }
 };
 
-const gemToIcon = (gem: string): string => {
+import tanzaniteIcon from "../../public/ui/material/material321011_standard.png";
+import topazIcon from "../../public/ui/material/material321010_standard.png";
+import emeraldIcon from "../../public/ui/material/material321009_standard.png";
+import aquamarineIcon from "../../public/ui/material/material321008_standard.png";
+import rubyIcon from "../../public/ui/material/material321007_standard.png";
+
+const gemToIcon = (gem: string) => {
   switch (gem) {
     case "tanzanite":
-      return "/ui/material/material321011_standard.png";
+      return tanzaniteIcon;
     case "topaz":
-      return "/ui/material/material321010_standard.png";
+      return topazIcon;
     case "emerald":
-      return "/ui/material/material321009_standard.png";
+      return emeraldIcon;
     case "aquamarine":
-      return "/ui/material/material321008_standard.png";
+      return aquamarineIcon;
     case "ruby":
-      return "/ui/material/material321007_standard.png";
+      return rubyIcon;
   }
 };
 
-const weaponToIcon = (weapon: string): string => {
+import swordIcon from "../../public/ui/material/material321001_standard.png";
+import greatswordIcon from "../../public/ui/material/material321002_standard.png";
+import spearIcon from "../../public/ui/material/material321003_standard.png";
+import fistIcon from "../../public/ui/material/material321004_standard.png";
+import staffIcon from "../../public/ui/material/material321005_standard.png";
+import gunIcon from "../../public/ui/material/material321006_standard.png";
+
+const weaponToIcon = (weapon: string) => {
   switch (weapon) {
     case "sword":
-      return "/ui/material/material321001_standard.png";
+      return swordIcon;
     case "greatsword":
-      return "/ui/material/material321002_standard.png";
+      return greatswordIcon;
     case "spear":
-      return "/ui/material/material321003_standard.png";
+      return spearIcon;
     case "fist":
-      return "/ui/material/material321004_standard.png";
+      return fistIcon;
     case "staff":
-      return "/ui/material/material321005_standard.png";
+      return staffIcon;
     case "gun":
-      return "/ui/material/material321006_standard.png";
+      return gunIcon;
   }
 };
+
+export { weaponToIcon };
 
 function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
   const dailyInfo = dailyTypes(dayOfWeek.getDay());
@@ -103,14 +119,8 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
         <div className="flex place-items-center">
           <div className="flex justify-center flex-wrap">
             {gems.map((gem, index) => (
-              <div key={index}>
-                <img
-                  src={gemToIcon(gem)}
-                  alt={`${gem} icon`}
-                  title={gem}
-                  className="h-20"
-                  key={index}
-                />
+              <div key={index} className="relative h-20 w-20">
+                <Image src={gemToIcon(gem)} alt={`${gem} icon`} title={gem} />
               </div>
             ))}
           </div>
@@ -119,13 +129,11 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
 
           <div className="flex justify-center flex-wrap">
             {weaponUpgrades.map((weaponUpgrade, index) => (
-              <div key={index}>
-                <img
+              <div key={index} className="relative h-20 w-20">
+                <Image
                   src={weaponToIcon(weaponUpgrade)}
                   alt={`${weaponUpgrade} icon`}
                   title={weaponUpgrade}
-                  className="h-20"
-                  key={index}
                 />
               </div>
             ))}
