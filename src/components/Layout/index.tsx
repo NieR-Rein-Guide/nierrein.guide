@@ -7,7 +7,7 @@ interface LayoutProps {
   className?: string;
 }
 
-function Layout({ children, className }: LayoutProps) {
+function Layout({ children, className }: LayoutProps): JSX.Element {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen h-full">
       <Header />

@@ -5,7 +5,7 @@ import Image from "next/image";
 import MamaStar from "./decorations/MamaStar";
 import Rank from "./decorations/Rank";
 
-function SingleStat({ name, value }) {
+function SingleStat({ name, value }): JSX.Element {
   return (
     <div className="flex">
       <div className="w-1/2 uppercase">{name}</div>
@@ -14,7 +14,13 @@ function SingleStat({ name, value }) {
   );
 }
 
-function StatsOfLevel({ label, stats }: { label: string; stats: Stats }) {
+function StatsOfLevel({
+  label,
+  stats,
+}: {
+  label: string;
+  stats: Stats;
+}): JSX.Element {
   return (
     <div className="flex-1">
       <span className="mb-4 text-lg">{label}</span>

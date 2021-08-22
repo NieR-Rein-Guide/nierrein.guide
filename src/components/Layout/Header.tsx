@@ -3,7 +3,7 @@ import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { NAVIGATION } from "config/constants";
 
-export default function Header() {
+export default function Header(): JSX.Element {
   const router = useRouter();
 
   return (

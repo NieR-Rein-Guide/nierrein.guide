@@ -16,7 +16,7 @@ function getModelPath(type = "character", folderName = "sk_ch031001") {
   return `https://s3.eu-central-1.wasabisys.com/models/${type}/${folderName}/${folderName}.fbx`;
 }
 
-export default function Database({ models }) {
+export default function Database({ models }): JSX.Element {
   // Character, Companion, Misc, Monster, Weapon
   const [selectedModelType, setSelectedModelType] = useState(
     models[0].displayName

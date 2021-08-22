@@ -1,6 +1,6 @@
 import { RiRedditLine } from "react-icons/ri";
 
-function Socials() {
+function Socials(): JSX.Element {
   return (
     <section className="w-full flex-grow p-8">
       <h2>Links</h2>

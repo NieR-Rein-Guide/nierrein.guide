@@ -1,7 +1,7 @@
 import { CREDITS } from "config/constants";
-import Image from 'next/image'
+import Image from "next/image";
 
-export default function Footer() {
+export default function Footer(): JSX.Element {
   return (
     <footer className="flex flex-col items-center justify-center w-full py-14 border-t border-white border-opacity-20">
       <div className="container">
