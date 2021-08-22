@@ -25,7 +25,11 @@ export default function Home(): JSX.Element {
       </Head>
 
       <div>
-        <Image src={launchedImage} alt="NieR Re[in]carnation Launched !" />
+        <Image
+          src={launchedImage}
+          placeholder="blur"
+          alt="NieR Re[in]carnation Launched !"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg::grid-cols-2 gap-8 my-24">
