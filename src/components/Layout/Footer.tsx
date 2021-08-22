@@ -1,4 +1,5 @@
 import { CREDITS } from "config/constants";
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -10,7 +11,7 @@ export default function Footer() {
           <ul className="grid grid-cols-1 place-items-center sm:grid-cols-2 sm:place-items-start md:grid-cols-3 lg:grid-cols-4 gap-y-6">
             {CREDITS.map((credit) => (
               <li className="flex items-center gap-x-6" key={credit.name}>
-                <img
+                <Image
                   height="64"
                   width="64"
                   className="h-16"

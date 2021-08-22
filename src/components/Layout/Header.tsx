@@ -11,7 +11,7 @@ export default function Header() {
       <div className="flex flex-col justify-center items-center flex-wrap gap-y-8 px-8 py-6">
         <Link href="/" passHref={true}>
           <a className="logo flex items-center">
-            <img className="h-20 mr-4" src="/logo-256.png" alt="gem" />
+            <img className="h-20 mr-4" src="/logo-256.png" alt="Logo" />
             <h1 className="text-3xl text-center">NieR Re[in] Guide</h1>
           </a>
         </Link>

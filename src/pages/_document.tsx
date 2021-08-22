@@ -6,7 +6,7 @@ const { description, cover, url } = meta;
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link rel="icon" href="/favicon.png" />
           <meta name="description" content={description} />
