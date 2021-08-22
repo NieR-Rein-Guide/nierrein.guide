@@ -9,7 +9,7 @@ function Socials(): JSX.Element {
         <li className="w-full text-center">
           <a
             className="flex flex-col gap-y-2 hover-bg py-8"
-            href=""
+            href="https://discord.gg/swgHJJdt7f"
             rel="noopener noreferrer"
             target="_blank"
           >
