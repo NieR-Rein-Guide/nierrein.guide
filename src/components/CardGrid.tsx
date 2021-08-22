@@ -1,17 +1,15 @@
+import Card from "@components/Card";
+
 export default function CardGrid()
 {
     return(
-        // <div className="card-grid">
-        //     <div></div>
-        //     <div></div>
-        //     <div></div>
-        //     <div></div>
-        //     <div></div>
-        //     <div></div>
-        // </div>
-
-        <div>
-            
+        <div className="card-grid">
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
+            <Card></Card>
         </div>
     );
 }
