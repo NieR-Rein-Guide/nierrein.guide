@@ -1,7 +1,7 @@
 {
   "name": "nierrein.guide",
   "description": "A fansite for the game NieR Re[in]carnation.",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "private": true,
   "scripts": {
     "dev": "next dev",
