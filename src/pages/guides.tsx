@@ -41,5 +41,6 @@ export async function getStaticProps(context) {
     props: {
       topics,
     },
+    revalidate: 60,
   };
 }

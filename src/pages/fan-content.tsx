@@ -74,6 +74,8 @@ export default function FanContentPage({
           <h2 className="text-5xl lg:text-7xl">Fan Content</h2>
           <p>
             Everyone can submit their own content related to the NieR universe.
+            <br />
+            ⚠️ Work in progress. The form doesn't work yet.
           </p>
         </div>
 
