@@ -1,4 +1,5 @@
 import Head from "next/head";
+import Image from "next/image";
 import Layout from "@components/Layout";
 import Corners from "@components/decorations/Corners";
 import LoadingIcon from "@components/LoadingIcon";
@@ -163,15 +164,17 @@ export default function FanContentPage({
       )}
 
       <section className="my-12">
-        {fanContents.map((content) => (
-          <ContentItem
-            key={content.link}
-            author={content.author}
-            published_at={content.published_at}
-            image={content.image}
-            link={content.link}
-          />
-        ))}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-8">
+          {fanContents.map((content) => (
+            <ContentItem
+              key={content.link}
+              author={content.author}
+              published_at={content.published_at}
+              image={content.image}
+              link={content.link}
+            />
+          ))}
+        </div>
 
         <Corners />
       </section>
@@ -179,23 +182,48 @@ export default function FanContentPage({
   );
 }
 
-function ContentItem({ author, published_at, image, link }): JSX.Element {
+function ContentItem({
+  author,
+  published_at,
+  image,
+  link,
+}: FanContent): JSX.Element {
   return (
-    <div className="border border-beige p-4 w-auto">
-      <div className="flex justify-between mb-4">
-        <h3 className="text-3xl">{author}</h3>
-        <a href={link} className="btn">
+    <div className="flex flex-col justify-between gap-y-4 border border-beige p-4 w-auto">
+      <div className="flex justify-between items-stretch">
+        <a href={link} rel="noopener noreferrer" target="_blank">
+          <h3 className="text-3xl underline-dotted hover:no-underline">
+            {author ? author : "Author"}
+          </h3>
+        </a>
+
+        <a
+          href={link}
+          rel="noopener noreferrer"
+          target="_blank"
+          className="btn"
+        >
           Source
         </a>
       </div>
-      <img
-        height={image.height}
-        width={image.width}
-        src={image.url}
-        alt={`${author} preview image`}
-        loading="lazy"
-      />
-      <span>Published {new Date(published_at).toLocaleString()}</span>
+
+      {(image?.formats?.medium?.url && (
+        <Image
+          layout="responsive"
+          height={image.formats.medium.height}
+          width={image.formats.medium.width}
+          src={image.formats.medium.url}
+          alt={`${author} preview image`}
+          loading="lazy"
+        />
+      )) ||
+        (image.url && <img src={image.url} alt="preview image" />) || (
+          <p className="border border-dotted py-6 px-4">
+            Please select an image
+          </p>
+        )}
+
+      <span>Published {new Date(published_at).toLocaleDateString()}</span>
     </div>
   );
 }

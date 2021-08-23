@@ -1,27 +1,42 @@
 import client from "@libs/api"
 import { gql } from "graphql-request"
 
+type FanContentImage = {
+  ext?: string
+  url?: string
+  hash?: string
+  mime?: string
+  name?: string
+  path?: string
+  size?: number
+  width?: number
+  height?: number
+}
+
 export type FanContent = {
-  author: string;
-  link: string;
+  author?: string;
+  link?: string;
   image?: {
-    width: number;
-    height: number;
-    url: string;
+    url?: string;
+    formats?: {
+      large?: FanContentImage;
+      small?: FanContentImage;
+      medium?: FanContentImage;
+      thumbnail?: FanContentImage;
+    }
   };
-  published_at: string;
+  published_at?: string;
 }
 
 async function getAllFanContents(): Promise<FanContent[]> {
   const GET_FAN_CONTENTS = gql`
     {
-      fanContents {
+      fanContents (where: { is_approved: true }) {
         author
+        link
         is_approved
         image {
-          width
-          height
-          url
+          formats
         }
         published_at
         updated_at
