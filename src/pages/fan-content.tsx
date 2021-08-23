@@ -1,13 +1,14 @@
 import Head from "next/head";
 import Layout from "@components/Layout";
 import Corners from "@components/decorations/Corners";
+import LoadingIcon from "@components/LoadingIcon";
 import {
   FanContent,
   getAllFanContents,
   submitFanContent,
 } from "@models/fancontent";
-import { useState } from "react";
-import { useReducer } from "react";
+import { useState, useReducer } from "react";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 interface FanContentProps {
   fanContents: FanContent[];
@@ -42,6 +43,7 @@ export default function FanContentPage({
 }: FanContentProps): JSX.Element {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [form, dispatch] = useReducer(reducer, initialFormState);
 
   async function handleSubmit() {
@@ -54,7 +56,8 @@ export default function FanContentPage({
       });
       console.log(data);
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+      setError(error.message);
     } finally {
       setIsLoading(false);
     }
@@ -90,7 +93,10 @@ export default function FanContentPage({
                 type="text"
                 placeholder="Author name"
                 onChange={(event) => {
-                  dispatch({ type: types.AUTHOR, value: event.target.value });
+                  dispatch({
+                    type: types.AUTHOR,
+                    value: event.target.value,
+                  });
                 }}
               />
             </div>
@@ -101,7 +107,10 @@ export default function FanContentPage({
                 type="url"
                 placeholder="Source or portfolio link"
                 onChange={(event) => {
-                  dispatch({ type: types.LINK, value: event.target.value });
+                  dispatch({
+                    type: types.LINK,
+                    value: event.target.value,
+                  });
                 }}
               />
             </div>
@@ -139,9 +148,18 @@ export default function FanContentPage({
             published_at={new Date().toISOString()}
           />
 
-          <button className="btn" disabled={isLoading} onClick={handleSubmit}>
-            Submit
-          </button>
+          <div className="flex items-start mt-8">
+            <button className="btn" disabled={isLoading} onClick={handleSubmit}>
+              Submit my work
+            </button>
+
+            {isLoading && <LoadingIcon className="max-h-24 ml-4 -mt-6" />}
+          </div>
+          {error && (
+            <div className="mt-8">
+              <p>{error}</p>
+            </div>
+          )}
         </section>
       )}
 
@@ -165,7 +183,7 @@ export default function FanContentPage({
 function ContentItem({ author, published_at, image, link }): JSX.Element {
   return (
     <div className="border border-beige p-4 w-auto">
-      <div className="flex justify-between">
+      <div className="flex justify-between mb-4">
         <h3 className="text-3xl">{author}</h3>
         <a href={link} className="btn">
           Source
