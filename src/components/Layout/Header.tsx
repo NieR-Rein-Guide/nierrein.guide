@@ -11,9 +11,7 @@ export default function Header(): JSX.Element {
   const router = useRouter();
   const defaultAnimationPosition = 80;
   const [isAnimating, setIsAnimating] = useState(false);
-  const [animationPosition, setAnimationPosition] = useState(
-    defaultAnimationPosition
-  );
+  const [animationPosition] = useState(defaultAnimationPosition);
 
   function start() {
     setIsAnimating(true);

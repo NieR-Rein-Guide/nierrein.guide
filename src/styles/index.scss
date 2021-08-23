@@ -33,7 +33,7 @@ h6,
 }
 
 code {
-  color: theme("colors.beige.dark");
+  @apply text-beige;
 }
 
 svg {
