@@ -7,6 +7,7 @@ import launchedImage from "../../public/launched.jpg";
 import Layout from "@components/Layout";
 import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
+import CurrentlyWorkingOn from "@components/CurrentlyWorkingOn";
 
 const GuerillaTimersWithNoSSR = dynamic(
   () => import("@components/GuerillaTimers"),
@@ -35,6 +36,7 @@ export default function Home(): JSX.Element {
       <div className="grid grid-cols-1 lg::grid-cols-2 gap-8 my-24">
         <GuerillaTimersWithNoSSR />
         <DailyInfoWithNoSSR />
+        <CurrentlyWorkingOn />
         <JoinUs />
       </div>
 
