@@ -12,15 +12,26 @@ const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
+interface Model {
+  Prefix: string; // folder name of the 3D model
+}
+
+interface ModelType {
+  displayName: string; // The root folder name capitalized
+  models: Model[];
+}
+
+interface DatabasePageProps {
+  models: ModelType[];
+}
+
 function getModelPath(type = "character", folderName = "sk_ch031001") {
   return `https://s3.eu-central-1.wasabisys.com/models/${type}/${folderName}/${folderName}.fbx`;
 }
 
-export default function Database({ models }): JSX.Element {
+export default function Database({ models }: DatabasePageProps): JSX.Element {
   // Character, Companion, Misc, Monster, Weapon
-  const [selectedModelType, setSelectedModelType] = useState(
-    models[0].displayName
-  );
+  const [selectedModelType, setSelectedModelType] = useState(models[0]);
 
   // The index of the 3D model
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -30,7 +41,7 @@ export default function Database({ models }): JSX.Element {
 
   useEffect(() => {
     const modelType = models.find(
-      (model) => model.displayName === selectedModelType
+      (model) => model.displayName === selectedModelType.displayName
     );
     const Prefix = modelType.models[currentIndex].Prefix;
 
@@ -44,6 +55,9 @@ export default function Database({ models }): JSX.Element {
   }
 
   function nextModel() {
+    if (selectedModelType.models.length - 1 === currentIndex) {
+      return;
+    }
     setCurrentIndex(currentIndex + 1);
   }
 
@@ -77,10 +91,10 @@ export default function Database({ models }): JSX.Element {
                 {models.map((model) => (
                   <li key={model.displayName}>
                     <button
-                      onClick={() => handleModelTypeClick(model.displayName)}
+                      onClick={() => handleModelTypeClick(model)}
                       className={classNames(
                         "btn",
-                        model.displayName === selectedModelType
+                        model.displayName === selectedModelType.displayName
                           ? "active"
                           : null
                       )}
@@ -91,30 +105,39 @@ export default function Database({ models }): JSX.Element {
                 ))}
               </ul>
 
-              <div className="flex justify-center mt-4">
-                <button className="btn" onClick={previousModel}>
+              <div className="grid grid-cols-3 mt-4 w-1/2 mx-auto">
+                <button
+                  className="btn justify-center bg-beige text-black"
+                  onClick={previousModel}
+                >
                   Previous
                 </button>
                 <input
-                  className="btn"
+                  className="btn text-center"
                   type="text"
                   value={currentIndex}
                   placeholder="Model ID"
                   disabled
                 />
-                <button className="btn" onClick={nextModel}>
+                <button
+                  className="btn justify-center bg-beige text-black"
+                  onClick={nextModel}
+                >
                   Next
                 </button>
               </div>
 
-              <div className="mt-4">
+              <div className="mt-4 wysiwyg">
+                <h3>
+                  This page is currently <b>experimental</b>.
+                </h3>
+
                 <p>
-                  This page is currently <b>experimental</b>. Please enable
-                  *Hardware Acceleration* on your browser for better
-                  performance.
-                  <br />
-                  Known issues :
+                  Please enable <code>Hardware Acceleration</code> on your
+                  browser for better performance.
                 </p>
+
+                <h3>Known issues :</h3>
                 <ul>
                   <li>
                     Previous button doesn't work, refresh the page to "fix"
@@ -125,6 +148,13 @@ export default function Database({ models }): JSX.Element {
                     off camera
                   </li>
                 </ul>
+
+                <h3>How to use ?</h3>
+                <ol>
+                  <li>Scroll to zoom in/out</li>
+                  <li>Left click + drag to rotate</li>
+                  <li>Right click + drag to move the model</li>
+                </ol>
               </div>
             </section>
 

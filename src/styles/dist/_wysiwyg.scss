@@ -154,7 +154,8 @@
     margin-left: 1.4em;
   }
 
-  ol {
+  ol,
+  .ol {
     @apply list-none ml-0;
 
     li {
@@ -170,7 +171,8 @@
     }
   }
 
-  ul {
+  ul,
+  .ul {
     @apply list-none ml-0;
 
     li {
@@ -203,7 +205,7 @@
   kbd,
   samp,
   pre {
-    @apply border-4 border-beige-light bg-brown text-beige-light px-2 py-2;
+    @apply border-2 border-beige-light bg-beige-darker text-beige-light px-2;
     -moz-osx-font-smoothing: auto;
     -webkit-font-smoothing: auto;
     font-size: 0.9em;
