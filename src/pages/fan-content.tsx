@@ -1,7 +1,11 @@
 import Head from "next/head";
 import Layout from "@components/Layout";
 import Corners from "@components/decorations/Corners";
-import { FanContent, getAllFanContents } from "@models/fancontent";
+import {
+  FanContent,
+  getAllFanContents,
+  submitFanContent,
+} from "@models/fancontent";
 import { useState } from "react";
 import { useReducer } from "react";
 
@@ -43,13 +47,12 @@ export default function FanContentPage({
   async function handleSubmit() {
     try {
       setIsLoading(true);
-      fetch("/api/fan-content", {
-        method: "POST",
-        body: JSON.stringify(form),
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      const data = await submitFanContent({
+        author: form.author,
+        link: form.link,
+        image: form.image,
       });
+      console.log(data);
     } catch (error) {
       console.log(error);
     } finally {
