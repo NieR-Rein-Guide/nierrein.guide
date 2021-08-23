@@ -40,6 +40,41 @@ export const NAVIGATION = [
   },
 ]
 
+
+interface Project {
+  name: string;
+  startedBy: string;
+  link: string;
+  progress: number
+}
+
+export const CURRENT_PROJECTS: Project[] = [
+  {
+    name: 'Data compilation',
+    startedBy: 'jonbttt',
+    link: 'https://docs.google.com/spreadsheets/d/14-DZc4wyi1deE_-s1lgcMoEorCfAvQGY-3nseyAWOnY/edit#gid=385153085',
+    progress: 60
+  },
+  {
+    name: 'Gems compilation',
+    startedBy: 'Senka',
+    link: 'https://docs.google.com/spreadsheets/d/1dUs4ajYMQhDHYj8FtJ8hfqhInTrE29j8PJhVV_hbFn4/edit#gid=0',
+    progress: 100
+  },
+  {
+    name: 'Quests Data',
+    startedBy: 'keek',
+    link: 'https://docs.google.com/spreadsheets/d/1TBNSDa_Ys2c4kBnrIsRKtCHukMuZYOvMe44pxdyZ72c/edit#gid=0',
+    progress: 50
+  },
+  {
+    name: 'Daily Rates',
+    startedBy: 'keek',
+    link: 'https://docs.google.com/spreadsheets/d/1FFL2Gej8UGphIVaGySk_Dwa7k4xc-PDB1pyqETfQ0JQ/edit#gid=0',
+    progress: 50
+  },
+].sort((a, b) => b.progress - a.progress);
+
 export const CREDITS = [
   {
     name: 'Senka',
