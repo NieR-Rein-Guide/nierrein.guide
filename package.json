@@ -34,6 +34,7 @@
     "react-icons": "^4.2.0",
     "react-inlinesvg": "^2.3.0",
     "react-lottie-player": "^1.4.0",
+    "slugify": "^1.6.0",
     "three": "^0.131.3"
   },
   "devDependencies": {

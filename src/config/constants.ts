@@ -93,6 +93,10 @@ export const CREDITS = [
   {
     name: 'Luna',
     link: 'https://www.leveleditors.net/'
+  },
+  {
+    name: 'Unbound',
+    link: 'https://github.com/B0und'
   }
 ].sort((a, b) => a.name.localeCompare(b.name))
 
