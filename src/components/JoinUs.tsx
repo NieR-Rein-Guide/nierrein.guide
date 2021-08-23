@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 function JoinUs(): JSX.Element {
   return (
     <section>
@@ -11,9 +13,15 @@ function JoinUs(): JSX.Element {
         content for the website !
       </p>
 
-      <a className="btn" href="https://discord.gg/swgHJJdt7f">
-        Join us on Discord !
-      </a>
+      <div className="flex gap-4">
+        <a className="btn" href="https://discord.gg/swgHJJdt7f">
+          Join us on Discord !
+        </a>
+
+        <Link href="submit-missing-data" passHref={true}>
+          <a className="btn">Contribute your data !</a>
+        </Link>
+      </div>
     </section>
   );
 }

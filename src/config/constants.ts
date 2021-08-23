@@ -56,7 +56,7 @@ export const CURRENT_PROJECTS: Project[] = [
     progress: 60
   },
   {
-    name: 'All materials compilation',
+    name: 'Materials compilation',
     startedBy: 'Senka',
     link: 'https://docs.google.com/spreadsheets/d/1dUs4ajYMQhDHYj8FtJ8hfqhInTrE29j8PJhVV_hbFn4/edit#gid=0',
     progress: 40
@@ -72,6 +72,12 @@ export const CURRENT_PROJECTS: Project[] = [
     startedBy: 'keek',
     link: 'https://docs.google.com/spreadsheets/d/1FFL2Gej8UGphIVaGySk_Dwa7k4xc-PDB1pyqETfQ0JQ/edit#gid=0',
     progress: 50
+  },
+  {
+    name: 'Q/A Page',
+    startedBy: 'Senka',
+    link: 'https://docs.google.com/spreadsheets/d/1shgbaumBEGWPwj-1_1phakcln8fAn4KpVD9_SJK-z4Q/edit?usp=sharing',
+    progress: 10
   },
 ].sort((a, b) => b.progress - a.progress);
 
