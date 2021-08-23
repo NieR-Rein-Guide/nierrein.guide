@@ -28,7 +28,11 @@ export default function CurrentlyWorkingOn(): JSX.Element {
             rel="noopener noreferrer"
             target="_blank"
             key={project.name}
-            className="flex flex-col justify-center items-center border border-beige-dark px-4 py-8 hover-bg"
+            className="flex flex-col justify-center items-center border border-beige-dark px-4 py-8 transition-transform transform hover:-translate-y-1 rounded-md"
+            style={{
+              background: `linear-gradient(to right, rgba(255, 255, 255, 0.1) ${project.progress}%, rgba(255, 255, 255, 0) 50%)`,
+            }}
+            title={`Click to see ${project.name}`}
           >
             <div className="flex gap-x-4 items-center justify-start">
               <CircleState progress={project.progress} />
