@@ -33,14 +33,14 @@ export default function Header(): JSX.Element {
                       router.asPath === nav.href ? "active" : null
                     )}
                   >
-                    <div className="iso">
-                      <Image
-                        className="icon"
-                        placeholder="blur"
-                        src={nav.icon}
-                        alt="icon"
-                      />
-                    </div>
+                    <Image
+                      height={75}
+                      width={75}
+                      className="icon"
+                      placeholder="blur"
+                      src={nav.icon}
+                      alt="icon"
+                    />
                     <span className="mt-4 text-center serif text-xl">
                       {nav.label}
                     </span>

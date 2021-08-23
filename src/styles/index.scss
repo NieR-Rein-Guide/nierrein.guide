@@ -103,14 +103,34 @@ header > div {
 .nav-item {
   @apply flex justify-center;
 
-  .iso {
-    @apply transition-colors ease-out-cubic;
+  img {
+    @apply transition-all ease-out-cubic;
+    clip-path: polygon(
+      30% 0%,
+      70% 0%,
+      100% 30%,
+      100% 70%,
+      70% 100%,
+      30% 100%,
+      0% 70%,
+      0% 30%
+    );
+    background-color: theme("colors.beige.dark");
   }
 
   &:hover,
   .active {
-    .iso {
-      background-color: theme("colors.beige.dark");
+    img {
+      clip-path: polygon(
+        0 28%,
+        52% 0,
+        100% 30%,
+        94% 50%,
+        98% 70%,
+        51% 100%,
+        0 69%,
+        6% 50%
+      );
     }
   }
 }
