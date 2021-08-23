@@ -22,26 +22,28 @@ export default function Header(): JSX.Element {
           </a>
         </Link>
 
-        <nav className="nav">
+        <nav className="nav w-full lg:w-auto">
           <ul>
             {NAVIGATION.map((nav) => (
-              <li key={nav.label} className="nav-item w-28">
+              <li
+                key={nav.label}
+                className="nav-item lg:flex lg:justify-center lg:w-28"
+              >
                 <Link href={nav.href} passHref={true}>
                   <a
                     className={classNames(
-                      "inline-flex flex-col items-center",
+                      "flex items-center justify-center lg:flex-col",
                       router.asPath === nav.href ? "active" : null
                     )}
                   >
                     <Image
                       height={75}
                       width={75}
-                      className="icon"
                       placeholder="blur"
                       src={nav.icon}
-                      alt="icon"
+                      alt={`${nav.label} icon`}
                     />
-                    <span className="mt-4 text-center serif text-xl">
+                    <span className="w-44 mt-4 text-center serif text-2xl lg:text-xl lg:w-auto">
                       {nav.label}
                     </span>
                   </a>

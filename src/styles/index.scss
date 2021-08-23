@@ -101,8 +101,6 @@ header > div {
 }
 
 .nav-item {
-  @apply flex justify-center;
-
   img {
     @apply transition-all ease-out-cubic;
     clip-path: polygon(
@@ -132,6 +130,10 @@ header > div {
         6% 50%
       );
     }
+
+    span {
+      @apply text-beige-light;
+    }
   }
 }
 
@@ -153,7 +155,7 @@ header > div {
 }
 
 .container {
-  @apply w-full px-8;
+  @apply w-full px-4 lg:px-8;
   max-width: 1200px;
   margin: 0 auto;
 }

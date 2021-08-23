@@ -24,11 +24,15 @@ export default function Footer(): JSX.Element {
                     href={credit.link}
                     rel="noopener noreferrer"
                     target="_blank"
-                    className="serif text-2xl"
+                    className="serif text-2xl w-44 lg:w-auto"
                   >
                     {credit.name}
                   </a>
-                )) || <span className="serif text-2xl">{credit.name}</span>}
+                )) || (
+                  <span className="serif text-2xl w-44 lg:w-auto">
+                    {credit.name}
+                  </span>
+                )}
               </li>
             ))}
           </ul>
