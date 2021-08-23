@@ -1,7 +1,7 @@
 {
   "name": "nierrein.guide",
   "description": "A fansite for the game NieR Re[in]carnation.",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -33,6 +33,7 @@
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",
     "react-inlinesvg": "^2.3.0",
+    "react-lottie-player": "^1.4.0",
     "three": "^0.131.3"
   },
   "devDependencies": {
