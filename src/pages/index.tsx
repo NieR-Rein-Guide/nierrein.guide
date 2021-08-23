@@ -33,14 +33,13 @@ export default function Home(): JSX.Element {
         />
       </div>
 
-      <div className="grid grid-cols-1 lg::grid-cols-2 gap-8 my-24">
+      <div className="flex flex-col gap-y-24 mt-24">
         <GuerillaTimersWithNoSSR />
         <DailyInfoWithNoSSR />
         <CurrentlyWorkingOn />
         <JoinUs />
+        <Socials />
       </div>
-
-      <Socials />
     </Layout>
   );
 }

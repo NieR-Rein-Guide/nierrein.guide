@@ -25,7 +25,7 @@ input[type="url"] {
 }
 
 .input-file {
-  @apply font-semibold inline-block border border-beige-dark px-2 py-4 cursor-pointer w-full bg-beige-dark;
+  @apply font-semibold inline-block border border-beige-dark px-2 py-4 cursor-pointer w-full;
 }
 
 input[type="file"] {

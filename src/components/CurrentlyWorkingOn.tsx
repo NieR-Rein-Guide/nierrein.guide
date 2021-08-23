@@ -3,7 +3,7 @@ import classNames from "classnames";
 
 export default function CurrentlyWorkingOn(): JSX.Element {
   return (
-    <section className="mb-24">
+    <section>
       <h2>Currently in the works</h2>
 
       <div className="flex flex-col md:flex-row gap-x-8 mb-8">
