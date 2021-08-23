@@ -162,7 +162,7 @@ header > div {
 
 section {
   background-color: theme("colors.beige.darker");
-  @apply relative p-12 pt-16;
+  @apply relative p-4 pt-12 md:p-12 md:pt-16;
 
   > h1,
   > h2,
@@ -223,4 +223,8 @@ footer {
       }
     }
   }
+}
+
+.underline-dotted {
+  text-decoration: underline dotted;
 }

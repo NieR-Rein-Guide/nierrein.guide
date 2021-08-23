@@ -1,7 +1,7 @@
 {
   "name": "nierrein.guide",
   "description": "A fansite for the game NieR Re[in]carnation.",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -25,6 +25,7 @@
     "date-fns-tz": "^1.1.6",
     "graphql": "^15.5.1",
     "graphql-request": "^3.5.0",
+    "gsap": "^3.7.1",
     "marked": "^3.0.0",
     "next": "latest",
     "nprogress": "^0.2.0",
