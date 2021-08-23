@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="9650" height="284.688" viewBox="0 0 9650 284.688">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 16px;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g>
+    <path class="cls-1" d="M9744.65,188.05L9663.5,106.6,9532.55,237.55l131.1,131.1,80.1-80.1"
+      transform="translate(-175.499 -95.281)" />
+    <path class="cls-1" d="M9752.9,179.2l-59.4,59.4,59.55,59.55,59.25-59.25Z" transform="translate(-175.499 -95.281)" />
+  </g>
+  <g id="Group_1_copy_2" data-name="Group 1 copy 2">
+    <path class="cls-1" d="M256.35,188.05L337.5,106.6,468.45,237.55l-131.1,131.1-80.1-80.1"
+      transform="translate(-175.499 -95.281)" />
+    <path class="cls-1" d="M248.1,179.2l59.4,59.4-59.55,59.55L188.7,238.9Z" transform="translate(-175.499 -95.281)" />
+  </g>
+  <path class="cls-1" d="M464,237H9531" transform="translate(-175.499 -95.281)" />
+</svg>

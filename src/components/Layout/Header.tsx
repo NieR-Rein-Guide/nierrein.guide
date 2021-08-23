@@ -59,7 +59,7 @@ export default function Header(): JSX.Element {
         </Link>
 
         <nav className="nav w-full lg:w-auto">
-          <ul>
+          <ul className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
             {NAVIGATION.map((nav) => (
               <li
                 key={nav.label}

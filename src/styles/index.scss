@@ -6,7 +6,7 @@ html,
 body {
   color: #fff;
   background-color: #000;
-  height: 100%;
+  // height: 100%;
 }
 
 h1,
@@ -50,40 +50,22 @@ header > div {
   }
 }
 
-.logo {
-  @apply relative;
-
-  img {
-    @apply z-0 absolute -top-16 left-1/2 transform -translate-x-1/2 scale-100 transition-transform ease-out-cubic;
-  }
-
-  h1 {
-    @apply z-10 drop-shadow-xl mt-4;
-  }
-
-  &:hover {
-    img {
-      @apply scale-110;
-    }
-  }
-}
-
 .nav {
   ul {
-    @apply grid gap-y-8;
-    grid-template-columns: repeat(1, 1fr);
+    // @apply grid gap-y-8;
+    // grid-template-columns: repeat(1, 1fr);
 
-    @screen sm {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    // @screen sm {
+    //   grid-template-columns: repeat(2, 1fr);
+    // }
 
-    @screen md {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    // @screen md {
+    //   grid-template-columns: repeat(3, 1fr);
+    // }
 
-    @screen lg {
-      grid-template-columns: repeat(6, 1fr);
-    }
+    // @screen lg {
+    //   grid-template-columns: repeat(6, 1fr);
+    // }
   }
 
   li {
@@ -159,6 +141,11 @@ header > div {
   max-width: 1200px;
   margin: 0 auto;
 }
+// .container {
+//   @apply w-full px-8;
+//   // max-width: 1200px;
+//   margin: 0 auto;
+// }
 
 section {
   background-color: theme("colors.beige.darker");
