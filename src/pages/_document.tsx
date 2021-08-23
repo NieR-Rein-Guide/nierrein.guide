@@ -4,9 +4,9 @@ import Document, { Html, Head, Main, NextScript } from "next/document";
 const { description, cover, url } = meta;
 
 class MyDocument extends Document {
-  render() {
+  render(): JSX.Element {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <link rel="icon" href="/favicon.png" />
           <meta name="description" content={description} />

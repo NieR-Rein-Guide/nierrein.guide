@@ -5,7 +5,7 @@ import { FiGithub } from "react-icons/fi";
 import { GITHUB_REPO_LINK } from "@config/constants";
 import pkg from "../../package.json";
 
-function App({ Component, pageProps }) {
+function App({ Component, pageProps }): JSX.Element {
   return (
     <>
       <a

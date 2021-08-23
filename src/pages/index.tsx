@@ -1,21 +1,23 @@
 import Head from "next/head";
-import dynamic from 'next/dynamic'
+import dynamic from "next/dynamic";
+import Image from "next/image";
+
+import launchedImage from "../../public/launched.jpg";
 
 import Layout from "@components/Layout";
 import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
 
 const GuerillaTimersWithNoSSR = dynamic(
-  () => import('@components/GuerillaTimers'),
+  () => import("@components/GuerillaTimers"),
   { ssr: false }
-)
+);
 
-const DailyInfoWithNoSSR = dynamic(
-  () => import('../components/DailyInfo'),
-  { ssr: false }
-)
+const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyInfo"), {
+  ssr: false,
+});
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <Layout>
       <Head>
@@ -23,7 +25,11 @@ export default function Home() {
       </Head>
 
       <div>
-        <img src="/launched.jpg" alt="NieR Re[in]carnation Launched !" />
+        <Image
+          src={launchedImage}
+          placeholder="blur"
+          alt="NieR Re[in]carnation Launched !"
+        />
       </div>
 
       <div className="grid grid-cols-1 lg::grid-cols-2 gap-8 my-24">
