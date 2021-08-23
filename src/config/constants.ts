@@ -1,11 +1,11 @@
 export const GAME_TIMEZONE = "US/Pacific";
 
-import guidesIcon from '../../public/ui/consumable_item/consumable110003_standard.png'
-import loadoutsIcon from '../../public/ui/consumable_item/consumable110001_standard.png'
-import tierlistIcon from '../../public/ui/consumable_item/consumable110002_standard.png'
-import charactersIcon from '../../public/ui/consumable_item/consumable100001_standard.png'
-import databaseIcon from '../../public/ui/consumable_item/consumable110007_standard.png'
-import fanContentIcon from '../../public/ui/important_item/important100001_standard.png'
+import guidesIcon from '../../public/icons/guides.png'
+import loadoutsIcon from '../../public/icons/loadout.png'
+import tierlistIcon from '../../public/icons/tierlist.png'
+import charactersIcon from '../../public/icons/characters.png'
+import databaseIcon from '../../public/icons/database.png'
+import fanContentIcon from '../../public/icons/fancontent.png'
 
 export const NAVIGATION = [
   {
