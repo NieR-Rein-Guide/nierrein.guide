@@ -56,10 +56,10 @@ export const CURRENT_PROJECTS: Project[] = [
     progress: 60
   },
   {
-    name: 'Gems compilation',
+    name: 'All materials compilation',
     startedBy: 'Senka',
     link: 'https://docs.google.com/spreadsheets/d/1dUs4ajYMQhDHYj8FtJ8hfqhInTrE29j8PJhVV_hbFn4/edit#gid=0',
-    progress: 100
+    progress: 40
   },
   {
     name: 'Quests Data',
