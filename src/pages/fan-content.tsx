@@ -8,7 +8,6 @@ import {
   submitFanContent,
 } from "@models/fancontent";
 import { useState, useReducer } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 interface FanContentProps {
   fanContents: FanContent[];
