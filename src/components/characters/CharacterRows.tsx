@@ -1,5 +1,7 @@
 import { CostumeInfo, typedCharacters } from "@models/character";
+import { useRouter } from "next/router";
 import React, { Dispatch, SetStateAction } from "react";
+import slugify from "slugify";
 
 function CharacterDiamond({
   costume,
