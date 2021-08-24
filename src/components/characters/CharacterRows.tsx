@@ -1,5 +1,7 @@
 import { CostumeInfo, typedCharacters } from "@models/character";
+import { useRouter } from "next/router";
 import React, { Dispatch, SetStateAction } from "react";
+import slugify from "slugify";
 
 function CharacterDiamond({
   costume,
@@ -12,6 +14,7 @@ function CharacterDiamond({
   active: boolean;
   labelTop: boolean;
 }): JSX.Element {
+  const router = useRouter();
   const onClick = () => {
     setCostume(costume);
   };
