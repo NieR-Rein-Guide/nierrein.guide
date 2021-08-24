@@ -14,7 +14,6 @@ function CharacterDiamond({
   active: boolean;
   labelTop: boolean;
 }): JSX.Element {
-  const router = useRouter();
   const onClick = () => {
     setCostume(costume);
   };
