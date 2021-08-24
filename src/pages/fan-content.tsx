@@ -105,10 +105,13 @@ export default function FanContentPage({
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
         <div>
           <h2 className="text-5xl lg:text-7xl">Fan Content</h2>
-          <p>
+          <p className="wysiwyg">
             Everyone can submit their own content related to the NieR universe.
-            <br />
-            ⚠️ Work in progress. The form doesn't work yet.
+            <ol className="mt-4">
+              <li>No NSFW</li>
+              <li>Post only content you own</li>
+              <li>After submission, administrators will need to approve it.</li>
+            </ol>
           </p>
         </div>
 
