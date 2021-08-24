@@ -95,12 +95,13 @@ header > div {
       0% 70%,
       0% 30%
     );
-    background-color: theme("colors.beige.dark");
   }
 
   &:hover,
   .active {
     img {
+      @apply bg-beige-dark;
+
       clip-path: polygon(
         0 28%,
         52% 0,
