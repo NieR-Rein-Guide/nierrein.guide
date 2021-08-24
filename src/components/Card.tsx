@@ -1,7 +1,19 @@
-export default function Card(): JSX.Element {
+import { CostumeInfo } from "@models/character";
+export { Card, CharacterCard }
+
+function Card(): JSX.Element {
   return (
     <div className="card">
-      <img src="/character/ch001001_full.png" alt=""></img>
     </div>
   );
 }
+
+function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
+  return (
+    <div className="card" style={{ backgroundColor: "yellow" }}>
+      <img src="/character/ch001001_full.png"></img>
+      {/* <img src={costume.illustrationURL}></img> */}
+    </div >
+  );
+}
+

@@ -14,8 +14,8 @@ type CharacterName = string
 
 class CostumeInfo {
     character: CharacterName
-    name: {en: string, ja: string}
-    description: {en: string, ja: string}
+    name: { en: string, ja: string }
+    description: { en: string, ja: string }
     stars: number
     statsLvl1: Stats
     statsMax: Stats
@@ -33,11 +33,11 @@ class CostumeInfo {
         return `/character/ch${this.id.toString().padStart(6, '0')}_full.png`
     }
     get iconURL(): string {
-        switch(this.id) {
+        switch (this.id) {
             case 1003: return `/ui/actor/ch001003_01_actor_icon.png` // 2P
         }
         // id = 19005
-        const id = Math.floor(this.id/1000)*1000 + 1
+        const id = Math.floor(this.id / 1000) * 1000 + 1
         // id = 19001
         const v = `/ui/actor/ch${id.toString().padStart(6, '0')}_01_actor_icon.png`
 
@@ -60,11 +60,11 @@ class CostumeInfo {
     }
 }
 
-export {Stats, CostumeInfo}
+export { Stats, CostumeInfo }
 
 const typedCostumes =
     allCostumes
-        .map(costume=> new CostumeInfo(costume))
+        .map(costume => new CostumeInfo(costume))
         .sort((a, b) => a.id - b.id) as CostumeInfo[]
 
 const typedCharacters = typedCostumes.reduce((acc, elem) => {
@@ -76,4 +76,4 @@ const typedCharacters = typedCostumes.reduce((acc, elem) => {
     return acc
 }, new Map<CharacterName, CostumeInfo[]>())
 
-export {typedCostumes, typedCharacters}
+export { typedCostumes, typedCharacters }
