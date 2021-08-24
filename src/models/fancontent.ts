@@ -1,4 +1,5 @@
 import client from "@libs/api"
+import axios from "axios"
 import { gql } from "graphql-request"
 
 type FanContentImage = {
@@ -54,28 +55,18 @@ interface SubmitFanContentArgs {
   image: File;
 }
 
-async function submitFanContent({ author, link, image }: SubmitFanContentArgs): Promise<void> {
-  const CREATE_FAN_CONTENT = gql`
-    mutation submitFanContent($author: String!, $link: String!, $image: UploadFile!) {
-      createFanContent(input: { data: {
-        author: $author,
-        link: $link,
-        image: $image
-      }}) {
-        fanContent {
-          author
-          link
-          image
-        }
-      }
-    }
-  `
-
-  return client.request(CREATE_FAN_CONTENT, {
+function submitFanContent({ author, link, image }: SubmitFanContentArgs): Promise<void> {
+  const data = {
     author,
     link,
-    image
-  })
+  }
+
+  const formData = new FormData()
+
+  formData.append('data', JSON.stringify(data))
+  formData.append(`files.image`, image, image.name);
+
+  return axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fan-contents`, formData)
 }
 
 export {
