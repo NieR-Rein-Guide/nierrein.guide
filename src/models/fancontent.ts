@@ -32,7 +32,7 @@ export type FanContent = {
 async function getAllFanContents(): Promise<FanContent[]> {
   const GET_FAN_CONTENTS = gql`
     {
-      fanContents (where: { is_approved: true }) {
+      fanContents (sort: "published_at:desc", where: { is_approved: true }) {
         author
         link
         is_approved
