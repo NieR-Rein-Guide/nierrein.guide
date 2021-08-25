@@ -1,4 +1,6 @@
 import { CostumeInfo } from "@models/character";
+import Link from 'next/link';
+import Image from 'next/image';
 export { Card, CharacterCard }
 
 function Card(): JSX.Element {
@@ -10,9 +12,19 @@ function Card(): JSX.Element {
 
 function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
   return (
-    <div className="card" style={{ backgroundColor: "yellow" }}>
-      <img src={costume.illustrationURL}></img>
-    </div >
+    <Link href={"/characters/" + costume.character + "/" + costume.name.en.replace(" ", "-")}>
+      <a>
+        <div className={"card " + "rarity" + costume.stars}>
+          <div className="card-art">
+            <Image
+              src={costume.illustrationURL}
+              alt={`${costume.character} (${costume.name.en}) illustration`}
+              className="card-art"
+              layout="fill"
+            />
+          </div>
+        </div >
+      </a>
+    </Link>
   );
 }
-
