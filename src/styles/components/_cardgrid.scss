@@ -1,7 +1,7 @@
-.card-grid{
+.card-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     width: 100%;
     column-gap: 5%;
-    row-gap: 5%;
+    row-gap: 20px;
 }

@@ -1,7 +1,30 @@
-export default function Card(): JSX.Element {
+import { CostumeInfo } from "@models/character";
+import Link from 'next/link';
+import Image from 'next/image';
+export { Card, CharacterCard }
+
+function Card(): JSX.Element {
   return (
     <div className="card">
-      <img src="/character/ch001001_full.png" alt=""></img>
     </div>
+  );
+}
+
+function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
+  return (
+    <Link href={"/characters/" + costume.character + "/" + costume.name.en.replace(" ", "-")}>
+      <a>
+        <div className={"card " + "rarity" + costume.stars}>
+          <div className="card-art">
+            <Image
+              src={costume.illustrationURL}
+              alt={`${costume.character} (${costume.name.en}) illustration`}
+              className="card-art"
+              layout="fill"
+            />
+          </div>
+        </div >
+      </a>
+    </Link>
   );
 }
