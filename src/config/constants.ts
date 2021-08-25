@@ -19,8 +19,8 @@ export const NAVIGATION = [
     icon: loadoutsIcon,
   },
   {
-    label: 'Tier list',
-    href: '/tierlist',
+    label: 'Tier lists',
+    href: '/tierlists',
     icon: tierlistIcon,
   },
   {

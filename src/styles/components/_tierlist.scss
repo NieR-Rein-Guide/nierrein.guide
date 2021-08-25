@@ -1,0 +1,9 @@
+.tierlist__row {
+  @apply grid gap-4 place-items-center;
+  grid-template-columns: 1fr;
+
+  @screen md {
+    @apply place-items-start;
+    grid-template-columns: 128px 1fr;
+  }
+}
