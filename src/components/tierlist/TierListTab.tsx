@@ -13,6 +13,8 @@ export default function TierlistTab({ children, index, image }): JSX.Element {
       )}
     >
       <Image
+        height={350}
+        width={200}
         layout="fill"
         objectFit="cover"
         className="-z-1 filter brightness-50"

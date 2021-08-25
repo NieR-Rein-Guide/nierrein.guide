@@ -7,7 +7,6 @@ import { formatDistanceToNow } from "date-fns";
 import { getAllGuides, getGuide, Guide } from "@models/guide";
 import marked from "marked";
 import { useRouter } from "next/router";
-import { meta } from "@config/constants";
 
 interface GuideProps {
   guide: Guide;
