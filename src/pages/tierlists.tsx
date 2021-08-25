@@ -34,13 +34,22 @@ export default function Home(): JSX.Element {
             ))}
           </TabList>
 
+          <p className="mb-24 md:mb-16 text-lg md:text-xl text-center max-w-4xl mx-auto px-4 border border-beige py-4">
+            Tier lists are meant to give a general idea, they are <b>NOT</b> an
+            absolute truth.
+            <br />
+            Follow what you want and do what feel right for you.
+            <br />
+            Tier lists are made by <code>Insta#9504</code>. They are still WIP.
+          </p>
+
           <TabPanels>
             {tiers.map((tier) => (
               <TabPanel key={tier.index}>
                 <section className="mt-8">
                   <h2>{tier.label} Tier List</h2>
 
-                  <TierList tiers={tier.tiers} />
+                  <TierList tier={tier} />
                 </section>
               </TabPanel>
             ))}

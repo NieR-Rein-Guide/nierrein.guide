@@ -16,7 +16,7 @@ module.exports = {
       },
       zIndex: {
         "-1": "-1",
-      },
+      }
     },
   },
   variants: {

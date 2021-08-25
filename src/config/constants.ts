@@ -138,6 +138,9 @@ export const CREDITS = [
   {
     name: 'Unbound',
     link: 'https://github.com/B0und'
+  },
+  {
+    name: 'Insta'
   }
 ].sort((a, b) => a.name.localeCompare(b.name))
 
