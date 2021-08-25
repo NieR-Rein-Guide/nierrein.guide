@@ -22,7 +22,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
         <Meta
           title={`${guide.title} - Guide`}
           description={`Read this guide to learn more about : ${guide.title}`}
-          cover={guide?.cover?.url ?? meta.cover}
+          cover={guide?.cover?.url ?? "https://nierrein.guide/cover-guides.jpg"}
         />
       )}
 
