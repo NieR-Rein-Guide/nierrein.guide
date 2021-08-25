@@ -1,3 +1,4 @@
+import { DISCORD_URL } from "@config/constants";
 import Link from "next/link";
 
 function JoinUs(): JSX.Element {
@@ -14,7 +15,7 @@ function JoinUs(): JSX.Element {
       </p>
 
       <div className="flex gap-4">
-        <a className="btn" href="https://discord.gg/swgHJJdt7f">
+        <a className="btn" href={DISCORD_URL}>
           Join us on Discord !
         </a>
 

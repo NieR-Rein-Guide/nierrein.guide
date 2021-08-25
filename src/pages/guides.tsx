@@ -1,4 +1,4 @@
-import Head from "next/head";
+import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import SVG from "react-inlinesvg";
 import { getAllGuides, Guide } from "@models/guide";
@@ -10,9 +10,11 @@ interface GuidesProps {
 export default function Guides({ topics }: GuidesProps): JSX.Element {
   return (
     <Layout>
-      <Head>
-        <title>Guides - NieR Re[in] Guide</title>
-      </Head>
+      <Meta
+        title="Guides"
+        description="Learn several aspects of the game by reading our guides."
+        cover="https://nierrein.guide/cover-guides.jpg"
+      />
 
       <nav className="sidenav max-w-lg">
         <ul>

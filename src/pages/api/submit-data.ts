@@ -37,8 +37,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const buffer = readFileSync(files.file.path)
 
-      console.log(buffer)
-
       s3.upload({
         Bucket: BUCKET_NAME,
         Key: `${uuid()}${files.file.name}`,

@@ -1,4 +1,3 @@
-import Head from "next/head";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 
@@ -8,6 +7,7 @@ import Layout from "@components/Layout";
 import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
 import CurrentlyWorkingOn from "@components/CurrentlyWorkingOn";
+import Meta from "@components/Meta";
 
 const GuerillaTimersWithNoSSR = dynamic(
   () => import("@components/GuerillaTimers"),
@@ -21,9 +21,7 @@ const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyInfo"), {
 export default function Home(): JSX.Element {
   return (
     <Layout>
-      <Head>
-        <title>NieR Re[in] Global Guide & Database</title>
-      </Head>
+      <Meta />
 
       <div>
         <Image

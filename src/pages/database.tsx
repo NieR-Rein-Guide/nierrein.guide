@@ -1,9 +1,9 @@
-import Head from "next/head";
 import { Tabs, TabList, TabPanels, TabPanel, Tab } from "@reach/tabs";
 import dynamic from "next/dynamic";
 import { listFolders, listModelsTypes } from "@libs/s3";
 import Layout from "@components/Layout";
 import ErrorBoundary from "@components/Error";
+import Meta from "@components/Meta";
 import { useState } from "react";
 import classNames from "classnames";
 import { useEffect } from "react";
@@ -71,9 +71,11 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
 
   return (
     <Layout>
-      <Head>
-        <title>Database - NieR Re[in] Guide</title>
-      </Head>
+      <Meta
+        title="Database"
+        description="3D Model Viewer (WIP : and all the materials, characters, weapons...)"
+        cover="https://nierrein.guide/cover-database.jpg"
+      />
 
       <Tabs defaultIndex={0}>
         <TabList className="flex justify-around w-1/2 mx-auto">

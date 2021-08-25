@@ -1,3 +1,4 @@
+import { DISCORD_URL } from "@config/constants";
 import { RiRedditLine } from "react-icons/ri";
 
 function Socials(): JSX.Element {
@@ -9,7 +10,7 @@ function Socials(): JSX.Element {
         <li className="w-full text-center">
           <a
             className="flex flex-col gap-y-2 py-8 transition-colors rounded-md bg-white bg-opacity-0 hover:bg-opacity-10"
-            href="https://discord.gg/swgHJJdt7f"
+            href={DISCORD_URL}
             rel="noopener noreferrer"
             target="_blank"
           >

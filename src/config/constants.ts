@@ -19,8 +19,8 @@ export const NAVIGATION = [
     icon: loadoutsIcon,
   },
   {
-    label: 'Tier list',
-    href: '/tierlist',
+    label: 'Tier lists',
+    href: '/tierlists',
     icon: tierlistIcon,
   },
   {
@@ -138,6 +138,9 @@ export const CREDITS = [
   {
     name: 'Unbound',
     link: 'https://github.com/B0und'
+  },
+  {
+    name: 'Insta'
   }
 ].sort((a, b) => a.name.localeCompare(b.name))
 
@@ -149,3 +152,6 @@ export const meta = {
   url: 'https://nierrein.guide/',
   cover: 'https://nierrein.guide/cover.jpg'
 }
+
+export const SITE_URL = 'https://nierrein.guide'
+export const DISCORD_URL = 'https://discord.gg/swgHJJdt7f'
