@@ -1,4 +1,3 @@
-import Head from "next/head";
 import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
 import { useState } from "react";
 
@@ -6,6 +5,7 @@ import Layout from "@components/Layout";
 import TierListTab from "@components/tierlist/TierListTab";
 import TierList from "@components/tierlist/TierList";
 import { tiers } from "@models/tiers";
+import Meta from "@components/Meta";
 
 export default function Home(): JSX.Element {
   const [tabIndex, setTabIndex] = useState(tiers[0].index);
@@ -16,9 +16,11 @@ export default function Home(): JSX.Element {
 
   return (
     <Layout>
-      <Head>
-        <title>Tier lists - NieR Re[in] Global Guide & Database</title>
-      </Head>
+      <Meta
+        title="Tier Lists"
+        description="Tier lists for PvE, PvP and Weapons. Work In Progress."
+        cover="https://nierrein.guide/cover-tierlists.jpg"
+      />
 
       <div className="flex flex-col gap-y-24 mt-12">
         <Tabs defaultIndex={tabIndex} onChange={handleTabsChange}>

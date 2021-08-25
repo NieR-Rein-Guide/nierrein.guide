@@ -1,5 +1,5 @@
-import Head from "next/head";
 import Image from "next/image";
+import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import Corners from "@components/decorations/Corners";
 import LoadingIcon from "@components/LoadingIcon";
@@ -98,9 +98,11 @@ export default function FanContentPage({
 
   return (
     <Layout>
-      <Head>
-        <title>Fan Content - NieR Re[in] Guide</title>
-      </Head>
+      <Meta
+        title="Fan Content"
+        description="View and Share NieR related artworks !"
+        cover="https://nierrein.guide/cover-fancontent.jpg"
+      />
 
       <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center">
         <div>
@@ -230,7 +232,7 @@ function ContentItem({
   image,
   link,
 }: FanContent): JSX.Element {
-  const resizedImage = image?.formats?.medium ?? image?.formats?.small
+  const resizedImage = image?.formats?.medium ?? image?.formats?.small;
 
   return (
     <div className="flex flex-col justify-between gap-y-4 border border-beige p-4 w-auto">
@@ -251,7 +253,7 @@ function ContentItem({
         </a>
       </div>
 
-      {(resizedImage && (
+      {resizedImage && (
         <Image
           layout="responsive"
           height={resizedImage.height}
@@ -260,7 +262,7 @@ function ContentItem({
           alt={`${author} preview image`}
           loading="lazy"
         />
-      ))}
+      )}
 
       <span>Published {new Date(published_at).toLocaleDateString()}</span>
     </div>

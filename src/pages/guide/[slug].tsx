@@ -1,6 +1,6 @@
-import Head from "next/head";
 import SVG from "react-inlinesvg";
 import Layout from "@components/Layout";
+import Meta from "@components/Meta";
 import Corners from "@components/decorations/Corners";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
@@ -17,9 +17,11 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
 
   return (
     <Layout>
-      <Head>
-        <title>Guides - NieR Re[in] Guide</title>
-      </Head>
+      <Meta
+        title={`${guide.title} - Guide`}
+        description={`Read this guide to learn more about : ${guide.title}`}
+        cover={guide.cover.url}
+      />
 
       <nav className="mb-8">
         <Link href="/guides" passHref={true}>

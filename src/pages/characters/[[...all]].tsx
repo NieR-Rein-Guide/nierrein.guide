@@ -1,5 +1,4 @@
-import Head from "next/head";
-
+import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import CostumeDetails from "@components/CharacterInfo";
 import { CostumeInfo, typedCharacters } from "@models/character";
@@ -59,9 +58,11 @@ export default function Page(): JSX.Element {
 
   return (
     <Layout>
-      <Head>
-        <title>Characters - NieR Re[in] Global Guide & Database</title>
-      </Head>
+      <Meta
+        title="Characters"
+        description="All the costumes of NieR Re[in]carnation"
+        cover="https://nierrein.guide/cover-characters.jpg"
+      />
 
       <CharacterRows {...{ setCostume, currentCostume }} />
       <span className="hidden md:inline">

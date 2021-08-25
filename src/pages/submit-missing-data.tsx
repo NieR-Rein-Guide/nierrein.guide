@@ -1,6 +1,6 @@
 import Layout from "@components/Layout";
 import LoadingIcon from "@components/LoadingIcon";
-import Head from "next/head";
+import Meta from "@components/Meta";
 import React, { useReducer, useState } from "react";
 import formatBytes from "utils/formatBytes";
 
@@ -64,9 +64,11 @@ export default function SubmitMissingDataPage(): JSX.Element {
 
   return (
     <Layout>
-      <Head>
-        <title>Submit Missing Data - NieR Re[in] Global Guide & Database</title>
-      </Head>
+      <Meta
+        title="Submit Data"
+        description="Submit (missing) data so we can improve the website"
+        cover="https://nierrein.guide/cover-submitdata.jpg"
+      />
 
       <section className="mt-16">
         <h2>Submit your work</h2>

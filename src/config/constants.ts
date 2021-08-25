@@ -152,3 +152,5 @@ export const meta = {
   url: 'https://nierrein.guide/',
   cover: 'https://nierrein.guide/cover.jpg'
 }
+
+export const SITE_URL = 'https://nierrein.guide'
