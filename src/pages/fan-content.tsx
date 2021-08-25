@@ -230,6 +230,8 @@ function ContentItem({
   image,
   link,
 }: FanContent): JSX.Element {
+  const resizedImage = image?.formats?.medium ?? image?.formats?.small
+
   return (
     <div className="flex flex-col justify-between gap-y-4 border border-beige p-4 w-auto">
       <div className="flex justify-between items-stretch">
@@ -249,21 +251,16 @@ function ContentItem({
         </a>
       </div>
 
-      {(image?.formats?.medium?.url && (
+      {(resizedImage && (
         <Image
           layout="responsive"
-          height={image.formats.medium.height}
-          width={image.formats.medium.width}
-          src={image.formats.medium.url}
+          height={resizedImage.height}
+          width={resizedImage.width}
+          src={resizedImage.url}
           alt={`${author} preview image`}
           loading="lazy"
         />
-      )) ||
-        (image.url && <img src={image.url} alt="preview image" />) || (
-          <p className="border border-dotted py-6 px-4">
-            Please select an image
-          </p>
-        )}
+      ))}
 
       <span>Published {new Date(published_at).toLocaleDateString()}</span>
     </div>
