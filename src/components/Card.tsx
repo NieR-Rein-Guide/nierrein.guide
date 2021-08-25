@@ -11,8 +11,7 @@ function Card(): JSX.Element {
 function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
   return (
     <div className="card" style={{ backgroundColor: "yellow" }}>
-      <img src="/character/ch001001_full.png"></img>
-      {/* <img src={costume.illustrationURL}></img> */}
+      <img src={costume.illustrationURL}></img>
     </div >
   );
 }
