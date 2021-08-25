@@ -3,7 +3,7 @@
   line-height: 1.6;
 
   a {
-    text-decoration: none;
+    @apply text-beige border-b border-dotted;
   }
 
   a:hover {
@@ -20,12 +20,15 @@
   }
 
   hr {
-    background: #e6e6e6;
-    border: none;
+    margin: 16px 0;
+    height: 48px;
+    background: url("/border-small.svg");
     display: block;
-    height: 1px;
-    margin-bottom: 1.4em;
-    margin-top: 1.4em;
+    border: none;
+    background-size: 70% 40px;
+    background-position: center;
+    width: 100%;
+    background-repeat: no-repeat;
   }
 
   img {
@@ -205,7 +208,7 @@
   kbd,
   samp,
   pre {
-    @apply border-2 border-beige-light bg-beige-darker text-beige-light px-2;
+    @apply border-2 border-beige-light bg-beige-darker text-beige-light px-2 py-1;
     -moz-osx-font-smoothing: auto;
     -webkit-font-smoothing: auto;
     font-size: 0.9em;

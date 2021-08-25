@@ -38,12 +38,12 @@ export default function Header(): JSX.Element {
     <header className="container">
       <div className="flex flex-col justify-center items-center flex-wrap gap-y-8 px-8 py-6">
         <Link href="/" passHref={true}>
-          <a className="flex items-center relative group">
-            <span
-              onMouseEnter={start}
-              onMouseLeave={done}
-              className="h-20 w-20 mr-4 z-0 absolute -top-16 left-1/2 transform -translate-x-1/2 scale-100 group-hover:scale-110 transition-transform ease-out-cubic"
-            >
+          <a
+            className="flex items-center relative group"
+            onMouseEnter={start}
+            onMouseLeave={done}
+          >
+            <span className="h-20 w-20 mr-4 z-0 absolute -top-16 left-1/2 transform -translate-x-1/2 scale-100 group-hover:scale-110 transition-transform ease-out-cubic">
               <Lottie
                 animationData={logoData}
                 play={isAnimating}

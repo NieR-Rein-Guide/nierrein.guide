@@ -1,0 +1,38 @@
+{
+    "name": "NieR Re[in] Global Guide & Database",
+    "short_name": "NieR Re[in] Guide",
+    "background_color": "#000",
+    "description": "Brings you free, high quality content : Guides, updated tierlists, complete databases, 3d model viewer and more!",
+    "icons": [
+        {
+            "src": "/favicon.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "/logo-256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/logo.png",
+            "sizes": "1400x1400",
+            "type": "image/png"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Characters",
+            "url": "/characters",
+            "description": "List of all characters"
+        },
+        {
+            "name": "Guides",
+            "url": "/guides"
+        },
+        {
+            "name": "Database",
+            "url": "/database"
+        }
+    ]
+}
