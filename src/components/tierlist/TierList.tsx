@@ -13,8 +13,12 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
 
   if (lists.length === 0) {
     return (
-      <div className="text-3xl">
-        <p className="mb-4">Work In Progress</p>
+      <div>
+        <span>
+          Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
+        </span>
+
+        <p className="text-3xl mb-4">Work In Progress</p>
         {tier.content && (
           <div dangerouslySetInnerHTML={{ __html: tier.content }}></div>
         )}
@@ -32,7 +36,7 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
         <div className="tierlist__row" key={rank}>
           <Image src={RANK_THUMBNAILS[rank]} alt={rank} />
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap justify-center md:justify-start gap-4">
             {items.map((item) => (
               <Link
                 key={item.thumbnail}
