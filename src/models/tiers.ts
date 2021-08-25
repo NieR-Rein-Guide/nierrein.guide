@@ -12,6 +12,7 @@ import SearchRankE from '../../public/ui/search/search_rank_6.png';
 export interface Tier {
   name: string;
   thumbnail: string;
+  isJpOnly?: boolean;
 }
 
 export interface Tiers {
@@ -395,13 +396,13 @@ const tiers: TiersTabs[] = [
           name: 'Fio',
           thumbnail: 'https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_52.png'
         },
-      ],
-      D: [
         {
           name: "Emil",
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_35.png",
         },
+      ],
+      D: [
         {
           name: "Argo",
           thumbnail:
