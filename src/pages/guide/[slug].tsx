@@ -7,6 +7,7 @@ import { formatDistanceToNow } from "date-fns";
 import { getAllGuides, getGuide, Guide } from "@models/guide";
 import marked from "marked";
 import { useRouter } from "next/router";
+import { meta } from "@config/constants";
 
 interface GuideProps {
   guide: Guide;
@@ -21,7 +22,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
         <Meta
           title={`${guide.title} - Guide`}
           description={`Read this guide to learn more about : ${guide.title}`}
-          cover={guide.cover.url}
+          cover={guide?.cover?.url ?? meta.cover}
         />
       )}
 
