@@ -17,11 +17,13 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
 
   return (
     <Layout>
-      <Meta
-        title={`${guide.title} - Guide`}
-        description={`Read this guide to learn more about : ${guide.title}`}
-        cover={guide.cover.url}
-      />
+      {!router.isFallback && (
+        <Meta
+          title={`${guide.title} - Guide`}
+          description={`Read this guide to learn more about : ${guide.title}`}
+          cover={guide.cover.url}
+        />
+      )}
 
       <nav className="mb-8">
         <Link href="/guides" passHref={true}>
