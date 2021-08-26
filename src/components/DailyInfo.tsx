@@ -162,11 +162,11 @@ function DailyInfo(): JSX.Element {
         src="/ui/ability/ability100001_standard.png"
         alt="Daily"
       />
-      <h2>Daily Info</h2>
+      <h2>Daily Quests</h2>
 
       <div className="flex justify-center items-center w-full mb-12">
         <h3 className="surface serif text-3xl text-center">
-          Today Daily Rewards
+          Today's Daily Quest
         </h3>
       </div>
 
@@ -175,9 +175,7 @@ function DailyInfo(): JSX.Element {
       </div>
 
       <div className="flex justify-center items-center w-full my-12">
-        <h3 className="surface serif text-3xl text-center">
-          Next Days Rewards
-        </h3>
+        <h3 className="surface serif text-3xl text-center">Upcoming</h3>
       </div>
 
       <div className="flex flex-col gap-y-12 w-full md:w-3/4 mx-auto">

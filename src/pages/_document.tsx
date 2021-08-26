@@ -13,12 +13,14 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.png" />
           <link rel="apple-touch-icon" sizes="64x64" href="/favicon.png" />
           <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
-          <script
-            async
-            defer
-            data-website-id="5267c73d-8fd5-4a8a-9177-1a21b5526e1b"
-            src="https://analytics.nierrein.guide/umami.js"
-          ></script>
+          {process.env.NODE_ENV === "production" && (
+            <script
+              async
+              defer
+              data-website-id="5267c73d-8fd5-4a8a-9177-1a21b5526e1b"
+              src="https://analytics.nierrein.guide/umami.js"
+            ></script>
+          )}
         </Head>
         <body>
           <Main />
