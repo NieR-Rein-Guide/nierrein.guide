@@ -13,10 +13,16 @@ module.exports = {
         brown: {
           DEFAULT: "#4a4341",
         },
+        transparent: {
+          bg: "rgba(255, 255, 255, 0.1)",
+        },
       },
       zIndex: {
         "-1": "-1",
-      }
+      },
+      gridTemplateColumns: {
+        "with-sidenav": "400px 1fr",
+      },
     },
   },
   variants: {

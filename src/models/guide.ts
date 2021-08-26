@@ -4,6 +4,7 @@ import { gql } from "graphql-request"
 export type Guide = {
   slug: string;
   title: string;
+  author: string;
   content: string;
   cover?: {
     width: number;
@@ -12,6 +13,31 @@ export type Guide = {
   };
   published_at: string;
   updated_at?: string;
+}
+
+async function getFeaturedGuides(): Promise<Guide[]> {
+  const GET_GUIDES = gql`
+    {
+      featuredGuide  {
+        guides {
+          title
+          author
+          slug
+          content
+          cover {
+            width
+            height
+            url
+          }
+          published_at
+          updated_at
+        }
+      }
+    }
+  `
+
+  const { featuredGuide } = await client.request(GET_GUIDES)
+  return featuredGuide.guides
 }
 
 async function getAllGuides(): Promise<Guide[]> {
@@ -62,5 +88,6 @@ async function getGuide(slug: string): Promise<Guide> {
 
 export {
   getAllGuides,
-  getGuide
+  getGuide,
+  getFeaturedGuides
 }
