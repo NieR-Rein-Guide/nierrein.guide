@@ -15,9 +15,9 @@ class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
           <script
             async
-            src="https://analytics.nierrein.guide/tracker.js"
-            data-ackee-server="https://analytics.nierrein.guide"
-            data-ackee-domain-id="740ae9bc-5bd5-426f-aa18-4f9ae79b0671"
+            defer
+            data-website-id="5267c73d-8fd5-4a8a-9177-1a21b5526e1b"
+            src="https://analytics.nierrein.guide/umami.js"
           ></script>
         </Head>
         <body>
