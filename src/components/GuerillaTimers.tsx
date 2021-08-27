@@ -6,7 +6,13 @@ import { enUS, fr } from "date-fns/locale";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 import Image from "next/image";
-import { weaponToIcon } from "./DailyInfo";
+import { weaponToIcon } from "./DailyQuests";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from "@reach/accordion";
 
 function locale() {
   const loc = { enUS, fr }[navigator.language];
@@ -91,8 +97,44 @@ const TimerRow = ({ guerilla }): JSX.Element => {
   guerilla.endDate = endDate;
 
   return (
-    <div className="w-full border border-beige-dark p-4 flex flex-col-reverse md:flex-row md:w-auto">
-      <div className="flex w-48 justify-center mt-2 mx-auto md:mt-0 ">
+    <div className="flex flex-col w-full border border-beige-dark p-4">
+      <div className="flex justify-center">
+        {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
+          (weapon, index) => (
+            <div key={index} className="w-16 h-16 relative">
+              <Image
+                key={index}
+                src={weaponToIcon(weapon)}
+                alt={`${weapon} icon`}
+                title={weapon}
+              />
+            </div>
+          )
+        )}
+        {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
+          (weapon, index) => (
+            <div key={index} className="w-16 h-16 relative">
+              <Image
+                key={index}
+                src={weaponToIcon(weapon)}
+                alt={`${weapon} icon`}
+                title={weapon}
+              />
+            </div>
+          )
+        )}
+        {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
+          (weapon, index) => (
+            <div key={index} className="w-16 h-16 relative">
+              <Image
+                key={index}
+                src={weaponToIcon(weapon)}
+                alt={`${weapon} icon`}
+                title={weapon}
+              />
+            </div>
+          )
+        )}
         {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
           (weapon, index) => (
             <div key={index} className="w-16 h-16 relative">
@@ -106,21 +148,18 @@ const TimerRow = ({ guerilla }): JSX.Element => {
           )
         )}
       </div>
-      <div className="grid grid-cols-1 gap-y-2 md:grid-cols-3 place-items-center ">
-        <span className="md:w-48 text-right">
-          {timeFormat.format(startDate)} to {timeFormat.format(endDate)}
-        </span>
 
-        <SVG src="/decorations/squares.svg" className="text-beige h-4 mx-4" />
+      <span>
+        {timeFormat.format(startDate)} to {timeFormat.format(endDate)}
+      </span>
 
-        <span className="md:w-48 text-left">
-          {formatDistanceToNow(startDate, {
-            includeSeconds: true,
-            addSuffix: true,
-            locale: locale(),
-          })}
-        </span>
-      </div>
+      <span>
+        {formatDistanceToNow(startDate, {
+          includeSeconds: true,
+          addSuffix: true,
+          locale: locale(),
+        })}
+      </span>
     </div>
   );
 };
@@ -155,9 +194,9 @@ function GuerillaTimers(): JSX.Element {
         src="/ui/ability/ability100001_standard.png"
         alt="Guerilla"
       />
-      <h2>Guerilla Timer</h2>
+      <h2>Guerilla</h2>
 
-      <div className="flex justify-center items-center w-full mb-6">
+      <div className="flex justify-center items-center w-full">
         <h3 className="surface serif text-3xl text-center">
           Next Guerilla is{" "}
           {nextGuerilla &&
@@ -169,15 +208,25 @@ function GuerillaTimers(): JSX.Element {
         </h3>
       </div>
 
-      <div className="grid grid-cols-1 place-items-center gap-y-4 w-full">
-        {GUERILLAS.map((guerilla) => (
-          <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
-        ))}
-        <div className="grid grid-cols-1 place-items-center mt-4">
-          <span className="text-center">
-            The displayed times are local (converted from the game timezone)
-          </span>
-        </div>
+      <div className="w-full text-center mt-8">
+        <Accordion collapsible>
+          <AccordionItem>
+            <AccordionButton className="btn">Expand</AccordionButton>
+            <AccordionPanel className="mt-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center gap-4 w-full">
+                {GUERILLAS.map((guerilla) => (
+                  <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
+                ))}
+              </div>
+              <div className="grid grid-cols-1 place-items-center mt-6">
+                <span className="text-center">
+                  The displayed times are local (converted from the game
+                  timezone)
+                </span>
+              </div>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </div>
     </section>
   );

@@ -28,7 +28,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
       <nav className="mb-8">
         <Link href="/guides" passHref={true}>
           <a className="btn">
-            <SVG src="/decorations/left.svg" className="text-beige h-6" />
+            <SVG src="/decorations/left.svg" className="h-6" />
             <span>Go back to all Guides</span>
           </a>
         </Link>

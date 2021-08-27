@@ -3,10 +3,10 @@ import { RiRedditLine } from "react-icons/ri";
 
 function Socials(): JSX.Element {
   return (
-    <section className="w-full flex-grow p-8">
-      <h2>Links</h2>
+    <section className="w-full p-8">
+      <h2 className="left-1/2 -translate-x-1/2">Links</h2>
 
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 place-items-center gap-y-12 gap-6 mt-6">
+      <ul className="grid grid-cols-2 place-items-center gap-y-12 gap-6 mt-6">
         <li className="w-full text-center">
           <a
             className="flex flex-col gap-y-2 py-8 transition-colors rounded-md bg-white bg-opacity-0 hover:bg-opacity-10"

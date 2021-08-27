@@ -8,7 +8,7 @@ export default function TierlistTab({ children, index, image }): JSX.Element {
   return (
     <Tab
       className={classNames(
-        "px-4 py-2 h-24 md:h-52 relative z-10 border-2",
+        "px-4 py-2 h-24 md:h-52 relative z-10 border-4",
         selectedIndex === index ? "border-beige" : "border-transparent"
       )}
     >

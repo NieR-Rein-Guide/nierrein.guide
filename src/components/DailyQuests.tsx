@@ -4,6 +4,12 @@ import format from "date-fns/esm/format";
 import React from "react";
 import SVG from "react-inlinesvg";
 import Image from "next/image";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+} from "@reach/accordion";
 
 // used for listing all daily types
 const DAYS_OF_WEEK = Array.from(Array(7).keys());
@@ -164,32 +170,29 @@ function DailyInfo(): JSX.Element {
       />
       <h2>Daily Quests</h2>
 
-      <div className="flex justify-center items-center w-full mb-12">
-        <h3 className="surface serif text-3xl text-center">
-          Today's Daily Quest
-        </h3>
-      </div>
-
-      <div className="flex flex-col gap-y-12 w-full md:w-3/4 mx-auto">
+      <div className="flex flex-col gap-y-12 w-full mt-8">
         <DailyRow dayOfWeek={daysOfWeek[0]} />
       </div>
 
-      <div className="flex justify-center items-center w-full my-12">
-        <h3 className="surface serif text-3xl text-center">Upcoming</h3>
-      </div>
-
-      <div className="flex flex-col gap-y-12 w-full md:w-3/4 mx-auto">
-        {daysOfWeek.map((day) => {
-          // We don't want the current day to show up in the list
-          if (day.getDay() === daysOfWeek[0].getDay()) return;
-
-          // Display the rest of the week
-          return (
-            <div key={day.getDay()}>
-              <DailyRow dayOfWeek={day} />
-            </div>
-          );
-        })}
+      <div className="w-full text-center mt-8">
+        <Accordion collapsible>
+          <AccordionItem>
+            <AccordionButton className="btn">Expand</AccordionButton>
+            <AccordionPanel className="mt-6">
+              <div className="flex flex-col gap-y-12 w-full">
+                {daysOfWeek
+                  .filter((day) => day.getDay() !== daysOfWeek[0].getDay())
+                  .map((day) => {
+                    return (
+                      <div key={day.getDay()}>
+                        <DailyRow dayOfWeek={day} />
+                      </div>
+                    );
+                  })}
+              </div>
+            </AccordionPanel>
+          </AccordionItem>
+        </Accordion>
       </div>
     </section>
   );

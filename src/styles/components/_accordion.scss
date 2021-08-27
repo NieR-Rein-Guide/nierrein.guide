@@ -1,0 +1,11 @@
+[data-reach-accordion-item] {
+  @apply transition-all ease-out-cubic;
+}
+
+[data-reach-accordion-item][data-state="open"] {
+  clip-path: polygon(0 0, 100% 0, 100% 50%, 100% 100%, 0 100%, 0% 50%);
+}
+
+[data-reach-accordion-item][data-state="collapsed"] {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}

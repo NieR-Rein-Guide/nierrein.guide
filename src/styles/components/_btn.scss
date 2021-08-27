@@ -1,12 +1,13 @@
 .btn {
-  @apply py-4 px-6 inline-flex items-center gap-2 transition-colors ease-in-cubic;
-  border: 1px solid theme("colors.beige.dark");
+  @apply py-2 px-6 inline-flex items-center gap-2 text-beige-darker transition-all duration-150 ease-in-cubic;
+
+  clip-path: polygon(10% 0, 90% 1%, 100% 50%, 90% 100%, 10% 100%, 0 50%);
+  background-color: #e6e2cf;
 
   &:hover,
-  &:focus,
   &.active,
   &[aria-selected="true"] {
-    background-color: rgba(255, 255, 255, 0.1);
+    clip-path: polygon(0% 0, 100% 1%, 100% 50%, 100% 100%, 0% 100%, 0 50%);
   }
 
   &[disabled] {

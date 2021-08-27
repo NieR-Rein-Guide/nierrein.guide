@@ -1,33 +1,8 @@
 import client from "@libs/api"
 import axios from "axios"
 import { gql } from "graphql-request"
+import { FanContent } from "./types"
 
-type FanContentImage = {
-  ext?: string
-  url?: string
-  hash?: string
-  mime?: string
-  name?: string
-  path?: string
-  size?: number
-  width?: number
-  height?: number
-}
-
-export type FanContent = {
-  author?: string;
-  link?: string;
-  image?: {
-    url?: string;
-    formats?: {
-      large?: FanContentImage;
-      small?: FanContentImage;
-      medium?: FanContentImage;
-      thumbnail?: FanContentImage;
-    }
-  };
-  published_at?: string;
-}
 
 async function getAllFanContents(): Promise<FanContent[]> {
   const GET_FAN_CONTENTS = gql`

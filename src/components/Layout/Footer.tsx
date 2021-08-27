@@ -9,7 +9,7 @@ export default function Footer(): JSX.Element {
         <section className="flex flex-col flex-wrap mt-14 w-full">
           <h2>Wonderful people that are working on this website</h2>
 
-          <ul className="grid grid-cols-1 place-items-center sm:grid-cols-2 sm:place-items-start md:grid-cols-3 lg:grid-cols-4 gap-y-6">
+          <ul className="grid grid-cols-1 place-items-center sm:grid-cols-2 sm:place-items-start md:grid-cols-3 lg:grid-cols-4 gap-y-6 mt-8 md:mt-0">
             {CREDITS.map((credit) => (
               <Contributor key={credit.name} credit={credit} />
             ))}

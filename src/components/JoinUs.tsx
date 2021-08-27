@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function JoinUs(): JSX.Element {
   return (
-    <section>
+    <section className="mt-24">
       <h2>Help us build the website !</h2>
 
       <p className="mb-4">
@@ -19,7 +19,7 @@ function JoinUs(): JSX.Element {
           Join us on Discord !
         </a>
 
-        <Link href="submit-missing-data" passHref={true}>
+        <Link href="/submit-missing-data" passHref={true}>
           <a className="btn">Contribute your data !</a>
         </Link>
       </div>

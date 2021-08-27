@@ -1,7 +1,7 @@
 {
   "name": "nierrein.guide",
   "description": "A fansite for the game NieR Re[in]carnation.",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@lukeed/uuid": "^2.0.0",
+    "@reach/accordion": "^0.16.1",
     "@reach/dialog": "^0.16.0",
     "@reach/listbox": "^0.16.1",
     "@reach/tabs": "^0.16.1",
