@@ -3,14 +3,11 @@ import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import Corners from "@components/decorations/Corners";
 import LoadingIcon from "@components/LoadingIcon";
-import {
-  FanContent,
-  getAllFanContents,
-  submitFanContent,
-} from "@models/fancontent";
+import { getAllFanContents, submitFanContent } from "@models/fancontent";
 import { useState, useReducer } from "react";
 import formatBytes from "utils/formatBytes";
 import { IoImagesOutline } from "react-icons/io5";
+import { FanContent } from "@models/types";
 
 interface FanContentProps {
   fanContents: FanContent[];
