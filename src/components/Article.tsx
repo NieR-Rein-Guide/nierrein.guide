@@ -70,7 +70,7 @@ export default function Article({
                     {author}
                   </span>
 
-                  <SVG className="lg:hidden" src="/decorations/hr.svg" />
+                  <SVG className="my-1 lg:hidden" src="/decorations/hr.svg" />
 
                   <SVG
                     className="absolute mt-6 hidden lg:block"

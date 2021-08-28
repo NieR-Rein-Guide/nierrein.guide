@@ -220,7 +220,6 @@ footer {
 .article__mask {
   @apply bg-grey-lighter;
 
-  // this can probably be moved into tailwind classes
   position: absolute;
   top: 0;
   left: -8rem;
@@ -230,8 +229,8 @@ footer {
 }
 
 .article-parent::before {
-  content: " ";
-  background-image: url("./line-squares.svg");
+  content: "";
+  background-image: url("/decorations/line-squares.svg");
   display: block;
   position: absolute;
 
