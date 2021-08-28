@@ -39,7 +39,7 @@ export default function EventsSlider({
           >
             {currentEvents.map((event, index) => (
               <SwiperSlide key={index} className="select-none">
-                <div className="flex flex-col lg:flex-row items-start justify-between mt-4 mb-12 md:mt-0">
+                <div className="flex flex-col lg:flex-row items-baseline justify-between mt-4 mb-12 md:mt-0">
                   <h3 className="font-labor text-2xl text-beige-text">
                     {event.title}
                   </h3>
@@ -47,10 +47,10 @@ export default function EventsSlider({
                     className="lg:hidden"
                     src="/decorations/small-title-separator.svg"
                   />
-                  <span className="mr-8 text-grey-detail">
+                  <span className="mr-10 text-grey-detail">
                     Ends in {formatDistanceToNow(new Date(event.end_date))}
                   </span>
-                  <div className="hidden absolute mt-6 lg:flex items-center w-full">
+                  <div className="hidden absolute mt-7 lg:flex items-center w-full">
                     <span
                       style={{ height: "1px" }}
                       className="w-full bg-beige-dark"
