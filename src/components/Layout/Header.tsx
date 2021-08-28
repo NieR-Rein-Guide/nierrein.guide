@@ -41,7 +41,7 @@ export default function Header(): JSX.Element {
   }, []);
 
   function handleNavToggle() {
-    if (isNavOpened) {
+    if (!isNavOpened) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
