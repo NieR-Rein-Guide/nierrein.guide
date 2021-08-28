@@ -47,6 +47,17 @@
     }
 }
 
+.bordered {
+  &::before {
+    @apply block absolute border border-beige-active pointer-events-none transition-transform transform ease-out-cubic;
+    content: "";
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+  }
+}
+
 [data-reach-menu-button] {
   @apply flex items-center;
 }

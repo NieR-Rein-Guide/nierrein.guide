@@ -1,12 +1,16 @@
 import { Tabs, TabList, TabPanels, TabPanel, Tab } from "@reach/tabs";
+import {
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
+} from "@reach/disclosure";
 import dynamic from "next/dynamic";
 import { listFolders, listModelsTypes } from "@libs/s3";
 import Layout from "@components/Layout";
 import ErrorBoundary from "@components/Error";
 import Meta from "@components/Meta";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classNames from "classnames";
-import { useEffect } from "react";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -89,6 +93,51 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
             <section className="mt-8">
               <h2 className="overlap">Select a model</h2>
 
+              <Disclosure>
+                <div className="flex justify-between items-center">
+                  <h3 className="text-3xl">
+                    This page is currently <b>experimental</b>.
+                  </h3>
+
+                  <DisclosureButton className="bg-grey-foreground py-4 px-4 relative bordered">
+                    How to use the model viewer?
+                  </DisclosureButton>
+                </div>
+
+                <DisclosurePanel>
+                  <div className="mt-8 wysiwyg w-full">
+                    <p>
+                      Select a category of models, then click "previous" or
+                      "next" to change the model.
+                    </p>
+
+                    <p>
+                      Please enable <code>Hardware Acceleration</code> on your
+                      browser for better performance.
+                    </p>
+
+                    <h3>Known issues :</h3>
+                    <ul>
+                      <li>
+                        Previous button doesn't work, refresh the page to "fix"
+                      </li>
+                      <li>UX is not good at the moment</li>
+                      <li>
+                        If you cannot see the model it is likely black on black
+                        or off camera
+                      </li>
+                    </ul>
+
+                    <h3>How to use ?</h3>
+                    <ol>
+                      <li>Scroll to zoom in/out</li>
+                      <li>Left click + drag to rotate</li>
+                      <li>Right click + drag to move the model</li>
+                    </ol>
+                  </div>
+                </DisclosurePanel>
+              </Disclosure>
+
               <ul className="flex justify-center gap-4 mt-6">
                 {models.map((model) => (
                   <li key={model.displayName}>
@@ -107,7 +156,7 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
                 ))}
               </ul>
 
-              <div className="grid grid-cols-3 mt-4 w-1/2 mx-auto">
+              <div className="grid grid-cols-3 mt-4 w-1/2 gap-x-4 mx-auto">
                 <button
                   className="btn justify-center bg-beige text-black"
                   onClick={previousModel}
@@ -115,7 +164,7 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
                   Previous
                 </button>
                 <input
-                  className="btn text-center"
+                  className="text-center"
                   type="text"
                   value={currentIndex}
                   placeholder="Model ID"
@@ -127,36 +176,6 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
                 >
                   Next
                 </button>
-              </div>
-
-              <div className="mt-4 wysiwyg">
-                <h3>
-                  This page is currently <b>experimental</b>.
-                </h3>
-
-                <p>
-                  Please enable <code>Hardware Acceleration</code> on your
-                  browser for better performance.
-                </p>
-
-                <h3>Known issues :</h3>
-                <ul>
-                  <li>
-                    Previous button doesn't work, refresh the page to "fix"
-                  </li>
-                  <li>UX sucks. I'm sorry</li>
-                  <li>
-                    If you cannot see the model it is likely black on black or
-                    off camera
-                  </li>
-                </ul>
-
-                <h3>How to use ?</h3>
-                <ol>
-                  <li>Scroll to zoom in/out</li>
-                  <li>Left click + drag to rotate</li>
-                  <li>Right click + drag to move the model</li>
-                </ol>
               </div>
             </section>
 

@@ -7,7 +7,7 @@
 }
 
 .swiper-pagination-bullet {
-  @extend .losange;
+  clip-path: polygon(0 50%, 50% 0, 100% 50%, 50% 100%);
   background-color: theme('colors.beige.inactive') !important;
   height: 12px !important;
   width: 12px !important;
