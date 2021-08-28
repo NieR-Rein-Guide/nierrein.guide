@@ -66,7 +66,9 @@ export default function SingleEvent({ event }: eventProps): JSX.Element {
               />
             </div>
 
-            <div dangerouslySetInnerHTML={{ __html: event.poll.embed }}></div>
+            {event?.poll?.embed && (
+              <div dangerouslySetInnerHTML={{ __html: event.poll.embed }}></div>
+            )}
           </div>
 
           <article className="relative py-8 border border-opacity-40 px-8">
