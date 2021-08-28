@@ -116,7 +116,7 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
 
   return (
     <div className="flex justify-center w-full">
-      <div className="flex place-items-center">
+      <div className="flex flex-col xl:flex-row place-items-center">
         <div className="flex justify-center flex-wrap">
           {gems.map((gem, index) => (
             <div key={index} className="relative h-20 w-20">
@@ -161,12 +161,12 @@ function DailyInfo(): JSX.Element {
       <h2 className="overlap">Daily Quests</h2>
 
       <Lines
-        className="flex h-40"
+        className="flex md:h-40"
         containerClass="flex-col items-center gap-y-2 lg:flex-row"
       >
         <Menu>
-          <MenuButton as="div">
-            <BtnTertiary className="py-4 w-32 flex items-center justify-center">
+          <MenuButton as="div" className="w-full md:w-auto">
+            <BtnTertiary className="py-4 w-full md:w-32 flex items-center justify-center">
               <div className="flex flex-col gap-y-1">
                 <span>{format(daysOfWeek[selectedDayIndex], "eeee")}</span>
                 <SVG

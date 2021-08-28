@@ -8,7 +8,7 @@ function JoinUs(): JSX.Element {
       <h2 className="overlap">Help us build the website !</h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="flex flex-col justify-between pr-12">
+        <div className="flex flex-col justify-between md:pr-12">
           <p className="mb-4 leading-loose">
             We are building this website in the open. <br />
             Feel free to join us on Discord and start contributing if you feel
@@ -16,7 +16,7 @@ function JoinUs(): JSX.Element {
             It might be to fix a typo, designing things, developing or writing
             content for the website !
           </p>
-          <div className="flex justify-around gap-4">
+          <div className="flex flex-col md:flex-row justify-around gap-4">
             <a className="btn h-14" href={DISCORD_URL}>
               Join us on Discord !
             </a>

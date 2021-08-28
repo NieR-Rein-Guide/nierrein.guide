@@ -17,20 +17,32 @@
 .swiper-button-next,
 .swiper-button-prev {
   @apply absolute top-1/2 transform -translate-y-1/2;
+
+   @screen sm {
+     @apply h-12 w-16 z-50;
+   }
+
+  background-size: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .swiper-button-next {
-  @apply h-12 w-16 z-50 -right-16;
-  background-size: 32px;
+  @apply -right-8;
+
+  @screen sm {
+    @apply -right-16;
+  }
+
   background-image: url(/decorations/arrow.svg);
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .swiper-button-prev {
-  @apply h-12 w-16 z-50 -left-16;
-  background-size: 32px;
+  @apply -left-8;
+
+  @screen sm {
+    @apply -left-16;
+  }
+
   background-image: url(/decorations/arrow-left.svg);
-  background-repeat: no-repeat;
-  background-position: center;
 }

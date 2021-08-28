@@ -7,7 +7,7 @@ import mamaImg from "../../../public/mama.png";
 
 export default function Footer(): JSX.Element {
   return (
-    <footer className="flex flex-col items-center justify-center w-full py-14">
+    <footer className="flex flex-col items-center justify-center w-full pt-14">
       <div className="container">
         <section className="flex flex-col flex-wrap w-full">
           <h2 className="overlap">
@@ -15,7 +15,10 @@ export default function Footer(): JSX.Element {
           </h2>
 
           <div className="px-8">
-            <Lines className="mb-12" containerClass="justify-center">
+            <Lines
+              className="mb-12"
+              containerClass="justify-center mt-10 md:mt-0"
+            >
               <Image src={mamaImg} height={148} width={148} alt="Mama" />
             </Lines>
 
@@ -32,7 +35,7 @@ export default function Footer(): JSX.Element {
           </div>
         </section>
 
-        <div className="font-display text-2xl text-center my-16 md:mt-32">
+        <div className="font-display text-xl md:text-2xl text-center my-16 md:mt-32">
           <p>
             NieR Re[in] Guide is not affiliated with or endorsed by SQUARE ENIX
             CO. LTD.

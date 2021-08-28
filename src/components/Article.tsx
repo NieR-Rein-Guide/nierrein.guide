@@ -26,9 +26,9 @@ export default function Article({
     <Link href={`/guide/${slug}`} passHref={true}>
       <a className="group">
         <article className="relative">
-          <div className="article__mask absolute select-none">
+          <div className="hidden sm:block article__mask absolute select-none">
             <SVG src="/assets/images/icons/mask.svg" />
-            <div className="losange h-32 w-32 lg:h-64 lg:w-64">
+            <div className="losange h-16 w-16 sm:h-32 sm:w-32 lg:h-64 lg:w-64">
               <Image
                 objectFit="cover"
                 src={
@@ -51,12 +51,12 @@ export default function Article({
             </div>
           </div>
           <div className="flex items-center h-12 lg:h-20 bg-beige-inactive">
-            <h3 className="ml-36 lg:ml-72 text-black text-xl lg:text-4xl font-semibold">
+            <h3 className="ml-8 sm:ml-36 lg:ml-72 text-black text-xl lg:text-4xl font-semibold">
               {title}
             </h3>
           </div>
           <div className="bg-grey-foreground h-20 lg:h-44">
-            <div className="relative ml-36 lg:ml-72 lg:pt-5 lg:pb-10 h-full">
+            <div className="relative ml-8 sm:ml-36 lg:ml-72 lg:pt-5 lg:pb-10 h-full">
               <div className="flex flex-col justify-around lg:justify-between h-full max-w-lg">
                 <p className="hidden lg:block text-lg text-beige-active leading-tight">
                   {excerpt}

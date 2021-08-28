@@ -24,11 +24,11 @@ export default function EventsSlider({
   }
 
   return (
-    <div className="grid grid-cols-third-one gap-y-10 lg:gap-x-10">
+    <div className="grid grid-cols-1 xl:grid-cols-third-one gap-y-10 lg:gap-x-10">
       <section className="p-0 overflow-hidden">
         <h2 className="overlap text-4xl font-bold">Events</h2>
 
-        <div className="px-16 pt-16 pb-10 relative">
+        <div className="px-8 py-8 md:px-16 md:pt-16 pb-10 relative">
           <Swiper
             modules={[Navigation, Pagination, A11y]}
             slidesPerView={1}
@@ -39,14 +39,14 @@ export default function EventsSlider({
           >
             {currentEvents.map((event, index) => (
               <SwiperSlide key={index} className="select-none">
-                <div className="flex justify-between mb-12">
+                <div className="flex flex-col md:flex-row justify-between mb-12">
                   <h3 className="font-labor text-2xl text-beige-text">
                     {event.title}
                   </h3>
                   <span className="mr-8 text-grey-detail">
                     Ends in {formatDistanceToNow(new Date(event.end_date))}
                   </span>
-                  <div className="absolute mt-6 hidden lg:flex items-center w-full">
+                  <div className="absolute mt-6 lg:flex items-center w-full">
                     <span
                       style={{ height: "1px" }}
                       className="w-full bg-beige-dark"
@@ -55,6 +55,7 @@ export default function EventsSlider({
                   </div>
                 </div>
                 <Image
+                  layout="responsive"
                   objectFit="cover"
                   height={500}
                   width={800}
@@ -77,7 +78,7 @@ export default function EventsSlider({
         </div>
 
         <Link href={`/event/${activeEvent.slug}`}>
-          <a className="btn absolute bottom-7 left-1/2 transform -translate-x-1/2 z-50">
+          <a className="btn absolute bottom-12 sm:bottom-7 left-1/2 transform -translate-x-1/2 z-50">
             See Event
           </a>
         </Link>
@@ -88,7 +89,7 @@ export default function EventsSlider({
           <h3 className="text-2xl text-beige-inactive">Other Events</h3>
         </div>
 
-        <div className="grid grid-rows-4 px-8 gap-y-4 py-4 h-9/10">
+        <div className="slider__other-events grid grid-rows-4 px-8 gap-y-4 py-4 h-9/10">
           <div className="border-3 relative h-32">
             <div className="flex justify-center items-center py-6 mr-2 h-full">
               <img
@@ -114,29 +115,30 @@ export default function EventsSlider({
             .filter((event) => event.slug !== activeEvent.slug)
             .slice(0, 3)
             .map((event) => (
-              <div
-                key={event.slug}
-                className="border-3 border-beige-text hover:border-beige transition-colors relative select-none h-32"
-              >
-                <Image
-                  layout="fill"
-                  objectFit="cover"
-                  height={128}
-                  width={232}
-                  src={
-                    event.image.formats?.medium?.url ??
-                    event.image.formats?.small.url ??
-                    event.image.formats?.thumbnail?.url
-                  }
-                  alt={`Thumbnail ${event.title}`}
-                  placeholder="blur"
-                  blurDataURL={
-                    event.image.formats?.medium?.hash ??
-                    event.image.formats?.small.hash ??
-                    event.image.formats?.thumbnail?.hash
-                  }
-                />
-              </div>
+              <Link key={event.slug} href={event.slug} passHref={true}>
+                <a className="slider__other-event">
+                  <div className="border-3 border-beige-text hover:border-beige transition-colors relative select-none h-32">
+                    <Image
+                      layout="fill"
+                      objectFit="cover"
+                      height={128}
+                      width={232}
+                      src={
+                        event.image.formats?.medium?.url ??
+                        event.image.formats?.small.url ??
+                        event.image.formats?.thumbnail?.url
+                      }
+                      alt={`Thumbnail ${event.title}`}
+                      placeholder="blur"
+                      blurDataURL={
+                        event.image.formats?.medium?.hash ??
+                        event.image.formats?.small.hash ??
+                        event.image.formats?.thumbnail?.hash
+                      }
+                    />
+                  </div>
+                </a>
+              </Link>
             ))}
         </div>
       </div>

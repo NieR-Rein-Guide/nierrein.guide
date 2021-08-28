@@ -57,4 +57,9 @@
 
 [data-reach-menu-item] {
   @extend .btn-tertiary;
+  margin: 8px 0 !important;
+
+  @screen md {
+    margin: 0 !important;
+  }
 }

@@ -36,7 +36,7 @@ export default function CurrentlyWorkingOn(): JSX.Element {
           >
             <div className="flex gap-x-4 items-center justify-start">
               <CircleState progress={project.progress} />
-              <h3 className="text-3xl">{project.name}</h3>
+              <h3 className="text-2xl md:text-3xl">{project.name}</h3>
             </div>
             <p className="text-beige-light">Started by : {project.startedBy}</p>
           </a>

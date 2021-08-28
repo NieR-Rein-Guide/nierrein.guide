@@ -27,7 +27,7 @@ export default function Home({
     <Layout>
       <Meta />
 
-      <div className="flex flex-col gap-x-12 gap-y-32 mt-32">
+      <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32 mt-32">
         <EventsSlider currentEvents={currentEvents} />
         <DailyInfoWithNoSSR />
         <FeaturedGuides guides={featuredGuides} />

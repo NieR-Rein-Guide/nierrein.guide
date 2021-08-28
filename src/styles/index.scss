@@ -138,7 +138,7 @@ header > div {
 }
 
 .container {
-  @apply w-full px-4 lg:px-8;
+  @apply w-full px-2 md:px-4 lg:px-8;
   max-width: 1500px;
   margin: 0 auto;
 }
