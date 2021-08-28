@@ -1,20 +1,14 @@
 import Squares from "@components/decorations/Squares";
 import classNames from "classnames";
 
-export default function BtnSecondary({
+export default function BtnTertiary({
   children,
   href = null,
   className = "",
   ...props
 }): JSX.Element {
-  const classes = classNames("btn-secondary flex relative", className);
-  const ButtonContent = (
-    <>
-      {children}
-
-      <Squares />
-    </>
-  );
+  const classes = classNames("btn-tertiary flex relative", className);
+  const ButtonContent = <>{children}</>;
 
   if (href) {
     return (

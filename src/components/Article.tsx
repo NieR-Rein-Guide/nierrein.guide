@@ -2,6 +2,17 @@ import Image from "next/image";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
 import { AiOutlineUser } from "react-icons/ai";
+import { StrapiImageFormats } from "@models/types";
+import format from "date-fns/format";
+
+interface ArticleProps {
+  title: string;
+  excerpt: string;
+  author: string;
+  date: string;
+  slug: string;
+  image: StrapiImageFormats;
+}
 
 export default function Article({
   title = "Guide name",
@@ -9,7 +20,8 @@ export default function Article({
   author = "author",
   date = "2021-08-28T00:51:14.244Z",
   slug = "getting-started",
-}): JSX.Element {
+  image,
+}: ArticleProps): JSX.Element {
   return (
     <Link href={`/guide/${slug}`} passHref={true}>
       <a className="group">
@@ -19,10 +31,22 @@ export default function Article({
             <div className="losange h-32 w-32 lg:h-64 lg:w-64">
               <Image
                 objectFit="cover"
-                src="/launched.jpg"
+                src={
+                  image?.large?.url ??
+                  image?.medium?.url ??
+                  image?.small?.url ??
+                  image?.thumbnail?.url
+                }
                 height={512}
                 width={512}
-                alt={`${title} thumbnail`}
+                alt={`${title} image`}
+                placeholder="blur"
+                blurDataURL={
+                  image?.large?.hash ??
+                  image?.medium?.hash ??
+                  image?.small?.hash ??
+                  image?.thumbnail?.hash
+                }
               />
             </div>
           </div>
@@ -51,12 +75,12 @@ export default function Article({
                     src="/decorations/article-underline.svg"
                   />
 
-                  <span>{date}</span>
+                  <span>{format(new Date(date), "PP")}</span>
                 </div>
               </div>
 
               <SVG
-                className="absolute right-3 lg:right-20 top-1/2 transform -translate-y-1/2 h-6 lg:h-auto"
+                className="absolute right-3 lg:right-20 top-1/2 transform -translate-y-1/2 h-6 lg:h-12"
                 src="/decorations/arrow.svg"
               />
             </div>

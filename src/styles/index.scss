@@ -7,6 +7,8 @@ body {
   color: #fff;
   background-color: #000;
   @apply font-labor;
+  background-image: url(/decorations/pattern.png);
+  background-repeat: repeat;
 }
 
 * {
@@ -24,12 +26,6 @@ h6,
   font-family: "Cormorant", serif;
   line-height: 1;
   font-weight: 500;
-}
-
-.surface {
-  @apply px-6 py-4;
-  background-color: theme("colors.beige.dark");
-  color: #000;
 }
 
 .serif {
@@ -143,12 +139,12 @@ header > div {
 
 .container {
   @apply w-full px-4 lg:px-8;
-  max-width: 1200px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
 section {
-  @apply relative p-4 pt-12 md:p-12 md:pt-16 bg-grey-lighter border border-beige-inactive;
+  @apply relative p-4 pt-12 md:px-6 md:py-16 bg-grey-lighter border border-beige-inactive;
 
   >:first-child {
     @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl bg-beige-inactive;

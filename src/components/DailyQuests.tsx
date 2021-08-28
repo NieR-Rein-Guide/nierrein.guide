@@ -1,15 +1,14 @@
 import { GAME_TIMEZONE } from "@config/constants";
 import { utcToZonedTime } from "date-fns-tz/esm";
 import format from "date-fns/esm/format";
-import React from "react";
+import React, { useState } from "react";
 import SVG from "react-inlinesvg";
 import Image from "next/image";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-} from "@reach/accordion";
+import Lines from "@components/decorations/Lines";
+import BtnTertiary from "@components/btn/tertiary";
+
+import { Menu, MenuList, MenuButton, MenuItem } from "@reach/menu-button";
+import "@reach/menu-button/styles.css";
 
 // used for listing all daily types
 const DAYS_OF_WEEK = Array.from(Array(7).keys());
@@ -116,34 +115,28 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
   const weaponUpgrades = dailyInfo.weaponUpgrades;
 
   return (
-    <div className="relative">
-      <div className="flex justify-center items-center h-12 px-4 bg-beige text-black absolute -top-6">
-        <span className="text-2xl serif">{format(dayOfWeek, "eeee")}</span>
-      </div>
+    <div className="flex justify-center w-full">
+      <div className="flex place-items-center">
+        <div className="flex justify-center flex-wrap">
+          {gems.map((gem, index) => (
+            <div key={index} className="relative h-20 w-20">
+              <Image src={gemToIcon(gem)} alt={`${gem} icon`} title={gem} />
+            </div>
+          ))}
+        </div>
 
-      <div className="flex justify-center border border-beige-dark pt-8 pb-4 px-4">
-        <div className="flex place-items-center">
-          <div className="flex justify-center flex-wrap">
-            {gems.map((gem, index) => (
-              <div key={index} className="relative h-20 w-20">
-                <Image src={gemToIcon(gem)} alt={`${gem} icon`} title={gem} />
-              </div>
-            ))}
-          </div>
+        <SVG src="/decorations/squares.svg" className="text-beige h-4 mx-4" />
 
-          <SVG src="/decorations/squares.svg" className="text-beige h-4 mx-4" />
-
-          <div className="flex justify-center flex-wrap">
-            {weaponUpgrades.map((weaponUpgrade, index) => (
-              <div key={index} className="relative h-20 w-20">
-                <Image
-                  src={weaponToIcon(weaponUpgrade)}
-                  alt={`${weaponUpgrade} icon`}
-                  title={weaponUpgrade}
-                />
-              </div>
-            ))}
-          </div>
+        <div className="flex justify-center flex-wrap">
+          {weaponUpgrades.map((weaponUpgrade, index) => (
+            <div key={index} className="relative h-20 w-20">
+              <Image
+                src={weaponToIcon(weaponUpgrade)}
+                alt={`${weaponUpgrade} icon`}
+                title={weaponUpgrade}
+              />
+            </div>
+          ))}
         </div>
       </div>
     </div>
@@ -161,34 +154,43 @@ function DailyInfo(): JSX.Element {
     return currentDate;
   });
 
+  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
+
   return (
     <section className="flex items-start flex-col">
       <h2>Daily Quests</h2>
 
-      <div className="flex flex-col gap-y-12 w-full mt-8">
-        <DailyRow dayOfWeek={daysOfWeek[0]} />
-      </div>
-
-      <div className="w-full text-center mt-8">
-        <Accordion collapsible>
-          <AccordionItem>
-            <AccordionButton className="btn">Expand</AccordionButton>
-            <AccordionPanel className="mt-6">
-              <div className="flex flex-col gap-y-12 w-full">
-                {daysOfWeek
-                  .filter((day) => day.getDay() !== daysOfWeek[0].getDay())
-                  .map((day) => {
-                    return (
-                      <div key={day.getDay()}>
-                        <DailyRow dayOfWeek={day} />
-                      </div>
-                    );
-                  })}
+      <Lines
+        className="flex h-40"
+        containerClass="flex-col items-center gap-y-2 lg:flex-row"
+      >
+        <Menu>
+          <MenuButton as="div">
+            <BtnTertiary className="py-4 w-32 flex items-center justify-center">
+              <div className="flex flex-col gap-y-1">
+                <span>{format(daysOfWeek[selectedDayIndex], "eeee")}</span>
+                <SVG
+                  src="/decorations/arrow.svg"
+                  className="transform rotate-90 h-5"
+                />
               </div>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-      </div>
+            </BtnTertiary>
+          </MenuButton>
+
+          <MenuList>
+            {daysOfWeek.map((day, index) => (
+              <MenuItem
+                onSelect={() => setSelectedDayIndex(index)}
+                key={day.getTime()}
+              >
+                {format(day, "eeee")}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu>
+
+        <DailyRow dayOfWeek={daysOfWeek[selectedDayIndex]} />
+      </Lines>
     </section>
   );
 }

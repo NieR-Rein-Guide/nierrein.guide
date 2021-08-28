@@ -53,15 +53,13 @@ export default function Home({
         />
       </div>
 
-      <div className="flex flex-col gap-x-12 gap-y-24 mt-24">
-        <FeaturedGuides guides={featuredGuides} />
-        <GuerillaTimersWithNoSSR />
+      <div className="flex flex-col gap-x-12 gap-y-32 mt-32">
         <DailyInfoWithNoSSR />
+        <FeaturedGuides guides={featuredGuides} />
         <CurrentlyWorkingOn />
         <Socials />
+        <JoinUs />
       </div>
-
-      <JoinUs />
     </Layout>
   );
 }

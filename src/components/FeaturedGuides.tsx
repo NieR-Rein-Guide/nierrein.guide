@@ -1,4 +1,4 @@
-import { Guide } from "@models/guide";
+import { Guide } from "@models/types";
 import Article from "@components/Article";
 import Link from "next/link";
 
@@ -24,6 +24,7 @@ export default function FeaturedGuides({
               "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
             }
             slug={guide.slug}
+            image={guide.cover.formats}
           />
         ))}
       </div>

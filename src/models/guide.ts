@@ -1,19 +1,6 @@
 import client from "@libs/api"
 import { gql } from "graphql-request"
-
-export type Guide = {
-  slug: string;
-  title: string;
-  author: string;
-  content: string;
-  cover?: {
-    width: number;
-    height: number;
-    url: string;
-  };
-  published_at: string;
-  updated_at?: string;
-}
+import { Guide } from "./types"
 
 async function getFeaturedGuides(): Promise<Guide[]> {
   const GET_GUIDES = gql`
@@ -28,6 +15,7 @@ async function getFeaturedGuides(): Promise<Guide[]> {
             width
             height
             url
+            formats
           }
           published_at
           updated_at
@@ -51,6 +39,7 @@ async function getAllGuides(): Promise<Guide[]> {
           width
           height
           url
+          formats
         }
         published_at
         updated_at
