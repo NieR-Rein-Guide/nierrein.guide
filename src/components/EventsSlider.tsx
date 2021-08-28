@@ -119,7 +119,11 @@ export default function EventsSlider({
             .filter((event) => event.slug !== activeEvent.slug)
             .slice(0, 3)
             .map((event) => (
-              <Link key={event.slug} href={event.slug} passHref={true}>
+              <Link
+                key={event.slug}
+                href={`/event/${event.slug}`}
+                passHref={true}
+              >
                 <a className="slider__other-event">
                   <div className="border-3 border-beige-text hover:border-beige transition-colors relative select-none h-32">
                     <Image
