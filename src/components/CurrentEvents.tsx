@@ -12,7 +12,7 @@ export default function CurrentEvents({
 }: CurrentEventsProps): JSX.Element {
   return (
     <section>
-      <h2 className="left-1/2 -translate-x-1/2">
+      <h2 className="overlap left-1/2 -translate-x-1/2">
         Current Event{events.length > 1 ? "s" : null}
       </h2>
 

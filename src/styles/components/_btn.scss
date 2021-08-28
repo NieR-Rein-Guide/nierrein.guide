@@ -1,5 +1,5 @@
 .btn {
-  @apply py-2 px-6 inline-flex items-center gap-2 text-beige-darker transition-all duration-150 ease-in-cubic;
+  @apply py-2 px-6 inline-flex justify-center items-center gap-2 text-beige-darker transition-all duration-150 ease-in-cubic;
 
   clip-path: polygon(10% 0, 90% 1%, 100% 50%, 90% 100%, 10% 100%, 0 50%);
   background-color: #e6e2cf;
@@ -12,5 +12,65 @@
 
   &[disabled] {
     @apply bg-beige-darker cursor-not-allowed;
+  }
+}
+
+.btn-secondary {
+  @apply px-8 py-6 relative bg-grey-foreground border border-beige-active transition-colors ease-out-cubic;
+
+  &::before {
+    @apply block absolute border border-beige-active pointer-events-none transition-transform transform ease-out-cubic;
+    content: "";
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+  }
+
+  &:hover {
+    &::before {
+      @apply scale-105;
+    }
+  }
+}
+
+.btn-tertiary {
+  @apply px-5 bg-grey-foreground;
+
+    &::before {
+      @apply block absolute border border-beige-active pointer-events-none transition-transform transform ease-out-cubic;
+      content: "";
+      top: 4px;
+      left: 4px;
+      right: 4px;
+      bottom: 4px;
+    }
+}
+
+.bordered {
+  &::before {
+    @apply block absolute border border-beige-active pointer-events-none transition-transform transform ease-out-cubic;
+    content: "";
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+  }
+}
+
+[data-reach-menu-button] {
+  @apply flex items-center;
+}
+
+[data-reach-menu-items] {
+  background-color: theme('colors.grey.foreground') !important;
+}
+
+[data-reach-menu-item] {
+  @extend .btn-tertiary;
+  margin: 8px 0 !important;
+
+  @screen md {
+    margin: 0 !important;
   }
 }

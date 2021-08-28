@@ -43,3 +43,18 @@ export type Event = {
   end_date?: string;
   poll?: Poll;
 }
+
+export type Guide = {
+  slug: string;
+  title: string;
+  author: string;
+  content: string;
+  cover?: {
+    width?: number;
+    height?: number;
+    url?: string;
+    formats?: StrapiImageFormats;
+  };
+  published_at: string;
+  updated_at?: string;
+}

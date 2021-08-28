@@ -6,6 +6,9 @@ html,
 body {
   color: #fff;
   background-color: #000;
+  @apply font-labor;
+  background-image: url(/decorations/pattern.png);
+  background-repeat: repeat;
 }
 
 * {
@@ -25,12 +28,6 @@ h6,
   font-weight: 500;
 }
 
-.surface {
-  @apply px-6 py-4;
-  background-color: theme("colors.beige.dark");
-  color: #000;
-}
-
 .serif {
   font-family: "Cormorant", serif;
 }
@@ -43,17 +40,26 @@ svg {
   width: auto;
 }
 
-header > div {
-  @apply mt-32 mb-8 mx-auto;
-  background-color: RGBA(26, 24, 25, 0.5);
-  border-radius: 32px;
-
-  @screen md {
-    @apply mt-16;
-  }
-}
-
 .nav {
+  @apply transition-all ease-out-cubic duration-300;
+
+  &.nav-is-opened {
+    clip-path: polygon(20% 0%, 80% 0%, 100% 0, 100% 100%, 60% 100%, 42% 100%, 0 100%, 0 0) !important;
+
+    @screen xl {
+      clip-path: unset;
+    }
+  }
+
+  &.nav-is-closed {
+    pointer-events: none;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 0, 80% 0, 51% 0, 43% 0, 19% 0, 0 0);
+
+    @screen xl {
+      clip-path: unset;
+    }
+  }
+
   ul {
     // @apply grid gap-y-8;
     // grid-template-columns: repeat(1, 1fr);
@@ -141,28 +147,16 @@ header > div {
 }
 
 .container {
-  @apply w-full px-4 lg:px-8;
-  max-width: 1200px;
+  @apply w-full px-2 md:px-4 lg:px-8;
+  max-width: 1500px;
   margin: 0 auto;
 }
-// .container {
-//   @apply w-full px-8;
-//   // max-width: 1200px;
-//   margin: 0 auto;
-// }
 
 section {
-  background-color: theme("colors.beige.darker");
-  @apply relative p-4 pt-12 md:p-12 md:pt-16;
+  @apply relative p-4 pt-12 md:px-6 md:py-16 bg-grey-lighter border border-beige-inactive;
 
-  > h1,
-  > h2,
-  > h3,
-  > h4,
-  > h5,
-  > h6 {
-    @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl;
-    background-color: theme("colors.beige.dark");
+  > .overlap {
+    @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl bg-beige-inactive;
     color: #000;
   }
 }
@@ -222,4 +216,77 @@ footer {
 
 .text-shadow {
   text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
+}
+
+.reversed {
+  transform: scaleX(-1);
+}
+
+.article__mask {
+  @apply bg-grey-lighter hidden;
+
+
+  @screen sm {
+    @apply block;
+    position: absolute;
+    top: 0;
+    left: -3.8rem;
+  }
+
+
+  @screen lg {
+    left: -8rem;
+  }
+
+  // diamond-shaped mask
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.article-parent::before {
+  content: unset;
+
+  @screen sm {
+    content: "";
+  }
+
+  background-image: url("/decorations/line-squares.svg");
+  display: block;
+  position: absolute;
+
+  top: -18px;
+  left: -80px;
+  background-size: 80px 80px;
+  height: 80px;
+  width: 80px;
+
+  @screen lg {
+    top: -25px;
+    left: -155px;
+    background-size: 150px 150px;
+    height: 150px;
+    width: 150px;
+  }
+}
+
+.diamond-border {
+  filter: drop-shadow(1px 0px 0px theme("colors.beige.inactive"))
+    drop-shadow(-1px 0px 0px theme("colors.beige.inactive"))
+    drop-shadow(0px 1px 0px theme("colors.beige.inactive"))
+    drop-shadow(0px -1px 0px theme("colors.beige.inactive"))
+    drop-shadow(1px 1px 0px theme("colors.beige.inactive"))
+    drop-shadow(-1px -1px 0px theme("colors.beige.inactive"))
+    drop-shadow(-1px 1px 0px theme("colors.beige.inactive"))
+    drop-shadow(1px -1px 0px theme("colors.beige.inactive"));
+}
+
+.bg-pattern {
+  background-image: url(/decorations/pattern.png);
+  background-repeat: repeat;
+}
+
+iframe {
+  // This is for strawpoll embed to work properly.
+  height: 100% !important;
+  width: 100% !important;
+  min-height: 600px !important;
 }

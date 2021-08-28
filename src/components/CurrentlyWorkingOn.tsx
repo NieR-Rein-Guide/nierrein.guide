@@ -4,7 +4,7 @@ import classNames from "classnames";
 export default function CurrentlyWorkingOn(): JSX.Element {
   return (
     <section>
-      <h2>Currently in the works</h2>
+      <h2 className="overlap">Currently in the works</h2>
 
       <div className="flex flex-col md:flex-row gap-x-8 mb-8">
         <p className="flex items-center gap-x-2">
@@ -21,7 +21,7 @@ export default function CurrentlyWorkingOn(): JSX.Element {
         </p>
       </div>
 
-      <div className="flex flex-col gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {CURRENT_PROJECTS.map((project) => (
           <a
             href={project.link}
@@ -36,7 +36,7 @@ export default function CurrentlyWorkingOn(): JSX.Element {
           >
             <div className="flex gap-x-4 items-center justify-start">
               <CircleState progress={project.progress} />
-              <h3 className="text-3xl">{project.name}</h3>
+              <h3 className="text-2xl md:text-3xl">{project.name}</h3>
             </div>
             <p className="text-beige-light">Started by : {project.startedBy}</p>
           </a>

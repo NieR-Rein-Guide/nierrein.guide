@@ -1,0 +1,50 @@
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-pagination {
+  bottom: 32px !important;
+}
+
+.swiper-pagination-bullet {
+  clip-path: polygon(0 50%, 50% 0, 100% 50%, 50% 100%);
+  background-color: theme('colors.beige.inactive') !important;
+  height: 12px !important;
+  width: 12px !important;
+  border-radius: 0 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply absolute z-50 h-8 w-12;
+
+  top: 62%;
+
+   @screen sm {
+     @apply h-12 w-16 top-1/2 transform -translate-y-1/2;
+   }
+
+  background-size: 32px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.swiper-button-next {
+  @apply -right-8;
+
+  @screen sm {
+    @apply -right-16;
+  }
+
+  background-image: url(/decorations/arrow.svg);
+}
+
+.swiper-button-prev {
+  @apply -left-8;
+
+  @screen sm {
+    @apply -left-16;
+  }
+
+  background-image: url(/decorations/arrow-left.svg);
+}

@@ -71,7 +71,7 @@ export default function SubmitMissingDataPage(): JSX.Element {
       />
 
       <section className="mt-16">
-        <h2>Submit your work</h2>
+        <h2 className="overlap">Submit your work</h2>
 
         <form className="flex flex-col gap-4 p-4">
           <div className="input-field">

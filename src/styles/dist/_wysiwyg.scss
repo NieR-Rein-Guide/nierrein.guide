@@ -1,5 +1,6 @@
 /*! wysiwyg.css v0.0.3 | MIT License | github.com/jgthms/wysiwyg.css */
 .wysiwyg {
+  @apply font-labor;
   line-height: 1.6;
 
   a {
@@ -95,7 +96,7 @@
   h4,
   h5,
   h6 {
-    font-family: ui-sans-serif, system, sans-serif;
+    @apply font-labor tracking-wide;
     font-weight: 700;
     line-height: 1.2;
   }
@@ -162,7 +163,7 @@
     @apply list-none ml-0;
 
     li {
-      @apply flex items-center;
+      @apply flex items-center relative ml-6;
 
       &::before {
         @apply bg-beige w-3 h-3;
@@ -170,6 +171,12 @@
         display: inline-block;
         background-repeat: no-repeat;
         margin-right: 0.5em;
+        color: #fcd000;
+        font-size: 1.5rem;
+        font-weight: bold;
+        position: absolute;
+        left: calc(-1 * 12px - 10px);
+        top: 0;
       }
     }
   }
@@ -179,7 +186,7 @@
     @apply list-none ml-0;
 
     li {
-      @apply flex items-center;
+      @apply flex items-center relative ml-6;
 
       &::before {
         @apply text-beige;
@@ -187,12 +194,19 @@
         display: inline-block;
         height: 1em;
         width: 1em;
-        background-image: url("/decorations/square-right.svg");
+        background-image: url("/decorations/inner-square.svg");
         background-size: contain;
         background-repeat: no-repeat;
         margin-right: 0.5em;
+        position: absolute;
+        left: calc(-1 * 12px - 10px);
+        top: 4px;
       }
     }
+  }
+
+  li {
+    @apply mb-2;
   }
 
   blockquote {

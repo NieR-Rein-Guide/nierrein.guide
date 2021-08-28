@@ -1,56 +1,27 @@
-import { DISCORD_URL } from "@config/constants";
-import { RiRedditLine } from "react-icons/ri";
+import { SOCIALS } from "@config/constants";
+import BtnSecondary from "@components/btn/secondary";
 
 function Socials(): JSX.Element {
   return (
     <section className="w-full p-8">
-      <h2 className="left-1/2 -translate-x-1/2">Links</h2>
+      <h2 className="overlap left-1/2 -translate-x-1/2">Links</h2>
 
-      <ul className="grid grid-cols-2 place-items-center gap-y-12 gap-6 mt-6">
-        <li className="w-full text-center">
-          <a
-            className="flex flex-col gap-y-2 py-8 transition-colors rounded-md bg-white bg-opacity-0 hover:bg-opacity-10"
-            href={DISCORD_URL}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img className="max-h-8" src="/discord.svg" alt="Discord" />
-            <span>Our Discord</span>
-          </a>
-        </li>
-        <li className="w-full text-center">
-          <a
-            className="flex flex-col gap-y-2 py-8 transition-colors rounded-md bg-white bg-opacity-0 hover:bg-opacity-10 focus:bg-opacity-10"
-            href="https://discord.gg/4QTuC6xR82"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img className="max-h-8" src="/discord.svg" alt="Discord" />
-            <span>Official Discord</span>
-          </a>
-        </li>
-        <li className="w-full text-center">
-          <a
-            className="flex flex-col gap-y-2 py-8 transition-colors rounded-md bg-white bg-opacity-0 hover:bg-opacity-10 focus:bg-opacity-10"
-            href="https://discord.gg/MA4yhvF"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <img className="max-h-8" src="/discord.svg" alt="Discord" />
-            <span>Unofficial Discord</span>
-          </a>
-        </li>
-        <li className="w-full text-center">
-          <a
-            className="flex flex-col gap-y-2 py-8 transition-colors rounded-md bg-white bg-opacity-0 hover:bg-opacity-10 focus:bg-opacity-10"
-            href="https://www.reddit.com/r/NieRReincarnation/"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            <RiRedditLine size={32} />
-            <span>/r/NieRReincarnation/</span>
-          </a>
-        </li>
+      <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-y-12 gap-6 mt-6">
+        {SOCIALS.map((social) => (
+          <li key={social.label}>
+            <BtnSecondary
+              href={social.href}
+              rel="noopener noreferrer"
+              target="_blank"
+              className="justify-center h-full"
+            >
+              <div className="flex flex-col justify-between max-h-16">
+                {social.icon}
+                <span>{social.label}</span>
+              </div>
+            </BtnSecondary>
+          </li>
+        ))}
       </ul>
     </section>
   );

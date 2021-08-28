@@ -60,7 +60,7 @@ export default function Events({ events }: GuidesProps): JSX.Element {
 function EventsListing({ label, events }) {
   return (
     <section className="mt-24">
-      <h2>{label}</h2>
+      <h2 className="overlap">{label}</h2>
 
       <div className="flex flex-col gap-y-12">
         {events.map((event) => (

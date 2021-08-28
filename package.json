@@ -1,7 +1,7 @@
 {
   "name": "nierrein.guide",
   "description": "A fansite for the game NieR Re[in]carnation.",
-  "version": "0.7.0",
+  "version": "0.8.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -17,7 +17,9 @@
     "@lukeed/uuid": "^2.0.0",
     "@reach/accordion": "^0.16.1",
     "@reach/dialog": "^0.16.0",
+    "@reach/disclosure": "^0.16.0",
     "@reach/listbox": "^0.16.1",
+    "@reach/menu-button": "^0.16.1",
     "@reach/tabs": "^0.16.1",
     "@react-three/drei": "^7.5.0",
     "@react-three/fiber": "^7.0.6",
@@ -40,7 +42,9 @@
     "react-icons": "^4.2.0",
     "react-inlinesvg": "^2.3.0",
     "react-lottie-player": "^1.4.0",
+    "sharp": "^0.29.0",
     "slugify": "^1.6.0",
+    "swiper": "^7.0.1",
     "three": "^0.131.3"
   },
   "devDependencies": {

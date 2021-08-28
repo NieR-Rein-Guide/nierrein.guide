@@ -20,7 +20,8 @@
       "@components/*": ["components/*"],
       "@models/*": ["models/*"],
       "@libs/*": ["libs/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

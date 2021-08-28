@@ -1,9 +1,9 @@
 import SVG from "react-inlinesvg";
 import Image from "next/image";
+import Link from "next/link";
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import Corners from "@components/decorations/Corners";
-import { formatDistanceToNow } from "date-fns";
 import marked from "marked";
 import { useRouter } from "next/router";
 import { Event } from "@models/types";
@@ -30,37 +30,45 @@ export default function SingleEvent({ event }: eventProps): JSX.Element {
       )}
 
       <nav className="mb-8">
-        <button onClick={router.back} className="btn">
-          <SVG src="/decorations/left.svg" className="h-6" />
-          <span>Go back</span>
-        </button>
+        <Link href="/events" passHref={true}>
+          <a className="btn">
+            <SVG src="/decorations/left.svg" className="h-6" />
+            <span>Go back</span>
+          </a>
+        </Link>
       </nav>
 
       {(router.isFallback && <p>Loading...</p>) || (
         <>
-          <div className="grid grid-cols-1 items-center mb-8">
-            <h2 className="text-5xl md:text-7xl text-beige mb-8">
-              {event.title}
-            </h2>
-            <Image
-              layout="responsive"
-              src={
-                event.image?.formats?.large?.url ??
-                event.image?.formats?.medium?.url ??
-                event.image?.formats?.small?.url
-              }
-              alt={`${event.title} thumbnail`}
-              height={
-                event.image?.formats?.large?.height ??
-                event.image?.formats?.medium?.height ??
-                event.image?.formats?.small?.height
-              }
-              width={
-                event.image?.formats?.large?.width ??
-                event.image?.formats?.medium?.width ??
-                event.image?.formats?.small?.width
-              }
-            />
+          <div className="grid grid-cols-1 lg:grid-cols-2 items-center mb-8">
+            <div>
+              <h2 className="text-5xl md:text-7xl text-beige mb-8">
+                {event.title}
+              </h2>
+              <Image
+                layout="responsive"
+                src={
+                  event.image?.formats?.large?.url ??
+                  event.image?.formats?.medium?.url ??
+                  event.image?.formats?.small?.url
+                }
+                alt={`${event.title} thumbnail`}
+                height={
+                  event.image?.formats?.large?.height ??
+                  event.image?.formats?.medium?.height ??
+                  event.image?.formats?.small?.height
+                }
+                width={
+                  event.image?.formats?.large?.width ??
+                  event.image?.formats?.medium?.width ??
+                  event.image?.formats?.small?.width
+                }
+              />
+            </div>
+
+            {event?.poll?.embed && (
+              <div dangerouslySetInnerHTML={{ __html: event.poll.embed }}></div>
+            )}
           </div>
 
           <article className="relative py-8 border border-opacity-40 px-8">

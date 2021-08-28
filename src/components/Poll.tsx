@@ -8,7 +8,7 @@ interface PollProps {
 export default function Poll({ event }: PollProps): JSX.Element {
   return (
     <section className="px-0 pb-0">
-      <h2 className="left-1/2 -translate-x-1/2 w-11/12">
+      <h2 className="overlap left-1/2 -translate-x-1/2 w-11/12">
         Is it worth pulling on this banner ?
       </h2>
 

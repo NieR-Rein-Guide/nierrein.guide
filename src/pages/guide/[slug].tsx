@@ -4,7 +4,8 @@ import Meta from "@components/Meta";
 import Corners from "@components/decorations/Corners";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { getAllGuides, getGuide, Guide } from "@models/guide";
+import { getAllGuides, getGuide } from "@models/guide";
+import { Guide } from "@models/types";
 import marked from "marked";
 import { useRouter } from "next/router";
 
@@ -14,6 +15,8 @@ interface GuideProps {
 
 export default function SingleGuide({ guide }: GuideProps): JSX.Element {
   const router = useRouter();
+
+  console.log(guide);
 
   return (
     <Layout>
@@ -48,7 +51,12 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
                   height="48"
                   width="48"
                 />
-                <p>Written by Admin</p>
+                <p>
+                  Written by{" "}
+                  <span className="text-beige font-semibold">
+                    {guide.author}
+                  </span>
+                </p>
               </div>
 
               <div className="md:text-right">
@@ -65,7 +73,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
             </div>
           </div>
 
-          <article className="relative py-8 border border-opacity-40 px-8">
+          <article className="relative p-4 py-8 md:p-8 bg-grey-lighter border border-opacity-40">
             <Corners />
 
             <div

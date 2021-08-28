@@ -58,7 +58,7 @@ export default function Home(): JSX.Element {
             {tiers.map((tier) => (
               <TabPanel key={tier.index}>
                 <section className="mt-8">
-                  <h2>{tier.label} Tier List</h2>
+                  <h2 className="overlap">{tier.label} Tier List</h2>
 
                   <TierList tier={tier} />
                 </section>
