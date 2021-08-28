@@ -24,9 +24,9 @@ export default function EventsSlider({
   }
 
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-third-one gap-y-10 lg:gap-x-10">
-      <section className="p-0 overflow-hidden">
-        <h2 className="overlap text-4xl font-bold">Events</h2>
+    <div className="relative grid grid-cols-1 xl:grid-cols-third-one gap-y-10 lg:gap-x-10">
+      <section className="static p-0 overflow-hidden">
+        <h2 className="overlap text-4xl">Events</h2>
 
         <div className="px-8 py-8 md:px-16 md:pt-16 pb-10 relative">
           <Swiper
@@ -80,12 +80,13 @@ export default function EventsSlider({
             ))}
           </Swiper>
         </div>
-
-        <Link href={`/event/${activeEvent.slug}`}>
-          <a className="btn absolute bottom-6 sm:bottom-7 left-1/2 transform -translate-x-1/2 z-50">
-            See Event
-          </a>
-        </Link>
+        <div className="relative">
+          <Link href={`/event/${activeEvent.slug}`}>
+            <a className="btn absolute bottom-6 sm:bottom-5 left-1/2 transform -translate-x-1/2 z-50">
+              See Event
+            </a>
+          </Link>
+        </div>
       </section>
 
       <div className="border border-beige-inactive bg-grey-lighter">
