@@ -87,7 +87,7 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
         <TabPanels>
           <TabPanel>
             <section className="mt-8">
-              <h2>Select a model</h2>
+              <h2 className="overlap">Select a model</h2>
 
               <ul className="flex justify-center gap-4 mt-6">
                 {models.map((model) => (

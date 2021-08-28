@@ -1,0 +1,36 @@
+.swiper {
+  overflow: visible !important;
+}
+
+.swiper-pagination {
+  bottom: 32px !important;
+}
+
+.swiper-pagination-bullet {
+  @extend .losange;
+  background-color: theme('colors.beige.inactive') !important;
+  height: 12px !important;
+  width: 12px !important;
+  border-radius: 0 !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  @apply absolute top-1/2 transform -translate-y-1/2;
+}
+
+.swiper-button-next {
+  @apply h-12 w-16 z-50 -right-16;
+  background-size: 32px;
+  background-image: url(/decorations/arrow.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.swiper-button-prev {
+  @apply h-12 w-16 z-50 -left-16;
+  background-size: 32px;
+  background-image: url(/decorations/arrow-left.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}

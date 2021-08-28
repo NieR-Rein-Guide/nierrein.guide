@@ -26,7 +26,7 @@ export default function Article({
     <Link href={`/guide/${slug}`} passHref={true}>
       <a className="group">
         <article className="relative">
-          <div className="article__mask absolute">
+          <div className="article__mask absolute select-none">
             <SVG src="/assets/images/icons/mask.svg" />
             <div className="losange h-32 w-32 lg:h-64 lg:w-64">
               <Image

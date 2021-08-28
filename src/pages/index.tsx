@@ -10,17 +10,16 @@ import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
 import CurrentlyWorkingOn from "@components/CurrentlyWorkingOn";
 import FeaturedGuides from "@components/FeaturedGuides";
-import CurrentEvents from "@components/CurrentEvents";
-import Poll from "@components/Poll";
+import EventsSlider from "@components/EventsSlider";
+// import CurrentEvents from "@components/CurrentEvents";
 import Meta from "@components/Meta";
-import { BtnSecondary } from "@components/btn";
 import { getFeaturedGuides, Guide } from "@models/guide";
 import { getCurrentEvents } from "@models/event";
 
-const GuerillaTimersWithNoSSR = dynamic(
-  () => import("@components/GuerillaTimers"),
-  { ssr: false }
-);
+// const GuerillaTimersWithNoSSR = dynamic(
+//   () => import("@components/GuerillaTimers"),
+//   { ssr: false }
+// );
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
@@ -45,15 +44,8 @@ export default function Home({
     <Layout>
       <Meta />
 
-      <div>
-        <Image
-          src={launchedImage}
-          placeholder="blur"
-          alt="NieR Re[in]carnation Launched !"
-        />
-      </div>
-
       <div className="flex flex-col gap-x-12 gap-y-32 mt-32">
+        <EventsSlider currentEvents={currentEvents} />
         <DailyInfoWithNoSSR />
         <FeaturedGuides guides={featuredGuides} />
         <CurrentlyWorkingOn />

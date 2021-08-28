@@ -5,7 +5,7 @@ import Link from "next/link";
 function JoinUs(): JSX.Element {
   return (
     <section>
-      <h2>Help us build the website !</h2>
+      <h2 className="overlap">Help us build the website !</h2>
 
       <div className="grid grid-cols-1 lg:grid-cols-2">
         <div className="flex flex-col justify-between pr-12">
@@ -25,7 +25,7 @@ function JoinUs(): JSX.Element {
             </Link>
           </div>
         </div>
-        <div className="relative h-56 mt-8 lg:mt-0">
+        <div className="relative h-56 mt-8 lg:mt-0 select-none">
           <Image
             layout="fill"
             objectFit="contain"

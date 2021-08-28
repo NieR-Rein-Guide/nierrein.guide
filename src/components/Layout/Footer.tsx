@@ -10,7 +10,9 @@ export default function Footer(): JSX.Element {
     <footer className="flex flex-col items-center justify-center w-full py-14">
       <div className="container">
         <section className="flex flex-col flex-wrap w-full">
-          <h2>Wonderful people who are working on the website</h2>
+          <h2 className="overlap">
+            Wonderful people who are working on the website
+          </h2>
 
           <div className="px-8">
             <Lines className="mb-12" containerClass="justify-center">

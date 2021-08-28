@@ -4,7 +4,7 @@ import classNames from "classnames";
 export default function CurrentlyWorkingOn(): JSX.Element {
   return (
     <section>
-      <h2>Currently in the works</h2>
+      <h2 className="overlap">Currently in the works</h2>
 
       <div className="flex flex-col md:flex-row gap-x-8 mb-8">
         <p className="flex items-center gap-x-2">

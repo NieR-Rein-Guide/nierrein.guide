@@ -8,7 +8,6 @@ import Lines from "@components/decorations/Lines";
 import BtnTertiary from "@components/btn/tertiary";
 
 import { Menu, MenuList, MenuButton, MenuItem } from "@reach/menu-button";
-import "@reach/menu-button/styles.css";
 
 // used for listing all daily types
 const DAYS_OF_WEEK = Array.from(Array(7).keys());
@@ -89,6 +88,7 @@ import spearIcon from "../../public/ui/material/material321003_standard.png";
 import fistIcon from "../../public/ui/material/material321004_standard.png";
 import staffIcon from "../../public/ui/material/material321005_standard.png";
 import gunIcon from "../../public/ui/material/material321006_standard.png";
+import classNames from "classnames";
 
 const weaponToIcon = (weapon: string) => {
   switch (weapon) {
@@ -158,7 +158,7 @@ function DailyInfo(): JSX.Element {
 
   return (
     <section className="flex items-start flex-col">
-      <h2>Daily Quests</h2>
+      <h2 className="overlap">Daily Quests</h2>
 
       <Lines
         className="flex h-40"
@@ -183,7 +183,15 @@ function DailyInfo(): JSX.Element {
                 onSelect={() => setSelectedDayIndex(index)}
                 key={day.getTime()}
               >
-                {format(day, "eeee")}
+                <span
+                  className={classNames(
+                    daysOfWeek[0].getTime() === day.getTime()
+                      ? "font-semibold text-beige"
+                      : null
+                  )}
+                >
+                  {format(day, "eeee")}
+                </span>
               </MenuItem>
             ))}
           </MenuList>

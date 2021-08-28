@@ -18,10 +18,6 @@
 .btn-secondary {
   @apply px-8 py-6 relative bg-grey-foreground border border-beige-active transition-colors ease-out-cubic;
 
-  >svg {
-    @apply absolute;
-  }
-
   &::before {
     @apply block absolute border border-beige-active pointer-events-none transition-transform transform ease-out-cubic;
     content: "";

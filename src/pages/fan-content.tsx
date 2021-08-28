@@ -121,7 +121,7 @@ export default function FanContentPage({
 
       {isFormOpen && (
         <section className="flex flex-col items-center mt-16">
-          <h2>Submit your work</h2>
+          <h2 className="overlap">Submit your work</h2>
 
           {message && (
             <div className="text-xl mb-8">

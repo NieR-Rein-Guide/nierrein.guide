@@ -152,7 +152,7 @@ function GuerillaTimers(): JSX.Element {
   }
 
   return (
-    <section className="flex items-start flex-col">
+    <section className="overlap flex items-start flex-col">
       <h2>Guerilla</h2>
 
       <div className="flex justify-center items-center w-full">

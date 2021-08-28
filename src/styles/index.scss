@@ -146,7 +146,7 @@ header > div {
 section {
   @apply relative p-4 pt-12 md:px-6 md:py-16 bg-grey-lighter border border-beige-inactive;
 
-  >:first-child {
+  > .overlap {
     @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl bg-beige-inactive;
     color: #000;
   }

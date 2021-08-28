@@ -4,7 +4,7 @@ import BtnSecondary from "@components/btn/secondary";
 function Socials(): JSX.Element {
   return (
     <section className="w-full p-8">
-      <h2 className="left-1/2 -translate-x-1/2">Links</h2>
+      <h2 className="overlap left-1/2 -translate-x-1/2">Links</h2>
 
       <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-y-12 gap-6 mt-6">
         {SOCIALS.map((social) => (
