@@ -10,6 +10,11 @@ import { RiRedditLine } from "react-icons/ri";
 
 export const NAVIGATION = [
   {
+    label: "Home",
+    href: "/",
+    icon: tierlistIcon,
+  },
+  {
     label: "Guides",
     href: "/guides",
     icon: guidesIcon,

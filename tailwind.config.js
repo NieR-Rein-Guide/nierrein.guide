@@ -27,6 +27,7 @@ module.exports = {
           DEFAULT: "#040404",
         },
         transparent: {
+          DEFAULT: 'rgba(255, 255, 255, 0)',
           bg: "rgba(255, 255, 255, 0.1)",
         },
       },

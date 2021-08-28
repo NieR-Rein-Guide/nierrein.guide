@@ -82,7 +82,7 @@ export default function EventsSlider({
         </div>
 
         <Link href={`/event/${activeEvent.slug}`}>
-          <a className="btn absolute bottom-6 sm:bottom-7 left-1/2 transform -translate-x-1/2 z-50">
+          <a className="btn absolute bottom-6 sm:bottom-7 left-1/2 transform -translate-x-1/2 z-10">
             See Event
           </a>
         </Link>
