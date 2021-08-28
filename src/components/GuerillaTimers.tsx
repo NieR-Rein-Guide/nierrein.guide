@@ -2,23 +2,9 @@ import { GAME_TIMEZONE } from "@config/constants";
 import { formatDistanceToNow } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
 import { closestTo } from "date-fns/esm";
-import { enUS, fr } from "date-fns/locale";
 import { useEffect, useState } from "react";
-import SVG from "react-inlinesvg";
 import Image from "next/image";
 import { weaponToIcon } from "./DailyQuests";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-} from "@reach/accordion";
-
-function locale() {
-  const loc = { enUS, fr }[navigator.language];
-  if (!loc) return enUS;
-  return loc;
-}
 
 interface Guerilla {
   start: number[];
@@ -121,12 +107,13 @@ const TimerRow = ({ guerilla }): JSX.Element => {
         {formatDistanceToNow(startDate, {
           includeSeconds: true,
           addSuffix: true,
-          locale: locale(),
         })}
       </span>
     </div>
   );
 };
+
+const EVERY_MINUTE = 60 * 1000;
 
 function GuerillaTimers(): JSX.Element {
   const [nextGuerilla, setNextGuerilla] = useState(null);
@@ -148,46 +135,19 @@ function GuerillaTimers(): JSX.Element {
         const nextGuerilla = closestTo(new Date(), startDates);
         setNextGuerilla(nextGuerilla);
       }
-    }, 1000);
+    }, EVERY_MINUTE);
   }
 
   return (
-    <section className="overlap flex items-start flex-col">
-      <h2>Guerilla</h2>
-
-      <div className="flex justify-center items-center w-full">
-        <h3 className="surface serif text-3xl text-center">
-          Next Guerilla is{" "}
-          {nextGuerilla &&
-            formatDistanceToNow(nextGuerilla, {
-              includeSeconds: true,
-              addSuffix: true,
-              locale: locale(),
-            })}
-        </h3>
-      </div>
-
-      <div className="w-full text-center mt-8">
-        <Accordion collapsible>
-          <AccordionItem>
-            <AccordionButton className="btn">Expand</AccordionButton>
-            <AccordionPanel className="mt-6">
-              <div className="grid grid-cols-1 sm:grid-cols-2 place-items-center gap-4 w-full">
-                {GUERILLAS.map((guerilla) => (
-                  <TimerRow key={guerilla.start[0]} guerilla={guerilla} />
-                ))}
-              </div>
-              <div className="grid grid-cols-1 place-items-center mt-6">
-                <span className="text-center">
-                  The displayed times are local (converted from the game
-                  timezone)
-                </span>
-              </div>
-            </AccordionPanel>
-          </AccordionItem>
-        </Accordion>
-      </div>
-    </section>
+    <span>
+      {(nextGuerilla &&
+        formatDistanceToNow(nextGuerilla, {
+          includeSeconds: true,
+          addSuffix: true,
+          locale: locale(),
+        })) ||
+        "calculating..."}
+    </span>
   );
 }
 

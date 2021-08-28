@@ -6,6 +6,8 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import SVG from "react-inlinesvg";
 import { useState } from "react";
 import Squares from "./decorations/Squares";
+import Link from "next/link";
+import useGuerilla from "hooks/useGuerilla";
 
 interface EventsSlider {
   currentEvents: Event[];
@@ -15,6 +17,7 @@ export default function EventsSlider({
   currentEvents,
 }: EventsSlider): JSX.Element {
   const [activeEvent, setActiveEvent] = useState(currentEvents[0]);
+  const nextGuerilla = useGuerilla();
 
   function handleSlideChange(event) {
     setActiveEvent(currentEvents[event.activeIndex]);
@@ -72,6 +75,12 @@ export default function EventsSlider({
             ))}
           </Swiper>
         </div>
+
+        <Link href={`/event/${activeEvent.slug}`}>
+          <a className="btn absolute bottom-7 left-1/2 transform -translate-x-1/2 z-50">
+            See Event
+          </a>
+        </Link>
       </section>
 
       <div className="border border-beige-inactive bg-grey-lighter">
@@ -79,9 +88,9 @@ export default function EventsSlider({
           <h3 className="text-2xl text-beige-inactive">Other Events</h3>
         </div>
 
-        <div className="flex flex-col justify-between px-8 py-5 h-9/10">
-          <div className="border-3 relative">
-            <div className="flex justify-center items-center py-6 mr-2">
+        <div className="grid grid-rows-4 px-8 gap-y-4 py-4 h-9/10">
+          <div className="border-3 relative h-32">
+            <div className="flex justify-center items-center py-6 mr-2 h-full">
               <img
                 className="-mr-3 h-14"
                 src="/ui/skill/skill100001_standard.png"
@@ -89,7 +98,13 @@ export default function EventsSlider({
               />
               <div>
                 <h3 className="text-beige-accent text-2xl">GUERILLA</h3>
-                <span className="tracking-wider">in 35 minutes</span>
+                <span>
+                  {(nextGuerilla &&
+                    formatDistanceToNow(nextGuerilla, {
+                      addSuffix: true,
+                    })) ||
+                    "calculating..."}
+                </span>
               </div>
             </div>
             <Squares />
@@ -99,9 +114,12 @@ export default function EventsSlider({
             .filter((event) => event.slug !== activeEvent.slug)
             .slice(0, 3)
             .map((event) => (
-              <div key={event.slug} className="border-3 relative select-none">
+              <div
+                key={event.slug}
+                className="border-3 border-beige-text hover:border-beige transition-colors relative select-none h-32"
+              >
                 <Image
-                  layout="responsive"
+                  layout="fill"
                   objectFit="cover"
                   height={128}
                   width={232}
@@ -120,7 +138,6 @@ export default function EventsSlider({
                 />
               </div>
             ))}
-          <div className="w-full"></div>
         </div>
       </div>
     </div>

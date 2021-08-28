@@ -32,7 +32,7 @@ export default function Footer(): JSX.Element {
           </div>
         </section>
 
-        <div className="text-center my-16 md:mt-32">
+        <div className="font-display text-2xl text-center my-16 md:mt-32">
           <p>
             NieR Re[in] Guide is not affiliated with or endorsed by SQUARE ENIX
             CO. LTD.

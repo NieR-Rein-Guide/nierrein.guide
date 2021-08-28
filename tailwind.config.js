@@ -52,6 +52,7 @@ module.exports = {
   variants: {
     extend: {
       scale: ["group-hover"],
+      brightness: ['hover'],
     },
   },
   plugins: [require("tailwindcss-easing")],
