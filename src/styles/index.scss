@@ -234,11 +234,20 @@ footer {
   background-image: url("./line-squares.svg");
   display: block;
   position: absolute;
+
   top: -25px;
   left: -155px;
-  background-size: 150px 150px;
-  height: 150px;
-  width: 150px;
+  background-size: 100px 100px;
+  height: 100px;
+  width: 100px;
+
+  @screen lg {
+    top: -25px;
+    left: -155px;
+    background-size: 150px 150px;
+    height: 150px;
+    width: 150px;
+  }
 }
 
 .diamond-border {
