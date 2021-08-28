@@ -153,11 +153,6 @@ function GuerillaTimers(): JSX.Element {
 
   return (
     <section className="flex items-start flex-col">
-      <img
-        className="absolute -left-12 top-0 transform -translate-y-1/2 h-auto"
-        src="/ui/ability/ability100001_standard.png"
-        alt="Guerilla"
-      />
       <h2>Guerilla</h2>
 
       <div className="flex justify-center items-center w-full">

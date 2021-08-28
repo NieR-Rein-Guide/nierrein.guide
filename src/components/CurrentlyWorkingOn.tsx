@@ -21,7 +21,7 @@ export default function CurrentlyWorkingOn(): JSX.Element {
         </p>
       </div>
 
-      <div className="flex flex-col gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {CURRENT_PROJECTS.map((project) => (
           <a
             href={project.link}

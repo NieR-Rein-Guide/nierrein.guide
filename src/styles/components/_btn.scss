@@ -14,3 +14,26 @@
     @apply bg-beige-darker cursor-not-allowed;
   }
 }
+
+.btn-secondary {
+  @apply px-8 py-6 relative bg-grey-foreground border border-beige-active transition-colors ease-out-cubic;
+
+  >svg {
+    @apply absolute;
+  }
+
+  &::before {
+    @apply block absolute border border-beige-active pointer-events-none transition-transform transform ease-out-cubic;
+    content: "";
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
+  }
+
+  &:hover {
+    &::before {
+      @apply scale-105;
+    }
+  }
+}

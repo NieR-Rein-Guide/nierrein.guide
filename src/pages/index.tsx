@@ -13,6 +13,7 @@ import FeaturedGuides from "@components/FeaturedGuides";
 import CurrentEvents from "@components/CurrentEvents";
 import Poll from "@components/Poll";
 import Meta from "@components/Meta";
+import { BtnSecondary } from "@components/btn";
 import { getFeaturedGuides, Guide } from "@models/guide";
 import { getCurrentEvents } from "@models/event";
 
@@ -34,10 +35,11 @@ export default function Home({
   featuredGuides = [],
   currentEvents = [],
 }: HomeProps): JSX.Element {
-  const recentEventWithPoll = currentEvents.find((event) => {
-    if (event.poll) return true;
-    return false;
-  });
+  // @TODO Add when developing the new homepage in the slider
+  // const recentEventWithPoll = currentEvents.find((event) => {
+  //   if (event.poll) return true;
+  //   return false;
+  // });
 
   return (
     <Layout>
@@ -51,24 +53,12 @@ export default function Home({
         />
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-with-sidenav gap-x-12 gap-y-24 mt-24">
-        <div className="flex flex-col gap-y-24">
-          {/* ATM Only show the last event */}
-          <CurrentEvents events={[currentEvents[0]]} />
-          <Poll event={recentEventWithPoll} />
-          <div className="hidden xl:block">
-            <Socials />
-          </div>
-        </div>
-        <div className="flex flex-col gap-y-24">
-          <FeaturedGuides guides={featuredGuides} />
-          <GuerillaTimersWithNoSSR />
-          <DailyInfoWithNoSSR />
-          <CurrentlyWorkingOn />
-          <div className="xl:hidden">
-            <Socials />
-          </div>
-        </div>
+      <div className="flex flex-col gap-x-12 gap-y-24 mt-24">
+        <FeaturedGuides guides={featuredGuides} />
+        <GuerillaTimersWithNoSSR />
+        <DailyInfoWithNoSSR />
+        <CurrentlyWorkingOn />
+        <Socials />
       </div>
 
       <JoinUs />

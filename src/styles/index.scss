@@ -6,6 +6,7 @@ html,
 body {
   color: #fff;
   background-color: #000;
+  @apply font-labor;
 }
 
 * {
@@ -145,24 +146,12 @@ header > div {
   max-width: 1200px;
   margin: 0 auto;
 }
-// .container {
-//   @apply w-full px-8;
-//   // max-width: 1200px;
-//   margin: 0 auto;
-// }
 
 section {
-  background-color: theme("colors.beige.darker");
-  @apply relative p-4 pt-12 md:p-12 md:pt-16;
+  @apply relative p-4 pt-12 md:p-12 md:pt-16 bg-grey-lighter border border-beige-inactive;
 
-  > h1,
-  > h2,
-  > h3,
-  > h4,
-  > h5,
-  > h6 {
-    @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl;
-    background-color: theme("colors.beige.dark");
+  >:first-child {
+    @apply absolute top-0 transform -translate-y-1/2 left-4 py-4 px-6 text-2xl bg-beige-inactive;
     color: #000;
   }
 }
@@ -222,4 +211,17 @@ footer {
 
 .text-shadow {
   text-shadow: 1px 1px 2px #000, 0 0 1em #000, 0 0 0.2em #000;
+}
+
+.reversed {
+  transform: scaleX(-1);
+}
+
+.losange {
+  clip-path: polygon(0 50%, 50% 0, 100% 50%, 50% 100%);
+}
+
+.article__mask {
+  @apply bg-grey-lighter;
+  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 100%, 0 0);
 }
