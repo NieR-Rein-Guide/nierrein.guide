@@ -1,25 +1,14 @@
 import dynamic from "next/dynamic";
-import Image from "next/image";
-
-import launchedImage from "../../public/launched.jpg";
-
-import { Event } from "@models/types";
-
 import Layout from "@components/Layout";
 import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
 import CurrentlyWorkingOn from "@components/CurrentlyWorkingOn";
 import FeaturedGuides from "@components/FeaturedGuides";
 import EventsSlider from "@components/EventsSlider";
-// import CurrentEvents from "@components/CurrentEvents";
 import Meta from "@components/Meta";
-import { getFeaturedGuides, Guide } from "@models/guide";
+import { getFeaturedGuides } from "@models/guide";
+import { Guide, Event } from "@models/types";
 import { getCurrentEvents } from "@models/event";
-
-// const GuerillaTimersWithNoSSR = dynamic(
-//   () => import("@components/GuerillaTimers"),
-//   { ssr: false }
-// );
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
@@ -34,12 +23,6 @@ export default function Home({
   featuredGuides = [],
   currentEvents = [],
 }: HomeProps): JSX.Element {
-  // @TODO Add when developing the new homepage in the slider
-  // const recentEventWithPoll = currentEvents.find((event) => {
-  //   if (event.poll) return true;
-  //   return false;
-  // });
-
   return (
     <Layout>
       <Meta />

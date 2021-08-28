@@ -4,7 +4,8 @@ import Meta from "@components/Meta";
 import Corners from "@components/decorations/Corners";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { getAllGuides, getGuide, Guide } from "@models/guide";
+import { getAllGuides, getGuide } from "@models/guide";
+import { Guide } from "@models/types";
 import marked from "marked";
 import { useRouter } from "next/router";
 

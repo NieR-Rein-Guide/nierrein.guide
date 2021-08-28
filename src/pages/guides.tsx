@@ -1,7 +1,8 @@
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import SVG from "react-inlinesvg";
-import { getAllGuides, Guide } from "@models/guide";
+import { getAllGuides } from "@models/guide";
+import { Guide } from "@models/types";
 
 interface GuidesProps {
   topics: Guide[];

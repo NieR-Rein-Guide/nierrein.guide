@@ -144,7 +144,6 @@ function GuerillaTimers(): JSX.Element {
         formatDistanceToNow(nextGuerilla, {
           includeSeconds: true,
           addSuffix: true,
-          locale: locale(),
         })) ||
         "calculating..."}
     </span>
