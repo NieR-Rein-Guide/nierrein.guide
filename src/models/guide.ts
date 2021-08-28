@@ -34,6 +34,7 @@ async function getAllGuides(): Promise<Guide[]> {
       guides {
         title
         slug
+        author
         content
         cover {
           width
@@ -57,6 +58,7 @@ async function getGuide(slug: string): Promise<Guide> {
       guides (where: {slug: $slug}) {
         title
         slug
+        author
         content
         cover {
           width

@@ -1,9 +1,9 @@
 import SVG from "react-inlinesvg";
 import Image from "next/image";
+import Link from "next/link";
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import Corners from "@components/decorations/Corners";
-import { formatDistanceToNow } from "date-fns";
 import marked from "marked";
 import { useRouter } from "next/router";
 import { Event } from "@models/types";
@@ -30,10 +30,12 @@ export default function SingleEvent({ event }: eventProps): JSX.Element {
       )}
 
       <nav className="mb-8">
-        <button onClick={router.back} className="btn">
-          <SVG src="/decorations/left.svg" className="h-6" />
-          <span>Go back</span>
-        </button>
+        <Link href="/events" passHref={true}>
+          <a className="btn">
+            <SVG src="/decorations/left.svg" className="h-6" />
+            <span>Go back</span>
+          </a>
+        </Link>
       </nav>
 
       {(router.isFallback && <p>Loading...</p>) || (
