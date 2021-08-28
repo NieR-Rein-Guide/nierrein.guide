@@ -185,8 +185,9 @@ function DailyInfo(): JSX.Element {
               >
                 <span
                   className={classNames(
+                    selectedDayIndex === index && "text-beige",
                     daysOfWeek[0].getTime() === day.getTime()
-                      ? "font-semibold text-beige"
+                      ? "font-semibold"
                       : null
                   )}
                 >

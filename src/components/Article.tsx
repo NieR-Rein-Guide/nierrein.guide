@@ -75,7 +75,7 @@ export default function Article({
               </div>
 
               <SVG
-                className="absolute right-3 lg:right-20 top-1/2 transform -translate-y-1/2 h-6 lg:h-12"
+                className="absolute right-3 lg:right-20 top-1/2 transform -translate-y-1/2 h-6 transition-transform ease-out-cubic lg:h-12 group-hover:translate-x-6"
                 src="/decorations/arrow.svg"
               />
             </div>

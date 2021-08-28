@@ -53,6 +53,7 @@ module.exports = {
   variants: {
     extend: {
       scale: ["group-hover"],
+      translate: ["group-hover"],
       brightness: ['hover'],
     },
   },
