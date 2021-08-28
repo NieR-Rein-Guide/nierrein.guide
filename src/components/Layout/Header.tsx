@@ -81,11 +81,11 @@ export default function Header(): JSX.Element {
 
         <nav
           className={classNames(
-            "nav flex justify-center items-center w-full xl:w-auto fixed inset-0 z-50 bg-pattern xl:relative xl:block",
-            isNavOpened ? "nav-is-closed" : "nav-is-opened"
+            "nav flex justify-center items-center w-full nav-is-closed xl:w-auto fixed inset-0 z-50 bg-pattern xl:relative xl:block",
+            isNavOpened ? "nav-is-opened" : ""
           )}
         >
-          <div className="bg-grey-lighter h-9/10 w-4/5 overflow-scroll border border-beige-inactive xl:border-none xl:bg-transparent xl:overflow-hidden xl:h-full xl:w-full pointer-events-auto">
+          <div className="bg-grey-lighter h-9/10 w-4/5 overflow-y-auto border border-beige-inactive xl:border-none xl:bg-transparent xl:overflow-hidden xl:h-full xl:w-full pointer-events-auto">
             <div className="flex justify-end mb-11 xl:hidden">
               <button onClick={handleNavToggle} className="mt-4 mr-4 xl:hidden">
                 <SVG src="/decorations/menu-close.svg" />
@@ -104,13 +104,15 @@ export default function Header(): JSX.Element {
                         router.asPath === nav.href ? "active" : null
                       )}
                     >
-                      <Image
-                        height={64}
-                        width={64}
-                        placeholder="blur"
-                        src={nav.icon}
-                        alt={`${nav.label} icon`}
-                      />
+                      <div className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-16 xl:w-16">
+                        <Image
+                          height={94}
+                          width={94}
+                          placeholder="blur"
+                          src={nav.icon}
+                          alt={`${nav.label} icon`}
+                        />
+                      </div>
                       <span className="text-lg mt-2 text-center font-display xl:text-xl xl:w-auto">
                         {nav.label}
                       </span>

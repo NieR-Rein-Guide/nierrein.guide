@@ -44,7 +44,7 @@ svg {
   @apply transition-all ease-out-cubic duration-300;
 
   &.nav-is-opened {
-    clip-path: polygon(20% 0%, 80% 0%, 100% 0, 100% 100%, 60% 100%, 42% 100%, 0 100%, 0 0);
+    clip-path: polygon(20% 0%, 80% 0%, 100% 0, 100% 100%, 60% 100%, 42% 100%, 0 100%, 0 0) !important;
 
     @screen xl {
       clip-path: unset;

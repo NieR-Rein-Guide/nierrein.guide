@@ -1,14 +1,15 @@
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
-import SVG from "react-inlinesvg";
+import Article from "@components/Article";
 import { getAllGuides } from "@models/guide";
 import { Guide } from "@models/types";
+import Link from "next/link";
 
 interface GuidesProps {
-  topics: Guide[];
+  guides: Guide[];
 }
 
-export default function Guides({ topics }: GuidesProps): JSX.Element {
+export default function Guides({ guides }: GuidesProps): JSX.Element {
   return (
     <Layout>
       <Meta
@@ -17,32 +18,41 @@ export default function Guides({ topics }: GuidesProps): JSX.Element {
         cover="https://nierrein.guide/cover-guides.jpg"
       />
 
-      <nav className="sidenav max-w-lg">
-        <ul>
-          <li className="text-2xl font-medium">Guide topics</li>
-          {topics.map((topic) => (
-            <a key={topic.title} href={`/guide/${topic.slug}`}>
-              <li className="flex flex-wrap justify-between items-center gap-x-4">
-                <span>{topic.title}</span>
-                <SVG src="/decorations/right.svg" className="text-beige h-4" />
-              </li>
-            </a>
+      <section>
+        <h2 className="overlap">Guides</h2>
+
+        <div className="flex flex-col gap-y-14 xl:gap-y-24 mt-4 ml-0 sm:ml-16 lg:ml-36">
+          {guides.map((guide) => (
+            <Article
+              key={guide.slug}
+              title={guide.title}
+              author={guide.author}
+              date={guide.updated_at}
+              excerpt={
+                "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+              }
+              slug={guide.slug}
+              image={guide.cover.formats}
+            />
           ))}
-        </ul>
-      </nav>
+        </div>
+
+        <div className="flex justify-center mt-6">
+          <Link href="/guides" passHref={true}>
+            <a className="btn">Show More</a>
+          </Link>
+        </div>
+      </section>
     </Layout>
   );
 }
 
-export async function getStaticProps(context) {
-  const topics = (await getAllGuides()).map((guide) => ({
-    slug: guide.slug,
-    title: guide.title,
-  }));
+export async function getStaticProps() {
+  const guides = await getAllGuides();
 
   return {
     props: {
-      topics,
+      guides,
     },
     revalidate: 60,
   };
