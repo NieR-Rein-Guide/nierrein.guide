@@ -218,27 +218,41 @@ footer {
 }
 
 .article__mask {
-  @apply bg-grey-lighter;
+  @apply bg-grey-lighter hidden;
 
-  position: absolute;
-  top: 0;
-  left: -8rem;
+
+  @screen sm {
+    @apply block;
+    position: absolute;
+    top: 0;
+    left: -3.8rem;
+  }
+
+
+  @screen lg {
+    left: -8rem;
+  }
 
   // diamond-shaped mask
   clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
 }
 
 .article-parent::before {
-  content: "";
+  content: unset;
+
+  @screen sm {
+    content: "";
+  }
+
   background-image: url("/decorations/line-squares.svg");
   display: block;
   position: absolute;
 
-  top: -25px;
-  left: -155px;
-  background-size: 100px 100px;
-  height: 100px;
-  width: 100px;
+  top: -18px;
+  left: -80px;
+  background-size: 80px 80px;
+  height: 80px;
+  width: 80px;
 
   @screen lg {
     top: -25px;
