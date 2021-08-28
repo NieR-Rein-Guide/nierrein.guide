@@ -25,8 +25,9 @@ export default function Article({
   return (
     <Link href={`/guide/${slug}`} passHref={true}>
       <a className="group">
-        <article className="relative">
-          <div className="article__mask absolute select-none">
+        <article className="article-parent relative">
+          <div className="diamond-border">
+          <div className="article__mask absolute top-0 left-32 select-none ">
             <SVG src="/assets/images/icons/mask.svg" />
             <div className="losange h-32 w-32 lg:h-64 lg:w-64">
               <Image
@@ -48,6 +49,7 @@ export default function Article({
                   image?.thumbnail?.hash
                 }
               />
+            </div>
             </div>
           </div>
           <div className="flex items-center h-12 lg:h-20 bg-beige-inactive">

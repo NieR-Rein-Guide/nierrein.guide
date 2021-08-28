@@ -214,10 +214,40 @@ footer {
 }
 
 .losange {
-  clip-path: polygon(0 50%, 50% 0, 100% 50%, 50% 100%);
+  // this doesnt need clip path anymore
 }
 
 .article__mask {
   @apply bg-grey-lighter;
-  clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 100%, 0 -50%);
+
+  // this can probably be moved into tailwind classes
+  position: absolute;
+  top: 0;
+  left: -8rem;
+
+  // diamond-shaped mask
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.article-parent::before {
+  content: " ";
+  background-image: url("./line-squares.svg");
+  display: block;
+  position: absolute;
+  top: -25px;
+  left: -155px;
+  background-size: 150px 150px;
+  height: 150px;
+  width: 150px;
+}
+
+.diamond-border {
+  filter: drop-shadow(1px 0px 0px theme("colors.beige.inactive"))
+    drop-shadow(-1px 0px 0px theme("colors.beige.inactive"))
+    drop-shadow(0px 1px 0px theme("colors.beige.inactive"))
+    drop-shadow(0px -1px 0px theme("colors.beige.inactive"))
+    drop-shadow(1px 1px 0px theme("colors.beige.inactive"))
+    drop-shadow(-1px -1px 0px theme("colors.beige.inactive"))
+    drop-shadow(-1px 1px 0px theme("colors.beige.inactive"))
+    drop-shadow(1px -1px 0px theme("colors.beige.inactive"));
 }
