@@ -53,12 +53,12 @@ export default function Article({
             </div>
           </div>
           <div className="flex items-center h-12 lg:h-20 bg-beige-inactive">
-            <h3 className="ml-8 sm:ml-36 lg:ml-72 text-black text-xl lg:text-4xl font-semibold">
+            <h3 className="ml-8 sm:ml-36 lg:ml-44 text-black text-xl lg:text-4xl font-semibold">
               {title}
             </h3>
           </div>
           <div className="bg-grey-foreground h-20 lg:h-44">
-            <div className="relative ml-8 sm:ml-36 lg:ml-72 lg:pt-5 lg:pb-10 h-full">
+            <div className="relative ml-8 sm:ml-36 lg:ml-44 lg:pt-5 lg:pb-10 h-full">
               <div className="flex flex-col justify-around lg:justify-between h-full max-w-lg">
                 <p className="hidden lg:block text-lg text-beige-active leading-tight">
                   {excerpt}
