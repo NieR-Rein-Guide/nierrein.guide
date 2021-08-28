@@ -16,8 +16,11 @@ function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
       <a>
         <div className={"card " + "rarity" + costume.stars}>
           <div className="card-art">
+            <div className="element">
+              <img src="\icons\elements\dark.png"></img>
+            </div>
             <div className="weapon">
-              <img src="\ui\material\material100002_standard.png"></img>
+              <img src="\icons\weapons\gun.png"></img>
             </div>
             <Image
               src={costume.illustrationURL}

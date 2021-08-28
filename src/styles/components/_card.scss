@@ -31,11 +31,27 @@
 .card-art .weapon {
     position: absolute;
     // background-color: blue;
-    width: 10%;
-    height: 10%;
-    top: 10%
+    width: 20%;
+    height: 20%;
+    top: 2.5%;
+    left: 2%;
+    z-index: 1;
 }
 
-.card-art .weapon img {
+.weapon img {
+    object-fit: contain;
+}
+
+.card-art .element {
+    position: absolute;
+    // background-color: blue;
+    width: 20%;
+    height: 20%;
+    top: 10%;
+    left: 2%;
+    z-index: 1;
+}
+
+.element img {
     object-fit: contain;
 }
