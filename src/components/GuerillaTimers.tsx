@@ -111,42 +111,6 @@ const TimerRow = ({ guerilla }): JSX.Element => {
             </div>
           )
         )}
-        {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
-          (weapon, index) => (
-            <div key={index} className="w-16 h-16 relative">
-              <Image
-                key={index}
-                src={weaponToIcon(weapon)}
-                alt={`${weapon} icon`}
-                title={weapon}
-              />
-            </div>
-          )
-        )}
-        {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
-          (weapon, index) => (
-            <div key={index} className="w-16 h-16 relative">
-              <Image
-                key={index}
-                src={weaponToIcon(weapon)}
-                alt={`${weapon} icon`}
-                title={weapon}
-              />
-            </div>
-          )
-        )}
-        {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
-          (weapon, index) => (
-            <div key={index} className="w-16 h-16 relative">
-              <Image
-                key={index}
-                src={weaponToIcon(weapon)}
-                alt={`${weapon} icon`}
-                title={weapon}
-              />
-            </div>
-          )
-        )}
       </div>
 
       <span>
