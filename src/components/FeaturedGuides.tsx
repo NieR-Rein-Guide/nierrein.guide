@@ -11,9 +11,9 @@ export default function FeaturedGuides({
 }): JSX.Element {
   return (
     <section>
-      <h2 className="overlap">Featured Guides</h2>
+      <h2>Featured Guides</h2>
 
-      <div className="mt-4">
+      <div className="mt-4 ml-36">
         {guides.map((guide) => (
           <Article
             key={guide.slug}

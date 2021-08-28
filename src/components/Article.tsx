@@ -25,29 +25,31 @@ export default function Article({
   return (
     <Link href={`/guide/${slug}`} passHref={true}>
       <a className="group">
-        <article className="relative">
-          <div className="hidden sm:block article__mask absolute select-none">
-            <SVG src="/assets/images/icons/mask.svg" />
-            <div className="losange h-16 w-16 sm:h-32 sm:w-32 lg:h-64 lg:w-64">
-              <Image
-                objectFit="cover"
-                src={
-                  image?.large?.url ??
-                  image?.medium?.url ??
-                  image?.small?.url ??
-                  image?.thumbnail?.url
-                }
-                height={512}
-                width={512}
-                alt={`${title} image`}
-                placeholder="blur"
-                blurDataURL={
-                  image?.large?.hash ??
-                  image?.medium?.hash ??
-                  image?.small?.hash ??
-                  image?.thumbnail?.hash
-                }
-              />
+        <article className="article-parent relative">
+          <div className="diamond-border">
+            <div className="article__mask absolute top-0 left-32 select-none ">
+              <SVG src="/assets/images/icons/mask.svg" />
+              <div className="losange h-16 w-16 sm:h-32 sm:w-32 lg:h-64 lg:w-64">
+                <Image
+                  objectFit="cover"
+                  src={
+                    image?.large?.url ??
+                    image?.medium?.url ??
+                    image?.small?.url ??
+                    image?.thumbnail?.url
+                  }
+                  height={512}
+                  width={512}
+                  alt={`${title} image`}
+                  placeholder="blur"
+                  blurDataURL={
+                    image?.large?.hash ??
+                    image?.medium?.hash ??
+                    image?.small?.hash ??
+                    image?.thumbnail?.hash
+                  }
+                />
+              </div>
             </div>
           </div>
           <div className="flex items-center h-12 lg:h-20 bg-beige-inactive">
