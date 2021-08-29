@@ -58,3 +58,38 @@ export type Guide = {
   published_at: string;
   updated_at?: string;
 }
+
+type CostumeSource = {
+  sourceType: string;
+  storeName: string;
+}
+
+type CostumeStats = {
+  agility: number;
+  atk: number;
+  critDamage: number;
+  critRate: number;
+  def: number;
+  hp: number;
+  level: number;
+}
+
+export type Costume = {
+  id: number;
+  name: string;
+  title: string;
+  rarity: 1 | 2 | 3 | 4 | 5;
+  story: string;
+  weapon: string;
+  weaponType: string;
+  actions: {
+    abilities: string[];
+    skills: string[];
+  };
+  sources: CostumeSource[];
+  stats: {
+    base: CostumeStats;
+    maxNoAscension: CostumeStats;
+    absoluteMax: CostumeStats;
+  }
+}

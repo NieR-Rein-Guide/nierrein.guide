@@ -1,3 +1,5 @@
+import { sheets } from '@libs/s3'
+import { Costume } from '@models/types'
 import allCostumes from './characters_stub.json'
 
 class Stats {
@@ -76,4 +78,26 @@ const typedCharacters = typedCostumes.reduce((acc, elem) => {
     return acc
 }, new Map<CharacterName, CostumeInfo[]>())
 
-export { typedCostumes, typedCharacters }
+async function getCharacters() {
+  const characters = await sheets.getCharacters();
+
+
+const typedCostumes =
+    characters
+        .sort((a, b) => a.id - b.id)
+
+const typedCharacters = typedCostumes.reduce((acc, elem) => {
+    if (acc.has(elem.name)) {
+        acc.get(elem.name).push(elem)
+    } else {
+        acc.set(elem.name, [elem])
+    }
+    return acc
+}, new Map<CharacterName, Costume[]>())
+
+
+  // Converted back to an array because Next.js can't return a Map to client.
+  return Array.from(typedCharacters.values())
+}
+
+export { typedCostumes, typedCharacters, getCharacters }

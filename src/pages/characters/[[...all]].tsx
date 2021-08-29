@@ -1,7 +1,7 @@
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import CostumeDetails from "@components/CharacterInfo";
-import { CostumeInfo, typedCharacters } from "@models/character";
+import { CostumeInfo, getCharacters, typedCharacters } from "@models/character";
 import { useEffect, useState } from "react";
 import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
@@ -10,8 +10,10 @@ import CostumeSelect from "@components/characters/CostumeSelect";
 import { useRouter } from "next/router";
 import slugify from "slugify";
 
-export default function Page(): JSX.Element {
+export default function Page({ characters }): JSX.Element {
   const router = useRouter();
+
+  console.log(characters);
 
   const defaultCostume = typedCharacters.values().next()
     .value[0] as CostumeInfo;
@@ -78,8 +80,12 @@ export default function Page(): JSX.Element {
 }
 
 export async function getStaticProps() {
+  const characters = await getCharacters();
+
   return {
-    props: {},
+    props: {
+      characters,
+    },
   };
 }
 export async function getStaticPaths() {
