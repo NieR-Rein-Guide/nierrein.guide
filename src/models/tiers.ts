@@ -2,7 +2,7 @@ import pveBackgroundImg from "../../public/tierlists/pve.jpg";
 import pvpBackgroundImg from "../../public/tierlists/pvp.jpg";
 import weaponsBackgroundImg from "../../public/tierlists/weapons.jpg";
 
-import SearchRankSS from '../../public/ui/search/search_rank_SS.png';
+import SearchRankSS from '../../public/ui/search/search_rank_ss.png';
 import SearchRankS from '../../public/ui/search/search_rank_1.png';
 import SearchRankA from '../../public/ui/search/search_rank_2.png';
 import SearchRankB from '../../public/ui/search/search_rank_3.png';

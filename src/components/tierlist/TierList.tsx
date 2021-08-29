@@ -3,7 +3,6 @@ import { RANK_THUMBNAILS, TiersTabs } from "@models/tiers";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import ReactTooltip from "react-tooltip";
-import SVG from "react-inlinesvg";
 
 interface TierListProps {
   tier: TiersTabs;
