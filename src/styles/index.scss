@@ -290,3 +290,28 @@ iframe {
   width: 100% !important;
   min-height: 600px !important;
 }
+
+.text-rarity-4 {
+  background: -webkit-linear-gradient(#b78cff, #5ac3e8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.tierlist-tooltip {
+  @apply bg-grey-foreground;
+  font-size: 14px !important;
+  pointer-events: auto !important;
+
+  &:hover {
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  a {
+    @apply text-beige-active underline-dotted;
+
+    &:hover {
+      @apply no-underline;
+    }
+  }
+}

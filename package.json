@@ -42,6 +42,7 @@
     "react-icons": "^4.2.0",
     "react-inlinesvg": "^2.3.0",
     "react-lottie-player": "^1.4.0",
+    "react-tooltip": "^4.2.21",
     "sharp": "^0.29.0",
     "slugify": "^1.6.0",
     "swiper": "^7.0.1",
