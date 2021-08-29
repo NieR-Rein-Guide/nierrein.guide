@@ -150,6 +150,10 @@ export const CREDITS = [
   {
     name: "Saba",
   },
+  {
+    name: "Yuuru",
+    link: "https://www.youtube.com/channel/UCeSQF_NZyu2WtjV9EbJkEbQ",
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const GITHUB_REPO_LINK =
@@ -178,6 +182,16 @@ export const SOCIALS: Social[] = [
     label: "Our Discord",
     href: DISCORD_URL,
     icon: <SVG src="/logos/discord.svg" height="32" />,
+  },
+  {
+    label: "Our Twitter",
+    href: "https://twitter.com/NierReinGuide",
+    icon: <SVG src="/logos/twitter.svg" height="32" />,
+  },
+  {
+    label: "Our Instagram",
+    href: "https://www.instagram.com/nierreinguide/",
+    icon: <SVG src="/logos/instagram.svg" height="32" />,
   },
   {
     label: "Official Discord",

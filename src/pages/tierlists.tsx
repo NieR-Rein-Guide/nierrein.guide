@@ -43,14 +43,14 @@ export default function Home(): JSX.Element {
             <br />
             Follow what you want and do what feel right for you.
             <br />
-            Tier lists are made by <code>Insta#9504</code>. They are still WIP.
+            Tier lists are made by <code>Insta#9504</code> and{" "}
+            <code>yuuru#0107</code>.
             <br />
             If you have any suggestions or want to update the tier list{" "}
             <span className="wysiwyg">
               <a href={DISCORD_URL} rel="noopener noreferrer" target="_blank">
                 join us on Discord
-              </a>{" "}
-              or contact Insta.
+              </a>
             </span>
           </p>
 

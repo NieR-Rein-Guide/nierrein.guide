@@ -2,6 +2,7 @@ import pveBackgroundImg from "../../public/tierlists/pve.jpg";
 import pvpBackgroundImg from "../../public/tierlists/pvp.jpg";
 import weaponsBackgroundImg from "../../public/tierlists/weapons.jpg";
 
+import SearchRankSS from '../../public/ui/search/search_rank_SS.png';
 import SearchRankS from '../../public/ui/search/search_rank_1.png';
 import SearchRankA from '../../public/ui/search/search_rank_2.png';
 import SearchRankB from '../../public/ui/search/search_rank_3.png';
@@ -13,9 +14,12 @@ export interface Tier {
   name: string;
   thumbnail: string;
   isJpOnly?: boolean;
+  isEX?: boolean;
+  tooltip?: string;
 }
 
 export interface Tiers {
+  SS?: Tier[];
   S?: Tier[];
   A?: Tier[];
   B?: Tier[];
@@ -32,6 +36,16 @@ export interface TiersTabs {
   lastUpdated: string;
   tiers: Tiers;
   content?: string;
+}
+
+const RANK_THUMBNAILS = {
+  SS: SearchRankSS,
+  S: SearchRankS,
+  A: SearchRankA,
+  B: SearchRankB,
+  C: SearchRankC,
+  D: SearchRankD,
+  E: SearchRankE,
 }
 
 const tiers: TiersTabs[] = [
@@ -250,8 +264,15 @@ const tiers: TiersTabs[] = [
     label: "PvP",
     type: 'characters',
     backgroundImg: pvpBackgroundImg,
-    lastUpdated: "2021-08-25T20:09:04.030Z",
+    lastUpdated: "2021-08-29T12:55:45.854Z",
     tiers: {
+      SS: [
+        {
+          name: 'Gayle',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881528339628712016/unknown.png',
+          isEX: true
+        },
+      ],
       S: [
         {
           name: "2B",
@@ -282,6 +303,22 @@ const tiers: TiersTabs[] = [
           name: "Akeha",
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_83.png",
+        },
+        {
+          name: 'Levania',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881528236918595634/unknown.png',
+          isEX: true,
+          tooltip: `Tier below without <a href="https://gamewith.jp/nierreincarnation/article/show/290301" class="text-beige">core of Karakuri weapon</a><br/>This weapon enables him, it has short CD and AGI that he desires turning him into absolute weapon.<br/>And this weapon can't be this effective on other fists users because they don't have enough firepower to fully use it`
+        },
+        {
+          name: 'Fio',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881533397846093874/unknown.png',
+          isEX: true
+        },
+        {
+          name: 'Lars',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881527786118971463/unknown.png',
+          isEX: true
         },
       ],
       A: [
@@ -325,13 +362,33 @@ const tiers: TiersTabs[] = [
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_74.png",
         },
-      ],
-      B: [
         {
           name: "Fio",
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_58.png",
         },
+        {
+          name: "O63y",
+          thumbnail:
+            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_67.png",
+        },
+        {
+          name: '063y',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881530583925268480/unknown.png',
+          isEX: true
+        },
+        {
+          name: 'Akeha',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881533332385570856/unknown.png',
+          isEX: true
+        },
+        {
+          name: 'Dimos',
+          thumbnail: 'https://share.keziahmoselle.fr/2021/08/HD-Player_e8ipCz97tg.png',
+          isEX: true
+        },
+      ],
+      B: [
         {
           name: 'Rion',
           thumbnail: 'https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_14.png'
@@ -345,6 +402,11 @@ const tiers: TiersTabs[] = [
           name: "Akeha",
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_72.png",
+        },
+        {
+          name: "Argo",
+          thumbnail:
+            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_86.png",
         },
         {
           name: "Levania",
@@ -367,9 +429,28 @@ const tiers: TiersTabs[] = [
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_87.png",
         },
         {
-          name: "O63y",
-          thumbnail:
-            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_67.png",
+          name: "F66x",
+          thumbnail: "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_84.png"
+        },
+        {
+          name: 'Rion',
+          thumbnail: 'https://share.keziahmoselle.fr/2021/08/HD-Player_t7dsNyZPgL.png',
+          isEX: true
+        },
+        {
+          name: 'F66x',
+          thumbnail: 'https://share.keziahmoselle.fr/2021/08/HD-Player_mnmZncxRXL.png',
+          isEX: true
+        },
+        {
+          name: 'Griff',
+          thumbnail: 'https://share.keziahmoselle.fr/2021/08/brave_nx8XuRmy1n.png',
+          isEX: true
+        },
+        {
+          name: 'Noelle',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881529747744628756/unknown.png',
+          isEX: true
         },
       ],
       C: [
@@ -388,11 +469,6 @@ const tiers: TiersTabs[] = [
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_18.png",
         },
         {
-          name: "Argo",
-          thumbnail:
-            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_86.png",
-        },
-        {
           name: 'Fio',
           thumbnail: 'https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_52.png'
         },
@@ -401,34 +477,35 @@ const tiers: TiersTabs[] = [
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_35.png",
         },
+        {
+          name: 'Argo',
+          thumbnail: 'https://share.keziahmoselle.fr/2021/08/HD-Player_o6heDyIb2X.png',
+          isEX: true
+        },
       ],
       D: [
-        {
-          name: "Argo",
-          thumbnail:
-            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_53.png",
-        },
         {
           name: "Akeha",
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_5.png",
         },
         {
-          name: "F66x",
+          name: "Fio",
           thumbnail:
-            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_28.png",
+            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_89.png",
         },
         {
           name: "Fio",
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_12.png",
         },
-        {
-          name: "F66x",
-          thumbnail: "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_84.png"
-        },
       ],
       E: [
+        {
+          name: "Argo",
+          thumbnail:
+            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_53.png",
+        },
         {
           name: "Akeha",
           thumbnail: "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_59.png"
@@ -439,14 +516,14 @@ const tiers: TiersTabs[] = [
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_70.png",
         },
         {
-          name: "Fio",
+          name: "F66x",
           thumbnail:
-            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_82.png",
+            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_28.png",
         },
         {
           name: "Fio",
           thumbnail:
-            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_89.png",
+            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_82.png",
         },
         {
           name: "063y",
@@ -465,15 +542,6 @@ const tiers: TiersTabs[] = [
     tiers: {},
   },
 ];
-
-const RANK_THUMBNAILS = {
-  S: SearchRankS,
-  A: SearchRankA,
-  B: SearchRankB,
-  C: SearchRankC,
-  D: SearchRankD,
-  E: SearchRankE,
-}
 
 export {
   tiers,

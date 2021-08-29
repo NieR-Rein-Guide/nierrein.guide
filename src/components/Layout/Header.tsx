@@ -41,18 +41,12 @@ export default function Header(): JSX.Element {
   }, []);
 
   function handleNavToggle() {
-    if (!isNavOpened) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
     setIsNavOpened(!isNavOpened);
   }
 
   return (
     <header className="container">
-      <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-24">
+      <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-8 lg:mb-24">
         <Link href="/" passHref={true}>
           <a
             className="flex items-center relative group"
