@@ -22,8 +22,6 @@ export default function Events({ events }: GuidesProps): JSX.Element {
     startDate: new Date(event.start_date),
   }));
 
-  console.log(allEvents);
-
   const pastEvents = allEvents.filter((event) => event.endDate < new Date());
   const currentEvents = allEvents.filter((event) => event.endDate > new Date());
 
