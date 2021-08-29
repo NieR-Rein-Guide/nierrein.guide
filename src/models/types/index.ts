@@ -58,3 +58,15 @@ export type Guide = {
   published_at: string;
   updated_at?: string;
 }
+
+export type Story = {
+  type: string;
+  slug: string;
+  cover: {
+    formats: StrapiImageFormats;
+  };
+  title: string;
+  content: string;
+  released_date: string;
+  character_id: number;
+}
