@@ -1,6 +1,7 @@
 import { CostumeInfo } from "@models/character";
 import Link from 'next/link';
 import Image from 'next/image';
+import slugify from "slugify";
 export { Card, CharacterCard }
 
 function Card(): JSX.Element {
@@ -11,9 +12,10 @@ function Card(): JSX.Element {
 }
 
 function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
-
   return (
-    <Link href={`/characters/${costume.character}/${costume.name.en.replace(" ", "-")}`}>
+    <Link href={`/characters/${slugify(`${costume.character}/${costume.name.en}`, { remove: /[*+~.()'"!:@]/g })}`}>
+      {/* Eventually replace with this */}
+      {/* ${slugify(`${costume.character}/${costume.name.en}`, { lower: true, remove: /[*+~.()'"!:@]/g })}`}> */}
       <a>
         <div className={`card rarity${costume.stars}`}>
           <div className="card-art">
