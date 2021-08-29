@@ -13,8 +13,6 @@ import slugify from "slugify";
 export default function Page({ characters }): JSX.Element {
   const router = useRouter();
 
-  console.log(characters);
-
   const defaultCostume = typedCharacters.values().next()
     .value[0] as CostumeInfo;
 
