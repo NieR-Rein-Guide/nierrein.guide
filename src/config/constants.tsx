@@ -1,3 +1,4 @@
+import homeIcon from "../../public/icons/home.png";
 import guidesIcon from "../../public/icons/guides.png";
 import loadoutsIcon from "../../public/icons/loadout.png";
 import tierlistIcon from "../../public/icons/tierlist.png";
@@ -6,13 +7,12 @@ import databaseIcon from "../../public/icons/database.png";
 import fanContentIcon from "../../public/icons/fancontent.png";
 
 import SVG from "react-inlinesvg";
-import { RiRedditLine } from "react-icons/ri";
 
 export const NAVIGATION = [
   {
     label: "Home",
     href: "/",
-    icon: tierlistIcon,
+    icon: homeIcon,
   },
   {
     label: "Guides",
