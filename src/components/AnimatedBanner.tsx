@@ -15,6 +15,7 @@ export default function AnimatedBanner(): JSX.Element {
   }
 
   return (
+    // @ts-expect-error Type 'Ref<HTMLElement>' is not assignable to type 'LegacyRef<HTMLDivElement>'
     <div ref={intersectionRef}>
       <Lottie
         animationData={animationData}
