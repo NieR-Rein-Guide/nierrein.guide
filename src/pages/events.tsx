@@ -1,5 +1,5 @@
 import Meta from "@components/Meta";
-import { Tabs, Tab, TabList, TabPanels, TabPanel } from "@reach/tabs";
+import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "@components/Layout";

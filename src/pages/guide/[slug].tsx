@@ -16,8 +16,6 @@ interface GuideProps {
 export default function SingleGuide({ guide }: GuideProps): JSX.Element {
   const router = useRouter();
 
-  console.log(guide);
-
   return (
     <Layout>
       {!router.isFallback && (
