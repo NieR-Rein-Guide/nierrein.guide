@@ -6,8 +6,6 @@ export default function AnimatedBanner(): JSX.Element {
   const [animationData, setAnimationData] = useState(null);
   const [intersection, intersectionRef] = useIntersection();
 
-  console.log(intersection.isIntersecting);
-
   useEffect(() => {
     import("../lottie/mama_sign_banner.json").then(setAnimationData);
   }, []);
