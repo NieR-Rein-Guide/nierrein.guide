@@ -67,9 +67,6 @@ export async function getStaticProps(context) {
     (file) => file.endsWith(".png") || file.endsWith(".jpg")
   );
 
-  console.log(filteredFiles);
-  console.log(context.params.folder);
-
   return {
     props: {
       files: filteredFiles,

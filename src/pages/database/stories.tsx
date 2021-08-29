@@ -14,8 +14,6 @@ interface DatabaseStoriesProps {
 export default function DatabaseStories({
   stories,
 }: DatabaseStoriesProps): JSX.Element {
-  console.log(stories);
-
   return (
     <Layout>
       <Meta
