@@ -15,7 +15,7 @@ import pkg from "../../../package.json";
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
   const router = useRouter();
-  const defaultAnimationPosition = 80;
+  const defaultAnimationPosition = 20;
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
 
@@ -95,7 +95,8 @@ export default function Header(): JSX.Element {
                     <a
                       className={classNames(
                         "flex flex-col items-center justify-center",
-                        router.asPath === nav.href ? "active" : null
+                        router.asPath === nav.href ? "active" : null,
+                        router.asPath !== nav.href ? "inactive" : null
                       )}
                     >
                       <div className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-16 xl:w-16">

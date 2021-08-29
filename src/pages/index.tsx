@@ -5,6 +5,7 @@ import JoinUs from "@components/JoinUs";
 import CurrentlyWorkingOn from "@components/CurrentlyWorkingOn";
 import FeaturedGuides from "@components/FeaturedGuides";
 import EventsSlider from "@components/EventsSlider";
+import AnimatedBanner from "@components/AnimatedBanner";
 import Meta from "@components/Meta";
 import { getFeaturedGuides } from "@models/guide";
 import { Guide, Event } from "@models/types";
@@ -28,6 +29,7 @@ export default function Home({
       <Meta />
 
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
+        <AnimatedBanner />
         <EventsSlider currentEvents={currentEvents} />
         <DailyInfoWithNoSSR />
         <FeaturedGuides guides={featuredGuides} />

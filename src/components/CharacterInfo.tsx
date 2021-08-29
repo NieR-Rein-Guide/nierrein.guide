@@ -40,12 +40,7 @@ function StatsOfLevel({
 
 function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
   return (
-    <div
-      className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-5 gap-4 p-2 py-4 md:p-6 background-repeat"
-      style={{
-        backgroundImage: "url('/background.png')",
-      }}
-    >
+    <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-5 gap-4 p-2 py-4 md:p-6">
       <div className="2xl:col-span-2 relative bg-center bg-cover bg-white bg-opacity-25 border-2 flex">
         <Image
           width="2048"
