@@ -1,5 +1,5 @@
 import { Card, CharacterCard } from "@components/Card";
-import { typedCostumes } from "@models/character";
+import { CostumeInfo } from "@models/character";
 import React from "react";
 
 export { CardGrid, CharacterCardGrid }
@@ -17,10 +17,10 @@ function CardGrid(): JSX.Element {
   );
 }
 
-function CharacterCardGrid(): JSX.Element {
+function CharacterCardGrid({ costumes }: { costumes: CostumeInfo[] }): JSX.Element {
   return (
     <div className="card-grid">
-      {typedCostumes.map((costume) => (
+      {costumes.map((costume) => (
         <React.Fragment key={costume.id}>
           <CharacterCard {...{ costume }}>
           </CharacterCard>

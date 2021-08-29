@@ -11,15 +11,14 @@ function Card(): JSX.Element {
 }
 
 function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
+
   return (
-    <Link href={"/characters/" + costume.character + "/" + costume.name.en.replace(" ", "-")}>
+    <Link href={`/characters/${costume.character}/${costume.name.en.replace(" ", "-")}`}>
       <a>
         <div className={`card rarity${costume.stars}`}>
           <div className="card-art">
-            <div className="element">
-              <img src="\icons\elements\dark.png"></img>
-            </div>
-            <div className="weapon">
+            <div className="weapon-and-element-container">
+              <img src="/icons/elements/dark.png"></img>
               <img src="/icons/weapons/gun.png"></img>
             </div>
             <Image
@@ -31,6 +30,6 @@ function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
           </div>
         </div >
       </a>
-    </Link>
+    </Link >
   );
 }
