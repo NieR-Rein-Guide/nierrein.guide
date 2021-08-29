@@ -199,13 +199,13 @@ export const SOCIALS: Social[] = [
     icon: <SVG src="/logos/discord.svg" height="32" />,
   },
   {
-    label: "Unofficial Discord",
-    href: "https://www.discord.gg/nier",
-    icon: <SVG src="/logos/discord.svg" height="32" />,
-  },
-  {
     label: "Subreddit",
     href: "https://www.reddit.com/r/NieRReincarnation/",
     icon: <SVG src="/logos/reddit.svg" height="42" />,
+  },
+  {
+    label: "Official Subreddit Discord",
+    href: "https://www.discord.gg/nier",
+    icon: <SVG src="/logos/discord.svg" height="32" />,
   },
 ];

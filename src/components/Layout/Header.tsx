@@ -15,7 +15,7 @@ import pkg from "../../../package.json";
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
   const router = useRouter();
-  const defaultAnimationPosition = 20;
+  const defaultAnimationPosition = 18;
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
 

@@ -93,3 +93,15 @@ export type Costume = {
     absoluteMax: CostumeStats;
   }
 }
+
+export type Story = {
+  type: string;
+  slug: string;
+  cover: {
+    formats: StrapiImageFormats;
+  };
+  title: string;
+  content: string;
+  released_date: string;
+  character_id: number;
+}

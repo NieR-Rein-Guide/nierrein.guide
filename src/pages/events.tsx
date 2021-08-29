@@ -1,5 +1,5 @@
 import Meta from "@components/Meta";
-import { Tabs, Tab, TabList, TabPanels, TabPanel } from "@reach/tabs";
+import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "@components/Layout";
@@ -21,8 +21,6 @@ export default function Events({ events }: GuidesProps): JSX.Element {
     endDate: new Date(event.end_date),
     startDate: new Date(event.start_date),
   }));
-
-  console.log(allEvents);
 
   const pastEvents = allEvents.filter((event) => event.endDate < new Date());
   const currentEvents = allEvents.filter((event) => event.endDate > new Date());

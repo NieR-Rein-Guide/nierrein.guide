@@ -10,7 +10,6 @@ interface TierListProps {
 
 export default function TierList({ tier }: TierListProps): JSX.Element {
   const lists = Object.entries(tier.tiers);
-  console.log(tier);
 
   if (lists.length === 0) {
     return (

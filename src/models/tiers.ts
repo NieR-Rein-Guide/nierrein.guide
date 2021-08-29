@@ -444,7 +444,7 @@ const tiers: TiersTabs[] = [
         },
         {
           name: 'Griff',
-          thumbnail: 'https://share.keziahmoselle.fr/2021/08/brave_nx8XuRmy1n.png',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881580420695748629/unknown.png',
           isEX: true
         },
         {
