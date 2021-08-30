@@ -216,62 +216,7 @@ footer {
   transform: scaleX(-1);
 }
 
-.article__mask {
-  @apply bg-grey-lighter hidden;
 
-
-  @screen sm {
-    @apply block;
-    position: absolute;
-    top: 0;
-    left: -3.8rem;
-  }
-
-
-  @screen lg {
-    left: -8rem;
-  }
-
-  // diamond-shaped mask
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-}
-
-.article-parent::before {
-  content: unset;
-
-  @screen sm {
-    content: "";
-  }
-
-  background-image: url("/decorations/line-squares.svg");
-  display: block;
-  position: absolute;
-
-  top: -18px;
-  left: -80px;
-  background-size: 80px 80px;
-  height: 80px;
-  width: 80px;
-
-  @screen lg {
-    top: -25px;
-    left: -155px;
-    background-size: 150px 150px;
-    height: 150px;
-    width: 150px;
-  }
-}
-
-.diamond-border {
-  filter: drop-shadow(1px 0px 0px theme("colors.beige.inactive"))
-    drop-shadow(-1px 0px 0px theme("colors.beige.inactive"))
-    drop-shadow(0px 1px 0px theme("colors.beige.inactive"))
-    drop-shadow(0px -1px 0px theme("colors.beige.inactive"))
-    drop-shadow(1px 1px 0px theme("colors.beige.inactive"))
-    drop-shadow(-1px -1px 0px theme("colors.beige.inactive"))
-    drop-shadow(-1px 1px 0px theme("colors.beige.inactive"))
-    drop-shadow(1px -1px 0px theme("colors.beige.inactive"));
-}
 
 .bg-pattern {
   background-image: url(/decorations/pattern.png);

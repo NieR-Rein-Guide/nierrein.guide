@@ -47,6 +47,9 @@ module.exports = {
       },
       height: {
         '9/10': '90%',
+      },
+      spacing: {
+        "42" : "10.5rem"
       }
     },
   },
@@ -57,5 +60,5 @@ module.exports = {
       brightness: ['hover'],
     },
   },
-  plugins: [require("tailwindcss-easing")],
+  plugins: [require("tailwindcss-easing"), require("@tailwindcss/line-clamp")],
 };
