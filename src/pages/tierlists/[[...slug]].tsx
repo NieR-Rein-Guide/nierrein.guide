@@ -1,18 +1,23 @@
 import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
 import { useState } from "react";
-
 import Layout from "@components/Layout";
 import TierListTab from "@components/tierlist/TierListTab";
 import TierList from "@components/tierlist/TierList";
 import { tiers } from "@models/tiers";
 import Meta from "@components/Meta";
 import { DISCORD_URL } from "@config/constants";
+import slugify from "slugify";
 
-export default function Home(): JSX.Element {
-  const [tabIndex, setTabIndex] = useState(tiers[0].index);
+export default function Home({ defaultTab = 0 }): JSX.Element {
+  const [tabIndex, setTabIndex] = useState(defaultTab);
 
   const handleTabsChange = (index) => {
     setTabIndex(index);
+    history.replaceState(
+      null,
+      null,
+      `/tierlists/${slugify(tiers[index].label, { lower: true })}`
+    );
   };
 
   return (
@@ -20,7 +25,10 @@ export default function Home(): JSX.Element {
       <Meta
         title="Tier Lists"
         description="Tier lists for PvE, PvP and Weapons. Work In Progress."
-        cover="https://nierrein.guide/cover-tierlists.jpg"
+        cover={
+          tiers[tabIndex].coverImg ??
+          "https://nierrein.guide/cover-tierlists.jpg"
+        }
       />
 
       <div className="flex flex-col gap-y-24 mt-12">
@@ -69,4 +77,31 @@ export default function Home(): JSX.Element {
       </div>
     </Layout>
   );
+}
+
+export function getStaticProps(context) {
+  let defaultTab = 0;
+
+  if (context?.params?.slug && context.params.slug.length > 0) {
+    defaultTab = tiers.findIndex(
+      (tier) => slugify(tier.label, { lower: true }) === context.params.slug[0]
+    );
+  }
+
+  return {
+    props: {
+      defaultTab,
+    },
+  };
+}
+
+export async function getStaticPaths() {
+  const paths = tiers.map((tier) => ({
+    params: { slug: [slugify(tier.label, { lower: true })] },
+  }));
+
+  return {
+    paths,
+    fallback: true,
+  };
 }

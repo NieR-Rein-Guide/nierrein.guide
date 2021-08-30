@@ -32,7 +32,7 @@ class CostumeInfo {
     id: number
 
     get illustrationURL(): string {
-        return `/character/ch${this.id.toString().padStart(6, '0')}_full.png`
+        return `/character_thumbnails/ch${this.id.toString().padStart(6, '0')}_full-854-480.png`
     }
     get iconURL(): string {
         switch (this.id) {

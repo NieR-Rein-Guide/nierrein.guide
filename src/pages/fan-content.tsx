@@ -114,7 +114,10 @@ export default function FanContentPage({
           </p>
         </div>
 
-        <button onClick={() => setIsFormOpen(!isFormOpen)} className="btn">
+        <button
+          onClick={() => setIsFormOpen(!isFormOpen)}
+          className="btn mt-4 lg:mt-0"
+        >
           Submit your work
         </button>
       </div>
@@ -129,8 +132,8 @@ export default function FanContentPage({
             </div>
           )}
 
-          <form className="flex flex-col justify-between gap-y-4 border border-beige p-4 w-3/4 mx-auto">
-            <div className="flex justify-between items-stretch">
+          <form className="flex flex-col justify-between gap-y-4 border border-beige p-4 w-full lg:w-3/4 mx-auto">
+            <div className="flex flex-col lg:flex-row justify-between items-stretch">
               <div className="input-field">
                 <input
                   value={form.author}
@@ -205,7 +208,7 @@ export default function FanContentPage({
       )}
 
       <section className="my-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-4 lg:gap-x-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-12 gap-x-4 lg:gap-x-8 my-4">
           {fanContents.map((content) => (
             <ContentItem
               key={content.link}

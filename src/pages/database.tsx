@@ -13,7 +13,7 @@ export default function Database(): JSX.Element {
     <Layout>
       <Meta
         title="Database"
-        description="3D Model Viewer, Stories (WIP : and all the materials, characters, weapons...)"
+        description="3D Model viewer, Stories, Assets and Artworks"
         cover="https://nierrein.guide/cover-database.jpg"
       />
 
