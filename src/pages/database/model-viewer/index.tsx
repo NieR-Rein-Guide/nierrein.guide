@@ -78,9 +78,9 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
   return (
     <Layout>
       <Meta
-        title="Database"
-        description="3D Model Viewer (WIP : and all the materials, characters, weapons...)"
-        cover="https://nierrein.guide/cover-database.jpg"
+        title="3D Model viewer"
+        description="View all models of the game"
+        cover="https://nierrein.guide/cover-model-viewer.jpg"
       />
 
       <nav className="mb-8">

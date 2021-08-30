@@ -22,8 +22,8 @@ export default function SingleGuide({ story }: StoryProps): JSX.Element {
           title={`${story.title} - story`}
           description={`Read this story to learn more about : ${story.title}`}
           cover={
-            story?.cover?.formats.small.url ??
-            "https://nierrein.guide/cover-guides.jpg"
+            story?.cover?.formats.medium.url ??
+            "https://nierrein.guide/cover-story.jpg"
           }
         />
       )}

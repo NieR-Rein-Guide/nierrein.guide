@@ -18,9 +18,9 @@ export default function DatabaseStories({
   return (
     <Layout>
       <Meta
-        title="Stories - Database"
-        description="Index of stories in the game."
-        cover="https://nierrein.guide/cover-database.jpg"
+        title={`${folder} - Database`}
+        description={`${folder} assets`}
+        cover="https://nierrein.guide/cover-assets.jpg"
       />
 
       <nav className="mb-16">
