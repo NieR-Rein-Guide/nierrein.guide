@@ -4,9 +4,7 @@
 
 html,
 body {
-  color: #fff;
-  background-color: #000;
-  @apply font-labor;
+  @apply font-labor bg-black text-white overflow-x-hidden;
   background-image: url(/decorations/pattern.png);
   background-repeat: repeat;
 }
@@ -144,7 +142,7 @@ svg {
 
 .container {
   @apply w-full px-2 md:px-4 lg:px-8;
-  max-width: 1500px;
+  max-width: 1200px;
   margin: 0 auto;
 }
 

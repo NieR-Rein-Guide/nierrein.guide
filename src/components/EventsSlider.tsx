@@ -96,7 +96,7 @@ export default function EventsSlider({
 
         <div className="slider__other-events grid grid-rows-4 px-8 gap-y-4 py-4 h-9/10">
           <div className="border-3 relative h-32">
-            <div className="flex justify-center items-center py-6 mr-2 h-full">
+            <div className="flex justify-center items-center py-6 mr-4 h-full">
               <img
                 className="-mr-3 h-14"
                 src="/ui/skill/skill100001_standard.png"

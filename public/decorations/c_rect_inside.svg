@@ -5,10 +5,10 @@
 	 xml:space="preserve">
 <style type="text/css">
 	.st0{opacity:8.000000e-02;}
-	.st1{fill:none;stroke:#191612;stroke-width:4;stroke-miterlimit:10;}
+	.st1{fill:none;stroke:#FFF;stroke-width:4;stroke-miterlimit:10;}
 </style>
 <g class="st0">
-	
+
 		<rect x="305.8" y="305.8" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -394.6745 952.8284)" class="st1" width="1294" height="1294"/>
 </g>
 </svg>

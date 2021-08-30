@@ -85,11 +85,11 @@ export default function Header(): JSX.Element {
                 <SVG src="/decorations/menu-close.svg" />
               </button>
             </div>
-            <ul className="grid grid-cols-2 gap-y-8 mx-12 xl:grid-cols-7 xl:gap-x-8 xl:mx-0">
+            <ul className="grid grid-cols-2 gap-y-8 mx-12 xl:grid-cols-7 xl:mx-0">
               {NAVIGATION.map((nav) => (
                 <li
                   key={nav.label}
-                  className="nav-item xl:flex xl:justify-center xl:w-28"
+                  className="nav-item xl:flex xl:justify-center"
                 >
                   <Link href={nav.href} passHref={true}>
                     <a
@@ -108,7 +108,7 @@ export default function Header(): JSX.Element {
                           alt={`${nav.label} icon`}
                         />
                       </div>
-                      <span className="text-lg mt-2 text-center font-display xl:text-xl xl:w-auto">
+                      <span className="text-lg mt-2 text-center font-display xl:text-xl xl:w-28">
                         {nav.label}
                       </span>
                     </a>

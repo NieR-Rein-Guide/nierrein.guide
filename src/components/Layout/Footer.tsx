@@ -2,12 +2,22 @@ import { CREDITS, DISCORD_URL } from "config/constants";
 import Lines from "@components/decorations/Lines";
 import Image from "next/image";
 import slugify from "slugify";
+import SVG from "react-inlinesvg";
 
 import mamaImg from "../../../public/mama.png";
 
 export default function Footer(): JSX.Element {
   return (
-    <footer className="flex flex-col items-center justify-center w-full pt-14">
+    <footer className="flex flex-col items-center justify-center w-full pt-14 relative overflow-hidden">
+      <SVG
+        src="/decorations/c_rect_outside.svg"
+        className="hidden lg:block absolute top-1/2 transform -translate-y-1/2 max-w-7xl"
+      />
+      <SVG
+        src="/decorations/c_rect_inside.svg"
+        className="hidden lg:block absolute top-1/2 transform -translate-y-1/2 max-w-7xl"
+      />
+
       <div className="container">
         <section className="flex flex-col flex-wrap w-full">
           <h2 className="overlap">
