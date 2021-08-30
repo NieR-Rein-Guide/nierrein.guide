@@ -13,15 +13,15 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
   return (
     <Layout>
       <Meta
-        title="Guides"
-        description="Learn several aspects of the game by reading our guides."
-        cover="https://nierrein.guide/cover-guides.jpg"
+        title='Guides'
+        description='Learn several aspects of the game by reading our guides.'
+        cover='https://nierrein.guide/cover-guides.jpg'
       />
 
       <section>
-        <h2 className="overlap">Guides</h2>
+        <h2 className='overlap'>Guides</h2>
 
-        <div className="flex flex-col gap-y-14 xl:gap-y-24 mt-4 ml-0 sm:ml-16 lg:ml-36">
+        <div className='flex flex-col gap-y-14 xl:gap-y-24 mt-4 ml-16 sm:ml-16 lg:ml-36'>
           {guides.map((guide) => (
             <Article
               key={guide.slug}
@@ -29,7 +29,7 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
               author={guide.author}
               date={guide.updated_at}
               excerpt={
-                "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
+                'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without'
               }
               slug={guide.slug}
               image={guide.cover.formats}
@@ -37,14 +37,14 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
           ))}
         </div>
 
-        <div className="flex justify-center mt-6">
-          <Link href="/guides" passHref={true}>
-            <a className="btn">Show More</a>
+        <div className='flex justify-center mt-6'>
+          <Link href='/guides' passHref={true}>
+            <a className='btn'>Show More</a>
           </Link>
         </div>
       </section>
     </Layout>
-  );
+  )
 }
 
 export async function getStaticProps() {
