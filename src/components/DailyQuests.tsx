@@ -123,8 +123,6 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
   const gems = dailyInfo.gems;
   const weaponUpgrades = dailyInfo.weaponUpgrades;
 
-  console.log(dailyInfo);
-
   return (
     <div className="flex justify-center w-full">
       <div className="flex flex-col xl:flex-row place-items-center">

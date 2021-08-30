@@ -11,9 +11,6 @@ import slugify from "slugify";
 export default function Home({ defaultTab = 0 }): JSX.Element {
   const [tabIndex, setTabIndex] = useState(defaultTab);
 
-  console.log(defaultTab);
-  console.log(tabIndex);
-
   const handleTabsChange = (index) => {
     setTabIndex(index);
     history.replaceState(
