@@ -28,10 +28,10 @@ export default function Article({
         <article className=''>
           <svg
             className='absolute transform -translate-x-42 -translate-y-10 invisible lg:visible'
+    
             width='308'
             height='309'
             viewBox='0 0 308 309'
-            fill='none'
             xmlns='http://www.w3.org/2000/svg'
           >
             <g id='guide-avatar'>
@@ -172,7 +172,7 @@ export default function Article({
                 width='1'
                 height='1'
               >
-                <use xlinkHref='#image0' transform='scale(0.00195312)' />
+                <use href='#image0' transform='scale(0.00195312)' />
               </pattern>
               <filter
                 id='filter1_d'
@@ -299,7 +299,7 @@ export default function Article({
                 data-name={`${title} thumbnail`}
                 width='512'
                 height='512'
-                xlinkHref={
+                href={
                   image?.large?.url ??
                   image?.medium?.url ??
                   image?.small?.url ??
@@ -314,7 +314,6 @@ export default function Article({
             width='153'
             height='153'
             viewBox='0 0 153 153'
-            fill='none'
             xmlns='http://www.w3.org/2000/svg'
           >
             <g id='guide-avatar1'>
@@ -575,7 +574,7 @@ export default function Article({
                 data-name={`${title} thumbnail`}
                 width='256'
                 height='256'
-                xlinkHref={
+                href={
                   image?.large?.url ??
                   image?.medium?.url ??
                   image?.small?.url ??
