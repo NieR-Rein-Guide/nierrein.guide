@@ -5,7 +5,7 @@ import { Guide } from "./types"
 async function getFeaturedGuides(): Promise<Guide[]> {
   const GET_GUIDES = gql`
     {
-      featuredGuide  {
+      featuredGuide {
         guides {
           title
           author
@@ -31,7 +31,7 @@ async function getFeaturedGuides(): Promise<Guide[]> {
 async function getAllGuides(): Promise<Guide[]> {
   const GET_GUIDES = gql`
     {
-      guides {
+      guides(sort: "published_at:desc") {
         title
         slug
         author
