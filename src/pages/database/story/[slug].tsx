@@ -22,8 +22,9 @@ export default function SingleGuide({ story }: StoryProps): JSX.Element {
           title={`${story.title} - story`}
           description={`Read this story to learn more about : ${story.title}`}
           cover={
-            story?.cover?.formats.medium.url ??
-            "https://nierrein.guide/cover-story.jpg"
+            story?.cover?.formats?.medium?.url
+              ? story?.cover?.formats?.medium?.url
+              : "https://nierrein.guide/cover-story.jpg"
           }
         />
       )}
@@ -48,7 +49,9 @@ export default function SingleGuide({ story }: StoryProps): JSX.Element {
 
             <div
               className="wysiwyg"
-              dangerouslySetInnerHTML={{ __html: marked(story.content) }}
+              dangerouslySetInnerHTML={{
+                __html: marked(story.content ?? "## No content"),
+              }}
             ></div>
           </article>
         </>
