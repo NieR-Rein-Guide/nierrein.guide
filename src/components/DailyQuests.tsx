@@ -12,9 +12,11 @@ import { Menu, MenuList, MenuButton, MenuItem } from "@reach/menu-button";
 // used for listing all daily types
 const DAYS_OF_WEEK = Array.from(Array(7).keys());
 
+type WeaponType = "sword" | "greatsword" | "spear" | "fist" | "staff" | "gun";
+
 type DailyInfo = {
   gems: string[];
-  weaponUpgrades: string[];
+  weaponUpgrades: WeaponType[];
 };
 
 interface DailyRowProps {
@@ -23,40 +25,47 @@ interface DailyRowProps {
 
 const dailyTypes = (dayOfWeek: number): DailyInfo => {
   switch (dayOfWeek) {
-    case 0:
+    case 0: // Sunday
       return {
         gems: ["topaz", "tanzanite"],
-        weaponUpgrades: ["greatsword", "sword"],
+        weaponUpgrades: [
+          "sword",
+          "greatsword",
+          "gun",
+          "spear",
+          "fist",
+          "staff",
+        ],
       };
-    case 1:
+    case 1: // Monday
       return {
         gems: ["emerald"],
-        weaponUpgrades: ["greatsword", "sword"],
+        weaponUpgrades: ["sword"],
       };
-    case 2:
+    case 2: // Tuesday
       return {
         gems: ["ruby"],
-        weaponUpgrades: ["greatsword", "sword"],
+        weaponUpgrades: ["greatsword"],
       };
-    case 3:
+    case 3: // Wednesday
       return {
         gems: ["aquamarine"],
-        weaponUpgrades: ["greatsword", "sword"],
+        weaponUpgrades: ["gun"],
       };
-    case 4:
+    case 4: // Thursday
       return {
         gems: ["topaz"],
-        weaponUpgrades: ["greatsword", "sword"],
+        weaponUpgrades: ["spear"],
       };
-    case 5:
+    case 5: // Friday
       return {
         gems: ["tanzanite"],
-        weaponUpgrades: ["spear", "fist"],
+        weaponUpgrades: ["fist"],
       };
-    case 6:
+    case 6: // Saturday
       return {
         gems: ["aquamarine", "emerald", "ruby"],
-        weaponUpgrades: ["greatsword", "sword"],
+        weaponUpgrades: ["staff"],
       };
   }
 };
@@ -113,6 +122,8 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
   const dailyInfo = dailyTypes(dayOfWeek.getDay());
   const gems = dailyInfo.gems;
   const weaponUpgrades = dailyInfo.weaponUpgrades;
+
+  console.log(dailyInfo);
 
   return (
     <div className="flex justify-center w-full">
