@@ -36,6 +36,7 @@ export interface TiersTabs {
   lastUpdated: string;
   tiers: Tiers;
   content?: string;
+  coverImg?: string;
 }
 
 const RANK_THUMBNAILS = {
@@ -55,6 +56,7 @@ const tiers: TiersTabs[] = [
     type: 'characters',
     lastUpdated: "2021-08-25T20:09:04.030Z",
     backgroundImg: pveBackgroundImg,
+    coverImg: "https://nierrein.guide/tierlists/cover-pve.jpg",
     tiers: {
       S: [
         {
@@ -265,6 +267,7 @@ const tiers: TiersTabs[] = [
     type: 'characters',
     backgroundImg: pvpBackgroundImg,
     lastUpdated: "2021-08-29T12:55:45.854Z",
+    coverImg: "https://nierrein.guide/tierlists/cover-pvp.jpg",
     tiers: {
       SS: [
         {
@@ -538,6 +541,7 @@ const tiers: TiersTabs[] = [
     type: 'weapons',
     backgroundImg: weaponsBackgroundImg,
     lastUpdated: "2021-08-25T20:09:04.030Z",
+    coverImg: "https://nierrein.guide/tierlists/cover-weapons.jpg",
     content: '<img src="https://share.keziahmoselle.fr/2021/08/brave_NNe3zhirLW.png" alt="Weapons tier list" />',
     tiers: {},
   },
