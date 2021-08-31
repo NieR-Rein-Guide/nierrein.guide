@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 
 import { FiGithub } from "react-icons/fi";
+import { RiTodoLine } from "react-icons/ri";
 import { GITHUB_REPO_LINK } from "@config/constants";
 import pkg from "../../../package.json";
 
@@ -119,16 +120,27 @@ export default function Header(): JSX.Element {
           </div>
         </nav>
 
-        <a
-          href={GITHUB_REPO_LINK}
-          title="Click to view the source code on GitHub"
-          rel="noopener noreferrer"
-          target="_blank"
-          className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige text-black hover:bg-opacity-90 transition-colors w-full xl:max-w-xl xl:mx-auto"
-        >
-          <FiGithub />
-          <span>Currently under heavy development (v{pkg.version})</span>
-        </a>
+        <div className="w-full">
+          <div className="flex flex-col xl:flex-row justify-center gap-4 mx-auto">
+            <a
+              href={GITHUB_REPO_LINK}
+              title="Click to view the source code on GitHub"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige text-black hover:bg-opacity-90 transition-colors"
+            >
+              <FiGithub />
+              <span>Currently under heavy development (v{pkg.version})</span>
+            </a>
+
+            <Link href="/todolist">
+              <a className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige-accent text-black hover:bg-opacity-90 transition-colors">
+                <RiTodoLine />
+                <span>Todolist</span>
+              </a>
+            </Link>
+          </div>
+        </div>
       </div>
     </header>
   );
