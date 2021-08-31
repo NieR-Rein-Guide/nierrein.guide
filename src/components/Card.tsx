@@ -28,11 +28,9 @@ function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
               <img src="/icons/weapons/gun.png"></img>
             </div>
             <div className="star-container">
-              <img src="/icons/elements/dark.png"></img>
-              <img src="/icons/elements/dark.png"></img>
-              <img src="/icons/elements/dark.png"></img>
-              <img src="/icons/elements/dark.png"></img>
-              <img src="/icons/elements/dark.png"></img>
+              {Array.from(Array(costume.stars), (e, i) => {
+                return <img src="/icons/elements/dark.png"></img>
+              })}
             </div>
             <Image
               src={costume.illustrationURL}
