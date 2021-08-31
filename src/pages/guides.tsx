@@ -28,9 +28,7 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
               title={guide.title}
               author={guide.author}
               date={guide.updated_at}
-              excerpt={
-                "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without"
-              }
+              excerpt={guide.description}
               slug={guide.slug}
               image={guide.cover.formats}
             />

@@ -48,6 +48,7 @@ export type Event = {
 export type Guide = {
   slug: string;
   title: string;
+  description: string;
   author: string;
   content: string;
   cover?: {

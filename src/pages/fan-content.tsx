@@ -123,7 +123,7 @@ export default function FanContentPage({
     <Layout>
       <Meta
         title="Fan Content"
-        description="View and Share NieR related artworks !"
+        description="View and share NieR related artworks and videos !"
         cover="https://nierrein.guide/cover-fancontent.jpg"
       />
 

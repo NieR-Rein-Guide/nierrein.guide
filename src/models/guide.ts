@@ -8,6 +8,7 @@ async function getFeaturedGuides(): Promise<Guide[]> {
       featuredGuide {
         guides {
           title
+          description
           author
           slug
           content
@@ -33,6 +34,7 @@ async function getAllGuides(): Promise<Guide[]> {
     {
       guides(sort: "published_at:desc") {
         title
+        description
         slug
         author
         content
