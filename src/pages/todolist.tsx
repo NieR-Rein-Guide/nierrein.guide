@@ -79,7 +79,11 @@ const preferentialTodos = [
 export default function TodolistPage({}): JSX.Element {
   return (
     <Layout>
-      <Meta />
+      <Meta
+        title="Todolist"
+        description="Keep track of what you need to do every day"
+        cover="https://nierrein.guide/cover-todolist.jpg"
+      />
 
       <p className="bg-grey-dark p-4 mb-24 max-w-lg mx-auto">
         Offline support and local storage are coming soon.
