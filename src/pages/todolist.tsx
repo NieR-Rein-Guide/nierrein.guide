@@ -129,7 +129,7 @@ export default function TodolistPage({}): JSX.Element {
 function TodoListItem({ todo }) {
   return (
     <label className="flex items-center cursor-pointer">
-      <li className="inline-flex items-center bg-grey-foreground py-6 px-8 rounded-sm w-full relative">
+      <li className="inline-flex items-center bg-grey-foreground py-6 px-8 rounded-sm w-full relative transition hover:bg-grey-dark">
         <input type="checkbox" className="cursor-pointer" />
         <div className="ml-4 inline">{todo.label}</div>
         <img
