@@ -23,6 +23,7 @@ export type StrapiImage = {
 }
 
 export type FanContent = {
+  type: 'art' | 'video';
   author?: string;
   link?: string;
   image?: {
@@ -47,6 +48,7 @@ export type Event = {
 export type Guide = {
   slug: string;
   title: string;
+  description: string;
   author: string;
   content: string;
   cover?: {

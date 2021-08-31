@@ -7,9 +7,11 @@ import { tiers } from "@models/tiers";
 import Meta from "@components/Meta";
 import { DISCORD_URL } from "@config/constants";
 import slugify from "slugify";
+import { useRef } from "react";
 
 export default function Home({ defaultTab = 0 }): JSX.Element {
   const [tabIndex, setTabIndex] = useState(defaultTab);
+  const content = useRef<HTMLDivElement>(null);
 
   const handleTabsChange = (index) => {
     setTabIndex(index);
@@ -18,6 +20,10 @@ export default function Home({ defaultTab = 0 }): JSX.Element {
       null,
       `/tierlists/${slugify(tiers[index].label, { lower: true })}`
     );
+
+    content.current.scrollIntoView({
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -62,7 +68,7 @@ export default function Home({ defaultTab = 0 }): JSX.Element {
             </span>
           </p>
 
-          <TabPanels>
+          <TabPanels ref={content}>
             {tiers.map((tier) => (
               <TabPanel key={tier.index}>
                 <section className="mt-8">

@@ -266,7 +266,7 @@ const tiers: TiersTabs[] = [
     label: "PvP",
     type: 'characters',
     backgroundImg: pvpBackgroundImg,
-    lastUpdated: "2021-08-29T12:55:45.854Z",
+    lastUpdated: "2021-08-31T14:06:37.560Z",
     coverImg: "https://nierrein.guide/tierlists/cover-pvp.jpg",
     tiers: {
       SS: [
@@ -322,6 +322,10 @@ const tiers: TiersTabs[] = [
           name: 'Lars',
           thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881527786118971463/unknown.png',
           isEX: true
+        },
+        {
+          name: 'Lars',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877323861123809300/882231925039849562/c_i_90.png',
         },
       ],
       A: [
@@ -407,11 +411,6 @@ const tiers: TiersTabs[] = [
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_72.png",
         },
         {
-          name: "Argo",
-          thumbnail:
-            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_86.png",
-        },
-        {
           name: "Levania",
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_80.png",
@@ -470,6 +469,11 @@ const tiers: TiersTabs[] = [
           name: "9S",
           thumbnail:
             "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_18.png",
+        },
+        {
+          name: "Argo",
+          thumbnail:
+            "https://img.gamewith.jp/article_tools/nierreincarnation/gacha/c_i_86.png",
         },
         {
           name: 'Fio',
