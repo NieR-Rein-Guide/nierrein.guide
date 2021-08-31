@@ -2,6 +2,7 @@ import { CostumeInfo } from "@models/character";
 import Link from 'next/link';
 import Image from 'next/image';
 import slugify from "slugify";
+import Squares from "./decorations/Squares";
 export { Card, CharacterCard }
 
 function Card(): JSX.Element {
@@ -19,6 +20,9 @@ function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
       <a>
         <div className={`card rarity${costume.stars}`}>
           <div className="card-art">
+            <div className="squares-container">
+              <Squares />
+            </div>
             <div className="weapon-and-element-container">
               <img src="/icons/elements/dark.png"></img>
               <img src="/icons/weapons/gun.png"></img>

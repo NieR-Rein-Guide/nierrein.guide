@@ -2,6 +2,8 @@
     background-color: theme("colors.beige.dark");
     overflow: hidden;
     aspect-ratio: 9 / 16;
+    border: rgb(184, 179, 101);
+    border-style: double;
 }
 
 .card:hover {
@@ -59,4 +61,12 @@
 
 .star-container img {
     height: 75%;
+}
+
+.squares-container {
+    position: absolute;
+    top: 10%;
+    height: 67%;
+    width: 100%;
+    z-index: 1;
 }
