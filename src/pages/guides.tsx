@@ -1,12 +1,12 @@
-import Meta from "@components/Meta";
-import Layout from "@components/Layout";
-import Article from "@components/Article";
-import { getAllGuides } from "@models/guide";
-import { Guide } from "@models/types";
-import Link from "next/link";
+import Meta from '@components/Meta'
+import Layout from '@components/Layout'
+import Article from '@components/Article'
+import { getAllGuides } from '@models/guide'
+import { Guide } from '@models/types'
+import Link from 'next/link'
 
 interface GuidesProps {
-  guides: Guide[];
+  guides: Guide[]
 }
 
 export default function Guides({ guides }: GuidesProps): JSX.Element {
@@ -22,6 +22,7 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
         <h2 className='overlap'>Guides</h2>
 
         <div className='flex flex-col gap-y-14 xl:gap-y-24 mt-4 ml-16 sm:ml-16 lg:ml-36'>
+          {/* TODO: REMOVE index from key */}
           {guides.map((guide) => (
             <Article
               key={guide.slug}
@@ -48,12 +49,12 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
 }
 
 export async function getStaticProps() {
-  const guides = await getAllGuides();
+  const guides = await getAllGuides()
 
   return {
     props: {
       guides,
     },
     revalidate: 60,
-  };
+  }
 }
