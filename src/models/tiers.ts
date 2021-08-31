@@ -266,7 +266,7 @@ const tiers: TiersTabs[] = [
     label: "PvP",
     type: 'characters',
     backgroundImg: pvpBackgroundImg,
-    lastUpdated: "2021-08-29T12:55:45.854Z",
+    lastUpdated: "2021-08-31T12:23:56.157Z",
     coverImg: "https://nierrein.guide/tierlists/cover-pvp.jpg",
     tiers: {
       SS: [
@@ -322,6 +322,10 @@ const tiers: TiersTabs[] = [
           name: 'Lars',
           thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881527786118971463/unknown.png',
           isEX: true
+        },
+        {
+          name: 'Lars',
+          thumbnail: 'https://cdn.discordapp.com/attachments/877323861123809300/882231925039849562/c_i_90.png',
         },
       ],
       A: [
