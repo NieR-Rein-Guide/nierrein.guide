@@ -32,3 +32,12 @@ select, {
 input[type="file"] {
   @apply sr-only;
 }
+
+input[type="checkbox"] {
+  @apply border border-beige-dark p-1 inline-block ease-out-cubic bg-grey-foreground h-4 w-4;
+  appearance: none;
+
+  &:checked {
+    @apply bg-beige-active;
+  }
+}
