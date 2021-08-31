@@ -23,6 +23,7 @@ export type StrapiImage = {
 }
 
 export type FanContent = {
+  type: 'art' | 'video';
   author?: string;
   link?: string;
   image?: {

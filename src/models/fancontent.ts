@@ -10,6 +10,7 @@ async function getAllFanContents(): Promise<FanContent[]> {
       fanContents (sort: "published_at:desc", where: { is_approved: true }) {
         author
         link
+        type
         is_approved
         image {
           formats
@@ -25,23 +26,27 @@ async function getAllFanContents(): Promise<FanContent[]> {
 }
 
 interface SubmitFanContentArgs {
+  type: 'art' | 'video';
   author: string;
   link: string;
   image: File;
 }
 
-function submitFanContent({ author, link, image }: SubmitFanContentArgs): Promise<void> {
-  const data = {
-    author,
-    link,
-  }
-
+function submitFanContent({ type, author = '', link, image }: SubmitFanContentArgs): Promise<void> {
   const formData = new FormData()
 
-  formData.append('data', JSON.stringify(data))
-  formData.append(`files.image`, image, image.name);
+  if (type === 'video') {
+    formData.append('data', JSON.stringify({ link, type }))
 
-  return axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fan-contents`, formData)
+    return axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fan-contents`, formData)
+  }
+
+  if (type === 'art') {
+    formData.append('data', JSON.stringify({ author, link, type }))
+    formData.append(`files.image`, image, image.name);
+
+    return axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fan-contents`, formData)
+  }
 }
 
 export {
