@@ -2,6 +2,8 @@
     background-color: theme("colors.beige.dark");
     overflow: hidden;
     aspect-ratio: 9 / 16;
+    border: rgb(184, 179, 101);
+    border-style: double;
 }
 
 .card:hover {
@@ -30,7 +32,6 @@
 
 .weapon-and-element-container {
     position: absolute;
-    // background-color: blue;
     width: 20%;
     height: 20%;
     top: 10%;
@@ -44,4 +45,28 @@
 .weapon-and-element-container img {
     width: 100%;
     height: auto;
+}
+
+.star-container {
+    position: absolute;
+    display: flex;
+    //background-color: blue;
+    width: 100%;
+    height: 10%;
+    top: 65%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.star-container img {
+    height: 75%;
+}
+
+.squares-container {
+    position: absolute;
+    top: 10%;
+    height: 67%;
+    width: 100%;
+    z-index: 1;
 }
