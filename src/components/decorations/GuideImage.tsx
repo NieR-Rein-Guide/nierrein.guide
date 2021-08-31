@@ -13,7 +13,12 @@ export default function GuideImage(props): JSX.Element {
 
   if (!props.isSmall) {
     return (
-      <svg className={props.svgStyle} width='308' height='309'>
+      <svg
+        className={props.svgStyle}
+        width='308'
+        height='309'
+        xmlns='http://www.w3.org/2000/svg'
+      >
         <path
           fill='#C4C4C4'
           d='M36 167.814L166.815 36.999 297.63 167.814 166.815 298.629z'
@@ -197,19 +202,19 @@ export default function GuideImage(props): JSX.Element {
             width='1'
             height='1'
           >
-            <use
-              xlinkHref={'#guide-avatar__image0' + bigSvgId}
-              transform='scale(.00195)'
-            />
+            <use xlinkHref='#guide-avatar__image0' transform='scale(.00195)' />
           </pattern>
           <image
-            id={'guide-avatar__image0' + bigSvgId}
-            width='512'
-            height='512'
+            id='guide-avatar__image0'
+ 
+            preserveAspectRatio='xMidYMid meet'
+            // x='0'
+            // y='0'
+            // style={{ objectFit: 'cover' }}
             xlinkHref={
               props.image?.large?.url ??
-              props.image?.medium?.url ??
               props.image?.small?.url ??
+              props.image?.medium?.url ??
               props.image?.thumbnail?.url
             }
           />

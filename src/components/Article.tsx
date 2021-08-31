@@ -28,11 +28,8 @@ export default function Article({
     <Link href={`/guide/${slug}`} passHref={true}>
       <a className='group '>
         <article className='relative'>
-          <ShadowRoot className='absolute transform -translate-x-44 -translate-y-10 invisible lg:visible'>
-            <GuideImage
-              image={image}
-              title={title}
-            />
+          <ShadowRoot className='absolute transform -translate-x-42 -translate-y-10 invisible lg:visible'>
+            <GuideImage image={image} svgStyle='object-co' title={title} />
           </ShadowRoot>
 
           <ShadowRoot className='absolute transform -translate-x-20 -translate-y-5 lg:invisible'>
