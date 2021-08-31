@@ -1,16 +1,4 @@
-import React from 'react'
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min) + min) //The maximum is exclusive and the minimum is inclusive
-}
-
 export default function GuideImage(props): JSX.Element {
-  const smallSvgId = 'imageSmall' + getRandomInt(100000, 999999)
-  const bigSvgId = 'imageBig' + getRandomInt(100000, 999999)
-  const avatarId = getRandomInt(100000, 999999)
-
   if (!props.isSmall) {
     return (
       <svg
@@ -206,11 +194,11 @@ export default function GuideImage(props): JSX.Element {
           </pattern>
           <image
             id='guide-avatar__image0'
- 
-            preserveAspectRatio='xMidYMid meet'
-            // x='0'
-            // y='0'
-            // style={{ objectFit: 'cover' }}
+            x='0'
+            y='0'
+            width='512'
+            height='512'
+            preserveAspectRatio='xMidYMid slice'
             xlinkHref={
               props.image?.large?.url ??
               props.image?.small?.url ??
@@ -227,98 +215,65 @@ export default function GuideImage(props): JSX.Element {
         className={props.svgStyle}
         width='153'
         height='153'
-        viewBox='0 0 153 153'
         xmlns='http://www.w3.org/2000/svg'
       >
-        <g id='guide-avatar1'>
-          <rect
-            id='Rectangle 231'
-            width='88.0658'
-            height='88.0658'
-            transform='matrix(0.708299 -0.705912 0.708299 0.705912 20.3052 82.8987)'
-            fill='#C4C4C4'
+        <path
+          fill='#C4C4C4'
+          d='M20.305 82.899l62.377-62.167 62.377 62.167-62.377 62.167z'
+        />
+        <g filter='url(#guide-avatar1__filter0_d)'>
+          <path
+            fill='#2D2D2D'
+            d='M18.874 83.153l64.063-63.847L147 83.153 82.937 147z'
           />
-          <g id='Rectangle 241' filter='url(#filter0_d99)'>
-            <rect
-              width='90.4459'
-              height='90.4459'
-              transform='matrix(0.708299 -0.705912 0.708299 0.705912 18.8744 83.1532)'
-              fill='#2D2D2D'
-            />
-            <rect
-              x='0.708299'
-              width='89.4459'
-              height='89.4459'
-              transform='matrix(0.708299 -0.705912 0.708299 0.705912 19.081 83.6532)'
-              stroke='#E6E2CF'
-            />
-          </g>
-          <g id='Mask Group1'>
-            <mask
-              id='mask999'
-              mask-type='alpha'
-              maskUnits='userSpaceOnUse'
-              x='22'
-              y='23'
-              width='121'
-              height='120'
-            >
-              <rect
-                id='Rectangle 211'
-                width='85.2071'
-                height='85.2071'
-                transform='matrix(0.710035 -0.704167 0.710035 0.704167 22 83)'
-                fill='#C4C4C4'
-              />
-            </mask>
-            <g mask='url(#mask999)'>
-              <rect
-                id='image 111'
-                x='19'
-                y='19'
-                width='128'
-                height='128'
-                fill='url(#pattern999)'
-              />
-            </g>
-          </g>
-          <g id='Group 161'>
-            <g id='Rectangle 251' filter='url(#filter1_d99)'>
-              <rect
-                x='1.4166'
-                y='-5.96046e-08'
-                width='4.66444'
-                height='4.66444'
-                transform='matrix(0.708299 -0.705912 0.708299 0.705912 6.41322 83.6162)'
-                stroke='#E6E2CF'
-                strokeWidth='2'
-              />
-            </g>
-            <g id='Rectangle 261' filter='url(#filter2_d99)'>
-              <rect
-                x='1.4166'
-                y='-5.96046e-08'
-                width='4.66444'
-                height='4.66444'
-                transform='matrix(0.708299 -0.705912 0.708299 0.705912 78.5683 11.7046)'
-                stroke='#E6E2CF'
-                strokeWidth='2'
-              />
-            </g>
-            <g id='Vector 61' filter='url(#filter3_d99)'>
-              <path
-                d='M14.7665 78.5837L78.8293 14.7369'
-                stroke='#E6E2CF'
-                strokeWidth='2'
-              />
-            </g>
-          </g>
+          <path
+            stroke='#E6E2CF'
+            d='M19.583 83.152l63.354-63.14 63.141 63.355-63.355 63.14z'
+          />
+        </g>
+        <mask
+          id='a'
+          maskUnits='userSpaceOnUse'
+          x='22'
+          y='23'
+          width='121'
+          height='120'
+        >
+          <path
+            transform='matrix(.71003 -.70417 .71003 .70417 22 83)'
+            fill='#C4C4C4'
+            d='M0 0h85.207v85.207H0z'
+          />
+        </mask>
+        <g mask='url(#a)'>
+          <path fill='url(#guide-avatar1__pattern0)' d='M19 19h128v128H19z' />
+        </g>
+        <g filter='url(#guide-avatar1__filter1_d)'>
+          <path
+            stroke='#E6E2CF'
+            strokeWidth='2'
+            d='M7.418 82.615l3.303-3.292 3.292 3.303-3.303 3.293z'
+          />
+        </g>
+        <g filter='url(#guide-avatar1__filter2_d)'>
+          <path
+            stroke='#E6E2CF'
+            strokeWidth='2'
+            d='M79.571 10.704l3.304-3.292 3.292 3.303-3.303 3.292z'
+          />
+        </g>
+        <g filter='url(#guide-avatar1__filter3_d)'>
+          <path
+            d='M14.767 78.584l64.062-63.847'
+            stroke='#E6E2CF'
+            strokeWidth='2'
+          />
         </g>
         <defs>
           <filter
-            id='filter0_d99'
-            x='12.8744'
-            y='13.3063'
+            id='guide-avatar1__filter0_d'
+            x='12.874'
+            y='13.306'
             width='140.126'
             height='139.694'
             filterUnits='userSpaceOnUse'
@@ -327,7 +282,6 @@ export default function GuideImage(props): JSX.Element {
             <feFlood floodOpacity='0' result='BackgroundImageFix' />
             <feColorMatrix
               in='SourceAlpha'
-              type='matrix'
               values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
               result='hardAlpha'
             />
@@ -339,159 +293,126 @@ export default function GuideImage(props): JSX.Element {
             />
             <feOffset />
             <feGaussianBlur stdDeviation='2.5' />
-            <feColorMatrix
-              type='matrix'
-              values='0 0 0 0 0.901961 0 0 0 0 0.886275 0 0 0 0 0.811765 0 0 0 0.3 0'
-            />
+            <feColorMatrix values='0 0 0 0 0.901961 0 0 0 0 0.886275 0 0 0 0 0.811765 0 0 0 0.3 0' />
+            <feBlend in2='BackgroundImageFix' result='effect1_dropShadow' />
             <feBlend
-              mode='normal'
-              in2='BackgroundImageFix'
+              in='SourceGraphic'
+              in2='effect1_dropShadow'
+              result='shape'
+            />
+          </filter>
+          <filter
+            id='guide-avatar1__filter1_d'
+            x='0'
+            y='71.912'
+            width='21.441'
+            height='21.409'
+            filterUnits='userSpaceOnUse'
+            colorInterpolationFilters='sRGB'
+          >
+            <feFlood floodOpacity='0' result='BackgroundImageFix' />
+            <feColorMatrix
+              in='SourceAlpha'
+              values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+              result='hardAlpha'
+            />
+            <feMorphology
+              radius='1'
+              operator='dilate'
+              in='SourceAlpha'
               result='effect1_dropShadow'
             />
+            <feOffset />
+            <feGaussianBlur stdDeviation='2.5' />
+            <feColorMatrix values='0 0 0 0 0.901961 0 0 0 0 0.886275 0 0 0 0 0.811765 0 0 0 0.3 0' />
+            <feBlend in2='BackgroundImageFix' result='effect1_dropShadow' />
             <feBlend
-              mode='normal'
+              in='SourceGraphic'
+              in2='effect1_dropShadow'
+              result='shape'
+            />
+          </filter>
+          <filter
+            id='guide-avatar1__filter2_d'
+            x='72.155'
+            y='0'
+            width='21.441'
+            height='21.409'
+            filterUnits='userSpaceOnUse'
+            colorInterpolationFilters='sRGB'
+          >
+            <feFlood floodOpacity='0' result='BackgroundImageFix' />
+            <feColorMatrix
+              in='SourceAlpha'
+              values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+              result='hardAlpha'
+            />
+            <feMorphology
+              radius='1'
+              operator='dilate'
+              in='SourceAlpha'
+              result='effect1_dropShadow'
+            />
+            <feOffset />
+            <feGaussianBlur stdDeviation='2.5' />
+            <feColorMatrix values='0 0 0 0 0.901961 0 0 0 0 0.886275 0 0 0 0 0.811765 0 0 0 0.3 0' />
+            <feBlend in2='BackgroundImageFix' result='effect1_dropShadow' />
+            <feBlend
+              in='SourceGraphic'
+              in2='effect1_dropShadow'
+              result='shape'
+            />
+          </filter>
+          <filter
+            id='guide-avatar1__filter3_d'
+            x='8.058'
+            y='8.031'
+            width='77.479'
+            height='77.259'
+            filterUnits='userSpaceOnUse'
+            colorInterpolationFilters='sRGB'
+          >
+            <feFlood floodOpacity='0' result='BackgroundImageFix' />
+            <feColorMatrix
+              in='SourceAlpha'
+              values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
+              result='hardAlpha'
+            />
+            <feMorphology
+              radius='1'
+              operator='dilate'
+              in='SourceAlpha'
+              result='effect1_dropShadow'
+            />
+            <feOffset />
+            <feGaussianBlur stdDeviation='2.5' />
+            <feColorMatrix values='0 0 0 0 0.901961 0 0 0 0 0.886275 0 0 0 0 0.811765 0 0 0 0.3 0' />
+            <feBlend in2='BackgroundImageFix' result='effect1_dropShadow' />
+            <feBlend
               in='SourceGraphic'
               in2='effect1_dropShadow'
               result='shape'
             />
           </filter>
           <pattern
-            id='pattern999'
+            id='guide-avatar1__pattern0'
             patternContentUnits='objectBoundingBox'
             width='1'
             height='1'
           >
-            <use xlinkHref={'#' + smallSvgId} transform='scale(0.00390625)' />
+            <use xlinkHref='#guide-avatar1__image0' transform='scale(.0039)' />
           </pattern>
-          <filter
-            id='filter1_d99'
+          <image
+            id='guide-avatar1__image0'
             x='0'
-            y='71.9117'
-            width='21.4408'
-            height='21.409'
-            filterUnits='userSpaceOnUse'
-            colorInterpolationFilters='sRGB'
-          >
-            <feFlood floodOpacity='0' result='BackgroundImageFix' />
-            <feColorMatrix
-              in='SourceAlpha'
-              type='matrix'
-              values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-              result='hardAlpha'
-            />
-            <feMorphology
-              radius='1'
-              operator='dilate'
-              in='SourceAlpha'
-              result='effect1_dropShadow'
-            />
-            <feOffset />
-            <feGaussianBlur stdDeviation='2.5' />
-            <feColorMatrix
-              type='matrix'
-              values='0 0 0 0 0.901961 0 0 0 0 0.886275 0 0 0 0 0.811765 0 0 0 0.3 0'
-            />
-            <feBlend
-              mode='normal'
-              in2='BackgroundImageFix'
-              result='effect1_dropShadow'
-            />
-            <feBlend
-              mode='normal'
-              in='SourceGraphic'
-              in2='effect1_dropShadow'
-              result='shape'
-            />
-          </filter>
-          <filter
-            id='filter2_d99'
-            x='72.155'
-            y='0.00012207'
-            width='21.4408'
-            height='21.409'
-            filterUnits='userSpaceOnUse'
-            colorInterpolationFilters='sRGB'
-          >
-            <feFlood floodOpacity='0' result='BackgroundImageFix' />
-            <feColorMatrix
-              in='SourceAlpha'
-              type='matrix'
-              values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-              result='hardAlpha'
-            />
-            <feMorphology
-              radius='1'
-              operator='dilate'
-              in='SourceAlpha'
-              result='effect1_dropShadow'
-            />
-            <feOffset />
-            <feGaussianBlur stdDeviation='2.5' />
-            <feColorMatrix
-              type='matrix'
-              values='0 0 0 0 0.901961 0 0 0 0 0.886275 0 0 0 0 0.811765 0 0 0 0.3 0'
-            />
-            <feBlend
-              mode='normal'
-              in2='BackgroundImageFix'
-              result='effect1_dropShadow'
-            />
-            <feBlend
-              mode='normal'
-              in='SourceGraphic'
-              in2='effect1_dropShadow'
-              result='shape'
-            />
-          </filter>
-          <filter
-            id='filter3_d99'
-            x='8.05817'
-            y='8.03101'
-            width='77.4794'
-            height='77.2587'
-            filterUnits='userSpaceOnUse'
-            colorInterpolationFilters='sRGB'
-          >
-            <feFlood floodOpacity='0' result='BackgroundImageFix' />
-            <feColorMatrix
-              in='SourceAlpha'
-              type='matrix'
-              values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0'
-              result='hardAlpha'
-            />
-            <feMorphology
-              radius='1'
-              operator='dilate'
-              in='SourceAlpha'
-              result='effect1_dropShadow'
-            />
-            <feOffset />
-            <feGaussianBlur stdDeviation='2.5' />
-            <feColorMatrix
-              type='matrix'
-              values='0 0 0 0 0.901961 0 0 0 0 0.886275 0 0 0 0 0.811765 0 0 0 0.3 0'
-            />
-            <feBlend
-              mode='normal'
-              in2='BackgroundImageFix'
-              result='effect1_dropShadow'
-            />
-            <feBlend
-              mode='normal'
-              in='SourceGraphic'
-              in2='effect1_dropShadow'
-              result='shape'
-            />
-          </filter>
-          <feImage
-            id={smallSvgId}
-            // data-name={`${title} thumbnail`}
-            width={256}
-            height={256}
+            y='0'
+            width='256'
+            height='256'
+            preserveAspectRatio='xMidYMid slice'
             xlinkHref={
               props.image?.large?.url ??
-              props.image?.medium?.url ??
               props.image?.small?.url ??
+              props.image?.medium?.url ??
               props.image?.thumbnail?.url
             }
           />

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import SVG from 'react-inlinesvg'
 import { AiOutlineUser } from 'react-icons/ai'
@@ -29,7 +28,7 @@ export default function Article({
       <a className='group '>
         <article className='relative'>
           <ShadowRoot className='absolute transform -translate-x-42 -translate-y-10 invisible lg:visible'>
-            <GuideImage image={image} svgStyle='object-co' title={title} />
+            <GuideImage image={image} svgStyle='' title={title} />
           </ShadowRoot>
 
           <ShadowRoot className='absolute transform -translate-x-20 -translate-y-5 lg:invisible'>
