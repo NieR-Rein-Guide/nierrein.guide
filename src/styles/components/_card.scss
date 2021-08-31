@@ -30,7 +30,6 @@
 
 .weapon-and-element-container {
     position: absolute;
-    // background-color: blue;
     width: 20%;
     height: 20%;
     top: 10%;
@@ -44,4 +43,20 @@
 .weapon-and-element-container img {
     width: 100%;
     height: auto;
+}
+
+.star-container {
+    position: absolute;
+    display: flex;
+    //background-color: blue;
+    width: 100%;
+    height: 10%;
+    top: 60%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+
+.star-container img {
+    height: 75%;
 }

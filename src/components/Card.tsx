@@ -23,6 +23,13 @@ function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
               <img src="/icons/elements/dark.png"></img>
               <img src="/icons/weapons/gun.png"></img>
             </div>
+            <div className="star-container">
+              <img src="/icons/elements/dark.png"></img>
+              <img src="/icons/elements/dark.png"></img>
+              <img src="/icons/elements/dark.png"></img>
+              <img src="/icons/elements/dark.png"></img>
+              <img src="/icons/elements/dark.png"></img>
+            </div>
             <Image
               src={costume.illustrationURL}
               alt={`${costume.character} (${costume.name.en}) illustration`}
