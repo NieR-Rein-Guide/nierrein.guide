@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="276.969" height="263.156" viewBox="0 0 276.969 263.156">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke-width: 6px;
+        fill-rule: evenodd;
+        fill: url(#linear-gradient);
+        stroke: url(#linear-gradient-2);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="35.953" y1="32.063" x2="272.516" y2="268.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0.22" stop-color="#d8c4b1"/>
+      <stop offset="0.309" stop-color="#cfb9a5"/>
+      <stop offset="0.384" stop-color="#bea383"/>
+      <stop offset="0.521" stop-color="#b38e71"/>
+      <stop offset="0.649" stop-color="#c0a387"/>
+      <stop offset="0.763" stop-color="#cfb9a5"/>
+      <stop offset="0.78" stop-color="#cfb9a5"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="35.953" y1="32.063" x2="272.516" y2="268.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0.33" stop-color="#cfb9a5"/>
+      <stop offset="0.34" stop-color="#cfb9a5"/>
+      <stop offset="0.499" stop-color="#b38e71"/>
+      <stop offset="0.67" stop-color="#d8c4b1"/>
+    </linearGradient>
+  </defs>
+  <path id="Polygon_2_copy_2" data-name="Polygon 2 copy 2" class="cls-1" d="M231.056,268.639l-76.841-52.915L77.343,268.593l26.58-89.432L29.887,122.389l93.268-2.357L154.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-15.75 -17.063)"/>
+</svg>
