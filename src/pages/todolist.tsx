@@ -1,12 +1,22 @@
 // import dynamic from "next/dynamic";
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
+import classNames from "classnames";
+import localforage from "localforage";
+import { useEffect } from "react";
+import { useState } from "react";
 // import { Guide, Event } from "@models/types";
 // import { getCurrentEvents } from "@models/event";
 
 // interface TodolistPageProps {}
 
-const loginTodos = [
+interface Todo {
+  checked: boolean;
+  label: string;
+  icon: string;
+}
+
+const defaultLoginTodos: Todo[] = [
   {
     checked: false,
     label: "Receive and send stamina to friends",
@@ -44,7 +54,7 @@ const loginTodos = [
   },
 ];
 
-const optionalTodos = [
+const defaultOptionalTodos: Todo[] = [
   {
     checked: false,
     label: "Daily Quests",
@@ -63,7 +73,7 @@ const optionalTodos = [
   },
 ];
 
-const preferentialTodos = [
+const defaultPreferentialTodos: Todo[] = [
   {
     checked: false,
     label: "Farming main quests",
@@ -76,7 +86,75 @@ const preferentialTodos = [
   },
 ];
 
-export default function TodolistPage({}): JSX.Element {
+export default function TodolistPage(): JSX.Element {
+  const [loginTodos, setLoginTodos] = useState(defaultLoginTodos);
+  const [optionalTodos, setOptionalTodos] = useState(defaultOptionalTodos);
+  const [preferentialTodos, setPreferentialTodos] = useState(
+    defaultPreferentialTodos
+  );
+
+  useEffect(() => {
+    getAllTodos();
+  }, []);
+
+  useEffect(() => {
+    localforage.setItem("loginTodos", loginTodos);
+  }, [loginTodos]);
+
+  useEffect(() => {
+    localforage.setItem("optionalTodos", optionalTodos);
+  }, [optionalTodos]);
+
+  useEffect(() => {
+    localforage.setItem("preferentialTodos", preferentialTodos);
+  }, [preferentialTodos]);
+
+  function updateLoginTodos(todo: Todo) {
+    setLoginTodos(
+      loginTodos.map((t) => {
+        if (t.label === todo.label) {
+          return { ...t, checked: !t.checked };
+        }
+        return t;
+      })
+    );
+  }
+
+  function updateOptionalTodos(todo: Todo) {
+    setOptionalTodos(
+      optionalTodos.map((t) => {
+        if (t.label === todo.label) {
+          return { ...t, checked: !t.checked };
+        }
+        return t;
+      })
+    );
+  }
+
+  function updatePreferentialTodos(todo: Todo) {
+    setPreferentialTodos(
+      preferentialTodos.map((t) => {
+        if (t.label === todo.label) {
+          return { ...t, checked: !t.checked };
+        }
+        return t;
+      })
+    );
+  }
+
+  async function getAllTodos() {
+    const [localLoginTodos, localOptionalTodos, localPreferentialTodos] =
+      await Promise.all([
+        localforage.getItem<Todo[]>("loginTodos"),
+        localforage.getItem<Todo[]>("optionalTodos"),
+        localforage.getItem<Todo[]>("preferentialTodos"),
+      ]);
+
+    setLoginTodos(localLoginTodos || defaultLoginTodos);
+    setOptionalTodos(localOptionalTodos || defaultOptionalTodos);
+    setPreferentialTodos(localPreferentialTodos || defaultPreferentialTodos);
+  }
+
   return (
     <Layout>
       <Meta
@@ -85,11 +163,8 @@ export default function TodolistPage({}): JSX.Element {
         cover="https://nierrein.guide/cover-todolist.jpg"
       />
 
-      <p className="bg-grey-dark p-4 mb-16 max-w-lg">
-        <p className="text-red-400">
-          Please do not close this tab, data are not persisted yet.
-        </p>
-        <p>Offline support and local storage will be available soon.</p>
+      <p className="bg-grey-dark p-4 mb-16 max-w-md">
+        <p>The data are saved locally.</p>
       </p>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-16">
@@ -98,8 +173,12 @@ export default function TodolistPage({}): JSX.Element {
           <h2 className="overlap">At login</h2>
 
           <ul className="flex flex-col gap-y-4">
-            {loginTodos.map((todo, index) => (
-              <TodoListItem key={index} todo={todo} />
+            {loginTodos.map((todo) => (
+              <TodoListItem
+                key={todo.label}
+                todo={todo}
+                updateTodo={updateLoginTodos}
+              />
             ))}
           </ul>
         </section>
@@ -108,8 +187,12 @@ export default function TodolistPage({}): JSX.Element {
           <h2 className="overlap">Depends on the day</h2>
 
           <ul className="flex flex-col gap-y-4">
-            {optionalTodos.map((todo, index) => (
-              <TodoListItem key={index} todo={todo} />
+            {optionalTodos.map((todo) => (
+              <TodoListItem
+                key={todo.label}
+                todo={todo}
+                updateTodo={updateOptionalTodos}
+              />
             ))}
           </ul>
 
@@ -123,8 +206,12 @@ export default function TodolistPage({}): JSX.Element {
           <h2 className="overlap">Depends on what you need</h2>
 
           <ul className="flex flex-col gap-y-4">
-            {preferentialTodos.map((todo, index) => (
-              <TodoListItem key={index} todo={todo} />
+            {preferentialTodos.map((todo) => (
+              <TodoListItem
+                key={todo.label}
+                todo={todo}
+                updateTodo={updatePreferentialTodos}
+              />
             ))}
           </ul>
         </section>
@@ -133,16 +220,40 @@ export default function TodolistPage({}): JSX.Element {
   );
 }
 
-function TodoListItem({ todo }) {
+interface TodoListItemProps {
+  todo: Todo;
+  updateTodo: (todo: Todo) => void;
+}
+
+function TodoListItem({ todo, updateTodo }: TodoListItemProps) {
   return (
     <label className="flex items-center cursor-pointer">
-      <li className="inline-flex items-center bg-grey-foreground py-6 px-8 rounded-sm w-full relative transition hover:bg-grey-dark">
-        <input type="checkbox" className="cursor-pointer" />
-        <div className="ml-4 inline">{todo.label}</div>
+      <li
+        className={classNames(
+          "inline-flex items-center py-6 px-8 rounded-sm w-full relative transition hover:bg-grey-dark",
+          todo.checked ? "bg-grey-dark" : "bg-grey-foreground"
+        )}
+      >
+        <input
+          type="checkbox"
+          className="cursor-pointer"
+          checked={todo.checked}
+          onChange={() => updateTodo(todo)}
+        />
+        <div className="ml-6 inline pr-6">{todo.label}</div>
         <img
           alt={`${todo.label} icon`}
           src={todo.icon}
           className="absolute right-8 top-1/2 transform -translate-y-1/2 h-12 w-12"
+        />
+
+        <img
+          className={classNames(
+            "absolute h-16 left-2 transform scale-90 ease-out-cubic transition-all",
+            todo.checked ? "opacity-100 scale-100" : "opacity-0"
+          )}
+          src="/ui/costume_emblem/costume_emblem099_full.png"
+          alt="Checked"
         />
       </li>
     </label>
