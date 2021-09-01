@@ -1,0 +1,60 @@
+<svg id="star_4_copy" data-name="star 4 copy" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1519.97" height="263.156" viewBox="0 0 1519.97 263.156">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-4, .cls-5 {
+        stroke-width: 6px;
+        fill-rule: evenodd;
+      }
+
+      .cls-1 {
+        fill: url(#linear-gradient);
+        stroke: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-3);
+        stroke: url(#linear-gradient-4);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-5);
+        stroke: url(#linear-gradient-6);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient-7);
+        stroke: url(#linear-gradient-8);
+      }
+
+      .cls-5 {
+        fill: url(#linear-gradient-9);
+        stroke: url(#linear-gradient-10);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="45.953" y1="32.063" x2="282.516" y2="268.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0.11" stop-color="#aedce5"/>
+      <stop offset="0.391" stop-color="#c7ccf8"/>
+      <stop offset="0.686" stop-color="#d5d5c0"/>
+      <stop offset="0.89" stop-color="#d5d5c0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="45.953" y1="32.063" x2="282.516" y2="268.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#d5d5c0"/>
+      <stop offset="0.191" stop-color="#d5d5c0"/>
+      <stop offset="0.673" stop-color="#b6bbe3"/>
+      <stop offset="1" stop-color="#9dc5cd"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="355.953" y1="32.063" x2="592.516" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="355.953" y1="32.063" x2="592.516" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-5" x1="665.953" y1="32.063" x2="902.516" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-6" x1="665.953" y1="32.063" x2="902.516" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-7" x1="977.951" y1="32.063" x2="1214.514" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-8" x1="977.951" y1="32.063" x2="1214.514" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-9" x1="1288.954" y1="32.063" x2="1525.516" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-10" x1="1288.954" y1="32.063" x2="1525.516" xlink:href="#linear-gradient-2"/>
+  </defs>
+  <path id="Polygon_2_copy_2" data-name="Polygon 2 copy 2" class="cls-1" d="M241.056,268.639l-76.841-52.915L87.343,268.593l26.58-89.432L39.887,122.389l93.268-2.357L164.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-25.75 -17.063)"/>
+  <path id="Polygon_2_copy_10" data-name="Polygon 2 copy 10" class="cls-2" d="M551.056,268.639l-76.841-52.915-76.872,52.869,26.58-89.432-74.036-56.772,93.268-2.357L474.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-25.75 -17.063)"/>
+  <path id="Polygon_2_copy_11" data-name="Polygon 2 copy 11" class="cls-3" d="M861.056,268.639l-76.841-52.915-76.872,52.869,26.58-89.432-74.036-56.772,93.268-2.357L784.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-25.75 -17.063)"/>
+  <path id="Polygon_2_copy_12" data-name="Polygon 2 copy 12" class="cls-4" d="M1173.06,268.639l-76.84-52.915-76.88,52.869,26.58-89.432-74.033-56.772,93.263-2.357,31.12-87.956,31.06,87.975,93.27,2.413-74.07,56.728Z" transform="translate(-25.75 -17.063)"/>
+  <path id="Polygon_2_copy_13" data-name="Polygon 2 copy 13" class="cls-5" d="M1484.06,268.639l-76.84-52.915-76.88,52.869,26.58-89.432-74.03-56.772,93.26-2.357,31.12-87.956,31.06,87.975,93.27,2.413-74.07,56.728Z" transform="translate(-25.75 -17.063)"/>
+</svg>

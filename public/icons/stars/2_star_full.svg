@@ -1,0 +1,38 @@
+<svg id="star_2" data-name="star 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="585.969" height="263.156" viewBox="0 0 585.969 263.156">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        stroke-width: 6px;
+        fill-rule: evenodd;
+      }
+
+      .cls-1 {
+        fill: url(#linear-gradient);
+        stroke: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-3);
+        stroke: url(#linear-gradient-4);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="46.953" y1="32.063" x2="283.516" y2="268.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0.05" stop-color="#c2ced4"/>
+      <stop offset="0.178" stop-color="#aaaebb"/>
+      <stop offset="0.318" stop-color="#a4acb4"/>
+      <stop offset="0.626" stop-color="#757f8b"/>
+      <stop offset="0.95" stop-color="#a7b2bd"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="46.953" y1="32.063" x2="283.516" y2="268.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#a7b2bd"/>
+      <stop offset="0.006" stop-color="#a7b2bd"/>
+      <stop offset="0.309" stop-color="#a4acb4"/>
+      <stop offset="0.858" stop-color="#aab1bb"/>
+      <stop offset="1" stop-color="#c2ced4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="355.953" y1="32.063" x2="592.516" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="355.953" y1="32.063" x2="592.516" xlink:href="#linear-gradient-2"/>
+  </defs>
+  <path id="Polygon_2_copy_2" data-name="Polygon 2 copy 2" class="cls-1" d="M242.056,268.639l-76.841-52.915L88.343,268.593l26.58-89.432L40.887,122.389l93.268-2.357L165.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-26.75 -17.063)"/>
+  <path id="Polygon_2_copy_3" data-name="Polygon 2 copy 3" class="cls-2" d="M551.056,268.639l-76.841-52.915-76.872,52.869,26.58-89.432-74.036-56.772,93.268-2.357L474.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-26.75 -17.063)"/>
+</svg>

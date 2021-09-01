@@ -1,0 +1,47 @@
+<svg id="star_3" data-name="star 3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="895.969" height="263.156" viewBox="0 0 895.969 263.156">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3 {
+        stroke-width: 6px;
+        fill-rule: evenodd;
+      }
+
+      .cls-1 {
+        fill: url(#linear-gradient);
+        stroke: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-3);
+        stroke: url(#linear-gradient-4);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-5);
+        stroke: url(#linear-gradient-6);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="46.953" y1="32.063" x2="283.516" y2="268.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f6eec5"/>
+      <stop offset="0.222" stop-color="#cdcd9e"/>
+      <stop offset="0.527" stop-color="#a19c7a"/>
+      <stop offset="0.861" stop-color="#cca"/>
+      <stop offset="1" stop-color="#f7efc6"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="46.953" y1="32.063" x2="283.516" y2="268.625" gradientUnits="userSpaceOnUse">
+      <stop offset="0.05" stop-color="#a5a17c"/>
+      <stop offset="0.309" stop-color="#a5a17c"/>
+      <stop offset="0.476" stop-color="#979270"/>
+      <stop offset="0.633" stop-color="#bcb48b"/>
+      <stop offset="0.842" stop-color="#cdcd9e"/>
+      <stop offset="0.95" stop-color="#cdcd9e"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="355.953" y1="32.063" x2="592.516" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="355.953" y1="32.063" x2="592.516" xlink:href="#linear-gradient-2"/>
+    <linearGradient id="linear-gradient-5" x1="665.953" y1="32.063" x2="902.516" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-6" x1="665.953" y1="32.063" x2="902.516" xlink:href="#linear-gradient-2"/>
+  </defs>
+  <path id="Polygon_2_copy_2" data-name="Polygon 2 copy 2" class="cls-1" d="M242.056,268.639l-76.841-52.915L88.343,268.593l26.58-89.432L40.887,122.389l93.268-2.357L165.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-26.75 -17.063)"/>
+  <path id="Polygon_2_copy_4" data-name="Polygon 2 copy 4" class="cls-2" d="M551.056,268.639l-76.841-52.915-76.872,52.869,26.58-89.432-74.036-56.772,93.268-2.357L474.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-26.75 -17.063)"/>
+  <path id="Polygon_2_copy_5" data-name="Polygon 2 copy 5" class="cls-3" d="M861.056,268.639l-76.841-52.915-76.872,52.869,26.58-89.432-74.036-56.772,93.268-2.357L784.27,32.076l31.063,87.975,93.267,2.413-74.071,56.728Z" transform="translate(-26.75 -17.063)"/>
+</svg>

@@ -29,7 +29,7 @@ function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
             </div>
             <div className="star-container">
               {Array.from(Array(costume.stars), (e, i) => {
-                return <img src="/icons/elements/dark.png"></img>
+                return <img src={`/icons/stars/${costume.stars}_star_single.svg`}></img>
               })}
             </div>
             <Image
