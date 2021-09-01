@@ -65,13 +65,13 @@ export default function SubmitMissingDataPage(): JSX.Element {
   return (
     <Layout>
       <Meta
-        title="Submit Data"
-        description="Submit (missing) data so we can improve the website"
+        title="Contribute your data"
+        description="Contribute your data, screenshots or anything else to help us !"
         cover="https://nierrein.guide/cover-submitdata.jpg"
       />
 
       <section className="mt-16">
-        <h2 className="overlap">Submit your work</h2>
+        <h2 className="overlap">Contribute your data</h2>
 
         <form className="flex flex-col gap-4 p-4">
           <div className="input-field">

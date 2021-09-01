@@ -20,7 +20,7 @@ function JoinUs(): JSX.Element {
             <a className="btn h-14" href={DISCORD_URL}>
               Join us on Discord !
             </a>
-            <Link href="/submit-missing-data" passHref={true}>
+            <Link href="/contribute-your-data" passHref={true}>
               <a className="btn h-14">Contribute your data</a>
             </Link>
           </div>
