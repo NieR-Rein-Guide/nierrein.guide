@@ -60,7 +60,12 @@ function EventsListing({ label, events }) {
     <section className="mt-24">
       <h2 className="overlap">{label}</h2>
 
-      <div className="flex flex-col gap-y-12">
+      {events.length > 0 && (
+        <h2 className="font-labor text-2xl mb-4">
+          There is a total of {events.length} events
+        </h2>
+      )}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
         {events.map((event) => (
           <Link key={event.slug} href={`/event/${event.slug}`} passHref={true}>
             <a className="group flex flex-col relative w-full max-w-xl mx-auto">
@@ -103,6 +108,8 @@ function EventsListing({ label, events }) {
             </a>
           </Link>
         ))}
+
+        {events.length === 0 && <h2 className="text-2xl">No past events</h2>}
       </div>
     </section>
   );
