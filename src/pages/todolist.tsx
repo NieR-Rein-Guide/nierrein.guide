@@ -29,11 +29,6 @@ const loginTodos = [
   },
   {
     checked: false,
-    label: "Gems roulette",
-    icon: "/ui/consumable_item/consumable200001_standard.png",
-  },
-  {
-    checked: false,
     label: "One exploration",
     icon: "/ui/search/search_rank_1.png",
   },
@@ -41,6 +36,11 @@ const loginTodos = [
     checked: false,
     label: "Clear all daily dark lair quests",
     icon: "/ui/material/material322002_standard.png",
+  },
+  {
+    checked: false,
+    label: "Gems roulette",
+    icon: "/ui/consumable_item/consumable200001_standard.png",
   },
 ];
 
@@ -85,8 +85,11 @@ export default function TodolistPage({}): JSX.Element {
         cover="https://nierrein.guide/cover-todolist.jpg"
       />
 
-      <p className="bg-grey-dark p-4 mb-24 max-w-lg mx-auto">
-        Offline support and local storage are coming soon.
+      <p className="bg-grey-dark p-4 mb-16 max-w-lg">
+        <p className="text-red-400">
+          Please do not close this tab, data are not persisted yet.
+        </p>
+        <p>Offline support and local storage will be available soon.</p>
       </p>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-16">
