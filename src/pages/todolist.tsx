@@ -14,13 +14,18 @@ const loginTodos = [
   },
   {
     checked: false,
+    label: "Buy 20 stamina potions",
+    icon: "/ui/consumable_item/consumable300001_standard.png",
+  },
+  {
+    checked: false,
     label: "Daily 5 summon",
     icon: "/ui/consumable_item/consumable118002_standard.png",
   },
   {
     checked: false,
-    label: "Buy 20 stamina potions",
-    icon: "/ui/consumable_item/consumable300001_standard.png",
+    label: "Daily challenge",
+    icon: "/ui/costume_emblem/costume_emblem009_standard.png",
   },
   {
     checked: false,
@@ -34,17 +39,12 @@ const loginTodos = [
   },
   {
     checked: false,
-    label: "Clear all your daily dark trials",
+    label: "Clear all daily dark lair quests",
     icon: "/ui/material/material322002_standard.png",
   },
 ];
 
 const optionalTodos = [
-  {
-    checked: false,
-    label: "Daily challenge",
-    icon: "/ui/costume_emblem/costume_emblem009_standard.png",
-  },
   {
     checked: false,
     label: "Daily Quests",
