@@ -1,7 +1,11 @@
 // import dynamic from "next/dynamic";
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
+import { GAME_TIMEZONE } from "@config/constants";
 import classNames from "classnames";
+import { nextDay, setHours } from "date-fns";
+import { zonedTimeToUtc } from "date-fns-tz";
+import { setMinutes } from "date-fns";
 import localforage from "localforage";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -95,6 +99,7 @@ export default function TodolistPage(): JSX.Element {
 
   useEffect(() => {
     getAllTodos();
+    resetTodosDaily();
   }, []);
 
   useEffect(() => {
@@ -109,6 +114,31 @@ export default function TodolistPage(): JSX.Element {
     localforage.setItem("preferentialTodos", preferentialTodos);
   }, [preferentialTodos]);
 
+  function updateTimestamps() {
+    let isOneDayBeforeReset = false;
+
+    const today = new Date();
+    localforage.setItem("last_updated_at", today);
+
+    console.log(new Date().getHours());
+
+    // If we are one day before reset we need to increment the resetAt day
+    if (today.getHours() >= 10 && today.getHours() <= 23) {
+      isOneDayBeforeReset = true;
+    }
+
+    const resetAt = zonedTimeToUtc(
+      setMinutes(setHours(new Date(), 0), 0),
+      GAME_TIMEZONE
+    );
+
+    if (isOneDayBeforeReset) {
+      resetAt.setDate(resetAt.getDate() + 1);
+    }
+
+    localforage.setItem("reset_at", resetAt);
+  }
+
   function updateLoginTodos(todo: Todo) {
     setLoginTodos(
       loginTodos.map((t) => {
@@ -118,6 +148,7 @@ export default function TodolistPage(): JSX.Element {
         return t;
       })
     );
+    updateTimestamps();
   }
 
   function updateOptionalTodos(todo: Todo) {
@@ -129,6 +160,7 @@ export default function TodolistPage(): JSX.Element {
         return t;
       })
     );
+    updateTimestamps();
   }
 
   function updatePreferentialTodos(todo: Todo) {
@@ -140,6 +172,13 @@ export default function TodolistPage(): JSX.Element {
         return t;
       })
     );
+    updateTimestamps();
+  }
+
+  function resetAllTodos() {
+    setLoginTodos(defaultLoginTodos);
+    setOptionalTodos(defaultOptionalTodos);
+    setPreferentialTodos(defaultPreferentialTodos);
   }
 
   async function getAllTodos() {
@@ -153,6 +192,21 @@ export default function TodolistPage(): JSX.Element {
     setLoginTodos(localLoginTodos || defaultLoginTodos);
     setOptionalTodos(localOptionalTodos || defaultOptionalTodos);
     setPreferentialTodos(localPreferentialTodos || defaultPreferentialTodos);
+  }
+
+  async function resetTodosDaily() {
+    try {
+      const resetAt = await localforage.getItem<Date>("reset_at");
+
+      if (Date.now() >= resetAt.getTime()) {
+        console.log("we need to reset");
+        await localforage.clear();
+        resetAllTodos();
+        updateTimestamps();
+      }
+    } catch (error) {
+      updateTimestamps();
+    }
   }
 
   return (

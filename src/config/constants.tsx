@@ -167,7 +167,7 @@ export const meta = {
   cover: "https://nierrein.guide/cover.jpg",
 };
 
-export const GAME_TIMEZONE = "US/Pacific";
+export const GAME_TIMEZONE = "Pacific/Pitcairn";
 export const SITE_URL = "https://nierrein.guide";
 export const DISCORD_URL = "https://discord.gg/swgHJJdt7f";
 
