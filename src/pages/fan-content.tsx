@@ -102,7 +102,6 @@ export default function FanContentPage({
 
     try {
       setIsLoading(true);
-      console.log(form);
       await submitFanContent(form);
 
       setMessage(

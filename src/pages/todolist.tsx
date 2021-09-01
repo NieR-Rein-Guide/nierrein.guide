@@ -120,8 +120,6 @@ export default function TodolistPage(): JSX.Element {
     const today = new Date();
     localforage.setItem("last_updated_at", today);
 
-    console.log(new Date().getHours());
-
     // If we are one day before reset we need to increment the resetAt day
     if (today.getHours() >= 10 && today.getHours() <= 23) {
       isOneDayBeforeReset = true;
@@ -199,7 +197,6 @@ export default function TodolistPage(): JSX.Element {
       const resetAt = await localforage.getItem<Date>("reset_at");
 
       if (Date.now() >= resetAt.getTime()) {
-        console.log("we need to reset");
         await localforage.clear();
         resetAllTodos();
         updateTimestamps();
