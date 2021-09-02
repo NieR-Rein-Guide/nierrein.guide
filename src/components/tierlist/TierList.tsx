@@ -49,6 +49,8 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
   const [maxAgi, setMaxAgi] = useState(10000);
   const lists = Object.entries(tier.tiers);
 
+  const hasStats = lists?.[0]?.[1]?.[0]?.points;
+
   useEffect(() => {
     if (!isStatsEnabled) {
       return;
@@ -57,15 +59,20 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
     setMaxAtk(findMaxStat(lists, "atk"));
     setMaxDef(findMaxStat(lists, "def"));
     setMaxAgi(findMaxStat(lists, "agility"));
-  }),
-    [isStatsEnabled];
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isStatsEnabled]);
 
   if (lists.length === 0) {
     return (
       <div>
-        <span>
-          Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
-        </span>
+        <div>
+          <p>
+            Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
+          </p>
+
+          {hasStats && <p>Stats are done by Yuuru</p>}
+        </div>
 
         <p className="text-3xl mb-4">Work In Progress</p>
         {tier.content && (
@@ -78,11 +85,13 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
   return (
     <div className="flex flex-col gap-y-8 relative">
       <div className="flex justify-between">
-        <span>
-          Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
-        </span>
+        <div>
+          <p>
+            Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
+          </p>
+        </div>
 
-        {lists[0][1][0].points && (
+        {hasStats && (
           <div className="flex gap-x-4">
             <div className="w-28">
               <p className="flex items-center gap-x-2">
@@ -110,7 +119,7 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
                   checked={isStatsEnabled}
                   onChange={() => setIsStatsEnabled(!isStatsEnabled)}
                 />
-                <div className="ml-6 inline pr-6">Show costume stats</div>
+                <div className="ml-6 inline pr-6">Show costume statistics</div>
 
                 <FiBarChart2 className="absolute right-8 top-1/2 transform -translate-y-1/2 h-8 w-8" />
 
@@ -215,6 +224,12 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
           </div>
         </div>
       ))}
+
+      {hasStats && (
+        <span>
+          The tier list and statistics were done by <code>yuuru#0107</code>
+        </span>
+      )}
     </div>
   );
 }
