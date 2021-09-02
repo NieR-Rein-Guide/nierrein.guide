@@ -3,12 +3,11 @@ import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import { GAME_TIMEZONE } from "@config/constants";
 import classNames from "classnames";
-import { nextDay, setHours } from "date-fns";
+import { setHours } from "date-fns";
 import { zonedTimeToUtc } from "date-fns-tz";
 import { setMinutes } from "date-fns";
 import localforage from "localforage";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 // import { Guide, Event } from "@models/types";
 // import { getCurrentEvents } from "@models/event";
 
@@ -100,6 +99,7 @@ export default function TodolistPage(): JSX.Element {
   useEffect(() => {
     getAllTodos();
     resetTodosDaily();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

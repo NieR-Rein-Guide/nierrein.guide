@@ -154,6 +154,13 @@ export const CREDITS = [
     name: "Yuuru",
     link: "https://www.youtube.com/channel/UCeSQF_NZyu2WtjV9EbJkEbQ",
   },
+  {
+    name: "Rondelle",
+    link: "https://twitter.com/Rondelle_fr",
+  },
+  {
+    name: "Syrion",
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const GITHUB_REPO_LINK =
