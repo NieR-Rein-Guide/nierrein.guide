@@ -1,13 +1,12 @@
 // import dynamic from "next/dynamic";
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import { GAME_TIMEZONE } from "@config/constants";
 import classNames from "classnames";
-import { setHours } from "date-fns";
-import { zonedTimeToUtc } from "date-fns-tz";
-import { setMinutes } from "date-fns";
+import { formatDistance } from "date-fns";
 import localforage from "localforage";
 import { useState, useEffect } from "react";
+import useGametime from "@hooks/useGametime";
+
 // import { Guide, Event } from "@models/types";
 // import { getCurrentEvents } from "@models/event";
 
@@ -89,18 +88,29 @@ const defaultPreferentialTodos: Todo[] = [
   },
 ];
 
+function differenceBetweenDatesPercent(now: Date, end: Date) {
+  const difference = end.getTime() - now.getTime();
+  const hours = difference / 1000 / 60 / 60;
+  const percent = hours / 24;
+  return percent;
+}
+
 export default function TodolistPage(): JSX.Element {
   const [loginTodos, setLoginTodos] = useState(defaultLoginTodos);
   const [optionalTodos, setOptionalTodos] = useState(defaultOptionalTodos);
   const [preferentialTodos, setPreferentialTodos] = useState(
     defaultPreferentialTodos
   );
+  const { now, resetTime } = useGametime();
 
   useEffect(() => {
     getAllTodos();
-    resetTodosDaily();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    resetTodosDaily();
+  }, [now]);
 
   useEffect(() => {
     localforage.setItem("loginTodos", loginTodos);
@@ -115,26 +125,8 @@ export default function TodolistPage(): JSX.Element {
   }, [preferentialTodos]);
 
   function updateTimestamps() {
-    let isOneDayBeforeReset = false;
-
-    const today = new Date();
-    localforage.setItem("last_updated_at", today);
-
-    // If we are one day before reset we need to increment the resetAt day
-    if (today.getHours() >= 10 && today.getHours() <= 23) {
-      isOneDayBeforeReset = true;
-    }
-
-    const resetAt = zonedTimeToUtc(
-      setMinutes(setHours(new Date(), 0), 0),
-      GAME_TIMEZONE
-    );
-
-    if (isOneDayBeforeReset) {
-      resetAt.setDate(resetAt.getDate() + 1);
-    }
-
-    localforage.setItem("reset_at", resetAt);
+    localforage.setItem("last_updated_at", now);
+    localforage.setItem("reset_at", resetTime);
   }
 
   function updateLoginTodos(todo: Todo) {
@@ -206,6 +198,15 @@ export default function TodolistPage(): JSX.Element {
     }
   }
 
+  function countCheckedTodos(todos: Todo[]) {
+    return todos.reduce((acc, todo) => {
+      if (!todo.checked) {
+        return acc;
+      }
+      return acc + 1;
+    }, 0);
+  }
+
   return (
     <Layout>
       <Meta
@@ -214,14 +215,39 @@ export default function TodolistPage(): JSX.Element {
         cover="https://nierrein.guide/cover-todolist.jpg"
       />
 
-      <p className="bg-grey-dark p-4 mb-16 max-w-md">
-        <p>The data are saved locally.</p>
+      <p className="bg-grey-dark p-4 mb-4 max-w-lg wysiwyg">
+        <ul>
+          <li>Your to-do is saved locally.</li>
+          <li>
+            The to-do list resets at game reset time. (
+            {resetTime.toLocaleTimeString()})
+          </li>
+        </ul>
       </p>
+
+      <div className="h-12 bg-grey-dark border border-beige-inactive relative mb-16">
+        <span
+          className="bg-grey-foreground h-full w-full flex justify-center"
+          style={{
+            width: `${
+              100 - differenceBetweenDatesPercent(now, resetTime) * 100
+            }%`,
+          }}
+        >
+          <p className="absolute left-1/2 transform -translate-x-1/2 top-1/2 -translate-y-1/2">
+            Reset in {formatDistance(now, resetTime)}
+          </p>
+        </span>
+      </div>
 
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-16">
         {/* Daily */}
         <section>
           <h2 className="overlap">At login</h2>
+
+          <p className="border border-beige-inactive bg-grey-foreground p-4 mb-4">
+            {countCheckedTodos(loginTodos)}/{loginTodos.length} completed
+          </p>
 
           <ul className="flex flex-col gap-y-4">
             {loginTodos.map((todo) => (
@@ -236,6 +262,10 @@ export default function TodolistPage(): JSX.Element {
 
         <section>
           <h2 className="overlap">Depends on the day</h2>
+
+          <p className="border border-beige-inactive bg-grey-foreground p-4 mb-4">
+            {countCheckedTodos(optionalTodos)}/{optionalTodos.length} completed
+          </p>
 
           <ul className="flex flex-col gap-y-4">
             {optionalTodos.map((todo) => (
@@ -255,6 +285,11 @@ export default function TodolistPage(): JSX.Element {
 
         <section className="xl:col-span-2">
           <h2 className="overlap">Depends on what you need</h2>
+
+          <p className="border border-beige-inactive bg-grey-foreground p-4 mb-4">
+            {countCheckedTodos(preferentialTodos)}/{preferentialTodos.length}{" "}
+            completed
+          </p>
 
           <ul className="flex flex-col gap-y-4">
             {preferentialTodos.map((todo) => (
