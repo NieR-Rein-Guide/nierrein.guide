@@ -44,24 +44,20 @@ You can join our Discord server to chat and contribute : https://discord.gg/swgH
 1. Copy the `.env.example` file to `.env`
 
 ```
-# The S3 API is used for the database page, to fetch 3D models folder architecture.
-# @see src\libs\s3.ts
-# OPTIONAL
 # If you need READ ONLY keys please join the Discord and check the pins in #website.
 S3_ACCESS_KEY=
 S3_SECRET_KEY=
-
 S3_DOMAIN=wasabisys.com
 REGION=eu-central-1
 
-# Public API endpoints
-# @see src\libs\api.ts
+## API
 NEXT_PUBLIC_API_ENDPOINT=https://strapi.nierrein.guide/
 NEXT_PUBLIC_GRAPHQL_API_ENDPOINT=https://strapi.nierrein.guide/graphql
+API_DUMPS_ENDPOINT=https://reinguide-dumps.s3.eu-central-1.wasabisys.com/
 
-# The Discord Webhook URL to send data submissions to
-# @see src\pages\submit-missing-data.tsx
-DISCORD_WEBHOOK_URL_DATA_SUBMISSIONS=https://discord.com/api/webhooks/......
+## DISCORD MESSAGES
+DISCORD_WEBHOOK_URL_DATA_SUBMISSIONS=
+DISCORD_WEBHOOK_URL_NEW_DUMPS=
 ```
 
 2. Install the dependencies via NPM
