@@ -34,4 +34,5 @@ jobs:
           REGION: ${{ secrets.REGION }}
           S3_DOMAIN: ${{ secrets.S3_DOMAIN }}
           GRAPHQL_API_ENDPOINT: ${{ secrets.GRAPHQL_API_ENDPOINT }}
+          API_DUMPS_ENDPOINT: ${{ secrets.API_DUMPS_ENDPOINT }}
           NEXT_PUBLIC_GRAPHQL_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT }}
