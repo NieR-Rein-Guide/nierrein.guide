@@ -8,6 +8,7 @@ import classNames from "classnames";
 import { FiBarChart2 } from "react-icons/fi";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { useEffect } from "react";
+import slugify from "slugify";
 
 interface TierListProps {
   tier: TiersTabs;
@@ -161,7 +162,12 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
                     </ReactTooltip>
                   </>
                 )}
-                <Link href={`/characters/${item.name}`} passHref={true}>
+                <Link
+                  href={`/characters/${item.name}${
+                    item.title ? "/" + slugify(item.title) : ""
+                  }`}
+                  passHref={true}
+                >
                   <a className="flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1">
                     <img
                       height="80"
