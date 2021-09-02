@@ -1,22 +1,13 @@
 import Image from "next/image";
-import { RANK_THUMBNAILS, Tier, TiersTabs } from "@models/tiers";
+import { RANK_THUMBNAILS, TiersTabs } from "@models/tiers";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import ReactTooltip from "react-tooltip";
 import { useState } from "react";
 import classNames from "classnames";
 import { FiBarChart2 } from "react-icons/fi";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-} from "recharts";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { useEffect } from "react";
-import { coerceInputValue } from "graphql";
 
 interface TierListProps {
   tier: TiersTabs;
