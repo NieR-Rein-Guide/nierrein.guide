@@ -320,7 +320,7 @@ const tiers: TiersTabs[] = [
         },
         {
           name: 'Lars',
-          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881527786118971463/unknown.png',
+          thumbnail: 'https://share.keziahmoselle.fr/2021/09/brave_vxY0n69chR.png',
           isEX: true
         },
         {
@@ -381,7 +381,7 @@ const tiers: TiersTabs[] = [
         },
         {
           name: '063y',
-          thumbnail: 'https://cdn.discordapp.com/attachments/877471250405015592/881530583925268480/unknown.png',
+          thumbnail: 'https://share.keziahmoselle.fr/2021/09/brave_bekG5XCLzn.png',
           isEX: true
         },
         {
