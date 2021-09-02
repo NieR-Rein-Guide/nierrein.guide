@@ -36,18 +36,10 @@ function listFolders(prefix = null, delimiter = '/'): Promise<AWS.S3.ListObjects
   })
 }
 
-type SheetsTypes = 'characters' | 'ranks' | 'character-abilities' | 'pvp-tier'
+type SheetsTypes = 'characters' | 'ranks' | 'character-abilities' | 'pvp-tier' | 'pvp-tier-info'
 
 class Sheets {
-  types: SheetsTypes[] = [
-    'characters',
-    'ranks',
-    'character-abilities',
-    'pvp-tier'
-  ]
-
   endpoint = process.env.API_DUMPS_ENDPOINT
-
 
   /**
    * Get request to the dumps endpoint, fetch a .json file

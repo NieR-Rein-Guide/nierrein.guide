@@ -62,8 +62,6 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
           <p>
             Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
           </p>
-
-          {hasStats && <p>Stats are done by Yuuru</p>}
         </div>
 
         <p className="text-3xl mb-4">Work In Progress</p>
@@ -226,6 +224,10 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
         <span>
           The tier list and statistics were done by <code>yuuru#0107</code>
         </span>
+      )}
+
+      {tier.content && (
+        <div dangerouslySetInnerHTML={{ __html: tier.content }}></div>
       )}
     </div>
   );

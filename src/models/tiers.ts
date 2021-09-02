@@ -70,7 +70,41 @@ const RANK_THUMBNAILS = {
   E: SearchRankE,
 }
 
+function forceToNumber(number: string | number) {
+  const string = number.toString().replaceAll(' ', '')
+  return Number.parseInt(string)
+}
+
 async function getTiers() {
+  // SheetCostume[]
+  const [pvpSheet, pvpSheetInfo] = await Promise.all([
+    sheets.get('pvp-tier'),
+    sheets.get('pvp-tier-info')
+  ])
+
+  const pvpInfo = pvpSheetInfo[0]
+
+  const pvpTiers = pvpSheet.reduce((acc, costume) => {
+    const newCostume = {
+      ...costume,
+      points: {
+        agility: forceToNumber(costume.points.agility),
+        atk: forceToNumber(costume.points.atk),
+        def: forceToNumber(costume.points.def),
+        total: forceToNumber(costume.points.total),
+      }
+    }
+
+    if (acc[costume.tier]) {
+      acc[costume.tier].push(newCostume);
+      return acc;
+    }
+
+    acc[costume.tier] = [newCostume];
+
+    return acc;
+  }, {});
+
   const pveTier = {
     index: 0,
     label: "PvE",
@@ -283,31 +317,14 @@ async function getTiers() {
     },
     }
 
-  const pvpSheet: SheetCostume[] = await sheets.get('pvp-tier')
-  const pvpTiers = pvpSheet.reduce((acc, costume) => {
-    if (acc[costume.tier]) {
-      acc[costume.tier].push({
-        ...costume,
-        isEX: costume.title.toLowerCase().includes('reborn')
-      });
-      return acc;
-    }
-
-    acc[costume.tier] = [{
-        ...costume,
-        isEX: costume.title.toLowerCase().includes('reborn')
-      }];
-
-    return acc;
-  }, {});
-
   const pvpTier = {
     index: 1,
     label: "PvP",
     type: 'characters',
     backgroundImg: pvpBackgroundImg,
-    lastUpdated: '2021-09-02T12:31:42.879Z',
+    lastUpdated: pvpInfo.date,
     coverImg: "https://nierrein.guide/tierlists/cover-pvp.jpg",
+    content: `<img src="${pvpInfo.image}" alt="" loading="lazy" />`,
     tiers: pvpTiers,
   }
 

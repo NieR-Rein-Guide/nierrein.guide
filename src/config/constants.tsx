@@ -164,6 +164,10 @@ export const CREDITS = [
   {
     name: "Eri",
   },
+  {
+    name: "Bivi",
+    link: "https://github.com/190nm/rein-kuro ",
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const GITHUB_REPO_LINK =
