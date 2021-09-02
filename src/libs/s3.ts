@@ -1,4 +1,5 @@
 import AWS from 'aws-sdk'
+import axios from 'axios'
 const region = process.env.REGION
 
 AWS.config.update({
@@ -35,9 +36,35 @@ function listFolders(prefix = null, delimiter = '/'): Promise<AWS.S3.ListObjects
   })
 }
 
+type SheetsTypes = 'characters' | 'ranks' | 'character-abilities' | 'pvp-tier'
+
+class Sheets {
+  types: SheetsTypes[] = [
+    'characters',
+    'ranks',
+    'character-abilities',
+    'pvp-tier'
+  ]
+
+  endpoint = process.env.API_DUMPS_ENDPOINT
+
+
+  /**
+   * Get request to the dumps endpoint, fetch a .json file
+   */
+  async get(type: SheetsTypes) {
+    const { data } = await axios.get(`${this.endpoint}${type}.json`)
+
+    return data
+  }
+}
+
+const sheets = new Sheets()
+
 
 export {
   s3,
   listModelsTypes,
-  listFolders
+  listFolders,
+  sheets
 }

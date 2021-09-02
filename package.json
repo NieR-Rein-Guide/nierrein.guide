@@ -46,6 +46,7 @@
     "react-lottie-player": "^1.4.0",
     "react-player": "^2.9.0",
     "react-tooltip": "^4.2.21",
+    "recharts": "^2.1.2",
     "sharp": "^0.29.0",
     "slugify": "^1.6.0",
     "swiper": "^7.0.1",
