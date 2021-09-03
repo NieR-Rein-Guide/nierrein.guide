@@ -21,7 +21,7 @@ interface Todo {
 const defaultLoginTodos: Todo[] = [
   {
     checked: false,
-    label: "Receive and send stamina to friends",
+    label: "Send stamina to friends",
     icon: "/ui/skill/skill130001_standard.png",
   },
   {
@@ -41,7 +41,12 @@ const defaultLoginTodos: Todo[] = [
   },
   {
     checked: false,
-    label: "One exploration",
+    label: "Arena",
+    icon: "/ui/costume_emblem/costume_emblem010_full.png",
+  },
+  {
+    checked: false,
+    label: "First free exploration",
     icon: "/ui/search/search_rank_1.png",
   },
   {
@@ -56,6 +61,24 @@ const defaultLoginTodos: Todo[] = [
   },
 ];
 
+const defaultSecondLoginTodos: Todo[] = [
+  {
+    checked: false,
+    label: "Receive stamina from friends",
+    icon: "/ui/skill/skill130001_standard.png",
+  },
+  {
+    checked: false,
+    label: "Second/Third Arena",
+    icon: "/ui/costume_emblem/costume_emblem010_full.png",
+  },
+  {
+    checked: false,
+    label: "Second free exploration",
+    icon: "/ui/search/search_rank_1.png",
+  },
+];
+
 const defaultOptionalTodos: Todo[] = [
   {
     checked: false,
@@ -64,27 +87,31 @@ const defaultOptionalTodos: Todo[] = [
   },
   {
     checked: false,
-    label: "Farming events",
-    icon: "/ui/consumable_item/consumable110025_standard.png",
-  },
-
-  {
-    checked: false,
     label: "Guerilla Quests",
     icon: "/ui/material/material200004_standard.png",
+  },
+  {
+    checked: false,
+    label: "Farming events",
+    icon: "/ui/consumable_item/consumable110025_standard.png",
   },
 ];
 
 const defaultPreferentialTodos: Todo[] = [
   {
     checked: false,
-    label: "Farming main quests",
-    icon: "/ui/material/material330008_standard.png",
+    label: "Farming cubes",
+    icon: "/ui/material/material322002_standard.png",
   },
   {
     checked: false,
     label: "Farming memoirs",
     icon: "/ui/memory/memory015_full.png",
+  },
+  {
+    checked: false,
+    label: "Farming main quests",
+    icon: "/ui/material/material330008_standard.png",
   },
 ];
 
@@ -97,6 +124,9 @@ function differenceBetweenDatesPercent(now: Date, end: Date) {
 
 export default function TodolistPage(): JSX.Element {
   const [loginTodos, setLoginTodos] = useState(defaultLoginTodos);
+  const [secondLoginTodos, setSecondLoginTodos] = useState(
+    defaultSecondLoginTodos
+  );
   const [optionalTodos, setOptionalTodos] = useState(defaultOptionalTodos);
   const [preferentialTodos, setPreferentialTodos] = useState(
     defaultPreferentialTodos
@@ -110,6 +140,7 @@ export default function TodolistPage(): JSX.Element {
 
   useEffect(() => {
     resetTodosDaily();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [now]);
 
   useEffect(() => {
@@ -132,6 +163,18 @@ export default function TodolistPage(): JSX.Element {
   function updateLoginTodos(todo: Todo) {
     setLoginTodos(
       loginTodos.map((t) => {
+        if (t.label === todo.label) {
+          return { ...t, checked: !t.checked };
+        }
+        return t;
+      })
+    );
+    updateTimestamps();
+  }
+
+  function updateSecondLoginTodos(todo: Todo) {
+    setSecondLoginTodos(
+      secondLoginTodos.map((t) => {
         if (t.label === todo.label) {
           return { ...t, checked: !t.checked };
         }
@@ -260,28 +303,51 @@ export default function TodolistPage(): JSX.Element {
           </ul>
         </section>
 
-        <section>
-          <h2 className="overlap">Depends on the day</h2>
+        <div className="flex flex-col gap-y-16">
+          {/* Second login */}
+          <section>
+            <h2 className="overlap">At second login</h2>
 
-          <p className="border border-beige-inactive bg-grey-foreground p-4 mb-4">
-            {countCheckedTodos(optionalTodos)}/{optionalTodos.length} completed
-          </p>
+            <p className="border border-beige-inactive bg-grey-foreground p-4 mb-4">
+              {countCheckedTodos(secondLoginTodos)}/{secondLoginTodos.length}{" "}
+              completed
+            </p>
 
-          <ul className="flex flex-col gap-y-4">
-            {optionalTodos.map((todo) => (
-              <TodoListItem
-                key={todo.label}
-                todo={todo}
-                updateTodo={updateOptionalTodos}
-              />
-            ))}
-          </ul>
+            <ul className="flex flex-col gap-y-4">
+              {secondLoginTodos.map((todo) => (
+                <TodoListItem
+                  key={todo.label}
+                  todo={todo}
+                  updateTodo={updateSecondLoginTodos}
+                />
+              ))}
+            </ul>
+          </section>
 
-          <p className="mb-4 bg-grey-dark p-4 mt-8">
-            The icons will be updated automatically based on the current day in
-            the near future.
-          </p>
-        </section>
+          <section>
+            <h2 className="overlap">Depends on the day</h2>
+
+            <p className="border border-beige-inactive bg-grey-foreground p-4 mb-4">
+              {countCheckedTodos(optionalTodos)}/{optionalTodos.length}{" "}
+              completed
+            </p>
+
+            <ul className="flex flex-col gap-y-4">
+              {optionalTodos.map((todo) => (
+                <TodoListItem
+                  key={todo.label}
+                  todo={todo}
+                  updateTodo={updateOptionalTodos}
+                />
+              ))}
+            </ul>
+
+            <p className="mb-4 bg-grey-dark p-4 mt-8">
+              The icons will be updated automatically based on the current day
+              in the near future.
+            </p>
+          </section>
+        </div>
 
         <section className="xl:col-span-2">
           <h2 className="overlap">Depends on what you need</h2>
