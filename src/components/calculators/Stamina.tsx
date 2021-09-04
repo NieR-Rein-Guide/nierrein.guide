@@ -50,9 +50,15 @@ function StaminaCalculator(): JSX.Element {
 
     const differenceInMinutes = (Date.now() - lastStaminaUpdate) / 1000 / 60;
     const additionnalStamina = Math.round(differenceInMinutes / 3);
+    const newStamina = currentStamina + additionnalStamina;
 
     setMaxStamina(maxStamina);
-    setStamina(currentStamina + additionnalStamina);
+
+    if (newStamina >= maxStamina) {
+      return;
+    }
+
+    setStamina(newStamina);
   }
 
   const twoHours = calculateStamina(stamina, 120);
