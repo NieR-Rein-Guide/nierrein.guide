@@ -22,7 +22,7 @@ export default function FeaturedGuides({
             date={guide.updated_at}
             excerpt={guide.description}
             slug={guide.slug}
-            image={guide.cover.formats}
+            image={guide?.thumbnail?.formats}
           />
         ))}
       </div>

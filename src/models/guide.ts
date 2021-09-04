@@ -18,6 +18,9 @@ async function getFeaturedGuides(): Promise<Guide[]> {
             url
             formats
           }
+          thumbnail {
+            formats
+          }
           published_at
           updated_at
         }
@@ -42,6 +45,9 @@ async function getAllGuides(): Promise<Guide[]> {
           width
           height
           url
+          formats
+        }
+        thumbnail {
           formats
         }
         published_at

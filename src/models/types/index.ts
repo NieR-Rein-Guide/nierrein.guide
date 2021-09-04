@@ -57,6 +57,9 @@ export type Guide = {
     url?: string;
     formats?: StrapiImageFormats;
   };
+  thumbnail?: {
+    formats?: StrapiImageFormats;
+  };
   published_at: string;
   updated_at?: string;
 }
