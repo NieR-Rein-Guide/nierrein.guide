@@ -10,6 +10,10 @@ function calculateStamina(stamina: number, minutes: number) {
   return stamina + addStamina;
 }
 
+function capStamina(number) {
+  return Math.abs(Math.min(Math.max(parseInt(number), 0), 999));
+}
+
 // function calculatePeakStamina(currentStamina: number, maxStamina: number) {
 //   // calculate time before for max stamina
 //   // const peakWaitTime = calculateStamina(currentStamina, 960);
@@ -78,13 +82,13 @@ function StaminaCalculator(): JSX.Element {
           <div className="flex flex-col">
             <div className="mt-6 mb-4">
               <input
-                value={stamina}
+                value={`${stamina}`.replace(/^0+/, "")}
                 className="text-2xl h-8 w-20 px-2 bg-grey-dark border-b border-dotted border-beige-light border-opacity-50"
                 type="number"
                 placeholder="0"
                 min="0"
                 max="999"
-                onChange={(e) => setStamina(Number(e.target.value))}
+                onChange={(e) => setStamina(capStamina(Number(e.target.value)))}
               />
               <span className="text-beige-inactive">
                 /
@@ -95,7 +99,9 @@ function StaminaCalculator(): JSX.Element {
                   placeholder="0"
                   min="0"
                   max="999"
-                  onChange={(e) => setMaxStamina(Number(e.target.value))}
+                  onChange={(e) =>
+                    setMaxStamina(capStamina(Number(e.target.value)))
+                  }
                 />
               </span>
             </div>
