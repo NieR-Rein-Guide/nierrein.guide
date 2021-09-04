@@ -50,6 +50,9 @@ module.exports = {
       },
       spacing: {
         "42" : "10.5rem"
+      },
+      boxShadow: {
+        'border': '0 0 0 0.1rem #bda699'
       }
     },
   },

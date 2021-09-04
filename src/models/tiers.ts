@@ -87,6 +87,7 @@ async function getTiers() {
   const pvpTiers = pvpSheet.reduce((acc, costume) => {
     const newCostume = {
       ...costume,
+      isEX: costume.title.toLowerCase().includes('reborn'),
       points: {
         agility: forceToNumber(costume.points.agility),
         atk: forceToNumber(costume.points.atk),

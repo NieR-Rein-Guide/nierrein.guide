@@ -155,18 +155,6 @@ section {
   }
 }
 
-footer {
-  margin-top: 64px;
-
-  a {
-    text-decoration: underline dotted;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-}
-
 .hover-bg {
   @apply transition-colors rounded-md;
 
@@ -251,6 +239,16 @@ iframe {
 
     &:hover {
       @apply no-underline;
+    }
+  }
+}
+
+.credits {
+  a {
+    text-decoration: underline dotted;
+
+    &:hover {
+      text-decoration: none;
     }
   }
 }

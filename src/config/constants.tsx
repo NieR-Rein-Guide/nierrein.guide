@@ -46,6 +46,17 @@ export const NAVIGATION = [
   },
 ];
 
+export const FOOTER_NAVIGATION = [
+  {
+    label: "About",
+    href: "/about",
+  },
+  {
+    label: "Privacy Policy",
+    href: "/privacy-policy",
+  },
+];
+
 interface Project {
   name: string;
   startedBy: string;
@@ -56,27 +67,27 @@ interface Project {
 export const CURRENT_PROJECTS: Project[] = [
   {
     name: "Data compilation",
-    startedBy: "jonbttt",
+    startedBy: "Mayge and jonbttt",
     link: "https://docs.google.com/spreadsheets/d/14-DZc4wyi1deE_-s1lgcMoEorCfAvQGY-3nseyAWOnY/edit#gid=385153085",
-    progress: 60,
+    progress: 80,
   },
   {
     name: "Materials compilation",
     startedBy: "Senka",
     link: "https://docs.google.com/spreadsheets/d/1dUs4ajYMQhDHYj8FtJ8hfqhInTrE29j8PJhVV_hbFn4/edit#gid=0",
-    progress: 40,
+    progress: 100,
   },
   {
     name: "Quests Data",
     startedBy: "keek",
     link: "https://docs.google.com/spreadsheets/d/1TBNSDa_Ys2c4kBnrIsRKtCHukMuZYOvMe44pxdyZ72c/edit#gid=0",
-    progress: 50,
+    progress: 60,
   },
   {
     name: "Daily Rates",
     startedBy: "keek",
     link: "https://docs.google.com/spreadsheets/d/1FFL2Gej8UGphIVaGySk_Dwa7k4xc-PDB1pyqETfQ0JQ/edit#gid=0",
-    progress: 50,
+    progress: 60,
   },
   {
     name: "Q/A Page",
@@ -130,7 +141,7 @@ export const CREDITS = [
   },
   {
     name: "val_pinkman",
-    link: "https://dr0p.me/",
+    link: "https://twitter.com/val_pinkman",
   },
   {
     name: "PostPwnedTV",
@@ -166,7 +177,10 @@ export const CREDITS = [
   },
   {
     name: "Bivi",
-    link: "https://github.com/190nm/rein-kuro ",
+    link: "https://github.com/190nm/rein-kuro",
+  },
+  {
+    name: "taida",
   },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
@@ -184,6 +198,8 @@ export const meta = {
 export const GAME_TIMEZONE = "Pacific/Pitcairn";
 export const SITE_URL = "https://nierrein.guide";
 export const DISCORD_URL = "https://discord.gg/swgHJJdt7f";
+export const TWITTER_URL = "https://twitter.com/NierReinGuide";
+export const INSTAGRAM_URL = "https://www.instagram.com/nierreinguide/";
 
 interface Social {
   label: string;
@@ -191,22 +207,26 @@ interface Social {
   icon: JSX.Element;
 }
 
-export const SOCIALS: Social[] = [
+export const OUR_SOCIALS: Social[] = [
   {
-    label: "Our Discord",
+    label: "Discord",
     href: DISCORD_URL,
-    icon: <SVG src="/logos/discord.svg" height="32" />,
+    icon: <SVG src="/logos/discord.svg" height="26" />,
   },
   {
-    label: "Our Twitter",
-    href: "https://twitter.com/NierReinGuide",
+    label: "Twitter",
+    href: TWITTER_URL,
     icon: <SVG src="/logos/twitter.svg" height="32" />,
   },
   {
-    label: "Our Instagram",
-    href: "https://www.instagram.com/nierreinguide/",
+    label: "Instagram",
+    href: INSTAGRAM_URL,
     icon: <SVG src="/logos/instagram.svg" height="32" />,
   },
+];
+
+export const SOCIALS: Social[] = [
+  ...OUR_SOCIALS,
   {
     label: "Official Discord",
     href: "https://discord.gg/4QTuC6xR82",

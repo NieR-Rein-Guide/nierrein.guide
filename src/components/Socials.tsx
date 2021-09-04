@@ -17,7 +17,7 @@ function Socials(): JSX.Element {
             >
               <div className="flex flex-col justify-between max-h-16">
                 {social.icon}
-                <span>{social.label}</span>
+                <span className="text-center mt-2">{social.label}</span>
               </div>
             </BtnSecondary>
           </li>

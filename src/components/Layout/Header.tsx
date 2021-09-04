@@ -46,8 +46,27 @@ export default function Header(): JSX.Element {
   }
 
   return (
-    <header className="container">
-      <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-8 lg:mb-24">
+    <header className="container relative">
+      <div className="absolute right-0 top-0 flex-col xl:flex-row justify-center gap-4 mx-auto px-8 hidden xl:flex">
+        <a
+          href={GITHUB_REPO_LINK}
+          title="Click to view the source code on GitHub"
+          rel="noopener noreferrer"
+          target="_blank"
+          className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige text-black hover:bg-opacity-90 transition-colors"
+        >
+          <FiGithub />
+          <span>Currently under heavy development (v{pkg.version})</span>
+        </a>
+        <Link href="/todolist">
+          <a className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige-accent text-black hover:bg-opacity-90 transition-colors">
+            <RiTodoLine />
+            <span>To-do list</span>
+          </a>
+        </Link>
+      </div>
+
+      <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-8 xl:mb-24 xl:mt-24">
         <Link href="/" passHref={true}>
           <a
             className="flex items-center relative group"
@@ -119,29 +138,14 @@ export default function Header(): JSX.Element {
             </ul>
           </div>
         </nav>
-
-        <div className="w-full">
-          <div className="flex flex-col xl:flex-row justify-center gap-4 mx-auto">
-            <a
-              href={GITHUB_REPO_LINK}
-              title="Click to view the source code on GitHub"
-              rel="noopener noreferrer"
-              target="_blank"
-              className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige text-black hover:bg-opacity-90 transition-colors"
-            >
-              <FiGithub />
-              <span>Currently under heavy development (v{pkg.version})</span>
-            </a>
-
-            <Link href="/todolist">
-              <a className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige-accent text-black hover:bg-opacity-90 transition-colors">
-                <RiTodoLine />
-                <span>To-do list</span>
-              </a>
-            </Link>
-          </div>
-        </div>
       </div>
+
+      <Link href="/todolist">
+        <a className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige-accent text-black hover:bg-opacity-90 transition-colors max-w-xl mx-auto mb-12">
+          <RiTodoLine />
+          <span>To-do list</span>
+        </a>
+      </Link>
     </header>
   );
 }
