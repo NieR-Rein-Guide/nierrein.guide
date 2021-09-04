@@ -17,7 +17,7 @@ function calculateStamina(stamina: number, minutes: number) {
 
 function StaminaCalculator(): JSX.Element {
   const [stamina, setStamina] = useState(0);
-  const [maxStamina, setMaxStamina] = useState(0);
+  const [maxStamina, setMaxStamina] = useState(10);
 
   useEffect(() => {
     getLocalStamina();
@@ -81,7 +81,7 @@ function StaminaCalculator(): JSX.Element {
                 value={stamina}
                 className="text-2xl h-8 w-20 px-2 bg-grey-dark border-b border-dotted border-beige-light border-opacity-50"
                 type="number"
-                placeholder="10"
+                placeholder="0"
                 min="0"
                 max="999"
                 onChange={(e) => setStamina(Number(e.target.value))}
@@ -92,7 +92,7 @@ function StaminaCalculator(): JSX.Element {
                   value={`${maxStamina}`.replace(/^0+/, "")}
                   className="text-2xl h-8 w-24 px-2 bg-grey-dark border-b border-dotted border-beige-light border-opacity-50"
                   type="number"
-                  placeholder="10"
+                  placeholder="0"
                   min="0"
                   max="999"
                   onChange={(e) => setMaxStamina(Number(e.target.value))}
