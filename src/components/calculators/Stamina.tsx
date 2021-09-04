@@ -105,7 +105,7 @@ function StaminaCalculator(): JSX.Element {
               <sup className="text-beige-dark">
                 {twoHours < maxStamina
                   ? ""
-                  : `(lost ${twoHours - maxStamina} stamina)`}
+                  : `(wasting ${twoHours - maxStamina} stamina)`}
               </sup>
             </p>
             <p className="text-beige-inactive">
@@ -113,7 +113,7 @@ function StaminaCalculator(): JSX.Element {
               <sup className="text-beige-dark">
                 {fourHours < maxStamina
                   ? ""
-                  : `(lost ${fourHours - maxStamina} stamina)`}
+                  : `(wasting ${fourHours - maxStamina} stamina)`}
               </sup>
             </p>
             <p className="text-beige-inactive">
@@ -121,7 +121,7 @@ function StaminaCalculator(): JSX.Element {
               <sup className="text-beige-dark">
                 {eightHours < maxStamina
                   ? ""
-                  : `(lost ${eightHours - maxStamina} stamina)`}
+                  : `(wasting ${eightHours - maxStamina} stamina)`}
               </sup>
             </p>
             <p className="text-beige-inactive">
@@ -129,7 +129,7 @@ function StaminaCalculator(): JSX.Element {
               <sup className="text-beige-dark">
                 {twelveHours < maxStamina
                   ? ""
-                  : `(lost ${twelveHours - maxStamina} stamina)`}
+                  : `(wasting ${twelveHours - maxStamina} stamina)`}
               </sup>
             </p>
             <p className="text-beige-inactive">
@@ -137,7 +137,7 @@ function StaminaCalculator(): JSX.Element {
               <sup className="text-beige-dark">
                 {sixteenHours < maxStamina
                   ? ""
-                  : `(lost ${sixteenHours - maxStamina} stamina)`}
+                  : `(wasting ${sixteenHours - maxStamina} stamina)`}
               </sup>
             </p>
           </div>
