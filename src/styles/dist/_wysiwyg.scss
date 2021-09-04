@@ -163,7 +163,7 @@
     @apply list-none ml-0;
 
     li {
-      @apply flex items-center relative ml-6;
+      @apply block relative ml-6;
 
       &::before {
         @apply bg-beige w-3 h-3;
@@ -186,7 +186,7 @@
     @apply list-none ml-0;
 
     li {
-      @apply flex items-center relative ml-6;
+      @apply block relative ml-6;
 
       &::before {
         @apply text-beige;
@@ -256,6 +256,10 @@
     }
 
     &.image_resized {
+      @media screen and (max-width: 765px) {
+        width: 100% !important;
+      }
+
       @apply mx-auto;
     }
   }
