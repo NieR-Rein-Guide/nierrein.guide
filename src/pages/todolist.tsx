@@ -6,6 +6,7 @@ import { formatDistance } from "date-fns";
 import localforage from "localforage";
 import { useState, useEffect } from "react";
 import useGametime from "@hooks/useGametime";
+import StaminaCalculator from "@components/calculators/Stamina";
 
 // import { Guide, Event } from "@models/types";
 // import { getCurrentEvents } from "@models/event";
@@ -258,15 +259,21 @@ export default function TodolistPage(): JSX.Element {
         cover="https://nierrein.guide/cover-todolist.jpg"
       />
 
-      <p className="bg-grey-dark p-4 mb-4 max-w-lg wysiwyg">
-        <ul>
-          <li>Your to-do is saved locally.</li>
-          <li>
-            The to-do list resets at game reset time. (
-            {resetTime.toLocaleTimeString()})
-          </li>
-        </ul>
-      </p>
+      <div className="grid lg:grid-cols-2 mb-8">
+        <div className="order-2 mt-4 md:mt-0 md:order-1">
+          <StaminaCalculator />
+        </div>
+
+        <p className="bg-grey-dark p-4 wysiwyg md:place-self-end order-1 md:order-2">
+          <ul>
+            <li>Your to-do is saved locally.</li>
+            <li>
+              The to-do list resets at game reset time. (
+              {resetTime.toLocaleTimeString()})
+            </li>
+          </ul>
+        </p>
+      </div>
 
       <div className="h-12 bg-grey-dark border border-beige-inactive relative mb-16">
         <span

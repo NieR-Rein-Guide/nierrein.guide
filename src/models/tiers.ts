@@ -72,7 +72,7 @@ const RANK_THUMBNAILS = {
 
 function forceToNumber(number: string | number) {
   const string = number.toString().replaceAll(' ', '')
-  return Number.parseInt(string)
+  return Number.parseInt(string, 10)
 }
 
 async function getTiers() {
