@@ -45,7 +45,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
                 <img
                   src="/ui/character/character001004_standard.png"
                   alt="Avatar"
-                  className="rounded-full bg-beige h-10 md:h-12"
+                  className="rounded-full bg-beige h-10 w-10 md:h-12 md:w-12"
                   height="48"
                   width="48"
                 />

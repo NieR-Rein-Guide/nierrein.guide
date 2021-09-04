@@ -30,7 +30,7 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
               date={guide.updated_at}
               excerpt={guide.description}
               slug={guide.slug}
-              image={guide.cover.formats}
+              image={guide?.cover?.formats}
             />
           ))}
         </div>

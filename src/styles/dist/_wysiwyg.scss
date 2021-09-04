@@ -1,6 +1,6 @@
 /*! wysiwyg.css v0.0.3 | MIT License | github.com/jgthms/wysiwyg.css */
 .wysiwyg {
-  @apply font-labor;
+  @apply font-labor overflow-x-auto;
   line-height: 1.6;
 
   a {
@@ -248,6 +248,18 @@
     line-height: 1em;
   }
 
+  .image {
+    @apply flex flex-col;
+
+    &.image-style-align-center {
+      @apply items-center;
+    }
+
+    &.image_resized {
+      @apply mx-auto;
+    }
+  }
+
   figure {
     margin-bottom: 2.8em;
     text-align: center;
@@ -266,8 +278,9 @@
     margin-top: 0.875em;
   }
 
-  table {
-    width: 100%;
+
+  table, .table {
+    @apply w-full;
   }
 
   table pre {
@@ -276,15 +289,19 @@
 
   th,
   td {
+    @apply border border-beige-inactive;
     font-size: 1em;
     padding: 0.7em;
-    border: 1px solid #e6e6e6;
     line-height: 1.4;
+
+    figure, img {
+      @apply mx-auto;
+    }
   }
 
   thead tr,
   tfoot tr {
-    background-color: #f5f5f5;
+    @apply bg-grey-foreground;
   }
 
   thead th,
@@ -293,16 +310,5 @@
   tfoot td {
     font-size: 0.9em;
     padding: 0.77778em;
-  }
-
-  thead th code,
-  thead td code,
-  tfoot th code,
-  tfoot td code {
-    background-color: #fff;
-  }
-
-  tbody tr {
-    background-color: #fff;
   }
 }
