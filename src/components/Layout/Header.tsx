@@ -141,7 +141,7 @@ export default function Header(): JSX.Element {
       </div>
 
       <Link href="/todolist">
-        <a className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige-accent text-black hover:bg-opacity-90 transition-colors max-w-xl mx-auto mb-12">
+        <a className="flex justify-center items-center gap-x-2 px-4 py-4 bg-beige-accent text-black hover:bg-opacity-90 transition-colors max-w-xl mx-auto mb-12 xl:hidden">
           <RiTodoLine />
           <span>To-do list</span>
         </a>
