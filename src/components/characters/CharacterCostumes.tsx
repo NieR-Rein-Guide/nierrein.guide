@@ -1,7 +1,6 @@
 import { CostumeInfo, typedCharacters } from "@models/character";
 import React, { Dispatch, SetStateAction } from "react";
 import MamaStar from "@components/decorations/MamaStar";
-import Star from "@components/decorations/Star";
 
 export default function CharacterCostumes({
   currentCostume,
@@ -24,13 +23,13 @@ export default function CharacterCostumes({
   const costumes = Array.from(byStars.entries());
 
   return (
-    <div className="gap-2 my-2 p-2 lg:pl-6 overflow-auto h-40">
+    <div className="gap-2 my-2 p-2 lg:pl-6 overflow-auto">
       {costumes.map(([stars, costumes]) => (
         <div className="flex flex-row" key={stars}>
           <span className="flex flex-row">
             {Array.from({ length: stars }).map((_, index) => (
               <div className="w-8 h-8" key={index}>
-                <Star rarity={stars} />
+                <MamaStar />
               </div>
             ))}
             {Array.from({ length: 5 - stars }).map((_, index) => (

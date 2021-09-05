@@ -32,5 +32,5 @@ export default function Rank({ rank }: { rank: ranks }): JSX.Element {
     default:
       img = rankE;
   }
-  return <Image src={img} alt="Rank" />;
+  return <Image src={img} alt="Mama icon used as star" />;
 }
