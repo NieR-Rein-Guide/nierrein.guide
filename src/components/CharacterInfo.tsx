@@ -45,12 +45,10 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
         style={{ height: "700px", width: "100%" }}
       >
         <div className="bordered-lg bg-grey-dark h-full w-full">
-          <div className="relative z-10">
+          <div className="relative z-10 h-full w-full">
             <Image
-              layout="intrinsic"
+              layout="fill"
               objectFit="cover"
-              height={854}
-              width={580}
               src={costume.mediumURL}
               alt={`${costume.character} (${costume.name.en}) illustration`}
             />
