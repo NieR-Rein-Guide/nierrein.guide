@@ -65,12 +65,12 @@ export default function Page(): JSX.Element {
       />
 
       <CharacterRows {...{ setCostume, currentCostume }} />
-      <span className="hidden md:inline">
+      <div className="hidden md:inline">
         <CharacterCostumes {...{ setCostume, currentCostume }} />
-      </span>
-      <span className="inline md:hidden">
+      </div>
+      <div className="inline md:hidden">
         <CostumeSelect {...{ setCostume, currentCostume }} />
-      </span>
+      </div>
 
       <CostumeDetails costume={currentCostume}></CostumeDetails>
     </Layout>

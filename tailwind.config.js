@@ -53,6 +53,12 @@ module.exports = {
       },
       boxShadow: {
         'border': '0 0 0 0.1rem #bda699'
+      },
+      brightness: {
+        '30': '30%',
+      },
+      scale: {
+        '-1': '-1'
       }
     },
   },
@@ -63,5 +69,9 @@ module.exports = {
       brightness: ['hover'],
     },
   },
-  plugins: [require("tailwindcss-easing"), require("@tailwindcss/line-clamp")],
+  plugins: [
+    require("tailwindcss-easing"),
+    require("@tailwindcss/line-clamp"),
+    require('@tailwindcss/aspect-ratio')
+  ],
 };

@@ -1,10 +1,9 @@
-import Corners from "./decorations/Corners";
-
 import { CostumeInfo, Stats } from "@models/character";
 import Image from "next/image";
-import MamaStar from "./decorations/MamaStar";
 import Rank from "./decorations/Rank";
 import HR from "./decorations/HR";
+import Star from "./decorations/Star";
+import SVG from "react-inlinesvg";
 
 function SingleStat({ name, value }): JSX.Element {
   return (
@@ -40,32 +39,78 @@ function StatsOfLevel({
 
 function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-5 gap-4 p-2 py-4 md:p-6">
-      <div className="2xl:col-span-2 relative bg-center bg-cover bg-white bg-opacity-25 border-2 flex">
-        <Image
-          width="2048"
-          height="2048"
-          objectFit="contain"
-          src={costume.illustrationURL}
-          alt={`${costume.character} (${costume.name.en}) illustration`}
-        />
+    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 p-2 py-4 md:p-6">
+      <div
+        className="relative overflow-hidden max-w-xl mx-auto"
+        style={{ height: "700px", width: "100%" }}
+      >
+        <div className="bordered-lg bg-grey-dark h-full w-full">
+          <div className="relative z-10">
+            <Image
+              layout="intrinsic"
+              objectFit="cover"
+              height={854}
+              width={580}
+              src={costume.mediumURL}
+              alt={`${costume.character} (${costume.name.en}) illustration`}
+            />
+          </div>
 
-        <span className="flex absolute top-2 left-2">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute -left-24 top-24 transform -scale-1">
+              <SVG
+                src="/decorations/square-right.svg"
+                className="h-48 filter brightness-30 floating"
+              />
+            </div>
+
+            <SVG
+              src="/decorations/square-right.svg"
+              className="h-48 absolute -right-20 -top-16 filter brightness-30 floating"
+            />
+            <SVG
+              src="/decorations/c_rect_inside.svg"
+              className="absolute -left-64 floating"
+            />
+            <SVG
+              src="/decorations/c_rect_outside.svg"
+              className="absolute -left-64 floating"
+            />
+          </div>
+
+          {/* <div
+            className="absolute -left-2/3 -top-1/2 filter brightness-30 z-0"
+            style={{
+              height: "2100px",
+              width: "1500px",
+            }}
+          >
+            <Image
+              className="pointer-events-none"
+              layout="responsive"
+              objectFit="cover"
+              height={2100}
+              width={1500}
+              src={costume.illustrationURL}
+              alt={`${costume.character} (${costume.name.en}) illustration`}
+            />
+          </div> */}
+        </div>
+
+        <span className="flex absolute bottom-6 right-6">
           {Array.from({ length: costume.stars }).map((_, index) => (
             <div className="w-8 h-8" key={index}>
-              <MamaStar />
+              <Star rarity={costume.stars} />
             </div>
           ))}
         </span>
 
-        <Corners />
-
-        <div className="absolute bottom-4 right-4 border bg-beige-darker w-12 h-12 p-1">
+        <div className="absolute top-4 left-4 w-24 h-24 p-1">
           <Rank rank="S" />
         </div>
       </div>
 
-      <div className="2xl:col-span-3">
+      <div className="">
         <div className="mx-4">
           <div className="text-xl">
             <span className="uppercase px-1 text-black bg-beige">
