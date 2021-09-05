@@ -24,7 +24,9 @@ export default function Meta({
 
   return (
     <Head>
-      <title>{metaTitle}</title>
+      <title>
+        {title ? `${metaTitle} - ${defaultMeta.title}` : defaultMeta.title}
+      </title>
       <meta name="description" content={metaDescription} />
 
       {/* Open Graph */}
