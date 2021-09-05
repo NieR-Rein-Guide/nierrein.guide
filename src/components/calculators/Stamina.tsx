@@ -59,6 +59,7 @@ function StaminaCalculator(): JSX.Element {
     setMaxStamina(maxStamina);
 
     if (newStamina >= maxStamina) {
+      setStamina(maxStamina);
       return;
     }
 
