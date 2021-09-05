@@ -1,6 +1,5 @@
 import { CostumeInfo, typedCharacters } from "@models/character";
 import React, { Dispatch, SetStateAction } from "react";
-import MamaStar from "@components/decorations/MamaStar";
 import Star from "@components/decorations/Star";
 
 export default function CharacterCostumes({

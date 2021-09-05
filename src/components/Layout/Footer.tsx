@@ -38,54 +38,7 @@ export default function Footer(): JSX.Element {
           ))}
         </div>
 
-        <h2 className="text-2xl text-center mt-8">
-          {CREDITS.length} contri[b]utors
-        </h2>
-        <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-12 place-items-center relative mt-4 gap-y-2 max-w-4xl mx-auto">
-          {CREDITS.map((credit) => {
-            const CreditContent = (
-              <div>
-                <div data-tip data-for={credit.name}>
-                  <Image
-                    height="64"
-                    width="64"
-                    className="rounded-full"
-                    src={`/credits/${slugify(credit.name, {
-                      lower: true,
-                    })}.png`}
-                    alt={`NieR Avatar of ${credit.name}`}
-                    loading="lazy"
-                  />
-                </div>
-
-                <ReactTooltip
-                  id={credit.name}
-                  aria-haspopup="true"
-                  className="tierlist-tooltip"
-                  effect="solid"
-                  place="top"
-                  multiline
-                >
-                  <p>{credit.name}</p>
-                </ReactTooltip>
-              </div>
-            );
-
-            if (credit.link) {
-              return (
-                <Link href={credit.link} key={credit.name}>
-                  <a className="rounded-full shadow-border transform transition-transform hover:-translate-y-1">
-                    {CreditContent}
-                  </a>
-                </Link>
-              );
-            }
-
-            return CreditContent;
-          })}
-        </div>
-
-        <div className="font-display text-xl md:text-2xl text-center my-16 md:mt-24">
+        <div className="font-display text-xl md:text-2xl text-center my-16 md:mt-12">
           <p>
             NieR Re[in] Guide is not affiliated with or endorsed by SQUARE ENIX
             CO. LTD.

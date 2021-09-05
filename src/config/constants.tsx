@@ -48,7 +48,7 @@ export const NAVIGATION = [
 
 export const FOOTER_NAVIGATION = [
   {
-    label: "About",
+    label: "About & Contributors",
     href: "/about",
   },
   {
