@@ -30,8 +30,13 @@ class CostumeInfo {
     id: number
 
     get illustrationURL(): string {
+        return `/character/ch${this.id.toString().padStart(6, '0')}_full.png`
+    }
+
+    get thumbnailURL(): string {
         return `/character_thumbnails/ch${this.id.toString().padStart(6, '0')}_full-854-480.png`
     }
+
     get iconURL(): string {
         switch (this.id) {
             case 1003: return `/ui/actor/ch001003_01_actor_icon.png` // 2P

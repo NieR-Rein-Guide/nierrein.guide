@@ -58,6 +58,17 @@
   }
 }
 
+.bordered-lg {
+  &::before {
+    @apply block absolute border border-beige-active pointer-events-none transition-transform transform ease-out-cubic;
+    content: "";
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+  }
+}
+
 [data-reach-menu-button] {
   @apply flex items-center;
 }
