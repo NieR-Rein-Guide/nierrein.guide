@@ -38,7 +38,7 @@ class CostumeInfo {
     }
 
     get thumbnailURL(): string {
-        return `/character_thumbnails/ch${this.id.toString().padStart(6, '0')}_full-854-480.png`
+        return `/character/thumbnails/ch${this.id.toString().padStart(6, '0')}_thumbnail.png`
     }
 
     get iconURL(): string {
