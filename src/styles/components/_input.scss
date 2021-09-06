@@ -17,7 +17,8 @@
 
 input[type="text"],
 input[type="url"],
-select, {
+select,
+.input {
   @apply bg-beige-darker border border-beige px-2 py-4 w-full;
 
   &:focus {
