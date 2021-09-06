@@ -219,9 +219,9 @@ iframe {
 }
 
 .text-rarity-4 {
-  background: -webkit-linear-gradient(#b78cff, #5ac3e8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(#b78cff, #5ac3e8);
+  background-clip: text;
+  color: transparent;
 }
 
 .tierlist-tooltip {
