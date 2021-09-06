@@ -161,7 +161,7 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
                   </>
                 )}
                 <Link
-                  href={`/characters/${item.name}${
+                  href={`/characters/${slugify(item.name)}${
                     item.title ? "/" + slugify(item.title) : ""
                   }`}
                   passHref={true}
@@ -177,6 +177,11 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
                       {item.isEX && <span className="text-rarity-4">EX </span>}
                       {item.name}
                     </span>
+                    {item.title && (
+                      <span className="text-xs text-center text-beige">
+                        {item.title}
+                      </span>
+                    )}
                   </a>
                 </Link>
 
