@@ -206,7 +206,7 @@ function DailyInfo(): JSX.Element {
         </Menu>
       </Lines>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 w-full mt-4">
+      <div className="grid grid-cols-1 w-full mt-4">
         <DailyRow dayOfWeek={daysOfWeek[selectedDayIndex]} />
       </div>
     </section>
