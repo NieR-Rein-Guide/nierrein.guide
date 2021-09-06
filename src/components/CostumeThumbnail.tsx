@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import Image from "next/image";
 import swordIcon from "../../public/weapons_types/1h-sword.png";
 import bigSwordIcon from "../../public/weapons_types/2h-sword.png";
@@ -21,24 +22,28 @@ interface CostumeThumbnailProps {
   src: string;
   alt: string;
   weaponType?: WeaponType;
+  rarity?: number;
+  imgClasses?: string;
 }
 
 export default function CostumeThumbnail({
   src,
   alt,
   weaponType,
+  rarity = 1,
+  imgClasses = "",
 }: CostumeThumbnailProps): JSX.Element {
   return (
     <div
       className="h-20 w-20 relative"
       style={{
-        backgroundImage: `url(/decorations/background_rarity_4.png)`,
+        backgroundImage: `url(/decorations/background_rarity_${rarity}.png)`,
       }}
     >
       <Image
         className="z-10"
         layout="fill"
-        src="/decorations/corners_rarity_4.png"
+        src={`/decorations/corners_rarity_${rarity}.png`}
         alt={alt}
       />
       {weaponType && (
@@ -52,7 +57,12 @@ export default function CostumeThumbnail({
           <Image layout="fill" src={weaponsIcons[weaponType]} alt={alt} />
         </div>
       )}
-      <Image className="z-0" layout="fill" src={src} alt={alt} />
+      <Image
+        className={classNames("z-0", imgClasses)}
+        layout="fill"
+        src={src}
+        alt={alt}
+      />
     </div>
   );
 }
