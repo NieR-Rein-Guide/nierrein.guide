@@ -98,8 +98,9 @@ import fistIcon from "../../public/ui/material/material321004_standard.png";
 import staffIcon from "../../public/ui/material/material321005_standard.png";
 import gunIcon from "../../public/ui/material/material321006_standard.png";
 import classNames from "classnames";
+import GuerillaTimers from "./GuerillaTimers";
 
-const weaponToIcon = (weapon: string) => {
+const weaponToIcon = (weapon: string): StaticImageData => {
   switch (weapon) {
     case "sword":
       return swordIcon;
@@ -125,7 +126,7 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
 
   return (
     <div className="flex justify-center w-full">
-      <div className="flex flex-col xl:flex-row place-items-center">
+      <div className="flex place-items-center">
         <div className="flex justify-center flex-wrap">
           {gems.map((gem, index) => (
             <div key={index} className="relative h-20 w-20">
@@ -169,13 +170,10 @@ function DailyInfo(): JSX.Element {
     <section className="flex items-start flex-col">
       <h2 className="overlap">Daily Quests</h2>
 
-      <Lines
-        className="flex md:h-40"
-        containerClass="flex-col items-center gap-y-2 lg:flex-row"
-      >
+      <Lines>
         <Menu>
-          <MenuButton as="div" className="w-full md:w-auto">
-            <BtnTertiary className="py-4 w-full md:w-32 flex items-center justify-center">
+          <MenuButton as="div" className="w-full">
+            <BtnTertiary className="py-4 w-full md:w-32 mx-auto flex items-center justify-center">
               <div className="flex flex-col gap-y-1">
                 <span>{format(daysOfWeek[selectedDayIndex], "eeee")}</span>
                 <SVG
@@ -206,9 +204,11 @@ function DailyInfo(): JSX.Element {
             ))}
           </MenuList>
         </Menu>
-
-        <DailyRow dayOfWeek={daysOfWeek[selectedDayIndex]} />
       </Lines>
+
+      <div className="grid grid-cols-1 xl:grid-cols-2 w-full mt-4">
+        <DailyRow dayOfWeek={daysOfWeek[selectedDayIndex]} />
+      </div>
     </section>
   );
 }
