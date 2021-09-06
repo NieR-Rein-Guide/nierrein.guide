@@ -285,3 +285,7 @@ iframe {
     transform: translate(0, -0px);
   }
 }
+
+iframe {
+  @apply filter invert;
+}
