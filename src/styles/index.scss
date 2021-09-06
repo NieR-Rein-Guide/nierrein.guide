@@ -1,6 +1,6 @@
-@import "nprogress.scss";
-@import "components";
-@import "dist";
+@import 'nprogress.scss';
+@import 'components';
+@import 'dist';
 
 html,
 body {
@@ -21,13 +21,13 @@ h5,
 h6,
 .serif {
   letter-spacing: -0.5px;
-  font-family: "Cormorant", serif;
+  font-family: 'Cormorant', serif;
   line-height: 1;
   font-weight: 500;
 }
 
 .serif {
-  font-family: "Cormorant", serif;
+  font-family: 'Cormorant', serif;
 }
 
 code {
@@ -38,11 +38,24 @@ svg {
   width: auto;
 }
 
+.darken-img img{
+  filter: brightness(0.8) contrast(1.2);
+}
+
 .nav {
   @apply transition-all ease-out-cubic duration-300;
 
   &.nav-is-opened {
-    clip-path: polygon(20% 0%, 80% 0%, 100% 0, 100% 100%, 60% 100%, 42% 100%, 0 100%, 0 0) !important;
+    clip-path: polygon(
+      20% 0%,
+      80% 0%,
+      100% 0,
+      100% 100%,
+      60% 100%,
+      42% 100%,
+      0 100%,
+      0 0
+    ) !important;
 
     @screen xl {
       clip-path: unset;
@@ -79,7 +92,7 @@ svg {
     .iso {
       height: 50px;
       width: 50px;
-      background-color: theme("colors.beige.darker");
+      background-color: theme('colors.beige.darker');
       transform: rotate(45deg);
 
       img {
@@ -117,7 +130,6 @@ svg {
 
   .inactive {
     img {
-
       @apply bg-black;
     }
   }
@@ -125,11 +137,11 @@ svg {
 
 .iso-bg {
   border: 2px solid;
-  border-color: theme("colors.beige.darker");
+  border-color: theme('colors.beige.darker');
   &.active {
-    border-color: theme("colors.beige.DEFAULT");
+    border-color: theme('colors.beige.DEFAULT');
   }
-  background-color: theme("colors.beige.darker");
+  background-color: theme('colors.beige.darker');
   width: 56px;
   height: 56px;
   // margin-left: 24px;
@@ -161,7 +173,7 @@ section {
   &:hover,
   &:focus,
   &.active,
-  &[aria-selected="true"] {
+  &[aria-selected='true'] {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
@@ -204,8 +216,6 @@ section {
   transform: scaleX(-1);
 }
 
-
-
 .bg-pattern {
   background-image: url(/decorations/pattern.png);
   background-repeat: repeat;
@@ -219,9 +229,9 @@ iframe {
 }
 
 .text-rarity-4 {
-  background: -webkit-linear-gradient(#b78cff, #5ac3e8);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  background: linear-gradient(#b78cff, #5ac3e8);
+  background-clip: text;
+  color: transparent;
 }
 
 .tierlist-tooltip {
