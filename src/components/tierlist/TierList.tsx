@@ -74,7 +74,7 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
 
   return (
     <div className='flex flex-col gap-y-8 relative'>
-      <div className='flex justify-between'>
+      <div className='flex justify-between pb-8'>
         <div>
           <p>
             Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
@@ -217,6 +217,11 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
               </div>
             ))}
           </div>
+          <img
+            className='py-8 w-full col-span-full opacity-20'
+            src='./border.svg'
+            alt=''
+          />
         </div>
       ))}
 
