@@ -1,7 +1,7 @@
 import { Costume } from "@models/types";
 import React, { Dispatch, SetStateAction } from "react";
 
-function getIconUrl(assetId: number): string {
+function getIconUrl(assetId: string): string {
   return `/ui/actor/${assetId}_01_actor_icon.png`;
 }
 
