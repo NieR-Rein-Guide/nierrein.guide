@@ -1,0 +1,6922 @@
+{
+  "a000": {
+    "0010": {
+      "00100": {
+        "00020": {
+          "0": {
+            "text_": "Prologue"
+          }
+        },
+        "00030": {
+          "0": {
+            "text_": "\"Thus do I remain in The Cage.\"\\n—The Black Sage's Soliloquy"
+          }
+        }
+      }
+    },
+    "0040": {
+      "00100": {
+        "00040": {
+          "0": {
+            "text_": "......"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Well! Look who's finally up."
+          }
+        }
+      },
+      "00200": {
+        "00040": {
+          "0": {
+            "text_": "......"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Oh dear. So you did lose your voice after all."
+          }
+        }
+      },
+      "00300": {
+        "00040": {
+          "0": {
+            "text_": "Try to say something."
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Don't worry. Mama's here to help."
+          }
+        }
+      },
+      "00400": {
+        "00040": {
+          "0": {
+            "text_": "Give up and stay silent."
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "This way."
+          }
+        }
+      }
+    },
+    "0050g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "You've lost more than just your voice."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "But I'm sure you already know that, don't you?"
+          }
+        }
+      }
+    },
+    "0060": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "You've lost so much. But the time has come to reclaim it."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Life will be much harder if you can't speak, after all."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Come now, up the stairs."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "These stairs are the entrance to your prison—a place known as \"The Cage.\""
+          }
+        }
+      }
+    }
+  },
+  "a010": {
+    "0010": {
+      "00100": {
+        "00010": {
+          "0": {
+            "text_": "Windblown Sand"
+          }
+        },
+        "00030": {
+          "0": {
+            "text_": "\"Sometimes I felt like all they wanted\\nto do was fight. It was...terrifying.\"\\n—Fragment of an audio recording"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Goodness, look at these\\nrivers of sand! I wonder how\\nsuch a thing came to pass."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Make sure you don't get\\nany grit in your eyes!"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "I wonder where all of\\nthis sand is going."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Do you see those black birds?"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Let's head for the shiny\\nblack light up there."
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "These strange statues are scattered throughout The Cage."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I don't know who made them, but I call them Dark Scarecrows."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Anyway, this is the first one, so we'll start here."
+          }
+        }
+      }
+    },
+    "0040g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Oh dear. Are you lost?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Don't be scared, child.\\nMama's here."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Go on. Try touching that\\nDark Scarecrow."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Did you see the flock of\\nblack birds that possessed\\nthe bounty hunter?"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "They're nasty sorts who\\nlike to fly in and warp\\nthe story."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Well, we are not going to\\nlet that stand, are we?"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "Your role is to defeat them \\nand put the story back the \\nway it's supposed to be."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "But I suppose you already\\nknow that, don't you?"
+          }
+        }
+      }
+    },
+    "0050": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This weapon is a memory of the staff held by the boy from the wastelands."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Your task is to fix warped memories like this\\nin order to restore complete stories."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "But we also need to collect weapons like these."
+          }
+        }
+      }
+    },
+    "0060g": {
+      "00100": {
+        "00040": {
+          "0": {
+            "text_": "Nod"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Do you have a rough sense\\nof what you're supposed\\nto do now, child?"
+          }
+        }
+      },
+      "00200": {
+        "00040": {
+          "0": {
+            "text_": "Shake your head"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Wonderful! Then let's\\nkeep this up!"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Also, Mama's here to help, \\nso don't worry too much\\nabout it, all right?"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Yes, I suppose it is a lot\\nto wrap your mind around."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "It'll make sense as we find\\nmore stories. Don't be afraid to ask for help!"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "I wonder what's beyond \\nthat light?"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "Careful now! Mama doesn't\\nwant you to trip and hurt\\nyourself."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "My, what a beautiful place."
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "I can't fathom how anyone managed to construct something so large."
+          }
+        }
+      }
+    },
+    "0070": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Well, here's the second one. Are you ready?"
+          }
+        }
+      }
+    },
+    "0080g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "We collect stories in order\\nto regain what you have\\nlost..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "But we also do it to make\\nyour wish come true."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "So let's keep it up.\\nSlow and steady wins\\nthis race!"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Hmm. I suppose I should \\ntell you a little bit about\\nThe Cage."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "It's a truly massive structure."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Where you woke up, and this sandy area here, are just small parts of it."
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "To be honest, a great deal\\nof The Cage is a mystery."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "I'm not even certain who\\ngave it that name."
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "There's a Dark Scarecrow."
+          }
+        }
+      }
+    },
+    "0090": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "To think that poor sick child had to travel the wastes in his condition!"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Still, we've restored the third memory now."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "If we can collect the next one, it will mark the end of the staff's tale."
+          }
+        }
+      }
+    },
+    "0100g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Goodness, this place is\\nnothing but stairs! I hope\\nyour little legs are okay."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Still, I suppose it does\\nallow us to see some\\nrather lovely views..."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Be sure to rest whenever\\nyou start to feel tired, child."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Someone once said resting\\nis the shortcut to success,\\nafter all."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "It's so bright here..."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Ah, there's the fourth one. \\nWe should be able to enter\\nthe final memory here."
+          }
+        }
+      }
+    },
+    "0110": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "People who arm themselves tend to find their way into a fight."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I fear you will have to face a good deal of death from now on."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Are you ready?"
+          }
+        }
+      }
+    },
+    "0120": {
+      "00100": {
+        "00050": {
+          "0": {
+            "text_": "Obtained \"Will.\""
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "He was a prince who was driven away from his own country."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "And before breaking down, the machine tried so hard\\nto guard his master's body."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "This memory marks the end of the story they left behind inside this staff."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Well done, child. Do you see how the proper story\\nis now stored inside the staff?"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "You should take it."
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "That is Will, one of the lost fragments that you should be collecting."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "We should search out the next scarecrow to find a new story."
+          }
+        }
+      }
+    },
+    "0130g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Up the stairs, now! We still\\nhave a long way to go."
+          }
+        }
+      }
+    }
+  },
+  "a020": {
+    "0010": {
+      "00100": {
+        "00010": {
+          "0": {
+            "text_": "Grains of Sand"
+          }
+        },
+        "00030": {
+          "0": {
+            "text_": "\"If only I'd had the strength... Whenever I look back, the pain of\\nwhat I lost runs through me.\" —A Woman Imprisoned by the Past"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The road splits here. Mama thinks we should go right because it's the RIGHT way!"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Hmm... But left also might be the right way."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "If it wasn't clear by now,\\nMama doesn't actually know."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "That scarecrow has the next weapon."
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Oh, this weapon is..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Anyway! Let's get started on its restoration, shall we?\\nI wonder what kind of story we'll find this time."
+          }
+        }
+      }
+    },
+    "0040": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Ah, yes. I see. The story of this weapon\\nis all about that woman."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I feel like we've seen her somewhere before..."
+          }
+        }
+      }
+    },
+    "0050g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "What could this black barrier be?"
+          }
+        }
+      }
+    },
+    "0070g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "How can the enemy be acting outside of the scarecrows?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Well, let's just square them away as best we can as we go forward, okay?"
+          }
+        }
+      }
+    },
+    "0090g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "What on earth could those dark creatures be after?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I'm sorry, child. There are just so many things that Mama doesn't know."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Look. Something's out there."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "What could it be?"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "There are so many mysteries in The Cage, aren't there?"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "This second scarecrow will hold another part of the weapon's memory."
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "It won't open yet. Are the dark creatures causing this bit of trouble, too?"
+          }
+        }
+      }
+    },
+    "0100g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "I see. This weapon speaks of war."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I suppose it's rare for the memories in these weapons to be peaceful ones."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "That's a little sad."
+          }
+        }
+      }
+    },
+    "0140g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This room is a bit strange, isn't it?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Can you see down there?"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "There are so many paths going every which way.\\nIt's like a maze."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "I wonder where the other paths lead."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Well then! Let's hop straight into restoring this, shall we?"
+          }
+        }
+      }
+    },
+    "0150g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The memories of the woman in this weapon..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "She lost her arm and leg because of her dark past."
+          }
+        }
+      }
+    },
+    "0200": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Wh-what!?"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "—————"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "—!"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "0210g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "That was..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Looks like that monster ran off somewhere."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Anyway, the next memory we find will be the last for this part of The Cage."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "We're almost there, child.\\nJust keep going."
+          }
+        }
+      }
+    },
+    "0220": {
+      "00100": {
+        "00050": {
+          "0": {
+            "text_": "Obtained \"Hope.\""
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "People need goals and hopes in order to live their lives."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Without them, we lose even our own meaning."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "And for her, revenge was itself a form of hope."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Hope: The spirit of desire and the drive to move forward."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "We have your second fragment back now. Let's keep it up!"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "There are still many things you need to reclaim."
+          }
+        }
+      }
+    },
+    "0230g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Come now. The next fragment is waiting for you."
+          }
+        }
+      }
+    }
+  },
+  "a030": {
+    "0010": {
+      "00100": {
+        "00010": {
+          "0": {
+            "text_": "Hard Sand"
+          }
+        },
+        "00030": {
+          "0": {
+            "text_": "\"I was much too used to this feeling I had no name for.\"\\n—Shattered Memory Data Fragment"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "What are those things up ahead?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Oh my. Bird statues?"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Oh! It broke!"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "I do hope no one saw that..."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "This building is so big...\\nIt's just like a castle!"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Let's fix the memory in the scarecrow and then invite ourselves in, shall we?"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "I didn't think it would open, honestly."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "I know how you feel, but let's get the scarecrow squared away first, okay?"
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This gun..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Anyway, let's get started restoring this story, shall we?"
+          }
+        }
+      }
+    },
+    "0040": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This is the story of a gun-wielding mechanical soldier..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I suppose these are memories of when he first met the boy with the staff."
+          }
+        }
+      }
+    },
+    "0050g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "They were created and discarded entirely at the whim of another."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Well then, let's head over to the castle."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "This isn't a terribly welcoming atmosphere."
+          }
+        }
+      }
+    },
+    "0070g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Goodness, there certainly are a lot of them now!"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "It's the privilege of youth to move forward by breaking everything in your path."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "...Don't you think it's about time we get a move on?"
+          }
+        }
+      }
+    },
+    "0090g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "It would be much easier if we could just crash through those awful black barriers."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Now <i>this</i> is an odd room."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Well, let's keep going."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "It's a waterfall of sand..."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Looks like the path goes through it. Maybe there's a way to stop the flow."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Is that a switch?"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "The sand stopped! Oh, how lovely. Now we can move past it!"
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "There's a switch here, too.\\nGive it a push."
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "Ah, this one opens up the first path. How clever!"
+          }
+        }
+      },
+      "01000": {
+        "01010": {
+          "1": {
+            "text_": "It's almost like it's meant to waste an intruder's time."
+          }
+        }
+      },
+      "01100": {
+        "01010": {
+          "1": {
+            "text_": "The path is open now."
+          }
+        }
+      }
+    },
+    "0100": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This is not the time to be turning back."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "We might be missing something here."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "There must be other paths besides the one blocked by sand..."
+          }
+        }
+      }
+    },
+    "0110": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Found you, Mr. Scarecrow."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Let's get to restoring this memory."
+          }
+        }
+      }
+    },
+    "0120": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "I imagine you're getting used to this by now."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Wonderful! Let's keep it up."
+          }
+        }
+      }
+    },
+    "0160g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "These stairs look terribly unsafe."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "It does seem like an effective way to keep intruders out, though..."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "The Cage is just filled with mysteries, isn't it?"
+          }
+        }
+      }
+    },
+    "0170": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Oh, that's..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "It's the monster that attacked us earlier!"
+          }
+        }
+      }
+    },
+    "0180g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Are you going to chase it?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "It's almost like it's calling to us..."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Hmm. It's not here."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Well, let's take care of the scarecrow for now."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "I understand wanting to rush ahead,\\nbut let's sort out things here first, okay?"
+          }
+        }
+      }
+    },
+    "0190": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "A memory of war..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "So that's why that poor child was driven from his country."
+          }
+        }
+      }
+    },
+    "0200g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The king wished for control, while the prince prayed for peace and happiness."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "They were both thinking of their country, so why did it have to end up so?"
+          }
+        }
+      }
+    },
+    "0210": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Why is there a person in a place like this?"
+          }
+        }
+      },
+      "00200": {
+        "03010": {
+          "1": {
+            "text_": "''Scuse me! Miss!?"
+          }
+        }
+      },
+      "00300": {
+        "03010": {
+          "1": {
+            "text_": "I've been waiting here for a really long time,\\nbut my mommy still hasn't come!"
+          }
+        }
+      },
+      "00400": {
+        "03010": {
+          "1": {
+            "text_": "I miss my mommy so much, and I was hoping you could \\nput me in that scarecrow like you did with Mr. Monster!"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "...I'm sorry. Mama can't help you."
+          }
+        }
+      }
+    },
+    "0220g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Let's be off."
+          }
+        }
+      }
+    },
+    "0240g": {
+      "00100": {
+        "03010": {
+          "1": {
+            "text_": "Mommy..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Leave him be."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "I wonder who put these here?"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "They're just a terrible nuisance."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "That old man has been expelled from the story."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "I feel terrible, but there's nothing we can do for him."
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "We must be careful not to end up lost like him."
+          }
+        }
+      }
+    },
+    "0260g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "...It seemed like that old man knew about you and the monster."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "And he spoke like a child..."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "I wonder what happened to him?"
+          }
+        }
+      }
+    },
+    "0270": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This is the last part of the mechanical soldier's story."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Let's see how the memory ends, shall we?"
+          }
+        }
+      }
+    },
+    "0280": {
+      "00100": {
+        "00040": {
+          "0": {
+            "text_": "Shake your head"
+          }
+        },
+        "00050": {
+          "0": {
+            "text_": "Prayer obtained."
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "After learning to have his own will,\\nthe machine soldier swore to protect the boy."
+          }
+        }
+      },
+      "00200": {
+        "00040": {
+          "0": {
+            "text_": "Nod"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "They both fought—the boy for peace, and the machine for him."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "That must be how their memories were intertwined."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "This is the third fragment."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Prayer... Of all emotions, I believe this one might be especially human. \\nIt is a heart that fills in the blanks of a vague future."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Well? Do you feel anything different?"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "My, that's wonderful! Let's keep this up and get those fragments back."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "Then your wish can come true, too."
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "Oh. Well, there is still so much you lack."
+          }
+        }
+      },
+      "01000": {
+        "01010": {
+          "1": {
+            "text_": "We'll take baby steps to get it all back. One at a time, now!"
+          }
+        }
+      }
+    }
+  },
+  "a040": {
+    "0010": {
+      "00100": {
+        "00010": {
+          "0": {
+            "text_": "Flowing Water"
+          }
+        },
+        "00030": {
+          "0": {
+            "text_": "\"Kill more swiftly than death—before the final breath can be drawn.\"\\n—From a Fragment of a Bloody Diary"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The Cage feels quite different here. How lovely!"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "It's been awful and dusty for the most part, but the air here is nice and clear."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "You know, we found sand in a part of The Cage that had memories of a wasteland."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Perhaps the local scenery is influenced by the weapons' memories."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Do you see that? The air is so clear here, fish even swim in it!"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Hmm... That's actually quite odd now that I think about it."
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Looks like we've found our first memory in this area."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Oh my. This looks like a katana."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Maybe we'll hear a story about a samurai.\\nLet's have a look, shall we?"
+          }
+        }
+      }
+    },
+    "0040": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This story feels quite different from the others we've seen.\\nI'm now convinced the scenery in The Cage is related somehow."
+          }
+        }
+      }
+    },
+    "0050g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Well, it seems this tale involves a female assassin."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I wonder what the secret to her strength is."
+          }
+        }
+      }
+    },
+    "0070g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Sometimes I wonder what those dark foes are trying to accomplish."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Do they just want to slow our progress, or is there some deeper goal?"
+          }
+        }
+      }
+    },
+    "0090g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "My, that's a large gate."
+          }
+        }
+      }
+    },
+    "0100": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "We certainly won't be able to lift this on our own."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "There must be a mechanism that operates it somewhere."
+          }
+        }
+      }
+    },
+    "0120": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Let's search around a little more."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "The mechanism for the gate <i>must</i> be around here somewhere."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "When you can't find what you're looking for,  \\nthe best thing is to search high and low."
+          }
+        }
+      }
+    },
+    "0130": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "What a good eye you have! Here, let Mama take care of that for you."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "There now! That wasn't so hard."
+          }
+        }
+      }
+    },
+    "0140g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "A collapsed bridge?\\nOh dear."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "The scarecrow is so close! There must be a way to get past this."
+          }
+        }
+      }
+    },
+    "0150": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Wait here, child. Mama will take a quick peek around."
+          }
+        }
+      }
+    },
+    "0160g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Oh, but this <i>is</i> a bother.\\nWho even lowered the water in the first place?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I do wish these levers weren't quite so heavy..."
+          }
+        }
+      }
+    },
+    "0180g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Right then! One down and three to go."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I think our mission is going quite well so far."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "I just hope those two find happiness."
+          }
+        }
+      }
+    },
+    "0190": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Wonderful! That did the trick!"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Now we can cross to the other side."
+          }
+        }
+      }
+    },
+    "0200g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "That certainly did take a lot of time."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Well, let's get back on our feet and continue with the restoration, shall we?"
+          }
+        }
+      }
+    },
+    "0210g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Her whole life had been decided before she was even born."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "How sad that has to be the reason for her strength."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "It's rather a tragedy, don't you think?"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "I'm sure you must have a birthplace as well. A place you..."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "......."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "...No, don't mind me.\\nI'm sorry."
+          }
+        }
+      }
+    },
+    "0250g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Hmm..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Do you hear that?"
+          }
+        }
+      }
+    },
+    "0260": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "*giggle*"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "That's..."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "──!"
+          }
+        }
+      }
+    },
+    "0270g": {
+      "00100": {
+        "00040": {
+          "0": {
+            "text_": "Nod"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "It escaped again."
+          }
+        }
+      },
+      "00200": {
+        "00040": {
+          "0": {
+            "text_": "Shake your head"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "What's that sound?"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Oh! The stairs make music when you step on them."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Do you think that monster was...playing the steps?"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "That's a rather cute thing to do, don't you think?"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Well, I suppose it would be odd for a creature like that..."
+          }
+        }
+      }
+    },
+    "0280": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "I wonder if the scarecrow has anything to do with the musical stairs?"
+          }
+        }
+      }
+    },
+    "0300": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The next memory should be the last one in this area."
+          }
+        }
+      }
+    },
+    "0310g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "I wonder what the monster wants. And those other dark foes, for that matter."
+          }
+        }
+      }
+    },
+    "0350g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "I think the last scarecrow in this area is inside this building."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I wonder what the woman in the tale will do?"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Oh my! Again? What terrible timing these things have."
+          }
+        }
+      }
+    },
+    "0360": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Let's hurry on. The last scarecrow should be close."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "We'll need to open this gate first."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "There's likely a lever nearby just like last time."
+          }
+        }
+      }
+    },
+    "0370": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Mama will open this straightaway."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "There! Can you get through now?"
+          }
+        }
+      }
+    },
+    "0380g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This next memory should restore the weapon."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "The scarecrow is right there. Brave faces, now!"
+          }
+        }
+      }
+    },
+    "0390": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "All right, let's begin the restoration."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "It's time to secure the fourth fragment."
+          }
+        }
+      }
+    },
+    "0400": {
+      "00100": {
+        "00050": {
+          "0": {
+            "text_": "\"Anger\" obtained."
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Perhaps freedom in the truest meaning of the word \\nnever existed to begin with."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "We are bound by heavy chains, which closes many doors.\\nAnd one often lacks the will to choose from the remaining options."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Anger... This is the fourth fragment that you've lost."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "What is <i>your</i> anger meant for?"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Is it for a person? The world? Your fate?"
+          }
+        }
+      },
+      "00550": {
+        "01010": {
+          "1": {
+            "text_": "Or perhaps...yourself?"
+          }
+        }
+      }
+    },
+    "0410g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The time when you will also have to choose draws nearer."
+          }
+        }
+      }
+    }
+  },
+  "a050": {
+    "0010": {
+      "00100": {
+        "00010": {
+          "0": {
+            "text_": "Snowy Peaks"
+          }
+        },
+        "00030": {
+          "0": {
+            "text_": "\"I was born at the foot and raised at the peak, and when I descend,\\nI'm just a silly old fool.\" —A mountain people's saying"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Brrr! It's so cold all of a sudden."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Is this...snow that's falling?"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Even The Cage has varying weather, it seems."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Falling snow... Glimmering icicles... Why, even that fabric is frozen over!"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "I never thought I'd get to see such a beautiful sight.\\nMama is truly touched!"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "The fifth weapon should be here."
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "As well as the fifth fragment."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "Now, let's head for the Dark Scarecrow."
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Is that...a spear?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I wonder what kind of memory would cause a snowy Cage?\\nWe should start restoring it right away."
+          }
+        }
+      }
+    },
+    "0040": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "So this memory is from an adventurer.\\nHe certainly looked strong, don't you think?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I've never climbed a mountain before. Er, not that I could,\\nseeing as my legs don't touch the ground..."
+          }
+        }
+      }
+    },
+    "0050g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "We'll be fixing memories inside a spear this time."
+          }
+        }
+      }
+    },
+    "0090g": {
+      "00100": {
+        "00040": {
+          "0": {
+            "text_": "Nod"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "I wonder if those dark foes feel the cold at all."
+          }
+        }
+      },
+      "00200": {
+        "00040": {
+          "0": {
+            "text_": "Shake your head"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Are YOU cold, child? Why, you don't even have mittens!"
+          }
+        }
+      },
+      "00300": {
+        "00040": {
+          "0": {
+            "text_": "......"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Well then, come here and let Mama warm you up!"
+          }
+        }
+      },
+      "00400": {
+        "00040": {
+          "0": {
+            "text_": "......"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "...All right, then. Mama will be quiet."
+          }
+        }
+      },
+      "00500": {
+        "00040": {
+          "0": {
+            "text_": "Nod"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "Are you SURE you aren't cold?"
+          }
+        }
+      },
+      "00600": {
+        "00040": {
+          "0": {
+            "text_": "......"
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "...All right, then. Mama will be quiet."
+          }
+        }
+      }
+    },
+    "0100g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "*gasp*"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Oh, I can't! I know I promised to be quiet, but I just can't!"
+          }
+        }
+      }
+    },
+    "0120g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Make sure not to slip on the snow now!"
+          }
+        }
+      }
+    },
+    "0140g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This is turning into a proper blizzard. We should hurry."
+          }
+        }
+      }
+    },
+    "0150": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "──────────"
+          }
+        }
+      }
+    },
+    "0160g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "...I wonder if it's trying to tell us something."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "My, but that was close! Be sure to take it slowly and watch your step, okay?"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "I see another scarecrow."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "That's the third one.\\nLet's get this done."
+          }
+        }
+      }
+    },
+    "0170g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "He left his pregnant wife to climb a mountain? What an awful man!"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "This fabric has frozen, turning it into a bridge..."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Be careful not to slip!"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "I hear it's best to stay calm and take small steps."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Also, lean forward and firmly plant your foot when—"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Are you listening to me?"
+          }
+        }
+      }
+    },
+    "0190g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The blizzard has calmed somewhat, hasn't it?"
+          }
+        }
+      }
+    },
+    "0210g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Once we restore the next memory, we can leave this snowy area."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "It's pretty, but it makes it hard to see or keep your balance."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "And it's so COLD! Brrrrr..."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "No matter how lovely it is,\\nI wouldn't want to be out\\nhere for too long."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Oh dear. It's a ramp.\\nWill we be all right?"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Eeeeeeek!"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "Ha ha! Oh goodness, my poor bum is frozen!"
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "Still, that was great fun. Perhaps we'll come back here sometime."
+          }
+        }
+      }
+    },
+    "0220": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Let us enter the spear's final memory."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "I wonder if the adventurer manages to get home safely."
+          }
+        }
+      }
+    },
+    "0230": {
+      "00100": {
+        "00050": {
+          "0": {
+            "text_": "Grief obtained."
+          }
+        },
+        "01010": {
+          "1": {
+            "text_": "His family was an illusion..."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "No matter how strong we are, we cannot live alone."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "That man's story was so terribly sad."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "It seems grief waits for everyone at some point in our lives.\\nYet there are times we have no choice but to keep moving forward."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "That's why you've come all this way, isn't it?"
+          }
+        }
+      }
+    },
+    "0240g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Let's go. We have a final fragment to reclaim."
+          }
+        }
+      }
+    }
+  },
+  "a060": {
+    "0010": {
+      "00100": {
+        "00010": {
+          "0": {
+            "text_": "Inscriptions in Stone"
+          }
+        },
+        "00030": {
+          "0": {
+            "text_": "\"To return it to where it is supposed to be—to how it is <i>meant</i> to be...\"\\n—The Dark Fool's lament"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This is the final stop on your journey."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "The time has come to restore the final memory."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "We will regain all that you have lost..."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "So that we might fulfill your wish."
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Your memories are engraved in this scarecrow."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Let us begin."
+          }
+        }
+      }
+    },
+    "0040": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "I know it's painful, but let's keep going."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "These memories are deeply entangled with you; restoring them will not be easy."
+          }
+        }
+      }
+    },
+    "0050g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Do you know what that monster is?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "It is a creature who steals and eats human dreams for want of their form."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "But perhaps you know more about that than I do."
+          }
+        }
+      }
+    },
+    "0090g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Come, then. Let us search for the next scarecrow and memory."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Do you remember how to use this terminal?"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "You came through here with her once, didn't you?"
+          }
+        }
+      }
+    },
+    "0100": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This is the second memory. Are you ready?"
+          }
+        }
+      }
+    },
+    "0110": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Are you all right?\\nCan you walk?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Like I said before, the more we restore, the deeper your pain will grow."
+          }
+        }
+      }
+    },
+    "0130g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The dark foes' attacks grow ever more vehement."
+          }
+        }
+      }
+    },
+    "0150g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "...The path has been cut off."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Though even if the path was there, there is no going back."
+          }
+        }
+      }
+    },
+    "0160": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "When we finish restoring all of these memories, I will ask you one more time."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "So prepare yourself for that moment, all right?"
+          }
+        }
+      }
+    },
+    "0170g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Can you still walk?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "...All right."
+          }
+        }
+      }
+    },
+    "0210g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Regardless of what you choose, the next memory will be the last."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "...Let's get a move on."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Restoring the tale of what you have done is penance for your sins."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "But soon that, too, will come to an end."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Will you realize your wish? Or..."
+          }
+        }
+      }
+    },
+    "0220": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "This is the last—truly and well the last memory."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "The moment you complete this restoration,\\nyou will regain all you have lost."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "And there, you will find your sins waiting."
+          }
+        }
+      }
+    },
+    "0230": {
+      "00100": {
+        "00030": {
+          "1": {
+            "text_": "Four months earlier..."
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "........."
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "...I will eat your nightmares."
+          }
+        }
+      },
+      "00500": {
+        "00030": {
+          "1": {
+            "text_": "To be continued..."
+          }
+        }
+      }
+    }
+  },
+  "a065": {
+    "0020": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "Hey, Carrier."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Yes, my good sir! How may I help?"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "Where are we going today?"
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "Please proceed down this path, Master Levania."
+          }
+        }
+      }
+    },
+    "0040": {
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "You... You're a monster!"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Such cheek! I will have you know that Master Levania\\ndescended upon this world from a—"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Oh... I'm having another scary dream! *sob*"
+          }
+        }
+      },
+      "02300": {
+        "01020": {
+          "1": {
+            "text_": "How delightful!"
+          }
+        }
+      },
+      "02400": {
+        "01050": {
+          "1": {
+            "text_": "Oh! It's almost morning!"
+          }
+        }
+      },
+      "03000": {
+        "01050": {
+          "1": {
+            "text_": "My name's Fio, by the way."
+          }
+        }
+      },
+      "03100": {
+        "01050": {
+          "1": {
+            "text_": "See you tomorrow, Mr. Monster."
+          }
+        }
+      },
+      "03200": {
+        "01020": {
+          "1": {
+            "text_": "How fortuitous to have found someone\\nfreely willing to provide their dreams!"
+          }
+        }
+      },
+      "03300": {
+        "01040": {
+          "1": {
+            "text_": "Indeed."
+          }
+        }
+      },
+      "03400": {
+        "01020": {
+          "1": {
+            "text_": "I think things will be quite busy from here on out. Oh my, yes..."
+          }
+        }
+      },
+      "03500": {
+        "01020": {
+          "1": {
+            "text_": "Ah, so you'll be devouring this girl's dreams, yes?"
+          }
+        }
+      },
+      "03600": {
+        "01020": {
+          "1": {
+            "text_": "And then you'll become human!"
+          }
+        }
+      }
+    },
+    "0045": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "That was how I met the girl in white.:<TAP>"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "\\n\\nThere was no way for me to know if this was simply a coincidence or a planned inevitability—not that I was interested.:<PAGE>"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "\\nI search for human dreams, eat them, and become human myself.:<TAP>"
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "\\nThat instinct is all that drives me.:<TAP>"
+          }
+        }
+      },
+      "00500": {
+        "01040": {
+          "1": {
+            "text_": "\\n\\nThe girl cried about how she had nightmares every night, and said she wanted me to eat her dreams.:<PAGE>"
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "\\nI had only one thought back then::<TAP>"
+          }
+        }
+      },
+      "00700": {
+        "01040": {
+          "1": {
+            "text_": "\\n\\n\"Excellent. I will make good use of her.\":<PAGE>"
+          }
+        }
+      }
+    }
+  },
+  "a070": {
+    "0010": {
+      "00025": {
+        "00010": {
+          "0": {
+            "text_": "The First Night: Withered Crimson"
+          }
+        }
+      },
+      "00050": {
+        "00030": {
+          "0": {
+            "text_": "\"Whether my reason for living be tragedy; \\nwhether my reason for fighting be despair...\""
+          }
+        }
+      },
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "I believe it is now night in that world."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "The slumbering young miss will soon arrive."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Right then. Here we go!"
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "Welcome to The Cage, young miss! It is the world connected to your dreams."
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "This place is called...The Cage?"
+          }
+        }
+      },
+      "00600": {
+        "01020": {
+          "1": {
+            "text_": "Indeed it is."
+          }
+        }
+      },
+      "00700": {
+        "01050": {
+          "1": {
+            "text_": "Wooow... Oh, Mr. Monster! You're back."
+          }
+        }
+      },
+      "00800": {
+        "01050": {
+          "1": {
+            "text_": "You're gonna eat my dreams like you promised, right?"
+          }
+        }
+      },
+      "00900": {
+        "01040": {
+          "1": {
+            "text_": "...Hmph."
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Now then, if you would both please proceed forward."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "I shall explain all you need to know as we make our way."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Soonest begun, soonest done, eh? Ha ha! Let us be off!"
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "To think we would so quickly find a client whose interests match our own."
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "A fine outcome for all concerned, says I!"
+          }
+        }
+      },
+      "00600": {
+        "01050": {
+          "1": {
+            "text_": "This is way nicer than the\\nplace where I was locked up."
+          }
+        }
+      },
+      "00700": {
+        "01020": {
+          "1": {
+            "text_": "Ah, yes. An elevator.\\nWe truly do have all the\\nmodern amenities here!"
+          }
+        }
+      },
+      "00800": {
+        "01040": {
+          "1": {
+            "text_": "You talk too much."
+          }
+        }
+      },
+      "00900": {
+        "01050": {
+          "1": {
+            "text_": "What's that?"
+          }
+        }
+      },
+      "01000": {
+        "01020": {
+          "1": {
+            "text_": "A Dark Scarecrow—though I\\nam uncertain who first gave\\nthem that moniker."
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "So this scarecrow is my scary dream?"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Er, not exactly—although they are similar in a number of respects."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Take care of my dreams, Mr. Monster!"
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "I will—but only because I want to."
+          }
+        }
+      }
+    },
+    "0040": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "In order to eat the girl's dreams, we must first restore these memories—\\nwhich happen to be her dreams' original forms."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Anytime we find one of these Dark Scarecrows,\\nwe should proceed with its restoration posthaste!"
+          }
+        }
+      }
+    },
+    "0050g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "What was my dream about?"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "I fear it was a horrid tale\\nof flower monsters that\\nkill people."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "Fret not! When you wake, you will remember nothing of these terrible visions."
+          }
+        }
+      }
+    },
+    "0060": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Goodness, what is this?"
+          }
+        }
+      }
+    },
+    "0080g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "The dark foes have\\nencroached on The Cage!"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "We cannot permit them to\\naffect the dreams, so let\\nus square them away."
+          }
+        }
+      }
+    },
+    "0100g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "My dreams are always\\nso scary."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "I don't know the people\\nin them, but they all\\nget hurt or die."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Mmm, yes. You appear to\\nbe a human particularly\\nsuited for this world."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "Perhaps these memories from across space and time play out as dreams to you."
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "I didn't understand most\\nof that, but, um... Okay."
+          }
+        }
+      }
+    },
+    "0110": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Have a nice time, Mr. Monster!"
+          }
+        }
+      }
+    },
+    "0120": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "It appears the memories saved in these scarecrows\\nare from a world whose people do not know freedom."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "How terribly suffocating."
+          }
+        }
+      }
+    },
+    "0130g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "A world without freedom?"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "So the world has a collar\\nlike I do?"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Well, it does not <i>actually</i>\\nhave a collar..."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "If I may ask, young miss,\\nwhy DO you wear that collar?"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "0150g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "I wear a collar 'cause\\nthe law says I have to."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "...Yes, well, I suppose you\\nhave your reasons."
+          }
+        }
+      }
+    },
+    "0170g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Let us continue downward on this magnificent elevator!"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "What a convenient world we\\nlive in, wouldn't you say?"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "I wish I could have happy dreams."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Maybe one about cute clothes or pretty jewelry?"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "Or a cake that never runs out! ...Or my mommy's stew."
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "Dream whatever dream you like, so long as I get to eat it."
+          }
+        }
+      }
+    },
+    "0180": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Oh ho! A dead end! Hmmmmm, whatever shall we do?"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "Why are you so smug?"
+          }
+        }
+      }
+    },
+    "0190g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Ha ha! It was actually a\\nwarp point! Clever, no?"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Whoa! That was crazy!"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Ah, look! Scarecrow number\\nthree at last!"
+          }
+        }
+      }
+    },
+    "0200g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Well done! Though I do\\nwonder what happened to\\nthose prisoners..."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Did someone get hurt again?"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Don't trouble yourself too\\nmuch about it, young miss."
+          }
+        }
+      }
+    },
+    "0220g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Our memory restoration is\\nproceeding rather smoothly,\\ndon't you think?"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "I'm tired. This place is far too big."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "I must say, I've never met a human who saw weapon memories as dreams."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "So I'm weird?"
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "Of course not! You are a\\nmost valuable samp— Er,\\nclient! Yes, that's it."
+          }
+        }
+      }
+    },
+    "0240g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "The next restoration will \\nbe tonight's last, so let \\nus pick up the pace!"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Kay."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "What does eating dreams feel like, Mr. Monster?"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Are they yummy?"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "I'm sorry if they're not."
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "Taste is meaningless."
+          }
+        }
+      },
+      "00700": {
+        "01020": {
+          "1": {
+            "text_": "Oh ho, we are in the home stretch now. Let's go!"
+          }
+        }
+      },
+      "00800": {
+        "01050": {
+          "1": {
+            "text_": "Good luck, Mr. Monster!"
+          }
+        }
+      }
+    },
+    "0250": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "To think he lost not only his child, but his wife as well..."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Such sadness could scarce be described with words."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "At any rate, this concludes tonight's memory restoration."
+          }
+        }
+      },
+      "00600": {
+        "01020": {
+          "1": {
+            "text_": "And now, the moment you've been waiting for: dream time!"
+          }
+        }
+      },
+      "00700": {
+        "01020": {
+          "1": {
+            "text_": "Eat the nightmares before our young miss here wakes up."
+          }
+        }
+      },
+      "00800": {
+        "01020": {
+          "1": {
+            "text_": "You will need to consume many more dreams \\nif you wish to become human, you know."
+          }
+        }
+      },
+      "01000": {
+        "01020": {
+          "1": {
+            "text_": "Oh, my. It's almost time for our young miss here to wake up."
+          }
+        }
+      },
+      "01100": {
+        "01050": {
+          "1": {
+            "text_": "I had lots of fun today. See you tomorrow, Mr. Monster!"
+          }
+        }
+      },
+      "01200": {
+        "01020": {
+          "1": {
+            "text_": "Let us be on our way as well."
+          }
+        }
+      },
+      "01300": {
+        "01040": {
+          "1": {
+            "text_": "...This is a dead end."
+          }
+        }
+      },
+      "01400": {
+        "01020": {
+          "1": {
+            "text_": "Is it now? Look over there,\\nif you would be so kind."
+          }
+        }
+      }
+    },
+    "0260g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "After you!"
+          }
+        }
+      }
+    },
+    "0270": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Let us proceed to the young miss's dreams of tomorrow!"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Oh, but this IS exciting!"
+          }
+        }
+      }
+    }
+  },
+  "a080": {
+    "0010": {
+      "00025": {
+        "00010": {
+          "0": {
+            "text_": "The Second Night: Piles of Leaves"
+          }
+        }
+      },
+      "00050": {
+        "00030": {
+          "0": {
+            "text_": "I will embrace you. Tightly—so tightly. To prove all of this is real."
+          }
+        }
+      },
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "And... Ah, yes. There we are."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Hello, Mr. Monster."
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "I didn't have ANY\\ndreams last night!"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Such is the power of a\\ndream eater. He dined\\nquite well, oh yes!"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "I'm excited for today, too!"
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "Hmph."
+          }
+        }
+      },
+      "00500": {
+        "01040": {
+          "1": {
+            "text_": "Carrier."
+          }
+        }
+      },
+      "00600": {
+        "01020": {
+          "1": {
+            "text_": "Yes? What might you need?"
+          }
+        }
+      },
+      "00700": {
+        "01040": {
+          "1": {
+            "text_": "Do you come here a lot?"
+          }
+        }
+      },
+      "00800": {
+        "01020": {
+          "1": {
+            "text_": "Indeed—one might even\\ncall it my workplace!"
+          }
+        }
+      },
+      "00900": {
+        "01020": {
+          "1": {
+            "text_": "I have guided many customers like yourself, all of whom have their own goals."
+          }
+        }
+      },
+      "01000": {
+        "01020": {
+          "1": {
+            "text_": "Not to boast, but I received the performance MVP award for this past year!"
+          }
+        }
+      },
+      "01100": {
+        "01040": {
+          "1": {
+            "text_": "It was a yes or no question."
+          }
+        }
+      },
+      "01200": {
+        "01020": {
+          "1": {
+            "text_": "Such a harsh response!"
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Now then, let us get to restoring tonight's memories."
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "If that's what it'll take to become human, fine."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "I hope the dream isn't scary."
+          }
+        }
+      }
+    },
+    "0035": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "The path I was shown descended endlessly.:<TAP>"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "\\n\\nHuman stories are filled with obsession, jealousy, hatred, grudges, and hypocrisy.:<TAP>"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "\\nHowever commonplace and boring an observation it may be, humans can seemingly only find themselves in interactions with others.:<PAGE>"
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "And those were also the girl's nightmares.:<TAP>"
+          }
+        }
+      },
+      "00500": {
+        "01040": {
+          "1": {
+            "text_": "\\n\\nShe showed restlessness, sympathy, dread, and grief at every twist and turn...:<TAP>"
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "\\nAnd I saw her as an innocent little creature.:<TAP>"
+          }
+        }
+      },
+      "00700": {
+        "01040": {
+          "1": {
+            "text_": "\\n\\nA creature the exact opposite of myself.:<TAP>"
+          }
+        }
+      },
+      "00800": {
+        "01040": {
+          "1": {
+            "text_": "\\nI felt not so much disgust, but fear.:<PAGE>"
+          }
+        }
+      },
+      "00900": {
+        "01040": {
+          "1": {
+            "text_": "Fear that I had somehow taken an interest in this pure girl.:<PAGE>"
+          }
+        }
+      }
+    },
+    "0040": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Welcome back! Did you have fun?"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "It seems to be a continuation of yesterday's dream."
+          }
+        }
+      }
+    },
+    "0050g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "The one about the man who lost his family?"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "The very same—although happily, it seems the wife had survived."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Oh, but I have a good feeling about how this one will end!"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Yay!"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "Say, Mr. Monster? Do you have any siblings?"
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "Siblings?"
+          }
+        }
+      },
+      "00700": {
+        "01040": {
+          "1": {
+            "text_": "I do not know—or care."
+          }
+        }
+      },
+      "00800": {
+        "01050": {
+          "1": {
+            "text_": "I'm an only child, and I'd do ANYTHING to have a brother or sister!"
+          }
+        }
+      },
+      "00900": {
+        "01050": {
+          "1": {
+            "text_": "So, um...do you have a favorite food?"
+          }
+        }
+      },
+      "01000": {
+        "01040": {
+          "1": {
+            "text_": "Whatever I can eat."
+          }
+        }
+      },
+      "01100": {
+        "01040": {
+          "1": {
+            "text_": "No."
+          }
+        }
+      },
+      "01200": {
+        "01050": {
+          "1": {
+            "text_": "My mommy makes yummy stew."
+          }
+        }
+      },
+      "01300": {
+        "01050": {
+          "1": {
+            "text_": "Do YOU like stew?"
+          }
+        }
+      },
+      "01400": {
+        "01040": {
+          "1": {
+            "text_": "I don't know what that is."
+          }
+        }
+      },
+      "01500": {
+        "01040": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "01600": {
+        "01050": {
+          "1": {
+            "text_": "So, um, I wanted to talk more yesterday, but I was kinda nervous."
+          }
+        }
+      },
+      "01700": {
+        "01050": {
+          "1": {
+            "text_": "But that makes sense, right? I mean, I'm in this weird world and stuff, sooo..."
+          }
+        }
+      },
+      "01800": {
+        "01040": {
+          "1": {
+            "text_": "I understand nothing you humans go on about. Keep quiet."
+          }
+        }
+      },
+      "01900": {
+        "01050": {
+          "1": {
+            "text_": "Awww..."
+          }
+        }
+      }
+    },
+    "0060": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Look, Mr. Monster! Look, Carrie! It's the next scarecrow!"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Ca...rrie?"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "At least I'm not the only one with an insipid nickname."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Good luck, Mr. Monster!"
+          }
+        }
+      }
+    },
+    "0070g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "It seems this story will not\\nend happily after all..."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Oh..."
+          }
+        }
+      }
+    },
+    "0110g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "So what's YOUR favorite\\nfood, Carrie?"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "I love nothing more than a heaping plate of dried and salted fish eggs!"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Blech!"
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "It may be something of an acquired taste. Perhaps you need to be older to enjoy it."
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "Have you had salty fish\\neggs, Mr. Monster?"
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "No."
+          }
+        }
+      },
+      "00700": {
+        "01050": {
+          "1": {
+            "text_": "Hee hee! That means\\nyou're a kid, too!"
+          }
+        }
+      },
+      "00800": {
+        "01040": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "0120g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Human clones. Oh dear."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "What's a \"clone\"?"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "It might be a touch difficult for you to understand, young miss."
+          }
+        }
+      }
+    },
+    "0160g": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "What's that huge...thing?"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Is that a...moose?"
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "That is a cursed god; it being in this part of The Cage brings wickedness!"
+          }
+        }
+      }
+    },
+    "0170b": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Goodness! Is this your summoning power!?"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Good luck! I shall stand aside and cheer you on from a safe distance!"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Don't get hurt, Mr. Monster!"
+          }
+        }
+      }
+    },
+    "0180": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "You have defeated a cursed god! I am nothing less than impressed."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "You're so cool, Mr. Monster!"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "Divinity means nothing to me, after all."
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "I suppose something called a \"god\" wouldn't be easy to defeat."
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "Well, we shan't be cursed by a spirit we let lie, I suppose."
+          }
+        }
+      },
+      "00600": {
+        "01050": {
+          "1": {
+            "text_": "What's a curse?"
+          }
+        }
+      }
+    },
+    "0190": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "We don't have time to deal with gods right now."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Indeed, we cannot lose sight of our original goal!"
+          }
+        }
+      }
+    },
+    "0200g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "I have heard that some even\\npray to those cursed gods. \\nHow terribly dreadful!"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Is it a bad moose?"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Oh yes. It has a grisly\\nface, and likes to appear\\nright in front of you!"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "And that's...bad?"
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "Color me impressed that you did not flinch in the face of the cursed god."
+          }
+        }
+      },
+      "00700": {
+        "01050": {
+          "1": {
+            "text_": "Were YOU scared, Carrie?"
+          }
+        }
+      },
+      "01000": {
+        "01020": {
+          "1": {
+            "text_": "I, ah, er... Yes."
+          }
+        }
+      },
+      "01100": {
+        "01020": {
+          "1": {
+            "text_": "That will be tonight's final Dark Scarecrow!"
+          }
+        }
+      }
+    },
+    "0210": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Death borne from love for her partner..."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "There is a very fine line between joy and misery."
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "I don't understand either of those emotions."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "In any case, it is now the moment you have been waiting for: dream time!"
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "It seems it is almost morning in the other world."
+          }
+        }
+      },
+      "00600": {
+        "01050": {
+          "1": {
+            "text_": "Thank you. And, um... I wish we could have adventured more together."
+          }
+        }
+      },
+      "00700": {
+        "01020": {
+          "1": {
+            "text_": "We shall meet again once night falls. Come now."
+          }
+        }
+      }
+    },
+    "0220g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Let us be off, shall we?"
+          }
+        }
+      }
+    },
+    "0230": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "You've grown used to gathering dreams, haven't you?\\nWell, let's keep up the pace!"
+          }
+        }
+      }
+    }
+  },
+  "a090": {
+    "0010": {
+      "00025": {
+        "00010": {
+          "0": {
+            "text_": "The Third Night: Flaming Sands"
+          }
+        }
+      },
+      "00050": {
+        "00030": {
+          "0": {
+            "text_": "\"Revenge is all I have. Without that, it's just...fear.\"\\n—Musings of a lonely boy"
+          }
+        }
+      },
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "And there we are!"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Pardon me, you two, but I fear management has given me\\nsomething of a sudden summoning."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Might it be all right if a substitute took care of you today?"
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "Ah, speak of the dickens! Here comes the substitute now!"
+          }
+        }
+      },
+      "00500": {
+        "01030": {
+          "1": {
+            "text_": "Nice to make your acquaintance."
+          }
+        }
+      },
+      "00600": {
+        "01020": {
+          "1": {
+            "text_": "Worry not; I shall be returned before you know it. Ta!"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01030": {
+          "1": {
+            "text_": "I'm your substitute carrier."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "If you're a substitute,\\nI'm gonna call you Tutie!"
+          }
+        }
+      },
+      "00300": {
+        "01030": {
+          "1": {
+            "text_": "To get through here you gotta pull this lever."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "I need to pull the lever?\\nGot it. Thanks, Tutie!"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "Wooow! It's like there\\nare waterfalls of sand!"
+          }
+        }
+      },
+      "00700": {
+        "01050": {
+          "1": {
+            "text_": "Oh! I think I forgot about \\nmy dream from last night!"
+          }
+        }
+      },
+      "00800": {
+        "01050": {
+          "1": {
+            "text_": "You really are amazing, \\nMr. Monster."
+          }
+        }
+      },
+      "00900": {
+        "01040": {
+          "1": {
+            "text_": "I am not eating your dreams \\nfor <i>you</i>, you know."
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01030": {
+          "1": {
+            "text_": "This will be our first scarecrow of the day."
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "Yes, I am well aware."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Have fun! Byeee!"
+          }
+        }
+      }
+    },
+    "0040g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Was it another bad dream?"
+          }
+        }
+      }
+    },
+    "0080g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Whoa, these stairs make sounds!"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Isn't this fun, Mr. Monster?"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "Not really."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Is this making you dizzy?"
+          }
+        }
+      },
+      "00500": {
+        "01040": {
+          "1": {
+            "text_": "I am fine."
+          }
+        }
+      }
+    },
+    "0090": {
+      "00100": {
+        "01030": {
+          "1": {
+            "text_": "This is a tale of burning revenge."
+          }
+        }
+      }
+    },
+    "0100g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "What's \"revenge\"?"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "When someone harms you,\\nyou repay them in kind."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "That's bad!"
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "The world would be terribly\\nunfair otherwise, no?"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "My teacher said it's bad!"
+          }
+        }
+      }
+    },
+    "0140g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "I wonder where Carrie went."
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "Who cares?"
+          }
+        }
+      },
+      "00250": {
+        "01030": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Eeep! That was scary!"
+          }
+        }
+      }
+    },
+    "0150": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "The lever is stuck."
+          }
+        }
+      },
+      "00200": {
+        "01030": {
+          "1": {
+            "text_": "This is probably because of the dark foes. Take care of the scarecrow first."
+          }
+        }
+      }
+    },
+    "0160g": {
+      "00100": {
+        "01030": {
+          "1": {
+            "text_": "Entering enemy territory alone is very reckless."
+          }
+        }
+      }
+    },
+    "0200g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Why do you wanna be human, Mr. Monster?"
+          }
+        }
+      },
+      "00150": {
+        "01040": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "It is an instinct among my kind."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Ohh... In-stink, huh?"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "When I grow up, I have an\\nin-stink to be a ballerina!"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "I've wanted to be one ever\\nsince I read a picturebook \\nabout ballerinas."
+          }
+        }
+      },
+      "00600": {
+        "01050": {
+          "1": {
+            "text_": "Do you think I can be one?"
+          }
+        }
+      },
+      "00700": {
+        "01040": {
+          "1": {
+            "text_": "I'm certain I have no idea."
+          }
+        }
+      },
+      "00800": {
+        "01030": {
+          "1": {
+            "text_": "This will be today's last scarecrow."
+          }
+        }
+      },
+      "00900": {
+        "01050": {
+          "1": {
+            "text_": "Good luck!"
+          }
+        }
+      }
+    },
+    "0210": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "It...was a sad story, wasn't it?"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "I wish you'd tell me more about the dreams..."
+          }
+        }
+      },
+      "00300": {
+        "01030": {
+          "1": {
+            "text_": "It is time for tonight's dreaming."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "I have returned! Terribly sorry to have caused you so much trouble."
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "It's always such a shock to be called in on short notice like that.\\nI <i>do</i> wish they would find a different way..."
+          }
+        }
+      },
+      "00600": {
+        "01030": {
+          "1": {
+            "text_": "Well then, I'm off."
+          }
+        }
+      },
+      "00700": {
+        "01050": {
+          "1": {
+            "text_": "Let's play again sometime, Tutie!"
+          }
+        }
+      },
+      "00800": {
+        "01030": {
+          "1": {
+            "text_": "Okay."
+          }
+        }
+      },
+      "00900": {
+        "01050": {
+          "1": {
+            "text_": "I wish I could stay here forever."
+          }
+        }
+      },
+      "01000": {
+        "01020": {
+          "1": {
+            "text_": "I doubt that is possible, milady."
+          }
+        }
+      },
+      "01100": {
+        "01020": {
+          "1": {
+            "text_": "You are not part of this world, you see."
+          }
+        }
+      },
+      "01200": {
+        "01040": {
+          "1": {
+            "text_": "See you tomorrow night."
+          }
+        }
+      },
+      "01300": {
+        "01020": {
+          "1": {
+            "text_": "Now then... There we go!"
+          }
+        }
+      },
+      "01400": {
+        "01050": {
+          "1": {
+            "text_": "I'll be right back, so just wait. Okay, Mr. Monster? You too, Carrie."
+          }
+        }
+      },
+      "01500": {
+        "01040": {
+          "1": {
+            "text_": "Oh, with bated breath..."
+          }
+        }
+      }
+    },
+    "0220g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Now, let us proceed forth."
+          }
+        }
+      }
+    },
+    "0230": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Dear me, I've not been here long and I am already covered in sand. I could use a quick soak in the tub!"
+          }
+        }
+      }
+    }
+  },
+  "a100": {
+    "0010": {
+      "00025": {
+        "00010": {
+          "0": {
+            "text_": "The Fourth Night: Flickers of Light"
+          }
+        }
+      },
+      "00050": {
+        "00030": {
+          "0": {
+            "text_": "\"It's okay, you're not going to die. I mean, <i>I'm</i> still alive, right?\"\\n—Conversation within a platoon"
+          }
+        }
+      },
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "I've been waiting for you."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Hee hee! Thanks."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Now, let us proceed onward. Briskly now, friends! Briskly!"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "So it's nighttime here, too."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Yes, it does indeed seem\\nthat way sometimes."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Oh no! They broke!"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Are we gonna get in trouble?"
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "Now let us begin with\\nthis Dark Scarecrow."
+          }
+        }
+      }
+    },
+    "0030g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "My substitute said these are\\nstories of war related to\\nlast night's dreams."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Hmm. \"Stories of war,\" huh?"
+          }
+        }
+      }
+    },
+    "0070g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "I hope you can be human soon, Mr. Monster."
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "Judging by your dreams, it\\nseems all you humans do is\\nworry and fret."
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "Do you even enjoy your lives?"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Well, <i>I</i> sure do!"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "I play with my friends, eat snacks, read books..."
+          }
+        }
+      },
+      "00600": {
+        "01050": {
+          "1": {
+            "text_": "I get to be with my\\nmommy and daddy..."
+          }
+        }
+      },
+      "00650": {
+        "01050": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00700": {
+        "01040": {
+          "1": {
+            "text_": "Mmm? What is it?"
+          }
+        }
+      },
+      "00800": {
+        "01050": {
+          "1": {
+            "text_": "N-nothing..."
+          }
+        }
+      }
+    },
+    "0080": {
+      "00100": {
+        "03020": {
+          "1": {
+            "text_": "Mommy... *sniff*"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "What is this child doing here?"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "Dear me, I have no idea."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "What's wrong?"
+          }
+        }
+      },
+      "00500": {
+        "03020": {
+          "1": {
+            "text_": "A buncha mean soldiers came to the village,\\nso me and my Mommy were gonna 'scape..."
+          }
+        }
+      },
+      "00600": {
+        "03020": {
+          "1": {
+            "text_": "But I got lost... *sniff*"
+          }
+        }
+      },
+      "00700": {
+        "01020": {
+          "1": {
+            "text_": "Heavens, I believe this child was chased here from inside the scarecrow!"
+          }
+        }
+      },
+      "00800": {
+        "01040": {
+          "1": {
+            "text_": "Can that even happen?"
+          }
+        }
+      },
+      "00900": {
+        "01020": {
+          "1": {
+            "text_": "It appears so—though I imagine it to be a rather rare occurrence."
+          }
+        }
+      },
+      "01000": {
+        "03020": {
+          "1": {
+            "text_": "*sniff* I want my mommy... *sniff*"
+          }
+        }
+      },
+      "01100": {
+        "01050": {
+          "1": {
+            "text_": "Can you go find his mommy in the scarecrow, Mr. Monster?"
+          }
+        }
+      },
+      "01200": {
+        "01050": {
+          "1": {
+            "text_": "Pleeease?"
+          }
+        }
+      },
+      "01300": {
+        "01020": {
+          "1": {
+            "text_": "You will be entering the Dark Scarecrows regardless, so I suppose\\nit could not hurt to search for the missing mother as well."
+          }
+        }
+      },
+      "01400": {
+        "01040": {
+          "1": {
+            "text_": "I didn't think this could get any more annoying, yet here we are."
+          }
+        }
+      }
+    },
+    "0085": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "The girl always looked to be having fun as we traveled.:<TAP>"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "\\nShe had been plagued by nightmares and spent untold nights in tears in her old life, but she looked downright cheerful in the world of The Cage.:<TAP>"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "\\n\\nEven though humans are at the whims of their emotions, it seems their souls shone brighter with each bout of emotional turmoil, and I could not understand why.:<TAP>"
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "\\nBut that was the first time that I knew I wanted to be human so I could see the world from the same perspective as her.:<PAGE>"
+          }
+        }
+      }
+    },
+    "0100": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Did you find the boy's mommy?"
+          }
+        }
+      },
+      "00150": {
+        "01050": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Hmmm..."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Hey, why don't you come with us so we can look for your mommy together?"
+          }
+        }
+      },
+      "00400": {
+        "03020": {
+          "1": {
+            "text_": "Kay, I'll go with you. Thanks!"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "Yay! He's coming with us, Mr. Monster! Isn't that great?"
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "0150g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "So the woman inside the\\nscarecrow who died while\\nsearching for her son..."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "That <i>was</i> the boy's\\nmissing mother, yes?"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "If I may, why do you not\\ntell him the truth?"
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "0160b": {
+      "00100": {
+        "03060": {
+          "1": {
+            "text_": "My son..."
+          }
+        }
+      },
+      "00200": {
+        "03060": {
+          "1": {
+            "text_": "Where is my son...?"
+          }
+        }
+      }
+    },
+    "0170": {
+      "00050": {
+        "01040": {
+          "1": {
+            "text_": "...!"
+          }
+        }
+      },
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "An enemy from within the Dark Scarecrow!?"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Oh no. Could she have been...?"
+          }
+        }
+      },
+      "00300": {
+        "03020": {
+          "1": {
+            "text_": "That's... No! That wasn't my mommy!"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Could you search the scarecrow again, Mr. Monster?"
+          }
+        }
+      },
+      "00500": {
+        "01040": {
+          "1": {
+            "text_": "...Fine."
+          }
+        }
+      }
+    },
+    "0180": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Did you find her, Mr. Monster?"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "No."
+          }
+        }
+      },
+      "00300": {
+        "03020": {
+          "1": {
+            "text_": "I'm gonna wait here for my mommy."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "But it's not safe! What if those nasty dark things come back?"
+          }
+        }
+      },
+      "00500": {
+        "03020": {
+          "1": {
+            "text_": "If I leave, my mommy won't be able to find me."
+          }
+        }
+      },
+      "00600": {
+        "01050": {
+          "1": {
+            "text_": "...Okay. I understand."
+          }
+        }
+      },
+      "00700": {
+        "03020": {
+          "1": {
+            "text_": "Thank you! Bye, Mr. Monster!"
+          }
+        }
+      },
+      "00800": {
+        "01040": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "0190g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "You were unable to tell him\\nthe truth, it seems."
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "I've no interest in making a child cry."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "I had no idea your emotions ran so deep!"
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "Why, I'm shocked! Utterly gobsmacked, I say!"
+          }
+        }
+      }
+    },
+    "0200": {
+      "00100": {
+        "03020": {
+          "1": {
+            "text_": "I'm gonna be a good boy and wait here till my mommy comes."
+          }
+        }
+      }
+    },
+    "0230": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "*huff* *huff*"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "Is something the matter?"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "N-no... Um, so, the next dream is the last one, right?"
+          }
+        }
+      }
+    },
+    "0260g": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "You appear tired. Is this because I am eating your dreams?"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Don't be daft. The act of\\nhaving dreams eaten has no\\nphysical effect on a person."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "I'm okay. Don't worry."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "*huff* *huff*"
+          }
+        }
+      },
+      "00450": {
+        "01040": {
+          "1": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "0270": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "This is tonight's final scarecrow!"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "One cannot help but wonder what will become of the boy and the captain..."
+          }
+        }
+      }
+    },
+    "0280": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "My word, a happy ending! How terribly unusual."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "It's good to see that the captain's wish to not let anyone die seems to have prevailed."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "And now, for our favorite event: dream time!"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "I guess I go back now, right?"
+          }
+        }
+      },
+      "00500": {
+        "01040": {
+          "1": {
+            "text_": "You're acting...strange."
+          }
+        }
+      },
+      "00600": {
+        "01050": {
+          "1": {
+            "text_": "I'm okay."
+          }
+        }
+      },
+      "00650": {
+        "01050": {
+          "1": {
+            "text_": "Um, see you...tomorrow..."
+          }
+        }
+      },
+      "00700": {
+        "01020": {
+          "1": {
+            "text_": "And there we have it!"
+          }
+        }
+      },
+      "00800": {
+        "01020": {
+          "1": {
+            "text_": "Hmm. I fear something in the other world may be causing her to weaken."
+          }
+        }
+      },
+      "00900": {
+        "01040": {
+          "1": {
+            "text_": "And what exactly would that \"something\" be?"
+          }
+        }
+      },
+      "01000": {
+        "01020": {
+          "1": {
+            "text_": "No need to worry about that, mmm?"
+          }
+        }
+      },
+      "01100": {
+        "01020": {
+          "1": {
+            "text_": "It's not as if it affects you."
+          }
+        }
+      },
+      "01200": {
+        "01020": {
+          "1": {
+            "text_": "Tomorrow, you shall feast on her dreams and take another step\\nin your quest to become human!"
+          }
+        }
+      }
+    },
+    "0300": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Now let us proceed to the next part of The Cage. Quickly now!"
+          }
+        }
+      }
+    }
+  },
+  "a110": {
+    "0010": {
+      "00025": {
+        "00010": {
+          "0": {
+            "text_": "The Fifth Night: Mist on the Water"
+          }
+        }
+      },
+      "00050": {
+        "00030": {
+          "0": {
+            "text_": "\"They gave her a new name, perhaps because it was too painful\\nto call her by the old one.\" -A researcher's diary"
+          }
+        }
+      },
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "And...here we go!"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "Are you well?"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Yes, Mr. Monster. I'm sorry for worrying you."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "Now let us make our pilgrimage to each Dark Scarecrow with gusto!"
+          }
+        }
+      }
+    },
+    "0020g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Ooo, pretty! There's\\nwater everywhere."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Can we go play in it?"
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "I fear we've no time to\\nspare for splashing about,\\nyoung miss."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "You have eaten quite a lot \\nof the young miss's dreams."
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "I believe the day you \\nbecome human is nigh!"
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "...Indeed."
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "Bye..."
+          }
+        }
+      }
+    },
+    "0040g": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Ah, so this is the tale of a\\ngirl created to be a weapon."
+          }
+        }
+      }
+    },
+    "0080g": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "What the—!?"
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Good heavens! It ran off!"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "Explain this."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "I, er, fear I have never seen a scarecrow take flight in such a fashion before."
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "It would seem they are\\ncapable of moving."
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "Ugh. How annoying."
+          }
+        }
+      },
+      "00700": {
+        "01040": {
+          "1": {
+            "text_": "If it runs again,\\nI will kill it."
+          }
+        }
+      },
+      "00800": {
+        "01020": {
+          "1": {
+            "text_": "I'm not even certain you CAN kill it. It's made of a very strange substance."
+          }
+        }
+      }
+    },
+    "0090": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Oh, at last!"
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "Stand back while I tear this blasted thing to ribbons."
+          }
+        }
+      }
+    },
+    "0100": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "Ah, interesting. So this girl—this living weapon—\\ngoes about collecting memories, mmm?"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "*huff* *huff*"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "Shouldn't you rest or...something?"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "I'm okay..."
+          }
+        }
+      }
+    },
+    "0110g": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "Listen to me: If you die,\\nI don't get to eat any\\nmore of your dreams."
+          }
+        }
+      },
+      "00200": {
+        "01040": {
+          "1": {
+            "text_": "So stay alive until I'm done—then you can do as you like. Got it?"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "*huff* Got it!"
+          }
+        }
+      }
+    },
+    "0140": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "Let's stop and rest here for a bit."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "*huff* You mean it?"
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "You wanted to play in the water, right? Well...knock yourself out."
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Yaaay! Oh, thank you, Mr. Monster! Thank you!"
+          }
+        }
+      },
+      "00500": {
+        "01020": {
+          "1": {
+            "text_": "Are you certain we have the time to dawdle like this?"
+          }
+        }
+      },
+      "00600": {
+        "01040": {
+          "1": {
+            "text_": "She's feeling down. It concerns me."
+          }
+        }
+      },
+      "00700": {
+        "01020": {
+          "1": {
+            "text_": "You don't say..."
+          }
+        }
+      },
+      "00800": {
+        "01040": {
+          "1": {
+            "text_": "Did you see that?"
+          }
+        }
+      },
+      "00900": {
+        "01020": {
+          "1": {
+            "text_": "Hmmm?"
+          }
+        }
+      },
+      "01000": {
+        "01050": {
+          "1": {
+            "text_": "Hey, Mr. Monster?"
+          }
+        }
+      },
+      "01100": {
+        "01050": {
+          "1": {
+            "text_": "When you become human, will you still be my friend?"
+          }
+        }
+      },
+      "01200": {
+        "01020": {
+          "1": {
+            "text_": "Right then, that's the end of playtime! Time to be moving on!"
+          }
+        }
+      }
+    },
+    "0160": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "The path is flooded. I mean, <i>I</i> don't mind it, but..."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "It may be trying for the young miss here. Let us search for a way around."
+          }
+        }
+      }
+    },
+    "0180g": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "Feeling better?"
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Yeah, lots!"
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Thanks again, Mr. Monster."
+          }
+        }
+      },
+      "00400": {
+        "01020": {
+          "1": {
+            "text_": "I see the next scarecrow!"
+          }
+        }
+      }
+    },
+    "0190": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "Don't you go anywhere."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "Okey doke!"
+          }
+        }
+      }
+    },
+    "0200g": {
+      "00100": {
+        "01040": {
+          "1": {
+            "text_": "I can't help but feel like something is amiss."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "You must be close to consuming the required amount of dreams."
+          }
+        }
+      },
+      "00300": {
+        "01020": {
+          "1": {
+            "text_": "I doubt there's any problem \\nhere. Carry on, my good man!"
+          }
+        }
+      }
+    },
+    "0240g": {
+      "00100": {
+        "01050": {
+          "1": {
+            "text_": "You're almost there,\\nMr. Monster."
+          }
+        }
+      },
+      "00200": {
+        "01050": {
+          "1": {
+            "text_": "I'm gonna be really happy\\nwhen your wish comes true."
+          }
+        }
+      },
+      "00300": {
+        "01040": {
+          "1": {
+            "text_": "You are happy when someone <i>else's</i> wish comes true?"
+          }
+        }
+      },
+      "00400": {
+        "01050": {
+          "1": {
+            "text_": "Yeah, 'cause when YOU'RE\\nhappy, I'M happy—and then\\nwe're all happy together!"
+          }
+        }
+      },
+      "00500": {
+        "01050": {
+          "1": {
+            "text_": "That's...what my teacher says, anyway."
+          }
+        }
+      }
+    },
+    "0250": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "That certainly was a tale of a very strange world."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "Oh my, it's almost time."
+          }
+        }
+      },
+      "00300": {
+        "01050": {
+          "1": {
+            "text_": "Yeah, I have to go..."
+          }
+        }
+      },
+      "00400": {
+        "01040": {
+          "1": {
+            "text_": "Perhaps you should not return to the other world."
+          }
+        }
+      },
+      "00500": {
+        "01040": {
+          "1": {
+            "text_": "Your behavior grows stranger each time you come here."
+          }
+        }
+      },
+      "00600": {
+        "01050": {
+          "1": {
+            "text_": "But...my mommy might be waiting for me..."
+          }
+        }
+      }
+    },
+    "0270": {
+      "00100": {
+        "01020": {
+          "1": {
+            "text_": "We will soon reach the end of our journey."
+          }
+        }
+      },
+      "00200": {
+        "01020": {
+          "1": {
+            "text_": "The day your wish comes true is so close now!"
+          }
+        }
+      }
+    }
+  },
+  "a999": {
+    "0010": {
+      "00100": {
+        "00040": {
+          "0": {
+            "text_": "Yes"
+          }
+        },
+        "00050": {
+          "0": {
+            "text_": "Begin battle?"
+          }
+        }
+      },
+      "00200": {
+        "00040": {
+          "0": {
+            "text_": "No"
+          }
+        }
+      }
+    },
+    "0020": {
+      "00100": {
+        "00040": {
+          "0": {
+            "text_": "Yes"
+          }
+        },
+        "00050": {
+          "0": {
+            "text_": "Enter story?"
+          }
+        }
+      },
+      "00200": {
+        "00040": {
+          "0": {
+            "text_": "No"
+          }
+        }
+      }
+    },
+    "0030": {
+      "00100": {
+        "00040": {
+          "0": {
+            "text_": "Yes"
+          }
+        },
+        "00050": {
+          "0": {
+            "text_": "Challenge the Cursed God?"
+          }
+        }
+      },
+      "00200": {
+        "00040": {
+          "0": {
+            "text_": "No"
+          }
+        }
+      }
+    },
+    "0180": {
+      "00100": {
+        "00030": {
+          "0": {
+            "text_": "The next day..."
+          }
+        }
+      }
+    },
+    "0190": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "You will sometimes encounter black birds in The Cage,\\nand you should do what you can to shoo them all out."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "If you do that, Mama will give you a nice surprise!"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Oh, and the black birds aren't necessarily just hidden around\\nDark Scarecrows, so keep an eye out for them."
+          }
+        }
+      }
+    },
+    "0200": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Both story restoration and fragment collection are going well—\\nand Mama has presents for good children like you who work hard!"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "So, tell me, which do you like more:\\nstuffed animals or dolls?"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "...You think they're basically the same? They're totally different!\\nLet's go with a stuffed animal, shall we?"
+          }
+        }
+      },
+      "00400": {
+        "00040": {
+          "0": {
+            "text_": "Ask for a stuffed animal"
+          }
+        }
+      },
+      "00500": {
+        "00040": {
+          "0": {
+            "text_": "Ask for a doll"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Aren't stuffed animals just the cutest?"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "A doll it is, then."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "But this gift is no simple toy—it's a reliable \"companion\"\\nthat will fight alongside you in battle!"
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "Companions come in five different affinities, but for now you can pick\\nbetween fire and wind. Either one would be a big help."
+          }
+        }
+      },
+      "01000": {
+        "00040": {
+          "0": {
+            "text_": "The fire one, please"
+          }
+        }
+      },
+      "01100": {
+        "00040": {
+          "0": {
+            "text_": "The wind one, please"
+          }
+        }
+      },
+      "01200": {
+        "01010": {
+          "1": {
+            "text_": "Okay, here you go."
+          }
+        }
+      },
+      "01300": {
+        "01010": {
+          "1": {
+            "text_": "I think that's a great choice."
+          }
+        }
+      },
+      "01400": {
+        "01010": {
+          "1": {
+            "text_": "Make sure to equip it and you'll be able to meet it during battle!\\nI'll show you how to make the magic happen."
+          }
+        }
+      },
+      "01500": {
+        "01010": {
+          "1": {
+            "text_": "How about the fire one?"
+          }
+        }
+      },
+      "01600": {
+        "01010": {
+          "1": {
+            "text_": "Now let's keep going, shall we?"
+          }
+        }
+      }
+    },
+    "0210": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "I have something special for you\\nthat should serve as a nice change of pace."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Once you're all refreshed,\\nI know you'll find your second wind!"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Come play whenever you feel like it, all right?"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Exploration"
+          }
+        }
+      },
+      "00500": {
+        "00040": {
+          "0": {
+            "text_": "Try Exploration?"
+          }
+        }
+      },
+      "00600": {
+        "00040": {
+          "0": {
+            "text_": "Yes"
+          }
+        }
+      },
+      "00700": {
+        "00040": {
+          "0": {
+            "text_": "No"
+          }
+        }
+      }
+    },
+    "0220": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Opening the menu already, are we? Mama was planning to give you\\nan explanation later... Are you sure you want to fiddle with it now?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "So impatient! Sadly, all I can let you do right now is summon."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "I can't even permit you to use any of the things you've obtained so far. \\nAre you still sure you want to open the menu?"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Goodness, you're not giving Mama much of a choice here."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "That's right. No need to worry your pretty head about any of that right now."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Do you want to hear the explanation after all?"
+          }
+        }
+      }
+    },
+    "0230": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "You have a long road ahead of you, so you'll need to increase your power."
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Hmm, where should I start?\\nFirst, you need to arrange your allies in a loadout..."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Actually, it would be much easier to explain in a demonstration."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "It's mostly the same as any other game."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Well done!"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "You can also enhance allies and weapons, but... Oh, never mind.\\nJust take a peek whenever you feel like it. Let's keep moving!"
+          }
+        }
+      }
+    },
+    "0400": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Oh my! This is Mama's Room!"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "Dear me, it looks like we have trouble again."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Mama will have to deal with this on her own."
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "I sense dark foes on the other side of that door."
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "I suppose we should return to The Cage."
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Let's save the subquests and dark foes for another time."
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "I keep stories that I'm still restoring on the other side of this door."
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "The dark foes have been sneaking in so much lately!\\nWe need to chase them out so we can restore the stories."
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "Let's try a subquest, shall we?"
+          }
+        }
+      },
+      "01000": {
+        "01010": {
+          "1": {
+            "text_": "I don't think I'm up for that right now."
+          }
+        }
+      },
+      "01100": {
+        "01010": {
+          "1": {
+            "text_": "The dark foes won't leave this storage room alone—\\nand I keep stories I'm still restoring in there! We need to chase the rascals out."
+          }
+        }
+      },
+      "01200": {
+        "01010": {
+          "1": {
+            "text_": "But only do that when you feel up to it, all right?"
+          }
+        }
+      },
+      "01300": {
+        "01010": {
+          "1": {
+            "text_": "Well, that's done and dusted."
+          }
+        }
+      },
+      "01400": {
+        "01010": {
+          "1": {
+            "text_": "Let's save the subquests for another time and deal with these dark foes, all right?"
+          }
+        }
+      },
+      "01500": {
+        "01010": {
+          "1": {
+            "text_": "Any stories you restore through subquests will be saved in the Library.\\nDon't worry—the dark foes can't reach them there."
+          }
+        }
+      },
+      "01600": {
+        "01010": {
+          "1": {
+            "text_": "I'll make it so you can view them,\\nas well as any weapon memories you set right in The Cage."
+          }
+        }
+      },
+      "01700": {
+        "01010": {
+          "1": {
+            "text_": "Oh, also..."
+          }
+        }
+      },
+      "01800": {
+        "01010": {
+          "1": {
+            "text_": "Now you can try your hand at subquests in the Quests section of the Mama Menu.\\nThese will help you earn materials for enhancements!"
+          }
+        }
+      },
+      "01850": {
+        "01010": {
+          "1": {
+            "text_": "I'll make it so you can view them,\\nas well as any weapon memories you set right in The Cage."
+          }
+        }
+      },
+      "01900": {
+        "01010": {
+          "1": {
+            "text_": "Now let's get back to The Cage.\\nWe can leave through that door."
+          }
+        }
+      },
+      "02000": {
+        "01010": {
+          "1": {
+            "text_": "What should we do today?"
+          }
+        }
+      },
+      "02100": {
+        "01010": {
+          "1": {
+            "text_": "There's just so much to do!"
+          }
+        }
+      },
+      "02200": {
+        "01010": {
+          "1": {
+            "text_": "I'm much busier than I look!"
+          }
+        }
+      },
+      "02300": {
+        "01010": {
+          "1": {
+            "text_": "*humming*"
+          }
+        }
+      },
+      "02400": {
+        "01010": {
+          "1": {
+            "text_": "I feel so stiff lately..."
+          }
+        }
+      },
+      "02500": {
+        "01010": {
+          "1": {
+            "text_": "Where shall we begin?"
+          }
+        }
+      },
+      "02600": {
+        "01010": {
+          "1": {
+            "text_": "Mama could really use a vacation."
+          }
+        }
+      },
+      "02700": {
+        "01010": {
+          "1": {
+            "text_": "It seems we've finally reached the edge of The Cage."
+          }
+        }
+      },
+      "02800": {
+        "01010": {
+          "1": {
+            "text_": "Oh my! Mama's Room seems to have changed a bit, too."
+          }
+        }
+      },
+      "02900": {
+        "01010": {
+          "1": {
+            "text_": "The tree is bearing fruit."
+          }
+        }
+      },
+      "03000": {
+        "01010": {
+          "1": {
+            "text_": "A new door has been unlocked! Wonderful!"
+          }
+        }
+      },
+      "03100": {
+        "01010": {
+          "1": {
+            "text_": "The other side of this door contains Summons you can only use once\\nyou reach the edge of The Cage. Make sure to do so once per day!"
+          }
+        }
+      },
+      "03200": {
+        "01010": {
+          "1": {
+            "text_": "You'll also find a special sort of battle called \"Daily Challenges\"\\nthat you can only participate in once you reach the edge of The Cage."
+          }
+        }
+      },
+      "03300": {
+        "01010": {
+          "1": {
+            "text_": "Your loadout will need to include certain characters, which can\\nmake fights a bit rough. Consider it a test of your strength."
+          }
+        }
+      },
+      "03400": {
+        "01010": {
+          "1": {
+            "text_": "Things certainly are getting busy!"
+          }
+        }
+      },
+      "03410": {
+        "01010": {
+          "1": {
+            "text_": "It seems we've reached the edge of The Cage."
+          }
+        }
+      },
+      "03420": {
+        "01010": {
+          "1": {
+            "text_": "I suppose we should just wait around here for a bit."
+          }
+        }
+      },
+      "03450": {
+        "01010": {
+          "1": {
+            "text_": "Oh? What's this?"
+          }
+        }
+      },
+      "03500": {
+        "01010": {
+          "1": {
+            "text_": "The tree has borne fruit."
+          }
+        }
+      },
+      "03600": {
+        "01010": {
+          "1": {
+            "text_": "You should definitely pick up everything you find on the floor!\\nThat's good advice for life in general, actually."
+          }
+        }
+      },
+      "03700": {
+        "01010": {
+          "1": {
+            "text_": "The time has come for us to proceed further into The Cage."
+          }
+        }
+      },
+      "03800": {
+        "01010": {
+          "1": {
+            "text_": "We must see how the children are doing."
+          }
+        }
+      },
+      "03900": {
+        "01010": {
+          "1": {
+            "text_": "We can leave through the glowing door in the center."
+          }
+        }
+      },
+      "04000": {
+        "01010": {
+          "1": {
+            "text_": "Phew!"
+          }
+        }
+      },
+      "04100": {
+        "01010": {
+          "1": {
+            "text_": "With the children gone, poor Mama has a hole in her heart..."
+          }
+        }
+      },
+      "04200": {
+        "01010": {
+          "1": {
+            "text_": "Heh heh. Just kidding!"
+          }
+        }
+      },
+      "04300": {
+        "01010": {
+          "1": {
+            "text_": "One of Mama's strong points is how quickly she can switch gears—\\nand there's so much to do until our next task begins!"
+          }
+        }
+      },
+      "04350": {
+        "01010": {
+          "1": {
+            "text_": "One of Mama's strong points is how quickly she can switch gears."
+          }
+        }
+      },
+      "04400": {
+        "01010": {
+          "1": {
+            "text_": "Perhaps we should see how things are going in The Cage."
+          }
+        }
+      },
+      "04500": {
+        "01010": {
+          "1": {
+            "text_": "Oh my! I sense quite the story waiting for us on the other side of that door."
+          }
+        }
+      },
+      "04600": {
+        "01010": {
+          "1": {
+            "text_": "Now let's see what kind of friend is waiting for us."
+          }
+        }
+      },
+      "04700": {
+        "00040": {
+          "0": {
+            "text_": "Yes"
+          }
+        }
+      },
+      "04800": {
+        "00040": {
+          "0": {
+            "text_": "No"
+          }
+        }
+      },
+      "04900": {
+        "00050": {
+          "0": {
+            "text_": "Play this subquest?"
+          }
+        }
+      },
+      "05000": {
+        "00050": {
+          "0": {
+            "text_": "Attempt the daily challenge with this deck?"
+          }
+        }
+      }
+    },
+    "0440": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "Oh, goodness... The dark foes have grown quite strong, haven't they?"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "If you ever start feeling outmatched, enhancement is the first thing you should try.\\nI've actually been stocking up on items for an occasion just like this."
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "Use this to power yourself up, and then give it another go!"
+          }
+        }
+      }
+    }
+  }
+}

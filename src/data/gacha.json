@@ -1,0 +1,696 @@
+{
+  "navichara": {
+    "comment": {
+      "4001001": {
+        "chapter": {
+          "1": {
+            "text_": "What do you think you'll get?"
+          },
+          "2": {
+            "text_": "Mama's nervous!"
+          },
+          "3": {
+            "text_": "Do you think we'll get something good?"
+          },
+          "4": {
+            "text_": "Let's get ourselves lots of materials."
+          },
+          "5": {
+            "text_": "We can get tickets from quests."
+          },
+          "6": {
+            "text_": "Summons reset every month, so just keep at it!"
+          },
+          "7": {
+            "text_": "We should use as many tickets as we can."
+          },
+          "8": {
+            "text_": "There are so many things I want..."
+          }
+        },
+        "premium": {
+          "1": {
+            "text_": "What do you think you'll get?"
+          },
+          "2": {
+            "text_": "Mama's nervous!"
+          },
+          "3": {
+            "text_": "Do you think we'll get something good?"
+          },
+          "4": {
+            "text_": "Shall we test our luck?"
+          },
+          "5": {
+            "text_": "Mama's nervous..."
+          },
+          "6": {
+            "text_": "My hands are almost shaking!"
+          },
+          "7": {
+            "text_": "I pray you get something good."
+          },
+          "8": {
+            "text_": "Mama's right behind you."
+          },
+          "9": {
+            "text_": "It's important to approach this with a calm mind."
+          }
+        },
+        "premium_14": {
+          "1": {
+            "text_": "What do you think you'll get?"
+          },
+          "2": {
+            "text_": "Mama's nervous!"
+          },
+          "3": {
+            "text_": "Do you think we'll get something good?"
+          },
+          "4": {
+            "text_": "Shall we test our luck?"
+          },
+          "5": {
+            "text_": "Mama's nervous..."
+          },
+          "6": {
+            "text_": "My hands are almost shaking!"
+          },
+          "7": {
+            "text_": "I pray you get something good."
+          },
+          "8": {
+            "text_": "Mama's right behind you."
+          },
+          "9": {
+            "text_": "It's important to approach this with a calm mind."
+          }
+        },
+        "event": {
+          "1": {
+            "text_": "What do you think you'll get?"
+          },
+          "2": {
+            "text_": "Mama's nervous!"
+          },
+          "3": {
+            "text_": "Do you think we'll get something good?"
+          },
+          "4": {
+            "text_": "Let's get ourselves lots of materials."
+          },
+          "5": {
+            "text_": "We can get tickets from quests."
+          },
+          "6": {
+            "text_": "We should use as many tickets as we can."
+          },
+          "7": {
+            "text_": "There are so many things I want..."
+          }
+        },
+        "production": {
+          "common": {
+            "1": {
+              "text_": "Let's go."
+            },
+            "2": {
+              "text_": "Open the door."
+            },
+            "3": {
+              "text_": "Let's get a move on."
+            },
+            "4": {
+              "text_": "What are you hoping for?"
+            }
+          },
+          "draw": {
+            "count": {
+              "100": {
+                "1": {
+                  "text_": "You okay? Sure you're\\nnot going overboard?"
+                },
+                "2": {
+                  "text_": "Don't go overboard, okay?"
+                }
+              }
+            }
+          }
+        }
+      },
+      "4002001": {
+        "chapter": {
+          "1": {
+            "text_": "What might we get?"
+          },
+          "2": {
+            "text_": "My heart pounds!"
+          },
+          "3": {
+            "text_": "I hope you get something nice."
+          },
+          "4": {
+            "text_": "We'll get plenty of materials!"
+          },
+          "5": {
+            "text_": "You can get tickets from quests."
+          },
+          "6": {
+            "text_": "Summons reset every month, so keep at it!"
+          },
+          "7": {
+            "text_": "Let's use all the tickets we have!"
+          },
+          "8": {
+            "text_": "There's no end to the things I want!"
+          }
+        },
+        "premium": {
+          "1": {
+            "text_": "What might we get?"
+          },
+          "2": {
+            "text_": "My heart pounds!"
+          },
+          "3": {
+            "text_": "I hope you get something nice."
+          },
+          "4": {
+            "text_": "Time to test our luck!"
+          },
+          "5": {
+            "text_": "My heart pounds!"
+          },
+          "6": {
+            "text_": "My hands are starting to shake!"
+          },
+          "7": {
+            "text_": "Hope you get what you want, pal!"
+          },
+          "8": {
+            "text_": "I'm right behind you."
+          },
+          "9": {
+            "text_": "Best strategy is to clear the mind and calm the heart."
+          }
+        },
+        "premium_14": {
+          "1": {
+            "text_": "What might we get?"
+          },
+          "2": {
+            "text_": "My heart pounds!"
+          },
+          "3": {
+            "text_": "I hope you get something nice."
+          },
+          "4": {
+            "text_": "Time to test our luck!"
+          },
+          "5": {
+            "text_": "My heart pounds!"
+          },
+          "6": {
+            "text_": "My hands are starting to shake!"
+          },
+          "7": {
+            "text_": "Hope you get what you want, pal!"
+          },
+          "8": {
+            "text_": "I'm right behind you."
+          },
+          "9": {
+            "text_": "Best strategy is to clear the mind and calm the heart."
+          }
+        },
+        "event": {
+          "1": {
+            "text_": "What might we get?"
+          },
+          "2": {
+            "text_": "My heart pounds!"
+          },
+          "3": {
+            "text_": "I hope you get something nice."
+          },
+          "4": {
+            "text_": "We'll get plenty of materials!"
+          },
+          "5": {
+            "text_": "You can get tickets from quests."
+          },
+          "6": {
+            "text_": "Let's use all the tickets we have!"
+          },
+          "7": {
+            "text_": "There's no end to the things I want!"
+          }
+        },
+        "production": {
+          "common": {
+            "1": {
+              "text_": "Let's go!"
+            },
+            "2": {
+              "text_": "In the door we go!"
+            },
+            "3": {
+              "text_": "Let's get a move on."
+            },
+            "4": {
+              "text_": "Will you get what you're\\nwishing for?"
+            }
+          },
+          "draw": {
+            "count": {
+              "100": {
+                "1": {
+                  "text_": "You've summoned quite a\\nlot. Are you all right?"
+                },
+                "2": {
+                  "text_": "Do not stress yourself!"
+                }
+              }
+            }
+          }
+        }
+      },
+      "4002002": {
+        "chapter": {
+          "1": {
+            "text_": "..."
+          },
+          "2": {
+            "text_": "..."
+          },
+          "3": {
+            "text_": "..."
+          },
+          "4": {
+            "text_": "Material..."
+          },
+          "5": {
+            "text_": "Get tickets from quests..."
+          },
+          "6": {
+            "text_": "......"
+          },
+          "7": {
+            "text_": "......"
+          },
+          "8": {
+            "text_": "..."
+          }
+        },
+        "premium": {
+          "1": {
+            "text_": "..."
+          },
+          "2": {
+            "text_": "..."
+          },
+          "3": {
+            "text_": "..."
+          },
+          "4": {
+            "text_": "Luck..."
+          },
+          "5": {
+            "text_": "......"
+          },
+          "6": {
+            "text_": "......"
+          },
+          "7": {
+            "text_": "......"
+          },
+          "8": {
+            "text_": "..."
+          },
+          "9": {
+            "text_": "......"
+          }
+        },
+        "premium_14": {
+          "1": {
+            "text_": "..."
+          },
+          "2": {
+            "text_": "..."
+          },
+          "3": {
+            "text_": "..."
+          },
+          "4": {
+            "text_": "Luck..."
+          },
+          "5": {
+            "text_": "......"
+          },
+          "6": {
+            "text_": "......"
+          },
+          "7": {
+            "text_": "......"
+          },
+          "8": {
+            "text_": "..."
+          },
+          "9": {
+            "text_": "......"
+          }
+        },
+        "event": {
+          "1": {
+            "text_": "..."
+          },
+          "2": {
+            "text_": "..."
+          },
+          "3": {
+            "text_": "..."
+          },
+          "4": {
+            "text_": "Material..."
+          },
+          "5": {
+            "text_": "Get tickets from quests..."
+          },
+          "6": {
+            "text_": "......"
+          },
+          "7": {
+            "text_": "......"
+          },
+          "8": {
+            "text_": "..."
+          }
+        },
+        "production": {
+          "common": {
+            "1": {
+              "text_": "Going..."
+            },
+            "2": {
+              "text_": "Open...door."
+            },
+            "3": {
+              "text_": "Go in..."
+            },
+            "4": {
+              "text_": "..."
+            }
+          },
+          "draw": {
+            "count": {
+              "100": {
+                "1": {
+                  "text_": "You...OK?"
+                },
+                "2": {
+                  "text_": "Don't...overboard..."
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "stepup": {
+    "step_up": {
+      "description": {
+        "text_": "-"
+      },
+      "step": {
+        "text": {
+          "1": {
+            "text_": "100 Gems, 10 Summons\\nAt least one ★4 or better guaranteed!\\nBonus gift: 10x Recovery Items"
+          },
+          "2": {
+            "text_": "-"
+          },
+          "3": {
+            "text_": "-"
+          },
+          "4": {
+            "text_": "-"
+          },
+          "5": {
+            "text_": "-"
+          }
+        },
+        "warning": {
+          "1": {
+            "text_": "100 Gems, 10 Summons"
+          },
+          "2": {
+            "text_": "-"
+          },
+          "3": {
+            "text_": "-"
+          },
+          "4": {
+            "text_": "-"
+          },
+          "5": {
+            "text_": "-"
+          }
+        }
+      }
+    }
+  },
+  "title": {
+    "chapter_1": {
+      "text_": "Windblown Sand: His Body, Rust Summons"
+    },
+    "chapter_10": {
+      "text_": "The Fourth Night: Flickers of Light The Reluctant Hero Summons"
+    },
+    "chapter_11": {
+      "text_": "The Fifth Night: Mist on the Water Echoes in the Heart Summons"
+    },
+    "chapter_2": {
+      "text_": "Grains of Sand: What Was Lost Summons"
+    },
+    "chapter_3": {
+      "text_": "Hard Sand: Determined Hearts Summons"
+    },
+    "chapter_4": {
+      "text_": "Flowing Water: This Violent, Fleeting World Summons"
+    },
+    "chapter_5": {
+      "text_": "Snowy Peaks: The Distant Peak Summons"
+    },
+    "chapter_6": {
+      "text_": "Inscriptions in Stone: Redemption: Black Summons"
+    },
+    "chapter_7": {
+      "text_": "Withered Crimson: priSOner Summons"
+    },
+    "chapter_8": {
+      "text_": "Piles of Leaves: LIberator Summons"
+    },
+    "chapter_9": {
+      "text_": "The Third Night: Flaming Sands A Cold and Hollow Silence Summons"
+    },
+    "chapter_ex": {
+      "text_": "Dark Memories Chapter Summons"
+    },
+    "event_300": {
+      "text_": "Aurora Dynast Lv. 1"
+    },
+    "event_301_01": {
+      "text_": "Blazing Resentful Witch Lv. 1"
+    },
+    "event_301_02": {
+      "text_": "Blazing Resentful Witch Lv. 2"
+    },
+    "event_301_03": {
+      "text_": "Blazing Resentful Witch Lv. 3"
+    },
+    "event_301_04": {
+      "text_": "Blazing Resentful Witch Lv. 4"
+    },
+    "event_301_05": {
+      "text_": "Blazing Resentful Witch Lv. 5"
+    },
+    "event_301_06": {
+      "text_": "Blazing Resentful Witch Lv. 6"
+    },
+    "event_301_07": {
+      "text_": "Blazing Resentful Witch Lv. 7"
+    },
+    "event_301": {
+      "text_": "Aurora Dynast Lv. 2"
+    },
+    "event_302_01": {
+      "text_": "Tempestuous Senior Officer Lv. 1"
+    },
+    "event_302_02": {
+      "text_": "Tempestuous Senior Officer Lv. 2"
+    },
+    "event_302_03": {
+      "text_": "Tempestuous Senior Officer Lv. 3"
+    },
+    "event_302_04": {
+      "text_": "Tempestuous Senior Officer Lv. 4"
+    },
+    "event_302_05": {
+      "text_": "Tempestuous Senior Officer Lv. 5"
+    },
+    "event_302_06": {
+      "text_": "Tempestuous Senior Officer Lv. 6"
+    },
+    "event_302_07": {
+      "text_": "Tempestuous Senior Officer Lv. 7"
+    },
+    "event_302": {
+      "text_": "Aurora Dynast Lv. 3"
+    },
+    "event_303_01": {
+      "text_": "Armed Aberration of the Torrent Summons Lv. 1"
+    },
+    "event_303_02": {
+      "text_": "Armed Aberration of the Torrent Summons Lv. 2"
+    },
+    "event_303_03": {
+      "text_": "Armed Aberration of the Torrent Summons Lv. 3"
+    },
+    "event_303_04": {
+      "text_": "Armed Aberration of the Torrent Summons Lv. 4"
+    },
+    "event_303_05": {
+      "text_": "Armed Aberration of the Torrent Summons Lv. 5"
+    },
+    "event_303_06": {
+      "text_": "Armed Aberration of the Torrent Summons Lv. 6"
+    },
+    "event_303_07": {
+      "text_": "Armed Aberration of the Torrent Summons Lv. 7"
+    },
+    "event_303": {
+      "text_": "Aurora Dynast Lv. 4"
+    },
+    "event_304": {
+      "text_": "Aurora Dynast Lv. 5"
+    },
+    "event_305": {
+      "text_": "Aurora Dynast Lv. 6"
+    },
+    "event_306": {
+      "text_": "Aurora Dynast Lv. 7"
+    },
+    "limited_01": {
+      "text_": "Release Commemoration Summons"
+    },
+    "limited_02": {
+      "text_": "NieR: Automata Crossover Summons"
+    },
+    "limited_04": {
+      "text_": "Aurora Dynast Summons"
+    },
+    "limited_05": {
+      "text_": "Abstract Girl Summons"
+    },
+    "limited_06": {
+      "text_": "Abstract Soldier Summons"
+    },
+    "limited_08": {
+      "text_": "NieR Replicant ver. 1.22 Crossover Summons"
+    },
+    "limited_09": {
+      "text_": "Bloody Hunter Summons"
+    },
+    "limited_10": {
+      "text_": "Abstract Soldier Summons"
+    },
+    "limited_11": {
+      "text_": "Abstract Girl Summons"
+    },
+    "limited_12": {
+      "text_": "Paid Only: Abstract Girl Featured Summons"
+    },
+    "limited_14": {
+      "text_": "10 Million Downloads Commemorative Free Summons"
+    },
+    "limited_15": {
+      "text_": "10 Million Downloads Commemorative ★★★★ Summons"
+    },
+    "limited_16": {
+      "text_": "NieR Day: Golden Week Special! Free 10 Summons"
+    },
+    "limited_30": {
+      "text_": "Abstract Exile Summons"
+    },
+    "limited_31": {
+      "text_": "Drakengard 3 Crossover Summons"
+    },
+    "limited_32": {
+      "text_": "Paid Only: Abstract Exile Summons"
+    },
+    "limited_34": {
+      "text_": "Abstract Captain Summons"
+    },
+    "limited_35": {
+      "text_": "Paid Only: Abstract Captain Featured Summons"
+    },
+    "limited_36": {
+      "text_": "Abstract Weapon Summons"
+    },
+    "limited_37": {
+      "text_": "Paid Only: Abstract Weapon Summons"
+    },
+    "limited_38": {
+      "text_": "Fractured Prisoner Summons"
+    },
+    "limited_39": {
+      "text_": "Paid-Only Fractured Prisoner Summons"
+    },
+    "limited_40": {
+      "text_": "Bloody Hunter Summons"
+    },
+    "limited_41": {
+      "text_": "Paid-Only Bloody Hunter Summons"
+    },
+    "limited_42": {
+      "text_": "48-Hour ★★★★ Guaranteed Jumpstart Summons"
+    },
+    "limited_43": {
+      "text_": "Paid-Only Wind-Elemental Featured Summons"
+    },
+    "limited_44": {
+      "text_": "Seasonal Sunset Swimwear Summons"
+    },
+    "limited_45": {
+      "text_": "NieR:Automata Crossover Summons Vol. 1"
+    },
+    "limited_46": {
+      "text_": "NieR:Automata Crossover Summons Vol. 2"
+    },
+    "limited_49": {
+      "text_": "NieR Day: Half-Year Anniversary Eve ★★★★ Guaranteed Summons"
+    },
+    "daily_1": {
+      "text_": "Daily Summons"
+    },
+    "confirm_sr": {
+      "text_": "★★★ Guaranteed Summons"
+    },
+    "confirm_ssr": {
+      "text_": "★★★★ Guaranteed Summons"
+    },
+    "limited_57": {
+      "text_": "NieR Day Bonus Summons"
+    },
+    "limited_58": {
+      "text_": "Half-Year Anniversary Summons"
+    },
+    "limited_59": {
+      "text_": "Mama's Exciting Festival"
+    },
+    "limited_65": {
+      "text_": "Mama's Exciting Festival"
+    }
+  }
+}

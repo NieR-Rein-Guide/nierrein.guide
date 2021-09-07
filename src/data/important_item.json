@@ -1,0 +1,102 @@
+{
+  "name": {
+    "100001": {
+      "text_": "Will"
+    },
+    "100002": {
+      "text_": "Hope"
+    },
+    "100003": {
+      "text_": "Prayer"
+    },
+    "100004": {
+      "text_": "Anger"
+    },
+    "100005": {
+      "text_": "Grief"
+    },
+    "100006": {
+      "text_": "Speech"
+    },
+    "100007": {
+      "text_": "A Dream of Speech"
+    },
+    "100008": {
+      "text_": "A Dream of Grief"
+    },
+    "100009": {
+      "text_": "A Dream of Anger"
+    },
+    "100010": {
+      "text_": "A Dream of Prayer"
+    },
+    "100011": {
+      "text_": "A Dream of Hope"
+    },
+    "200001": {
+      "text_": "Chapter Summons Tickets+"
+    },
+    "200002": {
+      "text_": "Guerrilla Quest Drops+"
+    },
+    "200003": {
+      "text_": "Daily Quest Drops+"
+    },
+    "200004": {
+      "text_": "Auto Skill Activation+"
+    },
+    "300001": {
+      "text_": "Badge: Flooded Dungeon Traversal"
+    }
+  },
+  "description": {
+    "100001": {
+      "text_": "An indispensable thing that makes one human. Perhaps even those without blood in their veins have it?"
+    },
+    "100002": {
+      "text_": "A beacon for one to move forward to an unseen tomorrow. Alas, the path ahead is not always brightly illuminated."
+    },
+    "100003": {
+      "text_": "A function of the heart that envisions the ideal of a vague, unknown future. Clinging to others or to the heavens is at some times beautiful, and at other times ugly."
+    },
+    "100004": {
+      "text_": "Recompense that is like the ocean, bursting forth like waves for the absurdities of the world. We cannot exist while pretending not to notice all that is forever immutable."
+    },
+    "100005": {
+      "text_": "A fate none can escape so long as the circle of life continues. If we allow this to imprison us, paths which once were open to us will begin to close."
+    },
+    "100006": {
+      "text_": "This conveys our inner will as sound. All bear responsibility for what emerges, even for the emptiest of noise."
+    },
+    "100007": {
+      "text_": "A fragment of a dream, and one of the few ways we can convey feelings. Though imprecise and imperfect, all struggle to hold onto it."
+    },
+    "100008": {
+      "text_": "A fragment of a dream, and a fate none can overcome. This is where all emotions are locked away, and it is the last thing that makes us human."
+    },
+    "100009": {
+      "text_": "A fragment of a dream, a burning passion that feeds off the world's unreason. Though lacking substance, it still supports us in our lives."
+    },
+    "100010": {
+      "text_": "A fragment of a dream, an act of the heart that seizes a vague future. Though misunderstood, its believers grow stronger."
+    },
+    "100011": {
+      "text_": "A fragment of a dream, a guide that remains once all is lost and we can walk again. We still see the light, no matter how faint and distant."
+    },
+    "200001": {
+      "text_": "Receive 50% more chapter summons tickets from main quests."
+    },
+    "200002": {
+      "text_": "Receive 50% more weapon-enhancement materials from guerrilla quests."
+    },
+    "200003": {
+      "text_": "Receive 50% more rubies, emeralds, aquamarines, tanzanites, and topaz from all daily quests."
+    },
+    "200004": {
+      "text_": "Character and companion skills will activate automatically when playing battles on auto."
+    },
+    "300001": {
+      "text_": "Commemorative proof that you vanquished the foes in the deepest part of the Abyss Tower: Flooded Dungeon."
+    }
+  }
+}

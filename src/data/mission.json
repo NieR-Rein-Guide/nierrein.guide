@@ -1,0 +1,6027 @@
+{
+  "name": {
+    "900001": {
+      "text_": "Acquire the specified costume"
+    },
+    "900002": {
+      "text_": "Acquire costumes for Fio, Gayle, and Argo"
+    },
+    "900101": {
+      "text_": "Acquire costumes for Rion and Gayle"
+    },
+    "900102": {
+      "text_": "Acquire costumes for Dimos and Akeha"
+    },
+    "900103": {
+      "text_": "Acquire costumes for Argo and Levania"
+    },
+    "900104": {
+      "text_": "Acquire costumes for F66x and 063y"
+    },
+    "900201": {
+      "text_": "Acquire costumes for Rion and Gayle"
+    },
+    "900202": {
+      "text_": "Acquire costumes for Dimos and Akeha"
+    },
+    "900203": {
+      "text_": "Acquire costumes for Argo and Fio"
+    },
+    "900204": {
+      "text_": "Acquire costumes for F66x and 063y"
+    },
+    "900301": {
+      "text_": "Acquire costumes for Gayle and Dimos"
+    },
+    "900302": {
+      "text_": "Acquire costumes for Akeha and Argo"
+    },
+    "900303": {
+      "text_": "Acquire costumes for F66x and 063y"
+    },
+    "900401": {
+      "text_": "Acquire costumes for Fio and Rion"
+    },
+    "900402": {
+      "text_": "Acquire costumes for 2B, 9S, and A2"
+    },
+    "900403": {
+      "text_": "Acquire costumes for 2B, 9S, and A2"
+    },
+    "900404": {
+      "text_": "Acquire costumes for 2P, Fio, and Akeha"
+    },
+    "900405": {
+      "text_": "Acquire costumes for Rion, Akeha, and Fio"
+    },
+    "940001": {
+      "text_": "Log in on 1 days"
+    },
+    "940002": {
+      "text_": "Log in on 2 days"
+    },
+    "940003": {
+      "text_": "Log in on 3 days"
+    },
+    "940004": {
+      "text_": "Log in on 4 days"
+    },
+    "940005": {
+      "text_": "Log in on 6 days"
+    },
+    "940006": {
+      "text_": "Log in on 7 days"
+    },
+    "101": {
+      "text_": "Clear a main quest"
+    },
+    "102": {
+      "text_": "Clear a main quest 3 times"
+    },
+    "103": {
+      "text_": "Clear a main quest 5 times"
+    },
+    "104": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "105": {
+      "text_": "Clear a main quest 15 times"
+    },
+    "106": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "107": {
+      "text_": "Clear a main quest 25 times"
+    },
+    "108": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "109": {
+      "text_": "Clear a main quest on hard 5 times"
+    },
+    "110": {
+      "text_": "Clear a main quest on hard 10 times"
+    },
+    "111": {
+      "text_": "Clear a main quest on hard 15 times"
+    },
+    "112": {
+      "text_": "Clear a main quest on hard 20 times"
+    },
+    "1001": {
+      "text_": "Clear a normal event quest"
+    },
+    "1002": {
+      "text_": "Clear a hard event quest"
+    },
+    "1003": {
+      "text_": "Clear a very hard event quest"
+    },
+    "1004": {
+      "text_": "Clear 10 subquests"
+    },
+    "1005": {
+      "text_": "Clear 30 subquests"
+    },
+    "1006": {
+      "text_": "Clear 60 subquests"
+    },
+    "1007": {
+      "text_": "Clear 100 subquests"
+    },
+    "1008": {
+      "text_": "Clear 200 subquests"
+    },
+    "1009": {
+      "text_": "Clear 300 subquests"
+    },
+    "1010": {
+      "text_": "Clear 400 subquests"
+    },
+    "1011": {
+      "text_": "Clear 500 subquests"
+    },
+    "1012": {
+      "text_": "Clear 600 subquests"
+    },
+    "1013": {
+      "text_": "Clear 700 subquests"
+    },
+    "1014": {
+      "text_": "Clear 800 subquests"
+    },
+    "1015": {
+      "text_": "Clear 900 subquests"
+    },
+    "1016": {
+      "text_": "Clear 1000 subquests"
+    },
+    "1017": {
+      "text_": "Enhance characters 10 times"
+    },
+    "1018": {
+      "text_": "Enhance characters 30 times"
+    },
+    "1019": {
+      "text_": "Enhance characters 60 times"
+    },
+    "1020": {
+      "text_": "Enhance characters 100 times"
+    },
+    "1021": {
+      "text_": "Enhance characters 200 times"
+    },
+    "1022": {
+      "text_": "Enhance characters 300 times"
+    },
+    "1023": {
+      "text_": "Enhance character skills 5 times"
+    },
+    "1024": {
+      "text_": "Enhance character skills 10 times"
+    },
+    "1025": {
+      "text_": "Enhance character skills 30 times"
+    },
+    "1026": {
+      "text_": "Ascend characters 3 times"
+    },
+    "1027": {
+      "text_": "Ascend characters 6 times"
+    },
+    "1028": {
+      "text_": "Ascend characters 10 times"
+    },
+    "1029": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "1030": {
+      "text_": "Enhance weapons 30 times"
+    },
+    "1031": {
+      "text_": "Enhance weapons 60 times"
+    },
+    "1032": {
+      "text_": "Enhance weapons 100 times"
+    },
+    "1033": {
+      "text_": "Enhance weapons 200 times"
+    },
+    "1034": {
+      "text_": "Enhance weapons 300 times"
+    },
+    "1035": {
+      "text_": "Enhance weapon skills 5 times"
+    },
+    "1036": {
+      "text_": "Enhance weapon skills 10 times"
+    },
+    "1037": {
+      "text_": "Enhance weapon skills 30 times"
+    },
+    "1038": {
+      "text_": "Ascend weapons 3 times"
+    },
+    "1039": {
+      "text_": "Ascend weapons 6 times"
+    },
+    "1040": {
+      "text_": "Ascend weapons 10 times"
+    },
+    "1041": {
+      "text_": "Evolve a weapon"
+    },
+    "1042": {
+      "text_": "Evolve weapons 3 times"
+    },
+    "1043": {
+      "text_": "Evolve weapons 5 times"
+    },
+    "1044": {
+      "text_": "Play Exploration 3 times"
+    },
+    "1045": {
+      "text_": "Play Exploration 6 times"
+    },
+    "1046": {
+      "text_": "Play Exploration 10 times"
+    },
+    "1047": {
+      "text_": "Exchange 100 times"
+    },
+    "1048": {
+      "text_": "Exchange 200 times"
+    },
+    "1049": {
+      "text_": "Exchange 300 times"
+    },
+    "1050": {
+      "text_": "Exchange 400 times"
+    },
+    "1051": {
+      "text_": "Exchange 500 times"
+    },
+    "1052": {
+      "text_": "Exchange 600 times"
+    },
+    "1053": {
+      "text_": "Exchange 700 times"
+    },
+    "1054": {
+      "text_": "Exchange 800 times"
+    },
+    "1055": {
+      "text_": "Exchange 900 times"
+    },
+    "1056": {
+      "text_": "Exchange 1000 times"
+    },
+    "1057": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "1058": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "1059": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "1060": {
+      "text_": "Clear a main quest 40 times"
+    },
+    "1061": {
+      "text_": "Clear a main quest 50 times"
+    },
+    "1062": {
+      "text_": "Enhance characters 50 times"
+    },
+    "1063": {
+      "text_": "Enhance characters 100 times"
+    },
+    "1064": {
+      "text_": "Enhance characters 150 times"
+    },
+    "1065": {
+      "text_": "Enhance characters 200 times"
+    },
+    "1066": {
+      "text_": "Enhance characters 250 times"
+    },
+    "1067": {
+      "text_": "Enhance weapons 50 times"
+    },
+    "1068": {
+      "text_": "Enhance weapons 100 times"
+    },
+    "1069": {
+      "text_": "Enhance weapons 150 times"
+    },
+    "1070": {
+      "text_": "Enhance weapons 200 times"
+    },
+    "1071": {
+      "text_": "Enhance weapons 250 times"
+    },
+    "1072": {
+      "text_": "Clear 1 subquest"
+    },
+    "1073": {
+      "text_": "Clear 2 subquests"
+    },
+    "1074": {
+      "text_": "Clear 3 subquests"
+    },
+    "1075": {
+      "text_": "Clear 4 subquests"
+    },
+    "1076": {
+      "text_": "Clear 5 subquests"
+    },
+    "1077": {
+      "text_": "Enhance a character 1 time"
+    },
+    "1078": {
+      "text_": "Enhance characters 5 times"
+    },
+    "1079": {
+      "text_": "Enhance characters 10 times"
+    },
+    "1080": {
+      "text_": "Enhance a weapon"
+    },
+    "1081": {
+      "text_": "Enhance weapons 5 times"
+    },
+    "1082": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "1083": {
+      "text_": "Clear Main Quest: Chapter 1"
+    },
+    "1084": {
+      "text_": "Clear Main Quest: Chapter 2"
+    },
+    "1085": {
+      "text_": "Clear Main Quest: Chapter 3"
+    },
+    "1086": {
+      "text_": "Clear Main Quest: Chapter 4"
+    },
+    "1087": {
+      "text_": "Clear Main Quest: Chapter 5"
+    },
+    "1088": {
+      "text_": "Clear Main Quest: Chapter 6"
+    },
+    "1089": {
+      "text_": "Clear Main Quest: Chapter 7"
+    },
+    "1090": {
+      "text_": "Clear Main Quest: Chapter 8"
+    },
+    "1091": {
+      "text_": "Clear Monday Quest on Easy"
+    },
+    "1092": {
+      "text_": "Clear Tuesday Quest on Easy"
+    },
+    "1093": {
+      "text_": "Clear Wednesday Quest on Easy"
+    },
+    "1094": {
+      "text_": "Clear Thursday Quest on Easy"
+    },
+    "1095": {
+      "text_": "Clear Friday Quest on Easy"
+    },
+    "1096": {
+      "text_": "Clear Saturday Quest on Easy"
+    },
+    "1097": {
+      "text_": "Clear Gun Guerrilla on Easy"
+    },
+    "1098": {
+      "text_": "Clear Gun Guerrilla on Normal"
+    },
+    "1099": {
+      "text_": "Clear 1H-Sword Guerrilla on Easy"
+    },
+    "1100": {
+      "text_": "Clear 1H-Sword Guerrilla on Normal"
+    },
+    "1101": {
+      "text_": "Clear 2H-Sword Guerrilla on Easy"
+    },
+    "1102": {
+      "text_": "Clear 2H-Sword Guerrilla on Normal"
+    },
+    "1103": {
+      "text_": "Clear Fists Guerrilla on Easy"
+    },
+    "1104": {
+      "text_": "Clear Fists Guerrilla on Normal"
+    },
+    "1105": {
+      "text_": "Clear Staff Guerrilla on Easy"
+    },
+    "1106": {
+      "text_": "Clear Staff Guerrilla on Normal"
+    },
+    "1107": {
+      "text_": "Clear Spear Guerrilla on Easy"
+    },
+    "1108": {
+      "text_": "Clear Spear Guerrilla on Normal"
+    },
+    "1109": {
+      "text_": "Clear Dungeon 1F"
+    },
+    "1110": {
+      "text_": "Clear Dungeon 2F"
+    },
+    "1111": {
+      "text_": "Clear Dungeon 3F"
+    },
+    "1112": {
+      "text_": "Clear Dungeon 4F"
+    },
+    "1113": {
+      "text_": "Clear Dungeon 5F"
+    },
+    "1114": {
+      "text_": "Reach level 10 with a character"
+    },
+    "1115": {
+      "text_": "Reach level 20 with a character"
+    },
+    "1116": {
+      "text_": "Reach level 30 with a character"
+    },
+    "1117": {
+      "text_": "Reach level 40 with a character"
+    },
+    "1118": {
+      "text_": "Reach level 50 with a character"
+    },
+    "1119": {
+      "text_": "Reach level 60 with a character"
+    },
+    "1120": {
+      "text_": "Reach level 70 with a character"
+    },
+    "1121": {
+      "text_": "Reach level 80 with a character"
+    },
+    "1122": {
+      "text_": "Reach level 90 with a character"
+    },
+    "1123": {
+      "text_": "Reach level 100 with a character"
+    },
+    "1124": {
+      "text_": "Reach level 3 with a character skill"
+    },
+    "1125": {
+      "text_": "Reach level 6 with a character skill"
+    },
+    "1126": {
+      "text_": "Reach level 9 with a character skill"
+    },
+    "1127": {
+      "text_": "Reach level 12 with a character skill"
+    },
+    "1128": {
+      "text_": "Reach level 15 with a character skill"
+    },
+    "1129": {
+      "text_": "Reach level 2 with a character ability"
+    },
+    "1130": {
+      "text_": "Reach level 3 with a character ability"
+    },
+    "1131": {
+      "text_": "Reach level 10 with a weapon"
+    },
+    "1132": {
+      "text_": "Reach level 20 with a weapon"
+    },
+    "1133": {
+      "text_": "Reach level 30 with a weapon"
+    },
+    "1134": {
+      "text_": "Reach level 40 with a weapon"
+    },
+    "1135": {
+      "text_": "Reach level 50 with a weapon"
+    },
+    "1136": {
+      "text_": "Reach level 60 with a weapon"
+    },
+    "1137": {
+      "text_": "Reach level 70 with a weapon"
+    },
+    "1138": {
+      "text_": "Reach level 80 with a weapon"
+    },
+    "1139": {
+      "text_": "Reach level 90 with a weapon"
+    },
+    "1140": {
+      "text_": "Reach level 3 with a weapon skill"
+    },
+    "1141": {
+      "text_": "Reach level 6 with a weapon skill"
+    },
+    "1142": {
+      "text_": "Reach level 9 with a weapon skill"
+    },
+    "1143": {
+      "text_": "Reach level 12 with a weapon skill"
+    },
+    "1144": {
+      "text_": "Reach level 15 with a weapon skill"
+    },
+    "1145": {
+      "text_": "Reach level 3 with a weapon ability"
+    },
+    "1146": {
+      "text_": "Reach level 6 with a weapon ability"
+    },
+    "1147": {
+      "text_": "Reach level 9 with a weapon ability"
+    },
+    "1148": {
+      "text_": "Reach level 12 with a weapon ability"
+    },
+    "1149": {
+      "text_": "Reach level 15 with a weapon ability"
+    },
+    "1150": {
+      "text_": "Clear a normal event quest"
+    },
+    "1151": {
+      "text_": "Clear a hard event quest"
+    },
+    "1152": {
+      "text_": "Clear a very hard event quest"
+    },
+    "1153": {
+      "text_": "Clear 10 event quests"
+    },
+    "1154": {
+      "text_": "Clear 30 event quests"
+    },
+    "1155": {
+      "text_": "Clear 60 event quests"
+    },
+    "1156": {
+      "text_": "Clear 100 event quests"
+    },
+    "1157": {
+      "text_": "Clear 200 event quests"
+    },
+    "1158": {
+      "text_": "Reach level 10 with Gayle (Guardian Hunter)"
+    },
+    "1159": {
+      "text_": "Reach level 20 with Gayle (Guardian Hunter)"
+    },
+    "1160": {
+      "text_": "Reach level 40 with Gayle (Guardian Hunter)"
+    },
+    "1161": {
+      "text_": "Reach level 60 with Gayle (Guardian Hunter)"
+    },
+    "1162": {
+      "text_": "Reach level 80 with Gayle (Guardian Hunter)"
+    },
+    "1163": {
+      "text_": "Enhance Gayle (Guardian Hunter)'s skills 4 times"
+    },
+    "1164": {
+      "text_": "Enhance Gayle (Guardian Hunter)'s skills 8 times"
+    },
+    "1165": {
+      "text_": "Ascend Gayle (Guardian Hunter) 1 time"
+    },
+    "1166": {
+      "text_": "Ascend Gayle (Guardian Hunter) 2 times"
+    },
+    "1167": {
+      "text_": "Ascend Gayle (Guardian Hunter) 3 times"
+    },
+    "1168": {
+      "text_": "Ascend Gayle (Guardian Hunter) 4 times"
+    },
+    "1169": {
+      "text_": "Reach level 10 with Desolate Loss"
+    },
+    "1170": {
+      "text_": "Reach level 30 with Desolate Loss"
+    },
+    "1171": {
+      "text_": "Reach level 50 with Desolate Loss"
+    },
+    "1172": {
+      "text_": "Reach level 70 with Desolate Loss"
+    },
+    "1173": {
+      "text_": "Reach level 90 with Desolate Loss"
+    },
+    "1174": {
+      "text_": "Enhance Desolate Loss's weapon skills 10 times"
+    },
+    "1175": {
+      "text_": "Enhance Desolate Loss's weapon skills 20 times"
+    },
+    "1176": {
+      "text_": "Ascend Desolate Loss 1 time"
+    },
+    "1177": {
+      "text_": "Ascend Desolate Loss 2 times"
+    },
+    "1178": {
+      "text_": "Ascend Desolate Loss 3 times"
+    },
+    "1179": {
+      "text_": "Ascend Desolate Loss 4 times"
+    },
+    "1180": {
+      "text_": "Evolve Desolate Loss"
+    },
+    "1181": {
+      "text_": "Clear 10 event quests"
+    },
+    "1182": {
+      "text_": "Clear 30 event quests"
+    },
+    "1183": {
+      "text_": "Clear 50 event quests"
+    },
+    "1184": {
+      "text_": "Clear 100 event quests"
+    },
+    "1185": {
+      "text_": "Clear 200 event quests"
+    },
+    "1186": {
+      "text_": "Reach level 10 with Blackbird Dagger"
+    },
+    "1187": {
+      "text_": "Reach level 30 with Blackbird Dagger"
+    },
+    "1188": {
+      "text_": "Reach level 60 with Blackbird Dagger"
+    },
+    "1189": {
+      "text_": "Reach level 70 with Blackbird Dagger"
+    },
+    "1190": {
+      "text_": "Reach level 80 with Blackbird Dagger"
+    },
+    "1191": {
+      "text_": "Reach level 90 with Blackbird Dagger"
+    },
+    "1192": {
+      "text_": "Reach level 10 with Dark Revolver"
+    },
+    "1193": {
+      "text_": "Reach level 30 with Dark Revolver"
+    },
+    "1194": {
+      "text_": "Reach level 50 with Dark Revolver"
+    },
+    "1195": {
+      "text_": "Reach level 60 with Dark Revolver"
+    },
+    "1196": {
+      "text_": "Reach level 70 with Dark Revolver"
+    },
+    "1197": {
+      "text_": "Enhance Blackbird Dagger skills 10 times"
+    },
+    "1198": {
+      "text_": "Enhance Blackbird Dagger skills 20 times"
+    },
+    "1199": {
+      "text_": "Enhance Dark Revolver skills 10 times"
+    },
+    "1200": {
+      "text_": "Enhance Dark Revolver skills 20 times"
+    },
+    "1201": {
+      "text_": "Ascend Blackbird Dagger 1 time"
+    },
+    "1202": {
+      "text_": "Ascend Blackbird Dagger 2 times"
+    },
+    "1203": {
+      "text_": "Ascend Blackbird Dagger 3 times"
+    },
+    "1204": {
+      "text_": "Ascend Blackbird Dagger 4 times"
+    },
+    "1205": {
+      "text_": "Ascend Dark Revolver 1 time"
+    },
+    "1206": {
+      "text_": "Ascend Dark Revolver 2 times"
+    },
+    "1207": {
+      "text_": "Ascend Dark Revolver 3 times"
+    },
+    "1208": {
+      "text_": "Ascend Dark Revolver 4 times"
+    },
+    "1209": {
+      "text_": "Evolve Blackbird Dagger"
+    },
+    "1210": {
+      "text_": "Evolve Dark Revolver"
+    },
+    "1231": {
+      "text_": "Clear a main quest"
+    },
+    "1232": {
+      "text_": "Clear a main quest 5 times"
+    },
+    "1233": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "1234": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "1235": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "1236": {
+      "text_": "Clear 1 subquest"
+    },
+    "1237": {
+      "text_": "Clear 5 subquests"
+    },
+    "1238": {
+      "text_": "Clear 10 subquests"
+    },
+    "1239": {
+      "text_": "Clear 20 subquests"
+    },
+    "1240": {
+      "text_": "Clear 30 subquests"
+    },
+    "1241": {
+      "text_": "Enhance characters 10 times"
+    },
+    "1242": {
+      "text_": "Enhance characters 20 times"
+    },
+    "1243": {
+      "text_": "Enhance characters 30 times"
+    },
+    "1244": {
+      "text_": "Enhance characters 40 times"
+    },
+    "1245": {
+      "text_": "Enhance characters 50 times"
+    },
+    "1246": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "1247": {
+      "text_": "Enhance weapons 20 times"
+    },
+    "1248": {
+      "text_": "Enhance weapons 30 times"
+    },
+    "1249": {
+      "text_": "Enhance weapons 40 times"
+    },
+    "1250": {
+      "text_": "Enhance weapons 50 times"
+    },
+    "1251": {
+      "text_": "Play Exploration 1 time"
+    },
+    "1252": {
+      "text_": "Play Exploration 3 times"
+    },
+    "1253": {
+      "text_": "Play Exploration 5 times"
+    },
+    "1254": {
+      "text_": "Clear a normal event quest"
+    },
+    "1255": {
+      "text_": "Clear a hard event quest"
+    },
+    "1256": {
+      "text_": "Clear a very hard event quest"
+    },
+    "1257": {
+      "text_": "Clear 10 subquests"
+    },
+    "1258": {
+      "text_": "Clear 20 subquests"
+    },
+    "1259": {
+      "text_": "Clear 30 subquests"
+    },
+    "1260": {
+      "text_": "Clear 50 subquests"
+    },
+    "1261": {
+      "text_": "Clear 100 subquests"
+    },
+    "1262": {
+      "text_": "Clear 200 subquests"
+    },
+    "1263": {
+      "text_": "Clear 300 subquests"
+    },
+    "1264": {
+      "text_": "Clear 400 subquests"
+    },
+    "1265": {
+      "text_": "Clear 500 subquests"
+    },
+    "1266": {
+      "text_": "Clear 600 subquests"
+    },
+    "1267": {
+      "text_": "Clear 700 subquests"
+    },
+    "1268": {
+      "text_": "Clear 800 subquests"
+    },
+    "1269": {
+      "text_": "Clear 900 subquests"
+    },
+    "1270": {
+      "text_": "Clear 1000 subquests"
+    },
+    "1271": {
+      "text_": "Enhance characters 10 times"
+    },
+    "1272": {
+      "text_": "Enhance characters 30 times"
+    },
+    "1273": {
+      "text_": "Enhance characters 50 times"
+    },
+    "1274": {
+      "text_": "Enhance characters 100 times"
+    },
+    "1275": {
+      "text_": "Enhance characters 200 times"
+    },
+    "1276": {
+      "text_": "Enhance characters 300 times"
+    },
+    "1277": {
+      "text_": "Enhance character skills 5 times"
+    },
+    "1278": {
+      "text_": "Enhance character skills 10 times"
+    },
+    "1279": {
+      "text_": "Enhance character skills 30 times"
+    },
+    "1280": {
+      "text_": "Ascend a character 1 time"
+    },
+    "1281": {
+      "text_": "Ascend characters 3 times"
+    },
+    "1282": {
+      "text_": "Ascend characters 5 times"
+    },
+    "1283": {
+      "text_": "Ascend characters 10 times"
+    },
+    "1284": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "1285": {
+      "text_": "Enhance weapons 30 times"
+    },
+    "1286": {
+      "text_": "Enhance weapons 50 times"
+    },
+    "1287": {
+      "text_": "Enhance weapons 100 times"
+    },
+    "1288": {
+      "text_": "Enhance weapons 200 times"
+    },
+    "1289": {
+      "text_": "Enhance weapons 300 times"
+    },
+    "1290": {
+      "text_": "Enhance weapon skills 5 times"
+    },
+    "1291": {
+      "text_": "Enhance weapon skills 10 times"
+    },
+    "1292": {
+      "text_": "Enhance weapon skills 30 times"
+    },
+    "1293": {
+      "text_": "Ascend a weapon 1 time"
+    },
+    "1294": {
+      "text_": "Ascend weapons 3 times"
+    },
+    "1295": {
+      "text_": "Ascend weapons 5 times"
+    },
+    "1296": {
+      "text_": "Ascend weapons 10 times"
+    },
+    "1297": {
+      "text_": "Evolve a weapon"
+    },
+    "1298": {
+      "text_": "Evolve weapons 3 times"
+    },
+    "1299": {
+      "text_": "Evolve weapons 5 times"
+    },
+    "1300": {
+      "text_": "Play Exploration 1 time"
+    },
+    "1301": {
+      "text_": "Play Exploration 3 times"
+    },
+    "1302": {
+      "text_": "Play Exploration 5 times"
+    },
+    "1303": {
+      "text_": "Play Exploration 10 times"
+    },
+    "1304": {
+      "text_": "Clear Quest 1 of Main Quest Chapter 4"
+    },
+    "1305": {
+      "text_": "Clear a main quest 41 times"
+    },
+    "1306": {
+      "text_": "Use the item shop 41 times"
+    },
+    "1307": {
+      "text_": "Walk 4.1km in The Cage"
+    },
+    "1308": {
+      "text_": "Tap Mama 41 times"
+    },
+    "1310": {
+      "text_": "Clear a normal event quest"
+    },
+    "1311": {
+      "text_": "Clear a hard event quest"
+    },
+    "1312": {
+      "text_": "Clear a very hard event quest"
+    },
+    "1313": {
+      "text_": "Clear 10 event quests"
+    },
+    "1314": {
+      "text_": "Clear 30 event quests"
+    },
+    "1315": {
+      "text_": "Clear 60 event quests"
+    },
+    "1316": {
+      "text_": "Clear 100 event quests"
+    },
+    "1317": {
+      "text_": "Clear 200 event quests"
+    },
+    "1318": {
+      "text_": "Reach level 10 with Argo (Guardian Traveler)"
+    },
+    "1319": {
+      "text_": "Reach level 20 with Argo (Guardian Traveler)"
+    },
+    "1320": {
+      "text_": "Reach level 40 with Argo (Guardian Traveler)"
+    },
+    "1321": {
+      "text_": "Reach level 60 with Argo (Guardian Traveler)"
+    },
+    "1322": {
+      "text_": "Reach level 80 with Argo (Guardian Traveler)"
+    },
+    "1323": {
+      "text_": "Enhance Argo's (Guardian Traveler) skills 4 times"
+    },
+    "1324": {
+      "text_": "Enhance Argo's (Guardian Traveler) skills 8 times"
+    },
+    "1325": {
+      "text_": "Ascend Argo (Guardian Traveler) 1 time"
+    },
+    "1326": {
+      "text_": "Ascend Argo (Guardian Traveler) 2 times"
+    },
+    "1327": {
+      "text_": "Ascend Argo (Guardian Traveler) 3 times"
+    },
+    "1328": {
+      "text_": "Ascend Argo (Guardian Traveler) 4 times"
+    },
+    "1329": {
+      "text_": "Reach level 10 with Spear of Freezing Mist"
+    },
+    "1330": {
+      "text_": "Reach level 30 with Spear of Freezing Mist"
+    },
+    "1331": {
+      "text_": "Reach level 50 with Spear of Freezing Mist"
+    },
+    "1332": {
+      "text_": "Reach level 70 with Spear of Freezing Mist"
+    },
+    "1333": {
+      "text_": "Enhance Spear of Freezing Mist's weapon skills 1 time"
+    },
+    "1334": {
+      "text_": "Enhance Spear of Freezing Mist's weapon skills 3 times"
+    },
+    "1335": {
+      "text_": "Enhance Spear of Freezing Mist's weapon skills 10 times"
+    },
+    "1336": {
+      "text_": "Ascend Spear of Freezing Mist 1 time"
+    },
+    "1337": {
+      "text_": "Ascend Spear of Freezing Mist 2 times"
+    },
+    "1338": {
+      "text_": "Ascend Spear of Freezing Mist 3 times"
+    },
+    "1339": {
+      "text_": "Ascend Spear of Freezing Mist 4 times"
+    },
+    "1350": {
+      "text_": "Clear 10 event quests"
+    },
+    "1351": {
+      "text_": "Clear 30 event quests"
+    },
+    "1352": {
+      "text_": "Clear 50 event quests"
+    },
+    "1353": {
+      "text_": "Clear 100 event quests"
+    },
+    "1354": {
+      "text_": "Clear 150 event quests"
+    },
+    "1355": {
+      "text_": "Clear 200 event quests"
+    },
+    "1356": {
+      "text_": "Reach level 10 with Blackbird Gauntlets"
+    },
+    "1357": {
+      "text_": "Reach level 30 with Blackbird Gauntlets"
+    },
+    "1358": {
+      "text_": "Reach level 60 with Blackbird Gauntlets"
+    },
+    "1359": {
+      "text_": "Reach level 70 with Blackbird Gauntlets"
+    },
+    "1360": {
+      "text_": "Reach level 80 with Blackbird Gauntlets"
+    },
+    "1361": {
+      "text_": "Reach level 10 with Dark Spear"
+    },
+    "1362": {
+      "text_": "Reach level 30 with Dark Spear"
+    },
+    "1363": {
+      "text_": "Reach level 50 with Dark Spear"
+    },
+    "1364": {
+      "text_": "Reach level 60 with Dark Spear"
+    },
+    "1365": {
+      "text_": "Reach level 70 with Dark Spear"
+    },
+    "1366": {
+      "text_": "Enhance Blackbird Gauntlet's skills 1 time"
+    },
+    "1367": {
+      "text_": "Enhance Blackbird Gauntlet's skills 3 times"
+    },
+    "1368": {
+      "text_": "Enhance Blackbird Gauntlet's skills 10 times"
+    },
+    "1369": {
+      "text_": "Enhance Dark Spear's skills 1 time"
+    },
+    "1370": {
+      "text_": "Enhance Dark Spear's skills 3 times"
+    },
+    "1371": {
+      "text_": "Enhance Dark Spear's skills 10 times"
+    },
+    "1372": {
+      "text_": "Ascend Blackbird Gauntlets 1 time"
+    },
+    "1373": {
+      "text_": "Ascend Blackbird Gauntlets 2 times"
+    },
+    "1374": {
+      "text_": "Ascend Blackbird Gauntlets 3 times"
+    },
+    "1375": {
+      "text_": "Ascend Blackbird Gauntlets 4 times"
+    },
+    "1376": {
+      "text_": "Ascend Dark Spear 1 time"
+    },
+    "1377": {
+      "text_": "Ascend Dark Spear 2 times"
+    },
+    "1378": {
+      "text_": "Ascend Dark Spear 3 times"
+    },
+    "1379": {
+      "text_": "Ascend Dark Spear 4 times"
+    },
+    "1380": {
+      "text_": "Clear a normal event quest"
+    },
+    "1381": {
+      "text_": "Clear a hard event quest"
+    },
+    "1382": {
+      "text_": "Clear a very hard event quest"
+    },
+    "1383": {
+      "text_": "Clear 10 event quests"
+    },
+    "1384": {
+      "text_": "Clear 30 event quests"
+    },
+    "1385": {
+      "text_": "Clear 60 event quests"
+    },
+    "1386": {
+      "text_": "Clear 100 event quests"
+    },
+    "1387": {
+      "text_": "Clear 200 event quests"
+    },
+    "1388": {
+      "text_": "Reach level 10 with Dimos (Guardian Gunman)"
+    },
+    "1389": {
+      "text_": "Reach level 20 with Dimos (Guardian Gunman)"
+    },
+    "1390": {
+      "text_": "Reach level 40 with Dimos (Guardian Gunman)"
+    },
+    "1391": {
+      "text_": "Reach level 60 with Dimos (Guardian Gunman)"
+    },
+    "1392": {
+      "text_": "Reach level 80 with Dimos (Guardian Gunman)"
+    },
+    "1393": {
+      "text_": "Enhance Dimos's (Guardian Gunman) skills 4 times"
+    },
+    "1394": {
+      "text_": "Enhance Dimos's (Guardian Gunman) skills 8 times"
+    },
+    "1395": {
+      "text_": "Ascend Dimos (Guardian Gunman) 1 time"
+    },
+    "1396": {
+      "text_": "Ascend Dimos (Guardian Gunman) 2 times"
+    },
+    "1397": {
+      "text_": "Ascend Dimos (Guardian Gunman) 3 times"
+    },
+    "1398": {
+      "text_": "Ascend Dimos (Guardian Gunman) 4 times"
+    },
+    "1399": {
+      "text_": "Reach level 10 with Serene Handgun"
+    },
+    "1400": {
+      "text_": "Reach level 30 with Serene Handgun"
+    },
+    "1401": {
+      "text_": "Reach level 50 with Serene Handgun"
+    },
+    "1402": {
+      "text_": "Reach level 70 with Serene Handgun"
+    },
+    "1403": {
+      "text_": "Enhance Serene Handgun's weapon skills 1 time"
+    },
+    "1404": {
+      "text_": "Enhance Serene Handgun's weapon skills 3 times"
+    },
+    "1405": {
+      "text_": "Enhance Serene Handgun's weapon skills 10 times"
+    },
+    "1406": {
+      "text_": "Ascend Serene Handgun 1 time"
+    },
+    "1407": {
+      "text_": "Ascend Serene Handgun 2 times"
+    },
+    "1408": {
+      "text_": "Ascend Serene Handgun 3 times"
+    },
+    "1409": {
+      "text_": "Ascend Serene Handgun 4 times"
+    },
+    "1410": {
+      "text_": "Clear Blood Oath's Edge on Normal"
+    },
+    "1411": {
+      "text_": "Clear Blood Oath's Edge on Hard"
+    },
+    "1412": {
+      "text_": "Clear Blood Oath's Edge on Very Hard"
+    },
+    "1413": {
+      "text_": "Clear 10 subquests"
+    },
+    "1414": {
+      "text_": "Clear 20 subquests"
+    },
+    "1415": {
+      "text_": "Clear 30 subquests"
+    },
+    "1416": {
+      "text_": "Clear 50 subquests"
+    },
+    "1417": {
+      "text_": "Clear 100 subquests"
+    },
+    "1418": {
+      "text_": "Clear 200 subquests"
+    },
+    "1419": {
+      "text_": "Clear 300 subquests"
+    },
+    "1420": {
+      "text_": "Clear 400 subquests"
+    },
+    "1421": {
+      "text_": "Clear 500 subquests"
+    },
+    "1422": {
+      "text_": "Clear 600 subquests"
+    },
+    "1423": {
+      "text_": "Clear 700 subquests"
+    },
+    "1424": {
+      "text_": "Clear 800 subquests"
+    },
+    "1425": {
+      "text_": "Clear 900 subquests"
+    },
+    "1426": {
+      "text_": "Clear 1000 subquests"
+    },
+    "1427": {
+      "text_": "Enhance characters 10 times"
+    },
+    "1428": {
+      "text_": "Enhance characters 30 times"
+    },
+    "1429": {
+      "text_": "Enhance characters 50 times"
+    },
+    "1430": {
+      "text_": "Enhance characters 100 times"
+    },
+    "1431": {
+      "text_": "Enhance characters 200 times"
+    },
+    "1432": {
+      "text_": "Enhance characters 300 times"
+    },
+    "1433": {
+      "text_": "Enhance a character skill 1 time"
+    },
+    "1434": {
+      "text_": "Enhance character skills 3 times"
+    },
+    "1435": {
+      "text_": "Enhance character skills 10 times"
+    },
+    "1436": {
+      "text_": "Ascend a character 1 time"
+    },
+    "1437": {
+      "text_": "Ascend characters 2 times"
+    },
+    "1438": {
+      "text_": "Ascend characters 3 times"
+    },
+    "1439": {
+      "text_": "Ascend characters 4 times"
+    },
+    "1440": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "1441": {
+      "text_": "Enhance weapons 30 times"
+    },
+    "1442": {
+      "text_": "Enhance weapons 50 times"
+    },
+    "1443": {
+      "text_": "Enhance weapons 100 times"
+    },
+    "1444": {
+      "text_": "Enhance weapons 200 times"
+    },
+    "1445": {
+      "text_": "Enhance weapons 300 times"
+    },
+    "1446": {
+      "text_": "Enhance a weapon skill 1 time"
+    },
+    "1447": {
+      "text_": "Enhance weapon skills 3 times"
+    },
+    "1448": {
+      "text_": "Enhance weapon skills 10 times"
+    },
+    "1449": {
+      "text_": "Ascend a weapon 1 time"
+    },
+    "1450": {
+      "text_": "Ascend weapons 2 times"
+    },
+    "1451": {
+      "text_": "Ascend weapons 3 times"
+    },
+    "1452": {
+      "text_": "Ascend weapons 4 times"
+    },
+    "1453": {
+      "text_": "Play Exploration 1 time"
+    },
+    "1454": {
+      "text_": "Play Exploration 3 times"
+    },
+    "1455": {
+      "text_": "Play Exploration 5 times"
+    },
+    "1456": {
+      "text_": "Play Exploration 10 times"
+    },
+    "1457": {
+      "text_": "Clear Variation: Tempestuous Senior Officer 10 times"
+    },
+    "1458": {
+      "text_": "Clear Variation: Tempestuous Senior Officer 30 times"
+    },
+    "1459": {
+      "text_": "Clear Variation: Tempestuous Senior Officer 50 times"
+    },
+    "1460": {
+      "text_": "Clear Variation: Tempestuous Senior Officer 100 times"
+    },
+    "1461": {
+      "text_": "Clear Variation: Tempestuous Senior Officer 150 times"
+    },
+    "1462": {
+      "text_": "Clear Variation: Tempestuous Senior Officer 200 times"
+    },
+    "1463": {
+      "text_": "Reach level 10 with Blackbird Greatsword"
+    },
+    "1464": {
+      "text_": "Reach level 30 with Blackbird Greatsword"
+    },
+    "1465": {
+      "text_": "Reach level 60 with Blackbird Greatsword"
+    },
+    "1466": {
+      "text_": "Reach level 70 with Blackbird Greatsword"
+    },
+    "1467": {
+      "text_": "Reach level 80 with Blackbird Greatsword"
+    },
+    "1468": {
+      "text_": "Reach level 10 with Dark Dagger"
+    },
+    "1469": {
+      "text_": "Reach level 30 with Dark Dagger"
+    },
+    "1470": {
+      "text_": "Reach level 50 with Dark Dagger"
+    },
+    "1471": {
+      "text_": "Reach level 60 with Dark Dagger"
+    },
+    "1472": {
+      "text_": "Reach level 70 with Dark Dagger"
+    },
+    "1473": {
+      "text_": "Enhance Blackbird Greatsword's skills 1 time"
+    },
+    "1474": {
+      "text_": "Enhance Blackbird Greatsword's skills 3 times"
+    },
+    "1475": {
+      "text_": "Enhance Blackbird Greatsword's skills 10 times"
+    },
+    "1476": {
+      "text_": "Enhance Dark Dagger's skills 1 time"
+    },
+    "1477": {
+      "text_": "Enhance Dark Dagger's skills 3 times"
+    },
+    "1478": {
+      "text_": "Enhance Dark Dagger's skills 10 times"
+    },
+    "1479": {
+      "text_": "Ascend Blackbird Greatsword 1 time"
+    },
+    "1480": {
+      "text_": "Ascend Blackbird Greatsword 2 times"
+    },
+    "1481": {
+      "text_": "Ascend Blackbird Greatsword 3 times"
+    },
+    "1482": {
+      "text_": "Ascend Blackbird Greatsword 4 times"
+    },
+    "1483": {
+      "text_": "Ascend Dark Dagger 1 time"
+    },
+    "1484": {
+      "text_": "Ascend Dark Dagger 2 times"
+    },
+    "1485": {
+      "text_": "Ascend Dark Dagger 3 times"
+    },
+    "1486": {
+      "text_": "Ascend Dark Dagger 4 times"
+    },
+    "1487": {
+      "text_": "Clear a main quest"
+    },
+    "1488": {
+      "text_": "Clear a main quest 5 times"
+    },
+    "1489": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "1490": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "1491": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "1492": {
+      "text_": "Clear 1 subquest"
+    },
+    "1493": {
+      "text_": "Clear 5 subquests"
+    },
+    "1494": {
+      "text_": "Clear 10 subquests"
+    },
+    "1495": {
+      "text_": "Clear 20 subquests"
+    },
+    "1496": {
+      "text_": "Clear 30 subquests"
+    },
+    "1497": {
+      "text_": "Enhance characters 10 times"
+    },
+    "1498": {
+      "text_": "Enhance characters 20 times"
+    },
+    "1499": {
+      "text_": "Enhance characters 30 times"
+    },
+    "1500": {
+      "text_": "Enhance characters 40 times"
+    },
+    "1501": {
+      "text_": "Enhance characters 50 times"
+    },
+    "1502": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "1503": {
+      "text_": "Enhance weapons 20 times"
+    },
+    "1504": {
+      "text_": "Enhance weapons 30 times"
+    },
+    "1505": {
+      "text_": "Enhance weapons 40 times"
+    },
+    "1506": {
+      "text_": "Enhance weapons 50 times"
+    },
+    "1507": {
+      "text_": "Play Exploration 1 time"
+    },
+    "1508": {
+      "text_": "Play Exploration 3 times"
+    },
+    "1509": {
+      "text_": "Play Exploration 5 times"
+    },
+    "1510": {
+      "text_": "Clear Record: Seat of Shadow on Normal"
+    },
+    "1511": {
+      "text_": "Clear Record: Seat of Shadow on Hard"
+    },
+    "1512": {
+      "text_": "Clear Record: Seat of Shadow on Very Hard"
+    },
+    "1513": {
+      "text_": "Clear Record: Seat of Shadow 10 times"
+    },
+    "1514": {
+      "text_": "Clear Record: Seat of Shadow 30 times"
+    },
+    "1515": {
+      "text_": "Clear Record: Seat of Shadow 60 times"
+    },
+    "1516": {
+      "text_": "Clear Record: Seat of Shadow 100 times"
+    },
+    "1517": {
+      "text_": "Clear Record: Seat of Shadow 200 times"
+    },
+    "1518": {
+      "text_": "Reach level 10 with Rion (Guardian Exile)"
+    },
+    "1519": {
+      "text_": "Reach level 20 with Rion (Guardian Exile)"
+    },
+    "1520": {
+      "text_": "Reach level 40 with Rion (Guardian Exile)"
+    },
+    "1521": {
+      "text_": "Reach level 60 with Rion (Guardian Exile)"
+    },
+    "1522": {
+      "text_": "Reach level 80 with Rion (Guardian Exile)"
+    },
+    "1523": {
+      "text_": "Enhance Rion (Guardian Exile)'s skills 4 times"
+    },
+    "1524": {
+      "text_": "Enhance Rion (Guardian Exile)'s skills 8 times"
+    },
+    "1525": {
+      "text_": "Ascend Rion (Guardian Exile) 1 time"
+    },
+    "1526": {
+      "text_": "Ascend Rion (Guardian Exile) 2 times"
+    },
+    "1527": {
+      "text_": "Ascend Rion (Guardian Exile) 3 times"
+    },
+    "1528": {
+      "text_": "Ascend Rion (Guardian Exile) 4 times"
+    },
+    "1529": {
+      "text_": "Reach level 10 with Hexer's Staff"
+    },
+    "1530": {
+      "text_": "Reach level 30 with Hexer's Staff"
+    },
+    "1531": {
+      "text_": "Reach level 50 with Hexer's Staff"
+    },
+    "1532": {
+      "text_": "Reach level 70 with Hexer's Staff"
+    },
+    "1533": {
+      "text_": "Enhance Hexer's Staff's skills 1 time"
+    },
+    "1534": {
+      "text_": "Enhance Hexer's Staff's skills 3 times"
+    },
+    "1535": {
+      "text_": "Enhance Hexer's Staff's skills 10 times"
+    },
+    "1536": {
+      "text_": "Ascend Hexer's Staff 1 time"
+    },
+    "1537": {
+      "text_": "Ascend Hexer's Staff 2 times"
+    },
+    "1538": {
+      "text_": "Ascend Hexer's Staff 3 times"
+    },
+    "1539": {
+      "text_": "Ascend Hexer's Staff 4 times"
+    },
+    "1560": {
+      "text_": "Clear Record: Coffin of Repose on Normal"
+    },
+    "1561": {
+      "text_": "Clear Record: Coffin of Repose on Hard"
+    },
+    "1562": {
+      "text_": "Clear Record: Coffin of Repose on Very Hard"
+    },
+    "1563": {
+      "text_": "Clear Record: Coffin of Repose 10 times"
+    },
+    "1564": {
+      "text_": "Clear Record: Coffin of Repose 30 times"
+    },
+    "1565": {
+      "text_": "Clear Record: Coffin of Repose 60 times"
+    },
+    "1566": {
+      "text_": "Clear Record: Coffin of Repose 100 times"
+    },
+    "1567": {
+      "text_": "Clear Record: Coffin of Repose 200 times"
+    },
+    "1568": {
+      "text_": "Reach level 10 with F66x (Guardian Captive)"
+    },
+    "1569": {
+      "text_": "Reach level 20 with F66x (Guardian Captive)"
+    },
+    "1570": {
+      "text_": "Reach level 40 with F66x (Guardian Captive)"
+    },
+    "1571": {
+      "text_": "Reach level 60 with F66x (Guardian Captive)"
+    },
+    "1572": {
+      "text_": "Reach level 80 with F66x (Guardian Captive)"
+    },
+    "1573": {
+      "text_": "Enhance F66x's (Guardian Captive) skills 4 times"
+    },
+    "1574": {
+      "text_": "Enhance F66x's (Guardian Captive) skills 8 times"
+    },
+    "1575": {
+      "text_": "Ascend F66x (Guardian Captive) 1 time"
+    },
+    "1576": {
+      "text_": "Ascend F66x (Guardian Captive) 2 times"
+    },
+    "1577": {
+      "text_": "Ascend F66x (Guardian Captive) 3 times"
+    },
+    "1578": {
+      "text_": "Ascend F66x (Guardian Captive) 4 times"
+    },
+    "1579": {
+      "text_": "Reach level 10 with Baton of Tender Rain"
+    },
+    "1580": {
+      "text_": "Reach level 30 with Baton of Tender Rain"
+    },
+    "1581": {
+      "text_": "Reach level 50 with Baton of Tender Rain"
+    },
+    "1582": {
+      "text_": "Reach level 70 with Baton of Tender Rain"
+    },
+    "1583": {
+      "text_": "Enhance Baton of Tender Rain's weapon skills 1 time"
+    },
+    "1584": {
+      "text_": "Enhance Baton of Tender Rain's weapon skills 3 times"
+    },
+    "1585": {
+      "text_": "Enhance Baton of Tender Rain's weapon skills 10 times"
+    },
+    "1586": {
+      "text_": "Ascend Baton of Tender Rain 1 time"
+    },
+    "1587": {
+      "text_": "Ascend Baton of Tender Rain 2 times"
+    },
+    "1588": {
+      "text_": "Ascend Baton of Tender Rain 3 times"
+    },
+    "1589": {
+      "text_": "Ascend Baton of Tender Rain 4 times"
+    },
+    "1590": {
+      "text_": "Fight in the Arena 1 time"
+    },
+    "1591": {
+      "text_": "Fight in the Arena 2 times"
+    },
+    "1592": {
+      "text_": "Fight in the Arena 3 times"
+    },
+    "1593": {
+      "text_": "Fight in the Arena 5 times"
+    },
+    "1594": {
+      "text_": "Fight in the Arena 7 times"
+    },
+    "1595": {
+      "text_": "Fight in the Arena 10 times"
+    },
+    "1596": {
+      "text_": "Fight in the Arena 15 times"
+    },
+    "1597": {
+      "text_": "Fight in the Arena 20 times"
+    },
+    "1598": {
+      "text_": "Fight in the Arena 25 times"
+    },
+    "1599": {
+      "text_": "Fight in the Arena 30 times"
+    },
+    "1600": {
+      "text_": "Fight in the Arena 35 times"
+    },
+    "1601": {
+      "text_": "Fight in the Arena 40 times"
+    },
+    "1602": {
+      "text_": "Fight in the Arena 45 times"
+    },
+    "1603": {
+      "text_": "Fight in the Arena 50 times"
+    },
+    "1604": {
+      "text_": "Fight in the Arena 55 times"
+    },
+    "1605": {
+      "text_": "Fight in the Arena 60 times"
+    },
+    "1606": {
+      "text_": "Fight in the Arena 70 times"
+    },
+    "1607": {
+      "text_": "Fight in the Arena 80 times"
+    },
+    "1608": {
+      "text_": "Fight in the Arena 90 times"
+    },
+    "1609": {
+      "text_": "Fight in the Arena 100 times"
+    },
+    "1610": {
+      "text_": "Clear [イベント名] 10 times"
+    },
+    "1611": {
+      "text_": "Clear [イベント名] 30 times"
+    },
+    "1612": {
+      "text_": "Clear [イベント名] 50 times"
+    },
+    "1613": {
+      "text_": "Clear [イベント名] 100 times"
+    },
+    "1614": {
+      "text_": "Clear [イベント名] 150 times"
+    },
+    "1615": {
+      "text_": "Clear [イベント名] 200 times"
+    },
+    "1616": {
+      "text_": "Reach level 10 with Blackbird Lance"
+    },
+    "1617": {
+      "text_": "Reach level 30 with Blackbird Lance"
+    },
+    "1618": {
+      "text_": "Reach level 60 with Blackbird Lance"
+    },
+    "1619": {
+      "text_": "Reach level 70 with Blackbird Lance"
+    },
+    "1620": {
+      "text_": "Reach level 80 with Blackbird Lance"
+    },
+    "1621": {
+      "text_": "Reach level 10 with Dark Staff"
+    },
+    "1622": {
+      "text_": "Reach level 30 with Dark Staff"
+    },
+    "1623": {
+      "text_": "Reach level 50 with Dark Staff"
+    },
+    "1624": {
+      "text_": "Reach level 60 with Dark Staff"
+    },
+    "1625": {
+      "text_": "Reach level 70 with Dark Staff"
+    },
+    "1626": {
+      "text_": "Enhance Blackbird Lance's skills 1 time"
+    },
+    "1627": {
+      "text_": "Enhance Blackbird Lance's skills 3 times"
+    },
+    "1628": {
+      "text_": "Enhance Blackbird Lance's skills 10 times"
+    },
+    "1629": {
+      "text_": "Enhance Dark Staff's skills 1 time"
+    },
+    "1630": {
+      "text_": "Enhance Dark Staff's skills 3 times"
+    },
+    "1631": {
+      "text_": "Enhance Dark Staff's skills 10 times"
+    },
+    "1632": {
+      "text_": "Ascend Blackbird Lance 1 time"
+    },
+    "1633": {
+      "text_": "Ascend Blackbird Lance 2 times"
+    },
+    "1634": {
+      "text_": "Ascend Blackbird Lance 3 times"
+    },
+    "1635": {
+      "text_": "Ascend Blackbird Lance 4 times"
+    },
+    "1636": {
+      "text_": "Ascend Dark Staff 1 time"
+    },
+    "1637": {
+      "text_": "Ascend Dark Staff 2 times"
+    },
+    "1638": {
+      "text_": "Ascend Dark Staff 3 times"
+    },
+    "1639": {
+      "text_": "Ascend Dark Staff 4 times"
+    },
+    "1640": {
+      "text_": "Clear a main quest"
+    },
+    "1641": {
+      "text_": "Clear a main quest 5 times"
+    },
+    "1642": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "1643": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "1644": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "1645": {
+      "text_": "Clear a main quest 40 times"
+    },
+    "1646": {
+      "text_": "Clear a main quest 50 times"
+    },
+    "1647": {
+      "text_": "Clear 1 subquest"
+    },
+    "1648": {
+      "text_": "Clear 5 subquests"
+    },
+    "1649": {
+      "text_": "Clear 10 subquests"
+    },
+    "1650": {
+      "text_": "Clear 20 subquests"
+    },
+    "1651": {
+      "text_": "Clear 30 subquests"
+    },
+    "1652": {
+      "text_": "Clear 40 subquests"
+    },
+    "1653": {
+      "text_": "Clear 50 subquests"
+    },
+    "1654": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "1655": {
+      "text_": "Enhance weapons 20 times"
+    },
+    "1656": {
+      "text_": "Enhance weapons 30 times"
+    },
+    "1657": {
+      "text_": "Enhance weapons 40 times"
+    },
+    "1658": {
+      "text_": "Enhance weapons 50 times"
+    },
+    "1659": {
+      "text_": "Play Exploration 1 time"
+    },
+    "1660": {
+      "text_": "Play Exploration 2 times"
+    },
+    "1661": {
+      "text_": "Play Exploration 3 times"
+    },
+    "1662": {
+      "text_": "Play Exploration 5 times"
+    },
+    "2401": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "2402": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "2403": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "2404": {
+      "text_": "Clear a main quest 50 times"
+    },
+    "2405": {
+      "text_": "Clear a main quest 100 times"
+    },
+    "2406": {
+      "text_": "Clear a main quest 200 times"
+    },
+    "2407": {
+      "text_": "Clear a main quest 300 times"
+    },
+    "2408": {
+      "text_": "Clear a daily quest 10 times"
+    },
+    "2409": {
+      "text_": "Clear a daily quest 20 times"
+    },
+    "2410": {
+      "text_": "Clear a daily quest 30 times"
+    },
+    "2411": {
+      "text_": "Clear a daily quest 50 times"
+    },
+    "2412": {
+      "text_": "Clear a daily quest 100 times"
+    },
+    "2413": {
+      "text_": "Clear a daily quest 200 times"
+    },
+    "2414": {
+      "text_": "Clear a daily quest 300 times"
+    },
+    "2501": {
+      "text_": "Clear Record: Sunset Port on Normal"
+    },
+    "2502": {
+      "text_": "Clear Record: Sunset Port on Hard"
+    },
+    "2503": {
+      "text_": "Clear Record: Sunset Port on Very Hard"
+    },
+    "2504": {
+      "text_": "Clear Record: Sunset Port 10 times"
+    },
+    "2505": {
+      "text_": "Clear Record: Sunset Port 30 times"
+    },
+    "2506": {
+      "text_": "Clear Record: Sunset Port 60 times"
+    },
+    "2507": {
+      "text_": "Clear Record: Sunset Port 100 times"
+    },
+    "2508": {
+      "text_": "Clear Record: Sunset Port 200 times"
+    },
+    "2509": {
+      "text_": "Reach level 10 with Argo (Summer Traveler)"
+    },
+    "2510": {
+      "text_": "Reach level 20 with Argo (Summer Traveler)"
+    },
+    "2511": {
+      "text_": "Reach level 40 with Argo (Summer Traveler)"
+    },
+    "2512": {
+      "text_": "Reach level 60 with Argo (Summer Traveler)"
+    },
+    "2513": {
+      "text_": "Reach level 80 with Argo (Summer Traveler)"
+    },
+    "2514": {
+      "text_": "Enhance Argo's (Summer Traveler) skills 4 times"
+    },
+    "2515": {
+      "text_": "Enhance Argo's (Summer Traveler) skills 8 times"
+    },
+    "2516": {
+      "text_": "Ascend Argo (Summer Traveler) 1 time"
+    },
+    "2517": {
+      "text_": "Ascend Argo (Summer Traveler) 2 times"
+    },
+    "2518": {
+      "text_": "Ascend Argo (Summer Traveler) 3 times"
+    },
+    "2519": {
+      "text_": "Ascend Argo (Summer Traveler) 4 times"
+    },
+    "2520": {
+      "text_": "Reach level 10 with Javelin of Vice"
+    },
+    "2521": {
+      "text_": "Reach level 30 with Javelin of Vice"
+    },
+    "2522": {
+      "text_": "Reach level 50 with Javelin of Vice"
+    },
+    "2523": {
+      "text_": "Reach level 70 with Javelin of Vice"
+    },
+    "2524": {
+      "text_": "Enhance Javelin of Vice's weapon skills 1 time"
+    },
+    "2525": {
+      "text_": "Enhance Javelin of Vice's weapon skills 3 times"
+    },
+    "2526": {
+      "text_": "Enhance Javelin of Vice's weapon skills 10 times"
+    },
+    "2527": {
+      "text_": "Ascend Javelin of Vice 1 time"
+    },
+    "2528": {
+      "text_": "Ascend Javelin of Vice 2 times"
+    },
+    "2529": {
+      "text_": "Ascend Javelin of Vice 3 times"
+    },
+    "2530": {
+      "text_": "Ascend Javelin of Vice 4 times"
+    },
+    "2701": {
+      "text_": "Clear Record: The Cage of Reincarnation on Normal"
+    },
+    "2702": {
+      "text_": "Clear Record: The Cage of Reincarnation on Hard"
+    },
+    "2703": {
+      "text_": "Clear Record: The Cage of Reincarnation on Very Hard"
+    },
+    "2704": {
+      "text_": "Clear 10 subquests"
+    },
+    "2705": {
+      "text_": "Clear 20 subquests"
+    },
+    "2706": {
+      "text_": "Clear 30 subquests"
+    },
+    "2707": {
+      "text_": "Clear 50 subquests"
+    },
+    "2708": {
+      "text_": "Clear 100 subquests"
+    },
+    "2709": {
+      "text_": "Clear 110 subquests"
+    },
+    "2710": {
+      "text_": "Clear 120 subquests"
+    },
+    "2711": {
+      "text_": "Clear 130 subquests"
+    },
+    "2712": {
+      "text_": "Clear 150 subquests"
+    },
+    "2713": {
+      "text_": "Clear 200 subquests"
+    },
+    "2714": {
+      "text_": "Clear 250 subquests"
+    },
+    "2715": {
+      "text_": "Clear 300 subquests"
+    },
+    "2716": {
+      "text_": "Clear 350 subquests"
+    },
+    "2717": {
+      "text_": "Clear 400 subquests"
+    },
+    "2718": {
+      "text_": "Clear 450 subquests"
+    },
+    "2719": {
+      "text_": "Clear 500 subquests"
+    },
+    "2720": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "2721": {
+      "text_": "Enhance weapons 30 times"
+    },
+    "2722": {
+      "text_": "Enhance weapons 50 times"
+    },
+    "2723": {
+      "text_": "Enhance weapons 100 times"
+    },
+    "2724": {
+      "text_": "Play Exploration 1 time"
+    },
+    "2725": {
+      "text_": "Play Exploration 3 times"
+    },
+    "2726": {
+      "text_": "Play Exploration 5 times"
+    },
+    "2727": {
+      "text_": "Play Exploration 10 times"
+    },
+    "3001": {
+      "text_": "Fight in the Arena 1 time"
+    },
+    "3002": {
+      "text_": "Fight in the Arena 2 times"
+    },
+    "3003": {
+      "text_": "Fight in the Arena 3 times"
+    },
+    "3004": {
+      "text_": "Fight in the Arena 5 times"
+    },
+    "3005": {
+      "text_": "Fight in the Arena 7 times"
+    },
+    "3006": {
+      "text_": "Fight in the Arena 10 times"
+    },
+    "3007": {
+      "text_": "Fight in the Arena 15 times"
+    },
+    "3008": {
+      "text_": "Fight in the Arena 20 times"
+    },
+    "3009": {
+      "text_": "Fight in the Arena 25 times"
+    },
+    "3010": {
+      "text_": "Fight in the Arena 30 times"
+    },
+    "3011": {
+      "text_": "Fight in the Arena 35 times"
+    },
+    "3012": {
+      "text_": "Fight in the Arena 40 times"
+    },
+    "3013": {
+      "text_": "Fight in the Arena 45 times"
+    },
+    "3014": {
+      "text_": "Fight in the Arena 50 times"
+    },
+    "3015": {
+      "text_": "Fight in the Arena 55 times"
+    },
+    "3016": {
+      "text_": "Fight in the Arena 60 times"
+    },
+    "3017": {
+      "text_": "Fight in the Arena 70 times"
+    },
+    "3018": {
+      "text_": "Fight in the Arena 80 times"
+    },
+    "3019": {
+      "text_": "Fight in the Arena 90 times"
+    },
+    "3020": {
+      "text_": "Fight in the Arena 100 times"
+    },
+    "3101": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "3102": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "3103": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "3104": {
+      "text_": "Clear a main quest 40 times"
+    },
+    "3105": {
+      "text_": "Clear a main quest 100 times"
+    },
+    "3106": {
+      "text_": "Perform 10 chapter summons"
+    },
+    "3107": {
+      "text_": "Perform 20 chapter summons"
+    },
+    "3108": {
+      "text_": "Perform 30 chapter summons"
+    },
+    "3109": {
+      "text_": "Perform 40 chapter summons"
+    },
+    "3110": {
+      "text_": "Perform 100 chapter summons"
+    },
+    "3111": {
+      "text_": "Clear 10 subquests"
+    },
+    "3112": {
+      "text_": "Clear 20 subquests"
+    },
+    "3113": {
+      "text_": "Clear 30 subquests"
+    },
+    "3114": {
+      "text_": "Clear 40 subquests"
+    },
+    "3115": {
+      "text_": "Clear 100 subquests"
+    },
+    "3116": {
+      "text_": "Clear a main quest on Hard 10 times"
+    },
+    "3117": {
+      "text_": "Clear a main quest on Hard 20 times"
+    },
+    "3118": {
+      "text_": "Clear a main quest on Hard 30 times"
+    },
+    "3119": {
+      "text_": "Clear a main quest on Hard 40 times"
+    },
+    "3120": {
+      "text_": "Clear a main quest on Hard 100 times"
+    },
+    "3121": {
+      "text_": "Enhance weapons 20 times"
+    },
+    "3122": {
+      "text_": "Enhance characters 20 times"
+    },
+    "3123": {
+      "text_": "Enhance weapons 40 times"
+    },
+    "3124": {
+      "text_": "Enhance characters 40 times"
+    },
+    "3125": {
+      "text_": "Enhance weapons 100 times"
+    },
+    "3126": {
+      "text_": "Enhance characters 100 times"
+    },
+    "3501": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "3502": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "3503": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "3504": {
+      "text_": "Clear a main quest 50 times"
+    },
+    "3505": {
+      "text_": "Clear a main quest 70 times"
+    },
+    "3506": {
+      "text_": "Clear a main quest 90 times"
+    },
+    "3507": {
+      "text_": "Clear a main quest 100 times"
+    },
+    "3508": {
+      "text_": "Clear a main quest 110 times"
+    },
+    "3509": {
+      "text_": "Clear a main quest 130 times"
+    },
+    "3510": {
+      "text_": "Clear a main quest 150 times"
+    },
+    "3511": {
+      "text_": "Clear a daily quest 10 times"
+    },
+    "3512": {
+      "text_": "Clear a daily quest 20 times"
+    },
+    "3513": {
+      "text_": "Clear a daily quest 30 times"
+    },
+    "3514": {
+      "text_": "Clear a daily quest 50 times"
+    },
+    "3515": {
+      "text_": "Clear a daily quest 70 times"
+    },
+    "3516": {
+      "text_": "Clear a daily quest 90 times"
+    },
+    "3517": {
+      "text_": "Clear a daily quest 100 times"
+    },
+    "3518": {
+      "text_": "Clear a daily quest 110 times"
+    },
+    "3519": {
+      "text_": "Clear a daily quest 130 times"
+    },
+    "3520": {
+      "text_": "Clear a daily quest 150 times"
+    },
+    "10001": {
+      "text_": "Clear a main quest"
+    },
+    "10002": {
+      "text_": "Clear 3 subquests"
+    },
+    "10003": {
+      "text_": "Clear Exploration 1 time"
+    },
+    "10004": {
+      "text_": "Purchase something in the item shop"
+    },
+    "10005": {
+      "text_": "Enhance a weapon"
+    },
+    "10006": {
+      "text_": "Log in"
+    },
+    "10007": {
+      "text_": "Set a favorite character"
+    },
+    "10008": {
+      "text_": "Use \"Data Transfer\" to back up your game data"
+    },
+    "10010": {
+      "text_": "Send a friend support"
+    },
+    "10011": {
+      "text_": "Clear a quest 5 times"
+    },
+    "10100": {
+      "text_": "Clear all daily missions"
+    },
+    "23001": {
+      "text_": "Exchange 100 times"
+    },
+    "23002": {
+      "text_": "Exchange 200 times"
+    },
+    "23003": {
+      "text_": "Exchange 300 times"
+    },
+    "23004": {
+      "text_": "Exchange 400 times"
+    },
+    "23005": {
+      "text_": "Exchange 500 times"
+    },
+    "23006": {
+      "text_": "Exchange 600 times"
+    },
+    "23007": {
+      "text_": "Exchange 700 times"
+    },
+    "23008": {
+      "text_": "Exchange 800 times"
+    },
+    "23009": {
+      "text_": "Exchange 900 times"
+    },
+    "23010": {
+      "text_": "Exchange 1000 times"
+    },
+    "25001": {
+      "text_": "Clear 10 subquests"
+    },
+    "25002": {
+      "text_": "Clear 30 subquests"
+    },
+    "25003": {
+      "text_": "Clear 60 subquests"
+    },
+    "25004": {
+      "text_": "Clear 100 subquests"
+    },
+    "25005": {
+      "text_": "Clear 200 subquests"
+    },
+    "25006": {
+      "text_": "Clear 300 subquests"
+    },
+    "25007": {
+      "text_": "Clear 400 subquests"
+    },
+    "25008": {
+      "text_": "Clear 500 subquests"
+    },
+    "25009": {
+      "text_": "Clear 600 subquests"
+    },
+    "25010": {
+      "text_": "Clear 700 subquests"
+    },
+    "25011": {
+      "text_": "Clear 800 subquests"
+    },
+    "25012": {
+      "text_": "Clear 900 subquests"
+    },
+    "25013": {
+      "text_": "Clear 1000 subquests"
+    },
+    "25014": {
+      "text_": "Clear 1 subquest"
+    },
+    "25015": {
+      "text_": "Clear 2 subquests"
+    },
+    "25016": {
+      "text_": "Clear 3 subquests"
+    },
+    "25017": {
+      "text_": "Clear 4 subquests"
+    },
+    "25018": {
+      "text_": "Clear 5 subquests"
+    },
+    "26001": {
+      "text_": "Clear 10 Variation Quests"
+    },
+    "26002": {
+      "text_": "Clear 30 Variation Quests"
+    },
+    "26003": {
+      "text_": "Clear 60 Variation Quests"
+    },
+    "26004": {
+      "text_": "Clear 100 Variation Quests"
+    },
+    "26005": {
+      "text_": "Clear 200 Variation Quests"
+    },
+    "26006": {
+      "text_": "Reach level 10 with Blackbird Dagger"
+    },
+    "26007": {
+      "text_": "Reach level 30 with Blackbird Dagger"
+    },
+    "26008": {
+      "text_": "Reach level 50 with Blackbird Dagger"
+    },
+    "26009": {
+      "text_": "Reach level 70 with Blackbird Dagger"
+    },
+    "26010": {
+      "text_": "Reach level 90 with Blackbird Dagger"
+    },
+    "26011": {
+      "text_": "Reach level 10 with Dark Revolver"
+    },
+    "26012": {
+      "text_": "Reach level 30 with Dark Revolver"
+    },
+    "26013": {
+      "text_": "Reach level 50 with Dark Revolver"
+    },
+    "26014": {
+      "text_": "Reach level 70 with Dark Revolver"
+    },
+    "26015": {
+      "text_": "Reach level 90 with Dark Revolver"
+    },
+    "26016": {
+      "text_": "Enhance Blackbird Dagger skills 10 times"
+    },
+    "26017": {
+      "text_": "Enhance Blackbird Dagger skills 20 times"
+    },
+    "26018": {
+      "text_": "Enhance Dark Revolver skills 10 times"
+    },
+    "26019": {
+      "text_": "Enhance Dark Revolver skills 20 times"
+    },
+    "26020": {
+      "text_": "Ascend Blackbird Dagger 1 time"
+    },
+    "26021": {
+      "text_": "Ascend Blackbird Dagger 2 times"
+    },
+    "26022": {
+      "text_": "Ascend Blackbird Dagger 3 times"
+    },
+    "26023": {
+      "text_": "Ascend Blackbird Dagger 4 times"
+    },
+    "26024": {
+      "text_": "Ascend Dark Revolver 1 time"
+    },
+    "26025": {
+      "text_": "Ascend Dark Revolver 2 times"
+    },
+    "26026": {
+      "text_": "Ascend Dark Revolver 3 times"
+    },
+    "26027": {
+      "text_": "Ascend Dark Revolver 4 times"
+    },
+    "26028": {
+      "text_": "Evolve Blackbird Dagger"
+    },
+    "26029": {
+      "text_": "Evolve Dark Revolver"
+    },
+    "26030": {
+      "text_": "Perform 10 event summons"
+    },
+    "26031": {
+      "text_": "Perform 50 event summons"
+    },
+    "26032": {
+      "text_": "Perform 100 event summons"
+    },
+    "26033": {
+      "text_": "Perform 200 event summons"
+    },
+    "26034": {
+      "text_": "Perform 300 event summons"
+    },
+    "26035": {
+      "text_": "Perform 400 event summons"
+    },
+    "26036": {
+      "text_": "Perform 500 event summons"
+    },
+    "26037": {
+      "text_": "Perform 600 event summons"
+    },
+    "26038": {
+      "text_": "Perform 700 event summons"
+    },
+    "26039": {
+      "text_": "Perform 800 event summons"
+    },
+    "26040": {
+      "text_": "Perform 900 event summons"
+    },
+    "26041": {
+      "text_": "Perform 1000 event summons"
+    },
+    "26042": {
+      "text_": "Perform 1100 event summons"
+    },
+    "26043": {
+      "text_": "Perform 1200 event summons"
+    },
+    "26044": {
+      "text_": "Perform 1300 event summons"
+    },
+    "26045": {
+      "text_": "Perform 1400 event summons"
+    },
+    "26046": {
+      "text_": "Perform 1500 event summons"
+    },
+    "26047": {
+      "text_": "Perform 1600 event summons"
+    },
+    "26048": {
+      "text_": "Perform 1700 event summons"
+    },
+    "26049": {
+      "text_": "Perform 1800 event summons"
+    },
+    "26050": {
+      "text_": "Perform 1900 event summons"
+    },
+    "26051": {
+      "text_": "Perform 2000 event summons"
+    },
+    "26052": {
+      "text_": "Clear all Variation Quests"
+    },
+    "26056": {
+      "text_": "Clear the Den of Madness quest 10 times"
+    },
+    "26057": {
+      "text_": "Clear the Den of Madness quest 30 times"
+    },
+    "26058": {
+      "text_": "Clear the Den of Madness quest 60 times"
+    },
+    "26059": {
+      "text_": "Clear the Den of Madness quest 100 times"
+    },
+    "26060": {
+      "text_": "Clear the Den of Madness quest 200 times"
+    },
+    "26061": {
+      "text_": "Reach level 10 with Grieving Hunter"
+    },
+    "26062": {
+      "text_": "Reach level 20 with Grieving Hunter"
+    },
+    "26063": {
+      "text_": "Reach level 40 with Grieving Hunter"
+    },
+    "26064": {
+      "text_": "Reach level 60 with Grieving Hunter"
+    },
+    "26065": {
+      "text_": "Reach level 80 with Grieving Hunter"
+    },
+    "26066": {
+      "text_": "Enhance Grieving Hunter's skills 4 times"
+    },
+    "26067": {
+      "text_": "Enhance Grieving Hunter's skills 8 times"
+    },
+    "26068": {
+      "text_": "Ascend Grieving Hunter 1 time"
+    },
+    "26069": {
+      "text_": "Ascend Grieving Hunter 2 times"
+    },
+    "26070": {
+      "text_": "Ascend Grieving Hunter 3 times"
+    },
+    "26071": {
+      "text_": "Ascend Grieving Hunter 4 times"
+    },
+    "26072": {
+      "text_": "Reach level 10 with Desolate Loss"
+    },
+    "26073": {
+      "text_": "Reach level 30 with Desolate Loss"
+    },
+    "26074": {
+      "text_": "Reach level 50 with Desolate Loss"
+    },
+    "26075": {
+      "text_": "Reach level 70 with Desolate Loss"
+    },
+    "26076": {
+      "text_": "Reach level 90 with Desolate Loss"
+    },
+    "26077": {
+      "text_": "Enhance Desolate Loss's skills 10 times"
+    },
+    "26078": {
+      "text_": "Enhance Desolate Loss's skills 20 times"
+    },
+    "26079": {
+      "text_": "Ascend Desolate Loss 1 time"
+    },
+    "26080": {
+      "text_": "Ascend Desolate Loss 2 times"
+    },
+    "26081": {
+      "text_": "Ascend Desolate Loss 3 times"
+    },
+    "26082": {
+      "text_": "Ascend Desolate Loss 4 times"
+    },
+    "26083": {
+      "text_": "Evolve Desolate Loss\\"
+    },
+    "26087": {
+      "text_": "Clear a Valley of Light quest 10 times"
+    },
+    "26088": {
+      "text_": "Clear a Valley of Light quest 30 times"
+    },
+    "26089": {
+      "text_": "Clear a Valley of Light quest 60 times"
+    },
+    "26090": {
+      "text_": "Clear a Valley of Light quest 100 times"
+    },
+    "26091": {
+      "text_": "Clear a Valley of Light quest 200 times"
+    },
+    "26092": {
+      "text_": "Reach level 10 with Guardian Traveler"
+    },
+    "26093": {
+      "text_": "Reach level 20 with Guardian Traveler"
+    },
+    "26094": {
+      "text_": "Reach level 40 with Guardian Traveler"
+    },
+    "26095": {
+      "text_": "Reach level 60 with Guardian Traveler"
+    },
+    "26096": {
+      "text_": "Reach level 80 with Guardian Traveler"
+    },
+    "26097": {
+      "text_": "Enhance Guardian Traveler's skills 4 times"
+    },
+    "26098": {
+      "text_": "Enhance Guardian Traveler's skills 8 times"
+    },
+    "26099": {
+      "text_": "Ascend Guardian Traveler 1 time"
+    },
+    "26100": {
+      "text_": "Ascend Guardian Traveler 2 times"
+    },
+    "26101": {
+      "text_": "Ascend Guardian Traveler 3 times"
+    },
+    "26102": {
+      "text_": "Ascend Guardian Traveler 4 times"
+    },
+    "26103": {
+      "text_": "Reach level 10 with Spear of Freezing Mist"
+    },
+    "26104": {
+      "text_": "Reach level 30 with Spear of Freezing Mist"
+    },
+    "26105": {
+      "text_": "Reach level 50 with Spear of Freezing Mist"
+    },
+    "26106": {
+      "text_": "Reach level 70 with Spear of Freezing Mist"
+    },
+    "26107": {
+      "text_": "Reach level 90 with Spear of Freezing Mist"
+    },
+    "26108": {
+      "text_": "Enhance Spear of Freezing Mist's skills 10 times"
+    },
+    "26109": {
+      "text_": "Enhance Spear of Freezing Mist's skills 20 times"
+    },
+    "26110": {
+      "text_": "Ascend Spear of Freezing Mist 1 time"
+    },
+    "26111": {
+      "text_": "Ascend Spear of Freezing Mist 2 times"
+    },
+    "26112": {
+      "text_": "Ascend Spear of Freezing Mist 3 times"
+    },
+    "26113": {
+      "text_": "Ascend Spear of Freezing Mist 4 times"
+    },
+    "26114": {
+      "text_": "Evolve Spear of Freezing Mist"
+    },
+    "26115": {
+      "text_": "Clear all Variation Quests"
+    },
+    "26116": {
+      "text_": "Clear 10 Variation Quests"
+    },
+    "26117": {
+      "text_": "Clear 30 Variation Quests"
+    },
+    "26118": {
+      "text_": "Clear 60 Variation Quests"
+    },
+    "26119": {
+      "text_": "Clear 100 Variation Quests"
+    },
+    "26120": {
+      "text_": "Clear 200 Variation Quests"
+    },
+    "26121": {
+      "text_": "Reach level 10 with Blackbird Lance"
+    },
+    "26122": {
+      "text_": "Reach level 30 with Blackbird Lance"
+    },
+    "26123": {
+      "text_": "Reach level 50 with Blackbird Lance"
+    },
+    "26124": {
+      "text_": "Reach level 70 with Blackbird Lance"
+    },
+    "26125": {
+      "text_": "Reach level 90 with Blackbird Lance"
+    },
+    "26126": {
+      "text_": "Reach level 10 with Dark Staff"
+    },
+    "26127": {
+      "text_": "Reach level 30 with Dark Staff"
+    },
+    "26128": {
+      "text_": "Reach level 50 with Dark Staff"
+    },
+    "26129": {
+      "text_": "Reach level 70 with Dark Staff"
+    },
+    "26130": {
+      "text_": "Reach level 90 with Dark Staff"
+    },
+    "26131": {
+      "text_": "Enhance Blackbird Lance's skills 10 times"
+    },
+    "26132": {
+      "text_": "Enhance Blackbird Lance's skills 20 times"
+    },
+    "26133": {
+      "text_": "Enhance Dark Staff's skills 10 times"
+    },
+    "26134": {
+      "text_": "Enhance Dark Staff's skills 20 times"
+    },
+    "26135": {
+      "text_": "Ascend Blackbird Lance 1 time"
+    },
+    "26136": {
+      "text_": "Ascend Blackbird Lance 2 times"
+    },
+    "26137": {
+      "text_": "Ascend Blackbird Lance 3 times"
+    },
+    "26138": {
+      "text_": "Ascend Blackbird Lance 4 times"
+    },
+    "26139": {
+      "text_": "Ascend Dark Staff 1 time"
+    },
+    "26140": {
+      "text_": "Ascend Dark Staff 2 times"
+    },
+    "26141": {
+      "text_": "Ascend Dark Staff 3 times"
+    },
+    "26142": {
+      "text_": "Ascend Dark Staff 4 times"
+    },
+    "26143": {
+      "text_": "Evolve Blackbird Lance"
+    },
+    "26144": {
+      "text_": "Evolve Dark Staff"
+    },
+    "26145": {
+      "text_": "Perform 10 event summons"
+    },
+    "26146": {
+      "text_": "Perform 50 event summons"
+    },
+    "26147": {
+      "text_": "Perform 100 event summons"
+    },
+    "26148": {
+      "text_": "Perform 200 event summons"
+    },
+    "26149": {
+      "text_": "Perform 300 event summons"
+    },
+    "26150": {
+      "text_": "Perform 400 event summons"
+    },
+    "26151": {
+      "text_": "Perform 500 event summons"
+    },
+    "26152": {
+      "text_": "Perform 600 event summons"
+    },
+    "26153": {
+      "text_": "Perform 700 event summons"
+    },
+    "26154": {
+      "text_": "Perform 800 event summons"
+    },
+    "26155": {
+      "text_": "Perform 900 event summons"
+    },
+    "26156": {
+      "text_": "Perform 1000 event summons"
+    },
+    "26157": {
+      "text_": "Perform 1100 event summons"
+    },
+    "26158": {
+      "text_": "Perform 1200 event summons"
+    },
+    "26159": {
+      "text_": "Perform 1300 event summons"
+    },
+    "26160": {
+      "text_": "Perform 1400 event summons"
+    },
+    "26161": {
+      "text_": "Perform 1500 event summons"
+    },
+    "26162": {
+      "text_": "Perform 1600 event summons"
+    },
+    "26163": {
+      "text_": "Perform 1700 event summons"
+    },
+    "26164": {
+      "text_": "Perform 1800 event summons"
+    },
+    "26165": {
+      "text_": "Perform 1900 event summons"
+    },
+    "26166": {
+      "text_": "Perform 2000 event summons"
+    },
+    "26242": {
+      "text_": "Clear the City of Discontent quest 10 times"
+    },
+    "26243": {
+      "text_": "Clear the City of Discontent quest 30 times"
+    },
+    "26244": {
+      "text_": "Clear the City of Discontent quest 60 times"
+    },
+    "26245": {
+      "text_": "Clear the City of Discontent quest 100 times"
+    },
+    "26246": {
+      "text_": "Clear the City of Discontent quest 200 times"
+    },
+    "26247": {
+      "text_": "Reach level 10 with Guardian Gunman"
+    },
+    "26248": {
+      "text_": "Reach level 20 with Guardian Gunman"
+    },
+    "26249": {
+      "text_": "Reach level 40 with Guardian Gunman"
+    },
+    "26250": {
+      "text_": "Reach level 60 with Guardian Gunman"
+    },
+    "26251": {
+      "text_": "Reach level 80 with Guardian Gunman"
+    },
+    "26252": {
+      "text_": "Evolve Guardian Gunman's skills 4 times"
+    },
+    "26253": {
+      "text_": "Evolve Guardian Gunman's skills 8 times"
+    },
+    "26254": {
+      "text_": "Ascend Guardian Gunman 1 time"
+    },
+    "26255": {
+      "text_": "Ascend Guardian Gunman 2 times"
+    },
+    "26256": {
+      "text_": "Ascend Guardian Gunman 3 times"
+    },
+    "26257": {
+      "text_": "Ascend Guardian Gunman 4 times"
+    },
+    "26258": {
+      "text_": "Reach level 10 with Serene Handgun"
+    },
+    "26259": {
+      "text_": "Reach level 30 with Serene Handgun"
+    },
+    "26260": {
+      "text_": "Reach level 50 with Serene Handgun"
+    },
+    "26261": {
+      "text_": "Reach level 70 with Serene Handgun"
+    },
+    "26262": {
+      "text_": "Reach level 90 with Serene Handgun"
+    },
+    "26263": {
+      "text_": "Enhance Serene Handgun's skills 10 times"
+    },
+    "26264": {
+      "text_": "Enhance Serene Handgun's skills 20 times"
+    },
+    "26265": {
+      "text_": "Ascend Serene Handgun 1 time"
+    },
+    "26266": {
+      "text_": "Ascend Serene Handgun 2 times"
+    },
+    "26267": {
+      "text_": "Ascend Serene Handgun 3 times"
+    },
+    "26268": {
+      "text_": "Ascend Serene Handgun 4 times"
+    },
+    "26269": {
+      "text_": "Evolve Serene Handgun"
+    },
+    "200001": {
+      "text_": "Reach player level 10"
+    },
+    "200002": {
+      "text_": "Reach player level 20"
+    },
+    "200003": {
+      "text_": "Reach player level 30"
+    },
+    "200004": {
+      "text_": "Reach player level 40"
+    },
+    "200005": {
+      "text_": "Reach player level 50"
+    },
+    "200006": {
+      "text_": "Reach player level 60"
+    },
+    "200007": {
+      "text_": "Reach player level 70"
+    },
+    "200008": {
+      "text_": "Reach player level 80"
+    },
+    "200009": {
+      "text_": "Reach player level 90"
+    },
+    "200010": {
+      "text_": "Reach player level 100"
+    },
+    "200011": {
+      "text_": "Reach player level 110"
+    },
+    "200012": {
+      "text_": "Reach player level 120"
+    },
+    "200013": {
+      "text_": "Reach player level 130"
+    },
+    "200014": {
+      "text_": "Reach player level 140"
+    },
+    "200015": {
+      "text_": "Reach player level 150"
+    },
+    "200016": {
+      "text_": "Reach player level 160"
+    },
+    "200017": {
+      "text_": "Reach player level 170"
+    },
+    "200018": {
+      "text_": "Reach player level 180"
+    },
+    "200019": {
+      "text_": "Reach player level 190"
+    },
+    "200020": {
+      "text_": "Reach player level 200"
+    },
+    "200021": {
+      "text_": "Reach player level 210"
+    },
+    "200022": {
+      "text_": "Reach player level 220"
+    },
+    "200023": {
+      "text_": "Reach player level 230"
+    },
+    "200024": {
+      "text_": "Reach player level 240"
+    },
+    "200025": {
+      "text_": "Reach player level 250"
+    },
+    "200026": {
+      "text_": "Reach player level 260"
+    },
+    "200027": {
+      "text_": "Reach player level 270"
+    },
+    "200028": {
+      "text_": "Reach player level 280"
+    },
+    "200029": {
+      "text_": "Reach player level 290"
+    },
+    "200030": {
+      "text_": "Reach player level 300"
+    },
+    "200031": {
+      "text_": "Reach player level 310"
+    },
+    "200032": {
+      "text_": "Reach player level 320"
+    },
+    "200033": {
+      "text_": "Reach player level 330"
+    },
+    "200034": {
+      "text_": "Reach player level 340"
+    },
+    "200035": {
+      "text_": "Reach player level 350"
+    },
+    "200036": {
+      "text_": "Reach player level 360"
+    },
+    "200037": {
+      "text_": "Reach player level 370"
+    },
+    "200038": {
+      "text_": "Reach player level 380"
+    },
+    "200039": {
+      "text_": "Reach player level 390"
+    },
+    "200040": {
+      "text_": "Reach player level 400"
+    },
+    "200041": {
+      "text_": "Reach player level 410"
+    },
+    "200042": {
+      "text_": "Reach player level 420"
+    },
+    "200043": {
+      "text_": "Reach player level 430"
+    },
+    "200044": {
+      "text_": "Reach player level 440"
+    },
+    "200045": {
+      "text_": "Reach player level 450"
+    },
+    "200046": {
+      "text_": "Reach player level 460"
+    },
+    "200047": {
+      "text_": "Reach player level 470"
+    },
+    "200048": {
+      "text_": "Reach player level 480"
+    },
+    "200049": {
+      "text_": "Reach player level 490"
+    },
+    "200050": {
+      "text_": "Reach player level 500"
+    },
+    "200051": {
+      "text_": "Reach player level 510"
+    },
+    "200052": {
+      "text_": "Reach player level 520"
+    },
+    "200053": {
+      "text_": "Reach player level 530"
+    },
+    "200054": {
+      "text_": "Reach player level 540"
+    },
+    "200055": {
+      "text_": "Reach player level 550"
+    },
+    "200056": {
+      "text_": "Reach player level 560"
+    },
+    "200057": {
+      "text_": "Reach player level 570"
+    },
+    "200058": {
+      "text_": "Reach player level 580"
+    },
+    "200059": {
+      "text_": "Reach player level 590"
+    },
+    "200060": {
+      "text_": "Reach player level 600"
+    },
+    "200061": {
+      "text_": "Reach player level 610"
+    },
+    "200062": {
+      "text_": "Reach player level 620"
+    },
+    "200063": {
+      "text_": "Reach player level 630"
+    },
+    "200064": {
+      "text_": "Reach player level 640"
+    },
+    "200065": {
+      "text_": "Reach player level 650"
+    },
+    "200066": {
+      "text_": "Reach player level 660"
+    },
+    "200067": {
+      "text_": "Reach player level 670"
+    },
+    "200068": {
+      "text_": "Reach player level 680"
+    },
+    "200069": {
+      "text_": "Reach player level 690"
+    },
+    "200070": {
+      "text_": "Reach player level 700"
+    },
+    "200071": {
+      "text_": "Reach player level 710"
+    },
+    "200072": {
+      "text_": "Reach player level 720"
+    },
+    "200073": {
+      "text_": "Reach player level 730"
+    },
+    "200074": {
+      "text_": "Reach player level 740"
+    },
+    "200075": {
+      "text_": "Reach player level 750"
+    },
+    "200076": {
+      "text_": "Reach player level 760"
+    },
+    "200077": {
+      "text_": "Reach player level 770"
+    },
+    "200078": {
+      "text_": "Reach player level 780"
+    },
+    "200079": {
+      "text_": "Reach player level 790"
+    },
+    "200080": {
+      "text_": "Reach player level 800"
+    },
+    "200081": {
+      "text_": "Reach player level 810"
+    },
+    "200082": {
+      "text_": "Reach player level 820"
+    },
+    "200083": {
+      "text_": "Reach player level 830"
+    },
+    "200084": {
+      "text_": "Reach player level 840"
+    },
+    "200085": {
+      "text_": "Reach player level 850"
+    },
+    "200086": {
+      "text_": "Reach player level 860"
+    },
+    "200087": {
+      "text_": "Reach player level 870"
+    },
+    "200088": {
+      "text_": "Reach player level 880"
+    },
+    "200089": {
+      "text_": "Reach player level 890"
+    },
+    "200090": {
+      "text_": "Reach player level 900"
+    },
+    "200091": {
+      "text_": "Reach player level 910"
+    },
+    "200092": {
+      "text_": "Reach player level 920"
+    },
+    "200093": {
+      "text_": "Reach player level 930"
+    },
+    "200094": {
+      "text_": "Reach player level 940"
+    },
+    "200095": {
+      "text_": "Reach player level 950"
+    },
+    "200096": {
+      "text_": "Reach player level 960"
+    },
+    "200097": {
+      "text_": "Reach player level 970"
+    },
+    "200098": {
+      "text_": "Reach player level 980"
+    },
+    "200099": {
+      "text_": "Reach player level 990"
+    },
+    "210001": {
+      "text_": "Clear Main Quest Ch 1 on Normal"
+    },
+    "210002": {
+      "text_": "Clear Main Quest Ch 2 on Normal"
+    },
+    "210003": {
+      "text_": "Clear Main Quest Ch 3 on Normal"
+    },
+    "210004": {
+      "text_": "Clear Main Quest Ch 4 on Normal"
+    },
+    "210005": {
+      "text_": "Clear Main Quest Ch 5 on Normal"
+    },
+    "210006": {
+      "text_": "Clear Main Quest Ch 6 on Normal"
+    },
+    "210007": {
+      "text_": "Clear Main Quest Ch 7 on Normal"
+    },
+    "210008": {
+      "text_": "Clear Main Quest Ch 8 on Normal"
+    },
+    "210009": {
+      "text_": "Clear Main Quest Ch 1 on Hard"
+    },
+    "210010": {
+      "text_": "Clear Main Quest Ch 2 on Hard"
+    },
+    "210011": {
+      "text_": "Clear Main Quest Ch 3 on Hard"
+    },
+    "210012": {
+      "text_": "Clear Main Quest Ch 4 on Hard"
+    },
+    "210013": {
+      "text_": "Clear Main Quest Ch 5 on Hard"
+    },
+    "210014": {
+      "text_": "Clear Main Quest Ch 6 on Hard"
+    },
+    "210015": {
+      "text_": "Clear Main Quest Ch 7 on Hard"
+    },
+    "210016": {
+      "text_": "Clear Main Quest Ch 8 on Hard"
+    },
+    "210017": {
+      "text_": "Clear Main Quest Ch 9 on Normal"
+    },
+    "210018": {
+      "text_": "Clear Main Quest Ch 9 on Normal"
+    },
+    "210019": {
+      "text_": "Clear Main Quest Ch 10 on Normal"
+    },
+    "210020": {
+      "text_": "Clear Main Quest Ch 11 on Normal"
+    },
+    "210022": {
+      "text_": "Clear Main Quest Ch 9 on Hard"
+    },
+    "210023": {
+      "text_": "Clear Main Quest Ch 10 on Hard"
+    },
+    "210024": {
+      "text_": "Clear Main Quest Ch 11 on Hard"
+    },
+    "210026": {
+      "text_": "Clear Main Quest Ch 10 on Normal"
+    },
+    "210027": {
+      "text_": "Clear Main Quest Ch 11 on Normal"
+    },
+    "210028": {
+      "text_": "-"
+    },
+    "210030": {
+      "text_": "-"
+    },
+    "210031": {
+      "text_": "-"
+    },
+    "210032": {
+      "text_": "-"
+    },
+    "210033": {
+      "text_": "-"
+    },
+    "210034": {
+      "text_": "-"
+    },
+    "210035": {
+      "text_": "-"
+    },
+    "210036": {
+      "text_": "-"
+    },
+    "210037": {
+      "text_": "Clear Quest 10 of Main Quest, Chapter 6 (Hard)"
+    },
+    "212011": {
+      "text_": "Clear Main Quest Ch 1 on Very Hard"
+    },
+    "212021": {
+      "text_": "Clear Main Quest Ch 2 on Very Hard"
+    },
+    "212031": {
+      "text_": "Clear Main Quest Ch 3 on Very Hard"
+    },
+    "212041": {
+      "text_": "Clear Main Quest Ch 4 on Very Hard"
+    },
+    "212051": {
+      "text_": "Clear Main Quest Ch 5 on Very Hard"
+    },
+    "212061": {
+      "text_": "Clear Main Quest Ch 6 on Very Hard"
+    },
+    "212071": {
+      "text_": "Clear Main Quest Ch 7 on Very Hard"
+    },
+    "212081": {
+      "text_": "Clear Main Quest Ch 8 on Very Hard"
+    },
+    "212091": {
+      "text_": "Clear Main Quest Ch 9 on Very Hard"
+    },
+    "212101": {
+      "text_": "Clear Main Quest Ch 10 on Very Hard"
+    },
+    "212111": {
+      "text_": "Clear Main Quest Ch 11 on Very Hard"
+    },
+    "212121": {
+      "text_": "Clear Main Quest Ch 12 on Very Hard"
+    },
+    "220001": {
+      "text_": "Defeat 10 bosses"
+    },
+    "220002": {
+      "text_": "Defeat 30 bosses"
+    },
+    "220003": {
+      "text_": "Defeat 60 bosses"
+    },
+    "220004": {
+      "text_": "Defeat 100 bosses"
+    },
+    "220005": {
+      "text_": "Defeat 200 bosses"
+    },
+    "220006": {
+      "text_": "Defeat 300 bosses"
+    },
+    "220007": {
+      "text_": "Defeat 400 bosses"
+    },
+    "220008": {
+      "text_": "Defeat 500 bosses"
+    },
+    "220009": {
+      "text_": "Defeat 600 bosses"
+    },
+    "220010": {
+      "text_": "Defeat 700 bosses"
+    },
+    "220011": {
+      "text_": "Defeat 800 bosses"
+    },
+    "220012": {
+      "text_": "Defeat 900 bosses"
+    },
+    "220013": {
+      "text_": "Defeat 1000 bosses"
+    },
+    "220014": {
+      "text_": "Defeat 2000 bosses"
+    },
+    "220015": {
+      "text_": "Defeat 3000 bosses"
+    },
+    "220016": {
+      "text_": "Defeat 4000 bosses"
+    },
+    "220017": {
+      "text_": "Defeat 5000 bosses"
+    },
+    "220018": {
+      "text_": "Defeat 6000 bosses"
+    },
+    "220019": {
+      "text_": "Defeat 7000 bosses"
+    },
+    "220020": {
+      "text_": "Defeat 8000 bosses"
+    },
+    "220021": {
+      "text_": "Defeat 9000 bosses"
+    },
+    "220022": {
+      "text_": "Defeat 10000 bosses"
+    },
+    "230001": {
+      "text_": "Enhance characters 10 times"
+    },
+    "230002": {
+      "text_": "Enhance characters 30 times"
+    },
+    "230003": {
+      "text_": "Enhance characters 60 times"
+    },
+    "230004": {
+      "text_": "Enhance characters 100 times"
+    },
+    "230005": {
+      "text_": "Enhance characters 200 times"
+    },
+    "230006": {
+      "text_": "Enhance characters 300 times"
+    },
+    "230007": {
+      "text_": "Enhance characters 400 times"
+    },
+    "230008": {
+      "text_": "Enhance characters 500 times"
+    },
+    "230009": {
+      "text_": "Enhance characters 600 times"
+    },
+    "230010": {
+      "text_": "Enhance characters 700 times"
+    },
+    "230011": {
+      "text_": "Enhance characters 800 times"
+    },
+    "230012": {
+      "text_": "Enhance characters 900 times"
+    },
+    "230013": {
+      "text_": "Enhance characters 1000 times"
+    },
+    "230014": {
+      "text_": "Enhance characters 2000 times"
+    },
+    "230015": {
+      "text_": "Enhance characters 3000 times"
+    },
+    "230016": {
+      "text_": "Enhance characters 4000 times"
+    },
+    "230017": {
+      "text_": "Enhance characters 5000 times"
+    },
+    "230018": {
+      "text_": "Enhance characters 6000 times"
+    },
+    "230019": {
+      "text_": "Enhance characters 7000 times"
+    },
+    "230020": {
+      "text_": "Enhance characters 8000 times"
+    },
+    "230021": {
+      "text_": "Enhance characters 9000 times"
+    },
+    "230022": {
+      "text_": "Enhance characters 10000 times"
+    },
+    "240001": {
+      "text_": "Enhance character skills 5 times"
+    },
+    "240002": {
+      "text_": "Enhance character skills 10 times"
+    },
+    "240003": {
+      "text_": "Enhance character skills 30 times"
+    },
+    "240004": {
+      "text_": "Enhance character skills 60 times"
+    },
+    "240005": {
+      "text_": "Enhance character skills 100 times"
+    },
+    "240006": {
+      "text_": "Enhance character skills 200 times"
+    },
+    "240007": {
+      "text_": "Enhance character skills 300 times"
+    },
+    "240008": {
+      "text_": "Enhance character skills 400 times"
+    },
+    "240009": {
+      "text_": "Enhance character skills 500 times"
+    },
+    "240010": {
+      "text_": "Enhance character skills 600 times"
+    },
+    "240011": {
+      "text_": "Enhance character skills 700 times"
+    },
+    "240012": {
+      "text_": "Enhance character skills 800 times"
+    },
+    "240013": {
+      "text_": "Enhance character skills 900 times"
+    },
+    "240014": {
+      "text_": "Enhance character skills 1000 times"
+    },
+    "250001": {
+      "text_": "Ascend characters 3 times"
+    },
+    "250002": {
+      "text_": "Ascend characters 6 times"
+    },
+    "250003": {
+      "text_": "Ascend characters 10 times"
+    },
+    "250004": {
+      "text_": "Ascend characters 15 times"
+    },
+    "250005": {
+      "text_": "Ascend characters 20 times"
+    },
+    "250006": {
+      "text_": "Ascend characters 30 times"
+    },
+    "250007": {
+      "text_": "Ascend characters 40 times"
+    },
+    "250008": {
+      "text_": "Ascend characters 50 times"
+    },
+    "250009": {
+      "text_": "Ascend characters 60 times"
+    },
+    "250010": {
+      "text_": "Ascend characters 70 times"
+    },
+    "250011": {
+      "text_": "Ascend characters 80 times"
+    },
+    "250012": {
+      "text_": "Ascend characters 90 times"
+    },
+    "250013": {
+      "text_": "Ascend characters 100 times"
+    },
+    "260001": {
+      "text_": "Enhance weapons 10 times"
+    },
+    "260002": {
+      "text_": "Enhance weapons 30 times"
+    },
+    "260003": {
+      "text_": "Enhance weapons 60 times"
+    },
+    "260004": {
+      "text_": "Enhance weapons 100 times"
+    },
+    "260005": {
+      "text_": "Enhance weapons 200 times"
+    },
+    "260006": {
+      "text_": "Enhance weapons 300 times"
+    },
+    "260007": {
+      "text_": "Enhance weapons 400 times"
+    },
+    "260008": {
+      "text_": "Enhance weapons 500 times"
+    },
+    "260009": {
+      "text_": "Enhance weapons 600 times"
+    },
+    "260010": {
+      "text_": "Enhance weapons 700 times"
+    },
+    "260011": {
+      "text_": "Enhance weapons 800 times"
+    },
+    "260012": {
+      "text_": "Enhance weapons 900 times"
+    },
+    "260013": {
+      "text_": "Enhance weapons 1000 times"
+    },
+    "260014": {
+      "text_": "Enhance weapons 2000 times"
+    },
+    "260015": {
+      "text_": "Enhance weapons 3000 times"
+    },
+    "260016": {
+      "text_": "Enhance weapons 4000 times"
+    },
+    "260017": {
+      "text_": "Enhance weapons 5000 times"
+    },
+    "260018": {
+      "text_": "Enhance weapons 6000 times"
+    },
+    "260019": {
+      "text_": "Enhance weapons 7000 times"
+    },
+    "260020": {
+      "text_": "Enhance weapons 8000 times"
+    },
+    "260021": {
+      "text_": "Enhance weapons 9000 times"
+    },
+    "260022": {
+      "text_": "Enhance weapons 10000 times"
+    },
+    "270001": {
+      "text_": "Enhance weapon skills 5 times"
+    },
+    "270002": {
+      "text_": "Enhance weapon skills 10 times"
+    },
+    "270003": {
+      "text_": "Enhance weapon skills 30 times"
+    },
+    "270004": {
+      "text_": "Enhance weapon skills 60 times"
+    },
+    "270005": {
+      "text_": "Enhance weapon skills 100 times"
+    },
+    "270006": {
+      "text_": "Enhance weapon skills 200 times"
+    },
+    "270007": {
+      "text_": "Enhance weapon skills 300 times"
+    },
+    "270008": {
+      "text_": "Enhance weapon skills 400 times"
+    },
+    "270009": {
+      "text_": "Enhance weapon skills 500 times"
+    },
+    "270010": {
+      "text_": "Enhance weapon skills 600 times"
+    },
+    "270011": {
+      "text_": "Enhance weapon skills 700 times"
+    },
+    "270012": {
+      "text_": "Enhance weapon skills 800 times"
+    },
+    "270013": {
+      "text_": "Enhance weapon skills 900 times"
+    },
+    "270014": {
+      "text_": "Enhance weapon skills 1000 times"
+    },
+    "280001": {
+      "text_": "Ascend weapons 3 times"
+    },
+    "280002": {
+      "text_": "Ascend weapons 6 times"
+    },
+    "280003": {
+      "text_": "Ascend weapons 10 times"
+    },
+    "280004": {
+      "text_": "Ascend weapons 15 times"
+    },
+    "280005": {
+      "text_": "Ascend weapons 20 times"
+    },
+    "280006": {
+      "text_": "Ascend weapons 30 times"
+    },
+    "280007": {
+      "text_": "Ascend weapons 40 times"
+    },
+    "280008": {
+      "text_": "Ascend weapons 50 times"
+    },
+    "280009": {
+      "text_": "Ascend weapons 60 times"
+    },
+    "280010": {
+      "text_": "Ascend weapons 70 times"
+    },
+    "280011": {
+      "text_": "Ascend weapons 80 times"
+    },
+    "280012": {
+      "text_": "Ascend weapons 90 times"
+    },
+    "280013": {
+      "text_": "Ascend weapons 100 times"
+    },
+    "290001": {
+      "text_": "Evolve weapons 3 times"
+    },
+    "290002": {
+      "text_": "Evolve weapons 6 times"
+    },
+    "290003": {
+      "text_": "Evolve weapons 10 times"
+    },
+    "290004": {
+      "text_": "Evolve weapons 15 times"
+    },
+    "290005": {
+      "text_": "Evolve weapons 20 times"
+    },
+    "290006": {
+      "text_": "Evolve weapons 30 times"
+    },
+    "290007": {
+      "text_": "Evolve weapons 40 times"
+    },
+    "290008": {
+      "text_": "Evolve weapons 50 times"
+    },
+    "290009": {
+      "text_": "Evolve weapons 60 times"
+    },
+    "290010": {
+      "text_": "Evolve weapons 70 times"
+    },
+    "290011": {
+      "text_": "Evolve weapons 80 times"
+    },
+    "290012": {
+      "text_": "Evolve weapons 90 times"
+    },
+    "290013": {
+      "text_": "Evolve weapons 100 times"
+    },
+    "300001": {
+      "text_": "Enhance companions 5 times"
+    },
+    "300002": {
+      "text_": "Enhance companions 10 times"
+    },
+    "300003": {
+      "text_": "Enhance companions 30 times"
+    },
+    "300004": {
+      "text_": "Enhance companions 60 times"
+    },
+    "300005": {
+      "text_": "Enhance companions 100 times"
+    },
+    "300006": {
+      "text_": "Enhance companions 200 times"
+    },
+    "300007": {
+      "text_": "Enhance companions 300 times"
+    },
+    "300008": {
+      "text_": "Enhance companions 400 times"
+    },
+    "300009": {
+      "text_": "Enhance companions 500 times"
+    },
+    "300010": {
+      "text_": "Enhance companions 600 times"
+    },
+    "300011": {
+      "text_": "Enhance companions 700 times"
+    },
+    "300012": {
+      "text_": "Enhance companions 800 times"
+    },
+    "300013": {
+      "text_": "Enhance companions 900 times"
+    },
+    "300014": {
+      "text_": "Enhance companions 1000 times"
+    },
+    "300015": {
+      "text_": "Enhance companions 2000 times"
+    },
+    "300016": {
+      "text_": "Enhance companions 3000 times"
+    },
+    "300017": {
+      "text_": "Enhance companions 4000 times"
+    },
+    "300018": {
+      "text_": "Enhance companions 5000 times"
+    },
+    "300019": {
+      "text_": "Enhance companions 6000 times"
+    },
+    "300020": {
+      "text_": "Enhance companions 7000 times"
+    },
+    "300021": {
+      "text_": "Enhance companions 8000 times"
+    },
+    "300022": {
+      "text_": "Enhance companions 9000 times"
+    },
+    "300023": {
+      "text_": "Enhance companions 10000 times"
+    },
+    "310001": {
+      "text_": "Enhance memoirs 10 times"
+    },
+    "310002": {
+      "text_": "Enhance memoirs 30 times"
+    },
+    "310003": {
+      "text_": "Enhance memoirs 60 times"
+    },
+    "310004": {
+      "text_": "Enhance memoirs 100 times"
+    },
+    "310005": {
+      "text_": "Enhance memoirs 200 times"
+    },
+    "310006": {
+      "text_": "Enhance memoirs 300 times"
+    },
+    "310007": {
+      "text_": "Enhance memoirs 400 times"
+    },
+    "310008": {
+      "text_": "Enhance memoirs 500 times"
+    },
+    "310009": {
+      "text_": "Enhance memoirs 600 times"
+    },
+    "310010": {
+      "text_": "Enhance memoirs 700 times"
+    },
+    "310011": {
+      "text_": "Enhance memoirs 800 times"
+    },
+    "310012": {
+      "text_": "Enhance memoirs 900 times"
+    },
+    "310013": {
+      "text_": "Enhance memoirs 1000 times"
+    },
+    "310014": {
+      "text_": "Enhance memoirs 2000 times"
+    },
+    "310015": {
+      "text_": "Enhance memoirs 3000 times"
+    },
+    "310016": {
+      "text_": "Enhance memoirs 4000 times"
+    },
+    "310017": {
+      "text_": "Enhance memoirs 5000 times"
+    },
+    "310018": {
+      "text_": "Enhance memoirs 6000 times"
+    },
+    "310019": {
+      "text_": "Enhance memoirs 7000 times"
+    },
+    "310020": {
+      "text_": "Enhance memoirs 8000 times"
+    },
+    "310021": {
+      "text_": "Enhance memoirs 9000 times"
+    },
+    "310022": {
+      "text_": "Enhance memoirs 10000 times"
+    },
+    "320001": {
+      "text_": "Play 5 Arena matches"
+    },
+    "320002": {
+      "text_": "Play 10 Arena matches"
+    },
+    "320003": {
+      "text_": "Play 30 Arena matches"
+    },
+    "320004": {
+      "text_": "Play 60 Arena matches"
+    },
+    "320005": {
+      "text_": "Play 100 Arena matches"
+    },
+    "320006": {
+      "text_": "Play 200 Arena matches"
+    },
+    "320007": {
+      "text_": "Play 300 Arena matches"
+    },
+    "320008": {
+      "text_": "Play 400 Arena matches"
+    },
+    "320009": {
+      "text_": "Play 500 Arena matches"
+    },
+    "320010": {
+      "text_": "Play 600 Arena matches"
+    },
+    "320011": {
+      "text_": "Play 700 Arena matches"
+    },
+    "320012": {
+      "text_": "Play 800 Arena matches"
+    },
+    "320013": {
+      "text_": "Play 900 Arena matches"
+    },
+    "320014": {
+      "text_": "Play 1000 Arena matches"
+    },
+    "330001": {
+      "text_": "Win 5 Arena matches"
+    },
+    "330002": {
+      "text_": "Win 10 Arena matches"
+    },
+    "330003": {
+      "text_": "Win 20 Arena matches"
+    },
+    "330004": {
+      "text_": "Win 30 Arena matches"
+    },
+    "330005": {
+      "text_": "Win 40 Arena matches"
+    },
+    "330006": {
+      "text_": "Win 50 Arena matches"
+    },
+    "330007": {
+      "text_": "Win 60 Arena matches"
+    },
+    "330008": {
+      "text_": "Win 70 Arena matches"
+    },
+    "330009": {
+      "text_": "Win 80 Arena matches"
+    },
+    "330010": {
+      "text_": "Win 90 Arena matches"
+    },
+    "330011": {
+      "text_": "Win 100 Arena matches"
+    },
+    "330012": {
+      "text_": "Win 200 Arena matches"
+    },
+    "330013": {
+      "text_": "Win 300 Arena matches"
+    },
+    "330014": {
+      "text_": "Win 400 Arena matches"
+    },
+    "330015": {
+      "text_": "Win 500 Arena matches"
+    },
+    "330016": {
+      "text_": "Win 600 Arena matches"
+    },
+    "330017": {
+      "text_": "Win 700 Arena matches"
+    },
+    "330018": {
+      "text_": "Win 800 Arena matches"
+    },
+    "330019": {
+      "text_": "Win 900 Arena matches"
+    },
+    "330020": {
+      "text_": "Win 1000 Arena matches"
+    },
+    "340001": {
+      "text_": "Win 3 Arena matches in a row"
+    },
+    "340002": {
+      "text_": "Win 5 Arena matches in a row"
+    },
+    "340003": {
+      "text_": "Win 10 Arena matches in a row"
+    },
+    "340004": {
+      "text_": "Win 20 Arena matches in a row"
+    },
+    "340005": {
+      "text_": "Win 30 Arena matches in a row"
+    },
+    "340006": {
+      "text_": "Win 40 Arena matches in a row"
+    },
+    "340007": {
+      "text_": "Win 50 Arena matches in a row"
+    },
+    "350001": {
+      "text_": "Add 10 entries to your encyclopedia"
+    },
+    "350002": {
+      "text_": "Add 20 entries to your encyclopedia"
+    },
+    "350003": {
+      "text_": "Add 30 entries to your encyclopedia"
+    },
+    "350004": {
+      "text_": "Add 40 entries to your encyclopedia"
+    },
+    "350005": {
+      "text_": "Add 50 entries to your encyclopedia"
+    },
+    "350006": {
+      "text_": "Add 60 entries to your encyclopedia"
+    },
+    "350007": {
+      "text_": "Add 70 entries to your encyclopedia"
+    },
+    "350008": {
+      "text_": "Add 80 entries to your encyclopedia"
+    },
+    "350009": {
+      "text_": "Add 90 entries to your encyclopedia"
+    },
+    "350010": {
+      "text_": "Add 100 entries to your encyclopedia"
+    },
+    "350011": {
+      "text_": "Add 110 entries to your encyclopedia"
+    },
+    "350012": {
+      "text_": "Add 120 entries to your encyclopedia"
+    },
+    "350013": {
+      "text_": "Add 130 entries to your encyclopedia"
+    },
+    "350014": {
+      "text_": "Add 140 entries to your encyclopedia"
+    },
+    "350015": {
+      "text_": "Add 150 entries to your encyclopedia"
+    },
+    "350016": {
+      "text_": "Add 160 entries to your encyclopedia"
+    },
+    "350017": {
+      "text_": "Add 170 entries to your encyclopedia"
+    },
+    "350018": {
+      "text_": "Add 180 entries to your encyclopedia"
+    },
+    "350019": {
+      "text_": "Add 190 entries to your encyclopedia"
+    },
+    "350020": {
+      "text_": "Add 200 entries to your encyclopedia"
+    },
+    "350021": {
+      "text_": "Add 210 entries to your encyclopedia"
+    },
+    "350022": {
+      "text_": "Add 220 entries to your encyclopedia"
+    },
+    "350023": {
+      "text_": "Add 230 entries to your encyclopedia"
+    },
+    "350024": {
+      "text_": "Add 240 entries to your encyclopedia"
+    },
+    "350025": {
+      "text_": "Add 250 entries to your encyclopedia"
+    },
+    "350026": {
+      "text_": "Add 260 entries to your encyclopedia"
+    },
+    "350027": {
+      "text_": "Add 270 entries to your encyclopedia"
+    },
+    "350028": {
+      "text_": "Add 280 entries to your encyclopedia"
+    },
+    "350029": {
+      "text_": "Add 290 entries to your encyclopedia"
+    },
+    "350030": {
+      "text_": "Add 300 entries to your encyclopedia"
+    },
+    "360001": {
+      "text_": "Perform 10 summons"
+    },
+    "360002": {
+      "text_": "Perform 30 summons"
+    },
+    "360003": {
+      "text_": "Perform 60 summons"
+    },
+    "360004": {
+      "text_": "Perform 100 summons"
+    },
+    "360005": {
+      "text_": "Perform 200 summons"
+    },
+    "360006": {
+      "text_": "Perform 300 summons"
+    },
+    "360007": {
+      "text_": "Perform 400 summons"
+    },
+    "360008": {
+      "text_": "Perform 500 summons"
+    },
+    "360009": {
+      "text_": "Perform 600 summons"
+    },
+    "360010": {
+      "text_": "Perform 700 summons"
+    },
+    "360011": {
+      "text_": "Perform 800 summons"
+    },
+    "360012": {
+      "text_": "Perform 900 summons"
+    },
+    "360013": {
+      "text_": "Perform 1000 summons"
+    },
+    "370001": {
+      "text_": "Make 10 shop purchases"
+    },
+    "370002": {
+      "text_": "Make 30 shop purchases"
+    },
+    "370003": {
+      "text_": "Make 60 shop purchases"
+    },
+    "370004": {
+      "text_": "Make 100 shop purchases"
+    },
+    "370005": {
+      "text_": "Make 200 shop purchases"
+    },
+    "370006": {
+      "text_": "Make 300 shop purchases"
+    },
+    "370007": {
+      "text_": "Make 400 shop purchases"
+    },
+    "370008": {
+      "text_": "Make 500 shop purchases"
+    },
+    "370009": {
+      "text_": "Make 600 shop purchases"
+    },
+    "370010": {
+      "text_": "Make 700 shop purchases"
+    },
+    "370011": {
+      "text_": "Make 800 shop purchases"
+    },
+    "370012": {
+      "text_": "Make 900 shop purchases"
+    },
+    "370013": {
+      "text_": "Make 1000 shop purchases"
+    },
+    "370014": {
+      "text_": "Make 2000 shop purchases"
+    },
+    "370015": {
+      "text_": "Make 3000 shop purchases"
+    },
+    "370016": {
+      "text_": "Make 4000 shop purchases"
+    },
+    "370017": {
+      "text_": "Make 5000 shop purchases"
+    },
+    "370018": {
+      "text_": "Make 6000 shop purchases"
+    },
+    "370019": {
+      "text_": "Make 7000 shop purchases"
+    },
+    "370020": {
+      "text_": "Make 8000 shop purchases"
+    },
+    "370021": {
+      "text_": "Make 9000 shop purchases"
+    },
+    "370022": {
+      "text_": "Make 10000 shop purchases"
+    },
+    "380001": {
+      "text_": "Clear Exploration 3 times"
+    },
+    "380002": {
+      "text_": "Clear Exploration 6 times"
+    },
+    "380003": {
+      "text_": "Clear Exploration 10 times"
+    },
+    "380004": {
+      "text_": "Clear Exploration 20 times"
+    },
+    "380005": {
+      "text_": "Clear Exploration 30 times"
+    },
+    "380006": {
+      "text_": "Clear Exploration 40 times"
+    },
+    "380007": {
+      "text_": "Clear Exploration 50 times"
+    },
+    "380008": {
+      "text_": "Clear Exploration 60 times"
+    },
+    "380009": {
+      "text_": "Clear Exploration 70 times"
+    },
+    "380010": {
+      "text_": "Clear Exploration 80 times"
+    },
+    "380011": {
+      "text_": "Clear Exploration 90 times"
+    },
+    "380012": {
+      "text_": "Clear Exploration 100 times"
+    },
+    "380013": {
+      "text_": "Clear Exploration 200 times"
+    },
+    "380014": {
+      "text_": "Clear Exploration 300 times"
+    },
+    "380015": {
+      "text_": "Clear Exploration 400 times"
+    },
+    "380016": {
+      "text_": "Clear Exploration 500 times"
+    },
+    "390001": {
+      "text_": "Reach a high score of 3000 in Shooting"
+    },
+    "390002": {
+      "text_": "Reach a high score of 5000 in Shooting"
+    },
+    "390003": {
+      "text_": "Reach a high score of 7000 in Shooting"
+    },
+    "390004": {
+      "text_": "Reach a high score of 10000 in Shooting"
+    },
+    "390005": {
+      "text_": "Reach a high score of 15000 in Shooting"
+    },
+    "390006": {
+      "text_": "Reach a high score of 20000 in Shooting"
+    },
+    "400001": {
+      "text_": "Reach 10000 total force"
+    },
+    "400002": {
+      "text_": "Reach 20000 total force"
+    },
+    "400003": {
+      "text_": "Reach 30000 total force"
+    },
+    "400004": {
+      "text_": "Reach 40000 total force"
+    },
+    "400005": {
+      "text_": "Reach 50000 total force"
+    },
+    "400006": {
+      "text_": "Reach 60000 total force"
+    },
+    "400007": {
+      "text_": "Reach 70000 total force"
+    },
+    "400008": {
+      "text_": "Reach 80000 total force"
+    },
+    "400009": {
+      "text_": "Reach 90000 total force"
+    },
+    "400010": {
+      "text_": "Reach 100000 total force"
+    },
+    "400011": {
+      "text_": "Reach 110000 total force"
+    },
+    "400012": {
+      "text_": "Reach 120000 total force"
+    },
+    "400013": {
+      "text_": "Reach 130000 total force"
+    },
+    "400014": {
+      "text_": "Reach 140000 total force"
+    },
+    "400015": {
+      "text_": "Reach 150000 total force"
+    },
+    "400016": {
+      "text_": "Reach 160000 total force"
+    },
+    "400017": {
+      "text_": "Reach 170000 total force"
+    },
+    "400018": {
+      "text_": "Reach 180000 total force"
+    },
+    "400019": {
+      "text_": "Reach 190000 total force"
+    },
+    "400020": {
+      "text_": "Reach 200000 total force"
+    },
+    "400021": {
+      "text_": "Reach 210000 total force"
+    },
+    "400022": {
+      "text_": "Reach 220000 total force"
+    },
+    "400023": {
+      "text_": "Reach 230000 total force"
+    },
+    "400024": {
+      "text_": "Reach 240000 total force"
+    },
+    "400025": {
+      "text_": "Reach 250000 total force"
+    },
+    "400026": {
+      "text_": "Reach 260000 total force"
+    },
+    "400027": {
+      "text_": "Reach 270000 total force"
+    },
+    "400028": {
+      "text_": "Reach 280000 total force"
+    },
+    "400029": {
+      "text_": "Reach 290000 total force"
+    },
+    "400030": {
+      "text_": "Reach 300000 total force"
+    },
+    "410001": {
+      "text_": "Walk 5 km in The Cage"
+    },
+    "410002": {
+      "text_": "Walk 10 km in The Cage"
+    },
+    "410003": {
+      "text_": "Walk 50 km in The Cage"
+    },
+    "410004": {
+      "text_": "Walk 100 km in The Cage"
+    },
+    "410005": {
+      "text_": "Walk 200 km in The Cage"
+    },
+    "410006": {
+      "text_": "Walk 300 km in The Cage"
+    },
+    "410007": {
+      "text_": "Walk 400 km in The Cage"
+    },
+    "410008": {
+      "text_": "Walk 500 km in The Cage"
+    },
+    "410009": {
+      "text_": "Walk 600 km in The Cage"
+    },
+    "410010": {
+      "text_": "Walk 700 km in The Cage"
+    },
+    "410011": {
+      "text_": "Walk 800 km in The Cage"
+    },
+    "410012": {
+      "text_": "Walk 900 km in The Cage"
+    },
+    "410013": {
+      "text_": "Walk 1000 km in The Cage"
+    },
+    "420001": {
+      "text_": "Log in on 5 days"
+    },
+    "420002": {
+      "text_": "Log in on 10 days"
+    },
+    "420003": {
+      "text_": "Log in on 20 days"
+    },
+    "420004": {
+      "text_": "Log in on 30 days"
+    },
+    "420005": {
+      "text_": "Log in on 40 days"
+    },
+    "420006": {
+      "text_": "Log in on 50 days"
+    },
+    "420007": {
+      "text_": "Log in on 60 days"
+    },
+    "420008": {
+      "text_": "Log in on 70 days"
+    },
+    "420009": {
+      "text_": "Log in on 80 days"
+    },
+    "420010": {
+      "text_": "Log in on 90 days"
+    },
+    "420011": {
+      "text_": "Log in on 100 days"
+    },
+    "420012": {
+      "text_": "Log in on 110 days"
+    },
+    "420013": {
+      "text_": "Log in on 120 days"
+    },
+    "420014": {
+      "text_": "Log in on 130 days"
+    },
+    "420015": {
+      "text_": "Log in on 140 days"
+    },
+    "420016": {
+      "text_": "Log in on 150 days"
+    },
+    "420017": {
+      "text_": "Log in on 160 days"
+    },
+    "420018": {
+      "text_": "Log in on 170 days"
+    },
+    "420019": {
+      "text_": "Log in on 180 days"
+    },
+    "420020": {
+      "text_": "Log in on 190 days"
+    },
+    "420021": {
+      "text_": "Log in on 200 days"
+    },
+    "420022": {
+      "text_": "Log in on 210 days"
+    },
+    "420023": {
+      "text_": "Log in on 220 days"
+    },
+    "420024": {
+      "text_": "Log in on 230 days"
+    },
+    "420025": {
+      "text_": "Log in on 240 days"
+    },
+    "420026": {
+      "text_": "Log in on 250 days"
+    },
+    "420027": {
+      "text_": "Log in on 260 days"
+    },
+    "420028": {
+      "text_": "Log in on 270 days"
+    },
+    "420029": {
+      "text_": "Log in on 280 days"
+    },
+    "420030": {
+      "text_": "Log in on 290 days"
+    },
+    "420031": {
+      "text_": "Log in on 300 days"
+    },
+    "420032": {
+      "text_": "Log in on 310 days"
+    },
+    "420033": {
+      "text_": "Log in on 320 days"
+    },
+    "420034": {
+      "text_": "Log in on 330 days"
+    },
+    "420035": {
+      "text_": "Log in on 340 days"
+    },
+    "420036": {
+      "text_": "Log in on 350 days"
+    },
+    "420037": {
+      "text_": "Log in on 360 days"
+    },
+    "420038": {
+      "text_": "Log in on 370 days"
+    },
+    "420039": {
+      "text_": "Log in on 380 days"
+    },
+    "420040": {
+      "text_": "Log in on 390 days"
+    },
+    "420041": {
+      "text_": "Log in on 400 days"
+    },
+    "420042": {
+      "text_": "Log in on 410 days"
+    },
+    "420043": {
+      "text_": "Log in on 420 days"
+    },
+    "420044": {
+      "text_": "Log in on 430 days"
+    },
+    "420045": {
+      "text_": "Log in on 440 days"
+    },
+    "420046": {
+      "text_": "Log in on 450 days"
+    },
+    "420047": {
+      "text_": "Log in on 460 days"
+    },
+    "420048": {
+      "text_": "Log in on 470 days"
+    },
+    "420049": {
+      "text_": "Log in on 480 days"
+    },
+    "420050": {
+      "text_": "Log in on 490 days"
+    },
+    "420051": {
+      "text_": "Log in on 500 days"
+    },
+    "420052": {
+      "text_": "Log in on 510 days"
+    },
+    "420053": {
+      "text_": "Log in on 520 days"
+    },
+    "420054": {
+      "text_": "Log in on 530 days"
+    },
+    "420055": {
+      "text_": "Log in on 540 days"
+    },
+    "420056": {
+      "text_": "Log in on 550 days"
+    },
+    "420057": {
+      "text_": "Log in on 560 days"
+    },
+    "420058": {
+      "text_": "Log in on 570 days"
+    },
+    "420059": {
+      "text_": "Log in on 580 days"
+    },
+    "420060": {
+      "text_": "Log in on 590 days"
+    },
+    "420061": {
+      "text_": "Log in on 600 days"
+    },
+    "420062": {
+      "text_": "Log in on 610 days"
+    },
+    "420063": {
+      "text_": "Log in on 620 days"
+    },
+    "420064": {
+      "text_": "Log in on 630 days"
+    },
+    "420065": {
+      "text_": "Log in on 640 days"
+    },
+    "420066": {
+      "text_": "Log in on 650 days"
+    },
+    "420067": {
+      "text_": "Log in on 660 days"
+    },
+    "420068": {
+      "text_": "Log in on 670 days"
+    },
+    "420069": {
+      "text_": "Log in on 680 days"
+    },
+    "420070": {
+      "text_": "Log in on 690 days"
+    },
+    "420071": {
+      "text_": "Log in on 700 days"
+    },
+    "420072": {
+      "text_": "Log in on 710 days"
+    },
+    "420073": {
+      "text_": "Log in on 720 days"
+    },
+    "420074": {
+      "text_": "Log in on 730 days"
+    },
+    "420075": {
+      "text_": "Log in on 740 days"
+    },
+    "420076": {
+      "text_": "Log in on 750 days"
+    },
+    "420077": {
+      "text_": "Log in on 760 days"
+    },
+    "420078": {
+      "text_": "Log in on 770 days"
+    },
+    "420079": {
+      "text_": "Log in on 780 days"
+    },
+    "420080": {
+      "text_": "Log in on 790 days"
+    },
+    "420081": {
+      "text_": "Log in on 800 days"
+    },
+    "420082": {
+      "text_": "Log in on 810 days"
+    },
+    "420083": {
+      "text_": "Log in on 820 days"
+    },
+    "420084": {
+      "text_": "Log in on 830 days"
+    },
+    "420085": {
+      "text_": "Log in on 840 days"
+    },
+    "420086": {
+      "text_": "Log in on 850 days"
+    },
+    "420087": {
+      "text_": "Log in on 860 days"
+    },
+    "420088": {
+      "text_": "Log in on 870 days"
+    },
+    "420089": {
+      "text_": "Log in on 880 days"
+    },
+    "420090": {
+      "text_": "Log in on 890 days"
+    },
+    "420091": {
+      "text_": "Log in on 900 days"
+    },
+    "420092": {
+      "text_": "Log in on 910 days"
+    },
+    "420093": {
+      "text_": "Log in on 920 days"
+    },
+    "420094": {
+      "text_": "Log in on 930 days"
+    },
+    "420095": {
+      "text_": "Log in on 940 days"
+    },
+    "420096": {
+      "text_": "Log in on 950 days"
+    },
+    "420097": {
+      "text_": "Log in on 960 days"
+    },
+    "420098": {
+      "text_": "Log in on 970 days"
+    },
+    "420099": {
+      "text_": "Log in on 980 days"
+    },
+    "420100": {
+      "text_": "Log in on 990 days"
+    },
+    "420101": {
+      "text_": "Log in on 1000 days"
+    },
+    "420102": {
+      "text_": "Log in on 1010 days"
+    },
+    "420103": {
+      "text_": "Log in on 1020 days"
+    },
+    "420104": {
+      "text_": "Log in on 1030 days"
+    },
+    "420105": {
+      "text_": "Log in on 1040 days"
+    },
+    "420106": {
+      "text_": "Log in on 1050 days"
+    },
+    "420107": {
+      "text_": "Log in on 1060 days"
+    },
+    "420108": {
+      "text_": "Log in on 1070 days"
+    },
+    "420109": {
+      "text_": "Log in on 1080 days"
+    },
+    "420110": {
+      "text_": "Log in on 1090 days"
+    },
+    "420111": {
+      "text_": "Log in on 1100 days"
+    },
+    "420112": {
+      "text_": "Log in on 1110 days"
+    },
+    "420113": {
+      "text_": "Log in on 1120 days"
+    },
+    "420114": {
+      "text_": "Log in on 1130 days"
+    },
+    "420115": {
+      "text_": "Log in on 1140 days"
+    },
+    "420116": {
+      "text_": "Log in on 1150 days"
+    },
+    "420117": {
+      "text_": "Log in on 1160 days"
+    },
+    "420118": {
+      "text_": "Log in on 1170 days"
+    },
+    "420119": {
+      "text_": "Log in on 1180 days"
+    },
+    "420120": {
+      "text_": "Log in on 1190 days"
+    },
+    "420121": {
+      "text_": "Log in on 1200 days"
+    },
+    "420122": {
+      "text_": "Log in on 1210 days"
+    },
+    "420123": {
+      "text_": "Log in on 1220 days"
+    },
+    "420124": {
+      "text_": "Log in on 1230 days"
+    },
+    "420125": {
+      "text_": "Log in on 1240 days"
+    },
+    "420126": {
+      "text_": "Log in on 1250 days"
+    },
+    "420127": {
+      "text_": "Log in on 1260 days"
+    },
+    "420128": {
+      "text_": "Log in on 1270 days"
+    },
+    "420129": {
+      "text_": "Log in on 1280 days"
+    },
+    "420130": {
+      "text_": "Log in on 1290 days"
+    },
+    "420131": {
+      "text_": "Log in on 1300 days"
+    },
+    "420132": {
+      "text_": "Log in on 1310 days"
+    },
+    "420133": {
+      "text_": "Log in on 1320 days"
+    },
+    "420134": {
+      "text_": "Log in on 1330 days"
+    },
+    "420135": {
+      "text_": "Log in on 1340 days"
+    },
+    "420136": {
+      "text_": "Log in on 1350 days"
+    },
+    "420137": {
+      "text_": "Log in on 1360 days"
+    },
+    "420138": {
+      "text_": "Log in on 1370 days"
+    },
+    "420139": {
+      "text_": "Log in on 1380 days"
+    },
+    "420140": {
+      "text_": "Log in on 1390 days"
+    },
+    "420141": {
+      "text_": "Log in on 1400 days"
+    },
+    "420142": {
+      "text_": "Log in on 1410 days"
+    },
+    "420143": {
+      "text_": "Log in on 1420 days"
+    },
+    "420144": {
+      "text_": "Log in on 1430 days"
+    },
+    "420145": {
+      "text_": "Log in on 1440 days"
+    },
+    "420146": {
+      "text_": "Log in on 1450 days"
+    },
+    "420147": {
+      "text_": "Log in on 1460 days"
+    },
+    "420148": {
+      "text_": "Log in on 1470 days"
+    },
+    "420149": {
+      "text_": "Log in on 1480 days"
+    },
+    "420150": {
+      "text_": "Log in on 1490 days"
+    },
+    "420151": {
+      "text_": "Log in on 1500 days"
+    },
+    "420152": {
+      "text_": "Log in on 1510 days"
+    },
+    "420153": {
+      "text_": "Log in on 1520 days"
+    },
+    "420154": {
+      "text_": "Log in on 1530 days"
+    },
+    "420155": {
+      "text_": "Log in on 1540 days"
+    },
+    "420156": {
+      "text_": "Log in on 1550 days"
+    },
+    "420157": {
+      "text_": "Log in on 1560 days"
+    },
+    "420158": {
+      "text_": "Log in on 1570 days"
+    },
+    "420159": {
+      "text_": "Log in on 1580 days"
+    },
+    "420160": {
+      "text_": "Log in on 1590 days"
+    },
+    "420161": {
+      "text_": "Log in on 1600 days"
+    },
+    "420162": {
+      "text_": "Log in on 1610 days"
+    },
+    "420163": {
+      "text_": "Log in on 1620 days"
+    },
+    "420164": {
+      "text_": "Log in on 1630 days"
+    },
+    "420165": {
+      "text_": "Log in on 1640 days"
+    },
+    "420166": {
+      "text_": "Log in on 1650 days"
+    },
+    "420167": {
+      "text_": "Log in on 1660 days"
+    },
+    "420168": {
+      "text_": "Log in on 1670 days"
+    },
+    "420169": {
+      "text_": "Log in on 1680 days"
+    },
+    "420170": {
+      "text_": "Log in on 1690 days"
+    },
+    "420171": {
+      "text_": "Log in on 1700 days"
+    },
+    "420172": {
+      "text_": "Log in on 1710 days"
+    },
+    "420173": {
+      "text_": "Log in on 1720 days"
+    },
+    "420174": {
+      "text_": "Log in on 1730 days"
+    },
+    "420175": {
+      "text_": "Log in on 1740 days"
+    },
+    "420176": {
+      "text_": "Log in on 1750 days"
+    },
+    "420177": {
+      "text_": "Log in on 1760 days"
+    },
+    "420178": {
+      "text_": "Log in on 1770 days"
+    },
+    "420179": {
+      "text_": "Log in on 1780 days"
+    },
+    "420180": {
+      "text_": "Log in on 1790 days"
+    },
+    "420181": {
+      "text_": "Log in on 1800 days"
+    },
+    "420182": {
+      "text_": "Log in on 1810 days"
+    },
+    "420183": {
+      "text_": "Log in on 1820 days"
+    },
+    "420184": {
+      "text_": "Log in on 1830 days"
+    },
+    "420185": {
+      "text_": "Log in on 1840 days"
+    },
+    "420186": {
+      "text_": "Log in on 1850 days"
+    },
+    "420187": {
+      "text_": "Log in on 1860 days"
+    },
+    "420188": {
+      "text_": "Log in on 1870 days"
+    },
+    "420189": {
+      "text_": "Log in on 1880 days"
+    },
+    "420190": {
+      "text_": "Log in on 1890 days"
+    },
+    "420191": {
+      "text_": "Log in on 1900 days"
+    },
+    "420192": {
+      "text_": "Log in on 1910 days"
+    },
+    "420193": {
+      "text_": "Log in on 1920 days"
+    },
+    "420194": {
+      "text_": "Log in on 1930 days"
+    },
+    "420195": {
+      "text_": "Log in on 1940 days"
+    },
+    "420196": {
+      "text_": "Log in on 1950 days"
+    },
+    "420197": {
+      "text_": "Log in on 1960 days"
+    },
+    "420198": {
+      "text_": "Log in on 1970 days"
+    },
+    "420199": {
+      "text_": "Log in on 1980 days"
+    },
+    "420200": {
+      "text_": "Log in on 1990 days"
+    },
+    "420201": {
+      "text_": "Log in on 2000 days"
+    },
+    "420202": {
+      "text_": "Log in on 2010 days"
+    },
+    "420203": {
+      "text_": "Log in on 2020 days"
+    },
+    "420204": {
+      "text_": "Log in on 2030 days"
+    },
+    "420205": {
+      "text_": "Log in on 2040 days"
+    },
+    "420206": {
+      "text_": "Log in on 2050 days"
+    },
+    "420207": {
+      "text_": "Log in on 2060 days"
+    },
+    "420208": {
+      "text_": "Log in on 2070 days"
+    },
+    "420209": {
+      "text_": "Log in on 2080 days"
+    },
+    "420210": {
+      "text_": "Log in on 2090 days"
+    },
+    "420211": {
+      "text_": "Log in on 2100 days"
+    },
+    "420212": {
+      "text_": "Log in on 2110 days"
+    },
+    "420213": {
+      "text_": "Log in on 2120 days"
+    },
+    "420214": {
+      "text_": "Log in on 2130 days"
+    },
+    "420215": {
+      "text_": "Log in on 2140 days"
+    },
+    "420216": {
+      "text_": "Log in on 2150 days"
+    },
+    "420217": {
+      "text_": "Log in on 2160 days"
+    },
+    "420218": {
+      "text_": "Log in on 2170 days"
+    },
+    "420219": {
+      "text_": "Log in on 2180 days"
+    },
+    "420220": {
+      "text_": "Log in on 2190 days"
+    },
+    "420221": {
+      "text_": "Log in on 2200 days"
+    },
+    "420222": {
+      "text_": "Log in on 2210 days"
+    },
+    "420223": {
+      "text_": "Log in on 2220 days"
+    },
+    "420224": {
+      "text_": "Log in on 2230 days"
+    },
+    "420225": {
+      "text_": "Log in on 2240 days"
+    },
+    "420226": {
+      "text_": "Log in on 2250 days"
+    },
+    "420227": {
+      "text_": "Log in on 2260 days"
+    },
+    "420228": {
+      "text_": "Log in on 2270 days"
+    },
+    "420229": {
+      "text_": "Log in on 2280 days"
+    },
+    "420230": {
+      "text_": "Log in on 2290 days"
+    },
+    "420231": {
+      "text_": "Log in on 2300 days"
+    },
+    "420232": {
+      "text_": "Log in on 2310 days"
+    },
+    "420233": {
+      "text_": "Log in on 2320 days"
+    },
+    "420234": {
+      "text_": "Log in on 2330 days"
+    },
+    "420235": {
+      "text_": "Log in on 2340 days"
+    },
+    "420236": {
+      "text_": "Log in on 2350 days"
+    },
+    "420237": {
+      "text_": "Log in on 2360 days"
+    },
+    "420238": {
+      "text_": "Log in on 2370 days"
+    },
+    "420239": {
+      "text_": "Log in on 2380 days"
+    },
+    "420240": {
+      "text_": "Log in on 2390 days"
+    },
+    "420241": {
+      "text_": "Log in on 2400 days"
+    },
+    "420242": {
+      "text_": "Log in on 2410 days"
+    },
+    "420243": {
+      "text_": "Log in on 2420 days"
+    },
+    "420244": {
+      "text_": "Log in on 2430 days"
+    },
+    "420245": {
+      "text_": "Log in on 2440 days"
+    },
+    "420246": {
+      "text_": "Log in on 2450 days"
+    },
+    "420247": {
+      "text_": "Log in on 2460 days"
+    },
+    "420248": {
+      "text_": "Log in on 2470 days"
+    },
+    "420249": {
+      "text_": "Log in on 2480 days"
+    },
+    "420250": {
+      "text_": "Log in on 2490 days"
+    },
+    "420251": {
+      "text_": "Log in on 2500 days"
+    },
+    "420252": {
+      "text_": "Log in on 2510 days"
+    },
+    "420253": {
+      "text_": "Log in on 2520 days"
+    },
+    "420254": {
+      "text_": "Log in on 2530 days"
+    },
+    "420255": {
+      "text_": "Log in on 2540 days"
+    },
+    "420256": {
+      "text_": "Log in on 2550 days"
+    },
+    "420257": {
+      "text_": "Log in on 2560 days"
+    },
+    "420258": {
+      "text_": "Log in on 2570 days"
+    },
+    "420259": {
+      "text_": "Log in on 2580 days"
+    },
+    "420260": {
+      "text_": "Log in on 2590 days"
+    },
+    "420261": {
+      "text_": "Log in on 2600 days"
+    },
+    "420262": {
+      "text_": "Log in on 2610 days"
+    },
+    "420263": {
+      "text_": "Log in on 2620 days"
+    },
+    "420264": {
+      "text_": "Log in on 2630 days"
+    },
+    "420265": {
+      "text_": "Log in on 2640 days"
+    },
+    "420266": {
+      "text_": "Log in on 2650 days"
+    },
+    "420267": {
+      "text_": "Log in on 2660 days"
+    },
+    "420268": {
+      "text_": "Log in on 2670 days"
+    },
+    "420269": {
+      "text_": "Log in on 2680 days"
+    },
+    "420270": {
+      "text_": "Log in on 2690 days"
+    },
+    "420271": {
+      "text_": "Log in on 2700 days"
+    },
+    "420272": {
+      "text_": "Log in on 2710 days"
+    },
+    "420273": {
+      "text_": "Log in on 2720 days"
+    },
+    "420274": {
+      "text_": "Log in on 2730 days"
+    },
+    "420275": {
+      "text_": "Log in on 2740 days"
+    },
+    "420276": {
+      "text_": "Log in on 2750 days"
+    },
+    "420277": {
+      "text_": "Log in on 2760 days"
+    },
+    "420278": {
+      "text_": "Log in on 2770 days"
+    },
+    "420279": {
+      "text_": "Log in on 2780 days"
+    },
+    "420280": {
+      "text_": "Log in on 2790 days"
+    },
+    "420281": {
+      "text_": "Log in on 2800 days"
+    },
+    "420282": {
+      "text_": "Log in on 2810 days"
+    },
+    "420283": {
+      "text_": "Log in on 2820 days"
+    },
+    "420284": {
+      "text_": "Log in on 2830 days"
+    },
+    "420285": {
+      "text_": "Log in on 2840 days"
+    },
+    "420286": {
+      "text_": "Log in on 2850 days"
+    },
+    "420287": {
+      "text_": "Log in on 2860 days"
+    },
+    "420288": {
+      "text_": "Log in on 2870 days"
+    },
+    "420289": {
+      "text_": "Log in on 2880 days"
+    },
+    "420290": {
+      "text_": "Log in on 2890 days"
+    },
+    "420291": {
+      "text_": "Log in on 2900 days"
+    },
+    "420292": {
+      "text_": "Log in on 2910 days"
+    },
+    "420293": {
+      "text_": "Log in on 2920 days"
+    },
+    "420294": {
+      "text_": "Log in on 2930 days"
+    },
+    "420295": {
+      "text_": "Log in on 2940 days"
+    },
+    "420296": {
+      "text_": "Log in on 2950 days"
+    },
+    "420297": {
+      "text_": "Log in on 2960 days"
+    },
+    "420298": {
+      "text_": "Log in on 2970 days"
+    },
+    "420299": {
+      "text_": "Log in on 2980 days"
+    },
+    "420300": {
+      "text_": "Log in on 2990 days"
+    },
+    "420301": {
+      "text_": "Log in on 3000 days"
+    },
+    "430001": {
+      "text_": "Complete 10 missions"
+    },
+    "430002": {
+      "text_": "Complete 20 missions"
+    },
+    "430003": {
+      "text_": "Complete 30 missions"
+    },
+    "430004": {
+      "text_": "Complete 40 missions"
+    },
+    "430005": {
+      "text_": "Complete 50 missions"
+    },
+    "430006": {
+      "text_": "Complete 60 missions"
+    },
+    "430007": {
+      "text_": "Complete 70 missions"
+    },
+    "430008": {
+      "text_": "Complete 80 missions"
+    },
+    "430009": {
+      "text_": "Complete 90 missions"
+    },
+    "430010": {
+      "text_": "Complete 100 missions"
+    },
+    "440001": {
+      "text_": "Quit battles 100 times"
+    },
+    "450001": {
+      "text_": "Lose your whole party in battle 100 times"
+    },
+    "460001": {
+      "text_": "Tap Mama 100 times"
+    },
+    "460002": {
+      "text_": "Clear Chapter 4 without playing the tutorial that appears when you first fail a quest"
+    },
+    "1010101": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "1010102": {
+      "text_": "Clear a main quest 100 times"
+    },
+    "1010103": {
+      "text_": "Use the item shop 30 times"
+    },
+    "1010104": {
+      "text_": "Clear Exploration 3 times"
+    },
+    "1010105": {
+      "text_": "Log in"
+    },
+    "1010106": {
+      "text_": "Enhance characters 100 times"
+    },
+    "1010107": {
+      "text_": "Perform 30 chapter summons"
+    },
+    "1010108": {
+      "text_": "Clear the NieR Day: Golden Week Special Quest"
+    },
+    "1010109": {
+      "text_": "Enhance weapons 100 times"
+    },
+    "1010201": {
+      "text_": "Clear the designated quest enough times"
+    },
+    "1010202": {
+      "text_": "Clear the designated quest enough times"
+    },
+    "1010203": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010204": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010205": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010206": {
+      "text_": "Clear the NieR Day: Golden Week Special Quest 3 times"
+    },
+    "1010207": {
+      "text_": "Clear the designated quest enough times"
+    },
+    "1010208": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010209": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010210": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010211": {
+      "text_": "Clear the designated quest enough times"
+    },
+    "1010212": {
+      "text_": "Clear the designated quest enough times"
+    },
+    "1010213": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010214": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010215": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010216": {
+      "text_": "Clear the designated quest enough times"
+    },
+    "3901": {
+      "text_": "Clear Garden of Benediction on Normal"
+    },
+    "3902": {
+      "text_": "Clear Garden of Benediction on Hard"
+    },
+    "3903": {
+      "text_": "Clear Garden of Benediction on Very Hard"
+    },
+    "3904": {
+      "text_": "Clear the Garden of Benediction quest 10 times"
+    },
+    "3905": {
+      "text_": "Clear the Garden of Benediction quest 30 times"
+    },
+    "3906": {
+      "text_": "Clear the Garden of Benediction quest 50 times"
+    },
+    "3907": {
+      "text_": "Clear the Garden of Benediction quest 100 times"
+    },
+    "3908": {
+      "text_": "Clear the Garden of Benediction quest 200 times"
+    },
+    "3909": {
+      "text_": "Reach level 10 with Fio (Celebratory Girl)"
+    },
+    "3910": {
+      "text_": "Reach level 20 with Fio (Celebratory Girl)"
+    },
+    "3911": {
+      "text_": "Reach level 40 with Fio (Celebratory Girl)"
+    },
+    "3912": {
+      "text_": "Reach level 60 with Fio (Celebratory Girl)"
+    },
+    "3913": {
+      "text_": "Reach level 80 with Fio (Celebratory Girl)"
+    },
+    "3914": {
+      "text_": "Enhance Fio (Celebratory Girl)'s skills 4 times"
+    },
+    "3915": {
+      "text_": "Enhance Fio (Celebratory Girl)'s skills 8 times"
+    },
+    "3916": {
+      "text_": "Ascend Fio (Celebratory Girl) 1 time"
+    },
+    "3917": {
+      "text_": "Ascend Fio (Celebratory Girl) 2 times"
+    },
+    "3918": {
+      "text_": "Ascend Fio (Celebratory Girl) 3 times"
+    },
+    "3919": {
+      "text_": "Ascend Fio (Celebratory Girl) 4 times"
+    },
+    "3920": {
+      "text_": "Reach level 10 with Wicked Bottles"
+    },
+    "3921": {
+      "text_": "Reach level 30 with Wicked Bottles"
+    },
+    "3922": {
+      "text_": "Reach level 50 with Wicked Bottles"
+    },
+    "3923": {
+      "text_": "Reach level 70 with Wicked Bottles"
+    },
+    "3924": {
+      "text_": "Enhance Wicked Bottles's skills 1 time"
+    },
+    "3925": {
+      "text_": "Enhance Wicked Bottles's skills 3 times"
+    },
+    "3926": {
+      "text_": "Enhance Wicked Bottles's skills 10 times"
+    },
+    "3927": {
+      "text_": "Ascend Wicked Bottles 1 time"
+    },
+    "3928": {
+      "text_": "Ascend Wicked Bottles 2 times"
+    },
+    "3929": {
+      "text_": "Ascend Wicked Bottles 3 times"
+    },
+    "3930": {
+      "text_": "Ascend Wicked Bottles 4 times"
+    },
+    "392001": {
+      "text_": "Clear Flying Mama 3 times"
+    },
+    "392002": {
+      "text_": "Clear Flying Mama 6 times"
+    },
+    "392003": {
+      "text_": "Clear Flying Mama 10 times"
+    },
+    "392004": {
+      "text_": "Clear Flying Mama 20 times"
+    },
+    "392005": {
+      "text_": "Clear Flying Mama 30 times"
+    },
+    "392006": {
+      "text_": "Clear Flying Mama 40 times"
+    },
+    "392007": {
+      "text_": "Clear Flying Mama 50 times"
+    },
+    "392008": {
+      "text_": "Clear Flying Mama 60 times"
+    },
+    "392009": {
+      "text_": "Clear Flying Mama 70 times"
+    },
+    "392010": {
+      "text_": "Clear Flying Mama 80 times"
+    },
+    "392011": {
+      "text_": "Clear Flying Mama 90 times"
+    },
+    "392012": {
+      "text_": "Clear Flying Mama 100 times"
+    },
+    "392013": {
+      "text_": "Clear Flying Mama 200 times"
+    },
+    "392014": {
+      "text_": "Clear Flying Mama 300 times"
+    },
+    "392015": {
+      "text_": "Clear Flying Mama 400 times"
+    },
+    "392016": {
+      "text_": "Clear Flying Mama 500 times"
+    },
+    "391001": {
+      "text_": "Reach a high score of 3000 in Flying Mama"
+    },
+    "391002": {
+      "text_": "Reach a high score of 5000 in Flying Mama"
+    },
+    "391003": {
+      "text_": "Reach a high score of 7000 in Flying Mama"
+    },
+    "391004": {
+      "text_": "Reach a high score of 10000 in Flying Mama"
+    },
+    "391005": {
+      "text_": "Reach a high score of 15000 in Flying Mama"
+    },
+    "391006": {
+      "text_": "Reach a high score of 20000 in Flying Mama"
+    },
+    "1663": {
+      "text_": "Clear a main quest"
+    },
+    "1664": {
+      "text_": "Clear a main quest 5 times"
+    },
+    "1665": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "1666": {
+      "text_": "Clear a main quest 20 times"
+    },
+    "1667": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "1668": {
+      "text_": "Clear a main quest 40 times"
+    },
+    "1669": {
+      "text_": "Clear a main quest 50 times"
+    },
+    "1670": {
+      "text_": "Clear 1 subquest"
+    },
+    "1671": {
+      "text_": "Clear 5 subquests"
+    },
+    "1672": {
+      "text_": "Clear 10 subquests"
+    },
+    "1673": {
+      "text_": "Clear 20 subquests"
+    },
+    "1674": {
+      "text_": "Clear 30 subquests"
+    },
+    "1675": {
+      "text_": "Clear 40 subquests"
+    },
+    "1676": {
+      "text_": "Clear 50 subquests"
+    },
+    "1677": {
+      "text_": "Perform 5 chapter summons"
+    },
+    "1678": {
+      "text_": "Perform 10 chapter summons"
+    },
+    "1679": {
+      "text_": "Perform 15 chapter summons"
+    },
+    "1680": {
+      "text_": "Perform 20 chapter summons"
+    },
+    "1681": {
+      "text_": "Perform 25 chapter summons"
+    },
+    "1682": {
+      "text_": "Clear Exploration 1 time"
+    },
+    "1683": {
+      "text_": "Clear Exploration 2 times"
+    },
+    "1684": {
+      "text_": "Clear Exploration 3 times"
+    },
+    "1685": {
+      "text_": "Clear Exploration 5 times"
+    },
+    "1010301": {
+      "text_": "Clear a main quest 30 times"
+    },
+    "1010302": {
+      "text_": "Clear a main quest on Hard 10 times"
+    },
+    "1010303": {
+      "text_": "Use the item shop 30 times"
+    },
+    "1010304": {
+      "text_": "Clear Exploration 3 times"
+    },
+    "1010305": {
+      "text_": "Clear a main quest 10 times"
+    },
+    "1010306": {
+      "text_": "Clear Record: Garden of Benediction 10 times"
+    },
+    "1010307": {
+      "text_": "Perform 30 chapter summons"
+    },
+    "1010308": {
+      "text_": "Clear a dungeon 10 times"
+    },
+    "1010309": {
+      "text_": "Clear a main quest on Hard 50 times"
+    },
+    "1010401": {
+      "text_": "Clear a main quest on Very Hard 30 times"
+    },
+    "1010402": {
+      "text_": "Clear a dungeon 30 times"
+    },
+    "1010403": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010404": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010405": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010406": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010407": {
+      "text_": "Clear a main quest on Very Hard 100 times"
+    },
+    "1010408": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010409": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010410": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010411": {
+      "text_": "Clear a main quest on Very Hard 200 times"
+    },
+    "1010412": {
+      "text_": "Clear a dungeon 100 times"
+    },
+    "1010413": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010414": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010415": {
+      "text_": "Clear a conditional quest"
+    },
+    "1010416": {
+      "text_": "Clear a dungeon 200 times"
+    },
+    "390007": {
+      "text_": "Reach rank D or above in Flying Mama"
+    },
+    "390008": {
+      "text_": "Reach rank C or above in Flying Mama"
+    },
+    "390009": {
+      "text_": "Reach rank B or above in Flying Mama"
+    },
+    "390010": {
+      "text_": "Reach rank A or above in Flying Mama"
+    },
+    "390011": {
+      "text_": "Reach rank S in Flying Mama"
+    },
+    "900406": {
+      "text_": "Acquire costumes for Noelle and Gayle"
+    },
+    "900407": {
+      "text_": "Acquire costumes for Argo and Griff"
+    },
+    "3701": {
+      "text_": "Enhance a character"
+    },
+    "3702": {
+      "text_": "Send a friend support"
+    },
+    "3703": {
+      "text_": "Perform a chapter summon"
+    },
+    "3704": {
+      "text_": "Enhance a weapon"
+    },
+    "3705": {
+      "text_": "Use the item shop 20 times"
+    },
+    "3706": {
+      "text_": "Clear a daily quest 30 times"
+    },
+    "3707": {
+      "text_": "Clear guerrilla quests 30 times"
+    },
+    "3708": {
+      "text_": "Reach 10000 total force"
+    },
+    "3709": {
+      "text_": "Reach 20000 total force"
+    },
+    "3710": {
+      "text_": "Reach 30000 total force"
+    },
+    "3711": {
+      "text_": "Reach 40000 total force"
+    },
+    "3712": {
+      "text_": "Clear Main Quest Ch 2 on Normal"
+    },
+    "3713": {
+      "text_": "Clear Main Quest Ch 3 on Normal"
+    },
+    "3714": {
+      "text_": "Clear Main Quest Ch 4 on Normal"
+    },
+    "3715": {
+      "text_": "Clear Main Quest Ch 5 on Normal"
+    },
+    "3716": {
+      "text_": "Clear Main Quest Ch 6 on Normal"
+    },
+    "900205": {
+      "text_": "Acquire costumes for Lars and Griff"
+    },
+    "900304": {
+      "text_": "Acquire costumes for Lars and Griff"
+    }
+  },
+  "label": {
+    "9001": {
+      "text_": "Collection Mission"
+    },
+    "13": {
+      "text_": "City of Discontent Missions"
+    },
+    "1001": {
+      "text_": "Daily Missions"
+    },
+    "1002": {
+      "text_": "Challenge Missions"
+    },
+    "1003": {
+      "text_": "Special Missions"
+    },
+    "1004": {
+      "text_": "Jumpstart Missions"
+    },
+    "1006": {
+      "text_": "NieR:Automata Crossover Commemorative Missions"
+    },
+    "1007": {
+      "text_": "Quest Missions Pack"
+    },
+    "1008": {
+      "text_": "Char. Enhan. Missions Pack"
+    },
+    "1009": {
+      "text_": "Aurora Dynast Event Missions"
+    },
+    "1010": {
+      "text_": "Den of Madness Event Missions"
+    },
+    "1011": {
+      "text_": "Valley of Light Missions"
+    },
+    "1012": {
+      "text_": "Snow Witch of the Torrent Missions"
+    },
+    "1014": {
+      "text_": "Weapon Enhan. Missions Pack"
+    },
+    "1015": {
+      "text_": "NieR Day Missions"
+    },
+    "1016": {
+      "text_": "NieR Replicant ver. 1.22 Crossover Missions"
+    },
+    "1017": {
+      "text_": "April Fools Missions"
+    },
+    "1018": {
+      "text_": "Valley of Light Event Missions"
+    },
+    "1019": {
+      "text_": "Resentful Witch of the Blaze Event Missions"
+    },
+    "1020": {
+      "text_": "City of Discontent Event Missions"
+    },
+    "1021": {
+      "text_": "New Chapter Missions"
+    },
+    "1022": {
+      "text_": "Drakengard 3 Crossover Commemorative Missions"
+    },
+    "1023": {
+      "text_": "Tempestuous Senior Officer Event Missions"
+    },
+    "1024": {
+      "text_": "Seat of Shadow Event Missions"
+    },
+    "1025": {
+      "text_": "NieR Day Missions"
+    },
+    "1027": {
+      "text_": "Coffin of Repose Event Missions"
+    },
+    "1028": {
+      "text_": "Abyss Tower: Flooded Dungeon Conquest Missions"
+    },
+    "1029": {
+      "text_": "Armed Aberration of the Torrent Event Missions"
+    },
+    "1030": {
+      "text_": "NieR Day Missions"
+    },
+    "1031": {
+      "text_": "NieR:Automata Crossover Commemorative Missions"
+    },
+    "1033": {
+      "text_": "1-2021-07 Term Mama Medal Missions"
+    },
+    "1034": {
+      "text_": "Sunset Port Event Missions"
+    },
+    "1037": {
+      "text_": "NieR Day: Half-Year Anniversary Eve Event Missions"
+    },
+    "1039": {
+      "text_": "1-2021-08 Term Mama Medal Missions"
+    },
+    "1000001": {
+      "text_": "Anecdote: Stars"
+    },
+    "1042": {
+      "text_": "Garden of Benediction Event Missions"
+    },
+    "1043": {
+      "text_": "NieR Day Missions"
+    }
+  }
+}

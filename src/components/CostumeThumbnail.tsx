@@ -8,15 +8,21 @@ import spearIcon from "../../public/weapons_types/spear.png";
 import staffIcon from "../../public/weapons_types/staff.png";
 
 const weaponsIcons = {
-  sword: swordIcon,
-  greatsword: bigSwordIcon,
-  fist: fistIcon,
-  gun: gunIcon,
-  spear: spearIcon,
-  staff: staffIcon,
+  SWORD: swordIcon,
+  BIG_SWORD: bigSwordIcon,
+  FIST: fistIcon,
+  GUN: gunIcon,
+  SPEAR: spearIcon,
+  STAFF: staffIcon,
 };
 
-type WeaponType = "sword" | "greatsword" | "spear" | "fist" | "staff" | "gun";
+const RARITY = {
+  RARE: 1,
+  S_RARE: 3,
+  SS_RARE: 4,
+};
+
+type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
 
 interface CostumeThumbnailProps {
   src: string;
@@ -33,17 +39,19 @@ export default function CostumeThumbnail({
   rarity = 1,
   imgClasses = "",
 }: CostumeThumbnailProps): JSX.Element {
+  const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
+
   return (
     <div
       className="h-20 w-20 relative"
       style={{
-        backgroundImage: `url(/decorations/background_rarity_${rarity}.png)`,
+        backgroundImage: `url(/decorations/background_rarity_${costumeRarity}.png)`,
       }}
     >
       <Image
         className="z-10"
         layout="fill"
-        src={`/decorations/corners_rarity_${rarity}.png`}
+        src={`/decorations/corners_rarity_${costumeRarity}.png`}
         alt={alt}
       />
       {weaponType && (

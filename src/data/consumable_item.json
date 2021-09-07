@@ -1,0 +1,384 @@
+{
+  "name": {
+    "100001": {
+      "text_": "Gold"
+    },
+    "110001": {
+      "text_": "Medal"
+    },
+    "110002": {
+      "text_": "Rare Medal"
+    },
+    "110003": {
+      "text_": "Arena Coin"
+    },
+    "110004": {
+      "text_": "Gold Automata Medal"
+    },
+    "110005": {
+      "text_": "Silver Automata Medal"
+    },
+    "110006": {
+      "text_": "Copper Automata Medal"
+    },
+    "110007": {
+      "text_": "Dark Coin"
+    },
+    "110008": {
+      "text_": "Den of Madness Medal"
+    },
+    "110010": {
+      "text_": "Replicant Medal"
+    },
+    "110015": {
+      "text_": "Valley of Light Medal"
+    },
+    "110019": {
+      "text_": "City of Discontent Medal"
+    },
+    "110020": {
+      "text_": "Dragon Medal"
+    },
+    "110021": {
+      "text_": "Seat of Shadow Medal"
+    },
+    "110022": {
+      "text_": "Coffin of Repose Medal"
+    },
+    "110024": {
+      "text_": "Bookmark"
+    },
+    "110025": {
+      "text_": "Automata Medal"
+    },
+    "110026": {
+      "text_": "Sunset Port Medal"
+    },
+    "117001": {
+      "text_": "Mama Medal"
+    },
+    "117002": {
+      "text_": "1-2021-08 Term Mama Medal"
+    },
+    "117007": {
+      "text_": "1-2021-07 Term Mama Medal"
+    },
+    "118002": {
+      "text_": "Shard (Sunset Swimwear)"
+    },
+    "118003": {
+      "text_": "Shard (Automata Crossover)"
+    },
+    "200002": {
+      "text_": "Premium Summon Ticket"
+    },
+    "200003": {
+      "text_": "Premium Summon Ticket x10"
+    },
+    "200004": {
+      "text_": "Silver Premium Summon Ticket"
+    },
+    "200005": {
+      "text_": "★★★+ Premium Summons Ticket"
+    },
+    "200006": {
+      "text_": "★★★★ Premium Summons Ticket"
+    },
+    "200007": {
+      "text_": "A. Dynast Summons Ticket"
+    },
+    "200008": {
+      "text_": "Windblown Sand Summon Ticket"
+    },
+    "200009": {
+      "text_": "Grains of Sand Summon Ticket"
+    },
+    "200010": {
+      "text_": "Hard Sand Summon Ticket"
+    },
+    "200011": {
+      "text_": "Flowing Water Summon Ticket"
+    },
+    "200012": {
+      "text_": "Snowy Peaks Summon Ticket"
+    },
+    "200013": {
+      "text_": "Inscriptions in Stone Summon Ticket"
+    },
+    "200014": {
+      "text_": "Withered Crimson Summon Ticket"
+    },
+    "200015": {
+      "text_": "Piles of Leaves Summon Ticket"
+    },
+    "200016": {
+      "text_": "Flaming Sands Summon Ticket"
+    },
+    "200017": {
+      "text_": "Flickers of Light Summon Ticket"
+    },
+    "200018": {
+      "text_": "Mist on the Water Summon Ticket"
+    },
+    "200020": {
+      "text_": "Dark Memories Summon Ticket"
+    },
+    "200021": {
+      "text_": "B. Resentful Witch Summon Ticket"
+    },
+    "200022": {
+      "text_": "B. Resentful Witch Summon Ticket"
+    },
+    "200023": {
+      "text_": "T. Senior Officer Summon Ticket"
+    },
+    "200024": {
+      "text_": "Armed Aberration of the Torrent Summon Ticket"
+    },
+    "201001": {
+      "text_": "Explorer's Ticket"
+    },
+    "300001": {
+      "text_": "Small Stamina Recovery"
+    },
+    "300002": {
+      "text_": "Medium Stamina Recovery"
+    },
+    "300003": {
+      "text_": "Large Stamina Recovery"
+    },
+    "300004": {
+      "text_": "Small BP Recovery"
+    },
+    "300005": {
+      "text_": "Medium BP Recovery"
+    },
+    "300006": {
+      "text_": "Large BP Recovery"
+    },
+    "900001": {
+      "text_": "Bronze Coin"
+    },
+    "900002": {
+      "text_": "Silver Coin"
+    },
+    "900003": {
+      "text_": "Gold Coin"
+    },
+    "110028": {
+      "text_": "Garden of Benediction Medal"
+    },
+    "118007": {
+      "text_": "Shard (Half-Year Anniversary)"
+    },
+    "300007": {
+      "text_": "Event Small Stamina Boost"
+    },
+    "300008": {
+      "text_": "Event Medium Stamina Boost"
+    },
+    "300009": {
+      "text_": "Event Large Stamina Boost"
+    },
+    "117003": {
+      "text_": "1-2021-09 Term Mama Medal"
+    },
+    "11898001": {
+      "text_": "Shard (Abstract Captain)"
+    },
+    "11898002": {
+      "text_": "Shard (Fractured Prisoner)"
+    }
+  },
+  "description": {
+    "100001": {
+      "text_": "A common currency with many uses."
+    },
+    "110001": {
+      "text_": "Currency used at the Medal Exchange."
+    },
+    "110002": {
+      "text_": "Currency used at the Rare Medal Exchange"
+    },
+    "110003": {
+      "text_": "Currency used at the Arena Exchange."
+    },
+    "110004": {
+      "text_": "Currency used at the Automata Medal Exchange."
+    },
+    "110005": {
+      "text_": "Currency used at the Automata Medal Exchange."
+    },
+    "110006": {
+      "text_": "Currency used at the Automata Medal Exchange."
+    },
+    "110007": {
+      "text_": "Currency used at the Dark Coin Exchange."
+    },
+    "110008": {
+      "text_": "Currency used at the Den of Madness Medal Exchange."
+    },
+    "110010": {
+      "text_": "Currency used at the Replicant Medal Exchange."
+    },
+    "110015": {
+      "text_": "Currency used at the Valley of Light Medal Exchange."
+    },
+    "110019": {
+      "text_": "Currency used at the City of Discontent Exchange."
+    },
+    "110020": {
+      "text_": "Currency used at the Dragon Medal Exchange."
+    },
+    "110021": {
+      "text_": "Currency used at the Seat of Shadow Medal Exchange."
+    },
+    "110022": {
+      "text_": "Currency used at the Coffin of Repose Medal Exchange."
+    },
+    "110024": {
+      "text_": "An item used at the Bookmark Exchange."
+    },
+    "110025": {
+      "text_": "Currency used at the Automata Medal Exchange."
+    },
+    "110026": {
+      "text_": "Currency used at the Sunset Port Medal Exchange."
+    },
+    "117001": {
+      "text_": "Currency used at the Mama Medal Exchange."
+    },
+    "117002": {
+      "text_": "Currency used at the 1-2021-08 Term Mama Medal Exchange."
+    },
+    "117007": {
+      "text_": "Currency used at the 1-2021-07 Term Mama Medal Exchange."
+    },
+    "118002": {
+      "text_": "An item used in the Shard (Sunset Swimwear) Exchange."
+    },
+    "118003": {
+      "text_": "An item used at the Shard (Automata Crossover) Exchange."
+    },
+    "200002": {
+      "text_": "A ticket that grants one premium summon pull."
+    },
+    "200003": {
+      "text_": "A ticket that grants 10 premium summon pulls."
+    },
+    "200004": {
+      "text_": "A ticket that guarantees a silver premium summon pull."
+    },
+    "200005": {
+      "text_": "A ticket that guarantees a ★★★ or higher pull in Premium Summons."
+    },
+    "200006": {
+      "text_": "A ticket that guarantees a ★★★★ pull in Premium Summons."
+    },
+    "200007": {
+      "text_": "A ticket for an Aurora Dynast summon."
+    },
+    "200008": {
+      "text_": "A ticket for a windblown sand summon pull."
+    },
+    "200009": {
+      "text_": "A ticket for a grains of sand summon pull."
+    },
+    "200010": {
+      "text_": "A ticket for a hard sand summon pull."
+    },
+    "200011": {
+      "text_": "A ticket for a flowing water summon pull."
+    },
+    "200012": {
+      "text_": "A ticket for a Snowy Peaks summon."
+    },
+    "200013": {
+      "text_": "A ticket for an Inscriptions in Stone summon."
+    },
+    "200014": {
+      "text_": "A ticket for a Withered Crimson summon."
+    },
+    "200015": {
+      "text_": "A ticket for a Piles of Leaves summon."
+    },
+    "200016": {
+      "text_": "A ticket for a Flaming Sands summon."
+    },
+    "200017": {
+      "text_": "A ticket for a Flickers of Light summon."
+    },
+    "200018": {
+      "text_": "A ticket for a Mist on the Water summon."
+    },
+    "200020": {
+      "text_": "A ticket for a Dark Memories summon."
+    },
+    "200021": {
+      "text_": "A ticket for a Blazing Resentful Witch summon."
+    },
+    "200022": {
+      "text_": "A ticket for a Blazing Resentful Witch summon."
+    },
+    "200023": {
+      "text_": "A ticket for a Tempestuous Senior Officer summon."
+    },
+    "200024": {
+      "text_": "A ticket for an Armed Aberration of the Torrent summon."
+    },
+    "201001": {
+      "text_": "A ticket that shortens your wait time for exploration."
+    },
+    "300001": {
+      "text_": "An item that restores 10 stamina."
+    },
+    "300002": {
+      "text_": "An item that restores 50% of your max stamina."
+    },
+    "300003": {
+      "text_": "An item that restores 100% of your max stamina."
+    },
+    "300004": {
+      "text_": "An item that restores 10 BP."
+    },
+    "300005": {
+      "text_": "An item that restores 50% of your max BP."
+    },
+    "300006": {
+      "text_": "An item that restores 100% of your max BP."
+    },
+    "900001": {
+      "text_": "A rare coin that can be sold."
+    },
+    "900002": {
+      "text_": "A rare coin that can be sold."
+    },
+    "900003": {
+      "text_": "A rare coin that can be sold."
+    },
+    "110028": {
+      "text_": "Currency used at the Garden of Benediction Medal Exchange."
+    },
+    "118007": {
+      "text_": "An item used in the Shard (Half-Year Anniversary) Exchange."
+    },
+    "300007": {
+      "text_": "An item that restores 10 stamina."
+    },
+    "300008": {
+      "text_": "An item that restores 50% of your max stamina."
+    },
+    "300009": {
+      "text_": "An item that restores 100% of your max stamina."
+    },
+    "117003": {
+      "text_": "Currency used at the 1-2021-09 Term Mama Medal Exchange."
+    },
+    "11898001": {
+      "text_": "An item used in the Shard (Abstract Captain) Exchange."
+    },
+    "11898002": {
+      "text_": "An item used in the Shard (Fractured Prisoner) Exchange."
+    }
+  }
+}

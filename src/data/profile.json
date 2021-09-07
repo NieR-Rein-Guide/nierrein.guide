@@ -1,0 +1,109 @@
+{
+  "category": {
+    "name": {
+      "01": {
+        "text_": "Greed"
+      },
+      "02": {
+        "text_": "Vice"
+      },
+      "03": {
+        "text_": "Mania"
+      },
+      "04": {
+        "text_": "Zeal"
+      }
+    }
+  },
+  "history": {
+    "name": {
+      "001": {
+        "text_": "Chapter Summons Performed"
+      },
+      "002": {
+        "text_": "Event Summons Performed"
+      },
+      "003": {
+        "text_": "Purchases Made at the Item Shop"
+      },
+      "004": {
+        "text_": "Trades Made at the Exchange"
+      },
+      "005": {
+        "text_": "Party Eliminated"
+      },
+      "006": {
+        "text_": "Shooting Games Played"
+      },
+      "007": {
+        "text_": "Exploration 2 Games Played"
+      },
+      "008": {
+        "text_": "Exploration 3 Games Played"
+      },
+      "009": {
+        "text_": "Exploration 4 Games Played"
+      },
+      "010": {
+        "text_": "Picturebooks Watched"
+      },
+      "011": {
+        "text_": "Best Arena Win Streak"
+      },
+      "012": {
+        "text_": "Missions Completed"
+      },
+      "013": {
+        "text_": "Distance Walked in Cage (m)"
+      },
+      "014": {
+        "text_": "Character Types Collected"
+      },
+      "015": {
+        "text_": "Weapon Types Collected"
+      },
+      "016": {
+        "text_": "Companion Types Collected"
+      },
+      "017": {
+        "text_": "Memoir Types Collected"
+      },
+      "018": {
+        "text_": "Days Logged In"
+      },
+      "019": {
+        "text_": "Arena Matches Played"
+      },
+      "020": {
+        "text_": "Times Characters Enhanced"
+      },
+      "021": {
+        "text_": "Times Character Skills Enhanced"
+      },
+      "022": {
+        "text_": "Times Characters Ascended"
+      },
+      "023": {
+        "text_": "Times Weapons Enhanced"
+      },
+      "024": {
+        "text_": "Times Weapon Skills Enhanced"
+      },
+      "025": {
+        "text_": "Times Weapons Evolved"
+      },
+      "026": {
+        "text_": "Times Weapons Ascended"
+      },
+      "027": {
+        "text_": "Times Companions Enhanced"
+      },
+      "028": {
+        "text_": "Times Memoirs Enhanced"
+      },
+      "029": {
+        "text_": "Black Birds Slain"
+      }
+    }
+  }
+}
