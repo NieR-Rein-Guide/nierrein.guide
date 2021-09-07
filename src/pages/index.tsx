@@ -81,7 +81,7 @@ export default function Home({
             ))}
           </ListingEvents>
           <ListingEvents title="Events Ending soon">
-            {endingEvents.slice(0, 3).map((event) => (
+            {endingEvents.map((event) => (
               <Link
                 key={event.slug}
                 href={`/event/${event.slug}`}
@@ -140,9 +140,7 @@ export async function getStaticProps() {
 
   const endingEvents = [...currentEvents]
     .sort(
-      (event) =>
-        new Date(event.start_date).getTime() -
-        new Date(event.end_date).getTime()
+      (a, b) => new Date(a.end_date).getTime() - new Date(b.end_date).getTime()
     )
     .slice(0, 3);
 
