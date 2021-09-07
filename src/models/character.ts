@@ -52,14 +52,14 @@ function getAbilities(costume) {
   const abilities = costume.Ability.map((ability) => {
     const ab = ability.AbilityDetail.map((detail) => ({
       ...detail,
-      name: jsonAbilities["name"]?.[detail.NameSkillTextId]?.["text_"] ?? '',
+      name: jsonAbilities["name"]?.[detail.NameAbilityTextId]?.["text_"] ?? '',
       description: {
         short:
-          jsonSkills["description"]["short"]?.[detail.DescriptionSkillTextId]?.[
+          jsonSkills["description"]["short"]?.[detail.DescriptionAbilityTextId]?.[
             "text_"
           ] ?? '',
         long: jsonSkills["description"]["long"]?.[
-          detail.DescriptionSkillTextId
+          detail.DescriptionAbilityTextId
         ]?.["text_"] ?? '',
       },
     }));
