@@ -173,12 +173,12 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
                       src={item.thumb}
                       alt={`${item.name} thumbnail`}
                     />
-                    <span className="text-center font-mono">
+                    <span className="text-center font-mono line-clamp-1">
                       {item.isEX && <span className="text-rarity-4">EX </span>}
                       {item.name}
                     </span>
                     {item.title && (
-                      <span className="text-xs text-center text-beige">
+                      <span className="text-xs text-center text-beige line-clamp-1">
                         {item.title}
                       </span>
                     )}
