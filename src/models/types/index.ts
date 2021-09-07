@@ -114,6 +114,29 @@ export type CostumeSource = {
   sourceType: string;
 }
 
+export type CostumeSkill = {
+  DescriptionSkillTextId: number;
+  LevelLowerLimit: number;
+  NameSkillTextId: number;
+  SkillCooltimeValue: number;
+  description: {
+    short: string;
+    long: string;
+  }
+  name: string;
+}
+
+export type CostumeAbility = {
+  DescriptionSkillTextId: number;
+  LevelLowerLimit: number;
+  NameSkillTextId: number;
+  description: {
+    short: string;
+    long: string;
+  }
+  name: string;
+}
+
 export type Costume = {
   ids: {
     costume: number,
@@ -137,8 +160,8 @@ export type Costume = {
     weaponType: WeaponType,
     rarity: CostumeRarity,
   },
-  abilities: [],
-  skills: [],
+  skills: CostumeSkill[][];
+  abilities: CostumeAbility[][];
   metadata: {
     name: string;
     title: string;
@@ -148,8 +171,8 @@ export type Costume = {
     weaponType: string;
     story: string;
     actions: {
-      skills: [],
-      abilities: [],
+      skills: [];
+      abilities: [];
     };
     stats: {
       absoluteMax: CostumeStats

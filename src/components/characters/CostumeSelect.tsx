@@ -36,7 +36,7 @@ export default function CostumeSelect({
     >
       {Object.entries(costumesByCharacter).map(([name, costumes]) => (
         <optgroup key={name} label={name}>
-          {costumes.map((costume) => (
+          {(costumes as Costume[]).map((costume) => (
             <option key={costume.ids.costume} value={costume.ids.costume}>
               ({RARITY[costume.costume.rarity]}*) {costume.costume.name.en}
             </option>
