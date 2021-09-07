@@ -1,4 +1,124 @@
 import allCostumes from './characters_stub.json'
+import { getCostumes } from "@libs/mongo";
+import jsonAbilities from "../data/ability.json";
+import jsonSkills from "../data/skill.json";
+import jsonCostumes from "../data/costume.json";
+import jsonCharacters from "../data/character.json";
+import { sheets } from "@libs/s3";
+
+async function getAllCostumes() {
+    const costumes = await getCostumes();
+      const charactersSheet = await sheets.get("characters");
+
+      const allCostumes = costumes.map((costume) => {
+        const metadata = charactersSheet.find(
+          (character) => character.id === costume.CostumeId
+        );
+
+        return {
+          ids: {
+            costume: costume.CostumeId,
+            character: costume.CharacterId,
+            emblem: costume.CostumeEmblemAssetId,
+            actor: costume.ActorAssetId,
+          },
+          character: {
+            en: getCostumeCharacter(costume.CharacterId),
+          },
+          costume: {
+            name: {
+              en: getCostumeName(costume.ActorAssetId),
+            },
+            description: {
+              en: getCostumeDescription(costume.ActorAssetId),
+            },
+            emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
+            weaponType: costume.WeaponType,
+            rarity: costume.RarityType,
+          },
+          abilities: getAbilities(costume),
+          skills: getSkills(costume),
+          metadata,
+        };
+      });
+
+    return allCostumes
+}
+
+function getAbilities(costume) {
+  const abilities = costume.Ability.map((ability) => {
+    const ab = ability.AbilityDetail.map((detail) => ({
+      ...detail,
+      name: jsonAbilities["name"]?.[detail.NameSkillTextId]?.["text_"],
+      description: {
+        short:
+          jsonSkills["description"]["short"]?.[detail.DescriptionSkillTextId]?.[
+            "text_"
+          ],
+        long: jsonSkills["description"]["long"]?.[
+          detail.DescriptionSkillTextId
+        ]?.["text_"],
+      },
+    }));
+
+    return {
+      ...ability,
+      ...ab,
+    };
+  });
+
+  return abilities;
+}
+
+function getSkills(costume) {
+  const abilities = costume.Skill.map((skill) => {
+    const ab = skill.SkillDetail.map((detail) => ({
+      ...detail,
+      name: jsonSkills["name"]?.[detail.NameSkillTextId]?.["text_"],
+      description: {
+        short:
+          jsonSkills["description"]["short"]?.[detail.DescriptionSkillTextId]?.[
+            "text_"
+          ],
+        long: jsonSkills["description"]["long"]?.[
+          detail.DescriptionSkillTextId
+        ]?.["text_"],
+      },
+    }));
+
+    return {
+      ...skill,
+      ...ab,
+    };
+  });
+
+  return abilities;
+}
+
+function getCostumeName(ActorAssetId) {
+  return jsonCostumes["name"]?.[ActorAssetId]?.["text_"];
+}
+
+function getCostumeDescription(ActorAssetId) {
+  return jsonCostumes["description"]?.[ActorAssetId]?.["text_"];
+}
+
+function getCostumeCharacter(CharacterId) {
+  return jsonCharacters["name"]?.[CharacterId]?.["text_"];
+}
+
+function getCostumeEmblem(CostumeEmblemAssetId) {
+  const paddedId = CostumeEmblemAssetId.toString().padStart(3, "0");
+
+  return {
+    name: jsonCostumes["emblem"]["name"]?.[CostumeEmblemAssetId]?.["text_"],
+    production: {
+      name: jsonCostumes["emblem"]["production"]["name"]?.[paddedId]?.["text_"],
+      description: jsonCostumes["emblem"]["production"]["result"]?.[paddedId],
+    },
+  };
+}
+
 
 class Stats {
     force: number
@@ -9,9 +129,7 @@ class Stats {
     criticalRate: number
     criticalDamage: number
 }
-
 type CharacterName = string
-
 class CostumeInfo {
     character: CharacterName
     name: { en: string, ja: string }
@@ -69,8 +187,6 @@ class CostumeInfo {
     }
 }
 
-export { Stats, CostumeInfo }
-
 const typedCostumes =
     allCostumes
         .map(costume => new CostumeInfo(costume))
@@ -85,4 +201,4 @@ const typedCharacters = typedCostumes.reduce((acc, elem) => {
     return acc
 }, new Map<CharacterName, CostumeInfo[]>())
 
-export { typedCostumes, typedCharacters }
+export { typedCostumes, typedCharacters, Stats, CostumeInfo, getAllCostumes }
