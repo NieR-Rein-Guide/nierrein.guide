@@ -23,15 +23,31 @@ export default function CharactersPage({
     return null;
   }
 
+  const query = useRouter().query;
   const [currentCostume, setCurrentCostume] = useState(costumes[0]);
+
+  useEffect(() => {
+    if (query.all) {
+      // @ts-expect-error this isn't typed? well, it's definitely an array.
+      const [, costumeName] = query.all;
+
+      setCurrentCostume(
+        costumes.find(
+          (costume) =>
+            slugify(costume.costume.name.en, { lower: true }) === costumeName
+        ) || costumes[0]
+      );
+    }
+  }, []);
 
   const setCostume = (costume: Costume) => {
     setCurrentCostume(costume);
     history.replaceState(
       null,
       "",
-      `/characters/${slugify(costume.character.en)}/${slugify(
-        costume.costume.name.en
+      `/characters/${slugify(costume.character.en, { lower: true })}/${slugify(
+        costume.costume.name.en,
+        { lower: true }
       )}`
     );
   };
