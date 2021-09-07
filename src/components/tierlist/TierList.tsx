@@ -143,8 +143,6 @@ export default function TierList({
                 (costume) => costume.costume.name.en === item.title
               );
 
-              console.log(costume);
-
               if (!costume) {
                 console.log(item.title);
               }
