@@ -1,9 +1,10 @@
-import { CostumeInfo, Stats } from "@models/character";
+import { Costume, CostumeStats } from "@models/types";
 import Image from "next/image";
 import Rank from "./decorations/Rank";
 import HR from "./decorations/HR";
 import Star from "./decorations/Star";
 import SVG from "react-inlinesvg";
+import RARITY from "@utils/rarity";
 
 function SingleStat({ name, value }): JSX.Element {
   return (
@@ -19,25 +20,25 @@ function StatsOfLevel({
   stats,
 }: {
   label: string;
-  stats: Stats;
+  stats: CostumeStats;
 }): JSX.Element {
   return (
     <div className="flex-1">
       <span className="mb-4 text-lg">{label}</span>
       <div className="flex flex-col">
-        <SingleStat name="Force" value={stats.force ?? "???"} />
+        {/* <SingleStat name="Force" value={stats.force ?? "???"} />
         <SingleStat name="HP" value={stats.hp ?? "???"} />
         <SingleStat name="Attack" value={stats.attack ?? "???"} />
         <SingleStat name="Defense" value={stats.defence ?? "???"} />
         <SingleStat name="Agility" value={stats.agility ?? "???"} />
         <SingleStat name="Crit" value={stats.criticalRate ?? "???" + " %"} />
-        <SingleStat name="Cdmg" value={stats.criticalDamage ?? "???" + " %"} />
+        <SingleStat name="Cdmg" value={stats.criticalDamage ?? "???" + " %"} /> */}
       </div>
     </div>
   );
 }
 
-function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
+function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 p-2 py-4 md:p-6">
       <div
@@ -49,8 +50,8 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
             <Image
               layout="fill"
               objectFit="cover"
-              src={costume.mediumURL}
-              alt={`${costume.character} (${costume.name.en}) illustration`}
+              src={`/character_medium/${costume.ids.actor}_full-1920-1080.png`}
+              alt={`${costume.character.en} (${costume.costume.name.en}) illustration`}
             />
           </div>
 
@@ -94,13 +95,14 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
             />
           </div> */}
         </div>
-
         <span className="flex absolute bottom-6 right-6">
-          {Array.from({ length: costume.stars }).map((_, index) => (
-            <div className="w-8 h-8" key={index}>
-              <Star rarity={costume.stars} />
-            </div>
-          ))}
+          {Array.from({ length: RARITY[costume.costume.rarity] }).map(
+            (_, index) => (
+              <div className="w-8 h-8" key={index}>
+                <Star rarity={RARITY[costume.costume.rarity]} />
+              </div>
+            )
+          )}
         </span>
 
         <div className="absolute top-4 left-4 w-24 h-24 p-1">
@@ -112,28 +114,38 @@ function CostumeDetails({ costume }: { costume: CostumeInfo }): JSX.Element {
         <div className="mx-4">
           <div className="text-xl">
             <span className="uppercase px-1 text-black bg-beige">
-              {costume.character}
+              {costume.character.en}
             </span>
-            <span className="pl-2 uppercase text-beige">{costume.name.en}</span>
+            <span className="pl-2 uppercase text-beige">
+              {costume.costume.name.en}
+            </span>
           </div>
           <p
             className="whitespace-pre-wrap text-base mt-2"
             style={{
               color: "lightgrey",
             }}
-            dangerouslySetInnerHTML={{ __html: costume.description.en }}
+            dangerouslySetInnerHTML={{ __html: costume.costume.description.en }}
           ></p>
           <div className="mt-4 mb-2">
             <strong>Character skill:</strong>
-            <p>{costume.skills}</p>
+            {/* <p>{costume.skills}</p> */}
           </div>
         </div>
         <HR />
-        <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
-          <StatsOfLevel stats={costume.statsLvl1} label="LVL 01" />
-          <StatsOfLevel stats={costume.statsMax} label="LVL MAX (no asc)" />
-          <StatsOfLevel stats={costume.statsMaxAsc} label="LVL MAX (w/ asc)" />
-        </div>
+        {costume?.metadata?.stats && (
+          <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
+            <StatsOfLevel stats={costume.metadata.stats.min} label="LVL 01" />
+            <StatsOfLevel
+              stats={costume.metadata.stats.maxNoAscension}
+              label="LVL MAX (no asc)"
+            />
+            <StatsOfLevel
+              stats={costume.metadata.stats.absoluteMax}
+              label="LVL MAX (w/ asc)"
+            />
+          </div>
+        )}
       </div>
     </div>
   );

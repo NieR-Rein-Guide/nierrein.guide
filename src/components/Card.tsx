@@ -1,20 +1,21 @@
-import { CostumeInfo } from "@models/character";
-import Link from 'next/link';
-import Image from 'next/image';
+import { Costume } from "@models/character";
+import Link from "next/link";
+import Image from "next/image";
 import slugify from "slugify";
 import Squares from "./decorations/Squares";
-export { Card, CharacterCard }
+export { Card, CharacterCard };
 
 function Card(): JSX.Element {
-  return (
-    <div className="card">
-    </div>
-  );
+  return <div className="card"></div>;
 }
 
-function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
+function CharacterCard({ costume }: { costume: Costume }): JSX.Element {
   return (
-    <Link href={`/characters/${slugify(`${costume.character}/${costume.name.en}`, { remove: /[*+~.()'"!:@]/g })}`}>
+    <Link
+      href={`/characters/${slugify(`${costume.character}/${costume.name.en}`, {
+        remove: /[*+~.()'"!:@]/g,
+      })}`}
+    >
       {/* Eventually replace with this */}
       {/* ${slugify(`${costume.character}/${costume.name.en}`, { lower: true, remove: /[*+~.()'"!:@]/g })}`}> */}
       <a>
@@ -29,7 +30,11 @@ function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
             </div>
             <div className="star-container">
               {Array.from(Array(costume.stars), (e, i) => {
-                return <img src={`/icons/stars/${costume.stars}_star_single.svg`}></img>
+                return (
+                  <img
+                    src={`/icons/stars/${costume.stars}_star_single.svg`}
+                  ></img>
+                );
               })}
             </div>
             <Image
@@ -39,8 +44,8 @@ function CharacterCard({ costume }: { costume: CostumeInfo }): JSX.Element {
               layout="fill"
             />
           </div>
-        </div >
+        </div>
       </a>
-    </Link >
+    </Link>
   );
 }

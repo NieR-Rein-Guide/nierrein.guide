@@ -1,12 +1,12 @@
-import { CostumeInfo, typedCharacters } from "@models/character";
+import { Costume, typedCharacters } from "@models/character";
 import React, { Dispatch, SetStateAction } from "react";
 
 export default function CostumeSelect({
   currentCostume,
   setCostume,
 }: {
-  currentCostume: CostumeInfo;
-  setCostume: Dispatch<SetStateAction<CostumeInfo>>;
+  currentCostume: Costume;
+  setCostume: Dispatch<SetStateAction<Costume>>;
 }): JSX.Element {
   const characters = Array.from(typedCharacters.values()).map(
     (chars) => chars[0]
