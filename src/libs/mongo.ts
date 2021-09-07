@@ -1,5 +1,9 @@
 import { MongoClient } from 'mongodb'
 
+if (!process.env.MONGODB_URI) {
+  throw new Error('env var: MONGODB_URI is not set')
+}
+
 // Connection URL
 const client = new MongoClient(process.env.MONGODB_URI);
 
