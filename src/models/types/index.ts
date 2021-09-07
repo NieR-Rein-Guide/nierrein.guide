@@ -116,10 +116,10 @@ export type CostumeSource = {
 
 export type Costume = {
   ids: {
-    costume: string,
+    costume: number,
     character: number,
     emblem: number,
-    actor: number,
+    actor: string,
   },
   character: {
     en: string,

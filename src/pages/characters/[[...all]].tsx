@@ -71,9 +71,13 @@ export default function CharactersPage({
         />
       </div>
 
-      {/* <div className="inline md:hidden">
-        <CostumeSelect {...{ setCostume, currentCostume }} />
-      </div> */}
+      <div className="inline md:hidden">
+        <CostumeSelect
+          setCostume={setCostume}
+          currentCostume={currentCostume}
+          costumes={costumes}
+        />
+      </div>
 
       <CostumeDetails costume={currentCostume}></CostumeDetails>
     </Layout>
