@@ -161,8 +161,8 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
                   </>
                 )}
                 <Link
-                  href={`/characters/${slugify(item.name)}${
-                    item.title ? "/" + slugify(item.title) : ""
+                  href={`/characters/${slugify(item.name, { lower: true })}${
+                    item.title ? "/" + slugify(item.title, { lower: true }) : ""
                   }`}
                   passHref={true}
                 >
