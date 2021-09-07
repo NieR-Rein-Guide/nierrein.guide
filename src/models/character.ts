@@ -55,10 +55,10 @@ function getAbilities(costume) {
       name: jsonAbilities["name"]?.[detail.NameAbilityTextId]?.["text_"] ?? '',
       description: {
         short:
-          jsonSkills["description"]["short"]?.[detail.DescriptionAbilityTextId]?.[
+          jsonAbilities["description"]["short"]?.[detail.DescriptionAbilityTextId]?.[
             "text_"
           ] ?? '',
-        long: jsonSkills["description"]["long"]?.[
+        long: jsonAbilities["description"]["long"]?.[
           detail.DescriptionAbilityTextId
         ]?.["text_"] ?? '',
       },
