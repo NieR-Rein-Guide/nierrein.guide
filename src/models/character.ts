@@ -5,42 +5,45 @@ import jsonSkills from "../data/skill.json";
 import jsonCostumes from "../data/costume.json";
 import jsonCharacters from "../data/character.json";
 import { sheets } from "@libs/s3";
+import { Costume } from '@models/types';
 
-async function getAllCostumes() {
-    const costumes = await getCostumes();
-      const charactersSheet = await sheets.get("characters");
+async function getAllCostumes(): Promise<Costume[]> {
+    const [costumes, charactersSheet] = await Promise.all([
+        getCostumes(),
+        sheets.get("characters")
+    ]);
 
-      const allCostumes = costumes.map((costume) => {
-        const metadata = charactersSheet.find(
-          (character) => character.id === costume.CostumeId
-        );
+    const allCostumes = costumes.map((costume) => {
+    const metadata = charactersSheet.find(
+        (character) => character.id === costume.CostumeId
+    );
 
-        return {
-          ids: {
-            costume: costume.CostumeId,
-            character: costume.CharacterId,
-            emblem: costume.CostumeEmblemAssetId,
-            actor: costume.ActorAssetId,
-          },
-          character: {
-            en: getCostumeCharacter(costume.CharacterId),
-          },
-          costume: {
-            name: {
-              en: getCostumeName(costume.ActorAssetId),
-            },
-            description: {
-              en: getCostumeDescription(costume.ActorAssetId),
-            },
-            emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
-            weaponType: costume.WeaponType,
-            rarity: costume.RarityType,
-          },
-          abilities: getAbilities(costume),
-          skills: getSkills(costume),
-          metadata,
-        };
-      });
+    return {
+        ids: {
+        costume: costume.CostumeId,
+        character: costume.CharacterId,
+        emblem: costume.CostumeEmblemAssetId,
+        actor: costume.ActorAssetId,
+        },
+        character: {
+        en: getCostumeCharacter(costume.CharacterId),
+        },
+        costume: {
+        name: {
+            en: getCostumeName(costume.ActorAssetId),
+        },
+        description: {
+            en: getCostumeDescription(costume.ActorAssetId),
+        },
+        emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
+        weaponType: costume.WeaponType,
+        rarity: costume.RarityType,
+        },
+        abilities: getAbilities(costume),
+        skills: getSkills(costume),
+        metadata,
+    };
+    });
 
     return allCostumes
 }

@@ -28,7 +28,7 @@ interface CostumeThumbnailProps {
   src: string;
   alt: string;
   weaponType?: WeaponType;
-  rarity?: number;
+  rarity?: number | string;
   imgClasses?: string;
 }
 
