@@ -9,9 +9,12 @@ import { FiBarChart2 } from "react-icons/fi";
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { useEffect } from "react";
 import slugify from "slugify";
+import CostumeThumbnail from "@components/CostumeThumbnail";
+import { Costume } from "@models/types";
 
 interface TierListProps {
   tier: TiersTabs;
+  costumes: Costume[];
 }
 
 function findMaxStat(lists, property: "atk" | "def" | "agility") {
@@ -34,7 +37,10 @@ function findMaxStat(lists, property: "atk" | "def" | "agility") {
   }, 0);
 }
 
-export default function TierList({ tier }: TierListProps): JSX.Element {
+export default function TierList({
+  tier,
+  costumes,
+}: TierListProps): JSX.Element {
   const [isStatsEnabled, setIsStatsEnabled] = useState(false);
   const [maxAtk, setMaxAtk] = useState(10000);
   const [maxDef, setMaxDef] = useState(10000);
@@ -132,95 +138,120 @@ export default function TierList({ tier }: TierListProps): JSX.Element {
           <Image src={RANK_THUMBNAILS[rank]} alt={rank} />
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            {items.map((item, index) => (
-              <div key={`${rank}-${item.name}-${index}`} className="relative">
-                {item.tooltip && (
-                  <>
-                    <div
-                      data-tip
-                      data-for={`${rank}-${item.name}-${index}`}
-                      className="absolute -top-2 right-2 bg-white text-black h-6 w-6 flex justify-center items-center rounded-full z-20"
-                    >
-                      <span>?</span>
-                    </div>
+            {items.map((item, index) => {
+              const costume = costumes.find(
+                (costume) => costume.costume.name.en === item.title
+              );
 
-                    <ReactTooltip
-                      id={`${rank}-${item.name}-${index}`}
-                      aria-haspopup="true"
-                      className="tierlist-tooltip"
-                      effect="solid"
-                      delayHide={500}
-                      place="top"
-                      multiline
-                    >
+              console.log(costume);
+
+              if (!costume) {
+                console.log(item.title);
+              }
+
+              return (
+                <div key={`${rank}-${item.name}-${index}`} className="relative">
+                  {item.tooltip && (
+                    <>
                       <div
-                        className="max-w-xs lg:max-w-md"
-                        dangerouslySetInnerHTML={{ __html: item.tooltip }}
-                      ></div>
-                    </ReactTooltip>
-                  </>
-                )}
-                <Link
-                  href={`/characters/${slugify(item.name, { lower: true })}${
-                    item.title ? "/" + slugify(item.title, { lower: true }) : ""
-                  }`}
-                  passHref={true}
-                >
-                  <a className="flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1">
-                    <img
-                      height="80"
-                      width="80"
-                      src={item.thumb}
-                      alt={`${item.name} thumbnail`}
-                    />
-                    <span className="text-center font-mono line-clamp-1">
-                      {item.isEX && <span className="text-rarity-4">EX </span>}
-                      {item.name}
-                    </span>
-                    {item.title && (
-                      <span className="text-xs text-center text-beige line-clamp-1">
-                        {item.title}
-                      </span>
-                    )}
-                  </a>
-                </Link>
+                        data-tip
+                        data-for={`${rank}-${item.name}-${index}`}
+                        className="absolute -top-2 right-2 bg-white text-black h-6 w-6 flex justify-center items-center rounded-full z-20"
+                      >
+                        <span>?</span>
+                      </div>
 
-                {isStatsEnabled && item.points && (
-                  <div className="w-28 my-2 text-center">
-                    <span className="text-sm">
-                      {Math.round(item.points.total)} points
-                    </span>
-                    <div className="h-6">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart layout="vertical" data={[item.points]}>
-                          <XAxis type="number" hide domain={[0, maxAtk]} />
-                          <YAxis type="category" width={1} dataKey="name" />
-                          <Bar dataKey="atk" fill="#F87171" />
-                        </BarChart>
-                      </ResponsiveContainer>
+                      <ReactTooltip
+                        id={`${rank}-${item.name}-${index}`}
+                        aria-haspopup="true"
+                        className="tierlist-tooltip"
+                        effect="solid"
+                        delayHide={500}
+                        place="top"
+                        multiline
+                      >
+                        <div
+                          className="max-w-xs lg:max-w-md"
+                          dangerouslySetInnerHTML={{ __html: item.tooltip }}
+                        ></div>
+                      </ReactTooltip>
+                    </>
+                  )}
+                  <Link
+                    href={`/characters/${slugify(item.name, { lower: true })}${
+                      item.title
+                        ? "/" + slugify(item.title, { lower: true })
+                        : ""
+                    }`}
+                    passHref={true}
+                  >
+                    <a className="flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1">
+                      {(costume && (
+                        <CostumeThumbnail
+                          src={`/character/thumbnails/${costume.ids.actor}_thumbnail.png`}
+                          rarity={costume.costume.rarity}
+                          weaponType={costume.costume.weaponType}
+                          alt=""
+                        />
+                      )) || (
+                        <img
+                          height="80"
+                          width="80"
+                          src={item.thumb}
+                          alt={`${item.name} thumbnail`}
+                        />
+                      )}
+                      <span className="text-center font-mono line-clamp-1">
+                        {item.isEX && (
+                          <span className="text-rarity-4">EX </span>
+                        )}
+                        {item.name}
+                      </span>
+                      {item.title && (
+                        <span className="text-xs text-center text-beige line-clamp-1">
+                          {item.title}
+                        </span>
+                      )}
+                    </a>
+                  </Link>
+
+                  {isStatsEnabled && item.points && (
+                    <div className="w-28 my-2 text-center">
+                      <span className="text-sm">
+                        {Math.round(item.points.total)} points
+                      </span>
+                      <div className="h-6">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart layout="vertical" data={[item.points]}>
+                            <XAxis type="number" hide domain={[0, maxAtk]} />
+                            <YAxis type="category" width={1} dataKey="name" />
+                            <Bar dataKey="atk" fill="#F87171" />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="h-6">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart layout="vertical" data={[item.points]}>
+                            <XAxis type="number" hide domain={[0, maxDef]} />
+                            <YAxis type="category" width={1} dataKey="name" />
+                            <Bar dataKey="def" fill="#60A5FA" />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
+                      <div className="h-6">
+                        <ResponsiveContainer width="100%" height="100%">
+                          <BarChart layout="vertical" data={[item.points]}>
+                            <XAxis type="number" hide domain={[0, maxAgi]} />
+                            <YAxis type="category" width={1} dataKey="name" />
+                            <Bar dataKey="agility" fill="#34D399" />
+                          </BarChart>
+                        </ResponsiveContainer>
+                      </div>
                     </div>
-                    <div className="h-6">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart layout="vertical" data={[item.points]}>
-                          <XAxis type="number" hide domain={[0, maxDef]} />
-                          <YAxis type="category" width={1} dataKey="name" />
-                          <Bar dataKey="def" fill="#60A5FA" />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                    <div className="h-6">
-                      <ResponsiveContainer width="100%" height="100%">
-                        <BarChart layout="vertical" data={[item.points]}>
-                          <XAxis type="number" hide domain={[0, maxAgi]} />
-                          <YAxis type="category" width={1} dataKey="name" />
-                          <Bar dataKey="agility" fill="#34D399" />
-                        </BarChart>
-                      </ResponsiveContainer>
-                    </div>
-                  </div>
-                )}
-              </div>
-            ))}
+                  )}
+                </div>
+              );
+            })}
           </div>
           <img
             className="py-8 w-full col-span-full opacity-20"

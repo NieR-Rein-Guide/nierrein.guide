@@ -9,15 +9,19 @@ import { DISCORD_URL } from "@config/constants";
 import slugify from "slugify";
 import { useRef } from "react";
 import { useRouter } from "next/router";
+import { getAllCostumes } from "@models/character";
+import { Costume } from "@models/types";
 
 interface TierlistsPageProps {
   defaultTab: number;
   tiers: TiersTabs[];
+  costumes: Costume[];
 }
 
 export default function TierlistsPageProps({
   defaultTab = 0,
   tiers,
+  costumes,
 }: TierlistsPageProps): JSX.Element {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(defaultTab);
@@ -87,7 +91,7 @@ export default function TierlistsPageProps({
                   <section className="mt-8">
                     <h2 className="overlap">{tier.label} Tier List</h2>
 
-                    <TierList tier={tier} />
+                    <TierList tier={tier} costumes={costumes} />
                   </section>
                 </TabPanel>
               ))}
@@ -100,6 +104,7 @@ export default function TierlistsPageProps({
 }
 
 export async function getStaticProps(context) {
+  const costumes = await getAllCostumes();
   const { pveTier, pvpTier, weaponsTier } = await getTiers();
   const tiers = [pveTier, pvpTier, weaponsTier];
   let defaultTab = 0;
@@ -114,6 +119,7 @@ export async function getStaticProps(context) {
     props: {
       defaultTab,
       tiers,
+      costumes,
     },
   };
 }
