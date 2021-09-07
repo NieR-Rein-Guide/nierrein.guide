@@ -1,5 +1,9 @@
-import { CostumeInfo, typedCharacters } from "@models/character";
+import { Costume } from "@models/types";
 import React, { Dispatch, SetStateAction } from "react";
+
+function getIconUrl(assetId: string): string {
+  return `/ui/actor/${assetId}_01_actor_icon.png`;
+}
 
 function CharacterDiamond({
   costume,
@@ -7,8 +11,8 @@ function CharacterDiamond({
   active,
   labelTop,
 }: {
-  costume: CostumeInfo;
-  setCostume: Dispatch<SetStateAction<CostumeInfo>>;
+  costume: Costume;
+  setCostume: Dispatch<SetStateAction<Costume>>;
   active: boolean;
   labelTop: boolean;
 }): JSX.Element {
@@ -27,7 +31,7 @@ function CharacterDiamond({
         style={{ width: "56px" }}
         onClick={onClick}
       >
-        {costume.character}
+        {costume?.character?.en}
       </div>
       <div
         className={`pointer-events-auto overflow-hidden iso-bg ${
@@ -43,9 +47,9 @@ function CharacterDiamond({
             maxHeight: "74px",
           }}
           className="select-none"
-          alt={costume.character}
-          title={costume.character}
-          src={costume.iconURL}
+          alt={costume?.character?.en}
+          title={costume?.character?.en}
+          src={getIconUrl(costume.ids.actor)}
         />
       </div>
     </div>
@@ -55,16 +59,17 @@ function CharacterDiamond({
 export default function CharacterRows({
   currentCostume,
   setCostume,
+  costumes,
 }: {
-  currentCostume: CostumeInfo;
-  setCostume: Dispatch<SetStateAction<CostumeInfo>>;
+  currentCostume: Costume;
+  setCostume: Dispatch<SetStateAction<Costume>>;
+  costumes: Map<string, Costume>;
 }): JSX.Element {
-  const characters = Array.from(typedCharacters.values()).map(
-    (chars) => chars[0]
-  );
+  const firstRow: Costume[] = [];
+  const secondRow: Costume[] = [];
 
-  const firstRow: CostumeInfo[] = [];
-  const secondRow: CostumeInfo[] = [];
+  const characters = Array.from(costumes.values());
+
   characters.forEach((costume, index) => {
     if (index % 2 == 1) {
       firstRow.push(costume);
@@ -78,10 +83,10 @@ export default function CharacterRows({
       <div className="relative h-32 mt-20 mb-20 mx-20">
         <div className="flex gap-6 pointer-events-none">
           {firstRow.map((costume) => (
-            <React.Fragment key={costume.id}>
+            <React.Fragment key={costume?.ids?.costume}>
               <CharacterDiamond
                 {...{ costume, setCostume }}
-                active={costume.character == currentCostume.character}
+                active={costume?.character?.en == currentCostume?.character?.en}
                 labelTop={true}
               />
             </React.Fragment>
@@ -95,10 +100,10 @@ export default function CharacterRows({
           }}
         >
           {secondRow.map((costume) => (
-            <React.Fragment key={costume.id}>
+            <React.Fragment key={costume?.ids?.costume}>
               <CharacterDiamond
                 {...{ costume, setCostume }}
-                active={costume.character == currentCostume.character}
+                active={costume?.character?.en == currentCostume?.character?.en}
                 labelTop={false}
               />
             </React.Fragment>

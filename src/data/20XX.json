@@ -1,0 +1,2613 @@
+{
+  "2001": {
+    "001": {
+      "00001": {
+        "0": {
+          "v": {
+            "text_": "Will you leave this place?"
+          }
+        }
+      },
+      "00002": {
+        "0": {
+          "v": {
+            "text_": "No."
+          }
+        }
+      },
+      "00003": {
+        "0": {
+          "v": {
+            "text_": "You seem like you wish to leave."
+          }
+        }
+      },
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "Just having a bit of fun."
+          }
+        }
+      }
+    },
+    "002": {
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "Y'know, as a youth, I was\\nquite the gunman myself."
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "Folks used to say I was\\neven better'n a machine\\nsoldier! *hic*"
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "My husband said a\\nstrange man shot at\\nhim in the woods."
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "Fortunately, he didn't\\npursue, but still, it's\\nleft us shaken."
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "Several bounty hunters\\nhave been fallin' under\\nattack lately."
+          }
+        }
+      },
+      "00011": {
+        "0": {
+          "v": {
+            "text_": "You're a bounty hunter,\\ntoo, yeah? You take care\\nout there."
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "(I need to gather information.)"
+          }
+        }
+      }
+    },
+    "003": {
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "(...Wrong way.)"
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "(Wrong way...)"
+          }
+        }
+      }
+    }
+  },
+  "2002": {
+    "001": {
+      "00020": {
+        "0": {
+          "v": {
+            "text_": "(I must chase after her.)"
+          }
+        }
+      },
+      "00300": {
+        "0": {
+          "v": {
+            "text_": "Hey Sis, guess what!?"
+          }
+        }
+      },
+      "00400": {
+        "0": {
+          "v": {
+            "text_": "Today, I'm gonna hunt for\\nour food all by myself!"
+          }
+        }
+      },
+      "00900": {
+        "0": {
+          "n": {
+            "text_": "Here goes..."
+          }
+        }
+      },
+      "01000": {
+        "0": {
+          "n": {
+            "text_": "ROAAAR!"
+          }
+        }
+      },
+      "01600": {
+        "0": {
+          "v": {
+            "text_": "I was so scared, Sis!"
+          }
+        }
+      }
+    },
+    "002": {
+      "00025": {
+        "0": {
+          "v": {
+            "text_": "(I should hurry\\ninto town.)"
+          }
+        }
+      },
+      "00026": {
+        "0": {
+          "v": {
+            "text_": "No, that way's\\ndangerous!"
+          }
+        }
+      },
+      "00027": {
+        "0": {
+          "v": {
+            "text_": "(I should hurry\\ninto town.)"
+          }
+        }
+      },
+      "00800": {
+        "0": {
+          "v": {
+            "text_": "Be careful..."
+          }
+        }
+      },
+      "01200": {
+        "0": {
+          "v": {
+            "text_": "Over here! A survivor!"
+          }
+        }
+      },
+      "01600": {
+        "0": {
+          "v": {
+            "text_": "Seize them!"
+          }
+        }
+      },
+      "01700": {
+        "0": {
+          "v": {
+            "text_": "There's two of 'em!"
+          }
+        }
+      },
+      "01800": {
+        "0": {
+          "v": {
+            "text_": "For the kingdom!"
+          }
+        }
+      },
+      "02000": {
+        "0": {
+          "v": {
+            "text_": "Sis, we have to run!"
+          }
+        }
+      }
+    },
+    "003": {
+      "00400": {
+        "0": {
+          "v": {
+            "text_": "PlEaSe... heLP mE..."
+          }
+        }
+      },
+      "02600": {
+        "0": {
+          "v": {
+            "text_": "You were...a failure..."
+          }
+        }
+      },
+      "03100": {
+        "0": {
+          "v": {
+            "text_": "(The light fades... This is the wrong way.)"
+          }
+        }
+      }
+    },
+    "004": {
+      "00025": {
+        "0": {
+          "v": {
+            "text_": "(I need to find her\\nright away.)"
+          }
+        }
+      },
+      "00500": {
+        "0": {
+          "v": {
+            "text_": "Hey! HEY! One of the\\nfailures has escaped!"
+          }
+        }
+      },
+      "00600": {
+        "0": {
+          "v": {
+            "text_": "Hey! HEY! One of the\\nfailures has escaped!"
+          }
+        }
+      },
+      "00700": {
+        "0": {
+          "v": {
+            "text_": "Waaaaaah!"
+          }
+        }
+      },
+      "01000": {
+        "0": {
+          "v": {
+            "text_": "Kya ha ha ha ha!"
+          }
+        }
+      },
+      "01100": {
+        "0": {
+          "v": {
+            "text_": "HEE HEE HEE.\\nWHAT FUN. WHAT FUN."
+          }
+        }
+      },
+      "01400": {
+        "0": {
+          "v": {
+            "text_": "HEE HEE! KILL!! KILL!\\nI WANT TO KIIIIIILL!"
+          }
+        }
+      },
+      "01500": {
+        "0": {
+          "v": {
+            "text_": "SssIIIsterrRRRr... \\n"
+          }
+        }
+      },
+      "01700": {
+        "0": {
+          "v": {
+            "text_": "I've got eyes on\\ntwo failures!"
+          }
+        }
+      }
+    }
+  },
+  "2003": {
+    "001": {
+      "00400": {
+        "0": {
+          "v": {
+            "text_": "Stay put, you.\\nAnd keep quiet!"
+          }
+        }
+      },
+      "00800": {
+        "0": {
+          "n": {
+            "text_": "Worn timber obtained."
+          }
+        }
+      },
+      "00900": {
+        "0": {
+          "n": {
+            "text_": "Dull fabric scrap obtained."
+          }
+        }
+      },
+      "01000": {
+        "0": {
+          "n": {
+            "text_": "Rusty tool obtained."
+          }
+        }
+      },
+      "01400": {
+        "0": {
+          "v": {
+            "text_": "\"What's your name?\" he asks.\\n\"Why are you here?\""
+          }
+        }
+      },
+      "01500": {
+        "0": {
+          "v": {
+            "text_": "Tell him your name."
+          }
+        }
+      },
+      "01600": {
+        "0": {
+          "v": {
+            "text_": "Tell him why you're here."
+          }
+        }
+      }
+    },
+    "002": {
+      "02000": {
+        "0": {
+          "v": {
+            "text_": "Medicine bottle obtained."
+          }
+        }
+      }
+    },
+    "003": {
+      "00100": {
+        "0": {
+          "n": {
+            "text_": "War again?\\nWhere this time?"
+          }
+        }
+      },
+      "00800": {
+        "0": {
+          "n": {
+            "text_": "The throne room is this\\nway. We must hurry!"
+          }
+        }
+      },
+      "01000": {
+        "0": {
+          "n": {
+            "text_": "You there! Halt!"
+          }
+        }
+      },
+      "01100": {
+        "0": {
+          "v": {
+            "text_": "We're almost there!\\nCome on!"
+          }
+        }
+      },
+      "01800": {
+        "0": {
+          "v": {
+            "text_": "Kill this worthless\\nchild!"
+          }
+        }
+      },
+      "02000": {
+        "0": {
+          "v": {
+            "text_": "No! I can't..kill him..."
+          }
+        }
+      },
+      "02100": {
+        "0": {
+          "v": {
+            "text_": "KiLL! KILL! KilL!"
+          }
+        }
+      },
+      "02200": {
+        "0": {
+          "v": {
+            "text_": "kILl! KilL! KILL!"
+          }
+        }
+      }
+    },
+    "004": {
+      "00200": {
+        "0": {
+          "v": {
+            "text_": "*pant* I'm...\\nI'm fine. Let's go."
+          }
+        }
+      },
+      "00300": {
+        "0": {
+          "v": {
+            "text_": "That boy is from\\nthe royal family!"
+          }
+        }
+      },
+      "00400": {
+        "0": {
+          "v": {
+            "text_": "We're not pawns for\\nyour damn war!"
+          }
+        }
+      },
+      "00500": {
+        "0": {
+          "v": {
+            "text_": "Stop taking things\\naway from us!"
+          }
+        }
+      },
+      "00600": {
+        "0": {
+          "v": {
+            "text_": "Don't let them escape!"
+          }
+        }
+      },
+      "00700": {
+        "0": {
+          "v": {
+            "text_": "This is where you\\ndie, traitors!"
+          }
+        }
+      }
+    }
+  },
+  "2004": {
+    "001": {
+      "00035": {
+        "0": {
+          "v": {
+            "text_": "(Oh dear. Not this way.)"
+          }
+        }
+      }
+    },
+    "002": {
+      "00028": {
+        "0": {
+          "v": {
+            "text_": "Oh dear. Not this way."
+          }
+        }
+      },
+      "00029": {
+        "0": {
+          "v": {
+            "text_": "I must hurry to my training."
+          }
+        }
+      }
+    },
+    "003": {
+      "00032": {
+        "0": {
+          "v": {
+            "text_": "Oh dear. Not this way."
+          }
+        }
+      }
+    }
+  },
+  "2005": {
+    "002": {
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "\"Hurry home, Dad.\\nMom and me are waiting for you!\""
+          }
+        }
+      }
+    },
+    "003": {
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "We've been waiting\\nfor you."
+          }
+        }
+      }
+    },
+    "004": {
+      "00002": {
+        "0": {
+          "v": {
+            "text_": "I hope Dad comes\\nhome soon."
+          }
+        }
+      },
+      "00003": {
+        "0": {
+          "v": {
+            "text_": "All of her husband's favorite drinks are here."
+          }
+        }
+      },
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "The fire is always ready for her husband's return."
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "Her husband's coat."
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "It's made with thick material for the biting cold."
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "*gasp*"
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "It's Dad!"
+          }
+        }
+      },
+      "00012": {
+        "0": {
+          "v": {
+            "text_": "I can't wait for Dad\\nto come home."
+          }
+        }
+      },
+      "00013": {
+        "0": {
+          "v": {
+            "text_": "Then I can give him\\nthe gloves I made!"
+          }
+        }
+      },
+      "00014": {
+        "0": {
+          "v": {
+            "text_": "I'm certain he will\\nlove them, dear."
+          }
+        }
+      },
+      "00025": {
+        "0": {
+          "v": {
+            "text_": "Oooh..."
+          }
+        }
+      },
+      "00026": {
+        "0": {
+          "v": {
+            "text_": "......"
+          }
+        }
+      }
+    }
+  },
+  "2006": {
+    "001": {
+      "00001": {
+        "4001": {
+          "v": {
+            "text_": "Welcome. It took you a little while to get here, didn't it?"
+          }
+        }
+      },
+      "00002": {
+        "4001": {
+          "v": {
+            "text_": "This is the last memory; the last tale."
+          }
+        }
+      },
+      "00003": {
+        "4001": {
+          "v": {
+            "text_": "Let's move on, shall we?"
+          }
+        }
+      },
+      "00004": {
+        "4001": {
+          "v": {
+            "text_": "This memory differs from all the rest."
+          }
+        }
+      },
+      "00005": {
+        "4001": {
+          "v": {
+            "text_": "The world within is terribly unstable."
+          }
+        }
+      },
+      "00006": {
+        "4001": {
+          "v": {
+            "text_": "Stay close to Mama so you don't get lost, all right?"
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "Ahhh... More... I need more..."
+          }
+        }
+      },
+      "00008": {
+        "4001": {
+          "v": {
+            "text_": "Monsters like you live in this world."
+          }
+        }
+      },
+      "00009": {
+        "4001": {
+          "v": {
+            "text_": "That should be obvious, though."
+          }
+        }
+      },
+      "00010": {
+        "4001": {
+          "v": {
+            "text_": "It's quite unlike the human world, don't you think?"
+          }
+        }
+      },
+      "00011": {
+        "4001": {
+          "v": {
+            "text_": "Oh! Look at that over there."
+          }
+        }
+      },
+      "00012": {
+        "4001": {
+          "v": {
+            "text_": "Those are monsters—creatures of the same type as you."
+          }
+        }
+      },
+      "00013": {
+        "4001": {
+          "v": {
+            "text_": "They certainly seem to be having fun!\\nI wonder what they're talking about?"
+          }
+        }
+      },
+      "00014": {
+        "0": {
+          "v": {
+            "text_": "What? Nuh-uh, this dream's mine!"
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "You want it? Come get it!"
+          }
+        }
+      },
+      "00016": {
+        "0": {
+          "v": {
+            "text_": "Another new dream..."
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "If I just keep going, then one day..."
+          }
+        }
+      },
+      "00018": {
+        "4001": {
+          "v": {
+            "text_": "Look out! That one is—"
+          }
+        }
+      },
+      "00019": {
+        "4001": {
+          "v": {
+            "text_": "The dark foes will attack you here as well, I'm afraid."
+          }
+        }
+      },
+      "00020": {
+        "4001": {
+          "v": {
+            "text_": "Do be careful."
+          }
+        }
+      },
+      "00021": {
+        "4001": {
+          "v": {
+            "text_": "They seem to be chattering about all the"
+          }
+        }
+      },
+      "00022": {
+        "4001": {
+          "v": {
+            "text_": "dreams they've taken from humans."
+          }
+        }
+      },
+      "00023": {
+        "4001": {
+          "v": {
+            "text_": "As you dream eaters devour said dreams,\\nyou will change."
+          }
+        }
+      },
+      "00024": {
+        "4001": {
+          "v": {
+            "text_": "Eventually, you will take on a human form."
+          }
+        }
+      },
+      "00025": {
+        "4001": {
+          "v": {
+            "text_": "You all want to be human, don't you?"
+          }
+        }
+      },
+      "00026": {
+        "4001": {
+          "v": {
+            "text_": "That was your wish, wasn't it?"
+          }
+        }
+      },
+      "00027": {
+        "4001": {
+          "v": {
+            "text_": "To be human?"
+          }
+        }
+      },
+      "00028": {
+        "0": {
+          "v": {
+            "text_": "Uuurgh... Youuu!"
+          }
+        }
+      },
+      "00029": {
+        "4001": {
+          "v": {
+            "text_": "They seem to be chattering about all the\\ndreams they've taken from humans."
+          }
+        }
+      },
+      "00030": {
+        "4001": {
+          "v": {
+            "text_": "......"
+          }
+        }
+      },
+      "00031": {
+        "4001": {
+          "v": {
+            "text_": "Eventually, you will take on a human form."
+          }
+        }
+      },
+      "00032": {
+        "4001": {
+          "v": {
+            "text_": "They seemed quite excited."
+          }
+        }
+      },
+      "00033": {
+        "4001": {
+          "v": {
+            "text_": "That..."
+          }
+        }
+      },
+      "00034": {
+        "4001": {
+          "v": {
+            "text_": "Was your wish too, wasn't it?"
+          }
+        }
+      }
+    },
+    "002": {
+      "00001": {
+        "4001": {
+          "v": {
+            "text_": "Be ready."
+          }
+        }
+      },
+      "00002": {
+        "4001": {
+          "v": {
+            "text_": "The pain you feel right now?"
+          }
+        }
+      },
+      "00003": {
+        "4001": {
+          "v": {
+            "text_": "It will only grow deeper as we restore this memory."
+          }
+        }
+      },
+      "00004": {
+        "4001": {
+          "v": {
+            "text_": "We are moving ever closer to the deepest parts of this memory."
+          }
+        }
+      },
+      "00005": {
+        "4001": {
+          "v": {
+            "text_": "And as we do, you grow nearer to your original self."
+          }
+        }
+      },
+      "00006": {
+        "4001": {
+          "v": {
+            "text_": "Be careful that you don't get swallowed up."
+          }
+        }
+      },
+      "00007": {
+        "4001": {
+          "v": {
+            "text_": "Old selves have a way of doing that..."
+          }
+        }
+      },
+      "00008": {
+        "4001": {
+          "v": {
+            "text_": "Oh dear. Do stay alert, now."
+          }
+        }
+      },
+      "00009": {
+        "4001": {
+          "v": {
+            "text_": "I recognize this method of killing."
+          }
+        }
+      },
+      "00010": {
+        "4001": {
+          "v": {
+            "text_": "It means they have intruded nearby."
+          }
+        }
+      },
+      "00011": {
+        "0": {
+          "v": {
+            "text_": "Dreams... DREAMS!"
+          }
+        }
+      },
+      "00012": {
+        "0": {
+          "v": {
+            "text_": "I NEED MORE DREEEEEEAMS!"
+          }
+        }
+      },
+      "00013": {
+        "4001": {
+          "v": {
+            "text_": "This one is going to destroy your memory."
+          }
+        }
+      },
+      "00014": {
+        "4001": {
+          "v": {
+            "text_": "Your wish won't come true if you don’t\\nrestore this, you know?"
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "It's not enough... I can't..."
+          }
+        }
+      },
+      "00016": {
+        "0": {
+          "v": {
+            "text_": "I can't become human like this!"
+          }
+        }
+      },
+      "00017": {
+        "4001": {
+          "v": {
+            "text_": "It's coming! Look out!"
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "-"
+          }
+        }
+      },
+      "00019": {
+        "0": {
+          "v": {
+            "text_": "Noooo... I was...so close..."
+          }
+        }
+      },
+      "00020": {
+        "4001": {
+          "v": {
+            "text_": "There are two contradictory beings within your memory"
+          }
+        }
+      },
+      "00021": {
+        "4001": {
+          "v": {
+            "text_": "One is a monster that wishes to become human."
+          }
+        }
+      },
+      "00022": {
+        "4001": {
+          "v": {
+            "text_": "The other is a monster that rejects this thought."
+          }
+        }
+      },
+      "00023": {
+        "4001": {
+          "v": {
+            "text_": "You, I am afraid, were stuck in the middle."
+          }
+        }
+      },
+      "00024": {
+        "4001": {
+          "v": {
+            "text_": "What do you truly wish to do?"
+          }
+        }
+      },
+      "00025": {
+        "0": {
+          "v": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "003": {
+      "00001": {
+        "4001": {
+          "v": {
+            "text_": "Let us proceed."
+          }
+        }
+      },
+      "00002": {
+        "4001": {
+          "v": {
+            "text_": "Our only path is straight ahead, after all."
+          }
+        }
+      },
+      "00003": {
+        "4001": {
+          "v": {
+            "text_": "It is difficult for any creature to fight their instincts."
+          }
+        }
+      },
+      "00004": {
+        "4001": {
+          "v": {
+            "text_": "The wish to become human...\\nThe urge to eat dreams..."
+          }
+        }
+      },
+      "00005": {
+        "4001": {
+          "v": {
+            "text_": "Those are the greatest desires for monsters such as you."
+          }
+        }
+      },
+      "00006": {
+        "4001": {
+          "v": {
+            "text_": "They are your very reasons for living."
+          }
+        }
+      },
+      "00007": {
+        "4001": {
+          "v": {
+            "text_": "Denying them would be the same as denying yourself."
+          }
+        }
+      },
+      "00008": {
+        "4001": {
+          "v": {
+            "text_": "-"
+          }
+        }
+      },
+      "00009": {
+        "4001": {
+          "v": {
+            "text_": "-"
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "You wanted to be human, yeah?"
+          }
+        }
+      },
+      "00011": {
+        "0": {
+          "v": {
+            "text_": "That kid was just food."
+          }
+        }
+      },
+      "00012": {
+        "0": {
+          "v": {
+            "text_": "Why are you letting it bother you now?"
+          }
+        }
+      },
+      "00013": {
+        "4001": {
+          "v": {
+            "text_": "Don't let them confuse you."
+          }
+        }
+      },
+      "00014": {
+        "4001": {
+          "v": {
+            "text_": "They will intrude on your hesitation."
+          }
+        }
+      },
+      "00015": {
+        "4001": {
+          "v": {
+            "text_": "Once they read your thoughts, they say them out loud."
+          }
+        }
+      },
+      "00016": {
+        "4001": {
+          "v": {
+            "text_": "Then they creep into your memory while you're shaken\\nand attempt to destroy it."
+          }
+        }
+      },
+      "00017": {
+        "4001": {
+          "v": {
+            "text_": "Remember back then?"
+          }
+        }
+      },
+      "00018": {
+        "4001": {
+          "v": {
+            "text_": "You met a human."
+          }
+        }
+      },
+      "00019": {
+        "4001": {
+          "v": {
+            "text_": "You devoured all of her dreams whole."
+          }
+        }
+      },
+      "00020": {
+        "4001": {
+          "v": {
+            "text_": "Then you took her body and <i>became</i> human."
+          }
+        }
+      },
+      "00021": {
+        "4001": {
+          "v": {
+            "text_": "The restoration is almost complete.\\nBrace yourself."
+          }
+        }
+      },
+      "00022": {
+        "0": {
+          "v": {
+            "text_": "WHY"
+          }
+        }
+      },
+      "00023": {
+        "0": {
+          "v": {
+            "text_": "THAT CHILD"
+          }
+        }
+      },
+      "00024": {
+        "0": {
+          "v": {
+            "text_": "BE HUMAN"
+          }
+        }
+      },
+      "00025": {
+        "0": {
+          "v": {
+            "text_": "DOESN'T MATTER"
+          }
+        }
+      },
+      "00026": {
+        "0": {
+          "v": {
+            "text_": "TAKE"
+          }
+        }
+      },
+      "00027": {
+        "0": {
+          "v": {
+            "text_": "WHO CARES"
+          }
+        }
+      },
+      "00028": {
+        "4001": {
+          "v": {
+            "text_": "Be careful, okay?"
+          }
+        }
+      }
+    },
+    "004": {
+      "00001": {
+        "4001": {
+          "v": {
+            "text_": "The mirror reflects your self."
+          }
+        }
+      },
+      "00002": {
+        "4001": {
+          "v": {
+            "text_": "Come now, let's keep going."
+          }
+        }
+      },
+      "00003": {
+        "4001": {
+          "v": {
+            "text_": "You need to face your sins."
+          }
+        }
+      },
+      "00004": {
+        "4001": {
+          "v": {
+            "text_": "That girl is the one from\\nwhom you stole dreams."
+          }
+        }
+      },
+      "00005": {
+        "4001": {
+          "v": {
+            "text_": "You devoured her dreams."
+          }
+        }
+      },
+      "00006": {
+        "4001": {
+          "v": {
+            "text_": "You stole her body.\\nYou became human."
+          }
+        }
+      },
+      "00007": {
+        "4001": {
+          "v": {
+            "text_": "And that is the form you take now:\\nthe sinful girl in black."
+          }
+        }
+      },
+      "00008": {
+        "4001": {
+          "v": {
+            "text_": "Yes, something came from all this"
+          }
+        }
+      },
+      "00009": {
+        "4001": {
+          "v": {
+            "text_": "you fulfilled your\\ndesires as a monster."
+          }
+        }
+      },
+      "00010": {
+        "4001": {
+          "v": {
+            "text_": "But the poor girl, with\\nall her dreams taken away..."
+          }
+        }
+      },
+      "00011": {
+        "4001": {
+          "v": {
+            "text_": "Her form became that of\\nyour own true self."
+          }
+        }
+      },
+      "00012": {
+        "4001": {
+          "v": {
+            "text_": "A body so warped that she\\ncannot even return to her\\nown world."
+          }
+        }
+      },
+      "00013": {
+        "4001": {
+          "v": {
+            "text_": "Well, you simply couldn't live with that."
+          }
+        }
+      },
+      "00014": {
+        "4001": {
+          "v": {
+            "text_": "Because you..."
+          }
+        }
+      },
+      "00015": {
+        "4001": {
+          "v": {
+            "text_": "Because you and the girl..."
+          }
+        }
+      },
+      "00016": {
+        "4001": {
+          "v": {
+            "text_": "You were going to be friends."
+          }
+        }
+      },
+      "00017": {
+        "4001": {
+          "v": {
+            "text_": "Her dreams were taken from her."
+          }
+        }
+      },
+      "00018": {
+        "4001": {
+          "v": {
+            "text_": "So she took on the form of\\nthe monster in your place..."
+          }
+        }
+      },
+      "00019": {
+        "4001": {
+          "v": {
+            "text_": "and still wanders The Cage even now."
+          }
+        }
+      },
+      "00020": {
+        "4001": {
+          "v": {
+            "text_": "The time has come."
+          }
+        }
+      },
+      "00021": {
+        "4001": {
+          "v": {
+            "text_": "You have righted all the\\nmemories you were meant to fix."
+          }
+        }
+      },
+      "00022": {
+        "4001": {
+          "v": {
+            "text_": "Now you will take back\\nyour final fragment."
+          }
+        }
+      },
+      "00023": {
+        "4001": {
+          "v": {
+            "text_": "And with that, you will\\nanswer my question again."
+          }
+        }
+      },
+      "00024": {
+        "0": {
+          "v": {
+            "text_": "The time has come to\\nfulfill your wish."
+          }
+        }
+      },
+      "00025": {
+        "4001": {
+          "v": {
+            "text_": "And yet..."
+          }
+        }
+      },
+      "00026": {
+        "4001": {
+          "v": {
+            "text_": "......"
+          }
+        }
+      }
+    }
+  },
+  "2007": {
+    "001": {
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "Go on, Son. Pick out\\nyour birthday gift."
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "No, something cooler."
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "Not this one..."
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "Yeah! THIS one!"
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "Thanks, Mom!\\nThanks, Dad!"
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "H-hey, no running!\\nHeh. He'll never learn."
+          }
+        }
+      },
+      "00013": {
+        "0": {
+          "v": {
+            "text_": "AAAAAAH!"
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "Wh-what's that!?"
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "Son! Where are you!?"
+          }
+        }
+      },
+      "00020": {
+        "0": {
+          "v": {
+            "text_": "No... Wake up!\\nWAAAKE UUUP!"
+          }
+        }
+      },
+      "00022": {
+        "0": {
+          "v": {
+            "text_": "...That time is gone."
+          }
+        }
+      },
+      "00027": {
+        "0": {
+          "v": {
+            "text_": "Transaction complete.\\nHave a nice day."
+          }
+        }
+      },
+      "00028": {
+        "0": {
+          "v": {
+            "text_": "Somebody call an ambulance!"
+          }
+        }
+      }
+    },
+    "002": {
+      "00001": {
+        "0": {
+          "v": {
+            "text_": "Registration codes F311\\nthrough J821."
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "H801, you're showing errors."
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "No... NO!"
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "You have no freedom.\\nRemember this always."
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "Now ready yourselves\\nfor the next battle."
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "Alert. Alert."
+          }
+        }
+      },
+      "00014": {
+        "0": {
+          "v": {
+            "text_": "Report to the feeding\\nhall on the eighth\\nfloor for nourishment."
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "NooOOOOoOOOoo..\\nMmmYyy...miiiNNd..."
+          }
+        }
+      },
+      "00016": {
+        "0": {
+          "v": {
+            "text_": "H801, proceed to the\\nmaintenance room."
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "...Understood."
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "Prisoner codes A–H:Go\\nto the transport room."
+          }
+        }
+      },
+      "00019": {
+        "0": {
+          "v": {
+            "text_": "Report to the feeding\\nhall on the eighth\\nfloor for nourishment."
+          }
+        }
+      },
+      "00022": {
+        "0": {
+          "v": {
+            "text_": "Flowers have been\\nsighted in Area AL-18."
+          }
+        }
+      },
+      "00023": {
+        "0": {
+          "v": {
+            "text_": "Alert. Alert."
+          }
+        }
+      },
+      "00024": {
+        "0": {
+          "v": {
+            "text_": "Come here."
+          }
+        }
+      }
+    },
+    "003": {
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "Objective sighted ahead.\\nMultiple targets confirmed."
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "AAAAAAH!"
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "This isn't good.\\nWe have to go, now!"
+          }
+        }
+      },
+      "00019": {
+        "0": {
+          "v": {
+            "text_": "Thank you, everyone."
+          }
+        }
+      },
+      "00020": {
+        "0": {
+          "v": {
+            "text_": "Huh...?"
+          }
+        }
+      }
+    },
+    "004": {
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "What are they doing?"
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "Hmm? What is this?"
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "Why are you two not\\nfollowing orders?"
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "Tsk. More errors.\\nDispose of them!"
+          }
+        }
+      },
+      "00011": {
+        "0": {
+          "v": {
+            "text_": "Would you like to hear a\\nsecret before you die?"
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "Run...my love..."
+          }
+        }
+      }
+    }
+  },
+  "2008": {
+    "001": {
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "You... You're alive!"
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "They no longer draw breath."
+          }
+        }
+      },
+      "00011": {
+        "0": {
+          "v": {
+            "text_": "They appear to be dead."
+          }
+        }
+      }
+    },
+    "002": {
+      "00002": {
+        "0": {
+          "v": {
+            "text_": "Why not try talking\\nto everyone?"
+          }
+        }
+      },
+      "00003": {
+        "0": {
+          "v": {
+            "text_": "Everyone here is\\nconsidered \"defective.\""
+          }
+        }
+      },
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "The organization doesn't\\nknow what it's doing!"
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "I don't want to be\\ncast aside because\\nI think for myself!"
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "We may not be under\\ntheir thumb anymore,\\nbut we can still fight."
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "Don't you agree?"
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "We want to free\\nthe others."
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "You've seen first-hand\\nhow the organization\\ntreats defectives."
+          }
+        }
+      },
+      "00012": {
+        "0": {
+          "v": {
+            "text_": "What happened after the\\ncommander stabbed you?"
+          }
+        }
+      },
+      "00014": {
+        "0": {
+          "v": {
+            "text_": "They're attacking the base!"
+          }
+        }
+      },
+      "00016": {
+        "0": {
+          "v": {
+            "text_": "Well then, it's about\\ntime we go say hello."
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "Stay close to me."
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "Dammit!"
+          }
+        }
+      },
+      "00020": {
+        "0": {
+          "v": {
+            "text_": "We'll all be killed if\\nwe keep this up."
+          }
+        }
+      },
+      "00021": {
+        "0": {
+          "v": {
+            "text_": "We don't want to fight!\\nStop this! Wake up!"
+          }
+        }
+      },
+      "00022": {
+        "0": {
+          "v": {
+            "text_": "It's time to put our plan\\ninto action."
+          }
+        }
+      },
+      "00023": {
+        "0": {
+          "v": {
+            "text_": "Isn't that a laugh?\\nIf anyone's messed up,\\nit's the organization."
+          }
+        }
+      }
+    },
+    "003": {
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "Scanning ID..."
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "What is this place?"
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "I knew you would come."
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "You've grown stronger.\\nGood... Very good..."
+          }
+        }
+      },
+      "00014": {
+        "0": {
+          "v": {
+            "text_": "You wanted revenge after\\nyour son was killed,\\ndidn't you?"
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "Lend us your aid."
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "This is...\\nyour final test..."
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "ID approved."
+          }
+        }
+      },
+      "00027": {
+        "0": {
+          "v": {
+            "text_": "Let's blend in with the\\nreturning soldiers and\\nenter the base."
+          }
+        }
+      }
+    },
+    "004": {
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "Make your choice."
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "Die so that your husband can live."
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "Die together so your husband\\nwon't have to live without you."
+          }
+        }
+      },
+      "00012": {
+        "0": {
+          "v": {
+            "text_": "I'm glad I got to...\\nspend my life with you..."
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "Let's end this.\\nTogether."
+          }
+        }
+      },
+      "00020": {
+        "0": {
+          "v": {
+            "text_": "Mutual death confirmed.\\nCause: Marital bonds."
+          }
+        }
+      },
+      "00021": {
+        "0": {
+          "v": {
+            "text_": "Data saved as reference for\\nfuture clone development."
+          }
+        }
+      },
+      "00022": {
+        "0": {
+          "v": {
+            "text_": "Sacrificial death confirmed.\\nCause: Marital bonds."
+          }
+        }
+      }
+    },
+    "dialog": {
+      "button": {
+        "text_": "OK"
+      },
+      "title": {
+        "text_": "P.A."
+      }
+    }
+  },
+  "2009": {
+    "001": {
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "What's wrong, kiddo?\\nCan't sleep?"
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "The enemy forces continue\\ntheir advance..."
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "There's no need to look\\nso worried, dear!"
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "It's all right, dear."
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "The soldiers will\\nprotect us."
+          }
+        }
+      },
+      "00014": {
+        "0": {
+          "v": {
+            "text_": "The hell was that?"
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "Better take a look."
+          }
+        }
+      },
+      "00016": {
+        "0": {
+          "v": {
+            "text_": "Go hide in the closet,\\nokay, dear?"
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "Get the boy out of here!\\nHurry!"
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "Aaaaaah!"
+          }
+        }
+      },
+      "00020": {
+        "0": {
+          "v": {
+            "text_": "Where is he!?"
+          }
+        }
+      },
+      "00029": {
+        "0": {
+          "v": {
+            "text_": "There have been\\nmany casualties..."
+          }
+        }
+      }
+    },
+    "002": {
+      "00002": {
+        "0": {
+          "v": {
+            "text_": "Hey, you're on watch."
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "Hey! Pipsqueak!\\nWhere ya headed?"
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "I'm here to teach ya\\na lesson, so I am..."
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "I'm here to teach ya\\na lesson, so I am..."
+          }
+        }
+      },
+      "00011": {
+        "0": {
+          "v": {
+            "text_": "Lemme hear ya cry,\\npipsqueak!"
+          }
+        }
+      },
+      "00012": {
+        "0": {
+          "v": {
+            "text_": "Hey!"
+          }
+        }
+      },
+      "00013": {
+        "0": {
+          "v": {
+            "text_": "Please stop, okay?"
+          }
+        }
+      },
+      "00014": {
+        "0": {
+          "v": {
+            "text_": "Pfft! What a buzzkill."
+          }
+        }
+      },
+      "00020": {
+        "0": {
+          "v": {
+            "text_": "......"
+          }
+        }
+      }
+    },
+    "003": {
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "Yes? What is it?"
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "I understand how you feel,\\nbut I cannot. I'm sorry."
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "Hey! Pipsqueak! Where do\\nya think YOU'RE goin'!?"
+          }
+        }
+      },
+      "00016": {
+        "0": {
+          "v": {
+            "text_": "Ain't no captain around\\nto help ya now! Haw haw!"
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "I'm here to relieve you.\\nIt's my turn on patrol."
+          }
+        }
+      },
+      "00019": {
+        "0": {
+          "v": {
+            "text_": "I came to apologize for\\nwhat happened earlier."
+          }
+        }
+      },
+      "00021": {
+        "0": {
+          "v": {
+            "text_": "Well, took ya long enough."
+          }
+        }
+      },
+      "00022": {
+        "0": {
+          "v": {
+            "text_": "No slackin' off, yeah!?"
+          }
+        }
+      },
+      "00023": {
+        "0": {
+          "v": {
+            "text_": "Nice to see ya finally\\nlearned some manners."
+          }
+        }
+      },
+      "00024": {
+        "0": {
+          "v": {
+            "text_": "Just do what I say and\\nwe won't have trouble."
+          }
+        }
+      }
+    },
+    "004": {
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "Huh? Who's there!?"
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "Aaaugh!"
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "It's the enemy!"
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "...!?"
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "You're... No!\\nIt can't be!"
+          }
+        }
+      },
+      "00014": {
+        "0": {
+          "v": {
+            "text_": "I...understand."
+          }
+        }
+      },
+      "00015": {
+        "0": {
+          "v": {
+            "text_": "I'm so sorry..."
+          }
+        }
+      },
+      "00016": {
+        "0": {
+          "v": {
+            "text_": "I'm sorry I couldn't\\nsave you."
+          }
+        }
+      },
+      "00026": {
+        "0": {
+          "v": {
+            "text_": "You're..."
+          }
+        }
+      },
+      "00027": {
+        "0": {
+          "v": {
+            "text_": "Kill him! Kill the enemy!"
+          }
+        }
+      },
+      "00028": {
+        "0": {
+          "v": {
+            "text_": "Take him out!"
+          }
+        }
+      },
+      "00029": {
+        "0": {
+          "v": {
+            "text_": "No..."
+          }
+        }
+      },
+      "00030": {
+        "0": {
+          "v": {
+            "text_": "This one's tough!"
+          }
+        }
+      },
+      "00031": {
+        "0": {
+          "v": {
+            "text_": "Dammit!"
+          }
+        }
+      }
+    }
+  },
+  "2010": {
+    "001": {
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "This idiot drank my\\nbeer last night!"
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "I SCHAID I was schorry!\\nWhaddya want from me!?"
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "Sooo, I kinda forgot the\\ndetails of today's operation?"
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "You're the one in charge\\nof preparation!"
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "Heeey, Captain Craven!"
+          }
+        }
+      },
+      "00012": {
+        "0": {
+          "v": {
+            "text_": "All right. I'll head back\\nand get ready for the\\noperation."
+          }
+        }
+      },
+      "00013": {
+        "0": {
+          "v": {
+            "text_": "Captain, that problem\\nchild from yesterday\\nis unaccounted for."
+          }
+        }
+      },
+      "00017": {
+        "0": {
+          "v": {
+            "text_": "Yeah, we're all sick of you.\\nAny chance you can just\\ngo off and die somewhere?"
+          }
+        }
+      },
+      "00018": {
+        "0": {
+          "v": {
+            "text_": "Let's all calm down, okay?\\nI'll go buy some more later."
+          }
+        }
+      },
+      "00019": {
+        "0": {
+          "v": {
+            "text_": "It's all right. I'll take care\\nof getting everything ready."
+          }
+        }
+      }
+    },
+    "002": {
+      "00003": {
+        "0": {
+          "v": {
+            "text_": "Alpha Team, proceed to\\nPoint B as planned."
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "The village is done for!"
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "Just keep going!"
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "Run! RUUUN!"
+          }
+        }
+      },
+      "00008": {
+        "0": {
+          "v": {
+            "text_": "My son...\\nWhere is my son...?"
+          }
+        }
+      },
+      "00009": {
+        "0": {
+          "v": {
+            "text_": "Alpha Team, we'll soon\\narrive at Point D."
+          }
+        }
+      },
+      "00019": {
+        "0": {
+          "v": {
+            "text_": "Charlie Team, scout\\nthe enemy numbers\\nfrom the west."
+          }
+        }
+      },
+      "00020": {
+        "0": {
+          "v": {
+            "text_": "We'll prepare there\\nand await further\\nsituation reports."
+          }
+        }
+      }
+    },
+    "003": {
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "You're..."
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "...!"
+          }
+        }
+      },
+      "00010": {
+        "0": {
+          "v": {
+            "text_": "Ah, you live... Good.\\nThat's...good."
+          }
+        }
+      },
+      "00011": {
+        "0": {
+          "v": {
+            "text_": "I'm glad you survived..."
+          }
+        }
+      }
+    },
+    "004": {
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "Alpha Team, fall back\\nonce you've destroyed\\nthe enemy armory."
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "DIIIIIIE!"
+          }
+        }
+      },
+      "00026": {
+        "0": {
+          "v": {
+            "text_": "Beta Team, move prisoners\\nto the camp. Charlie Team,\\nreturn to base."
+          }
+        }
+      }
+    }
+  },
+  "2011": {
+    "001": {
+      "00001": {
+        "0": {
+          "v": {
+            "text_": "―Repeat: Error in dormant state of specimen."
+          }
+        }
+      },
+      "00002": {
+        "0": {
+          "v": {
+            "text_": "Accommodation of specimen no longer possible.\\nAwakening processes activated."
+          }
+        }
+      },
+      "00003": {
+        "0": {
+          "v": {
+            "text_": "\"Blood exchange complete. Line breaker severed.\\nSea of Origin discharge...complete.\""
+          }
+        }
+      },
+      "00004": {
+        "0": {
+          "v": {
+            "text_": "Removing particles..."
+          }
+        }
+      },
+      "00005": {
+        "0": {
+          "v": {
+            "text_": "Specimen beginning to awaken.\\nAll vital signs normal."
+          }
+        }
+      },
+      "00006": {
+        "0": {
+          "v": {
+            "text_": "Particle removal complete. Opening accommodation chamber.\\nAll nearby staff members are advised to keep their distance."
+          }
+        }
+      },
+      "00007": {
+        "0": {
+          "v": {
+            "text_": "Ugh..."
+          }
+        }
+      },
+      "00031": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- □●○○ ■○●｜｜● -</align>\\n\\n□○●●／ ●｜○□△●○／｜\\n□●○●△ □○ ■○△／ ▲○○●\\n\\n                                                   ｜○△●\\n                                                   ■｜●△○○●"
+          }
+        }
+      },
+      "00032": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Dear Noelle, -</align>\\n\\nHappy birthday!\\nHere's to many more.\\n                                                   Love,\\n                                                   Elenore"
+          }
+        }
+      },
+      "00033": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Halting of Production and Project Suspension -</align>\\n\\nAs of tomorrow (June 8), the cloning-oriented weaponry \\nmass-production project we have worked on thus far will \\ncease any and all activity following the manufacture of sister \\nunit 123 and the project itself will be shelved.\\n\\nI will share the reasons for this decision later on, but allow me\\nto say here and now that I assume full responsibility."
+          }
+        }
+      }
+    },
+    "002": {
+      "00025": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Memory-Degradation Phenomenon Experiment Report -</align>\\n\\nSpecimens: 31, 33, 34, 35\\n\\nProcedure: Specimen 31 was shown a paper with an image \\nof a blue square before being euthanized. The remaining \\nthree specimens were made to recover 31's memories from \\nher body at staggered intervals afterward, at which point they \\nwere asked about the shape and color of the image on the \\npaper.\\n\\n<style=\"Dash\">――――――――――――――――――――――――――――――</style>\\n\\nSituation A: One Day Post-Death (Specimen: 33)\\nResponse: <hint>Specimen 33 answered \"square,\"</hint> then later \\nadded, \"blue.\"\\n\\nSituation B: Two Days Post-Death (Specimen: 34)\\nResponse: <hint>Specimen 34 answered \"square,\"</hint> then added, \\n\"gray.\"\\n\\nSituation C: Four Days Post-Death (Specimen: 35)\\nResponse: <hint>Specimen 35 answered \"I don't know.\"</hint>"
+          }
+        }
+      },
+      "00026": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Forgotten Letter: About the Gate's Passcode -</align>\\n(This missive is written on paper for security reasons. Please \\ndispose of it after reading,)\\n\\nYou may have heard news of this already, but specimen \\n0—the original—will be granted permission to visit the \\ncultivation labs, so we need to revise our security protocols \\nwith that in mind. I went ahead and changed the passcode, \\nand I decided to make it related to the <hint>memory-degradation \\nexperiment report</hint>. All you need to do is <hint>input the shapes \\nin specimens 35, 34, and 33's responses in that exact order</hint>. \\nThat's right, <hint>it's the opposite order they come in compared \\nto the report itself</hint>, so make special note of that. Oh, and \\n<hint>input \"×\" for \"I don't know.\"</hint>"
+          }
+        }
+      }
+    },
+    "003": {
+      "00001": {
+        "0": {
+          "v": {
+            "text_": "\"I need to go there.\""
+          }
+        }
+      },
+      "00027": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Beautifully Handwritten Message on Memo Paper -</align>\\n\\nAs anticipated, only a portion of the living-weapon \\nproduction records can be printed using a spare key card. \\nI'll need to go get the key card I forgot in the extraction room \\ntomorrow. Luckily, I'm still able to print the part that has \\n<hint>specimen numbers, which start with \"#\"</hint>, which should be \\nenough to figure out the passcode to the extraction room. \\nAll you need to remember is to look for <hint>the even-numbered \\nspecimen that died</hint>. <hint>Input the corresponding specimen \\nnumber into the elevator</hint> and you're good to go."
+          }
+        }
+      },
+      "00028": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Living-Weapon Manufacturing Record MRA5:20 -</align>\\n\\n...ERROR: Lack of authorization to access the requested file.\\n...Commencing partial print of the document.\\n\\n#0115: Used in an experiment. Receiving adjustments.\\n#<hint>0116</hint>: Sent to the ■■■■. Currently investigating \\nconnection to the above specimen*.\\n#0117: Died in combat.\\n#0118: Put into operation. Alive.\\n#0119: Memory anchoring failed. Dismantled.\\n#0120: Put into operation. Receiving treatment for injuries.\\n#0121: Currently being examined as part of the ■■ that \\nhappened to specimen 123.\\n*As with ■■, specimen 116's corpse was liquefied, making \\nanalysis difficult."
+          }
+        }
+      },
+      "00029": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Scrap of a Torn Note -</align>\\n\\nI have made a terrible mistake. I've had everything all wrong \\nfrom the very beginning. I thought this was just another facet \\nof all the weapons research that was going on at the time.\\n\\nThere is no longer much that I can do, but I must fulfill my \\nduty all the same.\\n\\nI must show her the truth."
+          }
+        }
+      }
+    },
+    "004": {
+      "00024": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Scrap of a Torn Note -</align>\\n\\nWe came upon an abandoned research facility during today's \\ninvestigation. Judging by the documents that were left \\nbehind, my guess is the place was used for researching \\ngenetics and living organisms.\\n\\nIt would be remiss of me not to mention one object that was \\nof particular note—a fully functioning cryogenic sleep \\nchamber with \"Eleanor\" engraved on the side.\\n\\nAfter the higher-ups make their final call on how to address \\nthe matter tomorrow, we will perform a thorough investigation \\nof the chamber's interior. I hope against hope that this \\ndiscovery will mean great things for our future and for all of \\nmankind."
+          }
+        }
+      },
+      "00025": {
+        "0": {
+          "v": {
+            "text_": "<align=\"center\">- Torn Piece of Paper -</align>\\n\\nWh—\\nI only...\\n\\nAnd that's why I                this body. No que\\nHowever... Still human               And yet, sadly,\\nwe were powerless to do anything.\\n\\nThis era—and we who inhabit it—have little time left. I am \\nashamed to ask of you such a selfish request, but with it \\ndone, the girl will finally be able to live her own life. I beg \\nof you... Please help her.\\n\\n　　　　　　　　　　　　　　　　　　　　　　　　　　　D.U"
+          }
+        }
+      }
+    }
+  }
+}

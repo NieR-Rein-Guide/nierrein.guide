@@ -1,0 +1,45 @@
+{
+  "mom": {
+    "first": {
+      "question": {
+        "1": {
+          "text_": "Oh my! Tinkering with my menu already? I was going to explain this in a bit, but do you want to hear about it now?"
+        },
+        "2": {
+          "text_": "Do you want to hear the explanation after all?"
+        }
+      },
+      "ok": {
+        "1": {
+          "text_": "So impatient! Sadly, all I can let you do right now is summon."
+        },
+        "2": {
+          "text_": "I can't even permit you to use any of the things you've obtained so far. So are you still sure—<i>really</i> sure—that you want to open the menu?"
+        },
+        "3": {
+          "text_": "Goodness, you're not giving Mama much of a choice here.\\nThis is the Mama Menu. It's a place where I can help you with all manner of things."
+        }
+      }
+    },
+    "organization": {
+      "start1": {
+        "text_": "You have a long road ahead of you, so you'll need to increase your power."
+      },
+      "start2": {
+        "text_": "Hmm, where should I start? First, you need to arrange your allies in a loadout..."
+      },
+      "start3": {
+        "text_": "Explanations will only get us so far. Best to give it a try in practice."
+      },
+      "start4": {
+        "text_": "It's mostly the same as any other game."
+      },
+      "end1": {
+        "text_": "Well done!"
+      },
+      "end2": {
+        "text_": "You can also enhance allies and weapons, but... Oh, never mind. You can just take a peek whenever you feel like it. Let's keep moving!"
+      }
+    }
+  }
+}

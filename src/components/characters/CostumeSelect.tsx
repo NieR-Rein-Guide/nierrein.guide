@@ -1,37 +1,42 @@
-import { CostumeInfo, typedCharacters } from "@models/character";
+import { Costume } from "@models/types";
+import RARITY from "@utils/rarity";
 import React, { Dispatch, SetStateAction } from "react";
 
 export default function CostumeSelect({
   currentCostume,
   setCostume,
+  costumes,
 }: {
-  currentCostume: CostumeInfo;
-  setCostume: Dispatch<SetStateAction<CostumeInfo>>;
+  currentCostume: Costume;
+  setCostume: Dispatch<SetStateAction<Costume>>;
+  costumes: Costume[];
 }): JSX.Element {
-  const characters = Array.from(typedCharacters.values()).map(
-    (chars) => chars[0]
-  );
+  const costumesByCharacter = costumes.reduce((acc, costume) => {
+    if (!acc[costume.character.en]) {
+      acc[costume.character.en] = [];
+    }
+    acc[costume.character.en].push(costume);
+    return acc;
+  }, {});
 
   return (
     <select
       className="bg-black text-white w-full"
       onChange={function (ev) {
         const newId = +ev.target.value;
-        Array.from(typedCharacters.values()).find((values) =>
-          values.find((cost) => {
-            if (cost.id == newId) {
-              setCostume(cost);
-              return true;
-            }
-          })
-        );
+        costumes.find((costume) => {
+          if (costume.ids.costume === newId) {
+            setCostume(costume);
+            return true;
+          }
+        });
       }}
     >
-      {characters.map((costume) => (
-        <optgroup key={costume.character} label={costume.character}>
-          {typedCharacters.get(costume.character).map((costume) => (
-            <option key={costume.id} value={costume.id.toString()}>
-              ({costume.stars}*) {costume.name.en}
+      {Object.entries(costumesByCharacter).map(([name, costumes]) => (
+        <optgroup key={name} label={name}>
+          {(costumes as Costume[]).map((costume) => (
+            <option key={costume.ids.costume} value={costume.ids.costume}>
+              ({RARITY[costume.costume.rarity]}*) {costume.costume.name.en}
             </option>
           ))}
         </optgroup>

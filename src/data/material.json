@@ -1,0 +1,1446 @@
+{
+  "name": {
+    "100001": {
+      "text_": "Small Character Enhancement"
+    },
+    "100002": {
+      "text_": "Medium Character Enhancement"
+    },
+    "100003": {
+      "text_": "Large Character Enhancement"
+    },
+    "100004": {
+      "text_": "XL Character Enhancement"
+    },
+    "100005": {
+      "text_": "Dex. Character Enhancement"
+    },
+    "100006": {
+      "text_": "Str. Character Enhancement"
+    },
+    "100007": {
+      "text_": "Vit. Character Enhancement"
+    },
+    "100008": {
+      "text_": "Ins. Character Enhancement"
+    },
+    "100009": {
+      "text_": "Spd. Character Enhancement"
+    },
+    "100010": {
+      "text_": "Wis. Character Enhancement"
+    },
+    "200001": {
+      "text_": "Small Weapon Enhancement"
+    },
+    "200002": {
+      "text_": "Medium Weapon Enhancement"
+    },
+    "200003": {
+      "text_": "Large Weapon Enhancement"
+    },
+    "200004": {
+      "text_": "XL Weapon Enhancement"
+    },
+    "200005": {
+      "text_": "Light Weapon Enhancement"
+    },
+    "200006": {
+      "text_": "Heavy Weapon Enhancement"
+    },
+    "200007": {
+      "text_": "Elastic Weapon Enhancement"
+    },
+    "200008": {
+      "text_": "Sturdy Weapon Enhancement"
+    },
+    "200009": {
+      "text_": "Flexible Weapon Enhancement"
+    },
+    "200010": {
+      "text_": "Glossy Weapon Enhancement"
+    },
+    "300001": {
+      "text_": "Nepheline"
+    },
+    "300002": {
+      "text_": "Zeolite"
+    },
+    "300003": {
+      "text_": "Rattlestone"
+    },
+    "300004": {
+      "text_": "Quartz Sand"
+    },
+    "300005": {
+      "text_": "Yellow Sand"
+    },
+    "300006": {
+      "text_": "White Sand"
+    },
+    "300007": {
+      "text_": "Red Earth"
+    },
+    "300008": {
+      "text_": "White Earth"
+    },
+    "300009": {
+      "text_": "Black Earth"
+    },
+    "300010": {
+      "text_": "Rhyolite"
+    },
+    "300011": {
+      "text_": "Granite"
+    },
+    "300012": {
+      "text_": "Amphibolite"
+    },
+    "300013": {
+      "text_": "Tuff"
+    },
+    "300014": {
+      "text_": "Basalt"
+    },
+    "300015": {
+      "text_": "Diorite"
+    },
+    "300016": {
+      "text_": "Gneiss"
+    },
+    "300017": {
+      "text_": "Angrite"
+    },
+    "300018": {
+      "text_": "Moldavite"
+    },
+    "300019": {
+      "text_": "Aubrite"
+    },
+    "300020": {
+      "text_": "Chondrite"
+    },
+    "300021": {
+      "text_": "Eucrite"
+    },
+    "300022": {
+      "text_": "Merlinite"
+    },
+    "300023": {
+      "text_": "Insignia of Skill"
+    },
+    "300024": {
+      "text_": "Insignia of Quality"
+    },
+    "300101": {
+      "text_": "Small Wish Fragment"
+    },
+    "300102": {
+      "text_": "Medium Wish Fragment"
+    },
+    "300103": {
+      "text_": "Large Wish Fragment"
+    },
+    "301001": {
+      "text_": "Growth Agent"
+    },
+    "301002": {
+      "text_": "Secret Growth Agent"
+    },
+    "301003": {
+      "text_": "Curing Agent"
+    },
+    "301004": {
+      "text_": "Potent Curing Agent"
+    },
+    "301005": {
+      "text_": "Elongator"
+    },
+    "301006": {
+      "text_": "High-quality Elongator"
+    },
+    "301007": {
+      "text_": "Active Agent"
+    },
+    "301008": {
+      "text_": "Superior Active Agent"
+    },
+    "301009": {
+      "text_": "Refining Agent"
+    },
+    "301010": {
+      "text_": "Valuable Refining Agent"
+    },
+    "301011": {
+      "text_": "Enhancement Agent"
+    },
+    "301012": {
+      "text_": "Rare Enhancement Agent"
+    },
+    "302001": {
+      "text_": "Normal Nail"
+    },
+    "302002": {
+      "text_": "Sturdy Nail"
+    },
+    "302003": {
+      "text_": "Small Nut"
+    },
+    "302004": {
+      "text_": "Large Nut"
+    },
+    "302005": {
+      "text_": "Generic Bolt"
+    },
+    "302006": {
+      "text_": "Stainless Steel Bolt"
+    },
+    "302007": {
+      "text_": "Common Wax"
+    },
+    "302008": {
+      "text_": "Fine Wax"
+    },
+    "302009": {
+      "text_": "Standard Gear"
+    },
+    "302010": {
+      "text_": "Intricate Gear"
+    },
+    "302011": {
+      "text_": "Rusty Coil"
+    },
+    "302012": {
+      "text_": "Pristine Coil"
+    },
+    "302013": {
+      "text_": "Standard Machine Oil"
+    },
+    "302014": {
+      "text_": "Pure Machine Oil"
+    },
+    "302015": {
+      "text_": "Basic Wire"
+    },
+    "302016": {
+      "text_": "Stainless Steel Wire"
+    },
+    "302017": {
+      "text_": "Young Timber"
+    },
+    "302018": {
+      "text_": "Flawless Timber"
+    },
+    "302019": {
+      "text_": "White Cloth"
+    },
+    "302020": {
+      "text_": "Natural Cloth"
+    },
+    "302021": {
+      "text_": "Used Charcoal"
+    },
+    "302022": {
+      "text_": "Prized Charcoal"
+    },
+    "302023": {
+      "text_": "Broken Glass"
+    },
+    "302024": {
+      "text_": "Reinforced Glass"
+    },
+    "302101": {
+      "text_": "Small Hope"
+    },
+    "302102": {
+      "text_": "Large Hope"
+    },
+    "302103": {
+      "text_": "Firm Will"
+    },
+    "302104": {
+      "text_": "Robust Will"
+    },
+    "302105": {
+      "text_": "Faint Thought"
+    },
+    "302106": {
+      "text_": "Glimmering Thought"
+    },
+    "302107": {
+      "text_": "Hidden Ambition"
+    },
+    "302108": {
+      "text_": "Burning Ambition"
+    },
+    "302109": {
+      "text_": "Stone Spirit"
+    },
+    "302110": {
+      "text_": "Steel Spirit"
+    },
+    "302111": {
+      "text_": "Ordinary Heart"
+    },
+    "302112": {
+      "text_": "Elegant Heart"
+    },
+    "302113": {
+      "text_": "Supreme Adoration"
+    },
+    "311001": {
+      "text_": "Beginner's Handbook"
+    },
+    "311002": {
+      "text_": "Intermediate Handbook"
+    },
+    "311003": {
+      "text_": "Advanced Handbook"
+    },
+    "311004": {
+      "text_": "Peaceful Text: Praying Battler"
+    },
+    "311005": {
+      "text_": "Warfare Text: Divergent Battler"
+    },
+    "311006": {
+      "text_": "Peaceful Text: Isolated Scanner"
+    },
+    "311007": {
+      "text_": "Warfare Text: Divergent Scanner"
+    },
+    "311008": {
+      "text_": "Peaceful Text: Vengeful Attacker"
+    },
+    "311009": {
+      "text_": "Warfare Text: Divergent Attacker"
+    },
+    "311010": {
+      "text_": "Peaceful Text: Human Monster"
+    },
+    "311011": {
+      "text_": "Warfare Text: Mechanical Girl"
+    },
+    "311012": {
+      "text_": "Battle Text: Dissenting Girl"
+    },
+    "311013": {
+      "text_": "Warfare Text: Reborn Princess"
+    },
+    "311014": {
+      "text_": "Warfare Text: Abstract Girl"
+    },
+    "311015": {
+      "text_": "Warfare Text: Reborn Warlady"
+    },
+    "311016": {
+      "text_": "Peaceful Text: Dark Monster"
+    },
+    "311017": {
+      "text_": "Peaceful Text: Apex Traveler"
+    },
+    "311018": {
+      "text_": "Warfare Text: Patriotic Traveler"
+    },
+    "311019": {
+      "text_": "Battle Text: Dissenting Traveler"
+    },
+    "311020": {
+      "text_": "Warfare Text: Reborn Adventurer"
+    },
+    "311021": {
+      "text_": "Battle Text: Guardian Traveler"
+    },
+    "311022": {
+      "text_": "Peaceful Text: Departed Gunman"
+    },
+    "311023": {
+      "text_": "Warfare Text: Abstract Gunman"
+    },
+    "311024": {
+      "text_": "Battle Text: Dissenting Gunman"
+    },
+    "311025": {
+      "text_": "Warfare Text: Reborn Automaton"
+    },
+    "311026": {
+      "text_": "Battle Text: Guardian Gunman"
+    },
+    "311027": {
+      "text_": "Peaceful Text: Sickly Exile"
+    },
+    "311028": {
+      "text_": "Warfare Text: Mechanical Exile"
+    },
+    "311029": {
+      "text_": "Battle Text: Dissenting Exile"
+    },
+    "311030": {
+      "text_": "Warfare Text: Reborn Revolutionary"
+    },
+    "311031": {
+      "text_": "Warfare Text: Abstract Exile"
+    },
+    "311032": {
+      "text_": "Peaceful Text: Wounded Hunter"
+    },
+    "311033": {
+      "text_": "Warfare Text: Abstract Hunter"
+    },
+    "311034": {
+      "text_": "Battle Text: Dissenting Hunter"
+    },
+    "311035": {
+      "text_": "Warfare Text: Reborn Contractor"
+    },
+    "311036": {
+      "text_": "Battle Text: Guardian Hunter"
+    },
+    "311037": {
+      "text_": "Warfare Text: Bloody Hunter"
+    },
+    "311038": {
+      "text_": "Peaceful Text: Hidden Weapon"
+    },
+    "311039": {
+      "text_": "Peaceful Text: Stalwart Prisoner"
+    },
+    "311040": {
+      "text_": "Warfare Text: Abstract Prisoner"
+    },
+    "311041": {
+      "text_": "Battle Text: Dissenting Prisoner"
+    },
+    "311042": {
+      "text_": "Warfare Text: Reborn Convict"
+    },
+    "311043": {
+      "text_": "Peaceful Text: Distressed Captive"
+    },
+    "311044": {
+      "text_": "Warfare Text: Abstract Captive"
+    },
+    "311045": {
+      "text_": "Battle Text: Dissenting Captive"
+    },
+    "311046": {
+      "text_": "Warfare Text: Reborn Inmate"
+    },
+    "311047": {
+      "text_": "Peaceful Text: Spiteful Soldier"
+    },
+    "311048": {
+      "text_": "Warfare Text: Abstract Soldier"
+    },
+    "311049": {
+      "text_": "Battle Text: Dissenting Soldier"
+    },
+    "311050": {
+      "text_": "Warfare Text: Reborn Truant"
+    },
+    "311051": {
+      "text_": "Peaceful Text: Harmonious Captain"
+    },
+    "311052": {
+      "text_": "Warfare Text: Abstract Captain"
+    },
+    "311053": {
+      "text_": "Battle Text: Dissenting Captain"
+    },
+    "311054": {
+      "text_": "Warfare Text: Reborn Has-Been"
+    },
+    "311055": {
+      "text_": "Peaceful Text: Twilight Assassin"
+    },
+    "311056": {
+      "text_": "Warfare Text: Abstract Assassin"
+    },
+    "311057": {
+      "text_": "Battle Text: Dissenting Assassin"
+    },
+    "311058": {
+      "text_": "Warfare Text: Reborn Swordmaster"
+    },
+    "311059": {
+      "text_": "Warfare Text: Bloody Assassin"
+    },
+    "311060": {
+      "text_": "Peaceful Text: Soulful Lad"
+    },
+    "311061": {
+      "text_": "Warfare Text: Divergent Lad"
+    },
+    "311062": {
+      "text_": "Peaceful Text: Puzzling Oddity"
+    },
+    "311063": {
+      "text_": "Warfare Text: Divergent Oddity"
+    },
+    "311064": {
+      "text_": "Peaceful Text: The Aerie Warrior"
+    },
+    "311065": {
+      "text_": "Warfare Text: Divergent Warrior"
+    },
+    "311066": {
+      "text_": "Peaceful Text: The Girl of Light"
+    },
+    "311067": {
+      "text_": "Battle Text: Dissenting Weapon"
+    },
+    "311068": {
+      "text_": "Warfare Text: Abstract Weapon"
+    },
+    "311069": {
+      "text_": "Peaceful Text: Progenitor Sister"
+    },
+    "311070": {
+      "text_": "Warfare Text: Divergent Sister"
+    },
+    "311071": {
+      "text_": "Battle Text: Guardian Girl"
+    },
+    "311072": {
+      "text_": "Warfare Text: Abstract Traveler"
+    },
+    "311073": {
+      "text_": "Warfare Text: Fractured Prisoner"
+    },
+    "311074": {
+      "text_": "Warfare Text: Summer Exile"
+    },
+    "311076": {
+      "text_": "Warfare Text: Bloody Gunman"
+    },
+    "311078": {
+      "text_": "Warfare Text: Summer Assassin"
+    },
+    "311079": {
+      "text_": "Warfare Text: Intoner Assassin"
+    },
+    "311080": {
+      "text_": "Battle Text: Summer Traveler"
+    },
+    "311082": {
+      "text_": "Warfare Text: Abstract Monster"
+    },
+    "311083": {
+      "text_": "Warfare Text: Reborn Beast"
+    },
+    "311084": {
+      "text_": "Battle Text: Guardian Captive"
+    },
+    "311089": {
+      "text_": "Battle Text: Guardian Weapon"
+    },
+    "311092": {
+      "text_": "Warfare Text: Summer Girl"
+    },
+    "311093": {
+      "text_": "Warfare Text: Intoner Girl"
+    },
+    "311094": {
+      "text_": "Battle Text: Guardian Exile"
+    },
+    "311095": {
+      "text_": "Warfare Text: Mechanical Assassin"
+    },
+    "311096": {
+      "text_": "Warfare Text: Simulacrum Girl"
+    },
+    "311097": {
+      "text_": "Warfare Text: Mock Machine"
+    },
+    "312001": {
+      "text_": "Pearl"
+    },
+    "312002": {
+      "text_": "Natural Pearl"
+    },
+    "312003": {
+      "text_": "Black Pearl"
+    },
+    "312101": {
+      "text_": "Polycrystal of Thought"
+    },
+    "321001": {
+      "text_": "1H-Sword Crystal"
+    },
+    "321002": {
+      "text_": "2H-Sword Crystal"
+    },
+    "321003": {
+      "text_": "Spear Crystal"
+    },
+    "321004": {
+      "text_": "Fist Crystal"
+    },
+    "321005": {
+      "text_": "Staff Crystal"
+    },
+    "321006": {
+      "text_": "Gun Crystal"
+    },
+    "321007": {
+      "text_": "Ruby"
+    },
+    "321008": {
+      "text_": "Aquamarine"
+    },
+    "321009": {
+      "text_": "Emerald"
+    },
+    "321010": {
+      "text_": "Topaz"
+    },
+    "321011": {
+      "text_": "Tanzanite"
+    },
+    "321101": {
+      "text_": "Recalling Light: Rion"
+    },
+    "321102": {
+      "text_": "Recalling Light: Dimos"
+    },
+    "321103": {
+      "text_": "Recalling Light: Gayle"
+    },
+    "321104": {
+      "text_": "Recalling Light: Akeha"
+    },
+    "321105": {
+      "text_": "Recalling Light: Argo"
+    },
+    "321106": {
+      "text_": "Recalling Light: 063y"
+    },
+    "321107": {
+      "text_": "Recalling Light: F66x"
+    },
+    "321108": {
+      "text_": "Recalling Light: Lars"
+    },
+    "321109": {
+      "text_": "Recalling Light: Griff"
+    },
+    "321110": {
+      "text_": "Recalling Light: Noelle"
+    },
+    "321111": {
+      "text_": "Recalling Light: Fio"
+    },
+    "321112": {
+      "text_": "Recalling Light: Levania"
+    },
+    "322001": {
+      "text_": "Light of Memory"
+    },
+    "322002": {
+      "text_": "Zenith's Brilliance"
+    },
+    "330001": {
+      "text_": "Small Fish"
+    },
+    "330002": {
+      "text_": "Medium Fish"
+    },
+    "330003": {
+      "text_": "Large Fish"
+    },
+    "330004": {
+      "text_": "Massive Fish"
+    },
+    "330005": {
+      "text_": "Low-quality Ink"
+    },
+    "330006": {
+      "text_": "Medium-quality Ink"
+    },
+    "330007": {
+      "text_": "High-quality Ink"
+    },
+    "330008": {
+      "text_": "Superb-quality Ink"
+    },
+    "330009": {
+      "text_": "Small Battery"
+    },
+    "330010": {
+      "text_": "Medium Battery"
+    },
+    "330011": {
+      "text_": "Large Battery"
+    },
+    "330012": {
+      "text_": "XL Battery"
+    },
+    "330013": {
+      "text_": "Small Feather Duster"
+    },
+    "330014": {
+      "text_": "Medium Feather Duster"
+    },
+    "330015": {
+      "text_": "Large Feather Duster"
+    },
+    "330016": {
+      "text_": "XL Feather Duster"
+    },
+    "330017": {
+      "text_": "Small Meat Hunk"
+    },
+    "330018": {
+      "text_": "Medium Meat Hunk"
+    },
+    "330019": {
+      "text_": "Large Meat Hunk"
+    },
+    "330020": {
+      "text_": "Massive Meat Hunk"
+    },
+    "330021": {
+      "text_": "Small Circuit"
+    },
+    "330022": {
+      "text_": "Medium Circuit"
+    },
+    "330023": {
+      "text_": "Large Circuit"
+    },
+    "330024": {
+      "text_": "XL Circuit"
+    },
+    "311090": {
+      "text_": "Warfare Text: Celebratory Weapon"
+    },
+    "311088": {
+      "text_": "Warfare Text: Celebratory Captain"
+    },
+    "311075": {
+      "text_": "Warfare Text: Celebratory Hunter"
+    },
+    "311081": {
+      "text_": "Warfare Text: Celebratory Traveler"
+    },
+    "311091": {
+      "text_": "Warfare Text: Celebratory Girl"
+    }
+  },
+  "description": {
+    "100001": {
+      "text_": "A type of medicine used to enhance characters."
+    },
+    "100002": {
+      "text_": "A type of medicine used to enhance characters."
+    },
+    "100003": {
+      "text_": "A type of medicine used to enhance characters."
+    },
+    "100004": {
+      "text_": "A type of medicine used to enhance characters."
+    },
+    "100005": {
+      "text_": "A type of medicine used to enhance characters.\\nIt's especially effective on those proficient with 1H swords."
+    },
+    "100006": {
+      "text_": "A type of medicine used to enhance characters.\\nIt's especially effective on those proficient with 2H swords."
+    },
+    "100007": {
+      "text_": "A type of medicine used to enhance characters.\\nIt's especially effective on those proficient with spears."
+    },
+    "100008": {
+      "text_": "A type of medicine used to enhance characters.\\nIt's especially effective on those proficient with guns."
+    },
+    "100009": {
+      "text_": "A type of medicine used to enhance characters.\\nIt's especially effective on those proficient with fists."
+    },
+    "100010": {
+      "text_": "A type of medicine used to enhance characters.\\nIt's especially effective on those proficient with staves."
+    },
+    "200001": {
+      "text_": "A material used to enhance weapons."
+    },
+    "200002": {
+      "text_": "A material used to enhance weapons."
+    },
+    "200003": {
+      "text_": "A material used to enhance weapons."
+    },
+    "200004": {
+      "text_": "A material used to enhance weapons."
+    },
+    "200005": {
+      "text_": "A material used to enhance weapons.\\nIt's especially effective on 1H swords."
+    },
+    "200006": {
+      "text_": "A material used to enhance weapons.\\nIt's especially effective on 2H swords."
+    },
+    "200007": {
+      "text_": "A material used to enhance weapons.\\nIt's especially effective on spears."
+    },
+    "200008": {
+      "text_": "A material used to enhance weapons.\\nIt's especially effective on guns"
+    },
+    "200009": {
+      "text_": "A material used to enhance weapons.\\nIt's especially effective on fists."
+    },
+    "200010": {
+      "text_": "A material used to enhance weapons.\\nIt's especially effective on staves."
+    },
+    "300001": {
+      "text_": "A mineral used to enhance weapon and character skills."
+    },
+    "300002": {
+      "text_": "A mineral used to enhance weapon and character skills."
+    },
+    "300003": {
+      "text_": "A mineral used to enhance weapon and character skills."
+    },
+    "300004": {
+      "text_": "Sand used to enhance weapon and character skills."
+    },
+    "300005": {
+      "text_": "Sand used to enhance weapon and character skills."
+    },
+    "300006": {
+      "text_": "Sand used to enhance weapon and character skills."
+    },
+    "300007": {
+      "text_": "Dirt used to enhance weapon and character skills."
+    },
+    "300008": {
+      "text_": "Dirt used to enhance weapon and character skills."
+    },
+    "300009": {
+      "text_": "Dirt used to enhance weapon and character skills."
+    },
+    "300010": {
+      "text_": "Rock used to enhance weapon and character skills."
+    },
+    "300011": {
+      "text_": "Rock used to enhance weapon and character skills."
+    },
+    "300012": {
+      "text_": "Rock used to enhance weapon and character skills."
+    },
+    "300013": {
+      "text_": "Rock used to enhance weapon and character skills."
+    },
+    "300014": {
+      "text_": "Rock used to enhance weapon and character skills."
+    },
+    "300015": {
+      "text_": "Rock used to enhance weapon and character skills."
+    },
+    "300016": {
+      "text_": "Rock used to enhance weapon and character skills."
+    },
+    "300017": {
+      "text_": "Ore used to enhance weapon and character skills."
+    },
+    "300018": {
+      "text_": "Ore used to enhance weapon and character skills."
+    },
+    "300019": {
+      "text_": "Ore used to enhance weapon and character skills."
+    },
+    "300020": {
+      "text_": "Ore used to enhance weapon and character skills."
+    },
+    "300021": {
+      "text_": "Ore used to enhance weapon and character skills."
+    },
+    "300022": {
+      "text_": "Ore used to enhance weapon and character skills."
+    },
+    "300023": {
+      "text_": "An insignia used to enhance character skills."
+    },
+    "300024": {
+      "text_": "An insignia used to enhance weapon skills."
+    },
+    "300101": {
+      "text_": "A radiance used to enhance the skills of unique weapons."
+    },
+    "300102": {
+      "text_": "A radiance used to enhance the skills of unique weapons."
+    },
+    "300103": {
+      "text_": "A radiance used to enhance the skills of unique weapons."
+    },
+    "301001": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with 1H swords."
+    },
+    "301002": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with 1H swords."
+    },
+    "301003": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with 2H swords."
+    },
+    "301004": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with 2H swords."
+    },
+    "301005": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with spears."
+    },
+    "301006": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with spears."
+    },
+    "301007": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with fists."
+    },
+    "301008": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with fists."
+    },
+    "301009": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with staves."
+    },
+    "301010": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with staves."
+    },
+    "301011": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with guns."
+    },
+    "301012": {
+      "text_": "A material used to enhance character skills\\nfor those proficient with guns."
+    },
+    "302001": {
+      "text_": "A material used to enhance 1H sword skills."
+    },
+    "302002": {
+      "text_": "A material used to enhance 1H sword skills."
+    },
+    "302003": {
+      "text_": "A material used to enhance 2H sword skills."
+    },
+    "302004": {
+      "text_": "A material used to enhance 2H sword skills."
+    },
+    "302005": {
+      "text_": "A material used to enhance spear skills."
+    },
+    "302006": {
+      "text_": "A material used to enhance spear skills."
+    },
+    "302007": {
+      "text_": "A material used to enhance fist skills."
+    },
+    "302008": {
+      "text_": "A material used to enhance fist skills."
+    },
+    "302009": {
+      "text_": "A material used to enhance staff skills."
+    },
+    "302010": {
+      "text_": "A material used to enhance staff skills."
+    },
+    "302011": {
+      "text_": "A material used to enhance gun skills."
+    },
+    "302012": {
+      "text_": "A material used to enhance gun skills."
+    },
+    "302013": {
+      "text_": "A material used to enhance 1H sword skills."
+    },
+    "302014": {
+      "text_": "A material used to enhance 1H sword skills."
+    },
+    "302015": {
+      "text_": "A material used to enhance 2H sword skills."
+    },
+    "302016": {
+      "text_": "A material used to enhance 2H sword skills."
+    },
+    "302017": {
+      "text_": "A material used to enhance spear skills."
+    },
+    "302018": {
+      "text_": "A material used to enhance spear skills."
+    },
+    "302019": {
+      "text_": "A material used to enhance fist skills."
+    },
+    "302020": {
+      "text_": "A material used to enhance fist skills."
+    },
+    "302021": {
+      "text_": "A material used to enhance staff skills."
+    },
+    "302022": {
+      "text_": "A material used to enhance staff skills."
+    },
+    "302023": {
+      "text_": "A material used to enhance gun skills."
+    },
+    "302024": {
+      "text_": "A material used to enhance gun skills."
+    },
+    "302101": {
+      "text_": "A radiance used to enhance the skills of unique 1H swords."
+    },
+    "302102": {
+      "text_": "A radiance used to enhance the skills of unique 1H swords."
+    },
+    "302103": {
+      "text_": "A radiance used to enhance the skills of unique 2H swords."
+    },
+    "302104": {
+      "text_": "A radiance used to enhance the skills of unique 2H swords."
+    },
+    "302105": {
+      "text_": "A radiance used to enhance the skills of unique spears."
+    },
+    "302106": {
+      "text_": "A radiance used to enhance the skills of unique spears."
+    },
+    "302107": {
+      "text_": "A radiance used to enhance the skills of unique fists."
+    },
+    "302108": {
+      "text_": "A radiance used to enhance the skills of unique fists."
+    },
+    "302109": {
+      "text_": "A radiance used to enhance the skills of unique staves."
+    },
+    "302110": {
+      "text_": "A radiance used to enhance the skills of unique staves."
+    },
+    "302111": {
+      "text_": "A radiance used to enhance the skills of unique guns."
+    },
+    "302112": {
+      "text_": "A radiance used to enhance the skills of unique guns."
+    },
+    "302113": {
+      "text_": "A radiance used to enhance the skills of unique weapons."
+    },
+    "311001": {
+      "text_": "Writings that hasten character ascension."
+    },
+    "311002": {
+      "text_": "Writings that hasten character ascension."
+    },
+    "311003": {
+      "text_": "Writings that hasten character ascension."
+    },
+    "311004": {
+      "text_": "Writings that hasten ascension for 2B (Praying Battler)."
+    },
+    "311005": {
+      "text_": "Writings that hasten ascension for 2B (Divergent Battler)."
+    },
+    "311006": {
+      "text_": "Writings that hasten ascension for 9S (Isolated Scanner)."
+    },
+    "311007": {
+      "text_": "Writings that hasten ascension for 9S (Divergent Scanner)."
+    },
+    "311008": {
+      "text_": "Writings that hasten ascension for A2 (Vengeful Attacker)."
+    },
+    "311009": {
+      "text_": "Writings that hasten ascension for A2 (Divergent Attacker)."
+    },
+    "311010": {
+      "text_": "Writings that hasten ascension for Levania (Human Monster)."
+    },
+    "311011": {
+      "text_": "Writings that hasten ascension for Fio (Mechanical Girl)."
+    },
+    "311012": {
+      "text_": "Writings that hasten ascension for Fio (Dissenting Girl)."
+    },
+    "311013": {
+      "text_": "Writings that hasten ascension for Fio (Reborn Princess)."
+    },
+    "311014": {
+      "text_": "Writings that hasten ascension for Fio (Abstract Girl)."
+    },
+    "311015": {
+      "text_": "Writings that hasten ascension for Noelle (Reborn Warlady)."
+    },
+    "311016": {
+      "text_": "Writings that hasten ascension for Levania (Dark Monster)."
+    },
+    "311017": {
+      "text_": "Writings that hasten ascension for Argo (Apex Traveler)."
+    },
+    "311018": {
+      "text_": "Writings that hasten ascension for Argo (Patriotic Traveler)."
+    },
+    "311019": {
+      "text_": "Writings that hasten ascension for Argo (Dissenting Traveler)."
+    },
+    "311020": {
+      "text_": "Writings that hasten ascension for Argo (Reborn Adventurer)."
+    },
+    "311021": {
+      "text_": "Writings that hasten ascension for Argo (Guardian Traveler)."
+    },
+    "311022": {
+      "text_": "Writings that hasten ascension for Dimos (Departed Gunman)."
+    },
+    "311023": {
+      "text_": "Writings that hasten ascension for Dimos (Abstract Gunman)."
+    },
+    "311024": {
+      "text_": "Writings that hasten ascension for Dimos (Dissenting Gunman)."
+    },
+    "311025": {
+      "text_": "Writings that hasten ascension for Dimos (Reborn Machine-at-Arms)."
+    },
+    "311026": {
+      "text_": "Writings that hasten ascension for Dimos (Guardian Gunman)."
+    },
+    "311027": {
+      "text_": "Writings that hasten ascension for Rion (Sickly Exile)."
+    },
+    "311028": {
+      "text_": "Writings that hasten ascension for Rion (Mechanical Exile)."
+    },
+    "311029": {
+      "text_": "Writings that hasten ascension for Rion (Dissenting Exile)."
+    },
+    "311030": {
+      "text_": "Writings that hasten ascension for Rion (Reborn Revolutionary)."
+    },
+    "311031": {
+      "text_": "Writings that hasten ascension for Rion (Abstract Exile)."
+    },
+    "311032": {
+      "text_": "Writings that hasten ascension for Gayle (Wounded Hunter)."
+    },
+    "311033": {
+      "text_": "Writings that hasten ascension for Gayle (Metaphysical Hunter)."
+    },
+    "311034": {
+      "text_": "Writings that hasten ascension for Gayle (Dissenting Hunter)."
+    },
+    "311035": {
+      "text_": "Writings that hasten ascension for Gayle (Reborn Contractor)."
+    },
+    "311036": {
+      "text_": "Writings that hasten ascension for Gayle (Guardian Hunter)."
+    },
+    "311037": {
+      "text_": "Writings that hasten ascension for Gayle (Bloody Hunter)."
+    },
+    "311038": {
+      "text_": "Writings that hasten ascension for Noelle (Hidden Weapon)."
+    },
+    "311039": {
+      "text_": "Writings that hasten ascension for 063y-RV12.08 (Stalwart Prisoner)."
+    },
+    "311040": {
+      "text_": "Writings that hasten ascension for 063y-RV12.08 (Abstract Prisoner)."
+    },
+    "311041": {
+      "text_": "Writings that hasten ascension for 063y-RV12.08 (Dissenting Prisoner)."
+    },
+    "311042": {
+      "text_": "Writings that hasten ascension for 063y-RV12.08 (Reborn Convict)."
+    },
+    "311043": {
+      "text_": "Writings that hasten ascension for F66x-RV12.02 (Distressed Captive)."
+    },
+    "311044": {
+      "text_": "Writings that hasten ascension for F66x-RV12.02 (Abstract Captive)."
+    },
+    "311045": {
+      "text_": "Writings that hasten ascension for F66x-RV12.02 (Dissenting Captive)."
+    },
+    "311046": {
+      "text_": "Writings that hasten ascension for F66x-RV12.02 (Reborn Inmate)."
+    },
+    "311047": {
+      "text_": "Writings that hasten ascension for Lars (Spiteful Soldier)."
+    },
+    "311048": {
+      "text_": "Writings that hasten ascension for Lars (Abstract Soldier)."
+    },
+    "311049": {
+      "text_": "Writings that hasten ascension for Lars (Dissenting Soldier)."
+    },
+    "311050": {
+      "text_": "Writings that hasten ascension for Lars (Reborn Truant)."
+    },
+    "311051": {
+      "text_": "Writings that hasten ascension for Griff (Harmonious Captain)."
+    },
+    "311052": {
+      "text_": "Writings that hasten ascension for Griff (Abstract Captain)."
+    },
+    "311053": {
+      "text_": "Writings that hasten ascension for Griff (Dissenting Captain)."
+    },
+    "311054": {
+      "text_": "Writings that hasten ascension for Griff (Reborn Has-Been)."
+    },
+    "311055": {
+      "text_": "Writings that hasten ascension for Akeha (Twilight Assassin)."
+    },
+    "311056": {
+      "text_": "Writings that hasten ascension for Akeha (Abstract Assassin)."
+    },
+    "311057": {
+      "text_": "Writings that hasten ascension for Akeha (Dissenting Assassin)."
+    },
+    "311058": {
+      "text_": "Writings that hasten ascension for Akeha (Reborn Swordmaster)."
+    },
+    "311059": {
+      "text_": "Writings that hasten ascension for Akeha (Bloody Assassin)."
+    },
+    "311060": {
+      "text_": "Writings that hasten ascension for The World-Ender (Soulful Lad)."
+    },
+    "311061": {
+      "text_": "Writings that hasten ascension for The World-Ender (Divergent Lad)."
+    },
+    "311062": {
+      "text_": "Writings that hasten ascension for Emil (Puzzling Oddity)."
+    },
+    "311063": {
+      "text_": "Writings that hasten ascension for Emil (Divergent Oddity)."
+    },
+    "311064": {
+      "text_": "Writings that hasten ascension for Kainé (The Aerie Warrior)."
+    },
+    "311065": {
+      "text_": "Writings that hasten ascension for Kainé (Divergent Warrior)."
+    },
+    "311066": {
+      "text_": "Writings that hasten ascension for Fio (The Girl of Light)."
+    },
+    "311067": {
+      "text_": "Writings that hasten ascension for Noelle (Dissenting Weapon)."
+    },
+    "311068": {
+      "text_": "Writings that hasten ascension for Noelle (Abstract Weapon)."
+    },
+    "311069": {
+      "text_": "Writings that hasten ascension for Zero (Progenitor Sister)."
+    },
+    "311070": {
+      "text_": "Writings that hasten ascension for Zero (Divergent Sister)."
+    },
+    "311071": {
+      "text_": "Writings that hasten ascension for Fio (Guardian Girl)."
+    },
+    "311072": {
+      "text_": "Writings that hasten ascension for Argo (Abstract Traveler)."
+    },
+    "311073": {
+      "text_": "Writings that hasten ascension for 063y (Fractured Prisoner)."
+    },
+    "311074": {
+      "text_": "Writings that hasten ascension for Rion (Summer Exile)."
+    },
+    "311078": {
+      "text_": "Writings that hasten ascension for Akeha (Summer Assassin)."
+    },
+    "311079": {
+      "text_": "Writings that hasten ascension for Akeha (Intoner Assassin)."
+    },
+    "311080": {
+      "text_": "Writings that hasten ascension for Argo (Summer Traveler)."
+    },
+    "311084": {
+      "text_": "Writings that hasten ascension for F66x (Guardian Captive)."
+    },
+    "311092": {
+      "text_": "Writings that hasten ascension for Fio (Summer Girl)."
+    },
+    "311093": {
+      "text_": "Writings that hasten ascension for Fio (Intoner Girl)."
+    },
+    "311094": {
+      "text_": "Writings that hasten ascension for Rion (Guardian Exile)."
+    },
+    "311095": {
+      "text_": "Writings that hasten ascension for Akeha (Mechanical Assassin)."
+    },
+    "311096": {
+      "text_": "Writings that hasten ascension for Fio (Simulacrum Girl)."
+    },
+    "311097": {
+      "text_": "Writings that hasten ascension for 2P (Mock Machine)."
+    },
+    "312001": {
+      "text_": "A shiny bauble that hastens weapon ascension."
+    },
+    "312002": {
+      "text_": "A shiny bauble that hastens weapon ascension."
+    },
+    "312003": {
+      "text_": "A shiny bauble that hastens weapon ascension."
+    },
+    "312101": {
+      "text_": "A crystal that hastens ascension for unique weapons."
+    },
+    "321001": {
+      "text_": "A material used to evolve 1H swords."
+    },
+    "321002": {
+      "text_": "A material used to evolve 2H swords."
+    },
+    "321003": {
+      "text_": "A material used to evolve spears."
+    },
+    "321004": {
+      "text_": "A material used to evolve fists."
+    },
+    "321005": {
+      "text_": "A material used to evolve staves."
+    },
+    "321006": {
+      "text_": "A material used to evolve guns."
+    },
+    "321007": {
+      "text_": "A material used to evolve fire-affinity weapons."
+    },
+    "321008": {
+      "text_": "A material used to evolve water-affinity weapons."
+    },
+    "321009": {
+      "text_": "A material used to evolve wind-affinity weapons."
+    },
+    "321010": {
+      "text_": "A material used to evolve light-affinity weapons."
+    },
+    "321011": {
+      "text_": "A material used to evolve dark-affinity weapons."
+    },
+    "321101": {
+      "text_": "A light used to evolve Rion's unique staff."
+    },
+    "321102": {
+      "text_": "A light used to evolve Dimos's unique gun."
+    },
+    "321103": {
+      "text_": "A light used to evolve Gayle's unique 1H sword."
+    },
+    "321104": {
+      "text_": "A light used to evolve Akeha's unique 2H sword."
+    },
+    "321105": {
+      "text_": "A light used to evolve Argo's unique spear."
+    },
+    "321106": {
+      "text_": "A light used to evolve 063y's unique 2H sword."
+    },
+    "321107": {
+      "text_": "A light used to evolve F66x's unique staff."
+    },
+    "321108": {
+      "text_": "A light used to evolve Lars's unique 1H sword."
+    },
+    "321109": {
+      "text_": "A light used to evolve Griff's unique gun."
+    },
+    "321110": {
+      "text_": "A light used to evolve Noelle's unique spear."
+    },
+    "321111": {
+      "text_": "A light used to evolve Fio's unique fists."
+    },
+    "321112": {
+      "text_": "A light used to evolve Levania's unique fists."
+    },
+    "322001": {
+      "text_": "A light used to evolve unique weapons."
+    },
+    "322002": {
+      "text_": "A rare light used to evolve unique weapons."
+    },
+    "330001": {
+      "text_": "A material used to enhance bears."
+    },
+    "330002": {
+      "text_": "A material used to enhance bears."
+    },
+    "330003": {
+      "text_": "A material used to enhance bears."
+    },
+    "330004": {
+      "text_": "A material used to enhance bears."
+    },
+    "330005": {
+      "text_": "A material used to enhance tomes."
+    },
+    "330006": {
+      "text_": "A material used to enhance tomes."
+    },
+    "330007": {
+      "text_": "A material used to enhance tomes."
+    },
+    "330008": {
+      "text_": "A material used to enhance tomes."
+    },
+    "330009": {
+      "text_": "A material used to enhance dolls."
+    },
+    "330010": {
+      "text_": "A material used to enhance dolls."
+    },
+    "330011": {
+      "text_": "A material used to enhance dolls."
+    },
+    "330012": {
+      "text_": "A material used to enhance dolls."
+    },
+    "330013": {
+      "text_": "A material used to enhance spirits."
+    },
+    "330014": {
+      "text_": "A material used to enhance spirits."
+    },
+    "330015": {
+      "text_": "A material used to enhance spirits."
+    },
+    "330016": {
+      "text_": "A material used to enhance spirits."
+    },
+    "330017": {
+      "text_": "A material used to enhance dragons."
+    },
+    "330018": {
+      "text_": "A material used to enhance dragons."
+    },
+    "330019": {
+      "text_": "A material used to enhance dragons."
+    },
+    "330020": {
+      "text_": "A material used to enhance dragons."
+    },
+    "330021": {
+      "text_": "A material used to enhance mechs."
+    },
+    "330022": {
+      "text_": "A material used to enhance mechs."
+    },
+    "330023": {
+      "text_": "A material used to enhance mechs."
+    },
+    "330024": {
+      "text_": "A material used to enhance mechs."
+    },
+    "311090": {
+      "text_": "Writings that hasten ascension for Noelle (Celebratory Weapon)."
+    },
+    "311088": {
+      "text_": "Writings that hasten ascension for Griff (Celebratory Captain)."
+    },
+    "311075": {
+      "text_": "Writings that hasten ascension for Gayle (Celebratory Hunter)."
+    },
+    "311081": {
+      "text_": "Writings that hasten ascension for Argo (Celebratory Traveler)."
+    },
+    "311091": {
+      "text_": "Writings that hasten ascension for Fio (Celebratory Girl)."
+    }
+  }
+}

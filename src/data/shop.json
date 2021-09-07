@@ -1,0 +1,3655 @@
+{
+  "name": {
+    "101": {
+      "text_": "Gems"
+    },
+    "102": {
+      "text_": "Pack"
+    },
+    "103": {
+      "text_": "Gold Shop"
+    },
+    "104": {
+      "text_": "Item Shop"
+    },
+    "105": {
+      "text_": "Gems"
+    },
+    "106": {
+      "text_": "Packs"
+    },
+    "107": {
+      "text_": "Premium Packs"
+    },
+    "108": {
+      "text_": "Missions"
+    },
+    "109": {
+      "text_": "Limited-Time Pack"
+    },
+    "111": {
+      "text_": "Medals"
+    },
+    "112": {
+      "text_": "Rare Medals"
+    },
+    "113": {
+      "text_": "Arena Coins"
+    },
+    "114": {
+      "text_": "Automata Medals"
+    },
+    "115": {
+      "text_": "Dark Coins"
+    },
+    "116": {
+      "text_": "Den of Madness Medals"
+    },
+    "117": {
+      "text_": "Replicant Medals"
+    },
+    "118": {
+      "text_": "Valley of Light Medals"
+    },
+    "119": {
+      "text_": "City of Discontent Medals"
+    },
+    "120": {
+      "text_": "Dragon Medals"
+    },
+    "121": {
+      "text_": "Stamina"
+    },
+    "122": {
+      "text_": "BP"
+    },
+    "123": {
+      "text_": "Seat of Shadow Medals"
+    },
+    "124": {
+      "text_": "Coffin of Repose Medals"
+    },
+    "125": {
+      "text_": "Mama Medals"
+    },
+    "126": {
+      "text_": "48-Hour Pack"
+    },
+    "127": {
+      "text_": "Sunset Port Medals"
+    },
+    "128": {
+      "text_": "Automata Medals"
+    },
+    "201": {
+      "text_": "Bookmarks"
+    },
+    "300": {
+      "text_": "Shards (Sunset Swimwear)"
+    },
+    "301": {
+      "text_": "Shards (Automata Crossover)"
+    },
+    "701": {
+      "text_": "1-2021-07 Term Mama Medals"
+    },
+    "702": {
+      "text_": "1-2021-08 Term Mama Medals"
+    },
+    "602101": {
+      "text_": "-"
+    },
+    "131": {
+      "text_": "Garden of Benediction Medals"
+    },
+    "305": {
+      "text_": "Shard (Half-Year Anniversary)"
+    },
+    "703": {
+      "text_": "1-2021-09 Term Mama Medals"
+    },
+    "98001": {
+      "text_": "Shard (Abstract Captain)"
+    },
+    "98002": {
+      "text_": "Shard (Fractured Prisoner)"
+    }
+  },
+  "item": {
+    "name": {
+      "10101": {
+        "text_": "★★★★ Premium Summons Ticket"
+      },
+      "10102": {
+        "text_": "★★★+ Premium Summons Ticket"
+      },
+      "10103": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "10104": {
+        "text_": "Premium Summon Ticket"
+      },
+      "10105": {
+        "text_": "XL Character Enhancement"
+      },
+      "10106": {
+        "text_": "Small Stamina Recovery"
+      },
+      "10107": {
+        "text_": "Gold"
+      },
+      "10201": {
+        "text_": "★★★★ Premium Summons Ticket"
+      },
+      "10202": {
+        "text_": "★★★+ Premium Summons Ticket"
+      },
+      "10203": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "10204": {
+        "text_": "Premium Summon Ticket"
+      },
+      "10205": {
+        "text_": "XL Character Enhancement"
+      },
+      "10206": {
+        "text_": "Small Stamina Recovery"
+      },
+      "10207": {
+        "text_": "Gold"
+      },
+      "160001": {
+        "text_": "NieR Day: Golden Week Pack A"
+      },
+      "160002": {
+        "text_": "NieR Day: Golden Week Pack B"
+      },
+      "160003": {
+        "text_": "NieR Day: Golden Week Pack C"
+      },
+      "160004": {
+        "text_": "NieR Day: Golden Week Pack D"
+      },
+      "600001": {
+        "text_": "Virtuous Treaty"
+      },
+      "600002": {
+        "text_": "Virtuous Treaty"
+      },
+      "600003": {
+        "text_": "Virtuous Contract\\n(w/ Praying Battler)"
+      },
+      "600004": {
+        "text_": "Virtuous Contract"
+      },
+      "600005": {
+        "text_": "Cruel Oath\\n(w/ Peerless Scanner)"
+      },
+      "600006": {
+        "text_": "Cruel Oath"
+      },
+      "600007": {
+        "text_": "Type-4O Blade\\n(w/ Vengeful Attacker)"
+      },
+      "600008": {
+        "text_": "Type-4O Blade"
+      },
+      "600009": {
+        "text_": "Peaceful Text: Praying Battler"
+      },
+      "600010": {
+        "text_": "Peaceful Text: Isolated Scanner"
+      },
+      "600011": {
+        "text_": "Peaceful Text: Vengeful Attacker"
+      },
+      "600012": {
+        "text_": "Beginner's Handbook"
+      },
+      "600013": {
+        "text_": "Intermediate Handbook"
+      },
+      "600014": {
+        "text_": "Insignia of Skill"
+      },
+      "600015": {
+        "text_": "Pearl"
+      },
+      "600016": {
+        "text_": "Natural Pearl"
+      },
+      "600017": {
+        "text_": "Insignia of Quality"
+      },
+      "600018": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "600019": {
+        "text_": "Angrite"
+      },
+      "600020": {
+        "text_": "Moldavite"
+      },
+      "600021": {
+        "text_": "Aubrite"
+      },
+      "600022": {
+        "text_": "Chondrite"
+      },
+      "600023": {
+        "text_": "Eucrite"
+      },
+      "600024": {
+        "text_": "Merlinite"
+      },
+      "600025": {
+        "text_": "Gem x10"
+      },
+      "600026": {
+        "text_": "Gold Coin"
+      },
+      "600027": {
+        "text_": "2H-Sword Crystal"
+      },
+      "600028": {
+        "text_": "1H-Sword Crystal"
+      },
+      "600029": {
+        "text_": "Topaz"
+      },
+      "600030": {
+        "text_": "Tanzanite"
+      },
+      "600031": {
+        "text_": "Premium Summon Ticket"
+      },
+      "600032": {
+        "text_": "Potent Curing Agent"
+      },
+      "600033": {
+        "text_": "Secret Growth Agent"
+      },
+      "600034": {
+        "text_": "Stainless Steel Wire"
+      },
+      "600035": {
+        "text_": "Sturdy Nail"
+      },
+      "600036": {
+        "text_": "Large Nut"
+      },
+      "600037": {
+        "text_": "Pure Machine Oil"
+      },
+      "600038": {
+        "text_": "Rhyolite"
+      },
+      "600039": {
+        "text_": "Granite"
+      },
+      "600040": {
+        "text_": "Amphibolite"
+      },
+      "600041": {
+        "text_": "Tuff"
+      },
+      "600042": {
+        "text_": "Basalt"
+      },
+      "600043": {
+        "text_": "Diorite"
+      },
+      "600044": {
+        "text_": "Gneiss"
+      },
+      "600045": {
+        "text_": "Silver Coin"
+      },
+      "600046": {
+        "text_": "Gold Automata Medal"
+      },
+      "600047": {
+        "text_": "Curing Agent"
+      },
+      "600048": {
+        "text_": "Growth Agent"
+      },
+      "600049": {
+        "text_": "Basic Wire"
+      },
+      "600050": {
+        "text_": "Normal Nail"
+      },
+      "600051": {
+        "text_": "Small Nut"
+      },
+      "600052": {
+        "text_": "Standard Machine Oil"
+      },
+      "600053": {
+        "text_": "Nepheline"
+      },
+      "600054": {
+        "text_": "Zeolite"
+      },
+      "600055": {
+        "text_": "Rattlestone"
+      },
+      "600056": {
+        "text_": "Quartz Sand"
+      },
+      "600057": {
+        "text_": "Yellow Sand"
+      },
+      "600058": {
+        "text_": "White Sand"
+      },
+      "600059": {
+        "text_": "Red Earth"
+      },
+      "600060": {
+        "text_": "White Earth"
+      },
+      "600061": {
+        "text_": "Black Earth"
+      },
+      "600062": {
+        "text_": "Bronze Coin"
+      },
+      "600063": {
+        "text_": "Silver Automata Medal"
+      },
+      "600064": {
+        "text_": "Large Character Enhancement"
+      },
+      "600065": {
+        "text_": "XL Character Enhancement"
+      },
+      "600201": {
+        "text_": "Serene Handgun (w/ Guardian Gunman)"
+      },
+      "600202": {
+        "text_": "Serene Handgun"
+      },
+      "600203": {
+        "text_": "Battle Text: Guardian Gunman"
+      },
+      "600204": {
+        "text_": "Premium Summon Ticket"
+      },
+      "600205": {
+        "text_": "Intermediate Handbook"
+      },
+      "600206": {
+        "text_": "Beginner's Handbook"
+      },
+      "600207": {
+        "text_": "Natural Pearl"
+      },
+      "600208": {
+        "text_": "Pearl"
+      },
+      "600209": {
+        "text_": "Insignia of Skill"
+      },
+      "600210": {
+        "text_": "Insignia of Quality"
+      },
+      "600211": {
+        "text_": "Large Character Enhancement"
+      },
+      "600212": {
+        "text_": "XL Character Enhancement"
+      },
+      "600213": {
+        "text_": "Small Stamina Recovery"
+      },
+      "600214": {
+        "text_": "Explorer's Ticket"
+      },
+      "600215": {
+        "text_": "Tanzanite"
+      },
+      "600216": {
+        "text_": "Rare Enhancement Agent"
+      },
+      "600217": {
+        "text_": "Pristine Coil"
+      },
+      "600218": {
+        "text_": "Reinforced Glass"
+      },
+      "600219": {
+        "text_": "Enhancement Agent"
+      },
+      "600220": {
+        "text_": "Rusty Coil"
+      },
+      "600221": {
+        "text_": "Broken Glass"
+      },
+      "600222": {
+        "text_": "Angrite"
+      },
+      "600223": {
+        "text_": "Moldavite"
+      },
+      "600224": {
+        "text_": "Aubrite"
+      },
+      "600225": {
+        "text_": "Chondrite"
+      },
+      "600226": {
+        "text_": "Eucrite"
+      },
+      "600227": {
+        "text_": "Merlinite"
+      },
+      "600228": {
+        "text_": "Rhyolite"
+      },
+      "600229": {
+        "text_": "Granite"
+      },
+      "600230": {
+        "text_": "Amphibolite"
+      },
+      "600231": {
+        "text_": "Tuff"
+      },
+      "600232": {
+        "text_": "Basalt"
+      },
+      "600233": {
+        "text_": "Diorite"
+      },
+      "600234": {
+        "text_": "Gneiss"
+      },
+      "600235": {
+        "text_": "Small Feather Duster"
+      },
+      "600236": {
+        "text_": "Medium Feather Duster"
+      },
+      "600237": {
+        "text_": "Large Feather Duster"
+      },
+      "600238": {
+        "text_": "Gold Coin"
+      },
+      "600239": {
+        "text_": "Silver Coin"
+      },
+      "600240": {
+        "text_": "Bronze Coin"
+      },
+      "600301": {
+        "text_": "Zero's Blade (w/ Progenitor Sister)"
+      },
+      "600302": {
+        "text_": "Zero's Blade"
+      },
+      "600303": {
+        "text_": "Peaceful Text: Progenitor Sister"
+      },
+      "600304": {
+        "text_": "Dragon: Mikhail"
+      },
+      "600305": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "600306": {
+        "text_": "Premium Summon Ticket"
+      },
+      "600307": {
+        "text_": "Black Pearl"
+      },
+      "600308": {
+        "text_": "Gems"
+      },
+      "600309": {
+        "text_": "Explorer's Ticket"
+      },
+      "600310": {
+        "text_": "XL Character Enhancement"
+      },
+      "600311": {
+        "text_": "XL Weapon Enhancement"
+      },
+      "600312": {
+        "text_": "Ruby"
+      },
+      "600313": {
+        "text_": "Ruby"
+      },
+      "600314": {
+        "text_": "Aquamarine"
+      },
+      "600315": {
+        "text_": "Aquamarine"
+      },
+      "600316": {
+        "text_": "Emerald"
+      },
+      "600317": {
+        "text_": "Emerald"
+      },
+      "600318": {
+        "text_": "Topaz"
+      },
+      "600319": {
+        "text_": "Topaz"
+      },
+      "600320": {
+        "text_": "Tanzanite"
+      },
+      "600321": {
+        "text_": "Tanzanite"
+      },
+      "600322": {
+        "text_": "Insignia of Skill"
+      },
+      "600323": {
+        "text_": "Insignia of Quality"
+      },
+      "600324": {
+        "text_": "Intermediate Handbook"
+      },
+      "600325": {
+        "text_": "Natural Pearl"
+      },
+      "600326": {
+        "text_": "Large Character Enhancement"
+      },
+      "600327": {
+        "text_": "Large Weapon Enhancement"
+      },
+      "600328": {
+        "text_": "Beginner's Handbook"
+      },
+      "600329": {
+        "text_": "Pearl"
+      },
+      "600330": {
+        "text_": "Growth Agent"
+      },
+      "600331": {
+        "text_": "Curing Agent"
+      },
+      "600332": {
+        "text_": "Elongator"
+      },
+      "600333": {
+        "text_": "Active Agent"
+      },
+      "600334": {
+        "text_": "Refining Agent"
+      },
+      "600335": {
+        "text_": "Enhancement Agent"
+      },
+      "600336": {
+        "text_": "Secret Growth Agent"
+      },
+      "600337": {
+        "text_": "Potent Curing Agent"
+      },
+      "600338": {
+        "text_": "High-quality Elongator"
+      },
+      "600339": {
+        "text_": "Superior Active Agent"
+      },
+      "600340": {
+        "text_": "Valuable Refining Agent"
+      },
+      "600341": {
+        "text_": "Rare Enhancement Agent"
+      },
+      "600342": {
+        "text_": "Normal Nail"
+      },
+      "600343": {
+        "text_": "Standard Machine Oil"
+      },
+      "600344": {
+        "text_": "Basic Wire"
+      },
+      "600345": {
+        "text_": "Small Nut"
+      },
+      "600346": {
+        "text_": "Generic Bolt"
+      },
+      "600347": {
+        "text_": "Young Timber"
+      },
+      "600348": {
+        "text_": "Common Wax"
+      },
+      "600349": {
+        "text_": "White Cloth"
+      },
+      "600350": {
+        "text_": "Standard Gear"
+      },
+      "600351": {
+        "text_": "Used Charcoal"
+      },
+      "600352": {
+        "text_": "Rusty Coil"
+      },
+      "600353": {
+        "text_": "Broken Glass"
+      },
+      "600354": {
+        "text_": "Sturdy Nail"
+      },
+      "600355": {
+        "text_": "Pure Machine Oil"
+      },
+      "600356": {
+        "text_": "Stainless Steel Wire"
+      },
+      "600357": {
+        "text_": "Large Nut"
+      },
+      "600358": {
+        "text_": "Stainless Steel Bolt"
+      },
+      "600359": {
+        "text_": "Flawless Timber"
+      },
+      "600360": {
+        "text_": "Fine Wax"
+      },
+      "600361": {
+        "text_": "Natural Cloth"
+      },
+      "600362": {
+        "text_": "Intricate Gear"
+      },
+      "600363": {
+        "text_": "Prized Charcoal"
+      },
+      "600364": {
+        "text_": "Pristine Coil"
+      },
+      "600365": {
+        "text_": "Reinforced Glass"
+      },
+      "600366": {
+        "text_": "Rhyolite"
+      },
+      "600367": {
+        "text_": "Granite"
+      },
+      "600368": {
+        "text_": "Amphibolite"
+      },
+      "600369": {
+        "text_": "Tuff"
+      },
+      "600370": {
+        "text_": "Basalt"
+      },
+      "600371": {
+        "text_": "Diorite"
+      },
+      "600372": {
+        "text_": "Gneiss"
+      },
+      "600373": {
+        "text_": "Angrite"
+      },
+      "600374": {
+        "text_": "Moldavite"
+      },
+      "600375": {
+        "text_": "Aubrite"
+      },
+      "600376": {
+        "text_": "Chondrite"
+      },
+      "600377": {
+        "text_": "Eucrite"
+      },
+      "600378": {
+        "text_": "Merlinite"
+      },
+      "600379": {
+        "text_": "Gold Coin"
+      },
+      "600380": {
+        "text_": "Silver Coin"
+      },
+      "600381": {
+        "text_": "Bronze Coin"
+      },
+      "600401": {
+        "text_": "Hexer's Staff (w/ Guardian Exile)"
+      },
+      "600402": {
+        "text_": "Hexer's Staff"
+      },
+      "600403": {
+        "text_": "Battle Text: Guardian Exile"
+      },
+      "600404": {
+        "text_": "Premium Summon Ticket"
+      },
+      "600405": {
+        "text_": "Mama Medal"
+      },
+      "600406": {
+        "text_": "Explorer's Ticket"
+      },
+      "600407": {
+        "text_": "Ruby"
+      },
+      "600408": {
+        "text_": "Insignia of Skill"
+      },
+      "600409": {
+        "text_": "Insignia of Quality"
+      },
+      "600410": {
+        "text_": "Intermediate Handbook"
+      },
+      "600411": {
+        "text_": "Beginner's Handbook"
+      },
+      "600412": {
+        "text_": "Natural Pearl"
+      },
+      "600413": {
+        "text_": "Pearl"
+      },
+      "600414": {
+        "text_": "XL Character Enhancement"
+      },
+      "600415": {
+        "text_": "Large Character Enhancement"
+      },
+      "600416": {
+        "text_": "Small Stamina Recovery"
+      },
+      "600417": {
+        "text_": "Large Circuit"
+      },
+      "600418": {
+        "text_": "Medium Circuit"
+      },
+      "600419": {
+        "text_": "Small Circuit"
+      },
+      "600420": {
+        "text_": "Valuable Refining Agent"
+      },
+      "600421": {
+        "text_": "Intricate Gear"
+      },
+      "600422": {
+        "text_": "Prized Charcoal"
+      },
+      "600423": {
+        "text_": "Refining Agent"
+      },
+      "600424": {
+        "text_": "Standard Gear"
+      },
+      "600425": {
+        "text_": "Used Charcoal"
+      },
+      "600426": {
+        "text_": "Angrite"
+      },
+      "600427": {
+        "text_": "Moldavite"
+      },
+      "600428": {
+        "text_": "Aubrite"
+      },
+      "600429": {
+        "text_": "Chondrite"
+      },
+      "600430": {
+        "text_": "Eucrite"
+      },
+      "600431": {
+        "text_": "Merlinite"
+      },
+      "600432": {
+        "text_": "Rhyolite"
+      },
+      "600433": {
+        "text_": "Granite"
+      },
+      "600434": {
+        "text_": "Amphibolite"
+      },
+      "600435": {
+        "text_": "Tuff"
+      },
+      "600436": {
+        "text_": "Basalt"
+      },
+      "600437": {
+        "text_": "Diorite"
+      },
+      "600438": {
+        "text_": "Gneiss"
+      },
+      "600439": {
+        "text_": "Gold Coin"
+      },
+      "600440": {
+        "text_": "Silver Coin"
+      },
+      "600441": {
+        "text_": "Bronze Coin"
+      },
+      "600501": {
+        "text_": "Baton of Tender Rain (w/ Guardian Captive)"
+      },
+      "600502": {
+        "text_": "Baton of Tender Rain"
+      },
+      "600503": {
+        "text_": "Battle Text: Guardian Captive"
+      },
+      "600504": {
+        "text_": "Premium Summon Ticket"
+      },
+      "600505": {
+        "text_": "Explorer's Ticket"
+      },
+      "600506": {
+        "text_": "Emerald"
+      },
+      "600507": {
+        "text_": "Insignia of Skill"
+      },
+      "600508": {
+        "text_": "Insignia of Quality"
+      },
+      "600509": {
+        "text_": "Intermediate Handbook"
+      },
+      "600510": {
+        "text_": "Beginner's Handbook"
+      },
+      "600511": {
+        "text_": "Natural Pearl"
+      },
+      "600512": {
+        "text_": "Pearl"
+      },
+      "600513": {
+        "text_": "XL Character Enhancement"
+      },
+      "600514": {
+        "text_": "Large Character Enhancement"
+      },
+      "600515": {
+        "text_": "Small Stamina Recovery"
+      },
+      "600516": {
+        "text_": "High-quality Ink"
+      },
+      "600517": {
+        "text_": "Medium-quality Ink"
+      },
+      "600518": {
+        "text_": "Low-quality Ink"
+      },
+      "600519": {
+        "text_": "Valuable Refining Agent"
+      },
+      "600520": {
+        "text_": "Intricate Gear"
+      },
+      "600521": {
+        "text_": "Prized Charcoal"
+      },
+      "600522": {
+        "text_": "Refining Agent"
+      },
+      "600523": {
+        "text_": "Standard Gear"
+      },
+      "600524": {
+        "text_": "Used Charcoal"
+      },
+      "600525": {
+        "text_": "Angrite"
+      },
+      "600526": {
+        "text_": "Moldavite"
+      },
+      "600527": {
+        "text_": "Aubrite"
+      },
+      "600528": {
+        "text_": "Chondrite"
+      },
+      "600529": {
+        "text_": "Eucrite"
+      },
+      "600530": {
+        "text_": "Merlinite"
+      },
+      "600531": {
+        "text_": "Rhyolite"
+      },
+      "600532": {
+        "text_": "Granite"
+      },
+      "600533": {
+        "text_": "Amphibolite"
+      },
+      "600534": {
+        "text_": "Tuff"
+      },
+      "600535": {
+        "text_": "Basalt"
+      },
+      "600536": {
+        "text_": "Diorite"
+      },
+      "600537": {
+        "text_": "Gneiss"
+      },
+      "600538": {
+        "text_": "Gold Coin"
+      },
+      "600539": {
+        "text_": "Silver Coin"
+      },
+      "600540": {
+        "text_": "Bronze Coin"
+      },
+      "600601": {
+        "text_": "Javelin of Vice (w/ Summer Traveler)"
+      },
+      "600602": {
+        "text_": "Javelin of Vice"
+      },
+      "600603": {
+        "text_": "Battle Text: Summer Traveler"
+      },
+      "600604": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "600605": {
+        "text_": "Premium Summon Ticket"
+      },
+      "600606": {
+        "text_": "Black Pearl"
+      },
+      "600607": {
+        "text_": "Gems"
+      },
+      "600608": {
+        "text_": "1-2021-08 Term Mama Medal"
+      },
+      "600609": {
+        "text_": "Explorer's Ticket"
+      },
+      "600610": {
+        "text_": "XL Character Enhancement"
+      },
+      "600611": {
+        "text_": "XL Weapon Enhancement"
+      },
+      "600612": {
+        "text_": "Ruby"
+      },
+      "600613": {
+        "text_": "Ruby"
+      },
+      "600614": {
+        "text_": "Aquamarine"
+      },
+      "600615": {
+        "text_": "Aquamarine"
+      },
+      "600616": {
+        "text_": "Emerald"
+      },
+      "600617": {
+        "text_": "Emerald"
+      },
+      "600618": {
+        "text_": "Topaz"
+      },
+      "600619": {
+        "text_": "Topaz"
+      },
+      "600620": {
+        "text_": "Tanzanite"
+      },
+      "600621": {
+        "text_": "Tanzanite"
+      },
+      "600622": {
+        "text_": "Insignia of Skill"
+      },
+      "600623": {
+        "text_": "Insignia of Quality"
+      },
+      "600624": {
+        "text_": "Intermediate Handbook"
+      },
+      "600625": {
+        "text_": "Natural Pearl"
+      },
+      "600626": {
+        "text_": "Large Character Enhancement"
+      },
+      "600627": {
+        "text_": "Large Weapon Enhancement"
+      },
+      "600628": {
+        "text_": "Beginner's Handbook"
+      },
+      "600629": {
+        "text_": "Pearl"
+      },
+      "600630": {
+        "text_": "Growth Agent"
+      },
+      "600631": {
+        "text_": "Curing Agent"
+      },
+      "600632": {
+        "text_": "Elongator"
+      },
+      "600633": {
+        "text_": "Active Agent"
+      },
+      "600634": {
+        "text_": "Refining Agent"
+      },
+      "600635": {
+        "text_": "Enhancement Agent"
+      },
+      "600636": {
+        "text_": "Secret Growth Agent"
+      },
+      "600637": {
+        "text_": "Potent Curing Agent"
+      },
+      "600638": {
+        "text_": "High-quality Elongator"
+      },
+      "600639": {
+        "text_": "Superior Active Agent"
+      },
+      "600640": {
+        "text_": "Valuable Refining Agent"
+      },
+      "600641": {
+        "text_": "Rare Enhancement Agent"
+      },
+      "600642": {
+        "text_": "Normal Nail"
+      },
+      "600643": {
+        "text_": "Standard Machine Oil"
+      },
+      "600644": {
+        "text_": "Basic Wire"
+      },
+      "600645": {
+        "text_": "Small Nut"
+      },
+      "600646": {
+        "text_": "Generic Bolt"
+      },
+      "600647": {
+        "text_": "Young Timber"
+      },
+      "600648": {
+        "text_": "Common Wax"
+      },
+      "600649": {
+        "text_": "White Cloth"
+      },
+      "600650": {
+        "text_": "Standard Gear"
+      },
+      "600651": {
+        "text_": "Used Charcoal"
+      },
+      "600652": {
+        "text_": "Rusty Coil"
+      },
+      "600653": {
+        "text_": "Broken Glass"
+      },
+      "600654": {
+        "text_": "Sturdy Nail"
+      },
+      "600655": {
+        "text_": "Pure Machine Oil"
+      },
+      "600656": {
+        "text_": "Stainless Steel Wire"
+      },
+      "600657": {
+        "text_": "Large Nut"
+      },
+      "600658": {
+        "text_": "Stainless Steel Bolt"
+      },
+      "600659": {
+        "text_": "Flawless Timber"
+      },
+      "600660": {
+        "text_": "Fine Wax"
+      },
+      "600661": {
+        "text_": "Natural Cloth"
+      },
+      "600662": {
+        "text_": "Intricate Gear"
+      },
+      "600663": {
+        "text_": "Prized Charcoal"
+      },
+      "600664": {
+        "text_": "Pristine Coil"
+      },
+      "600665": {
+        "text_": "Reinforced Glass"
+      },
+      "600666": {
+        "text_": "Rhyolite"
+      },
+      "600667": {
+        "text_": "Granite"
+      },
+      "600668": {
+        "text_": "Amphibolite"
+      },
+      "600669": {
+        "text_": "Tuff"
+      },
+      "600670": {
+        "text_": "Basalt"
+      },
+      "600671": {
+        "text_": "Diorite"
+      },
+      "600672": {
+        "text_": "Gneiss"
+      },
+      "600673": {
+        "text_": "Angrite"
+      },
+      "600674": {
+        "text_": "Moldavite"
+      },
+      "600675": {
+        "text_": "Aubrite"
+      },
+      "600676": {
+        "text_": "Chondrite"
+      },
+      "600677": {
+        "text_": "Eucrite"
+      },
+      "600678": {
+        "text_": "Merlinite"
+      },
+      "600679": {
+        "text_": "Gold Coin"
+      },
+      "600680": {
+        "text_": "Silver Coin"
+      },
+      "600681": {
+        "text_": "Bronze Coin"
+      },
+      "600801": {
+        "text_": "Virtuous Contract (w/ Praying Battler)"
+      },
+      "600802": {
+        "text_": "Cruel Oath (w/ Isolated Scanner)"
+      },
+      "600803": {
+        "text_": "Type-4O Blade (w/ Vengeful Attacker)"
+      },
+      "600804": {
+        "text_": "Virtuous Contract"
+      },
+      "600805": {
+        "text_": "Cruel Oath"
+      },
+      "600806": {
+        "text_": "Type-4O Blade"
+      },
+      "600807": {
+        "text_": "Virtuous Treaty"
+      },
+      "600808": {
+        "text_": "Peaceful Text: Praying Battler"
+      },
+      "600809": {
+        "text_": "Peaceful Text: Isolated Scanner"
+      },
+      "600810": {
+        "text_": "Peaceful Text: Vengeful Attacker"
+      },
+      "600811": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "600812": {
+        "text_": "Black Pearl"
+      },
+      "600813": {
+        "text_": "1-2021-08 Term Mama Medal"
+      },
+      "600814": {
+        "text_": "Explorer's Ticket"
+      },
+      "600815": {
+        "text_": "XL Character Enhancement"
+      },
+      "600816": {
+        "text_": "Dex. Character Enhancement"
+      },
+      "600817": {
+        "text_": "Str. Character Enhancement"
+      },
+      "600818": {
+        "text_": "XL Weapon Enhancement"
+      },
+      "600819": {
+        "text_": "Light Weapon Enhancement"
+      },
+      "600820": {
+        "text_": "Heavy Weapon Enhancement"
+      },
+      "600821": {
+        "text_": "Ruby"
+      },
+      "600822": {
+        "text_": "Aquamarine"
+      },
+      "600823": {
+        "text_": "Emerald"
+      },
+      "600824": {
+        "text_": "Topaz"
+      },
+      "600825": {
+        "text_": "Tanzanite"
+      },
+      "600826": {
+        "text_": "Insignia of Skill"
+      },
+      "600827": {
+        "text_": "Insignia of Quality"
+      },
+      "600828": {
+        "text_": "Small Fish"
+      },
+      "600829": {
+        "text_": "Low-quality Ink"
+      },
+      "600830": {
+        "text_": "Small Battery"
+      },
+      "600831": {
+        "text_": "Small Feather Duster"
+      },
+      "600832": {
+        "text_": "Small Meat Hunk"
+      },
+      "600833": {
+        "text_": "Small Circuit"
+      },
+      "600834": {
+        "text_": "Intermediate Handbook"
+      },
+      "600835": {
+        "text_": "Natural Pearl"
+      },
+      "600836": {
+        "text_": "Large Character Enhancement"
+      },
+      "600837": {
+        "text_": "Large Weapon Enhancement"
+      },
+      "600838": {
+        "text_": "Beginner's Handbook"
+      },
+      "600839": {
+        "text_": "Pearl"
+      },
+      "600840": {
+        "text_": "Growth Agent"
+      },
+      "600841": {
+        "text_": "Curing Agent"
+      },
+      "600842": {
+        "text_": "Secret Growth Agent"
+      },
+      "600843": {
+        "text_": "Potent Curing Agent"
+      },
+      "600844": {
+        "text_": "Normal Nail"
+      },
+      "600845": {
+        "text_": "Standard Machine Oil"
+      },
+      "600846": {
+        "text_": "Basic Wire"
+      },
+      "600847": {
+        "text_": "Small Nut"
+      },
+      "600848": {
+        "text_": "Sturdy Nail"
+      },
+      "600849": {
+        "text_": "Pure Machine Oil"
+      },
+      "600850": {
+        "text_": "Stainless Steel Wire"
+      },
+      "600851": {
+        "text_": "Large Nut"
+      },
+      "600852": {
+        "text_": "Rhyolite"
+      },
+      "600853": {
+        "text_": "Granite"
+      },
+      "600854": {
+        "text_": "Amphibolite"
+      },
+      "600855": {
+        "text_": "Tuff"
+      },
+      "600856": {
+        "text_": "Basalt"
+      },
+      "600857": {
+        "text_": "Diorite"
+      },
+      "600858": {
+        "text_": "Gneiss"
+      },
+      "600859": {
+        "text_": "Angrite"
+      },
+      "600860": {
+        "text_": "Moldavite"
+      },
+      "600861": {
+        "text_": "Aubrite"
+      },
+      "600862": {
+        "text_": "Chondrite"
+      },
+      "600863": {
+        "text_": "Eucrite"
+      },
+      "600864": {
+        "text_": "Merlinite"
+      },
+      "600865": {
+        "text_": "Gold Coin"
+      },
+      "600866": {
+        "text_": "Silver Coin"
+      },
+      "600867": {
+        "text_": "Bronze Coin"
+      },
+      "602101": {
+        "text_": "Spear of Freezing Mist"
+      },
+      "602102": {
+        "text_": "Spear of Freezing Mist"
+      },
+      "602103": {
+        "text_": "Battle Text: Guardian Traveler"
+      },
+      "602104": {
+        "text_": "Beginner's Handbook"
+      },
+      "602105": {
+        "text_": "Intermediate Handbook"
+      },
+      "602106": {
+        "text_": "Insignia of Skill"
+      },
+      "602107": {
+        "text_": "Pearl"
+      },
+      "602108": {
+        "text_": "Natural Pearl"
+      },
+      "602109": {
+        "text_": "Insignia of Quality"
+      },
+      "602110": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "602111": {
+        "text_": "Angrite"
+      },
+      "602112": {
+        "text_": "Moldavite"
+      },
+      "602113": {
+        "text_": "Aubrite"
+      },
+      "602114": {
+        "text_": "Chondrite"
+      },
+      "602115": {
+        "text_": "Eucrite"
+      },
+      "602116": {
+        "text_": "Merlinite"
+      },
+      "602117": {
+        "text_": "Aquamarine"
+      },
+      "602118": {
+        "text_": "Premium Summon Ticket"
+      },
+      "602119": {
+        "text_": "High-quality Elongator"
+      },
+      "602120": {
+        "text_": "Stainless Steel Bolt"
+      },
+      "602121": {
+        "text_": "Flawless Timber"
+      },
+      "602122": {
+        "text_": "Rhyolite"
+      },
+      "602123": {
+        "text_": "Granite"
+      },
+      "602124": {
+        "text_": "Amphibolite"
+      },
+      "602125": {
+        "text_": "Tuff"
+      },
+      "602126": {
+        "text_": "Basalt"
+      },
+      "602127": {
+        "text_": "Diorite"
+      },
+      "602128": {
+        "text_": "Gneiss"
+      },
+      "602129": {
+        "text_": "Elongator"
+      },
+      "602130": {
+        "text_": "Generic Bolt"
+      },
+      "602131": {
+        "text_": "Young Timber"
+      },
+      "602132": {
+        "text_": "Nepheline"
+      },
+      "602133": {
+        "text_": "Zeolite"
+      },
+      "602134": {
+        "text_": "Rattlestone"
+      },
+      "602135": {
+        "text_": "Quartz Sand"
+      },
+      "602136": {
+        "text_": "Yellow Sand"
+      },
+      "602137": {
+        "text_": "White Sand"
+      },
+      "602138": {
+        "text_": "Red Earth"
+      },
+      "602139": {
+        "text_": "White Earth"
+      },
+      "602140": {
+        "text_": "Black Earth"
+      },
+      "602141": {
+        "text_": "Gem x10"
+      },
+      "602142": {
+        "text_": "Gold Coin"
+      },
+      "602143": {
+        "text_": "Silver Coin"
+      },
+      "602144": {
+        "text_": "Bronze Coin"
+      },
+      "700001": {
+        "text_": "Small Wish Fragment"
+      },
+      "700002": {
+        "text_": "Medium Wish Fragment"
+      },
+      "700003": {
+        "text_": "Large Wish Fragment"
+      },
+      "700004": {
+        "text_": "Small Hope"
+      },
+      "700005": {
+        "text_": "Large Hope"
+      },
+      "700006": {
+        "text_": "Firm Will"
+      },
+      "700007": {
+        "text_": "Robust Will"
+      },
+      "700008": {
+        "text_": "Faint Thought"
+      },
+      "700009": {
+        "text_": "Glimmering Thought"
+      },
+      "700010": {
+        "text_": "Hidden Ambition"
+      },
+      "700011": {
+        "text_": "Burning Ambition"
+      },
+      "700012": {
+        "text_": "Stone Spirit"
+      },
+      "700013": {
+        "text_": "Steel Spirit"
+      },
+      "700014": {
+        "text_": "Ordinary Heart"
+      },
+      "700015": {
+        "text_": "Elegant Heart"
+      },
+      "700016": {
+        "text_": "Supreme Adoration"
+      },
+      "700017": {
+        "text_": "Polycrystal of Thought"
+      },
+      "700018": {
+        "text_": "Light of Memory"
+      },
+      "700019": {
+        "text_": "Zenith's Brilliance"
+      },
+      "800001": {
+        "text_": "Desolate Loss\\n(w/ Guardian Hunter)"
+      },
+      "800002": {
+        "text_": "Desolate Loss"
+      },
+      "800003": {
+        "text_": "Battle Text: Guardian Hunter"
+      },
+      "800004": {
+        "text_": "Beginner's Handbook"
+      },
+      "800005": {
+        "text_": "Intermediate Handbook"
+      },
+      "800006": {
+        "text_": "Insignia of Skill"
+      },
+      "800007": {
+        "text_": "Pearl"
+      },
+      "800008": {
+        "text_": "Natural Pearl"
+      },
+      "800009": {
+        "text_": "Insignia of Quality"
+      },
+      "800010": {
+        "text_": "Angrite"
+      },
+      "800011": {
+        "text_": "Moldavite"
+      },
+      "800012": {
+        "text_": "Aubrite"
+      },
+      "800013": {
+        "text_": "Chondrite"
+      },
+      "800014": {
+        "text_": "Eucrite"
+      },
+      "800015": {
+        "text_": "Merlinite"
+      },
+      "800016": {
+        "text_": "Tanzanite"
+      },
+      "800017": {
+        "text_": "Premium Summon Ticket"
+      },
+      "800018": {
+        "text_": "Secret Growth Agent"
+      },
+      "800019": {
+        "text_": "Sturdy Nail"
+      },
+      "800020": {
+        "text_": "Pure Machine Oil"
+      },
+      "800021": {
+        "text_": "Rhyolite"
+      },
+      "800022": {
+        "text_": "Granite"
+      },
+      "800023": {
+        "text_": "Amphibolite"
+      },
+      "800024": {
+        "text_": "Tuff"
+      },
+      "800025": {
+        "text_": "Basalt"
+      },
+      "800026": {
+        "text_": "Diorite"
+      },
+      "800027": {
+        "text_": "Gneiss"
+      },
+      "800028": {
+        "text_": "Growth Agent"
+      },
+      "800029": {
+        "text_": "Normal Nail"
+      },
+      "800030": {
+        "text_": "Standard Machine Oil"
+      },
+      "800031": {
+        "text_": "Nepheline"
+      },
+      "800032": {
+        "text_": "Zeolite"
+      },
+      "800033": {
+        "text_": "Rattlestone"
+      },
+      "800034": {
+        "text_": "Quartz Sand"
+      },
+      "800035": {
+        "text_": "Yellow Sand"
+      },
+      "800036": {
+        "text_": "White Sand"
+      },
+      "800037": {
+        "text_": "Red Earth"
+      },
+      "800038": {
+        "text_": "White Earth"
+      },
+      "800039": {
+        "text_": "Black Earth"
+      },
+      "800040": {
+        "text_": "Gold Coin"
+      },
+      "800041": {
+        "text_": "Silver Coin"
+      },
+      "800042": {
+        "text_": "Bronze Coin"
+      },
+      "800043": {
+        "text_": "Small Stamina Recovery"
+      },
+      "800044": {
+        "text_": "Explorer's Ticket"
+      },
+      "800045": {
+        "text_": "Small Battery"
+      },
+      "800046": {
+        "text_": "Medium Battery"
+      },
+      "800047": {
+        "text_": "Large Battery"
+      },
+      "800048": {
+        "text_": "Large Character Enhancement"
+      },
+      "800049": {
+        "text_": "XL Character Enhancement"
+      },
+      "800201": {
+        "text_": "Glimmering Bay (w/ Summer Exile)"
+      },
+      "800202": {
+        "text_": "Black Sunflower (w/ Summer Assassin)"
+      },
+      "800203": {
+        "text_": "Glossy Spheres (w/ Summer Girl)"
+      },
+      "800301": {
+        "text_": "Mock Type-4O Sword (w/ Mock Machine)"
+      },
+      "800302": {
+        "text_": "Mock Type-4O Fists (w/ Simulacrum Girl)"
+      },
+      "800303": {
+        "text_": "Phoenix Sword (w/ Mechanical Assassin)"
+      },
+      "800304": {
+        "text_": "YoRHa-issue Blade (w/ Divergent Battler)"
+      },
+      "800305": {
+        "text_": "Type-4O Sword (w/ Divergent Scanner)"
+      },
+      "800306": {
+        "text_": "Type-3 Blade (w/ Divergent Attacker)"
+      },
+      "900001": {
+        "text_": "Beastcurse (w/ Soulful Lad)"
+      },
+      "900002": {
+        "text_": "Kainé's Sword (w/ The Aerie Warrior)"
+      },
+      "900003": {
+        "text_": "No. 7's Staff (w/ Puzzling Oddity)"
+      },
+      "900004": {
+        "text_": "Beastcurse"
+      },
+      "900005": {
+        "text_": "Kainé's Sword"
+      },
+      "900006": {
+        "text_": "No. 7's Staff"
+      },
+      "900007": {
+        "text_": "Peaceful Text: Soulful Lad"
+      },
+      "900008": {
+        "text_": "Peaceful Text: The Aerie Warrior"
+      },
+      "900009": {
+        "text_": "Peaceful Text: Puzzling Oddity"
+      },
+      "900010": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "900011": {
+        "text_": "Premium Summon Ticket"
+      },
+      "900012": {
+        "text_": "Explorer's Ticket"
+      },
+      "900013": {
+        "text_": "XL Character Enhancement"
+      },
+      "900014": {
+        "text_": "Vit. Character Enhancement"
+      },
+      "900015": {
+        "text_": "Dex. Character Enhancement"
+      },
+      "900016": {
+        "text_": "Wis. Character Enhancement"
+      },
+      "900017": {
+        "text_": "XL Weapon Enhancement"
+      },
+      "900018": {
+        "text_": "Elastic Weapon Enhancement"
+      },
+      "900019": {
+        "text_": "Light Weapon Enhancement"
+      },
+      "900020": {
+        "text_": "Glossy Weapon Enhancement"
+      },
+      "900021": {
+        "text_": "Ruby"
+      },
+      "900022": {
+        "text_": "Aquamarine"
+      },
+      "900023": {
+        "text_": "Emerald"
+      },
+      "900024": {
+        "text_": "Topaz"
+      },
+      "900025": {
+        "text_": "Tanzanite"
+      },
+      "900026": {
+        "text_": "Insignia of Skill"
+      },
+      "900027": {
+        "text_": "Insignia of Quality"
+      },
+      "900028": {
+        "text_": "Intermediate Handbook"
+      },
+      "900029": {
+        "text_": "Natural Pearl"
+      },
+      "900030": {
+        "text_": "Large Character Enhancement"
+      },
+      "900031": {
+        "text_": "Large Weapon Enhancement"
+      },
+      "900032": {
+        "text_": "Beginner's Handbook"
+      },
+      "900033": {
+        "text_": "Pearl"
+      },
+      "900034": {
+        "text_": "Elongator"
+      },
+      "900035": {
+        "text_": "Growth Agent"
+      },
+      "900036": {
+        "text_": "Refining Agent"
+      },
+      "900037": {
+        "text_": "High-quality Elongator"
+      },
+      "900038": {
+        "text_": "Secret Growth Agent"
+      },
+      "900039": {
+        "text_": "Valuable Refining Agent"
+      },
+      "900040": {
+        "text_": "Generic Bolt"
+      },
+      "900041": {
+        "text_": "Young Timber"
+      },
+      "900042": {
+        "text_": "Normal Nail"
+      },
+      "900043": {
+        "text_": "Standard Machine Oil"
+      },
+      "900044": {
+        "text_": "Standard Gear"
+      },
+      "900045": {
+        "text_": "Used Charcoal"
+      },
+      "900046": {
+        "text_": "Stainless Steel Bolt"
+      },
+      "900047": {
+        "text_": "Flawless Timber"
+      },
+      "900048": {
+        "text_": "Sturdy Nail"
+      },
+      "900049": {
+        "text_": "Pure Machine Oil"
+      },
+      "900050": {
+        "text_": "Intricate Gear"
+      },
+      "900051": {
+        "text_": "Prized Charcoal"
+      },
+      "900052": {
+        "text_": "Rhyolite"
+      },
+      "900053": {
+        "text_": "Granite"
+      },
+      "900054": {
+        "text_": "Amphibolite"
+      },
+      "900055": {
+        "text_": "Tuff"
+      },
+      "900056": {
+        "text_": "Basalt"
+      },
+      "900057": {
+        "text_": "Diorite"
+      },
+      "900058": {
+        "text_": "Gneiss"
+      },
+      "900059": {
+        "text_": "Angrite"
+      },
+      "900060": {
+        "text_": "Moldavite"
+      },
+      "900061": {
+        "text_": "Aubrite"
+      },
+      "900062": {
+        "text_": "Chondrite"
+      },
+      "900063": {
+        "text_": "Eucrite"
+      },
+      "900064": {
+        "text_": "Merlinite"
+      },
+      "900065": {
+        "text_": "Gold Coin"
+      },
+      "900066": {
+        "text_": "Silver Coin"
+      },
+      "900067": {
+        "text_": "Bronze Coin"
+      },
+      "900068": {
+        "text_": "The Devil Queen (w/ Patriotic Traveler)"
+      },
+      "900069": {
+        "text_": "The Devil Queen"
+      },
+      "900070": {
+        "text_": "Warfare Text: Patriotic Traveler"
+      },
+      "900077": {
+        "text_": "Replicant ver.1.22 Gala Pack A"
+      },
+      "900078": {
+        "text_": "Replicant ver.1.22 Gala Pack B"
+      },
+      "1000001": {
+        "text_": "Spear of Freezing Mist (w/ Guardian Traveler)"
+      },
+      "1000002": {
+        "text_": "Spear of Freezing Mist"
+      },
+      "1000003": {
+        "text_": "Battle Text: Guardian Traveler"
+      },
+      "1000004": {
+        "text_": "Premium Summon Ticket"
+      },
+      "1000005": {
+        "text_": "Intermediate Handbook"
+      },
+      "1000006": {
+        "text_": "Beginner's Handbook"
+      },
+      "1000007": {
+        "text_": "Natural Pearl"
+      },
+      "1000008": {
+        "text_": "Pearl"
+      },
+      "1000009": {
+        "text_": "Insignia of Skill"
+      },
+      "1000010": {
+        "text_": "Insignia of Quality"
+      },
+      "1000011": {
+        "text_": "Large Character Enhancement"
+      },
+      "1000012": {
+        "text_": "XL Character Enhancement"
+      },
+      "1000013": {
+        "text_": "Small Stamina Recovery"
+      },
+      "1000014": {
+        "text_": "Explorer's Ticket"
+      },
+      "1000015": {
+        "text_": "Aquamarine"
+      },
+      "1000016": {
+        "text_": "High-quality Elongator"
+      },
+      "1000017": {
+        "text_": "Stainless Steel Bolt"
+      },
+      "1000018": {
+        "text_": "Flawless Timber"
+      },
+      "1000019": {
+        "text_": "Elongator"
+      },
+      "1000020": {
+        "text_": "Generic Bolt"
+      },
+      "1000021": {
+        "text_": "Young Timber"
+      },
+      "1000022": {
+        "text_": "Angrite"
+      },
+      "1000023": {
+        "text_": "Moldavite"
+      },
+      "1000024": {
+        "text_": "Aubrite"
+      },
+      "1000025": {
+        "text_": "Chondrite"
+      },
+      "1000026": {
+        "text_": "Eucrite"
+      },
+      "1000027": {
+        "text_": "Merlinite"
+      },
+      "1000028": {
+        "text_": "Rhyolite"
+      },
+      "1000029": {
+        "text_": "Granite"
+      },
+      "1000030": {
+        "text_": "Amphibolite"
+      },
+      "1000031": {
+        "text_": "Tuff"
+      },
+      "1000032": {
+        "text_": "Basalt"
+      },
+      "1000033": {
+        "text_": "Diorite"
+      },
+      "1000034": {
+        "text_": "Gneiss"
+      },
+      "1000035": {
+        "text_": "Small Meat Hunk"
+      },
+      "1000036": {
+        "text_": "Medium Meat Hunk"
+      },
+      "1000037": {
+        "text_": "Large Meat Hunk"
+      },
+      "1000038": {
+        "text_": "Gold Coin"
+      },
+      "1000039": {
+        "text_": "Silver Coin"
+      },
+      "1000040": {
+        "text_": "Bronze Coin"
+      },
+      "1100000": {
+        "text_": "Gems"
+      },
+      "1100001": {
+        "text_": "Gems A"
+      },
+      "1100002": {
+        "text_": "Gems B"
+      },
+      "1100003": {
+        "text_": "Gems C"
+      },
+      "1100004": {
+        "text_": "Gems D"
+      },
+      "1100005": {
+        "text_": "Gems E"
+      },
+      "1100006": {
+        "text_": "Gems F"
+      },
+      "1100007": {
+        "text_": "Gems G"
+      },
+      "1110001": {
+        "text_": "Gold x1,000"
+      },
+      "1110002": {
+        "text_": "Gold x2,000"
+      },
+      "1110003": {
+        "text_": "Gold x5,000"
+      },
+      "1110004": {
+        "text_": "Gold x10,000"
+      },
+      "1110005": {
+        "text_": "Gold x1,000"
+      },
+      "1110006": {
+        "text_": "Gold x2,000"
+      },
+      "1110007": {
+        "text_": "Gold x5,000"
+      },
+      "1110008": {
+        "text_": "Gold x10,000"
+      },
+      "1120003": {
+        "text_": "Nepheline"
+      },
+      "1120004": {
+        "text_": "Zeolite"
+      },
+      "1120005": {
+        "text_": "Rattlestone"
+      },
+      "1120006": {
+        "text_": "Quartz Sand"
+      },
+      "1120007": {
+        "text_": "Yellow Sand"
+      },
+      "1120008": {
+        "text_": "White Sand"
+      },
+      "1120009": {
+        "text_": "Red Earth"
+      },
+      "1120010": {
+        "text_": "White Earth"
+      },
+      "1120011": {
+        "text_": "Black Earth"
+      },
+      "1120012": {
+        "text_": "Rhyolite"
+      },
+      "1120013": {
+        "text_": "Granite"
+      },
+      "1120014": {
+        "text_": "Amphibolite"
+      },
+      "1120015": {
+        "text_": "Tuff"
+      },
+      "1120016": {
+        "text_": "Basalt"
+      },
+      "1120017": {
+        "text_": "Diorite"
+      },
+      "1120018": {
+        "text_": "Gneiss"
+      },
+      "1200003": {
+        "text_": "Premium Summon Ticket"
+      },
+      "1200004": {
+        "text_": "Explorer's Ticket"
+      },
+      "1200005": {
+        "text_": "Medium Stamina Recovery"
+      },
+      "1200006": {
+        "text_": "Small Stamina Recovery"
+      },
+      "1200007": {
+        "text_": "Small Fish"
+      },
+      "1200008": {
+        "text_": "Medium Fish"
+      },
+      "1200009": {
+        "text_": "Large Fish"
+      },
+      "1200010": {
+        "text_": "Low-quality Ink"
+      },
+      "1200011": {
+        "text_": "Medium-quality Ink"
+      },
+      "1200012": {
+        "text_": "High-quality Ink"
+      },
+      "1200013": {
+        "text_": "Small Battery"
+      },
+      "1200014": {
+        "text_": "Medium Battery"
+      },
+      "1200015": {
+        "text_": "Large Battery"
+      },
+      "1200016": {
+        "text_": "Small Feather Duster"
+      },
+      "1200017": {
+        "text_": "Medium Feather Duster"
+      },
+      "1200018": {
+        "text_": "Large Feather Duster"
+      },
+      "1200019": {
+        "text_": "Small Meat Hunk"
+      },
+      "1200020": {
+        "text_": "Medium Meat Hunk"
+      },
+      "1200021": {
+        "text_": "Large Meat Hunk"
+      },
+      "1200022": {
+        "text_": "Small Circuit"
+      },
+      "1200023": {
+        "text_": "Medium Circuit"
+      },
+      "1200024": {
+        "text_": "Large Circuit"
+      },
+      "1200025": {
+        "text_": "Small Character Enhancement"
+      },
+      "1200026": {
+        "text_": "Medium Character Enhancement"
+      },
+      "1200027": {
+        "text_": "Large Character Enhancement"
+      },
+      "1200028": {
+        "text_": "★★★★ Premium Summons Ticket"
+      },
+      "1200029": {
+        "text_": "Intermediate Handbook"
+      },
+      "1200030": {
+        "text_": "Advanced Handbook"
+      },
+      "1200031": {
+        "text_": "Large Stamina Recovery"
+      },
+      "1210003": {
+        "text_": "★★★★ Premium Summons Ticket"
+      },
+      "1210004": {
+        "text_": "★★★+ Premium Summons Ticket"
+      },
+      "1210005": {
+        "text_": "Superb-quality Ink"
+      },
+      "1210006": {
+        "text_": "Massive Fish"
+      },
+      "1210007": {
+        "text_": "XL Battery"
+      },
+      "1210008": {
+        "text_": "XL Feather Duster"
+      },
+      "1210009": {
+        "text_": "Massive Meat Hunk"
+      },
+      "1210010": {
+        "text_": "XL Circuit"
+      },
+      "1220001": {
+        "text_": "Pearl"
+      },
+      "1220002": {
+        "text_": "Natural Pearl"
+      },
+      "1220003": {
+        "text_": "Black Pearl"
+      },
+      "1220010": {
+        "text_": "Ruby"
+      },
+      "1220011": {
+        "text_": "Aquamarine"
+      },
+      "1220012": {
+        "text_": "Emerald"
+      },
+      "1220013": {
+        "text_": "Topaz"
+      },
+      "1220014": {
+        "text_": "Tanzanite"
+      },
+      "1220015": {
+        "text_": "Zenith's Brilliance"
+      },
+      "1220016": {
+        "text_": "Polycrystal of Thought"
+      },
+      "1220017": {
+        "text_": "Supreme Adoration"
+      },
+      "1220018": {
+        "text_": "Light of Memory"
+      },
+      "1220019": {
+        "text_": "Small Weapon Enhancement"
+      },
+      "1220020": {
+        "text_": "Medium Weapon Enhancement"
+      },
+      "1220021": {
+        "text_": "Large Weapon Enhancement"
+      },
+      "1300001": {
+        "text_": "Gems"
+      },
+      "1310001": {
+        "text_": "Black Pearl"
+      },
+      "1310002": {
+        "text_": "Natural Pearl"
+      },
+      "1310003": {
+        "text_": "Pearl"
+      },
+      "1310004": {
+        "text_": "Insignia of Skill"
+      },
+      "1310005": {
+        "text_": "Insignia of Quality"
+      },
+      "1310006": {
+        "text_": "Secret Growth Agent"
+      },
+      "1310007": {
+        "text_": "Potent Curing Agent"
+      },
+      "1310008": {
+        "text_": "High-quality Elongator"
+      },
+      "1310009": {
+        "text_": "Superior Active Agent"
+      },
+      "1310010": {
+        "text_": "Valuable Refining Agent"
+      },
+      "1310011": {
+        "text_": "Rare Enhancement Agent"
+      },
+      "1310012": {
+        "text_": "Sturdy Nail"
+      },
+      "1310013": {
+        "text_": "Pure Machine Oil"
+      },
+      "1310014": {
+        "text_": "Stainless Steel Wire"
+      },
+      "1310015": {
+        "text_": "Large Nut"
+      },
+      "1310016": {
+        "text_": "Stainless Steel Bolt"
+      },
+      "1310017": {
+        "text_": "Flawless Timber"
+      },
+      "1310018": {
+        "text_": "Fine Wax"
+      },
+      "1310019": {
+        "text_": "Natural Cloth"
+      },
+      "1310020": {
+        "text_": "Intricate Gear"
+      },
+      "1310021": {
+        "text_": "Prized Charcoal"
+      },
+      "1310022": {
+        "text_": "Pristine Coil"
+      },
+      "1310023": {
+        "text_": "Reinforced Glass"
+      },
+      "1310024": {
+        "text_": "Angrite"
+      },
+      "1310025": {
+        "text_": "Moldavite"
+      },
+      "1310026": {
+        "text_": "Aubrite"
+      },
+      "1310027": {
+        "text_": "Chondrite"
+      },
+      "1310028": {
+        "text_": "Eucrite"
+      },
+      "1310029": {
+        "text_": "Merlinite"
+      },
+      "1400001": {
+        "text_": "Gems"
+      },
+      "1500001": {
+        "text_": "Char. Enhan. Pack"
+      },
+      "1500002": {
+        "text_": "Small Char-Skill-Enhan. Pack"
+      },
+      "1500003": {
+        "text_": "Large Char-Skill-Enhan. Pack"
+      },
+      "1500004": {
+        "text_": "Small Char-Ascension Pack"
+      },
+      "1500005": {
+        "text_": "Large Char-Ascension Pack"
+      },
+      "1500006": {
+        "text_": "Weapon Enhan. Pack"
+      },
+      "1500007": {
+        "text_": "Small Weapon-Skill-Enhan. Pack"
+      },
+      "1500008": {
+        "text_": "Large Weapon-Skill-Enhan. Pack"
+      },
+      "1500009": {
+        "text_": "Small Weapon-Ascension Pack"
+      },
+      "1500010": {
+        "text_": "Large Weapon-Ascension Pack"
+      },
+      "1600001": {
+        "text_": "Quest Missions Pack"
+      },
+      "1600002": {
+        "text_": "Char. Enhan. Missions Pack"
+      },
+      "1600003": {
+        "text_": "Weapon Enhan. Missions Pack"
+      },
+      "1700001": {
+        "text_": "New Chapter Celebration Pack"
+      },
+      "1700002": {
+        "text_": "48-Hour Jumpstart Pack"
+      },
+      "1700003": {
+        "text_": "Abyss Tower Conquest Pack A"
+      },
+      "1700004": {
+        "text_": "Abyss Tower Conquest Wind Pack"
+      },
+      "1700005": {
+        "text_": "Abyss Tower Conquest Pack B"
+      },
+      "1700006": {
+        "text_": "Abyss Tower Conquest Pack C"
+      },
+      "1800001": {
+        "text_": "Stamina Recovery Pack"
+      },
+      "1800002": {
+        "text_": "Char. Enhan. Pack"
+      },
+      "1800003": {
+        "text_": "Weapon Enhan. Pack"
+      },
+      "1800004": {
+        "text_": "Char-Skill-Enhan. Pack"
+      },
+      "1800005": {
+        "text_": "Weapon-Skill-Enhan. Pack"
+      },
+      "1800006": {
+        "text_": "Weapon-Ascension Pack"
+      },
+      "600901": {
+        "text_": "Wicked Bottles\\n(w/ Celebratory Girl)"
+      },
+      "600902": {
+        "text_": "Wicked Bottles"
+      },
+      "600903": {
+        "text_": "Warfare Text: Celebratory Girl"
+      },
+      "600904": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "600905": {
+        "text_": "Black Pearl"
+      },
+      "600906": {
+        "text_": "1-2021-08 Term Mama Medal"
+      },
+      "600907": {
+        "text_": "Explorer's Ticket"
+      },
+      "600908": {
+        "text_": "XL Character Enhancement"
+      },
+      "600909": {
+        "text_": "XL Weapon Enhancement"
+      },
+      "600910": {
+        "text_": "Ruby"
+      },
+      "600911": {
+        "text_": "Aquamarine"
+      },
+      "600912": {
+        "text_": "Emerald"
+      },
+      "600913": {
+        "text_": "Topaz"
+      },
+      "600914": {
+        "text_": "Tanzanite"
+      },
+      "600915": {
+        "text_": "Insignia of Skill"
+      },
+      "600916": {
+        "text_": "Insignia of Quality"
+      },
+      "600917": {
+        "text_": "Intermediate Handbook"
+      },
+      "600918": {
+        "text_": "Natural Pearl"
+      },
+      "600919": {
+        "text_": "Large Character Enhancement"
+      },
+      "600920": {
+        "text_": "Large Weapon Enhancement"
+      },
+      "600921": {
+        "text_": "Beginner's Handbook"
+      },
+      "600922": {
+        "text_": "Pearl"
+      },
+      "600923": {
+        "text_": "Growth Agent"
+      },
+      "600924": {
+        "text_": "Curing Agent"
+      },
+      "600925": {
+        "text_": "Elongator"
+      },
+      "600926": {
+        "text_": "Active Agent"
+      },
+      "600927": {
+        "text_": "Refining Agent"
+      },
+      "600928": {
+        "text_": "Enhancement Agent"
+      },
+      "600929": {
+        "text_": "Secret Growth Agent"
+      },
+      "600930": {
+        "text_": "Potent Curing Agent"
+      },
+      "600931": {
+        "text_": "High-quality Elongator"
+      },
+      "600932": {
+        "text_": "Superior Active Agent"
+      },
+      "600933": {
+        "text_": "Valuable Refining Agent"
+      },
+      "600934": {
+        "text_": "Rare Enhancement Agent"
+      },
+      "600935": {
+        "text_": "Normal Nail"
+      },
+      "600936": {
+        "text_": "Standard Machine Oil"
+      },
+      "600937": {
+        "text_": "Basic Wire"
+      },
+      "600938": {
+        "text_": "Small Nut"
+      },
+      "600939": {
+        "text_": "Generic Bolt"
+      },
+      "600940": {
+        "text_": "Young Timber"
+      },
+      "600941": {
+        "text_": "Common Wax"
+      },
+      "600942": {
+        "text_": "White Cloth"
+      },
+      "600943": {
+        "text_": "Standard Gear"
+      },
+      "600944": {
+        "text_": "Used Charcoal"
+      },
+      "600945": {
+        "text_": "Rusty Coil"
+      },
+      "600946": {
+        "text_": "Broken Glass"
+      },
+      "600947": {
+        "text_": "Sturdy Nail"
+      },
+      "600948": {
+        "text_": "Pure Machine Oil"
+      },
+      "600949": {
+        "text_": "Stainless Steel Wire"
+      },
+      "600950": {
+        "text_": "Large Nut"
+      },
+      "600951": {
+        "text_": "Stainless Steel Bolt"
+      },
+      "600952": {
+        "text_": "Flawless Timber"
+      },
+      "600953": {
+        "text_": "Fine Wax"
+      },
+      "600954": {
+        "text_": "Natural Cloth"
+      },
+      "600955": {
+        "text_": "Intricate Gear"
+      },
+      "600956": {
+        "text_": "Prized Charcoal"
+      },
+      "600957": {
+        "text_": "Pristine Coil"
+      },
+      "600958": {
+        "text_": "Reinforced Glass"
+      },
+      "600959": {
+        "text_": "Rhyolite"
+      },
+      "600960": {
+        "text_": "Granite"
+      },
+      "600961": {
+        "text_": "Amphibolite"
+      },
+      "600962": {
+        "text_": "Tuff"
+      },
+      "600963": {
+        "text_": "Basalt"
+      },
+      "600964": {
+        "text_": "Diorite"
+      },
+      "600965": {
+        "text_": "Gneiss"
+      },
+      "600966": {
+        "text_": "Angrite"
+      },
+      "600967": {
+        "text_": "Moldavite"
+      },
+      "600968": {
+        "text_": "Aubrite"
+      },
+      "600969": {
+        "text_": "Chondrite"
+      },
+      "600970": {
+        "text_": "Eucrite"
+      },
+      "600971": {
+        "text_": "Merlinite"
+      },
+      "600972": {
+        "text_": "Gold Coin"
+      },
+      "600973": {
+        "text_": "Silver Coin"
+      },
+      "600974": {
+        "text_": "Bronze Coin"
+      },
+      "800701": {
+        "text_": "Iron Signpost\\n(w/ Celebratory Weapon)"
+      },
+      "800702": {
+        "text_": "Formal Salute\\n(w/ Celebratory Captain)"
+      },
+      "800703": {
+        "text_": "Blade of the Lost Seal\\n(w/ Celebratory Hunter)"
+      },
+      "800704": {
+        "text_": "Cicada Husk\\n(w/ Celebratory Traveler)"
+      },
+      "10301": {
+        "text_": "★★★★ Premium Summons Ticket"
+      },
+      "10302": {
+        "text_": "★★★+ Premium Summons Ticket"
+      },
+      "10303": {
+        "text_": "Premium Summon Ticket x10"
+      },
+      "10304": {
+        "text_": "Premium Summon Ticket"
+      },
+      "10305": {
+        "text_": "XL Character Enhancement"
+      },
+      "10306": {
+        "text_": "Small Stamina Recovery"
+      },
+      "10307": {
+        "text_": "Gold"
+      },
+      "9800101": {
+        "text_": "War's Chronicle IV\\n (w/ Abstract Captain)"
+      },
+      "9800102": {
+        "text_": "Type-3 Lance"
+      },
+      "9800103": {
+        "text_": "Crime of Passion\\n (w/ Dissenting Captain)"
+      },
+      "9800201": {
+        "text_": "Faulty Greatsword\\n (w/ Fractured Prisoner)"
+      },
+      "9800202": {
+        "text_": "Phoenix Dagger"
+      },
+      "9800203": {
+        "text_": "Shiny Knuckles"
+      },
+      "600541": {
+        "text_": "1-2021-09 Term Mama Medal"
+      }
+    },
+    "description": {
+      "602101": {
+        "text_": "-"
+      },
+      "602102": {
+        "text_": "-"
+      },
+      "602103": {
+        "text_": "Writings that hasten ascension for Argo."
+      },
+      "602104": {
+        "text_": "Writings that hasten character ascension."
+      },
+      "602105": {
+        "text_": "Writings that hasten character ascension."
+      },
+      "602106": {
+        "text_": "An insignia used to enhance character skills."
+      },
+      "602107": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "602108": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "602109": {
+        "text_": "An insignia used to enhance weapon skills."
+      },
+      "602110": {
+        "text_": "A ticket that grants a 10-pull in the premium summons."
+      },
+      "602111": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "602112": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "602113": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "602114": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "602115": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "602116": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "602117": {
+        "text_": "A material used to evolve water-affinity weapons."
+      },
+      "602118": {
+        "text_": "A ticket that grants one pull in the premium summons."
+      },
+      "602119": {
+        "text_": "Material used to enhance skills for characters proficient with spears."
+      },
+      "602120": {
+        "text_": "Material used to enhance spear skills."
+      },
+      "602121": {
+        "text_": "Material used to enhance spear skills."
+      },
+      "602122": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "602123": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "602124": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "602125": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "602126": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "602127": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "602128": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "602129": {
+        "text_": "Material used to enhance skills for characters proficient with spears."
+      },
+      "602130": {
+        "text_": "Material used to enhance spear skills."
+      },
+      "602131": {
+        "text_": "Material used to enhance spear skills."
+      },
+      "602132": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "602133": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "602134": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "602135": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "602136": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "602137": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "602138": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "602139": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "602140": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "602141": {
+        "text_": "Gem x10"
+      },
+      "602142": {
+        "text_": "A rare coin meant to be sold."
+      },
+      "602143": {
+        "text_": "A rare coin meant to be sold."
+      },
+      "602144": {
+        "text_": "A rare coin meant to be sold."
+      },
+      "2110001": {
+        "text_": "A bit of gold."
+      },
+      "2110002": {
+        "text_": "A bit of gold."
+      },
+      "2110003": {
+        "text_": "Some gold."
+      },
+      "2110004": {
+        "text_": "Stacks of gold."
+      },
+      "2110005": {
+        "text_": "A bit of gold."
+      },
+      "2110006": {
+        "text_": "A bit of gold."
+      },
+      "2110007": {
+        "text_": "Some gold."
+      },
+      "2110008": {
+        "text_": "Stacks of gold."
+      },
+      "2120003": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "2120004": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "2120005": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "2120006": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "2120007": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "2120008": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "2120009": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "2120010": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "2120011": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "2120012": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "2120013": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "2120014": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "2120015": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "2120016": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "2120017": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "2120018": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "2200003": {
+        "text_": "A ticket that grants one pull in the premium summons."
+      },
+      "2200004": {
+        "text_": "A ticket that shortens your wait time for exploration."
+      },
+      "2200005": {
+        "text_": "An item that restores 50% of your max stamina."
+      },
+      "2200006": {
+        "text_": "An item that restores 10 stamina."
+      },
+      "2200007": {
+        "text_": "A material used to enhance bears."
+      },
+      "2200008": {
+        "text_": "A material used to enhance bears."
+      },
+      "2200009": {
+        "text_": "A material used to enhance bears."
+      },
+      "2200010": {
+        "text_": "A material used to enhance books."
+      },
+      "2200011": {
+        "text_": "A material used to enhance books."
+      },
+      "2200012": {
+        "text_": "A material used to enhance books."
+      },
+      "2200013": {
+        "text_": "A material used to enhance dolls."
+      },
+      "2200014": {
+        "text_": "A material used to enhance dolls."
+      },
+      "2200015": {
+        "text_": "A material used to enhance dolls."
+      },
+      "2200016": {
+        "text_": "A material used to enhance spirits."
+      },
+      "2200017": {
+        "text_": "A material used to enhance spirits."
+      },
+      "2200018": {
+        "text_": "A material used to enhance spirits."
+      },
+      "2200019": {
+        "text_": "A material used to enhance dragons."
+      },
+      "2200020": {
+        "text_": "A material used to enhance dragons."
+      },
+      "2200021": {
+        "text_": "A material used to enhance dragons."
+      },
+      "2200022": {
+        "text_": "A material used to enhance pods."
+      },
+      "2200023": {
+        "text_": "A material used to enhance pods."
+      },
+      "2200024": {
+        "text_": "A material used to enhance pods."
+      },
+      "2200025": {
+        "text_": "A medicine used to enhance characters."
+      },
+      "2200026": {
+        "text_": "A medicine used to enhance characters."
+      },
+      "2200027": {
+        "text_": "A medicine used to enhance characters."
+      },
+      "2200028": {
+        "text_": "A ticket that guarantees a ★★★★ pull in Premium Summons."
+      },
+      "2200029": {
+        "text_": "Writings that hasten character ascension."
+      },
+      "2200030": {
+        "text_": "Writings that hasten character ascension."
+      },
+      "2200031": {
+        "text_": "An item that restores 100% of your max stamina."
+      },
+      "2210003": {
+        "text_": "A ticket that guarantees a ★★★★ pull in Premium Summons."
+      },
+      "2210004": {
+        "text_": "A ticket that guarantees a ★★★ or higher pull in Premium Summons."
+      },
+      "2210005": {
+        "text_": "A material used to enhance books."
+      },
+      "2210006": {
+        "text_": "A material used to enhance bears."
+      },
+      "2210007": {
+        "text_": "A material used to enhance dolls."
+      },
+      "2210008": {
+        "text_": "A material used to enhance spirits."
+      },
+      "2210009": {
+        "text_": "A material used to enhance dragons."
+      },
+      "2210010": {
+        "text_": "A material used to enhance pods."
+      },
+      "2220001": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "2220002": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "2220003": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "2220010": {
+        "text_": "A material used to evolve fire-affinity weapons."
+      },
+      "2220011": {
+        "text_": "A material used to evolve water-affinity weapons."
+      },
+      "2220012": {
+        "text_": "A material used to evolve air-affinity weapons."
+      },
+      "2220013": {
+        "text_": "A material used to evolve light-affinity weapons."
+      },
+      "2220014": {
+        "text_": "A material used to evolve dark-affinity weapons."
+      },
+      "2220015": {
+        "text_": "-"
+      },
+      "2220016": {
+        "text_": "-"
+      },
+      "2220017": {
+        "text_": "-"
+      },
+      "2220018": {
+        "text_": "-"
+      },
+      "2220019": {
+        "text_": "A material used to enhance weapons."
+      },
+      "2220020": {
+        "text_": "A material used to enhance weapons."
+      },
+      "2220021": {
+        "text_": "A material used to enhance weapons."
+      },
+      "2230001": {
+        "text_": "Spend 15 gems to gain 100% of your max stamina."
+      },
+      "2240001": {
+        "text_": "Spend 15 gems to gain 100% of your max BP."
+      },
+      "2250001": {
+        "text_": "A value pack of 250 paid gems, gold, and character-enhancement materials."
+      },
+      "2250002": {
+        "text_": "A value pack of 1,480 paid gems, gold, and character-skill-enhancement materials."
+      },
+      "2250003": {
+        "text_": "A value pack of 2,440 paid gems, gold, and valuable character-skill-enhancement materials."
+      },
+      "2250004": {
+        "text_": "A value pack of 4,900 paid gems, gold, and character-ascension materials."
+      },
+      "2250005": {
+        "text_": "A value pack of 10,000 paid gems, gold, valuable character-ascension materials, and rare character-skill-enhancement materials."
+      },
+      "2250006": {
+        "text_": "A value pack of 250 paid gems, gold, and weapon-enhancement materials."
+      },
+      "2250007": {
+        "text_": "A value pack of 1,480 paid gems, gold, and weapon-skill-enhancement materials."
+      },
+      "2250008": {
+        "text_": "A value pack of 2,440 paid gems, gold, and valuable weapon-skill-enhancement materials."
+      },
+      "2250009": {
+        "text_": "A value pack of 4,900 paid gems, gold, and weapon-ascension materials."
+      },
+      "2250010": {
+        "text_": "A value pack of 10,000 paid gems, gold, valuable weapon-ascension materials, and rare weapon-skill-enhancement materials."
+      },
+      "2260001": {
+        "text_": "A pack that comes with missions from which you can earn bonus items. One per player."
+      },
+      "2260002": {
+        "text_": "A pack that comes with missions from which you can earn bonus items. One per player."
+      },
+      "2260003": {
+        "text_": "A pack that comes with missions from which you can earn bonus items. One per player."
+      },
+      "2270001": {
+        "text_": "A value pack of 250 paid gems plus a Small Stamina Recovery."
+      },
+      "2270002": {
+        "text_": "A value pack of 250 paid gems, plus gold and stamina recovery items."
+      },
+      "2270003": {
+        "text_": "A value pack of 3,060 paid gems and 3,060 free gems."
+      },
+      "2270004": {
+        "text_": "A value pack of 250 paid gems, plus gold and stamina recovery items."
+      },
+      "2270005": {
+        "text_": "A value pack of 1,600 paid gems, plus gold, weapon-enhancement materials, and weapon-evolution materials."
+      },
+      "2270006": {
+        "text_": "A value pack of 6,100 paid gems, plus gold, character-ascension materials, and character-skill-enhancement materials."
+      },
+      "2270007": {
+        "text_": "A value pack of 6,100 paid gems, plus gold, weapon-ascension materials, and weapon-skill-enhancement materials."
+      },
+      "2800001": {
+        "text_": "A value pack of 250 paid gems, plus gold and stamina recovery items."
+      },
+      "2800002": {
+        "text_": "A value pack of 250 paid gems, gold, and character-enhancement materials."
+      },
+      "2800003": {
+        "text_": "A value pack of 250 paid gems, gold, and weapon-enhancement materials."
+      },
+      "2800004": {
+        "text_": "A value pack of 3,060 paid gems, plus gold and character-skill enhancement materials."
+      },
+      "2800005": {
+        "text_": "A value pack of 3,060 paid gems, plus gold and weapon-skill enhancement materials."
+      },
+      "2800006": {
+        "text_": "A value pack of 10,000 paid gems, plus gold, weapon-ascension materials, and weapon-skill enhancement materials."
+      },
+      "6000001": {
+        "text_": "-"
+      },
+      "6000002": {
+        "text_": "-"
+      },
+      "6000003": {
+        "text_": "-"
+      },
+      "6000004": {
+        "text_": "-"
+      },
+      "6000005": {
+        "text_": "-"
+      },
+      "6000006": {
+        "text_": "-"
+      },
+      "6000007": {
+        "text_": "-"
+      },
+      "6000008": {
+        "text_": "-"
+      },
+      "6000009": {
+        "text_": "Writings that hasten ascension for 2B."
+      },
+      "6000010": {
+        "text_": "Writings that hasten ascension for 9S."
+      },
+      "6000011": {
+        "text_": "Writings that hasten ascension for A2."
+      },
+      "6000012": {
+        "text_": "Writings that hasten character ascension."
+      },
+      "6000013": {
+        "text_": "Writings that hasten character ascension."
+      },
+      "6000014": {
+        "text_": "An insignia used to enhance character skills."
+      },
+      "6000015": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "6000016": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "6000017": {
+        "text_": "An insignia used to enhance weapon skills."
+      },
+      "6000018": {
+        "text_": "A ticket that grants a 10-pull in the premium summons."
+      },
+      "6000019": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "6000020": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "6000021": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "6000022": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "6000023": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "6000024": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "6000025": {
+        "text_": "-"
+      },
+      "6000026": {
+        "text_": "A rare coin meant to be sold."
+      },
+      "6000027": {
+        "text_": "A material used to evolve 2H swords."
+      },
+      "6000028": {
+        "text_": "A material used to evolve 1H swords."
+      },
+      "6000029": {
+        "text_": "A material used to evolve light-affinity weapons."
+      },
+      "6000030": {
+        "text_": "A material used to evolve dark-affinity weapons."
+      },
+      "6000031": {
+        "text_": "A ticket that grants one pull in the premium summons."
+      },
+      "6000032": {
+        "text_": "Used to enhance character skills for 2H sword users."
+      },
+      "6000033": {
+        "text_": "Used to enhance character skills for 1H sword users."
+      },
+      "6000034": {
+        "text_": "A material used to enhance 2H sword skills."
+      },
+      "6000035": {
+        "text_": "A material used to enhance 1H sword skills."
+      },
+      "6000036": {
+        "text_": "A material used to enhance 2H sword skills."
+      },
+      "6000037": {
+        "text_": "A material used to enhance 1H sword skills."
+      },
+      "6000038": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "6000039": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "6000040": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "6000041": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "6000042": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "6000043": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "6000044": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "6000045": {
+        "text_": "A rare coin meant to be sold."
+      },
+      "6000046": {
+        "text_": "Currency used at the Automata Medal Exchange."
+      },
+      "6000047": {
+        "text_": "Used to enhance character skills for 2H sword users."
+      },
+      "6000048": {
+        "text_": "Used to enhance character skills for 1H sword users."
+      },
+      "6000049": {
+        "text_": "A material used to enhance 2H sword skills."
+      },
+      "6000050": {
+        "text_": "A material used to enhance 1H sword skills."
+      },
+      "6000051": {
+        "text_": "A material used to enhance 2H sword skills."
+      },
+      "6000052": {
+        "text_": "A material used to enhance 1H sword skills."
+      },
+      "6000053": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "6000054": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "6000055": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "6000056": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "6000057": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "6000058": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "6000059": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "6000060": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "6000061": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "6000062": {
+        "text_": "A rare coin meant to be sold."
+      },
+      "6000063": {
+        "text_": "Currency used at the Automata Medal Exchange."
+      },
+      "6000064": {
+        "text_": "A medicine used to enhance characters."
+      },
+      "6000065": {
+        "text_": "A medicine used to enhance characters."
+      },
+      "7000001": {
+        "text_": "A radiance used to enhance unique-weapon skills."
+      },
+      "7000002": {
+        "text_": "A radiance used to enhance unique-weapon skills."
+      },
+      "7000003": {
+        "text_": "A radiance used to enhance unique-weapon skills."
+      },
+      "7000004": {
+        "text_": "A radiance used to enhance unique 1H-sword skills."
+      },
+      "7000005": {
+        "text_": "A radiance used to enhance unique 1H-sword skills."
+      },
+      "7000006": {
+        "text_": "A radiance used to enhance unique-2H-sword skills."
+      },
+      "7000007": {
+        "text_": "A radiance used to enhance unique-2H-sword skills."
+      },
+      "7000008": {
+        "text_": "A radiance used to enhance unique-spear skills."
+      },
+      "7000009": {
+        "text_": "A radiance used to enhance unique-spear skills."
+      },
+      "7000010": {
+        "text_": "A radiance used to enhance unique-fist skills."
+      },
+      "7000011": {
+        "text_": "A radiance used to enhance unique-fist skills."
+      },
+      "7000012": {
+        "text_": "A radiance used to enhance the unique-stave skills."
+      },
+      "7000013": {
+        "text_": "A radiance used to enhance the unique-stave skills."
+      },
+      "7000014": {
+        "text_": "A radiance used to enhance the unique-gun skills."
+      },
+      "7000015": {
+        "text_": "A radiance used to enhance the unique-gun skills."
+      },
+      "7000016": {
+        "text_": "A radiance used to enhance unique-weapon skills."
+      },
+      "7000017": {
+        "text_": "A crystal that hastens ascension for unique weapons."
+      },
+      "7000018": {
+        "text_": "A light used to evolve unique weapons."
+      },
+      "7000019": {
+        "text_": "A rare light used to evolve unique weapons."
+      },
+      "8000001": {
+        "text_": "-"
+      },
+      "8000002": {
+        "text_": "-"
+      },
+      "8000003": {
+        "text_": "Writings that hasten ascension for Gayle."
+      },
+      "8000004": {
+        "text_": "Writings that hasten character ascension"
+      },
+      "8000005": {
+        "text_": "Writings that hasten character ascension"
+      },
+      "8000006": {
+        "text_": "An insignia used to enhance character skills."
+      },
+      "8000007": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "8000008": {
+        "text_": "A shiny bauble that hastens ascension for weapons."
+      },
+      "8000009": {
+        "text_": "An insignia used to enhance weapon skills."
+      },
+      "8000010": {
+        "text_": "A ticket that grants a 10-pull in the premium summons."
+      },
+      "8000011": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "8000012": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "8000013": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "8000014": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "8000015": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "8000016": {
+        "text_": "Ore used to enhance weapon and character skills."
+      },
+      "8000017": {
+        "text_": "A material used to evolve 1H swords."
+      },
+      "8000018": {
+        "text_": "A material used to evolve dark-affinity weapons."
+      },
+      "8000019": {
+        "text_": "A ticket that grants one pull in the premium summons."
+      },
+      "8000020": {
+        "text_": "Used to enhance character skills for 1H sword users."
+      },
+      "8000021": {
+        "text_": "A material used to enhance 1H sword skills."
+      },
+      "8000022": {
+        "text_": "A material used to enhance 1H sword skills."
+      },
+      "8000023": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "8000024": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "8000025": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "8000026": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "8000027": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "8000028": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "8000029": {
+        "text_": "Rock used to enhance weapon and character skills."
+      },
+      "8000030": {
+        "text_": "Used to enhance character skills for 1H sword users."
+      },
+      "8000031": {
+        "text_": "A material used to enhance 1H sword skills."
+      },
+      "8000032": {
+        "text_": "A material used to enhance 1H sword skills."
+      },
+      "8000033": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "8000034": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "8000035": {
+        "text_": "A mineral used to enhance weapon and character skills."
+      },
+      "8000036": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "8000037": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "8000038": {
+        "text_": "Sand used to enhance weapon and character skills."
+      },
+      "8000039": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "8000040": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "8000041": {
+        "text_": "Dirt used to enhance weapon and character skills."
+      },
+      "9000077": {
+        "text_": "A value pack of 250 paid gems, plus a Small Stamina Recovery."
+      },
+      "9000078": {
+        "text_": "A value pack of 1,220 paid gems, plus a Small Stamina Recovery and enhancement materials."
+      },
+      "16000001": {
+        "text_": "A value pack of 250 paid gems, plus a Small Stamina Recovery."
+      },
+      "16000002": {
+        "text_": "A value pack of 980 paid gems, plus a Small Stamina Recovery and enhancement materials."
+      },
+      "16000003": {
+        "text_": "A value pack of 4,900 gems, plus gold and materials for weapon evolvement."
+      },
+      "16000004": {
+        "text_": "A value pack of 9,000 gems, plus gold and ascension materials."
+      }
+    }
+  }
+}

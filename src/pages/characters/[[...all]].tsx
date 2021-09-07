@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import CostumeDetails from "@components/CharacterInfo";
-import { CostumeInfo, typedCharacters } from "@models/character";
+import { getAllCostumes } from "@models/character";
 import { useEffect, useState } from "react";
 import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
@@ -9,52 +10,56 @@ import CharacterRows from "@components/characters/CharacterRows";
 import CostumeSelect from "@components/characters/CostumeSelect";
 import { useRouter } from "next/router";
 import slugify from "slugify";
+import { Costume } from "@models/types";
 
-export default function Page(): JSX.Element {
-  const router = useRouter();
+interface CharactersPageProps {
+  costumes: Costume[];
+}
 
-  const defaultCostume = typedCharacters.values().next()
-    .value[0] as CostumeInfo;
+export default function CharactersPage({
+  costumes,
+}: CharactersPageProps): JSX.Element {
+  if (!costumes) {
+    return null;
+  }
 
-  const query = router.query.all;
+  const query = useRouter().query;
+  const [currentCostume, setCurrentCostume] = useState(costumes[0]);
+
   useEffect(() => {
-    let newCostume: CostumeInfo;
-    try {
-      if (query) {
-        if (query.length >= 2) {
-          newCostume = Array.from(typedCharacters.values())
-            .find(
-              (costumes) =>
-                slugify(costumes[0].character) == (query[0] as string)
-            )
-            .find(
-              (costume) => slugify(costume.name.en) == (query[1] as string)
-            );
-        } else {
-          newCostume = Array.from(typedCharacters.values()).find(
-            (costumes) => slugify(costumes[0].character) == (query[0] as string)
-          )[0];
-        }
-      } else {
-        newCostume = typedCharacters.values().next().value[0] as CostumeInfo;
-      }
-    } catch (e) {
-      newCostume = typedCharacters.values().next().value[0] as CostumeInfo;
+    if (query.all) {
+      // @ts-expect-error this isn't typed? well, it's definitely an array.
+      const [, costumeName] = query.all;
+
+      setCurrentCostume(
+        costumes.find(
+          (costume) =>
+            slugify(costume.costume.name.en, { lower: true }) === costumeName
+        ) || costumes[0]
+      );
     }
-    setCostumeInternal(newCostume);
-    history.replaceState(null, "", `/characters`);
-  }, [query]);
+  }, []);
 
-  const [currentCostume, setCostumeInternal] = useState(defaultCostume);
-
-  const setCostume = (costume: CostumeInfo) => {
-    setCostumeInternal(costume);
+  const setCostume = (costume: Costume) => {
+    setCurrentCostume(costume);
     history.replaceState(
       null,
       "",
-      `/characters/${slugify(costume.character)}/${slugify(costume.name.en)}`
+      `/characters/${slugify(costume.character.en, { lower: true })}/${slugify(
+        costume.costume.name.en,
+        { lower: true }
+      )}`
     );
   };
+
+  const characters = costumes.reduce((acc, costume) => {
+    if (acc.has(costume.character.en)) {
+      return acc;
+    }
+
+    acc.set(costume.character.en, costume);
+    return acc;
+  }, new Map() as Map<string, Costume>);
 
   return (
     <Layout>
@@ -64,12 +69,26 @@ export default function Page(): JSX.Element {
         cover="https://nierrein.guide/cover-characters.jpg"
       />
 
-      <CharacterRows {...{ setCostume, currentCostume }} />
+      <CharacterRows
+        costumes={characters}
+        setCostume={setCostume}
+        currentCostume={currentCostume}
+      />
+
       <div className="hidden md:inline">
-        <CharacterCostumes {...{ setCostume, currentCostume }} />
+        <CharacterCostumes
+          costumes={costumes}
+          setCostume={setCostume}
+          currentCostume={currentCostume}
+        />
       </div>
+
       <div className="inline md:hidden">
-        <CostumeSelect {...{ setCostume, currentCostume }} />
+        <CostumeSelect
+          setCostume={setCostume}
+          currentCostume={currentCostume}
+          costumes={costumes}
+        />
       </div>
 
       <CostumeDetails costume={currentCostume}></CostumeDetails>
@@ -77,20 +96,12 @@ export default function Page(): JSX.Element {
   );
 }
 
-export async function getStaticProps() {
-  return {
-    props: {},
-  };
-}
-export async function getStaticPaths() {
-  const paths = Array.from(typedCharacters.values())
-    .flat()
-    .map((costume) => ({
-      params: { all: [slugify(costume.character), slugify(costume.name.en)] },
-    }));
+export async function getServerSideProps() {
+  const costumes = await getAllCostumes();
 
   return {
-    paths,
-    fallback: true,
+    props: {
+      costumes,
+    },
   };
 }

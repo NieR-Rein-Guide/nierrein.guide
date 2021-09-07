@@ -1,0 +1,86 @@
+{
+  "Skill Button": {
+    "text_": "Skill Button"
+  },
+  "drop": {
+    "description": {
+      "1": {
+        "text_": "N-type data obtained."
+      },
+      "2": {
+        "text_": "R-type data obtained."
+      },
+      "3": {
+        "text_": "S-type data obtained."
+      }
+    }
+  },
+  "menu": {
+    "title": {
+      "top": {
+        "text_": "Menu"
+      },
+      "confirm": {
+        "text_": "Confirm"
+      }
+    },
+    "subTitle": {
+      "drop": {
+        "text_": "Obtained"
+      },
+      "mission": {
+        "text_": "Mission"
+      }
+    },
+    "description": {
+      "retire": {
+        "text_": "If you quit, you will lose all acquired rewards,\\nas well as {0} stamina. Proceed?",
+        "nopenalty": {
+          "text_": "If you quit, you will lose all acquired rewards.\\nProceed?"
+        },
+        "arena": {
+          "text_": "If you quit, the match will count as a loss.\\nDo you truly want to proceed?\\n(Spent BP will not be refunded.)"
+        }
+      },
+      "skip": {
+        "text_": "Skip scenario?"
+      }
+    },
+    "button": {
+      "back": {
+        "text_": "Back"
+      },
+      "settings": {
+        "text_": "Settings"
+      },
+      "retire": {
+        "text_": "Quit"
+      },
+      "skip": {
+        "text_": "Skip"
+      },
+      "ok": {
+        "text_": "OK"
+      },
+      "cancel": {
+        "text_": "Cancel"
+      }
+    },
+    "message": {
+      "text_": "Return to battle?"
+    }
+  },
+  "auto": {
+    "description": {
+      "button": {
+        "text_": "Repeat"
+      },
+      "text_": "Auto On"
+    }
+  },
+  "economy": {
+    "description": {
+      "text_": "Saving"
+    }
+  }
+}
