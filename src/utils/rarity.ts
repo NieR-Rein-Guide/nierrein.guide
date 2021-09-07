@@ -1,5 +1,5 @@
 const RARITY = {
-  RARE: 1,
+  RARE: 2,
   S_RARE: 3,
   SS_RARE: 4,
 };
