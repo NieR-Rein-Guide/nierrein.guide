@@ -14,7 +14,6 @@ export default function DatabaseCostumes({
   allCostumes,
 }: DatabaseStoriesProps): JSX.Element {
   const costumes: Costume[] = JSON.parse(allCostumes);
-  console.log(costumes);
 
   return (
     <Layout>

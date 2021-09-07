@@ -44,7 +44,6 @@ function StatsOfLevel({
 }
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
-  console.log(costume);
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 p-2 py-4 md:p-6">
       <div

@@ -36,8 +36,6 @@ export default function CharactersPage({
     );
   };
 
-  console.log(costumes);
-
   const characters = costumes.reduce((acc, costume) => {
     if (acc.has(costume.character.en)) {
       return acc;
@@ -46,8 +44,6 @@ export default function CharactersPage({
     acc.set(costume.character.en, costume);
     return acc;
   }, new Map() as Map<string, Costume>);
-
-  console.log(characters);
 
   return (
     <Layout>

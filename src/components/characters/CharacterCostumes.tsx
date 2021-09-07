@@ -17,7 +17,6 @@ export default function CharacterCostumes({
   const selectedCharacterCostumes = costumes
     .filter((costume) => costume.character.en === currentCostume.character.en)
     .sort((a, b) => RARITY[a.costume.rarity] - RARITY[b.costume.rarity]);
-  console.log(selectedCharacterCostumes);
 
   return (
     <div className="my-2 p-2 lg:pl-6 overflow-auto">
@@ -26,7 +25,7 @@ export default function CharacterCostumes({
         {currentCostume.character.en}
       </p>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         {selectedCharacterCostumes.map((costume) => (
           <div
             key={costume.ids.costume}

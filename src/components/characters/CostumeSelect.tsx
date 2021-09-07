@@ -19,8 +19,6 @@ export default function CostumeSelect({
     return acc;
   }, {});
 
-  console.log(costumesByCharacter);
-
   return (
     <select
       className="bg-black text-white w-full"
