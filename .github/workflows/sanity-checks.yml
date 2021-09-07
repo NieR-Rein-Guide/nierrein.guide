@@ -36,3 +36,4 @@ jobs:
           GRAPHQL_API_ENDPOINT: ${{ secrets.GRAPHQL_API_ENDPOINT }}
           API_DUMPS_ENDPOINT: ${{ secrets.API_DUMPS_ENDPOINT }}
           NEXT_PUBLIC_GRAPHQL_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT }}
+          MONGODB_URI: ${{ secrets.MONGODB_URI }}
