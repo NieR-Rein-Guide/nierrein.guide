@@ -44,7 +44,7 @@ export default function CharacterCostumes({
               )}
             />
             <span className="text-xs line-clamp-1 mt-1">
-              {costume.costume.name.en}
+              {costume.costume.name.en ? costume.costume.name.en : "???"}
             </span>
           </div>
         ))}

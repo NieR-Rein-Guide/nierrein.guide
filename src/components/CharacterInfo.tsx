@@ -125,10 +125,12 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             <div className="bg-grey-dark p-4 relative bordered">
               <span className="text-sm absolute right-4 top-4">Skill</span>
               <strong className="font-display text-2xl text-beige">
-                {costume.skills[0][0].name}
+                {costume.skills[0][0].name ? costume.skills[0][0].name : "???"}
               </strong>
               <p className="text-beige-text">
-                {costume.skills[0][14].description.long}
+                {costume.skills[0][14].description.long
+                  ? costume.skills[0][14].description.long
+                  : "???"}
               </p>
             </div>
             {costume.abilities.map((ability) => (
