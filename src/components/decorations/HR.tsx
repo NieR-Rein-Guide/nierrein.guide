@@ -1,3 +1,3 @@
-export default function HR(): JSX.Element {
-  return <img src="/border.svg" alt="" />;
+export default function HR({ ...props }): JSX.Element {
+  return <img src="/border.svg" alt="" {...props} />;
 }

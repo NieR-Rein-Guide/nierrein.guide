@@ -5,6 +5,7 @@ export default function Lines({
   children,
   className = "",
   containerClass = "",
+  svgClass = "",
 }): JSX.Element {
   return (
     <div
@@ -14,13 +15,13 @@ export default function Lines({
       )}
     >
       <div className="hidden lg:flex justify-start">
-        <SVG src="/decorations/line-left-arrow.svg" />
+        <SVG src="/decorations/line-left-arrow.svg" className={svgClass} />
       </div>
       <div className={classNames("flex relative w-full px-7", containerClass)}>
         {children}
       </div>
       <div className="hidden lg:flex justify-end">
-        <SVG src="/decorations/line-right-arrow.svg" />
+        <SVG src="/decorations/line-right-arrow.svg" className={svgClass} />
       </div>
     </div>
   );
