@@ -121,6 +121,7 @@ export async function getStaticProps(context) {
       tiers,
       costumes,
     },
+    revalidate: 120
   };
 }
 
