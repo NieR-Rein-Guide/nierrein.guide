@@ -28,7 +28,6 @@ export default function CharactersPage({
 
   useEffect(() => {
     if (query.all) {
-      // @ts-expect-error this isn't typed? well, it's definitely an array.
       const [, costumeName] = query.all;
 
       setCurrentCostume(

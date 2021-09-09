@@ -64,12 +64,12 @@ function StatsOfLevel({
         <SingleStat
           icon={statsIcons.cr}
           name="Critical Rate"
-          value={stats.critRate.displayed ?? "???" + " %"}
+          value={stats.critRate.displayed + "%" ?? "???"}
         />
         <SingleStat
           icon={statsIcons.cd}
           name="Critical Damage"
-          value={stats.critDamage.displayed ?? "???" + " %"}
+          value={stats.critDamage.displayed + "%" ?? "???"}
         />
       </div>
     </div>
