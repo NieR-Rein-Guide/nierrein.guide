@@ -63,7 +63,9 @@ export default function DatabaseCostumes({
 }
 
 export async function getStaticProps(context) {
-  const allCostumes = await getAllCostumes();
+  const allCostumes = await getAllCostumes({
+    allStats: false,
+  });
 
   return {
     props: {
