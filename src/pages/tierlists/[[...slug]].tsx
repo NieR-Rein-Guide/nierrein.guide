@@ -104,7 +104,9 @@ export default function TierlistsPageProps({
 }
 
 export async function getStaticProps(context) {
-  const costumes = await getAllCostumes();
+  const costumes = await getAllCostumes({
+    allStats: false,
+  });
   const { pveTier, pvpTier, weaponsTier } = await getTiers();
   const tiers = [pveTier, pvpTier, weaponsTier];
   let defaultTab = 0;
@@ -121,7 +123,7 @@ export async function getStaticProps(context) {
       tiers,
       costumes,
     },
-    revalidate: 120
+    revalidate: 120,
   };
 }
 
