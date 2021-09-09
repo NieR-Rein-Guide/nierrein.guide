@@ -188,7 +188,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </div>
       )}
 
-      {costume?.metadata?.stats && (
+      {costume?.costume?.stats && (
         <div className="relative mb-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Statistics
