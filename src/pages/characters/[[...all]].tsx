@@ -96,7 +96,9 @@ export default function CharactersPage({
 }
 
 export async function getServerSideProps() {
-  const costumes = await getAllCostumes();
+  const costumes = await getAllCostumes({
+    allStats: false,
+  });
 
   return {
     props: {
