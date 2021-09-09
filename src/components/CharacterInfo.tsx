@@ -1,4 +1,4 @@
-import { Costume, CostumeStats } from "@models/types";
+import { Costume } from "@models/types";
 import Image from "next/image";
 import Rank from "./decorations/Rank";
 import HR from "./decorations/HR";
@@ -12,8 +12,11 @@ import getAbilityIcon from "@utils/getAbilityIcon";
 import getSkillIcon from "@utils/getSkillIcon";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import classNames from "classnames";
+import { useState } from "react";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
+  const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
+
   return (
     <>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 p-2 py-4 md:p-6">
@@ -176,6 +179,97 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           </div>
         </div>
       </div>
+
+      {costume?.costume?.stats && (
+        <div className="relative mb-8">
+          <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
+            Statistics
+          </h2>
+          <HR className="my-8" />
+
+          <div className="flex justify-center gap-x-6 mb-8">
+            <label className="cursor-pointer relative">
+              <span className="pl-10">Base stats</span>
+              <SVG
+                className="transform transition-all absolute -top-1"
+                src="/decorations/checkbox.svg"
+              />
+              <SVG
+                className={classNames(
+                  "transform transition-all absolute -top-1 opacity-0 scale-75 ease-out-cubic",
+                  statType === "base" && "opacity-100 scale-100"
+                )}
+                src="/decorations/checkbox_checked.svg"
+              />
+              <input
+                className="sr-only"
+                onChange={(e) => (e.target.value ? setStatType("base") : 0)}
+                type="radio"
+                checked={statType === "base"}
+              />
+            </label>
+
+            <label className="cursor-pointer relative">
+              <span className="pl-10">Stats with passive abilities</span>
+              <SVG
+                className="transform transition-all absolute -top-1"
+                src="/decorations/checkbox.svg"
+              />
+              <SVG
+                className={classNames(
+                  "transform transition-all absolute -top-1 opacity-0 scale-75 ease-out-cubic",
+                  statType === "displayed" && "opacity-100 scale-100"
+                )}
+                src="/decorations/checkbox_checked.svg"
+              />
+              <input
+                className="sr-only"
+                onChange={(e) =>
+                  e.target.value ? setStatType("displayed") : 0
+                }
+                type="radio"
+                checked={statType === "displayed"}
+              />
+            </label>
+          </div>
+          <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
+            <StatsOfLevel
+              stats={costume.costume.stats.base[statType]}
+              label={`Level ${
+                getCostumeLevelsByRarity(costume.costume.rarity).base
+              }`}
+              description={
+                statType === "displayed"
+                  ? `${costume.abilities[0][3].name} is at level 1`
+                  : ""
+              }
+            />
+            <StatsOfLevel
+              stats={costume.costume.stats.maxNoAscension[statType]}
+              label={`Level ${
+                getCostumeLevelsByRarity(costume.costume.rarity).maxNoAsc
+              } (No ascension)`}
+              description={
+                statType === "displayed"
+                  ? `${costume.abilities[0][3].name} is at level 1`
+                  : ""
+              }
+            />
+            <StatsOfLevel
+              stats={costume.costume.stats.maxWithAscension[statType]}
+              label={`Level ${
+                getCostumeLevelsByRarity(costume.costume.rarity).maxWithAsc
+              } (Max ascension)`}
+              description={
+                statType === "displayed"
+                  ? `${costume.abilities[0][3].name} & ${costume.abilities[1][3].name} are at level 4`
+                  : ""
+              }
+            />
+          </div>
+        </div>
+      )}
+
       {costume?.metadata?.weapon && (
         <div className="relative mb-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
@@ -184,35 +278,6 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <HR className="my-8" />
           <div className="flex justify-center">
             <h3 className="font-display text-2xl">{costume.metadata.weapon}</h3>
-          </div>
-        </div>
-      )}
-
-      {costume?.costume?.stats && (
-        <div className="relative mb-8">
-          <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
-            Statistics
-          </h2>
-          <HR className="my-8" />
-          <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
-            <StatsOfLevel
-              stats={costume.costume.stats.base}
-              label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).base
-              }`}
-            />
-            <StatsOfLevel
-              stats={costume.costume.stats.maxNoAscension}
-              label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).maxNoAsc
-              }`}
-            />
-            <StatsOfLevel
-              stats={costume.costume.stats.maxWithAscension}
-              label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).maxWithAsc
-              } (Absolute max)`}
-            />
           </div>
         </div>
       )}
@@ -273,11 +338,22 @@ function SingleStat({ name, value, icon }): JSX.Element {
   );
 }
 
-function StatsOfLevel({ label, stats }: { label: string; stats }): JSX.Element {
+function StatsOfLevel({
+  label,
+  stats,
+  description,
+}: {
+  label: string;
+  stats;
+  description: string;
+}): JSX.Element {
   return (
     <div className="flex-1 border border-beige-inactive bg-grey-lighter">
       <div className="bg-grey-foreground py-4 text-center mb-2">
         <h3 className="text-2xl text-beige-inactive">{label}</h3>
+        {description && (
+          <span className="text-sm text-beige">{description}</span>
+        )}
       </div>
 
       <div className="flex flex-col">

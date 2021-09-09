@@ -79,33 +79,31 @@ export type Story = {
 export type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
 export type CostumeRarity = "RARE" | "S_RARE" | "SS_RARE"
 
+
 export type CostumeStats = {
-  agility: {
-    base: number;
-    displayed: number;
-  };
-  atk: {
-    displayed: number,
-    base: number
-  };
-  critDamage: {
-    displayed: number,
-    base: number
-  };
-  critRate: {
-    displayed: number,
-    base: number
-  };
-  def: {
-    displayed: number,
-    base: number
-  };
-  hp: {
-    displayed: number,
-    base: number
-  };
-  level: number;
+  agility: number;
+  atk: number;
+  cd: number;
+  cr: number;
+  def: number;
+  hp: number;
 }
+
+export type CostumeStatsList = {
+  base: {
+    base: CostumeStats;
+    displayed: CostumeStats;
+  };
+  maxNoAscension: {
+    base: CostumeStats;
+    displayed: CostumeStats;
+  };
+  maxWithAscension: {
+    base: CostumeStats;
+    displayed: CostumeStats;
+  }
+}
+
 export type CostumeSource = {
   difficulty: string;
   groupName: string;
@@ -163,32 +161,7 @@ export type Costume = {
     },
     weaponType: WeaponType,
     rarity: CostumeRarity,
-    stats: {
-      base: {
-        hp: number;
-        atk: number;
-        def: number;
-        agility: number;
-        cr: number;
-        cd: number;
-      },
-      maxNoAscension: {
-        hp: number;
-        atk: number;
-        def: number;
-        agility: number;
-        cr: number;
-        cd: number;
-      },
-      maxWithAscension: {
-        hp: number;
-        atk: number;
-        def: number;
-        agility: number;
-        cr: number;
-        cd: number;
-      },
-    }
+    stats: CostumeStatsList,
   },
   skills: CostumeSkill[][];
   abilities: CostumeAbility[][];
