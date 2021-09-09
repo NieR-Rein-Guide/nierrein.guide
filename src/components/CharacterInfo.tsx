@@ -61,10 +61,12 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                 <h2 className="text-2xl">Skill</h2>
               </Lines>
               <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
-                <div className="flex">
+                <div className="flex items-center">
                   <div className="h-16 w-16 relative">
                     <Image
-                      layout="fill"
+                      layout="fixed"
+                      width={64}
+                      height={64}
                       alt=""
                       src={getSkillIcon(
                         costume.skills[0][0].SkillAssetCategoryId,
@@ -79,9 +81,15 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                         : "???"}
                     </strong>
                     <p className="text-beige-text">
-                      {costume.skills[0][14].description.long
-                        ? costume.skills[0][14].description.long
-                        : "???"}
+                      <span>
+                        {costume.skills[0][14].description.long
+                          ? costume.skills[0][14].description.long
+                          : "???"}
+                      </span>
+                      <p className="text-xs mt-2">
+                        Skill Cooldown value:{" "}
+                        {costume.skills[1][0].SkillCooltimeValue}
+                      </p>
                     </p>
                   </div>
                 </div>
@@ -270,10 +278,78 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </div>
       )}
 
+      <div className="relative mb-8">
+        <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
+          Skill & Abilities
+        </h2>
+        <HR className="my-8" />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          {costume.abilities.map((abilityList, index) => (
+            <div key={index}>
+              {Object.entries(abilityList)
+                .slice(0, 4)
+                .map(([index, ability]) => (
+                  <div
+                    key={index}
+                    className="relative bg-grey-foreground py-4 text-center mb-6 "
+                  >
+                    <div className="h-16 w-16 absolute left-12">
+                      <Image
+                        layout="fill"
+                        alt={ability.name}
+                        src={getAbilityIcon(
+                          ability.AssetCategoryId,
+                          ability.AssetVariationId
+                        )}
+                      />
+                    </div>
+                    <h3 className="text-2xl text-beige-inactive">
+                      {ability.name} (lvl {Number(index) + 1})
+                    </h3>
+                    <p>{ability.description.long}</p>
+                  </div>
+                ))}
+            </div>
+          ))}
+
+          {costume.skills.length > 0 &&
+            Object.entries(costume.skills[0])
+              .slice(0, 15)
+              .filter((value) => Number(value[0]) % 2 === 0)
+              .map(([index, skill]) => (
+                <div
+                  key={index}
+                  className="relative bg-grey-foreground py-4 text-center mb-6 border border-beige-active px-4"
+                >
+                  <div className="h-16 w-16 relative mx-auto">
+                    <Image
+                      layout="fill"
+                      alt=""
+                      src={getSkillIcon(
+                        costume.skills[0][0].SkillAssetCategoryId,
+                        costume.skills[0][0].SkillAssetVariationId
+                      )}
+                    />
+                  </div>
+                  <h3 className="text-2xl text-beige-inactive">
+                    {skill.name} (lvl {Number(index) + 1})
+                  </h3>
+                  <p>{skill.description.long}</p>
+                  <p className="mt-2">
+                    Skill Cooldown value:{" "}
+                    {index === "14"
+                      ? costume.skills[1][0].SkillCooltimeValue
+                      : costume.skills[0][0].SkillCooltimeValue}
+                  </p>
+                </div>
+              ))}
+        </div>
+      </div>
+
       {costume?.metadata?.weapon && (
         <div className="relative mb-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
-            Weapon
+            Weapon (WIP)
           </h2>
           <HR className="my-8" />
           <div className="flex justify-center">
@@ -349,7 +425,7 @@ function StatsOfLevel({
 }): JSX.Element {
   return (
     <div className="flex-1 border border-beige-inactive bg-grey-lighter">
-      <div className="bg-grey-foreground py-4 text-center mb-2">
+      <div className="flex flex-col justify-center bg-grey-foreground py-4 text-center mb-2 h-24">
         <h3 className="text-2xl text-beige-inactive">{label}</h3>
         {description && (
           <span className="text-sm text-beige">{description}</span>
