@@ -9,9 +9,5 @@ export default function getSkillIcon(CategoryId: number, VariationId: number): s
     id = categoryId.padEnd(5, '0') + variationId
   }
 
-  console.log(id)
-
-  // 100010
-  // 100001
   return `/ui/skill/skill${id}_standard.png`
 }

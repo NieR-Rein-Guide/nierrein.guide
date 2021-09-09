@@ -168,16 +168,25 @@ export type Costume = {
         hp: number;
         atk: number;
         def: number;
+        agility: number;
+        cr: number;
+        cd: number;
       },
       maxNoAscension: {
         hp: number;
         atk: number;
         def: number;
+        agility: number;
+        cr: number;
+        cd: number;
       },
       maxWithAscension: {
         hp: number;
         atk: number;
         def: number;
+        agility: number;
+        cr: number;
+        cd: number;
       },
     }
   },

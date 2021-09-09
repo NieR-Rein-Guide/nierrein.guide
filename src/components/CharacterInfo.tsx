@@ -11,6 +11,7 @@ import Lines from "./decorations/Lines";
 import getAbilityIcon from "@utils/getAbilityIcon";
 import getSkillIcon from "@utils/getSkillIcon";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
+import classNames from "classnames";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   return (
@@ -195,19 +196,19 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <HR className="my-8" />
           <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
             <StatsOfLevel
-              stats={costume.metadata.stats.min}
+              stats={costume.costume.stats.base}
               label={`Level ${
                 getCostumeLevelsByRarity(costume.costume.rarity).base
               }`}
             />
             <StatsOfLevel
-              stats={costume.metadata.stats.maxNoAscension}
+              stats={costume.costume.stats.maxNoAscension}
               label={`Level ${
                 getCostumeLevelsByRarity(costume.costume.rarity).maxNoAsc
               }`}
             />
             <StatsOfLevel
-              stats={costume.metadata.stats.absoluteMax}
+              stats={costume.costume.stats.maxWithAscension}
               label={`Level ${
                 getCostumeLevelsByRarity(costume.costume.rarity).maxWithAsc
               } (Absolute max)`}
@@ -247,6 +248,14 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
 }
 
 function SingleStat({ name, value, icon }): JSX.Element {
+  const colors = {
+    Attack: "text-red-300",
+    Defense: "text-blue-300",
+    Agility: "text-green-300",
+    "Critical Rate": "",
+    "Critical Damage": "",
+  };
+
   return (
     <div className="flex items-center justify-between pl-4 pr-8">
       <div className="flex items-center gap text-beige-light">
@@ -259,18 +268,12 @@ function SingleStat({ name, value, icon }): JSX.Element {
         />
         {name}
       </div>
-      <div className="font-light">{value}</div>
+      <div className={classNames("font-light", colors[name])}>{value}</div>
     </div>
   );
 }
 
-function StatsOfLevel({
-  label,
-  stats,
-}: {
-  label: string;
-  stats: CostumeStats;
-}): JSX.Element {
+function StatsOfLevel({ label, stats }: { label: string; stats }): JSX.Element {
   return (
     <div className="flex-1 border border-beige-inactive bg-grey-lighter">
       <div className="bg-grey-foreground py-4 text-center mb-2">
@@ -278,35 +281,31 @@ function StatsOfLevel({
       </div>
 
       <div className="flex flex-col">
-        <SingleStat
-          icon={statsIcons.hp}
-          name="HP"
-          value={stats.hp.displayed ?? "???"}
-        />
+        <SingleStat icon={statsIcons.hp} name="HP" value={stats.hp ?? "???"} />
         <SingleStat
           icon={statsIcons.atk}
           name="Attack"
-          value={stats.atk.displayed ?? "???"}
+          value={stats.atk ?? "???"}
         />
         <SingleStat
           icon={statsIcons.def}
           name="Defense"
-          value={stats.def.displayed ?? "???"}
+          value={stats.def ?? "???"}
         />
         <SingleStat
           icon={statsIcons.agility}
           name="Agility"
-          value={stats.agility.displayed ?? "???"}
+          value={stats.agility ?? "???"}
         />
         <SingleStat
           icon={statsIcons.cr}
           name="Critical Rate"
-          value={`${stats.critRate.displayed ?? "???"}%`}
+          value={`${stats.cr ?? "???"}%`}
         />
         <SingleStat
           icon={statsIcons.cd}
           name="Critical Damage"
-          value={`${stats.critDamage.displayed ?? "???"}%`}
+          value={`${stats.cd ?? "???"}%`}
         />
       </div>
     </div>
