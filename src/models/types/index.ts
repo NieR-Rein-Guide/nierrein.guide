@@ -76,8 +76,8 @@ export type Story = {
   character_id: number;
 }
 
-type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
-type CostumeRarity = "RARE" | "S_RARE" | "SS_RARE"
+export type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
+export type CostumeRarity = "RARE" | "S_RARE" | "SS_RARE"
 
 export type CostumeStats = {
   agility: {
@@ -115,6 +115,8 @@ export type CostumeSource = {
 }
 
 export type CostumeSkill = {
+  SkillAssetCategoryId: number;
+  SkillAssetVariationId: number;
   DescriptionSkillTextId: number;
   LevelLowerLimit: number;
   NameSkillTextId: number;
@@ -127,6 +129,8 @@ export type CostumeSkill = {
 }
 
 export type CostumeAbility = {
+  AssetCategoryId: number;
+  AssetVariationId: number;
   DescriptionSkillTextId: number;
   LevelLowerLimit: number;
   NameSkillTextId: number;
