@@ -159,6 +159,23 @@ export type Costume = {
     },
     weaponType: WeaponType,
     rarity: CostumeRarity,
+    stats: {
+      base: {
+        hp: number;
+        atk: number;
+        def: number;
+      },
+      maxNoAscension: {
+        hp: number;
+        atk: number;
+        def: number;
+      },
+      maxWithAscension: {
+        hp: number;
+        atk: number;
+        def: number;
+      },
+    }
   },
   skills: CostumeSkill[][];
   abilities: CostumeAbility[][];

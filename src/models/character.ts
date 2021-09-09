@@ -1,4 +1,4 @@
-import { getCostumes, getSingleCostume } from "@libs/mongo";
+import { getCostumes } from "@libs/mongo";
 import jsonAbilities from "../data/ability.json";
 import jsonSkills from "../data/skill.json";
 import jsonCostumes from "../data/costume.json";
@@ -20,24 +20,42 @@ async function getAllCostumes(): Promise<Costume[]> {
 
     return {
         ids: {
-        costume: costume.CostumeId,
-        character: costume.CharacterId,
-        emblem: costume.CostumeEmblemAssetId,
-        actor: costume.ActorAssetId,
+          library: costume.CatalogTermId,
+          costume: costume.CostumeId,
+          character: costume.CharacterId,
+          emblem: costume.CostumeEmblemAssetId,
+          actor: costume.ActorAssetId,
         },
         character: {
-        en: getCostumeCharacter(costume.CharacterId),
+          en: getCostumeCharacter(costume.CharacterId),
         },
         costume: {
-        name: {
+          name: {
             en: getCostumeName(costume.ActorAssetId),
-        },
-        description: {
-            en: getCostumeDescription(costume.ActorAssetId),
-        },
-        emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
-        weaponType: costume.WeaponType,
-        rarity: costume.RarityType,
+          },
+          description: {
+              en: getCostumeDescription(costume.ActorAssetId),
+          },
+          emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
+          weaponType: costume.WeaponType,
+          rarity: costume.RarityType,
+          stats: {
+            base: {
+              hp: calc(1, costume.StatusCalculation.HpFunction.Parameters),
+              atk: calc(1, costume.StatusCalculation.AttackFunction.Parameters),
+              def: calc(1, costume.StatusCalculation.VitalityFunction.Parameters),
+            },
+            maxNoAscension: {
+              hp: calc(70, costume.StatusCalculation.HpFunction.Parameters),
+              atk: calc(70, costume.StatusCalculation.AttackFunction.Parameters),
+              def: calc(70, costume.StatusCalculation.VitalityFunction.Parameters),
+            },
+            maxWithAscension: {
+              hp: calc(90, costume.StatusCalculation.HpFunction.Parameters),
+              atk: calc(90, costume.StatusCalculation.AttackFunction.Parameters),
+              def: calc(90, costume.StatusCalculation.VitalityFunction.Parameters),
+            },
+          }
         },
         abilities: getAbilities(costume),
         skills: getSkills(costume),
@@ -120,6 +138,17 @@ function getCostumeEmblem(CostumeEmblemAssetId) {
       description: jsonCostumes["emblem"]["production"]["result"]?.[paddedId] ?? '',
     },
   };
+}
+
+function calc(x, parameters) {
+    function ext16(num) {
+        return BigInt.asUintN(128, BigInt(num));
+    }
+    function procTerm(exp, index) {
+        const tmp = (ext16(parameters[index]) * ext16(x ** exp) * ext16("0x20C49BA5E353F7CF")) % BigInt(2 ** 128);
+        return (tmp >> 71n) + (tmp >> 127n);
+    }
+    return Number(BigInt.asIntN(32, procTerm(3, 0) + procTerm(2, 1) + procTerm(1, 2) + ext16(parameters[3])));
 }
 
 const memGetAllCostumes = pMemoize(getAllCostumes, {

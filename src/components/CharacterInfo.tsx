@@ -42,9 +42,19 @@ function StatsOfLevel({
 
       <div className="flex flex-col">
         <SingleStat
+          icon={statsIcons.hp}
+          name="HP"
+          value={stats.hp.displayed ?? "???"}
+        />
+        <SingleStat
           icon={statsIcons.atk}
           name="Attack"
           value={stats.atk.displayed ?? "???"}
+        />
+        <SingleStat
+          icon={statsIcons.def}
+          name="Defense"
+          value={stats.def.displayed ?? "???"}
         />
         <SingleStat
           icon={statsIcons.agility}
@@ -54,22 +64,12 @@ function StatsOfLevel({
         <SingleStat
           icon={statsIcons.cr}
           name="Critical Rate"
-          value={stats.critDamage.displayed ?? "???" + " %"}
+          value={stats.critRate.displayed ?? "???" + " %"}
         />
         <SingleStat
           icon={statsIcons.cd}
           name="Critical Damage"
           value={stats.critDamage.displayed ?? "???" + " %"}
-        />
-        <SingleStat
-          icon={statsIcons.hp}
-          name="HP"
-          value={stats.hp.displayed ?? "???"}
-        />
-        <SingleStat
-          icon={statsIcons.def}
-          name="Defense"
-          value={stats.def.displayed ?? "???"}
         />
       </div>
     </div>
@@ -77,8 +77,6 @@ function StatsOfLevel({
 }
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
-  console.log(costume);
-
   return (
     <>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 p-2 py-4 md:p-6">
@@ -236,17 +234,14 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           </h2>
           <HR className="my-8" />
           <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
-            <StatsOfLevel
-              stats={costume.metadata.stats.min}
-              label="Base stats"
-            />
+            <StatsOfLevel stats={costume.metadata.stats.min} label="Level 1" />
             <StatsOfLevel
               stats={costume.metadata.stats.maxNoAscension}
-              label="Max level (No asc)"
+              label="Level 70"
             />
             <StatsOfLevel
               stats={costume.metadata.stats.absoluteMax}
-              label="Max level (Full asc)"
+              label="Level 90 (Max skill)"
             />
           </div>
         </div>
