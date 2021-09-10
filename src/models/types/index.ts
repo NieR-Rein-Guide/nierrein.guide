@@ -105,11 +105,12 @@ export type CostumeStatsList = {
 }
 
 export type CostumeSource = {
-  difficulty: string;
-  groupName: string;
-  questName: string;
-  questType: string;
   sourceType: string;
+  isBookOnly: boolean;
+  difficulty?: string;
+  groupName?: string;
+  questName?: string;
+  questType?: string;
 }
 
 export type CostumeSkill = {

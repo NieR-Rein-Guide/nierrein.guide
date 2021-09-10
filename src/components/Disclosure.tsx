@@ -25,7 +25,8 @@ const Accordion = ({
     config: { friction: 25 },
     height: open ? `${contentHeight}px` : defaultHeight,
   });
-  const spin = useSpring({
+
+  const scale = useSpring({
     config: { friction: 25 },
     transform: open ? "scale(0.6)" : "scale(0.8)",
   });
@@ -57,7 +58,7 @@ const Accordion = ({
         <animated.button
           className="btn"
           onClick={() => toggle(!open)}
-          style={spin}
+          style={scale}
         >
           {open ? "Close" : "Expand"}
         </animated.button>

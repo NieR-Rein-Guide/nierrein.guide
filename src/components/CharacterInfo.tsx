@@ -303,7 +303,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </h2>
         <HR className="my-8" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Disclosure className="xl:col-span-2" initialHeight="96px">
+          <Disclosure className="lg:col-span-2" initialHeight="96px">
             {skill.map((sk, index) => (
               <div
                 key={index}
@@ -396,22 +396,24 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           </h2>
           <HR className="my-8" />
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {costume.metadata.sources.map((source) => (
-              <div
-                key={source.sourceType}
-                className="flex-1 border border-beige-inactive bg-grey-lighter"
-              >
-                <div className="bg-grey-foreground py-4 text-center">
-                  <h3 className="text-2xl text-beige-inactive">
-                    {source.sourceType} {source.questType ? " > " : ""}
-                    {source.questType} {source.groupName ? " > " : ""}
-                    {source.groupName} {source.questName ? " > " : ""}
-                    {source.questName} {source.difficulty ? " > " : ""}
-                    {source.difficulty}
-                  </h3>
+            {costume.metadata.sources
+              .filter((source) => !source.isBookOnly)
+              .map((source, index) => (
+                <div
+                  key={`${costume.ids.costume}${index}`}
+                  className="flex-1 border border-beige-inactive bg-grey-lighter"
+                >
+                  <div className="bg-grey-foreground py-4 text-center">
+                    <h3 className="text-2xl text-beige-inactive">
+                      {source.sourceType} {source.questType ? " > " : ""}
+                      {source.questType} {source.groupName ? " > " : ""}
+                      {source.groupName} {source.questName ? " > " : ""}
+                      {source.questName} {source.difficulty ? " > " : ""}
+                      {source.difficulty}
+                    </h3>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
       )}
