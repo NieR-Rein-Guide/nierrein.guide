@@ -33,8 +33,10 @@ const Accordion = ({
   useEffect(() => {
     setContentHeight(height.toString());
 
+    // @ts-expect-error idk
     window.addEventListener("resize", setContentHeight(height));
 
+    // @ts-expect-error idk
     return window.removeEventListener("resize", setContentHeight(height));
   }, [height]);
 
