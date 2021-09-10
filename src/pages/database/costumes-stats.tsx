@@ -147,6 +147,8 @@ export default function DatabaseCostumes({
             </tr>
 
             <RowsOfStats costumes={costumes} level={1} />
+            <RowsOfStats costumes={costumes} level={50} />
+            <RowsOfStats costumes={costumes} level={60} />
             <RowsOfStats costumes={costumes} level={70} />
             <RowsOfStats costumes={costumes} level={75} />
             <RowsOfStats costumes={costumes} level={80} />
