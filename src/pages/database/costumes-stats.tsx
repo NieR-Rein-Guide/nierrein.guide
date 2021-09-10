@@ -49,14 +49,6 @@ export default function DatabaseCostumes({
                     weaponType={costume.costume.weaponType}
                     alt=""
                   />
-
-                  {/* <td className="text-sm mt-2">
-                    {costume?.costume?.name?.en?.includes("Reborn") && (
-                      <span className="text-rarity-4">EX </span>
-                    )}
-                    {costume.character.en}
-                  </td>
-                  <td className="text-xs">{costume.costume.name.en}</td> */}
                 </td>
               ))}
             </tr>
@@ -78,6 +70,78 @@ export default function DatabaseCostumes({
               {costumes.map((costume) => (
                 <td key={costume.ids.costume} className="text-xs">
                   {costume.costume.name.en}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Rarity</th>
+
+              {costumes.map((costume) => (
+                <td key={costume.ids.costume} className="text-xs">
+                  {costume.costume.rarity}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Ability 1</th>
+
+              {costumes.map((costume) => (
+                <td key={costume.ids.costume} className="text-xs">
+                  {costume.abilities[0][3].name}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Ability 1 Description</th>
+
+              {costumes.map((costume) => (
+                <td key={costume.ids.costume} className="text-xs">
+                  {costume.abilities[0][3].description.long}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Ability 2</th>
+
+              {costumes.map((costume) => (
+                <td key={costume.ids.costume} className="text-xs">
+                  {costume.abilities[1][3].name}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Ability 2 Description</th>
+
+              {costumes.map((costume) => (
+                <td key={costume.ids.costume} className="text-xs">
+                  {costume.abilities[1][3].description.long}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Skill</th>
+
+              {costumes.map((costume) => (
+                <td key={costume.ids.costume} className="text-xs">
+                  {costume.skills[1][14].name}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Skill Description</th>
+
+              {costumes.map((costume) => (
+                <td key={costume.ids.costume} className="text-xs">
+                  {costume.skills[1][14].description.long}
+                </td>
+              ))}
+            </tr>
+            <tr>
+              <th>Skill Cooltime Value</th>
+
+              {costumes.map((costume) => (
+                <td key={costume.ids.costume} className="text-xs">
+                  {costume.skills[1][14].SkillCooltimeValue}
                 </td>
               ))}
             </tr>
@@ -128,30 +192,6 @@ function RowsOfStats({
         {costumes.map((costume) => (
           <td key={costume.ids.costume} className="text-s">
             {costume.costume.stats[level].base.def}
-          </td>
-        ))}
-      </tr>
-      <tr>
-        <th>Level {level} : Agility</th>
-        {costumes.map((costume) => (
-          <td key={costume.ids.costume} className="text-s">
-            {costume.costume.stats[level].base.agility}
-          </td>
-        ))}
-      </tr>
-      <tr>
-        <th>Level {level} : Critical Rate</th>
-        {costumes.map((costume) => (
-          <td key={costume.ids.costume} className="text-s">
-            {costume.costume.stats[level].base.cr}
-          </td>
-        ))}
-      </tr>
-      <tr>
-        <th>Level {level} : Critical Damage</th>
-        {costumes.map((costume) => (
-          <td key={costume.ids.costume} className="text-s">
-            {costume.costume.stats[level].base.cd}
           </td>
         ))}
       </tr>

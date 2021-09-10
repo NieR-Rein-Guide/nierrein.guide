@@ -191,11 +191,6 @@ function getAllStats(costume) {
     cd: 150,
   }
 
-  const firstAbilityStatsNoAsc = costume.Ability[0].AbilityDetail[0].AbilityStatus
-
-  const firstAbilityStatsWithAsc = costume.Ability[0].AbilityDetail[3].AbilityStatus
-  const secondAbilityStatsWithAsc = costume.Ability[1].AbilityDetail[3].AbilityStatus
-
   const baseStats = {
     hp: calc(1, costume.StatusCalculation.HpFunction.Parameters),
     atk: calc(1, costume.StatusCalculation.AttackFunction.Parameters),
@@ -207,6 +202,20 @@ function getAllStats(costume) {
     hp: calc(70, costume.StatusCalculation.HpFunction.Parameters),
       atk: calc(70, costume.StatusCalculation.AttackFunction.Parameters),
       def: calc(70, costume.StatusCalculation.VitalityFunction.Parameters),
+      ...otherStats
+  }
+
+  const baseMaxNoAscensionStats50 = {
+    hp: calc(50, costume.StatusCalculation.HpFunction.Parameters),
+      atk: calc(50, costume.StatusCalculation.AttackFunction.Parameters),
+      def: calc(50, costume.StatusCalculation.VitalityFunction.Parameters),
+      ...otherStats
+  }
+
+  const baseMaxNoAscensionStats60 = {
+    hp: calc(60, costume.StatusCalculation.HpFunction.Parameters),
+      atk: calc(60, costume.StatusCalculation.AttackFunction.Parameters),
+      def: calc(60, costume.StatusCalculation.VitalityFunction.Parameters),
       ...otherStats
   }
 
@@ -241,89 +250,28 @@ function getAllStats(costume) {
   const stats = {
     1: {
       base: baseStats,
-      displayed: {
-        hp: Math.floor(baseStats.hp * (1 + (firstAbilityStatsNoAsc.Hp / 1000))),
-        atk: Math.floor(baseStats.atk * (1 + (firstAbilityStatsNoAsc.Attack / 1000))),
-        def: Math.floor(baseStats.def * (1 + (firstAbilityStatsNoAsc.Vitality / 1000))),
-        agility: Math.floor(baseStats.agility * (1 + (firstAbilityStatsNoAsc.Agility / 1000))),
-        cr: Math.floor(baseStats.cr + firstAbilityStatsNoAsc.CriticalRatioPermil),
-        cd: Math.floor(baseStats.cd + firstAbilityStatsNoAsc.CriticalAttackRatioPermil),
-      }
+    },
+    50: {
+      base: baseMaxNoAscensionStats50,
+    },
+    60: {
+      base: baseMaxNoAscensionStats60,
     },
     70: {
       base: baseMaxNoAscensionStats,
-      displayed: {
-        hp: Math.floor(baseMaxNoAscensionStats.hp * (1 + (firstAbilityStatsNoAsc.Hp / 1000))),
-        atk: Math.floor(baseMaxNoAscensionStats.atk * (1 + (firstAbilityStatsNoAsc.Attack / 1000))),
-        def: Math.floor(baseMaxNoAscensionStats.def * (1 + (firstAbilityStatsNoAsc.Vitality / 1000))),
-        agility: Math.floor(baseMaxNoAscensionStats.agility * (1 + (firstAbilityStatsNoAsc.Agility / 1000))),
-        cr: Math.floor(baseMaxNoAscensionStats.cr + firstAbilityStatsNoAsc.CriticalRatioPermil),
-        cd: Math.floor(baseMaxNoAscensionStats.cd + firstAbilityStatsNoAsc.CriticalAttackRatioPermil),
-      }
     },
     75: {
       base: baseMaxWithAscensionStats75,
-      displayed: {
-        // Calculating first and second ability (2nd ability is unlocked after ascension) It is just in case 2 abilities influences the same stat
-        hp: Math.floor(baseMaxWithAscensionStats75.hp * (1 + (firstAbilityStatsWithAsc.Hp / 1000)) * (1 + (secondAbilityStatsWithAsc.Hp / 1000))),
-        atk: Math.floor(baseMaxWithAscensionStats75.atk * (1 + (firstAbilityStatsWithAsc.Attack / 1000)) * (1 + (secondAbilityStatsWithAsc.Attack / 1000))),
-        def: Math.floor(baseMaxWithAscensionStats75.def * (1 + (firstAbilityStatsWithAsc.Vitality / 1000)) * (1 + (secondAbilityStatsWithAsc.Vitality / 1000))),
-        agility: Math.floor(baseMaxWithAscensionStats75.agility * (1 + (firstAbilityStatsWithAsc.Agility / 1000)) * (1 + (secondAbilityStatsWithAsc.Agility / 1000))),
-        cr: Math.floor(
-            baseMaxWithAscensionStats75.cr + (firstAbilityStatsWithAsc.CriticalRatioPermil / 10) + (secondAbilityStatsWithAsc.CriticalRatioPermil / 10)
-          ),
-        cd: Math.floor(
-            baseMaxWithAscensionStats75.cd + (firstAbilityStatsWithAsc.CriticalAttackRatioPermil / 10) + (secondAbilityStatsWithAsc.CriticalAttackRatioPermil / 10)
-          ),
-      }
     },
     80: {
       base: baseMaxWithAscensionStats80,
-      displayed: {
-        // Calculating first and second ability (2nd ability is unlocked after ascension) It is just in case 2 abilities influences the same stat
-        hp: Math.floor(baseMaxWithAscensionStats80.hp * (1 + (firstAbilityStatsWithAsc.Hp / 1000)) * (1 + (secondAbilityStatsWithAsc.Hp / 1000))),
-        atk: Math.floor(baseMaxWithAscensionStats80.atk * (1 + (firstAbilityStatsWithAsc.Attack / 1000)) * (1 + (secondAbilityStatsWithAsc.Attack / 1000))),
-        def: Math.floor(baseMaxWithAscensionStats80.def * (1 + (firstAbilityStatsWithAsc.Vitality / 1000)) * (1 + (secondAbilityStatsWithAsc.Vitality / 1000))),
-        agility: Math.floor(baseMaxWithAscensionStats80.agility * (1 + (firstAbilityStatsWithAsc.Agility / 1000)) * (1 + (secondAbilityStatsWithAsc.Agility / 1000))),
-        cr: Math.floor(
-            baseMaxWithAscensionStats80.cr + (firstAbilityStatsWithAsc.CriticalRatioPermil / 10) + (secondAbilityStatsWithAsc.CriticalRatioPermil / 10)
-          ),
-        cd: Math.floor(
-            baseMaxWithAscensionStats80.cd + (firstAbilityStatsWithAsc.CriticalAttackRatioPermil / 10) + (secondAbilityStatsWithAsc.CriticalAttackRatioPermil / 10)
-          ),
-      }
+
     },
     85: {
       base: baseMaxWithAscensionStats85,
-      displayed: {
-        // Calculating first and second ability (2nd ability is unlocked after ascension) It is just in case 2 abilities influences the same stat
-        hp: Math.floor(baseMaxWithAscensionStats85.hp * (1 + (firstAbilityStatsWithAsc.Hp / 1000)) * (1 + (secondAbilityStatsWithAsc.Hp / 1000))),
-        atk: Math.floor(baseMaxWithAscensionStats85.atk * (1 + (firstAbilityStatsWithAsc.Attack / 1000)) * (1 + (secondAbilityStatsWithAsc.Attack / 1000))),
-        def: Math.floor(baseMaxWithAscensionStats85.def * (1 + (firstAbilityStatsWithAsc.Vitality / 1000)) * (1 + (secondAbilityStatsWithAsc.Vitality / 1000))),
-        agility: Math.floor(baseMaxWithAscensionStats85.agility * (1 + (firstAbilityStatsWithAsc.Agility / 1000)) * (1 + (secondAbilityStatsWithAsc.Agility / 1000))),
-        cr: Math.floor(
-            baseMaxWithAscensionStats85.cr + (firstAbilityStatsWithAsc.CriticalRatioPermil / 10) + (secondAbilityStatsWithAsc.CriticalRatioPermil / 10)
-          ),
-        cd: Math.floor(
-            baseMaxWithAscensionStats85.cd + (firstAbilityStatsWithAsc.CriticalAttackRatioPermil / 10) + (secondAbilityStatsWithAsc.CriticalAttackRatioPermil / 10)
-          ),
-      }
     },
     90: {
       base: baseMaxWithAscensionStats,
-      displayed: {
-        // Calculating first and second ability (2nd ability is unlocked after ascension) It is just in case 2 abilities influences the same stat
-        hp: Math.floor(baseMaxWithAscensionStats.hp * (1 + (firstAbilityStatsWithAsc.Hp / 1000)) * (1 + (secondAbilityStatsWithAsc.Hp / 1000))),
-        atk: Math.floor(baseMaxWithAscensionStats.atk * (1 + (firstAbilityStatsWithAsc.Attack / 1000)) * (1 + (secondAbilityStatsWithAsc.Attack / 1000))),
-        def: Math.floor(baseMaxWithAscensionStats.def * (1 + (firstAbilityStatsWithAsc.Vitality / 1000)) * (1 + (secondAbilityStatsWithAsc.Vitality / 1000))),
-        agility: Math.floor(baseMaxWithAscensionStats.agility * (1 + (firstAbilityStatsWithAsc.Agility / 1000)) * (1 + (secondAbilityStatsWithAsc.Agility / 1000))),
-        cr: Math.floor(
-            baseMaxWithAscensionStats.cr + (firstAbilityStatsWithAsc.CriticalRatioPermil / 10) + (secondAbilityStatsWithAsc.CriticalRatioPermil / 10)
-          ),
-        cd: Math.floor(
-            baseMaxWithAscensionStats.cd + (firstAbilityStatsWithAsc.CriticalAttackRatioPermil / 10) + (secondAbilityStatsWithAsc.CriticalAttackRatioPermil / 10)
-          ),
-      }
     },
   }
 
