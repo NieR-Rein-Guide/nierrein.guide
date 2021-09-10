@@ -148,8 +148,8 @@ function getStats(costume) {
         atk: Math.floor(baseStats.atk * (1 + (firstAbilityStatsNoAsc.Attack / 1000))),
         def: Math.floor(baseStats.def * (1 + (firstAbilityStatsNoAsc.Vitality / 1000))),
         agility: Math.floor(baseStats.agility * (1 + (firstAbilityStatsNoAsc.Agility / 1000))),
-        cr: Math.floor(baseStats.cr + firstAbilityStatsNoAsc.CriticalRatioPermil),
-        cd: Math.floor(baseStats.cd + firstAbilityStatsNoAsc.CriticalAttackRatioPermil),
+        cr: Math.floor(baseMaxNoAscensionStats.cr + (firstAbilityStatsNoAsc.CriticalRatioPermil / 10)),
+        cd: Math.floor(baseMaxNoAscensionStats.cd + (firstAbilityStatsNoAsc.CriticalAttackRatioPermil / 10)),
       }
     },
     maxNoAscension: {
@@ -159,8 +159,8 @@ function getStats(costume) {
         atk: Math.floor(baseMaxNoAscensionStats.atk * (1 + (firstAbilityStatsNoAsc.Attack / 1000))),
         def: Math.floor(baseMaxNoAscensionStats.def * (1 + (firstAbilityStatsNoAsc.Vitality / 1000))),
         agility: Math.floor(baseMaxNoAscensionStats.agility * (1 + (firstAbilityStatsNoAsc.Agility / 1000))),
-        cr: Math.floor(baseMaxNoAscensionStats.cr + firstAbilityStatsNoAsc.CriticalRatioPermil),
-        cd: Math.floor(baseMaxNoAscensionStats.cd + firstAbilityStatsNoAsc.CriticalAttackRatioPermil),
+        cr: Math.floor(baseMaxNoAscensionStats.cr + (firstAbilityStatsNoAsc.CriticalRatioPermil / 10)),
+        cd: Math.floor(baseMaxNoAscensionStats.cd + (firstAbilityStatsNoAsc.CriticalAttackRatioPermil / 10)),
       }
     },
     maxWithAscension: {
