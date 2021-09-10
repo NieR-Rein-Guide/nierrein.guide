@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@lukeed/uuid": "^2.0.0",
+    "@reach/accordion": "^0.16.1",
     "@reach/dialog": "^0.16.0",
-    "@reach/disclosure": "^0.16.0",
     "@reach/listbox": "^0.16.1",
     "@reach/menu-button": "^0.16.1",
     "@reach/tabs": "^0.16.1",
