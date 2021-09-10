@@ -13,9 +13,28 @@ import getSkillIcon from "@utils/getSkillIcon";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import classNames from "classnames";
 import { useState } from "react";
+import Disclosure from "@components/Disclosure";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
+
+  const firstAbility = Object.entries(costume.abilities[0])
+    .slice(0, 4)
+    .map(([, value]) => value)
+    .slice()
+    .reverse();
+
+  const secondAbility = Object.entries(costume.abilities[1])
+    .slice(0, 4)
+    .map(([, value]) => value)
+    .slice()
+    .reverse();
+
+  const skill = Object.entries(costume.skills[1])
+    .slice(0, 15)
+    .map(([, value]) => value);
+
+  console.log(costume);
 
   return (
     <>
@@ -284,65 +303,77 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </h2>
         <HR className="my-8" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {costume.abilities.map((abilityList, index) => (
-            <div key={index}>
-              {Object.entries(abilityList)
-                .slice(0, 4)
-                .map(([index, ability]) => (
-                  <div
-                    key={index}
-                    className="relative bg-grey-foreground py-4 text-center mb-6 "
-                  >
-                    <div className="h-16 w-16 absolute left-12">
-                      <Image
-                        layout="fill"
-                        alt={ability.name}
-                        src={getAbilityIcon(
-                          ability.AssetCategoryId,
-                          ability.AssetVariationId
-                        )}
-                      />
-                    </div>
-                    <h3 className="text-2xl text-beige-inactive">
-                      {ability.name} (lvl {Number(index) + 1})
-                    </h3>
-                    <p>{ability.description.long}</p>
-                  </div>
-                ))}
-            </div>
-          ))}
-
-          {costume.skills.length > 0 &&
-            Object.entries(costume.skills[0])
-              .slice(0, 15)
-              .filter((value) => Number(value[0]) % 2 === 0)
-              .map(([index, skill]) => (
-                <div
-                  key={index}
-                  className="relative bg-grey-foreground py-4 text-center mb-6 border border-beige-active px-4"
-                >
-                  <div className="h-16 w-16 relative mx-auto">
-                    <Image
-                      layout="fill"
-                      alt=""
-                      src={getSkillIcon(
-                        costume.skills[0][0].SkillAssetCategoryId,
-                        costume.skills[0][0].SkillAssetVariationId
-                      )}
-                    />
-                  </div>
-                  <h3 className="text-2xl text-beige-inactive">
-                    {skill.name} (lvl {Number(index) + 1})
-                  </h3>
-                  <p>{skill.description.long}</p>
-                  <p className="mt-2">
-                    Skill Cooldown value:{" "}
-                    {index === "14"
-                      ? costume.skills[1][0].SkillCooltimeValue
-                      : costume.skills[0][0].SkillCooltimeValue}
-                  </p>
+          <Disclosure className="xl:col-span-2" initialHeight="96px">
+            {skill.map((sk, index) => (
+              <div
+                key={index}
+                className="relative bg-grey-foreground py-4 text-center mb-6 "
+              >
+                <div className="h-16 w-16 absolute left-12">
+                  <Image
+                    layout="fill"
+                    alt={sk.name}
+                    src={getAbilityIcon(
+                      sk.SkillAssetCategoryId,
+                      sk.SkillAssetVariationId
+                    )}
+                  />
                 </div>
-              ))}
+                <h3 className="text-2xl text-beige-inactive">
+                  {sk.name} (lvl {skill.length - index})
+                </h3>
+                <p>{sk.description.long}</p>
+              </div>
+            ))}
+          </Disclosure>
+
+          <Disclosure initialHeight="96px">
+            {firstAbility.map((ability, index) => (
+              <div
+                key={index}
+                className="relative bg-grey-foreground py-4 text-center mb-6 "
+              >
+                <div className="h-16 w-16 absolute left-12">
+                  <Image
+                    layout="fill"
+                    alt={ability.name}
+                    src={getAbilityIcon(
+                      ability.AssetCategoryId,
+                      ability.AssetVariationId
+                    )}
+                  />
+                </div>
+                <h3 className="text-2xl text-beige-inactive">
+                  {ability.name} (lvl {firstAbility.length - index})
+                </h3>
+                <p>{ability.description.long}</p>
+              </div>
+            ))}
+          </Disclosure>
+
+          <Disclosure initialHeight="96px">
+            {secondAbility.map((ability, index) => (
+              <div
+                key={index}
+                className="relative bg-grey-foreground py-4 text-center mb-6 "
+              >
+                <div className="h-16 w-16 absolute left-12">
+                  <Image
+                    layout="fill"
+                    alt={ability.name}
+                    src={getAbilityIcon(
+                      ability.AssetCategoryId,
+                      ability.AssetVariationId
+                    )}
+                  />
+                </div>
+                <h3 className="text-2xl text-beige-inactive">
+                  {ability.name} (lvl {secondAbility.length - index})
+                </h3>
+                <p>{ability.description.long}</p>
+              </div>
+            ))}
+          </Disclosure>
         </div>
       </div>
 

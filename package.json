@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "@lukeed/uuid": "^2.0.0",
-    "@reach/accordion": "^0.16.1",
     "@reach/dialog": "^0.16.0",
     "@reach/disclosure": "^0.16.0",
     "@reach/listbox": "^0.16.1",
@@ -48,7 +47,9 @@
     "react-inlinesvg": "^2.3.0",
     "react-lottie-player": "^1.4.0",
     "react-player": "^2.9.0",
+    "react-spring": "^9.2.4",
     "react-tooltip": "^4.2.21",
+    "react-use": "^17.3.1",
     "recharts": "^2.1.2",
     "sharp": "^0.29.0",
     "slugify": "^1.6.0",
