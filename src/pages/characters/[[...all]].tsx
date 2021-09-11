@@ -28,15 +28,31 @@ export default function CharactersPage({
 
   useEffect(() => {
     if (query.all) {
-      const [, costumeName] = query.all;
+      const [characterName, costumeName] = query.all;
 
-      setCurrentCostume(
-        costumes.find(
-          (costume) =>
-            slugify(costume.costume.name.en, { lower: true }) === costumeName
-        ) || costumes[0]
+      const costume = costumes.find(
+        (costume) =>
+          slugify(costume.costume.name.en, { lower: true }) === costumeName
       );
+
+      if (costume) {
+        setCurrentCostume(costume);
+      } else {
+        if (characterName) {
+          const character = costumes.find(
+            (costume) =>
+              slugify(costume.character.en, { lower: true }) === characterName
+          );
+
+          if (character) {
+            setCurrentCostume(character);
+          }
+        } else {
+          setCurrentCostume(costumes[0]);
+        }
+      }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setCostume = (costume: Costume) => {

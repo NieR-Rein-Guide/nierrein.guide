@@ -34,8 +34,6 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
     .slice(0, 15)
     .map(([, value]) => value);
 
-  console.log(costume);
-
   return (
     <>
       <div className="grid grid-cols-1 xl:grid-cols-2 gap-4 p-2 py-4 md:p-6">
@@ -294,6 +292,10 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               }
             />
           </div>
+
+          <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
+            Timed or conditional passives are not included in the stats.
+          </p>
         </div>
       )}
 
