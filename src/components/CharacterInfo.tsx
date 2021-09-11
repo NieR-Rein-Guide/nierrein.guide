@@ -42,7 +42,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         {/* Costume info */}
         <div className="flex flex-col justify-between mt-4 mx-4 xl:mt-0 order-2 xl:order-1">
           {/* Costume story */}
-          <div className="flex flex-col items-center mb-12 xl:mb-0">
+          <div className="flex flex-col items-center xl:items-start mb-12 xl:mb-0">
             <div className="flex items-center gap-x-2 text-xl">
               <div className="w-8">
                 <Image
@@ -283,35 +283,43 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             <span className="w-20 text-right">
               {costume.skills[0][0].SkillCooltimeValue}
             </span>
+            <span>(Gauge level : ???)</span>
           </p>
           <p className="flex gap-x-1">
             <Ascend level={4} />
             <span className="w-20 text-right">
               {costume.skills[1][0].SkillCooltimeValue}
             </span>
+            <span>(Gauge level : ???)</span>
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Disclosure className="lg:col-span-2" initialHeight="96px">
+          <Disclosure className="lg:col-span-2" initialHeight="132px">
             {skill.reverse().map((sk, index) => (
               <div
-                key={index}
-                className="flex flex-col gap-y-1 relative bg-grey-foreground py-4 text-center mb-6 "
+                key={sk.NameSkillTextId}
+                className="flex gap-4 bg-grey-dark p-4 relative bordered"
               >
-                <div className="h-16 w-16 absolute left-12">
-                  <Image
-                    layout="fill"
-                    alt={sk.name}
-                    src={getAbilityIcon(
-                      sk.SkillAssetCategoryId,
-                      sk.SkillAssetVariationId
-                    )}
-                  />
+                <div className="flex items-center">
+                  <div className="h-16 w-16 relative">
+                    <Image
+                      layout="fixed"
+                      height={64}
+                      width={64}
+                      alt=""
+                      src={getSkillIcon(
+                        costume.skills[0][0].SkillAssetCategoryId,
+                        costume.skills[0][0].SkillAssetVariationId
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <strong className="font-display text-2xl text-beige">
+                      {sk.name} (lvl {skill.length - index})
+                    </strong>
+                    <p className="text-beige-text">{sk.description.long}</p>
+                  </div>
                 </div>
-                <h3 className="text-2xl text-beige-inactive">
-                  {sk.name} (lvl {skill.length - index})
-                </h3>
-                <p>{sk.description.long}</p>
               </div>
             ))}
           </Disclosure>
@@ -319,23 +327,31 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <Disclosure initialHeight="96px">
             {firstAbility.map((ability, index) => (
               <div
-                key={index}
-                className="relative bg-grey-foreground py-4 text-center mb-6 "
+                key={ability.NameSkillTextId}
+                className="flex gap-4 bg-grey-dark p-4 relative bordered"
               >
-                <div className="h-16 w-16 absolute left-12">
-                  <Image
-                    layout="fill"
-                    alt={ability.name}
-                    src={getAbilityIcon(
-                      ability.AssetCategoryId,
-                      ability.AssetVariationId
-                    )}
-                  />
+                <div className="flex items-center">
+                  <div className="h-16 w-16 relative">
+                    <Image
+                      layout="fixed"
+                      height={64}
+                      width={64}
+                      alt=""
+                      src={getAbilityIcon(
+                        ability.AssetCategoryId,
+                        ability.AssetVariationId
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <strong className="font-display text-2xl text-beige">
+                      {ability.name} (lvl {skill.length - index})
+                    </strong>
+                    <p className="text-beige-text">
+                      {ability.description.long}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl text-beige-inactive">
-                  {ability.name} (lvl {firstAbility.length - index})
-                </h3>
-                <p>{ability.description.long}</p>
               </div>
             ))}
           </Disclosure>
@@ -343,23 +359,31 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <Disclosure initialHeight="96px">
             {secondAbility.map((ability, index) => (
               <div
-                key={index}
-                className="relative bg-grey-foreground py-4 text-center mb-6 "
+                key={ability.NameSkillTextId}
+                className="flex gap-4 bg-grey-dark p-4 relative bordered"
               >
-                <div className="h-16 w-16 absolute left-12">
-                  <Image
-                    layout="fill"
-                    alt={ability.name}
-                    src={getAbilityIcon(
-                      ability.AssetCategoryId,
-                      ability.AssetVariationId
-                    )}
-                  />
+                <div className="flex items-center">
+                  <div className="h-16 w-16 relative">
+                    <Image
+                      layout="fixed"
+                      height={64}
+                      width={64}
+                      alt=""
+                      src={getAbilityIcon(
+                        ability.AssetCategoryId,
+                        ability.AssetVariationId
+                      )}
+                    />
+                  </div>
+                  <div>
+                    <strong className="font-display text-2xl text-beige">
+                      {ability.name} (lvl {skill.length - index})
+                    </strong>
+                    <p className="text-beige-text">
+                      {ability.description.long}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-2xl text-beige-inactive">
-                  {ability.name} (lvl {secondAbility.length - index})
-                </h3>
-                <p>{ability.description.long}</p>
               </div>
             ))}
           </Disclosure>
