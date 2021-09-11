@@ -32,7 +32,7 @@ const defaultLoginTodos: Todo[] = [
   },
   {
     checked: false,
-    label: "Daily 5 summon",
+    label: "Daily free summon",
     icon: "/ui/consumable_item/consumable118002_standard.png",
   },
   {
