@@ -109,7 +109,7 @@ export default function SingleEvent({ event }: eventProps): JSX.Element {
             </Lines>
           </div>
 
-          <article className="relative py-8 border border-opacity-40 px-8">
+          <article className="relative py-8 px-4 lg:p-8 border border-opacity-40">
             <Corners />
 
             <div

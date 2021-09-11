@@ -1,6 +1,6 @@
 /*! wysiwyg.css v0.0.3 | MIT License | github.com/jgthms/wysiwyg.css */
 .wysiwyg {
-  @apply font-labor overflow-x-auto;
+  @apply font-labor overflow-hidden;
   line-height: 1.6;
 
   a {
@@ -283,8 +283,21 @@
   }
 
 
+  .table {
+    @apply block overflow-auto max-h-96;
+
+    @screen xl {
+      @apply max-h-full;
+    }
+  }
+
   table, .table {
     @apply w-full;
+
+    img {
+      @apply max-h-16;
+      min-height: 32px;
+    }
   }
 
   table pre {
