@@ -125,7 +125,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               </Lines>
               {costume.abilities.map((ability) => (
                 <div
-                  key={ability[3].NameSkillTextId}
+                  key={`${costume.ids.costume}ability${ability[3].name}`}
                   className="flex gap-4 bg-grey-dark p-4 relative bordered"
                 >
                   <div className="flex">
@@ -297,7 +297,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <Disclosure className="lg:col-span-2" initialHeight="132px">
             {skill.reverse().map((sk, index) => (
               <div
-                key={sk.NameSkillTextId}
+                key={`${costume.ids.costume}${sk.name}${index}`}
                 className="flex gap-4 bg-grey-dark p-4 relative bordered"
               >
                 <div className="flex items-center">
@@ -327,7 +327,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <Disclosure initialHeight="96px">
             {firstAbility.map((ability, index) => (
               <div
-                key={ability.NameSkillTextId}
+                key={`${costume.ids.costume}${ability.name}${index}`}
                 className="flex gap-4 bg-grey-dark p-4 relative bordered"
               >
                 <div className="flex items-center">
@@ -359,7 +359,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <Disclosure initialHeight="96px">
             {secondAbility.map((ability, index) => (
               <div
-                key={ability.NameSkillTextId}
+                key={`${costume.ids.costume}${ability.name}${index}`}
                 className="flex gap-4 bg-grey-dark p-4 relative bordered"
               >
                 <div className="flex items-center">
@@ -413,7 +413,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               .filter((source) => !source.isBookOnly)
               .map((source, index) => (
                 <div
-                  key={`${costume.ids.costume}${index}`}
+                  key={`${costume.ids.costume}source${index}`}
                   className="flex-1 border border-beige-inactive bg-grey-lighter"
                 >
                   <div className="bg-grey-foreground py-4 text-center">

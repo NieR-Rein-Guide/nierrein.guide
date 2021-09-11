@@ -98,7 +98,6 @@ import fistIcon from "../../public/ui/material/material321004_standard.png";
 import staffIcon from "../../public/ui/material/material321005_standard.png";
 import gunIcon from "../../public/ui/material/material321006_standard.png";
 import classNames from "classnames";
-import GuerillaTimers from "./GuerillaTimers";
 
 const weaponToIcon = (weapon: string): StaticImageData => {
   switch (weapon) {
