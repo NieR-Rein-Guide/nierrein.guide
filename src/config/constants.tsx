@@ -20,29 +20,41 @@ export const NAVIGATION = [
     icon: guidesIcon,
   },
   {
-    label: "Loadouts",
-    href: "/loadouts",
-    icon: loadoutsIcon,
-  },
-  {
     label: "Tier lists",
     href: "/tierlists",
     icon: tierlistIcon,
+  },
+  {
+    label: "Loadouts",
+    href: "/loadouts",
+    icon: loadoutsIcon,
+    disabled: true,
+  },
+  {
+    label: "Fan Content",
+    href: "/fan-content",
+    icon: fanContentIcon,
   },
   {
     label: "Characters",
     href: "/characters",
     icon: charactersIcon,
   },
+
   {
     label: "Database",
     href: "/database",
     icon: databaseIcon,
   },
   {
-    label: "Fan Content",
-    href: "/fan-content",
-    icon: fanContentIcon,
+    label: "To-do list",
+    href: "/todolist",
+    icon: homeIcon,
+  },
+  {
+    label: "Tools",
+    href: "/tools",
+    icon: loadoutsIcon,
   },
 ];
 

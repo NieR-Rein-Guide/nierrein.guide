@@ -13,13 +13,15 @@ export default function NotFound(): JSX.Element {
         cover="https://nierrein.guide/cover-404.jpg"
       />
 
-      <h2 className="text-center text-4xl">
-        Uh oh. <code>{router.asPath}</code> leads to an unknown location of the
-        Cage... <br />
-        Do we even exists ?<br />
-        What is life ?<br />
+      <div className="bg-grey-lighter bordered relative p-8 mb-4">
+        <h2 className="text-center text-4xl">
+          Uh oh. You have reached the edge of the cage.
+        </h2>
+      </div>
+
+      <p className="text-center text-xl text-beige">
         Maybe in the future there will be something here...
-      </h2>
+      </p>
     </Layout>
   );
 }
