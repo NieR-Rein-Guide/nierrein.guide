@@ -143,10 +143,6 @@ export default function TierList({
                 (costume) => costume.costume.name.en === item.title
               );
 
-              if (!costume) {
-                console.log(item.title);
-              }
-
               return (
                 <div key={`${rank}-${item.name}-${index}`} className="relative">
                   {item.tooltip && (

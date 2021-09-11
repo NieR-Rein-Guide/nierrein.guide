@@ -304,9 +304,9 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                   <div className="h-16 w-16 relative">
                     <Image
                       layout="fixed"
-                      height={64}
                       width={64}
-                      alt=""
+                      height={64}
+                      alt={sk.name}
                       src={getSkillIcon(
                         costume.skills[0][0].SkillAssetCategoryId,
                         costume.skills[0][0].SkillAssetVariationId

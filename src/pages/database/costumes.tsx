@@ -79,7 +79,6 @@ export default function DatabaseCostumes({
   }
 
   function handleWeaponTypeCheckbox(value) {
-    console.log(value);
     if (weaponType.includes(value)) {
       setWeaponType(weaponType.filter((type) => type !== value));
     } else {
