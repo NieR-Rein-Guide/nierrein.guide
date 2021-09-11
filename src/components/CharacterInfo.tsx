@@ -14,6 +14,7 @@ import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import classNames from "classnames";
 import { useState } from "react";
 import Disclosure from "@components/Disclosure";
+import Radio from "@components/form/Radio";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
@@ -213,49 +214,19 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <HR className="my-8" />
 
           <div className="flex justify-center gap-x-6 mb-8">
-            <label className="cursor-pointer relative">
-              <span className="pl-10">Base stats</span>
-              <SVG
-                className="transform transition-all absolute -top-1"
-                src="/decorations/checkbox.svg"
-              />
-              <SVG
-                className={classNames(
-                  "transform transition-all absolute -top-1 opacity-0 scale-75 ease-out-cubic",
-                  statType === "base" && "opacity-100 scale-100"
-                )}
-                src="/decorations/checkbox_checked.svg"
-              />
-              <input
-                className="sr-only"
-                onChange={(e) => (e.target.value ? setStatType("base") : 0)}
-                type="radio"
-                checked={statType === "base"}
-              />
-            </label>
+            <Radio
+              name="Base stats"
+              value="base"
+              isChecked={statType === "base"}
+              setState={setStatType}
+            />
 
-            <label className="cursor-pointer relative">
-              <span className="pl-10">Stats with passive abilities</span>
-              <SVG
-                className="transform transition-all absolute -top-1"
-                src="/decorations/checkbox.svg"
-              />
-              <SVG
-                className={classNames(
-                  "transform transition-all absolute -top-1 opacity-0 scale-75 ease-out-cubic",
-                  statType === "displayed" && "opacity-100 scale-100"
-                )}
-                src="/decorations/checkbox_checked.svg"
-              />
-              <input
-                className="sr-only"
-                onChange={(e) =>
-                  e.target.value ? setStatType("displayed") : 0
-                }
-                type="radio"
-                checked={statType === "displayed"}
-              />
-            </label>
+            <Radio
+              name="Stats with passive abilities"
+              value="displayed"
+              isChecked={statType === "displayed"}
+              setState={setStatType}
+            />
           </div>
           <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
             <StatsOfLevel

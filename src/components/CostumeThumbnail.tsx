@@ -11,6 +11,7 @@ interface CostumeThumbnailProps {
   weaponType?: WeaponType;
   rarity?: number | string;
   imgClasses?: string;
+  className?: string;
 }
 
 export default function CostumeThumbnail({
@@ -19,12 +20,13 @@ export default function CostumeThumbnail({
   weaponType,
   rarity = 1,
   imgClasses = "",
+  className = "",
 }: CostumeThumbnailProps): JSX.Element {
   const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
 
   return (
     <div
-      className="h-20 w-20 relative"
+      className={classNames("h-20 w-20 relative", className)}
       style={{
         backgroundImage: `url(/decorations/background_rarity_${costumeRarity}.png)`,
       }}
