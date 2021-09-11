@@ -277,7 +277,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         <HR className="my-8" />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Disclosure className="lg:col-span-2" initialHeight="96px">
-            {skill.map((sk, index) => (
+            {skill.reverse().map((sk, index) => (
               <div
                 key={index}
                 className="relative bg-grey-foreground py-4 text-center mb-6 "
