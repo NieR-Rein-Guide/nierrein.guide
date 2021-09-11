@@ -15,6 +15,7 @@ import classNames from "classnames";
 import { useState } from "react";
 import Disclosure from "@components/Disclosure";
 import Radio from "@components/form/Radio";
+import Ascend from "@components/decorations/Ascend";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
@@ -41,7 +42,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         {/* Costume info */}
         <div className="flex flex-col justify-between mt-4 mx-4 xl:mt-0 order-2 xl:order-1">
           {/* Costume story */}
-          <div>
+          <div className="flex flex-col items-center mb-12 xl:mb-0">
             <div className="flex items-center gap-x-2 text-xl">
               <div className="w-8">
                 <Image
@@ -270,17 +271,32 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </div>
       )}
 
-      <div className="relative mb-8">
+      <div className="relative mb-16">
         <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
           Skill & Abilities
         </h2>
         <HR className="my-8" />
+        <div className="flex flex-col items-center mb-8">
+          <h4 className="text-2xl">Skill Cooltime Value</h4>
+          <p className="flex gap-x-1 my-2">
+            <Ascend level={0} />
+            <span className="w-20 text-right">
+              {costume.skills[0][0].SkillCooltimeValue}
+            </span>
+          </p>
+          <p className="flex gap-x-1">
+            <Ascend level={4} />
+            <span className="w-20 text-right">
+              {costume.skills[1][0].SkillCooltimeValue}
+            </span>
+          </p>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <Disclosure className="lg:col-span-2" initialHeight="96px">
             {skill.reverse().map((sk, index) => (
               <div
                 key={index}
-                className="relative bg-grey-foreground py-4 text-center mb-6 "
+                className="flex flex-col gap-y-1 relative bg-grey-foreground py-4 text-center mb-6 "
               >
                 <div className="h-16 w-16 absolute left-12">
                   <Image
@@ -351,7 +367,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
       </div>
 
       {costume?.metadata?.weapon && (
-        <div className="relative mb-8">
+        <div className="relative mb-16">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Weapon (WIP)
           </h2>
@@ -363,7 +379,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
       )}
 
       {costume?.metadata?.sources?.length > 0 && (
-        <div className="relative my-8">
+        <div className="relative my-16">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Sources
           </h2>
