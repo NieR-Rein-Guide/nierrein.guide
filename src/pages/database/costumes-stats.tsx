@@ -36,7 +36,7 @@ export default function DatabaseCostumes({
         <h2 className="overlap">Costumes</h2>
 
         <div className="wysiwyg">
-          <table>
+          <table className="block overflow-auto">
             <tr>
               <th>Thumbnail</th>
               {costumes.map((costume) => (
