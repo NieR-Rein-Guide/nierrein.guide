@@ -7,11 +7,11 @@ import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
-
 import { FiGithub } from "react-icons/fi";
 import { RiTodoLine } from "react-icons/ri";
 import { GITHUB_REPO_LINK } from "@config/constants";
 import pkg from "../../../package.json";
+import { useSpring, animated } from "react-spring";
 
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
@@ -27,6 +27,16 @@ export default function Header(): JSX.Element {
   function done() {
     setIsAnimating(false);
   }
+
+  const expand = useSpring({
+    config: { friction: 25 },
+    transform: isNavOpened ? "translateY(0vh)" : "translateY(-100vh)",
+  });
+
+  const shrink = useSpring({
+    config: { friction: 25 },
+    transform: isNavOpened ? "scale(1)" : "scale(0.8)",
+  });
 
   useEffect(() => {
     router.events.on("routeChangeStart", start);
@@ -93,13 +103,54 @@ export default function Header(): JSX.Element {
           <SVG src="/decorations/menu.svg" />
         </button>
 
-        <nav
+        <nav className="hidden xl:block nav justify-center items-center w-full nav-is-closed xl:w-auto inset-0 z-50 bg-pattern relative transform">
+          <div className="overflow-hidden h-full w-full pointer-events-auto">
+            <div className="flex justify-end mb-11 xl:hidden">
+              <button onClick={handleNavToggle} className="mt-4 mr-4 xl:hidden">
+                <SVG src="/decorations/menu-close.svg" />
+              </button>
+            </div>
+            <ul className="grid gap-y-8 grid-cols-7 mx-0">
+              {NAVIGATION.map((nav) => (
+                <li key={nav.label} className="nav-item flex justify-center">
+                  <Link href={nav.href} passHref={true}>
+                    <a
+                      className={classNames(
+                        "flex flex-col items-center justify-center",
+                        router.asPath === nav.href ? "active" : null,
+                        router.asPath !== nav.href ? "inactive" : null
+                      )}
+                    >
+                      <div className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-16 xl:w-16">
+                        <Image
+                          height={94}
+                          width={94}
+                          placeholder="blur"
+                          src={nav.icon}
+                          alt={`${nav.label} icon`}
+                        />
+                      </div>
+                      <span className="text-lg mt-2 text-center font-display xl:text-xl xl:w-28">
+                        {nav.label}
+                      </span>
+                    </a>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </nav>
+
+        <animated.nav
+          style={expand}
           className={classNames(
-            "nav flex justify-center items-center w-full nav-is-closed xl:w-auto fixed inset-0 z-50 bg-pattern xl:relative xl:block",
-            isNavOpened ? "nav-is-opened" : ""
+            "nav flex justify-center items-center w-full nav-is-closed xl:w-auto fixed inset-0 z-50 bg-pattern xl:relative xl:block transform"
           )}
         >
-          <div className="bg-grey-lighter h-9/10 w-4/5 overflow-y-auto border border-beige-inactive xl:border-none xl:bg-transparent xl:overflow-hidden xl:h-full xl:w-full pointer-events-auto">
+          <animated.div
+            style={shrink}
+            className="bg-grey-lighter h-9/10 w-4/5 overflow-y-auto border border-beige-inactive xl:border-none xl:bg-transparent xl:overflow-hidden xl:h-full xl:w-full pointer-events-auto"
+          >
             <div className="flex justify-end mb-11 xl:hidden">
               <button onClick={handleNavToggle} className="mt-4 mr-4 xl:hidden">
                 <SVG src="/decorations/menu-close.svg" />
@@ -136,8 +187,8 @@ export default function Header(): JSX.Element {
                 </li>
               ))}
             </ul>
-          </div>
-        </nav>
+          </animated.div>
+        </animated.nav>
       </div>
 
       <Link href="/todolist">

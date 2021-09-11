@@ -45,32 +45,6 @@ svg {
 .nav {
   @apply transition-all ease-out-cubic duration-300;
 
-  &.nav-is-opened {
-    clip-path: polygon(
-      20% 0%,
-      80% 0%,
-      100% 0,
-      100% 100%,
-      60% 100%,
-      42% 100%,
-      0 100%,
-      0 0
-    ) !important;
-
-    @screen xl {
-      clip-path: unset;
-    }
-  }
-
-  &.nav-is-closed {
-    pointer-events: none;
-    clip-path: polygon(20% 0%, 80% 0%, 100% 0, 80% 0, 51% 0, 43% 0, 19% 0, 0 0);
-
-    @screen xl {
-      clip-path: unset;
-    }
-  }
-
   ul {
     // @apply grid gap-y-8;
     // grid-template-columns: repeat(1, 1fr);
