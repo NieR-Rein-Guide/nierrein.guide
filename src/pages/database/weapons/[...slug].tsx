@@ -4,7 +4,7 @@ import { Weapon } from "@models/types";
 import Link from "next/link";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
-import slugify from "slugify";
+import urlSlug from "url-slug";
 import { useState } from "react";
 import weaponsIcons from "@utils/weaponsIcons";
 import RARITY from "@utils/rarity";
@@ -24,8 +24,6 @@ interface DatabaseWeaponProps {
 export default function SingleWeapon({
   weapon,
 }: DatabaseWeaponProps): JSX.Element {
-  console.log(weapon);
-
   const [evolutionStage, setEvolutionStage] = useState(0);
   // 0 is Lv. 1 and 14 is Lv. 15
   const [skillAbilitiesLevel, setSkillAbilitiesLevel] = useState(0);
@@ -190,7 +188,6 @@ export default function SingleWeapon({
               <Slider
                 min={0}
                 max={14}
-                dots
                 onChange={(value) => setSkillAbilitiesLevel(value)}
               />
               {/* Weapon abilities */}
@@ -352,12 +349,15 @@ export async function getStaticProps(context) {
     },
   };
 }
-export async function getStaticPaths(context) {
+export async function getStaticPaths() {
   const allWeapons = await getAllWeapons();
 
   const paths = allWeapons.map((weapon) => ({
     params: {
-      slug: [slugify(weapon.name.en, { lower: true }), `${weapon.ids.base}`],
+      slug: [
+        `${weapon.name.en ? urlSlug(weapon.name.en) : "unnamed"}`,
+        `${weapon.ids.base}`,
+      ],
     },
   }));
 

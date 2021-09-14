@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
 import Checkbox from "@components/form/Checkbox";
-import slugify from "slugify";
+import urlSlug from "url-slug";
 import { useEffect, useState } from "react";
 import weaponTypes from "@utils/weaponTypes";
 import weaponsIcons from "@utils/weaponsIcons";
@@ -214,27 +214,26 @@ export default function Databaseweapons({
         </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-y-12 gap-8 lg:gap-20">
-          {filteredWeapons.map((weapon) => {
-            const hasName = weapon.name.en.length > 0;
-            const href = `/database/weapons/${
-              hasName ? slugify(weapon.name.en, { lower: true }) : "unnamed"
-            }/${weapon.ids.base}`;
-
-            return (
-              <Link href={hasName ? href : ``} passHref key={weapon.ids.base}>
-                <a className="flex flex-col justify-start items-center">
-                  <WeaponThumbnail
-                    id={weapon.ids.asset}
-                    element={weapon.attribute}
-                    rarity={weapon.rarity}
-                    isDark={weapon.isDark}
-                    type={weapon.type}
-                  />
-                  <p className="text-center text-xs mt-2">{weapon.name.en}</p>
-                </a>
-              </Link>
-            );
-          })}
+          {filteredWeapons.map((weapon) => (
+            <Link
+              href={`/database/weapons/${
+                weapon.name.en ? urlSlug(weapon.name.en) : "unnamed"
+              }/${weapon.ids.base}`}
+              passHref
+              key={weapon.ids.base}
+            >
+              <a className="flex flex-col justify-start items-center">
+                <WeaponThumbnail
+                  id={weapon.ids.asset}
+                  element={weapon.attribute}
+                  rarity={weapon.rarity}
+                  isDark={weapon.isDark}
+                  type={weapon.type}
+                />
+                <p className="text-center text-xs mt-2">{weapon.name.en}</p>
+              </a>
+            </Link>
+          ))}
         </div>
       </section>
     </Layout>
