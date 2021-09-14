@@ -521,7 +521,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                       width={64}
                       layout="fixed"
                       src={`/ui/material/material${costume.ids.material}_standard.png`}
-                      alt={`Handbook of ${costume.costume.name}`}
+                      alt={`Handbook of ${costume.costume.name.en}`}
                     />
                   </div>
                 )}

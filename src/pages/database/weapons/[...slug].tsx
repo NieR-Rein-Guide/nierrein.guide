@@ -24,19 +24,11 @@ interface DatabaseWeaponProps {
 export default function SingleWeapon({
   weapon,
 }: DatabaseWeaponProps): JSX.Element {
-  const [evolutionStage, setEvolutionStage] = useState(0);
+  const [evolutionStage, setEvolutionStage] = useState(
+    weapon.evolutions.length - 1
+  );
   // 0 is Lv. 1 and 14 is Lv. 15
-  const [skillAbilitiesLevel, setSkillAbilitiesLevel] = useState(0);
-
-  // if (!weapon) {
-  //   return (
-  //     <Layout>
-  //       <Meta title="404" />
-  //       <h1>404</h1>
-  //       <p>Weapon not found</p>
-  //     </Layout>
-  //   );
-  // }
+  const [skillAbilitiesLevel, setSkillAbilitiesLevel] = useState(14);
 
   return (
     <Layout>
@@ -187,6 +179,7 @@ export default function SingleWeapon({
                   Skill & Abilities <b>Lv. {skillAbilitiesLevel + 1}</b>
                 </span>
                 <Slider
+                  value={skillAbilitiesLevel}
                   className="mt-2"
                   min={0}
                   max={14}

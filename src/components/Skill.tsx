@@ -50,9 +50,6 @@ export default function Skill({
                   `Gauge Level: ${getGaugeLevel(SkillCooltimeValue)}`}
                 {isWeapon && `Cooldown: ${SkillCooltimeValue / 30}s`}
               </span>
-              {isWeapon && (
-                <span className="text-xs">{SkillCooltimeValue / 30}s</span>
-              )}
               {!isWeapon && (
                 <span className="text-xs">{SkillCooltimeValue}</span>
               )}
