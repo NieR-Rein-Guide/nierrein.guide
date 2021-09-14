@@ -51,7 +51,7 @@ export default function Skill({
                 {isWeapon && `Cooldown: ${SkillCooltimeValue / 30}s`}
               </span>
               {!isWeapon && (
-                <span className="text-xs">{SkillCooltimeValue / 30}s</span>
+                <span className="text-xs">{SkillCooltimeValue}</span>
               )}
             </p>
           )}

@@ -133,7 +133,7 @@ export type Weapon = {
   isDark: boolean;
   isStory: boolean;
   isRestrictDiscard: boolean;
-  metadata: {
+  metadata?: {
     id: string,
     inLibrary: boolean,
     isDarkWeapon: boolean,

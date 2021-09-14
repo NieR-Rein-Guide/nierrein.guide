@@ -3,9 +3,10 @@ import jsonAbilities from "../data/ability.json";
 import jsonSkills from "../data/skill.json";
 import jsonWeapons from "../data/weapon.json";
 import { sheets } from "@libs/s3";
-import { Weapon } from '@models/types';
+import { CostumeRarity, Weapon, WeaponAbilityStage } from '@models/types';
 import pMemoize from 'p-memoize';
 import calc from '@utils/calcStats'
+import getWeaponLevelsByRarity from "@utils/getWeaponLevelsByRarity";
 
 async function getAllWeapons(): Promise<Weapon[]> {
 	const [weapons, weaponsSheet] = await Promise.all([
@@ -52,7 +53,7 @@ async function getSingleWeapon(BaseWeaponId: number): Promise<Weapon | null> {
 }
 
 function getWeapon(weapon) {
-	return {
+	const data: Weapon = {
 		ids: {
 			base: weapon.BaseWeaponId,
 			asset: weapon.BaseAssetId,
@@ -72,7 +73,22 @@ function getWeapon(weapon) {
 		isDark: weapon.EvolutionStages.length > 2,
 		isStory: weapon.IsRestrictDiscard == false && weapon.RarityType == "RARE",
 		isRestrictDiscard: weapon.IsRestrictDiscard,
-	};
+	}
+
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-ignore
+	data.stats = []
+
+	// First evolution stage
+	data.evolutions.forEach((evolution, index) => {
+		data.stats.push(getStats({
+			rarity: weapon.BaseRarityType,
+			StatusCalculation: weapon.EvolutionStages[index].StatusCalculation,
+			abilities: data.abilities[1],
+		}))
+	})
+
+	return data
 }
 
 
@@ -80,14 +96,14 @@ function getWeaponName(AssetId) {
 	return jsonWeapons["name"]?.[`wp${AssetId}`]?.["1"]?.["text_"] ?? '';
 }
 
-function getWeaponStories(AssetId) {
+function getWeaponStories(AssetId): string[] {
 	const stories = jsonWeapons["story"]?.[`wp${AssetId}`];
 
 	if (stories) {
 		return Object.values(stories).map((a) => a['text_'])
 	}
 
-	return {}
+	return []
 }
 
 function getSkills(EvolutionStages) {
@@ -139,63 +155,86 @@ function getAbilities(EvolutionStages) {
   return abilities;
 }
 
-// function getStats(costume) {
-//   const { base, maxNoAsc, maxWithAsc } = getCostumeLevelsByRarity(costume.RarityType as CostumeRarity);
+function getStats({
+	rarity,
+	StatusCalculation,
+	abilities,
+}: {
+	rarity: CostumeRarity,
+	status: {
+		Agility: number;
+		Attack: number;
+		CriticalAttackRatioPermil: number;
+		CriticalRatioPermil: number;
+		EvasionRatioPermil: number;
+		Hp: number;
+		Vitality: number;
+	},
+	StatusCalculation: {
+		HpFunction: {
+			Parameters: [number, number, number, number]
+		},
+		AttackFunction: {
+			Parameters: [number, number, number, number]
+		},
+		VitalityFunction: {
+			Parameters: [number, number, number, number]
+		},
+	},
+	abilities: WeaponAbilityStage[];
+}) {
+  const { base, maxNoAsc, maxWithAsc } = getWeaponLevelsByRarity(rarity);
 
+	const firstAbility = abilities[0][0]
+	const secondAbilityMaxLvl = abilities[1][14]
 
-//   const firstAbilityStatsNoAsc = costume.Ability[0].AbilityDetail[0].AbilityStatus
+  const baseStats = {
+    hp: calc(base, StatusCalculation.HpFunction.Parameters),
+    atk: calc(base, StatusCalculation.AttackFunction.Parameters),
+    def: calc(base, StatusCalculation.VitalityFunction.Parameters),
+  }
 
-//   const firstAbilityStatsWithAsc = costume.Ability[0].AbilityDetail[3].AbilityStatus
-//   const secondAbilityStatsWithAsc = costume.Ability[1].AbilityDetail[3].AbilityStatus
+  const baseMaxNoAscensionStats = {
+    hp: calc(maxNoAsc, StatusCalculation.HpFunction.Parameters),
+      atk: calc(maxNoAsc, StatusCalculation.AttackFunction.Parameters),
+      def: calc(maxNoAsc, StatusCalculation.VitalityFunction.Parameters),
+  }
 
-//   const baseStats = {
-//     hp: calc(base, costume.StatusCalculation.HpFunction.Parameters),
-//     atk: calc(base, costume.StatusCalculation.AttackFunction.Parameters),
-//     def: calc(base, costume.StatusCalculation.VitalityFunction.Parameters),
-//   }
+  const baseMaxWithAscensionStats = {
+    hp: calc(maxWithAsc, StatusCalculation.HpFunction.Parameters),
+      atk: calc(maxWithAsc, StatusCalculation.AttackFunction.Parameters),
+      def: calc(maxWithAsc, StatusCalculation.VitalityFunction.Parameters),
+  }
 
-//   const baseMaxNoAscensionStats = {
-//     hp: calc(maxNoAsc, costume.StatusCalculation.HpFunction.Parameters),
-//       atk: calc(maxNoAsc, costume.StatusCalculation.AttackFunction.Parameters),
-//       def: calc(maxNoAsc, costume.StatusCalculation.VitalityFunction.Parameters),
-//   }
+  const stats = {
+    base: {
+      base: baseStats,
+      displayed: {
+        hp: Math.floor(baseStats.hp * (1 + (firstAbility.AbilityStatus.Hp / 1000))),
+        atk: Math.floor(baseStats.atk * (1 + (firstAbility.AbilityStatus.Attack / 1000))),
+        def: Math.floor(baseStats.def * (1 + (firstAbility.AbilityStatus.Vitality / 1000))),
+      }
+    },
+    maxNoAscension: {
+      base: baseMaxNoAscensionStats,
+      displayed: {
+        hp: Math.floor(baseMaxNoAscensionStats.hp * (1 + (firstAbility.AbilityStatus.Hp / 1000))),
+        atk: Math.floor(baseMaxNoAscensionStats.atk * (1 + (firstAbility.AbilityStatus.Attack / 1000))),
+        def: Math.floor(baseMaxNoAscensionStats.def * (1 + (firstAbility.AbilityStatus.Vitality / 1000))),
+      }
+    },
+    maxWithAscension: {
+      base: baseMaxWithAscensionStats,
+      displayed: {
+        hp: Math.floor(baseMaxWithAscensionStats.hp * (1 + (firstAbility.AbilityStatus.Hp / 1000)) * (1 + (secondAbilityMaxLvl.AbilityStatus.Hp / 1000))),
+        atk: Math.floor(baseMaxWithAscensionStats.atk * (1 + (firstAbility.AbilityStatus.Attack / 1000)) * (1 + (secondAbilityMaxLvl.AbilityStatus.Attack / 1000))),
+        def: Math.floor(baseMaxWithAscensionStats.def * (1 + (firstAbility.AbilityStatus.Vitality / 1000)) * (1 + (secondAbilityMaxLvl.AbilityStatus.Vitality / 1000))),
+      }
+    },
+  }
 
-//   const baseMaxWithAscensionStats = {
-//     hp: calc(maxWithAsc, costume.StatusCalculation.HpFunction.Parameters),
-//       atk: calc(maxWithAsc, costume.StatusCalculation.AttackFunction.Parameters),
-//       def: calc(maxWithAsc, costume.StatusCalculation.VitalityFunction.Parameters),
-//   }
-
-//   const stats = {
-//     base: {
-//       base: baseStats,
-//       displayed: {
-//         hp: Math.floor(baseStats.hp * (1 + (firstAbilityStatsNoAsc.Hp / 1000))),
-//         atk: Math.floor(baseStats.atk * (1 + (firstAbilityStatsNoAsc.Attack / 1000))),
-//         def: Math.floor(baseStats.def * (1 + (firstAbilityStatsNoAsc.Vitality / 1000))),
-//       }
-//     },
-//     maxNoAscension: {
-//       base: baseMaxNoAscensionStats,
-//       displayed: {
-//         hp: Math.floor(baseMaxNoAscensionStats.hp * (1 + (firstAbilityStatsNoAsc.Hp / 1000))),
-//         atk: Math.floor(baseMaxNoAscensionStats.atk * (1 + (firstAbilityStatsNoAsc.Attack / 1000))),
-//         def: Math.floor(baseMaxNoAscensionStats.def * (1 + (firstAbilityStatsNoAsc.Vitality / 1000))),
-//       }
-//     },
-//     maxWithAscension: {
-//       base: baseMaxWithAscensionStats,
-//       displayed: {
-//         // Calculating first and second ability (2nd ability is unlocked after ascension) It is just in case 2 abilities influences the same stat
-//         hp: Math.floor(baseMaxWithAscensionStats.hp * (1 + (firstAbilityStatsWithAsc.Hp / 1000)) * (1 + (secondAbilityStatsWithAsc.Hp / 1000))),
-//         atk: Math.floor(baseMaxWithAscensionStats.atk * (1 + (firstAbilityStatsWithAsc.Attack / 1000)) * (1 + (secondAbilityStatsWithAsc.Attack / 1000))),
-//         def: Math.floor(baseMaxWithAscensionStats.def * (1 + (firstAbilityStatsWithAsc.Vitality / 1000)) * (1 + (secondAbilityStatsWithAsc.Vitality / 1000))),
-//       }
-//     },
-//   }
-
-//   return stats;
-// }
+  return stats;
+}
 
 
 const memGetAllWeapons = pMemoize(getAllWeapons, {
