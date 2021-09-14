@@ -182,14 +182,17 @@ export default function SingleWeapon({
             </div>
 
             <div className="flex flex-col flex-1 gap-y-2 p-2">
-              <span className="text-beige">
-                Skill & Abilities <b>Lv. {skillAbilitiesLevel + 1}</b>
-              </span>
-              <Slider
-                min={0}
-                max={14}
-                onChange={(value) => setSkillAbilitiesLevel(value)}
-              />
+              <div className="px-6">
+                <span className="text-beige">
+                  Skill & Abilities <b>Lv. {skillAbilitiesLevel + 1}</b>
+                </span>
+                <Slider
+                  className="mt-2"
+                  min={0}
+                  max={14}
+                  onChange={(value) => setSkillAbilitiesLevel(value)}
+                />
+              </div>
               {/* Weapon abilities */}
               <Lines
                 className="mb-2"
@@ -220,6 +223,7 @@ export default function SingleWeapon({
                     .SkillAssetVariationId
                 }
                 level={skillAbilitiesLevel + 1}
+                isWeapon={true}
               />
 
               <Skill
@@ -243,6 +247,7 @@ export default function SingleWeapon({
                     .SkillAssetVariationId
                 }
                 level={skillAbilitiesLevel + 1}
+                isWeapon={true}
               />
 
               <Lines
