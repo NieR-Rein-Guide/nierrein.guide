@@ -34,7 +34,7 @@ async function getAllCostumes({
           character: costume.CharacterId,
           emblem: costume.CostumeEmblemAssetId,
           actor: costume.ActorAssetId,
-          material: costume.LimitBreakMaterialId,
+          material: costume.CostumeLimitBreakMaterialId,
         },
         character: {
           en: getCostumeCharacter(costume.CharacterId),

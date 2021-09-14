@@ -1,4 +1,5 @@
 import getAbilityIcon from "@utils/getAbilityIcon";
+import classNames from "classnames";
 import Image from "next/image";
 
 interface AbilityProps {
@@ -8,6 +9,7 @@ interface AbilityProps {
   AssetVariationId: number;
   level?: number;
   maxLevel?: number;
+  className?: string;
 }
 
 export default function Ability({
@@ -17,11 +19,17 @@ export default function Ability({
   AssetVariationId,
   level = 1,
   maxLevel = 4,
+  className = "",
 }: AbilityProps): JSX.Element {
   return (
-    <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
+    <div
+      className={classNames(
+        "flex gap-4 bg-grey-dark p-4 relative bordered",
+        className
+      )}
+    >
       <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
-        {level}/{maxLevel}
+        Lv. {level}/{maxLevel}
       </span>
       <div className="flex items-center">
         <div className="h-16 w-16 relative">

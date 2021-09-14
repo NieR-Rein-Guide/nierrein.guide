@@ -8,12 +8,9 @@ import RARITY from "@utils/rarity";
 import weaponsIcons from "@utils/weaponsIcons";
 import statsIcons from "@utils/statsIcons";
 import Lines from "./decorations/Lines";
-import getAbilityIcon from "@utils/getAbilityIcon";
-import getSkillIcon from "@utils/getSkillIcon";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import classNames from "classnames";
 import { useState } from "react";
-import Disclosure from "@components/Disclosure";
 import Radio from "@components/form/Radio";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import getGaugeLevel from "@utils/getGaugeLevel";
@@ -21,10 +18,14 @@ import Skill from "@components/Skill";
 import Element from "@components/Element";
 import Ability from "@components/Ability";
 import { BtnSecondary } from "@components/btn";
+import Ascend from "@components/decorations/Ascend";
 import urlSlug from "url-slug";
+import Slider from "rc-slider";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
+  const [skillLevel, setSkillLevel] = useState(14);
+  const [abilityLevel, setAbilityLevel] = useState(3);
 
   const firstAbility = Object.entries(costume.abilities[0])
     .slice(0, 4)
@@ -251,123 +252,85 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           Skill & Abilities
         </h2>
         <HR className="my-8" />
-        <div className="flex flex-col items-center mb-8">
-          <h4 className="text-2xl">Skill Cooltime Value</h4>
-          <p className="flex gap-x-1 my-2">
-            <span className="w-20">Lv. 1/15</span>
-            <span className="text-xs bg-brown px-2 py-1">
-              Gauge level :{" "}
-              {getGaugeLevel(costume.skills[0][0].SkillCooltimeValue)}
-            </span>
-            <span className="w-20 text-right">
-              {costume.skills[0][0].SkillCooltimeValue}
-            </span>
-          </p>
-          <p className="flex gap-x-1">
-            <span className="w-20">Lv. 15/15</span>
-            <span className="text-xs bg-brown px-2 py-1">
-              Gauge level :{" "}
-              {getGaugeLevel(costume.skills[1][0].SkillCooltimeValue)}
-            </span>
-            <span className="w-20 text-right">
-              {costume.skills[1][0].SkillCooltimeValue}
-            </span>
-          </p>
+
+        <div className="flex flex-col items-center justify-center mb-12 px-8">
+          <p>Skill Lv. {skillLevel + 1}</p>
+          <Slider
+            value={skillLevel}
+            className="mt-2 max-w-lg"
+            min={0}
+            max={14}
+            onChange={(value) => setSkillLevel(value)}
+          />
+          <p className="mt-4">Abilities Lv. {abilityLevel + 1}</p>
+          <Slider
+            value={abilityLevel}
+            className="mt-2 max-w-lg"
+            min={0}
+            max={3}
+            onChange={(value) => setAbilityLevel(value)}
+          />
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Disclosure className="lg:col-span-2" initialHeight="132px">
-            {skill.reverse().map((sk, index) => (
-              <div
-                key={`${costume.ids.costume}${sk.name}${index}`}
-                className="flex gap-4 bg-grey-dark p-4 relative bordered"
-              >
-                <div className="flex items-center">
-                  <div className="h-16 w-16 relative">
-                    <Image
-                      layout="fixed"
-                      width={64}
-                      height={64}
-                      alt={sk.name}
-                      src={getSkillIcon(
-                        costume.skills[0][0].SkillAssetCategoryId,
-                        costume.skills[0][0].SkillAssetVariationId
-                      )}
-                    />
-                  </div>
-                  <div>
-                    <strong className="font-display text-2xl text-beige">
-                      {sk.name} (lvl {skill.length - index})
-                    </strong>
-                    <p className="text-beige-text">{sk.description.long}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Disclosure>
 
-          <Disclosure initialHeight="96px">
-            {firstAbility.map((ability, index) => (
-              <div
-                key={`${costume.ids.costume}${ability.name}${index}`}
-                className="flex gap-4 bg-grey-dark p-4 relative bordered"
-              >
-                <div className="flex items-center">
-                  <div className="h-16 w-16 relative">
-                    <Image
-                      layout="fixed"
-                      height={64}
-                      width={64}
-                      alt=""
-                      src={getAbilityIcon(
-                        ability.AssetCategoryId,
-                        ability.AssetVariationId
-                      )}
-                    />
-                  </div>
-                  <div>
-                    <strong className="font-display text-2xl text-beige">
-                      {ability.name} (lvl {firstAbility.length - index})
-                    </strong>
-                    <p className="text-beige-text">
-                      {ability.description.long}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Disclosure>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col xl:flex-row">
+            <Skill
+              className="flex-1"
+              name={skill[skillLevel].name}
+              description={skill[skillLevel].description.long}
+              SkillCooltimeValue={skill[skillLevel].SkillCooltimeValue}
+              AssetCategoryId={skill[skillLevel].SkillAssetCategoryId}
+              AssetVariationId={skill[skillLevel].SkillAssetVariationId}
+              level={skillLevel + 1}
+            />
 
-          <Disclosure initialHeight="96px">
-            {secondAbility.map((ability, index) => (
-              <div
-                key={`${costume.ids.costume}${ability.name}${index}`}
-                className="flex gap-4 bg-grey-dark p-4 relative bordered"
-              >
-                <div className="flex items-center">
-                  <div className="h-16 w-16 relative">
-                    <Image
-                      layout="fixed"
-                      height={64}
-                      width={64}
-                      alt=""
-                      src={getAbilityIcon(
-                        ability.AssetCategoryId,
-                        ability.AssetVariationId
-                      )}
-                    />
-                  </div>
-                  <div>
-                    <strong className="font-display text-2xl text-beige">
-                      {ability.name} (lvl {secondAbility.length - index})
-                    </strong>
-                    <p className="text-beige-text">
-                      {ability.description.long}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </Disclosure>
+            <div className="flex flex-col flex-1 items-center my-8 xl:mt-0">
+              <h4 className="text-2xl">Skill Cooltime Value</h4>
+              <p className="flex gap-x-1 my-2">
+                <Ascend level={3} />
+                <span className="ml-4 text-xs bg-brown px-2 py-1">
+                  Gauge level :{" "}
+                  {getGaugeLevel(costume.skills[0][0].SkillCooltimeValue)}
+                </span>
+                <span className="w-20 text-right">
+                  {costume.skills[0][0].SkillCooltimeValue}
+                </span>
+              </p>
+              <p className="flex gap-x-1">
+                <Ascend level={4} />
+                <span className="ml-4 text-xs bg-brown px-2 py-1">
+                  Gauge level :{" "}
+                  {getGaugeLevel(costume.skills[1][0].SkillCooltimeValue)}
+                </span>
+                <span className="w-20 text-right">
+                  {costume.skills[1][0].SkillCooltimeValue}
+                </span>
+              </p>
+              <p className="text-xs mt-4">Lower value is better.</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col xl:flex-row">
+            <Ability
+              className="flex-1"
+              key={`${costume.ids.costume}ability${firstAbility[abilityLevel].name}`}
+              name={firstAbility[abilityLevel].name}
+              description={firstAbility[abilityLevel].description.long}
+              AssetCategoryId={firstAbility[abilityLevel].AssetCategoryId}
+              AssetVariationId={firstAbility[abilityLevel].AssetVariationId}
+              level={abilityLevel + 1}
+            />
+
+            <Ability
+              className="flex-1"
+              key={`${costume.ids.costume}ability${secondAbility[abilityLevel].name}`}
+              name={secondAbility[abilityLevel].name}
+              description={secondAbility[abilityLevel].description.long}
+              AssetCategoryId={secondAbility[abilityLevel].AssetCategoryId}
+              AssetVariationId={secondAbility[abilityLevel].AssetVariationId}
+              level={abilityLevel + 1}
+            />
+          </div>
         </div>
       </div>
 

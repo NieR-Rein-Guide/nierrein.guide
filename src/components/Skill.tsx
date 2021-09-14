@@ -1,5 +1,6 @@
 import getGaugeLevel from "@utils/getGaugeLevel";
 import getSkillIcon from "@utils/getSkillIcon";
+import classNames from "classnames";
 import Image from "next/image";
 
 interface SkillProps {
@@ -11,6 +12,7 @@ interface SkillProps {
   level?: number;
   maxLevel?: number;
   isWeapon?: boolean;
+  className?: string;
 }
 
 export default function Skill({
@@ -22,11 +24,17 @@ export default function Skill({
   level = 1,
   maxLevel = 15,
   isWeapon = false,
+  className,
 }: SkillProps): JSX.Element {
   return (
-    <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
+    <div
+      className={classNames(
+        "flex gap-4 bg-grey-dark p-4 relative bordered",
+        className
+      )}
+    >
       <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
-        {level}/{maxLevel}
+        Lv. {level}/{maxLevel}
       </span>
       <div className="flex items-center">
         <div className="h-16 w-16 relative">
