@@ -57,6 +57,7 @@
     "slugify": "^1.6.0",
     "swiper": "^7.0.1",
     "three": "^0.131.3",
+    "zustand": "^3.5.10",
     "url-slug": "^3.0.2"
   },
   "devDependencies": {

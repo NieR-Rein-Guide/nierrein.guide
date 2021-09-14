@@ -241,6 +241,7 @@ export type Costume = {
   metadata: {
     name: string;
     title: string;
+    inLibrary: boolean;
     id: number;
     rarity: number;
     weapon: string;

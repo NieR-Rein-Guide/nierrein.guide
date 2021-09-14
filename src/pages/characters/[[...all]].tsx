@@ -11,6 +11,8 @@ import CostumeSelect from "@components/characters/CostumeSelect";
 import { useRouter } from "next/router";
 import slugify from "slugify";
 import { Costume } from "@models/types";
+import Checkbox from "@components/form/Checkbox";
+import { useStore } from "@libs/user-settings";
 
 interface CharactersPageProps {
   costumes: Costume[];
@@ -22,7 +24,10 @@ export default function CharactersPage({
   if (!costumes) {
     return null;
   }
-
+  const userSettings = useStore(state => state);
+  if (!userSettings.spoilers) {
+    costumes = costumes.filter(c=>c.metadata.inLibrary)
+  }
   const query = useRouter().query;
   const [currentCostume, setCurrentCostume] = useState(costumes[0]);
 
@@ -83,6 +88,17 @@ export default function CharactersPage({
         description="All the costumes of NieR Re[in]carnation"
         cover="https://nierrein.guide/cover-characters.jpg"
       />
+
+
+      <span className="w-48">
+        <Checkbox isChecked={userSettings.spoilers} setState={(ev) => {
+          userSettings.toggleSpoilers(ev.target.checked)
+        }}>
+          <span>
+            Show spoilers
+          </span>
+        </Checkbox>
+      </span>
 
       <CharacterRows
         costumes={characters}
