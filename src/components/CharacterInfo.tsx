@@ -17,7 +17,9 @@ import Disclosure from "@components/Disclosure";
 import Radio from "@components/form/Radio";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import getGaugeLevel from "@utils/getGaugeLevel";
+import Skill from "@components/Skill";
 import Element from "./Element";
+import Ability from "./Ability";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
@@ -81,43 +83,14 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               >
                 <h2 className="text-2xl">Skill</h2>
               </Lines>
-              <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
-                <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
-                  15/15
-                </span>
-                <div className="flex items-center">
-                  <div className="h-16 w-16 relative">
-                    <Image
-                      layout="fixed"
-                      width={64}
-                      height={64}
-                      alt=""
-                      src={getSkillIcon(
-                        costume.skills[1][0].SkillAssetCategoryId,
-                        costume.skills[1][0].SkillAssetVariationId
-                      )}
-                    />
-                  </div>
-                  <div className="flex flex-col items-start">
-                    <strong className="font-display text-2xl text-beige">
-                      {costume.skills[1][0].name
-                        ? costume.skills[1][0].name
-                        : "???"}
-                    </strong>
-                    <p className="text-beige-text">
-                      <span>
-                        {costume.skills[1][14].description.long
-                          ? costume.skills[1][14].description.long
-                          : "???"}
-                      </span>
-                    </p>
-                    <p className="text-xs mt-2 bg-brown px-2 py-1">
-                      Gauge Level:{" "}
-                      {getGaugeLevel(costume.skills[1][0].SkillCooltimeValue)}
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <Skill
+                name={costume.skills[1][0].name}
+                description={costume.skills[1][14].description.long}
+                SkillCooltimeValue={costume.skills[1][0].SkillCooltimeValue}
+                AssetCategoryId={costume.skills[1][0].SkillAssetCategoryId}
+                AssetVariationId={costume.skills[1][0].SkillAssetVariationId}
+                level={15}
+              />
             </div>
 
             <div>
@@ -129,31 +102,14 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                 <h2 className="text-2xl">Abilities</h2>
               </Lines>
               {costume.abilities.map((ability) => (
-                <div
+                <Ability
                   key={`${costume.ids.costume}ability${ability[3].name}`}
-                  className="flex gap-4 bg-grey-dark p-4 relative bordered"
-                >
-                  <div className="flex">
-                    <div className="h-16 w-16 relative">
-                      <Image
-                        layout="fill"
-                        alt=""
-                        src={getAbilityIcon(
-                          ability[3].AssetCategoryId,
-                          ability[3].AssetVariationId
-                        )}
-                      />
-                    </div>
-                    <div>
-                      <strong className="font-display text-2xl text-beige">
-                        {ability[3].name}
-                      </strong>
-                      <p className="text-beige-text">
-                        {ability[3].description.long}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  name={ability[3].name}
+                  description={ability[3].description.long}
+                  AssetCategoryId={ability[3].AssetCategoryId}
+                  AssetVariationId={ability[3].AssetVariationId}
+                  level={4}
+                />
               ))}
             </div>
           </div>
