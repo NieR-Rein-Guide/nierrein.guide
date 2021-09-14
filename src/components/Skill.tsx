@@ -42,8 +42,11 @@ export default function Skill({
             <span>{description}</span>
           </p>
           {SkillCooltimeValue && (
-            <p className="text-xs mt-2 bg-brown px-2 py-1">
-              Gauge Level: {getGaugeLevel(SkillCooltimeValue)}
+            <p className="text-xs mt-2">
+              <span className="bg-brown px-2 py-1 mr-2">
+                Gauge Level: {getGaugeLevel(SkillCooltimeValue)}
+              </span>
+              <span className="text-xs">{SkillCooltimeValue}</span>
             </p>
           )}
         </div>

@@ -85,6 +85,34 @@ export type WeaponEvolutionStage = {
   RarityType: CostumeRarity;
 }
 
+export type WeaponSkillStage = {
+  name: string;
+  description: {
+    long?: string;
+    short?: string;
+  }
+  DescriptionSkillTextId: number;
+  LevelLowerLimit: number;
+  NameSkillTextId: number;
+  SkillAssetCategoryId: number;
+  SkillAssetVariationId: number;
+  SkillCooltimeValue: number;
+}
+
+export type WeaponAbilityStage = {
+  name: string;
+  description: {
+    long?: string;
+    short?: string;
+  }
+  DescriptionAbilityTextId: number;
+  LevelLowerLimit: number;
+  NameAbilityTextId: number;
+  AbilityAssetCategoryId: number;
+  AbilityAssetVariationId: number;
+  AbilityCooltimeValue: number;
+}
+
 export type Weapon = {
   ids: {
     base: number;
@@ -95,10 +123,10 @@ export type Weapon = {
   name: {
     en: string,
   },
-  skills: [];
-  abilities: [];
+  skills: WeaponSkillStage[];
+  abilities: WeaponAbilityStage[];
+  evolutions: WeaponEvolutionStage[];
   stories: string[];
-  evolutions: WeaponEvolutionStage[],
   rarity: CostumeRarity,
   type: WeaponType,
   attribute: ElementTypes,

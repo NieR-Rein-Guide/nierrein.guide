@@ -42,6 +42,7 @@
     "next": "latest",
     "nprogress": "^0.2.0",
     "p-memoize": "^4.0.1",
+    "rc-slider": "^9.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-icons": "^4.2.0",

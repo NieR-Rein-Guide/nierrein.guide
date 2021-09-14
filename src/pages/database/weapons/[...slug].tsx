@@ -1,21 +1,21 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import { CostumeRarity, ElementTypes, Weapon, WeaponType } from "@models/types";
+import { Weapon } from "@models/types";
 import Link from "next/link";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
-import Checkbox from "@components/form/Checkbox";
 import slugify from "slugify";
-import { useEffect, useState } from "react";
-import weaponTypes from "@utils/weaponTypes";
+import { useState } from "react";
 import weaponsIcons from "@utils/weaponsIcons";
 import RARITY from "@utils/rarity";
-import ATTRIBUTES from "@utils/attributes";
 import { getAllWeapons, getSingleWeapon } from "@models/weapon";
-import WeaponThumbnail from "@components/WeaponThumbnail";
 import Star from "@components/decorations/Star";
+import Lines from "@components/decorations/Lines";
 import Element from "@components/Element";
 import Radio from "@components/form/Radio";
+import Skill from "@components/Skill";
+import Ability from "@components/Ability";
+import Slider from "rc-slider";
 
 interface DatabaseWeaponProps {
   weapon: Weapon;
@@ -27,6 +27,8 @@ export default function SingleWeapon({
   console.log(weapon);
 
   const [evolutionStage, setEvolutionStage] = useState(0);
+  // 0 is Lv. 1 and 14 is Lv. 15
+  const [skillAbilitiesLevel, setSkillAbilitiesLevel] = useState(0);
 
   // if (!weapon) {
   //   return (
@@ -181,8 +183,122 @@ export default function SingleWeapon({
               </div>
             </div>
 
-            {/* Weapon abilities */}
-            <div className="flex flex-col flex-1 justify-between gap-y-6 p-2"></div>
+            <div className="flex flex-col flex-1 gap-y-2 p-2">
+              <span className="text-beige">
+                Skill & Abilities <b>Lv. {skillAbilitiesLevel + 1}</b>
+              </span>
+              <Slider
+                min={0}
+                max={14}
+                dots
+                onChange={(value) => setSkillAbilitiesLevel(value)}
+              />
+              {/* Weapon abilities */}
+              <Lines
+                className="mb-2"
+                containerClass="justify-center"
+                svgClass="w-96 xl:w-42"
+              >
+                <h2 className="text-2xl">Skills</h2>
+              </Lines>
+
+              <Skill
+                name={
+                  weapon.skills[evolutionStage][0][skillAbilitiesLevel].name
+                }
+                description={
+                  weapon.skills[evolutionStage][0][skillAbilitiesLevel]
+                    .description.long
+                }
+                SkillCooltimeValue={
+                  weapon.skills[evolutionStage][0][skillAbilitiesLevel]
+                    .SkillCooltimeValue
+                }
+                AssetCategoryId={
+                  weapon.skills[evolutionStage][0][skillAbilitiesLevel]
+                    .SkillAssetCategoryId
+                }
+                AssetVariationId={
+                  weapon.skills[evolutionStage][0][skillAbilitiesLevel]
+                    .SkillAssetVariationId
+                }
+                level={skillAbilitiesLevel + 1}
+              />
+
+              <Skill
+                name={
+                  weapon.skills[evolutionStage][1][skillAbilitiesLevel].name
+                }
+                description={
+                  weapon.skills[evolutionStage][1][skillAbilitiesLevel]
+                    .description.long
+                }
+                SkillCooltimeValue={
+                  weapon.skills[evolutionStage][1][skillAbilitiesLevel]
+                    .SkillCooltimeValue
+                }
+                AssetCategoryId={
+                  weapon.skills[evolutionStage][1][skillAbilitiesLevel]
+                    .SkillAssetCategoryId
+                }
+                AssetVariationId={
+                  weapon.skills[evolutionStage][1][skillAbilitiesLevel]
+                    .SkillAssetVariationId
+                }
+                level={skillAbilitiesLevel + 1}
+              />
+
+              <Lines
+                className="mb-2 mt-8"
+                containerClass="justify-center"
+                svgClass="w-96 xl:w-42"
+              >
+                <h2 className="text-2xl">Abilities</h2>
+              </Lines>
+
+              <Ability
+                name={
+                  weapon.abilities[evolutionStage][0][skillAbilitiesLevel].name
+                }
+                description={
+                  weapon.abilities[evolutionStage][0][skillAbilitiesLevel]
+                    .description.long
+                }
+                AssetCategoryId={
+                  weapon.abilities[evolutionStage][0][skillAbilitiesLevel]
+                    .AssetCategoryId
+                }
+                AssetVariationId={
+                  weapon.abilities[evolutionStage][0][skillAbilitiesLevel]
+                    .AssetVariationId
+                }
+                level={skillAbilitiesLevel + 1}
+                maxLevel={15}
+              />
+
+              {weapon.abilities[evolutionStage][1] && (
+                <Ability
+                  name={
+                    weapon.abilities[evolutionStage][1][skillAbilitiesLevel]
+                      .name
+                  }
+                  description={
+                    weapon.abilities[evolutionStage][1][skillAbilitiesLevel]
+                      .description.long
+                  }
+                  AssetCategoryId={
+                    weapon.abilities[evolutionStage][1][skillAbilitiesLevel]
+                      .AssetCategoryId
+                  }
+                  AssetVariationId={
+                    weapon.abilities[evolutionStage][1][skillAbilitiesLevel]
+                      .AssetVariationId
+                  }
+                  level={skillAbilitiesLevel + 1}
+                  maxLevel={15}
+                />
+              )}
+            </div>
           </div>
 
           {weapon?.stories.length > 0 && (

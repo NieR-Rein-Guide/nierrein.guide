@@ -33,10 +33,7 @@ async function getSingleWeapon(BaseWeaponId: number): Promise<Weapon | null> {
 		sheets.get("weapons")
 	]);
 
-	const weapon = weapons.find((weapon) => {
-		console.log(weapon.BaseWeaponId, BaseWeaponId)
-		return weapon.BaseWeaponId === BaseWeaponId
-	});
+	const weapon = weapons.find((weapon) => weapon.BaseWeaponId === BaseWeaponId);
 
 	if (!weapon) {
 		return null
