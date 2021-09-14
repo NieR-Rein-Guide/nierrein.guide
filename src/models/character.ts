@@ -1,4 +1,4 @@
-import { getCostumes } from "@libs/mongo";
+import { getCostumes, getWeapons } from "@libs/mongo";
 import jsonAbilities from "../data/ability.json";
 import jsonSkills from "../data/skill.json";
 import jsonCostumes from "../data/costume.json";
@@ -7,29 +7,34 @@ import { sheets } from "@libs/s3";
 import { Costume, CostumeRarity } from '@models/types';
 import pMemoize from 'p-memoize';
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
+import { getWeapon } from '@models/weapon'
+import calc from '@utils/calcStats'
 
 async function getAllCostumes({
   allStats = false
 }: {
   allStats?: boolean;
 }): Promise<Costume[]> {
-    const [costumes, charactersSheet] = await Promise.all([
+    const [costumes, charactersSheet, weapons, weaponsSheet] = await Promise.all([
         getCostumes(),
-        sheets.get("characters")
+        sheets.get("characters"),
+        getWeapons(),
+        sheets.get('weapons')
     ]);
 
     const allCostumes = costumes.map((costume) => {
-    const metadata = charactersSheet.find(
-        (character) => character.id === costume.CostumeId
-    );
+      const metadata = charactersSheet.find(
+          (character) => character.id === costume.CostumeId
+      );
 
-    return {
+      const finalCostume = {
         ids: {
           library: costume.CatalogTermId,
           costume: costume.CostumeId,
           character: costume.CharacterId,
           emblem: costume.CostumeEmblemAssetId,
           actor: costume.ActorAssetId,
+          material: costume.LimitBreakMaterialId,
         },
         character: {
           en: getCostumeCharacter(costume.CharacterId),
@@ -42,6 +47,7 @@ async function getAllCostumes({
               en: getCostumeDescription(costume.ActorAssetId),
           },
           emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
+          weapon: null,
           weaponType: costume.WeaponType,
           rarity: costume.RarityType,
           stats: allStats ? getAllStats(costume) : getStats(costume),
@@ -49,7 +55,21 @@ async function getAllCostumes({
         abilities: getAbilities(costume),
         skills: getSkills(costume),
         metadata,
-    };
+      }
+
+      const weaponCostume = weaponsSheet.find((weapon) => weapon.characterTitle === finalCostume.costume.name.en);
+
+      // This weapon belongs to a costume
+      if (weaponCostume) {
+        const weapon = weapons.find((weapon) => weapon.BaseWeaponId === Number(weaponCostume.id));
+
+        finalCostume.costume.weapon = {
+          ...getWeapon(weapon),
+		      metadata: weaponCostume
+        }
+      }
+
+      return finalCostume;
     });
 
     return JSON.parse(JSON.stringify(allCostumes))
@@ -302,19 +322,8 @@ function getCostumeEmblem(CostumeEmblemAssetId) {
   };
 }
 
-function calc(x, parameters) {
-    function ext16(num) {
-        return BigInt.asUintN(128, BigInt(num));
-    }
-    function procTerm(exp, index) {
-        const tmp = (ext16(parameters[index]) * ext16(x ** exp) * ext16("0x20C49BA5E353F7CF")) % BigInt(2 ** 128);
-        return (tmp >> 71n) + (tmp >> 127n);
-    }
-    return Number(BigInt.asIntN(32, procTerm(3, 0) + procTerm(2, 1) + procTerm(1, 2) + ext16(parameters[3])));
-}
-
 const memGetAllCostumes = pMemoize(getAllCostumes, {
-    maxAge: 1000 * 60,
+    maxAge: 3600000,
 })
 
 export {

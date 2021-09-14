@@ -263,3 +263,16 @@ iframe {
 iframe {
   @apply filter invert;
 }
+
+.rc-slider-rail {
+  background-color: theme('colors.beige.dark') !important;
+}
+
+.rc-slider-track {
+  background-color: theme('colors.beige.active') !important;
+}
+
+.rc-slider-handle {
+  border-color: theme('colors.beige.active') !important;
+  border-radius: 0 !important;
+}
