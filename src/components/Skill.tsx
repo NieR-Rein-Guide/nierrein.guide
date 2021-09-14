@@ -10,6 +10,7 @@ interface SkillProps {
   AssetVariationId: number;
   level?: number;
   maxLevel?: number;
+  isWeapon?: boolean;
 }
 
 export default function Skill({
@@ -20,6 +21,7 @@ export default function Skill({
   AssetVariationId,
   level = 1,
   maxLevel = 15,
+  isWeapon = false,
 }: SkillProps): JSX.Element {
   return (
     <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
@@ -44,9 +46,13 @@ export default function Skill({
           {SkillCooltimeValue && (
             <p className="text-xs mt-2">
               <span className="bg-brown px-2 py-1 mr-2">
-                Gauge Level: {getGaugeLevel(SkillCooltimeValue)}
+                {!isWeapon &&
+                  `Gauge Level: ${getGaugeLevel(SkillCooltimeValue)}`}
+                {isWeapon && `Cooldown: ${SkillCooltimeValue / 30}s`}
               </span>
-              <span className="text-xs">{SkillCooltimeValue}</span>
+              {!isWeapon && (
+                <span className="text-xs">{SkillCooltimeValue / 30}s</span>
+              )}
             </p>
           )}
         </div>

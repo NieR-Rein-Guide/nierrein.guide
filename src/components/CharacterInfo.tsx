@@ -18,8 +18,10 @@ import Radio from "@components/form/Radio";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import getGaugeLevel from "@utils/getGaugeLevel";
 import Skill from "@components/Skill";
-import Element from "./Element";
-import Ability from "./Ability";
+import Element from "@components/Element";
+import Ability from "@components/Ability";
+import { BtnSecondary } from "@components/btn";
+import urlSlug from "url-slug";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
@@ -487,6 +489,16 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               </div>
             </div>
           )}
+
+          <div className="flex justify-center mt-8">
+            <BtnSecondary
+              href={`/database/weapons/${urlSlug(
+                costume.costume.weapon.name.en
+              )}/${costume.costume.weapon.ids.base}`}
+            >
+              Learn more
+            </BtnSecondary>
+          </div>
         </div>
       )}
 
