@@ -95,6 +95,8 @@ export type Weapon = {
   name: {
     en: string,
   },
+  skills: [];
+  abilities: [];
   stories: string[];
   evolutions: WeaponEvolutionStage[],
   rarity: CostumeRarity,

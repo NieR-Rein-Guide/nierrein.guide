@@ -65,6 +65,7 @@ function getWeapon(weapon) {
 			en: getWeaponName(weapon.BaseAssetId),
 		},
 		skills: getSkills(weapon.EvolutionStages),
+		abilities: getAbilities(weapon.EvolutionStages),
 		stories: getWeaponStories(weapon.EvolutionStages[weapon.EvolutionStages.length - 1].AssetId),
 		evolutions: weapon.EvolutionStages,
 		rarity: weapon.BaseRarityType,
@@ -92,8 +93,52 @@ function getWeaponStories(AssetId) {
 }
 
 function getSkills(EvolutionStages) {
-	console.log(EvolutionStages)
-  return;
+	const allSkills = EvolutionStages.map(evolution => {
+		return evolution.Skill.map(skill => skill.SkillDetail)
+	})
+
+	const skills = allSkills.map(skills => {
+		return skills.map(stage => {
+			return stage.map(skill => ({
+				...skill,
+				name: jsonSkills["name"]?.[skill.NameSkillTextId]?.["text_"] ?? '',
+				description: {
+					short:
+						jsonSkills["description"]["short"]?.[skill.DescriptionSkillTextId]?.[
+							"text_"
+						] ?? '',
+					long: jsonSkills["description"]["long"]?.[
+						skill.DescriptionSkillTextId
+					]?.["text_"] ?? '',
+				},
+			}))
+		})
+	})
+
+  return skills;
+}
+
+function getAbilities(EvolutionStages) {
+	const allAbilities = EvolutionStages.map(evolution => {
+		return evolution.Ability.map(skill => skill.AbilityDetail)
+	})
+
+	const abilities = allAbilities.map(abs => {
+		return abs.map(stage => {
+			return stage.map(ab => ({
+				...ab,
+				name: jsonAbilities["name"]?.[`${ab.NameAbilityTextId}`]?.["text_"] ?? '',
+				description: {
+					short: '',
+					long: jsonAbilities["description"]["long"]?.[
+						ab.DescriptionAbilityTextId
+					]?.["text_"] ?? '',
+				},
+			}))
+		})
+	})
+
+  return abilities;
 }
 
 
