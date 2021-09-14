@@ -3,7 +3,7 @@ import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import CostumeDetails from "@components/CharacterInfo";
 import { getAllCostumes } from "@models/character";
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
 import CharacterRows from "@components/characters/CharacterRows";
@@ -14,51 +14,70 @@ import { Costume } from "@models/types";
 import Checkbox from "@components/form/Checkbox";
 import { useStore } from "@libs/user-settings";
 
+const getBaseCostume = (costumes: Costume[]): Costume => {
+  const query = useRouter().query;
+
+  if (!query.all) {
+    return costumes[0];
+  }
+  const [characterName, costumeName] = query.all;
+
+  const costume = costumes.find(
+    (costume) =>
+      slugify(costume.costume.name.en, { lower: true }) === costumeName
+  );
+
+  if (costume) {
+    return costume;
+  }
+
+  if (characterName) {
+    const character = costumes.find(
+      (costume) =>
+        slugify(costume.character.en, { lower: true }) === characterName
+    );
+
+    if (character) {
+      return character;
+    }
+  }
+  return costumes[0];
+};
+
 interface CharactersPageProps {
   costumes: Costume[];
 }
 
 export default function CharactersPage({
-  costumes,
+  costumes: baseCostumes,
 }: CharactersPageProps): JSX.Element {
-  if (!costumes) {
+  if (!baseCostumes) {
     return null;
   }
-  const userSettings = useStore(state => state);
-  if (!userSettings.spoilers) {
-    costumes = costumes.filter(c=>c.metadata.inLibrary)
-  }
-  const query = useRouter().query;
-  const [currentCostume, setCurrentCostume] = useState(costumes[0]);
+  const userSettings = useStore((state) => state);
+  const [filteredCostumes, setFilteredCostumes] = useState(baseCostumes);
+  const [currentCostume, setCurrentCostume] = useState(
+    getBaseCostume(filteredCostumes)
+  );
+  const [querySearch, setQuerySearch] = useState("");
 
+  // all filtering here (search, filters ...)
   useEffect(() => {
-    if (query.all) {
-      const [characterName, costumeName] = query.all;
-
-      const costume = costumes.find(
-        (costume) =>
-          slugify(costume.costume.name.en, { lower: true }) === costumeName
-      );
-
-      if (costume) {
-        setCurrentCostume(costume);
-      } else {
-        if (characterName) {
-          const character = costumes.find(
-            (costume) =>
-              slugify(costume.character.en, { lower: true }) === characterName
-          );
-
-          if (character) {
-            setCurrentCostume(character);
-          }
-        } else {
-          setCurrentCostume(costumes[0]);
-        }
+    let newCostumes = baseCostumes.filter((c) => {
+      // TODO: use a good search algorithm
+      if (c.costume.name.en.toLowerCase().includes(querySearch.toLowerCase())) {
+        return true;
       }
+      if (c.character.en.toLowerCase().includes(querySearch.toLowerCase())) {
+        return true;
+      }
+      return false;
+    });
+    if (!userSettings.spoilers) {
+      newCostumes = newCostumes.filter((c) => c.metadata.inLibrary);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    setFilteredCostumes(newCostumes);
+  }, [querySearch, userSettings.spoilers, baseCostumes]);
 
   const setCostume = (costume: Costume) => {
     setCurrentCostume(costume);
@@ -72,7 +91,7 @@ export default function CharactersPage({
     );
   };
 
-  const characters = costumes.reduce((acc, costume) => {
+  const characters = filteredCostumes.reduce((acc, costume) => {
     if (acc.has(costume.character.en)) {
       return acc;
     }
@@ -89,16 +108,25 @@ export default function CharactersPage({
         cover="https://nierrein.guide/cover-characters.jpg"
       />
 
-
       <span className="w-48">
-        <Checkbox isChecked={userSettings.spoilers} setState={(ev) => {
-          userSettings.toggleSpoilers(ev.target.checked)
-        }}>
-          <span>
-            Show spoilers
-          </span>
+        <Checkbox
+          isChecked={userSettings.spoilers}
+          setState={(ev) => {
+            userSettings.toggleSpoilers(ev.target.checked);
+          }}
+        >
+          <span>Show spoilers</span>
         </Checkbox>
       </span>
+      <input
+        placeholder="Search a character or costume"
+        type="text"
+        value={querySearch}
+        onChange={(ev) => {
+          console.log(ev.target.value);
+          setQuerySearch(ev.target.value);
+        }}
+      />
 
       <CharacterRows
         costumes={characters}
@@ -108,7 +136,7 @@ export default function CharactersPage({
 
       <div className="hidden md:inline">
         <CharacterCostumes
-          costumes={costumes}
+          costumes={filteredCostumes}
           setCostume={setCostume}
           currentCostume={currentCostume}
         />
@@ -118,7 +146,7 @@ export default function CharactersPage({
         <CostumeSelect
           setCostume={setCostume}
           currentCostume={currentCostume}
-          costumes={costumes}
+          costumes={filteredCostumes}
         />
       </div>
 
