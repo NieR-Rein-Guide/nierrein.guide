@@ -19,6 +19,24 @@ export async function getCostumes() {
   return results;
 }
 
+export async function getWeapons() {
+  await client.connect();
+  const db = client.db(dbName);
+  const collection = db.collection('WEAPON_DATA');
+
+  const results = await collection.find({}).toArray()
+  return results;
+}
+
+export async function getWeapon(id: number) {
+  await client.connect();
+  const db = client.db(dbName);
+  const collection = db.collection('WEAPON_DATA');
+
+  const results = await collection.find({ "EvolutionStages.WeaponId": id }).toArray()
+  return results;
+}
+
 export async function getSingleCostume(CostumeId) {
   await client.connect();
   const db = client.db(dbName);

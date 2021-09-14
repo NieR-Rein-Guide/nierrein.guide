@@ -31,7 +31,7 @@ export default function Checkbox({
       />
       <input
         className="sr-only"
-        onChange={(e) => setState(value || !!e.target.value)}
+        onChange={(e) => setState(value ?? !!e.target.value)}
         type="radio"
         checked={isChecked}
       />

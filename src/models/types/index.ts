@@ -77,7 +77,46 @@ export type Story = {
 }
 
 export type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
-export type CostumeRarity = "RARE" | "S_RARE" | "SS_RARE"
+
+export type ElementTypes = "DARK" | "LIGHT" | "FIRE" | "WATER" | "WIND";
+
+export type WeaponEvolutionStage = {
+  AssetId: string;
+  RarityType: CostumeRarity;
+}
+
+export type Weapon = {
+  ids: {
+    base: number;
+    asset: string;
+    catalogSort: number;
+    catalogId: number;
+  },
+  name: {
+    en: string,
+  },
+  stories: string[];
+  evolutions: WeaponEvolutionStage[],
+  rarity: CostumeRarity,
+  type: WeaponType,
+  attribute: ElementTypes,
+  isDark: boolean;
+  isStory: boolean;
+  isRestrictDiscard: boolean;
+  metadata: {
+    id: string,
+    inLibrary: boolean,
+    isDarkWeapon: boolean,
+    characterName: string,
+    characterTitle: string,
+    sources: {
+      sourceType: string,
+      storeName: string
+    }[]
+  }
+}
+
+export type CostumeRarity = "RARE" | "S_RARE" | "SS_RARE" | "LEGEND"
 
 
 export type CostumeStats = {
@@ -147,6 +186,7 @@ export type Costume = {
     character: number,
     emblem: number,
     actor: string,
+    material: number;
   },
   character: {
     en: string,
@@ -160,8 +200,9 @@ export type Costume = {
     },
     emblem: {
 
-    },
+    };
     weaponType: WeaponType,
+    weapon: Weapon | null;
     rarity: CostumeRarity,
     stats: CostumeStatsList,
   },

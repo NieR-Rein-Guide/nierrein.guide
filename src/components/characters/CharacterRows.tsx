@@ -23,7 +23,7 @@ function CharacterDiamond({
   return (
     <div className="relative">
       <div
-        className={`absolute text-sm pointer-events-auto ${
+        className={`line-clamp-1 text-center absolute text-sm pointer-events-auto ${
           labelTop ? "bottom-20" : "top-20"
         } right-0 flex justify-center text-white ${
           active ? "" : "text-opacity-60"

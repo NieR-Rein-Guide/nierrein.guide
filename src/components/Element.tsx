@@ -1,31 +1,26 @@
 import Image from "next/image";
-import darkIcon from "../../public/elements/dark.png";
-import lightIcon from "../../public/elements/light.png";
-import fireIcon from "../../public/elements/fire.png";
-import waterIcon from "../../public/elements/water.png";
-import windIcon from "../../public/elements/wind.png";
-
-export type ElementTypes = "dark" | "light" | "fire" | "water" | "wind";
-export const ALL_ELEMENTS: ElementTypes[] = [
-  "dark",
-  "light",
-  "fire",
-  "water",
-  "wind",
-];
-
-const elementsIcons = {
-  dark: darkIcon,
-  light: lightIcon,
-  fire: fireIcon,
-  water: waterIcon,
-  wind: windIcon,
-};
+import { ElementTypes } from "@models/types";
+// import { ElementTypes } from "@models/types";
+// import darkIcon from "../../public/elements/dark.png";
+// import lightIcon from "../../public/elements/light.png";
+// import fireIcon from "../../public/elements/fire.png";
+// import waterIcon from "../../public/elements/water.png";
+// import windIcon from "../../public/elements/wind.png";
 
 interface ElementProps {
   type: ElementTypes;
 }
 
 export default function Element({ type, ...props }: ElementProps): JSX.Element {
-  return <Image src={elementsIcons[type]} alt={type} {...props} />;
+  const attribute = type.toLowerCase();
+
+  return (
+    <Image
+      src={`/elements/${attribute}.png`}
+      height={64}
+      width={64}
+      alt={type}
+      {...props}
+    />
+  );
 }

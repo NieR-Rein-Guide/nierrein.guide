@@ -1,0 +1,13 @@
+<svg width="350" height="350" viewBox="0 0 350 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M160.858 14.1421C168.668 6.33165 181.332 6.33165 189.142 14.1421L335.858 160.858C343.668 168.668 343.668 181.332 335.858 189.142L189.142 335.858C181.332 343.668 168.668 343.668 160.858 335.858L14.1421 189.142C6.33165 181.332 6.33165 168.668 14.1421 160.858L160.858 14.1421Z" fill="url(#paint0_diamond)"/>
+<path d="M179.527 265.701L179.527 185.371L246.732 139.921L246.732 218.665L179.527 265.701Z" fill="white"/>
+<path d="M107.767 134.32L174.972 90.4556L242.177 134.32L174.972 179.77L107.767 134.32Z" fill="white"/>
+<path d="M170.496 265.646L170.427 185.37L103.222 139.92L103.222 218.665L170.496 265.646Z" fill="white"/>
+<defs>
+<radialGradient id="paint0_diamond" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175 175) rotate(90) scale(175)">
+<stop stop-color="#A383CB" stop-opacity="0.84"/>
+<stop offset="0.473958" stop-color="#8D67BC" stop-opacity="0.39"/>
+<stop offset="1" stop-color="#8D67BC" stop-opacity="0.74"/>
+</radialGradient>
+</defs>
+</svg>
