@@ -36,7 +36,7 @@ function listFolders(prefix = null, delimiter = '/'): Promise<AWS.S3.ListObjects
   })
 }
 
-type SheetsTypes = 'characters' | 'ranks' | 'character-abilities' | 'pvp-tier' | 'pvp-tier-info'
+type SheetsTypes = 'characters' | 'ranks' | 'character-abilities' | 'pvp-tier' | 'pvp-tier-info' | 'weapons'
 
 class Sheets {
   endpoint = process.env.API_DUMPS_ENDPOINT

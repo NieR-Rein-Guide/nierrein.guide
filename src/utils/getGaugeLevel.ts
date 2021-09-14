@@ -6,7 +6,6 @@ const GAUGE_LEVELS = {
 
 export default function getGaugeLevel(cooltime: number) {
   const gaugeLevel = Object.keys(GAUGE_LEVELS).find(level => {
-    console.log(level, cooltime, Number(level) > cooltime)
     return Number(level) >= cooltime
   })
 

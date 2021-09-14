@@ -5,6 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "@reach/menu-button/styles.css";
+import "rc-slider/assets/index.css";
 
 import NProgress from "@components/nprogress";
 

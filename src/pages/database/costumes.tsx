@@ -8,10 +8,12 @@ import { getAllCostumes } from "@models/character";
 import { CostumeRarity } from "@models/types";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import Checkbox from "@components/form/Checkbox";
+import Star from "@components/decorations/Star";
 import weaponTypes from "@utils/weaponTypes";
 import slugify from "slugify";
 import { useEffect, useState } from "react";
 import weaponsIcons from "@utils/weaponsIcons";
+import RARITY from "@utils/rarity";
 
 interface DatabaseStoriesProps {
   allCostumes: string;
@@ -114,7 +116,11 @@ export default function DatabaseCostumes({
                 isChecked={costumeRarity.includes("RARE")}
                 setState={() => handleRarityCheckbox("RARE")}
               >
-                <SVG src="/icons/stars/2_star_full.svg" className="h-6" />
+                {Array.from({ length: RARITY["RARE"] }).map((_, index) => (
+                  <div className="w-8 h-8" key={index}>
+                    <Star rarity={RARITY["RARE"]} />
+                  </div>
+                ))}
               </Checkbox>
             </div>
             <div className="flex items-center gap-x-4">
@@ -122,7 +128,11 @@ export default function DatabaseCostumes({
                 isChecked={costumeRarity.includes("S_RARE")}
                 setState={() => handleRarityCheckbox("S_RARE")}
               >
-                <SVG src="/icons/stars/3_star_full.svg" className="h-6" />
+                {Array.from({ length: RARITY["S_RARE"] }).map((_, index) => (
+                  <div className="w-8 h-8" key={index}>
+                    <Star rarity={RARITY["S_RARE"]} />
+                  </div>
+                ))}
               </Checkbox>
             </div>
             <div className="flex items-center gap-x-4">
@@ -130,7 +140,11 @@ export default function DatabaseCostumes({
                 isChecked={costumeRarity.includes("SS_RARE")}
                 setState={() => handleRarityCheckbox("SS_RARE")}
               >
-                <SVG src="/icons/stars/4_star_full.svg" className="h-6" />
+                {Array.from({ length: RARITY["SS_RARE"] }).map((_, index) => (
+                  <div className="w-8 h-8" key={index}>
+                    <Star rarity={RARITY["SS_RARE"]} />
+                  </div>
+                ))}
               </Checkbox>
             </div>
           </div>
