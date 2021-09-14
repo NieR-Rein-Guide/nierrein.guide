@@ -16,6 +16,7 @@ import { useState } from "react";
 import Disclosure from "@components/Disclosure";
 import Radio from "@components/form/Radio";
 import Ascend from "@components/decorations/Ascend";
+import getGaugeLevel from "@utils/getGaugeLevel";
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
@@ -80,6 +81,9 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                 <h2 className="text-2xl">Skill</h2>
               </Lines>
               <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
+                <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
+                  15/15
+                </span>
                 <div className="flex items-center">
                   <div className="h-16 w-16 relative">
                     <Image
@@ -88,27 +92,27 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                       height={64}
                       alt=""
                       src={getSkillIcon(
-                        costume.skills[0][0].SkillAssetCategoryId,
-                        costume.skills[0][0].SkillAssetVariationId
+                        costume.skills[1][0].SkillAssetCategoryId,
+                        costume.skills[1][0].SkillAssetVariationId
                       )}
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col items-start">
                     <strong className="font-display text-2xl text-beige">
-                      {costume.skills[0][0].name
-                        ? costume.skills[0][0].name
+                      {costume.skills[1][0].name
+                        ? costume.skills[1][0].name
                         : "???"}
                     </strong>
                     <p className="text-beige-text">
                       <span>
-                        {costume.skills[0][14].description.long
-                          ? costume.skills[0][14].description.long
+                        {costume.skills[1][14].description.long
+                          ? costume.skills[1][14].description.long
                           : "???"}
                       </span>
-                      <p className="text-xs mt-2">
-                        Skill Cooldown value:{" "}
-                        {costume.skills[1][0].SkillCooltimeValue}
-                      </p>
+                    </p>
+                    <p className="text-xs mt-2 bg-brown px-2 py-1">
+                      Gauge Level:{" "}
+                      {getGaugeLevel(costume.skills[1][0].SkillCooltimeValue)}
                     </p>
                   </div>
                 </div>
@@ -279,18 +283,24 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         <div className="flex flex-col items-center mb-8">
           <h4 className="text-2xl">Skill Cooltime Value</h4>
           <p className="flex gap-x-1 my-2">
-            <Ascend level={0} />
+            <span className="w-20">Lv. 1/15</span>
+            <span className="text-xs bg-brown px-2 py-1">
+              Gauge level :{" "}
+              {getGaugeLevel(costume.skills[0][0].SkillCooltimeValue)}
+            </span>
             <span className="w-20 text-right">
               {costume.skills[0][0].SkillCooltimeValue}
             </span>
-            <span>(Gauge level : ???)</span>
           </p>
           <p className="flex gap-x-1">
-            <Ascend level={4} />
+            <span className="w-20">Lv. 15/15</span>
+            <span className="text-xs bg-brown px-2 py-1">
+              Gauge level :{" "}
+              {getGaugeLevel(costume.skills[1][0].SkillCooltimeValue)}
+            </span>
             <span className="w-20 text-right">
               {costume.skills[1][0].SkillCooltimeValue}
             </span>
-            <span>(Gauge level : ???)</span>
           </p>
         </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -345,7 +355,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                   </div>
                   <div>
                     <strong className="font-display text-2xl text-beige">
-                      {ability.name} (lvl {skill.length - index})
+                      {ability.name} (lvl {firstAbility.length - index})
                     </strong>
                     <p className="text-beige-text">
                       {ability.description.long}
@@ -377,7 +387,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                   </div>
                   <div>
                     <strong className="font-display text-2xl text-beige">
-                      {ability.name} (lvl {skill.length - index})
+                      {ability.name} (lvl {secondAbility.length - index})
                     </strong>
                     <p className="text-beige-text">
                       {ability.description.long}

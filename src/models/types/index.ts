@@ -133,6 +133,7 @@ export type CostumeAbility = {
   DescriptionSkillTextId: number;
   LevelLowerLimit: number;
   NameSkillTextId: number;
+  AbilityBehaviorType: string;
   description: {
     short: string;
     long: string;
