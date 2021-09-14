@@ -1,7 +1,14 @@
 import { Costume } from "@models/types";
 import React, { Dispatch, SetStateAction } from "react";
 
-function getIconUrl(assetId: string): string {
+function getIconUrl(costume: Costume): string {
+  if (costume.character.en == "2P") {
+    return `/ui/actor/ch001003_01_actor_icon.png`;
+  }
+  let assetId = costume.ids.actor;
+  if (!assetId.endsWith("1")) {
+    assetId = assetId.substring(0, assetId.length - 3) + "001";
+  }
   return `/ui/actor/${assetId}_01_actor_icon.png`;
 }
 
@@ -49,7 +56,7 @@ function CharacterDiamond({
           className="select-none"
           alt={costume?.character?.en}
           title={costume?.character?.en}
-          src={getIconUrl(costume.ids.actor)}
+          src={getIconUrl(costume)}
         />
       </div>
     </div>
