@@ -81,9 +81,13 @@ function getWeapon(weapon) {
 
 	// First evolution stage
 	data.evolutions.forEach((evolution, index) => {
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		data.stats.push(getStats({
 			rarity: weapon.BaseRarityType,
 			StatusCalculation: weapon.EvolutionStages[index].StatusCalculation,
+			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+			// @ts-ignore
 			abilities: data.abilities[1],
 		}))
 	})
