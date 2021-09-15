@@ -5,8 +5,8 @@ import tierlistIcon from "../../public/icons/tierlist.png";
 import charactersIcon from "../../public/icons/characters.png";
 import databaseIcon from "../../public/icons/database.png";
 import fanContentIcon from "../../public/icons/fancontent.png";
-
 import SVG from "react-inlinesvg";
+import { RiInstagramFill, RiRedditFill } from "react-icons/ri";
 
 export const NAVIGATION = [
   {
@@ -234,12 +234,12 @@ export const OUR_SOCIALS: Social[] = [
   {
     label: "Twitter",
     href: TWITTER_URL,
-    icon: <SVG src="/logos/twitter.svg" height="32" />,
+    icon: <SVG src="/logos/twitter.svg" height="26" />,
   },
   {
     label: "Instagram",
     href: INSTAGRAM_URL,
-    icon: <SVG src="/logos/instagram.svg" height="32" />,
+    icon: <RiInstagramFill size="32" />,
   },
 ];
 
@@ -248,16 +248,16 @@ export const SOCIALS: Social[] = [
   {
     label: "Official Discord",
     href: "https://discord.gg/4QTuC6xR82",
-    icon: <SVG src="/logos/discord.svg" height="32" />,
+    icon: <SVG src="/logos/discord.svg" height="26" />,
   },
   {
     label: "Subreddit",
     href: "https://www.reddit.com/r/NieRReincarnation/",
-    icon: <SVG src="/logos/reddit.svg" height="42" />,
+    icon: <RiRedditFill size="32" />,
   },
   {
     label: "Official Subreddit Discord",
     href: "https://www.discord.gg/nier",
-    icon: <SVG src="/logos/discord.svg" height="32" />,
+    icon: <SVG src="/logos/discord.svg" height="26" />,
   },
 ];

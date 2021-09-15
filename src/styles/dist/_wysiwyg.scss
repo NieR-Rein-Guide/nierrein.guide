@@ -176,7 +176,7 @@
         font-weight: bold;
         position: absolute;
         left: calc(-1 * 12px - 10px);
-        top: 0;
+        top: 6px;
       }
     }
   }
@@ -186,21 +186,20 @@
     @apply list-none ml-0;
 
     li {
-      @apply block relative ml-6;
+      @apply block relative ml-6 pl-4;
 
       &::before {
         @apply text-beige;
         content: "";
         display: inline-block;
-        height: 1em;
-        width: 1em;
-        background-image: url("/decorations/inner-square.svg");
+        height: 1.5rem;
+        width: 1.5rem;
+        background-image: url("/decorations/bullet-list.svg");
         background-size: contain;
         background-repeat: no-repeat;
-        margin-right: 0.5em;
         position: absolute;
         left: calc(-1 * 12px - 10px);
-        top: 4px;
+        top: 6px;
       }
     }
   }

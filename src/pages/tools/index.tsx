@@ -8,6 +8,7 @@ import xpImg from "../../../public/tools/xp.jpg";
 import materialsImg from "../../../public/tools/materials.jpg";
 import staminaImg from "../../../public/tools/stamina.jpg";
 import modelViewerImg from "../../../public/tools/model-viewer.jpg";
+import summonsImg from "../../../public/tools/summons.jpg";
 
 export default function Database(): JSX.Element {
   return (
@@ -20,7 +21,7 @@ export default function Database(): JSX.Element {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <Link href="/todolist">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}
@@ -37,7 +38,7 @@ export default function Database(): JSX.Element {
         </Link>
 
         <Link href="/database/model-viewer">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}
@@ -54,7 +55,24 @@ export default function Database(): JSX.Element {
         </Link>
 
         <Link href="/tools">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
+            <Image
+              height={350}
+              width={200}
+              layout="fill"
+              objectFit="cover"
+              className="-z-1 filter brightness-50"
+              src={summonsImg}
+              alt="Summons thumbnail"
+            />
+            <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
+              Summons (WIP)
+            </h3>
+          </a>
+        </Link>
+
+        <Link href="/tools">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}
@@ -71,7 +89,7 @@ export default function Database(): JSX.Element {
         </Link>
 
         <Link href="/tools">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}
@@ -88,7 +106,7 @@ export default function Database(): JSX.Element {
         </Link>
 
         <Link href="/tools">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}

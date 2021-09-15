@@ -48,7 +48,7 @@ export default function Home({
                 passHref={true}
               >
                 <a className="slider__other-event">
-                  <div className="border-3 border-beige-text hover:border-beige transition-colors relative select-none h-32">
+                  <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
                     <div className="absolute bottom-0 w-full p-2 bg-grey-lighter bg-opacity-70 z-20 flex justify-center gap-x-3">
                       <span>
                         Starts{" "}
@@ -88,7 +88,7 @@ export default function Home({
                 passHref={true}
               >
                 <a className="slider__other-event">
-                  <div className="border-3 border-beige-text hover:border-beige transition-colors relative select-none h-32">
+                  <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
                     <div className="absolute bottom-0 w-full p-2 bg-grey-lighter bg-opacity-70 z-20 flex justify-center gap-x-3">
                       <span>
                         Ends{" "}

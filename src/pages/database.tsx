@@ -20,7 +20,7 @@ export default function Database(): JSX.Element {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
         <Link href="/database/costumes">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}
@@ -37,7 +37,7 @@ export default function Database(): JSX.Element {
         </Link>
 
         <Link href="/database/weapons">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}
@@ -54,7 +54,7 @@ export default function Database(): JSX.Element {
         </Link>
 
         <Link href="/database/stories">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}
@@ -71,7 +71,7 @@ export default function Database(): JSX.Element {
         </Link>
 
         <Link href="/database/assets">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}
@@ -88,7 +88,7 @@ export default function Database(): JSX.Element {
         </Link>
 
         <Link href="/database/artworks">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-4 transform transition-transform ease-out-cubic hover:scale-105">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
               width={200}

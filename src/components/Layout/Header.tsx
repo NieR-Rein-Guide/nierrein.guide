@@ -66,7 +66,7 @@ export default function Header(): JSX.Element {
           title="Click to view the source code on GitHub"
           rel="noopener noreferrer"
           target="_blank"
-          className="flex justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive"
+          className="flex justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50"
         >
           <FiGithub />
           <span>Currently under heavy development (v{pkg.version})</span>

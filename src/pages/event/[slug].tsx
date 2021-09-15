@@ -34,7 +34,7 @@ export default function SingleEvent({ event }: eventProps): JSX.Element {
       <nav className="mb-8">
         <Link href="/events" passHref={true}>
           <a className="btn">
-            <SVG src="/decorations/left.svg" className="h-6" />
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Go back</span>
           </a>
         </Link>

@@ -86,7 +86,7 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
       <nav className="mb-8">
         <Link href="/database" passHref={true}>
           <a className="btn">
-            <SVG src="/decorations/left.svg" className="h-6" />
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Go back to Database</span>
           </a>
         </Link>

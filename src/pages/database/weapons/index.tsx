@@ -120,7 +120,7 @@ export default function Databaseweapons({
       <nav className="mb-16">
         <Link href="/database" passHref={true}>
           <a className="btn">
-            <SVG src="/decorations/left.svg" className="h-6" />
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Return to Database</span>
           </a>
         </Link>

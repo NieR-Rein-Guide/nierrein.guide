@@ -97,7 +97,7 @@ export default function EventsSlider({
           </div>
 
           <div className="slider__other-events grid grid-rows-4 px-8 gap-y-4 py-4 h-9/10">
-            <div className="border-3 relative h-32">
+            <div className="border-2 border-beige-text border-opacity-60 relative h-32">
               <div className="flex justify-center items-center py-6 mr-4 h-full">
                 <img
                   className="-mr-3 h-14"
@@ -106,7 +106,7 @@ export default function EventsSlider({
                 />
                 <div>
                   <h3 className="text-beige-accent text-2xl">GUERILLA</h3>
-                  <span>
+                  <span className="text-grey-detail">
                     {(nextGuerilla &&
                       formatDistanceToNow(nextGuerilla, {
                         addSuffix: true,
@@ -128,7 +128,7 @@ export default function EventsSlider({
                   passHref={true}
                 >
                   <a className="slider__other-event">
-                    <div className="border-3 border-beige-text hover:border-beige transition-colors relative select-none h-32">
+                    <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
                       <Image
                         layout="fill"
                         objectFit="cover"

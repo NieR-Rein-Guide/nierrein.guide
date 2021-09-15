@@ -26,7 +26,7 @@ export default function DatabaseStories({
       <nav className="mb-16">
         <Link href="/database/assets" passHref={true}>
           <a className="btn">
-            <SVG src="/decorations/left.svg" className="h-6" />
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Return to Assets</span>
           </a>
         </Link>
