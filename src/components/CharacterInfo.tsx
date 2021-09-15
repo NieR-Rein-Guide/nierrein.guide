@@ -29,15 +29,11 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
 
   const firstAbility = Object.entries(costume.abilities[0])
     .slice(0, 4)
-    .map(([, value]) => value)
-    .slice()
-    .reverse();
+    .map(([, value]) => value);
 
   const secondAbility = Object.entries(costume.abilities[1])
     .slice(0, 4)
-    .map(([, value]) => value)
-    .slice()
-    .reverse();
+    .map(([, value]) => value);
 
   const skill = Object.entries(costume.skills[1])
     .slice(0, 15)
@@ -253,23 +249,27 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </h2>
         <HR className="my-8" />
 
-        <div className="flex flex-col items-center justify-center mb-12 px-8">
-          <p>Skill Lv. {skillLevel + 1}</p>
-          <Slider
-            value={skillLevel}
-            className="mt-2 max-w-lg"
-            min={0}
-            max={14}
-            onChange={(value) => setSkillLevel(value)}
-          />
-          <p className="mt-4">Abilities Lv. {abilityLevel + 1}</p>
-          <Slider
-            value={abilityLevel}
-            className="mt-2 max-w-lg"
-            min={0}
-            max={3}
-            onChange={(value) => setAbilityLevel(value)}
-          />
+        <div className="flex flex-col xl:flex-row items-stretch justify-center mb-12 px-8 gap-y-4">
+          <div className="flex-1">
+            <p className="text-beige">Skill Lv. {skillLevel + 1}</p>
+            <Slider
+              value={skillLevel}
+              className="mt-2 xl:mt-0 max-w-lg"
+              min={0}
+              max={14}
+              onChange={(value) => setSkillLevel(value)}
+            />
+          </div>
+          <div className="flex-1">
+            <p className="text-beige">Abilities Lv. {abilityLevel + 1}</p>
+            <Slider
+              value={abilityLevel}
+              className="mt-2 xl:mt-0 max-w-lg"
+              min={0}
+              max={3}
+              onChange={(value) => setAbilityLevel(value)}
+            />
+          </div>
         </div>
 
         <div className="flex flex-col gap-6">

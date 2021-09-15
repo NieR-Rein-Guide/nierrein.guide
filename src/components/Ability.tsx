@@ -1,6 +1,7 @@
 import getAbilityIcon from "@utils/getAbilityIcon";
 import classNames from "classnames";
 import Image from "next/image";
+import SVG from "react-inlinesvg";
 
 interface AbilityProps {
   name: string;
@@ -32,14 +33,17 @@ export default function Ability({
         Lv. {level}/{maxLevel}
       </span>
       <div className="flex items-center">
-        <div className="h-16 w-16 relative">
-          <Image
-            layout="fixed"
-            width={64}
-            height={64}
-            alt=""
-            src={getAbilityIcon(AssetCategoryId, AssetVariationId)}
-          />
+        <div className="relative mr-4">
+          <SVG src="/decorations/frame-ability.svg" className="h-16 w-16" />
+          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+            <Image
+              layout="fixed"
+              width={64}
+              height={64}
+              alt=""
+              src={getAbilityIcon(AssetCategoryId, AssetVariationId)}
+            />
+          </div>
         </div>
         <div className="flex flex-col items-start">
           <strong className="font-display text-2xl text-beige">{name}</strong>
