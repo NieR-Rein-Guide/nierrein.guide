@@ -6,7 +6,7 @@ import Image from "next/image";
 import SVG from "react-inlinesvg";
 import Checkbox from "@components/form/Checkbox";
 import urlSlug from "url-slug";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import weaponTypes from "@utils/weaponTypes";
 import weaponsIcons from "@utils/weaponsIcons";
 import RARITY from "@utils/rarity";
@@ -26,88 +26,39 @@ export default function Databaseweapons({
   const weapons: Weapon[] = JSON.parse(allWeapons);
 
   const [filteredWeapons, setFilteredWeapons] = useState(weapons);
-  const [weaponRarity, setWeaponRarity] = useState<CostumeRarity[]>([]);
-  const [weaponType, setWeaponType] = useState<WeaponType[]>([]);
-  const [weaponAttribute, setWeaponAttribute] = useState<ElementTypes[]>([]);
+  const [weaponRarity, setWeaponRarity] = useState(new Set<CostumeRarity>());
+  const [weaponType, setWeaponType] = useState(new Set<WeaponType>());
+  const [weaponAttribute, setWeaponAttribute] = useState(
+    new Set<ElementTypes>()
+  );
 
   useEffect(() => {
-    if (weaponRarity.length === 0) {
-      setFilteredWeapons(weapons);
-    } else {
-      const filteredweapons = filterweapons();
-      setFilteredWeapons(filteredweapons);
-    }
-  }, [weaponRarity]);
+    setFilteredWeapons(
+      weapons.filter((weapon) => {
+        return (
+          (weaponRarity.size == 0 || weaponRarity.has(weapon.rarity)) &&
+          (weaponType.size == 0 || weaponType.has(weapon.type)) &&
+          (weaponAttribute.size == 0 || weaponAttribute.has(weapon.attribute))
+        );
+      })
+    );
+  }, [weaponRarity, weaponType, weaponAttribute]);
 
-  useEffect(() => {
-    if (weaponType.length === 0) {
-      setFilteredWeapons(weapons);
-    } else {
-      const filteredweapons = filterweapons();
-      setFilteredWeapons(filteredweapons);
-    }
-  }, [weaponType]);
-
-  useEffect(() => {
-    if (weaponAttribute.length === 0) {
-      setFilteredWeapons(weapons);
-    } else {
-      const filteredweapons = filterweapons();
-      setFilteredWeapons(filteredweapons);
-    }
-  }, [weaponAttribute]);
-
-  function filterweapons() {
-    const filteredweapons = weapons.filter((weapon) => {
-      let isMatch = false;
-
-      if (weaponType.length > 0 && weaponRarity.length > 0) {
-        if (
-          weaponRarity.includes(weapon.rarity) &&
-          weaponType.includes(weapon.type) &&
-          weaponAttribute.includes(weapon.attribute)
-        ) {
-          isMatch = true;
-        }
-      } else {
-        if (
-          weaponRarity.includes(weapon.rarity) ||
-          weaponType.includes(weapon.type) ||
-          weaponAttribute.includes(weapon.attribute)
-        ) {
-          isMatch = true;
-        }
+  function handleFor<T>(setter: Dispatch<SetStateAction<Set<T>>>, set: Set<T>) {
+    return (value: T) => {
+      // faster than has, then delete or add
+      if (!set.delete(value)) {
+        set.add(value);
       }
-
-      return isMatch;
-    });
-
-    return filteredweapons;
+      setter(set);
+    };
   }
-
-  function handleRarityCheckbox(value) {
-    if (weaponRarity.includes(value)) {
-      setWeaponRarity(weaponRarity.filter((rarity) => rarity !== value));
-    } else {
-      setWeaponRarity([...weaponRarity, value]);
-    }
-  }
-
-  function handleWeaponTypeCheckbox(value) {
-    if (weaponType.includes(value)) {
-      setWeaponType(weaponType.filter((type) => type !== value));
-    } else {
-      setWeaponType([...weaponType, value]);
-    }
-  }
-
-  function handleWeaponAttributeCheckbox(value) {
-    if (weaponAttribute.includes(value)) {
-      setWeaponAttribute(weaponAttribute.filter((type) => type !== value));
-    } else {
-      setWeaponAttribute([...weaponAttribute, value]);
-    }
-  }
+  const handleRarityCheckbox = handleFor(setWeaponRarity, weaponRarity);
+  const handleWeaponTypeCheckbox = handleFor(setWeaponType, weaponType);
+  const handleWeaponAttributeCheckbox = handleFor(
+    setWeaponAttribute,
+    weaponAttribute
+  );
 
   return (
     <Layout>
@@ -134,7 +85,7 @@ export default function Databaseweapons({
           <div className="flex flex-col flex-wrap items-start gap-4">
             <div className="flex items-center gap-x-4">
               <Checkbox
-                isChecked={weaponRarity.includes("RARE")}
+                isChecked={weaponRarity.has("RARE")}
                 setState={() => handleRarityCheckbox("RARE")}
               >
                 {Array.from({ length: RARITY["RARE"] }).map((_, index) => (
@@ -146,7 +97,7 @@ export default function Databaseweapons({
             </div>
             <div className="flex items-center gap-x-4">
               <Checkbox
-                isChecked={weaponRarity.includes("S_RARE")}
+                isChecked={weaponRarity.has("S_RARE")}
                 setState={() => handleRarityCheckbox("S_RARE")}
               >
                 {Array.from({ length: RARITY["S_RARE"] }).map((_, index) => (
@@ -158,7 +109,7 @@ export default function Databaseweapons({
             </div>
             <div className="flex items-center gap-x-4">
               <Checkbox
-                isChecked={weaponRarity.includes("SS_RARE")}
+                isChecked={weaponRarity.has("SS_RARE")}
                 setState={() => handleRarityCheckbox("SS_RARE")}
               >
                 {Array.from({ length: RARITY["SS_RARE"] }).map((_, index) => (
@@ -176,7 +127,7 @@ export default function Databaseweapons({
               {weaponTypes.map((type) => (
                 <div key={type} className="flex gap-x-4">
                   <Checkbox
-                    isChecked={weaponType.includes(type)}
+                    isChecked={weaponType.has(type)}
                     setState={() => handleWeaponTypeCheckbox(type)}
                   >
                     <div className="h-8 w-8 relative">
@@ -196,7 +147,7 @@ export default function Databaseweapons({
               {ATTRIBUTES.map((attribute) => (
                 <div key={attribute} className="flex gap-x-4">
                   <Checkbox
-                    isChecked={weaponAttribute.includes(attribute)}
+                    isChecked={weaponAttribute.has(attribute)}
                     setState={() => handleWeaponAttributeCheckbox(attribute)}
                   >
                     <div className="h-8 w-8 relative">
