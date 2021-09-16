@@ -549,25 +549,25 @@
       "text_": "Aurora Dynast Lv. 3"
     },
     "event_303_01": {
-      "text_": "Armed Aberration of the Torrent Summons Lv. 1"
+      "text_": "Cascading Armed Aberration Summons Lv. 1"
     },
     "event_303_02": {
-      "text_": "Armed Aberration of the Torrent Summons Lv. 2"
+      "text_": "Cascading Armed Aberration Summons Lv. 2"
     },
     "event_303_03": {
-      "text_": "Armed Aberration of the Torrent Summons Lv. 3"
+      "text_": "Cascading Armed Aberration Summons Lv. 3"
     },
     "event_303_04": {
-      "text_": "Armed Aberration of the Torrent Summons Lv. 4"
+      "text_": "Cascading Armed Aberration Summons Lv. 4"
     },
     "event_303_05": {
-      "text_": "Armed Aberration of the Torrent Summons Lv. 5"
+      "text_": "Cascading Armed Aberration Summons Lv. 5"
     },
     "event_303_06": {
-      "text_": "Armed Aberration of the Torrent Summons Lv. 6"
+      "text_": "Cascading Armed Aberration Summons Lv. 6"
     },
     "event_303_07": {
-      "text_": "Armed Aberration of the Torrent Summons Lv. 7"
+      "text_": "Cascading Armed Aberration Summons Lv. 7"
     },
     "event_303": {
       "text_": "Aurora Dynast Lv. 4"
@@ -691,6 +691,18 @@
     },
     "limited_65": {
       "text_": "Mama's Exciting Festival"
+    },
+    "limited_64": {
+      "text_": "15 Million Global Downloads Commemoration Free Summons"
+    },
+    "limited_66": {
+      "text_": "Paid Gems Exclusive: 15 Million Global Downloads Commemoration ★★★★ Guaranteed Summons"
+    },
+    "limited_69": {
+      "text_": "Bonus Summons"
+    },
+    "limited_70": {
+      "text_": "Paid Only: Light-Elemental Featured Summons"
     }
   }
 }
