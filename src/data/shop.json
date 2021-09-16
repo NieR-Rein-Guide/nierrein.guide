@@ -113,6 +113,9 @@
     },
     "98002": {
       "text_": "Shard (Fractured Prisoner)"
+    },
+    "98003": {
+      "text_": "Shard (Replicant Crossover)"
     }
   },
   "item": {
@@ -2809,6 +2812,18 @@
         "text_": "Shiny Knuckles"
       },
       "600541": {
+        "text_": "1-2021-09 Term Mama Medal"
+      },
+      "9800301": {
+        "text_": "Spear of the Usurper\\n (w/ Divergent Lad)"
+      },
+      "9800302": {
+        "text_": "Philosopher's Staff\\n (w/ Divergent Oddity)"
+      },
+      "9800303": {
+        "text_": "Ancient Overlord\\n (w/ Divergent Warrior)"
+      },
+      "900079": {
         "text_": "1-2021-09 Term Mama Medal"
       }
     },

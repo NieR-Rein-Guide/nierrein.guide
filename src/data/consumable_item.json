@@ -133,7 +133,7 @@
       "text_": "T. Senior Officer Summon Ticket"
     },
     "200024": {
-      "text_": "Armed Aberration of the Torrent Summon Ticket"
+      "text_": "C. Armed Aberration Summon Ticket"
     },
     "201001": {
       "text_": "Explorer's Ticket"
@@ -188,6 +188,9 @@
     },
     "11898002": {
       "text_": "Shard (Fractured Prisoner)"
+    },
+    "11898003": {
+      "text_": "Shard (Replicant Crossover)"
     }
   },
   "description": {
@@ -324,7 +327,7 @@
       "text_": "A ticket for a Tempestuous Senior Officer summon."
     },
     "200024": {
-      "text_": "A ticket for an Armed Aberration of the Torrent summon."
+      "text_": "A ticket for a Cascading Armed Aberration summon."
     },
     "201001": {
       "text_": "A ticket that shortens your wait time for exploration."
@@ -379,6 +382,9 @@
     },
     "11898002": {
       "text_": "An item used in the Shard (Fractured Prisoner) Exchange."
+    },
+    "11898003": {
+      "text_": "An item used at the Shard (Replicant Crossover) Exchange."
     }
   }
 }

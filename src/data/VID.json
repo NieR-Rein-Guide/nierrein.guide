@@ -338,6 +338,359 @@
       }
     }
   },
+  "002021": {
+    "1010g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "A small, remote village sits nestled in the\\nface of a steep cliff.:<TAP>"
+          }
+        }
+      },
+      "00110": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nAnd in it, there once lived a young girl.:<TAP>"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nShe always sulked as she watched the village children playing\\noutside her window.:<PAGE>"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "She wasn't sick.:<TAP>"
+          }
+        }
+      },
+      "00310": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nInstead, she had a mark on her leg that\\nmade her different.:<PAGE>"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Her parents told her to hide the mark. If she did not,\\nthey would not allow her to go outside.:<PAGE>"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "But the mark was a part of her. :<TAP>"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "Each time they told her to hide it, it was like they were asking her to deny her very being.:<PAGE>"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "The girl hated the thought of hiding it, and the more they told her to,\\nthe harder she resisted.:<PAGE>"
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "She and her parents had been having this fight for several long years now...:<PAGE>"
+          }
+        }
+      }
+    },
+    "2010g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "The girl was locked in her house so others would not see the mark on her leg.:<TAP>"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "\\nUnable to contain her discontent, she decided to disobey her parents\\nand sneak out of the house.:<PAGE>"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "She ran through the village like hell itself was pursuing her, but when she crested a hill,\\nshe found someone was already waiting there.:<TAP>"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nIt was a warrior with flowing white hair. She sat quietly on a boulder,\\nher swords stuck into the ground nearby.:<PAGE>"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Her pale skin was crisscrossed with wounds, as though she had just finished a battle.:<TAP>"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nBut it was the warrior's left side that truly drew the girl's attention.:<TAP>"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "\\nIt was covered by bandages that had slipped to expose a patch of inky black skin.\\nSkin that looked like a larger version of her own birthmark.:<PAGE>"
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "<i>She's just like me</i>, thought the girl.:<TAP>"
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "\\nSuddenly, she felt a deep ache to be like this woman, a person who did not\\neven flinch when someone stared at her mark.:<PAGE>"
+          }
+        }
+      },
+      "01000": {
+        "01010": {
+          "1": {
+            "text_": "\"I want to be like you,\" said the girl.:<PAGE>"
+          }
+        }
+      },
+      "01100": {
+        "01010": {
+          "1": {
+            "text_": "As the woman turned to look at the girl, her gaze fell on her leg.\\nA curious mixture of sadness and anger flitted across her face like a wraith in the dark.:<PAGE>"
+          }
+        }
+      },
+      "01200": {
+        "01010": {
+          "1": {
+            "text_": "\"There's nothing good in a life like mine.\":<TAP>"
+          }
+        }
+      },
+      "01300": {
+        "01010": {
+          "1": {
+            "text_": "\\nThis said, the warrior turned away from the girl as if she had never noticed her in the first place.:<PAGE>"
+          }
+        }
+      },
+      "01400": {
+        "01010": {
+          "1": {
+            "text_": "She then tightened her bandages and walked away.:<PAGE>"
+          }
+        }
+      }
+    },
+    "3010g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "After parting ways with the warrior on the hill, the girl returned home.:<TAP>"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nAs she made her way to her parents' room to tell them what happened,\\nshe heard whispered voices from the other side of the door.:<PAGE>"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "\"We've caused her so much pain by telling her to hide her birthmark like that.\":<TAP>"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "\\n\"But we did it for the right reasons. You know what would happen if people saw that\\nand thought she was possessed!\":<TAP>"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\n<i>My parents are actually worried about me.</i>:<PAGE>"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "\"Possessed.\":<TAP>"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "\\nWhen she heard that word, the girl recalled a conversation she had with her parents\\nwhen she was but a child.:<TAP>"
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nIt was a story of a warrior who had been cursed by a Shade and turned into a monster.:<TAP>"
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "\\nAnd about how horribly she had been treated in this very village.:<TAP>"
+          }
+        }
+      },
+      "01000": {
+        "01010": {
+          "1": {
+            "text_": "The girl remembered the mixed emotions on the face of the woman\\nshe met earlier.:<PAGE>"
+          }
+        }
+      },
+      "01100": {
+        "01010": {
+          "1": {
+            "text_": "She had lived through things the girl could not even imagine.:<TAP>"
+          }
+        }
+      },
+      "01200": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nFeeling ashamed for imposing her own desires on the warrior, she began to think about\\nthe hidden meaning behind the woman's expression.:<PAGE>"
+          }
+        }
+      }
+    },
+    "4010g": {
+      "00100": {
+        "01010": {
+          "1": {
+            "text_": "To the girl, the mark on her leg was a part of her. And her parents accepted that.:<TAP>"
+          }
+        }
+      },
+      "00200": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nBut if the other villagers saw it, terrible things would surely come to pass.:<TAP>"
+          }
+        }
+      },
+      "00300": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nAnd not just to her, but to her parents as well.:<PAGE>"
+          }
+        }
+      },
+      "00400": {
+        "01010": {
+          "1": {
+            "text_": "Caught between her parents' love and her own pride, the girl was in anguish.:<PAGE>"
+          }
+        }
+      },
+      "00500": {
+        "01010": {
+          "1": {
+            "text_": "Soon thereafter, she began hiding her mark.:<TAP>"
+          }
+        }
+      },
+      "00600": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nIn so doing, she hoped to acknowledge the love her parents had blessed her with.:<PAGE>"
+          }
+        }
+      },
+      "00700": {
+        "01010": {
+          "1": {
+            "text_": "But though she disguised her birthmark with bandages, she refused to hide the wrapped leg.:<TAP>"
+          }
+        }
+      },
+      "00800": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nIn this way, she hoped to mirror the pride of the warrior.:<PAGE>"
+          }
+        }
+      },
+      "00900": {
+        "01010": {
+          "1": {
+            "text_": "The girl stands at the top of the hill, bathed in sunlight.:<TAP>"
+          }
+        }
+      },
+      "01000": {
+        "01010": {
+          "1": {
+            "text_": "\\nLooking out, she makes a firm resolution: Once she is as strong as the warrior...:<TAP>"
+          }
+        }
+      },
+      "01100": {
+        "01010": {
+          "1": {
+            "text_": "\\nOnce her parents no longer have to fear for her safety...:<TAP>"
+          }
+        }
+      },
+      "01200": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nShe will remove her bandages and walk the world as she was meant to.:<TAP>"
+          }
+        }
+      },
+      "01300": {
+        "01010": {
+          "1": {
+            "text_": "\\n\\nAs the girl gazes over the plains, reflected in those eyes is the sky that leads to her future.:<PAGE>"
+          }
+        }
+      }
+    }
+  },
   "005010": {
     "1010g": {
       "00100": {
