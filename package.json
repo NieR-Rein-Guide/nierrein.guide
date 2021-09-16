@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint src",
-    "fix": "eslint src --fix"
+    "fix": "eslint src --fix",
+    "generate": "node --loader ts-node/esm src/scripts/generate-dataset.ts"
   },
   "engines": {
     "node": "16.x"
@@ -32,6 +33,7 @@
     "classnames": "^2.3.1",
     "date-fns": "^2.23.0",
     "date-fns-tz": "^1.1.6",
+    "dotenv": "^10.0.0",
     "formidable": "^1.2.2",
     "graphql": "^15.5.1",
     "graphql-request": "^3.5.0",
@@ -57,8 +59,9 @@
     "slugify": "^1.6.0",
     "swiper": "^7.0.1",
     "three": "^0.131.3",
-    "zustand": "^3.5.10",
-    "url-slug": "^3.0.2"
+    "ts-node": "^10.2.1",
+    "url-slug": "^3.0.2",
+    "zustand": "^3.5.10"
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.2.1",

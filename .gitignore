@@ -31,5 +31,6 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# vercel
-.vercel
+# scripts
+src/scripts/*.js
+src/datasets/*.json
