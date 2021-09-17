@@ -8,7 +8,7 @@ if (!process.env.MONGODB_URI) {
 const dbName = 'nierdump';
 
 class Db {
-  db = null;
+  db: null | MongoClient = null;
 
   async connect() {
     try {
@@ -39,7 +39,7 @@ class Db {
 const mongo = new Db();
 
 export async function getCostumes() {
-  const client = await mongo.connect();
+  const client = await mongo.get();
   const db = client.db(dbName);
   const collection = db.collection('COSTUME_DATA');
 
@@ -48,7 +48,7 @@ export async function getCostumes() {
 }
 
 export async function getWeapons() {
-  const client = await mongo.connect();
+  const client = await mongo.get();
   const db = client.db(dbName);
   const collection = db.collection('WEAPON_DATA');
 
@@ -57,7 +57,7 @@ export async function getWeapons() {
 }
 
 export async function getWeapon(id: number) {
-  const client = await mongo.connect();
+  const client = await mongo.get();
   const db = client.db(dbName);
   const collection = db.collection('WEAPON_DATA');
 
@@ -66,7 +66,7 @@ export async function getWeapon(id: number) {
 }
 
 export async function getSingleCostume(CostumeId) {
-  const client = await mongo.connect();
+  const client = await mongo.get();
   const db = client.db(dbName);
   const collection = db.collection('COSTUME_DATA');
 
