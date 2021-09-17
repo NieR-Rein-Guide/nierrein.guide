@@ -8,11 +8,11 @@ class Db {
   }
 
   async clear() {
-    if (this.db === null) return
-
-    console.log('Clearing mongo connection.')
-    await this.db.close()
-    console.log('Cleared mongo connection.')
+    if (this.db instanceof MongoClient) {
+      console.log('Clearing mongo connection.')
+      await this.db.close()
+      console.log('Cleared mongo connection.')
+    }
   }
 
   async connect(): Promise<MongoClient> {
