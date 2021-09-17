@@ -5,8 +5,6 @@ class Db {
 
   constructor() {
     process.on('SIGTERM', this.clear)
-    process.on('uncaughtException', this.clear)
-    process.on('unhandledRejection', this.clear)
   }
 
   async clear() {
