@@ -3,7 +3,7 @@ import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import CostumeDetails from "@components/CharacterInfo";
 import { getAllCostumes } from "@models/character";
-import { useEffect, useReducer, useState } from "react";
+import { useEffect, useState } from "react";
 import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
 import CharacterRows from "@components/characters/CharacterRows";

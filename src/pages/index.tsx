@@ -14,6 +14,7 @@ import { getFeaturedGuides } from "@models/guide";
 import { Guide, Event } from "@models/types";
 import { getCurrentEvents, getFutureEvents } from "@models/event";
 import { formatDistanceToNow } from "date-fns";
+import { useMedia } from "react-use";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
@@ -32,12 +33,14 @@ export default function Home({
   futureEvents = [],
   endingEvents = [],
 }: HomeProps): JSX.Element {
+  const isMobile = useMedia("(max-width: 1279px)");
+
   return (
     <Layout>
       <Meta />
 
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
-        <AnimatedBanner />
+        {!isMobile && <AnimatedBanner />}
         <EventsSlider currentEvents={currentEvents} />
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <ListingEvents title="Upcoming Events">

@@ -8,6 +8,7 @@ import { Costume, CostumeRarity } from '@models/types';
 import pMemoize from 'p-memoize';
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import { getWeapon } from '@models/weapon'
+import mongo from '@libs/db'
 import calc from '@utils/calcStats'
 
 async function getAllCostumes({
@@ -15,64 +16,66 @@ async function getAllCostumes({
 }: {
   allStats?: boolean;
 }): Promise<Costume[]> {
-    const [costumes, charactersSheet, weapons, weaponsSheet] = await Promise.all([
-        getCostumes(),
-        sheets.get("characters"),
-        getWeapons(),
-        sheets.get('weapons')
-    ]);
+  // Get the connection before calling 2 queries at the same time that will create 2 connections.
+  await mongo.get();
+  const [costumes, charactersSheet, weapons, weaponsSheet] = await Promise.all([
+      getCostumes(),
+      sheets.get("characters"),
+      getWeapons(),
+      sheets.get('weapons')
+  ]);
 
-    const allCostumes = costumes.map((costume) => {
-      const metadata = charactersSheet.find(
-          (character) => character.id === costume.CostumeId
-      );
+  const allCostumes = costumes.map((costume) => {
+    const metadata = charactersSheet.find(
+        (character) => character.id === costume.CostumeId
+    );
 
-      const finalCostume = {
-        ids: {
-          library: costume.CatalogTermId,
-          costume: costume.CostumeId,
-          character: costume.CharacterId,
-          emblem: costume.CostumeEmblemAssetId,
-          actor: costume.ActorAssetId,
-          material: costume.CostumeLimitBreakMaterialId,
+    const finalCostume = {
+      ids: {
+        library: costume.CatalogTermId,
+        costume: costume.CostumeId,
+        character: costume.CharacterId,
+        emblem: costume.CostumeEmblemAssetId,
+        actor: costume.ActorAssetId,
+        material: costume.CostumeLimitBreakMaterialId,
+      },
+      character: {
+        en: getCostumeCharacter(costume.CharacterId),
+      },
+      costume: {
+        name: {
+          en: getCostumeName(costume.ActorAssetId),
         },
-        character: {
-          en: getCostumeCharacter(costume.CharacterId),
+        description: {
+            en: getCostumeDescription(costume.ActorAssetId),
         },
-        costume: {
-          name: {
-            en: getCostumeName(costume.ActorAssetId),
-          },
-          description: {
-              en: getCostumeDescription(costume.ActorAssetId),
-          },
-          emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
-          weapon: null,
-          weaponType: costume.WeaponType,
-          rarity: costume.RarityType,
-          stats: allStats ? getAllStats(costume) : getStats(costume),
-        },
-        abilities: getAbilities(costume),
-        skills: getSkills(costume),
-        metadata,
+        emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
+        weapon: null,
+        weaponType: costume.WeaponType,
+        rarity: costume.RarityType,
+        stats: allStats ? getAllStats(costume) : getStats(costume),
+      },
+      abilities: getAbilities(costume),
+      skills: getSkills(costume),
+      metadata,
+    }
+
+    const weaponCostume = weaponsSheet.find((weapon) => weapon.characterTitle === finalCostume.costume.name.en);
+
+    // This weapon belongs to a costume
+    if (weaponCostume) {
+      const weapon = weapons.find((weapon) => weapon.BaseWeaponId === Number(weaponCostume.id));
+
+      finalCostume.costume.weapon = {
+        ...getWeapon(weapon),
+        metadata: weaponCostume
       }
+    }
 
-      const weaponCostume = weaponsSheet.find((weapon) => weapon.characterTitle === finalCostume.costume.name.en);
+    return finalCostume;
+  });
 
-      // This weapon belongs to a costume
-      if (weaponCostume) {
-        const weapon = weapons.find((weapon) => weapon.BaseWeaponId === Number(weaponCostume.id));
-
-        finalCostume.costume.weapon = {
-          ...getWeapon(weapon),
-		      metadata: weaponCostume
-        }
-      }
-
-      return finalCostume;
-    });
-
-    return JSON.parse(JSON.stringify(allCostumes))
+  return JSON.parse(JSON.stringify(allCostumes))
 }
 
 function getAbilities(costume) {
