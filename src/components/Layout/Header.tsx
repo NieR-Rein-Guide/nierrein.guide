@@ -73,7 +73,7 @@ export default function Header(): JSX.Element {
         </a>
       </div>
       <header className="container relative">
-        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-8 xl:mb-24 xl:mt-24">
+        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-16 xl:mb-24 xl:mt-24">
           <Link href="/" passHref={true}>
             <a
               className="flex items-center relative group"
