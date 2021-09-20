@@ -8,7 +8,6 @@ import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 import { FiGithub } from "react-icons/fi";
-import { RiTodoLine } from "react-icons/ri";
 import { GITHUB_REPO_LINK } from "@config/constants";
 import pkg from "../../../package.json";
 import { useSpring, animated } from "react-spring";
@@ -218,6 +217,20 @@ export default function Header(): JSX.Element {
             </ul>
           </animated.div>
         </animated.nav>
+
+        <a
+          href="https://docs.google.com/forms/d/e/1FAIpQLSehX6eNY4Kin-vDnjhm0ep7CRu-qN7BiXoGgM9agQKhRh1WrA/viewform?usp=sf_link"
+          rel="noopener noreferrer"
+          className="flex bg-grey-lighter p-4 bordered relative max-w-2xl mx-auto mb-8 transition-colors hover:bg-grey-dark group"
+        >
+          <SVG
+            className="h-6 transform transition-transform group-hover:translate-x-2"
+            src="/decorations/arrow.svg"
+          />
+          <span className="pl-8">
+            Demographics Study of NieR Re[in]carnation
+          </span>
+        </a>
       </header>
     </>
   );
