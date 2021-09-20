@@ -25,11 +25,16 @@ export const NAVIGATION = [
     icon: tierlistIcon,
   },
   {
-    label: "Loadouts",
-    href: "/loadouts",
+    label: "Tools",
+    href: "/tools",
     icon: loadoutsIcon,
-    disabled: true,
   },
+  // {
+  //   label: "Loadouts",
+  //   href: "/loadouts",
+  //   icon: loadoutsIcon,
+  //   disabled: true,
+  // },
   {
     label: "Fan Content",
     href: "/fan-content",
@@ -40,7 +45,11 @@ export const NAVIGATION = [
     href: "/characters",
     icon: charactersIcon,
   },
-
+  {
+    label: "Weapons",
+    href: "/database/weapons",
+    icon: loadoutsIcon,
+  },
   {
     label: "Database",
     href: "/database",
@@ -50,11 +59,6 @@ export const NAVIGATION = [
     label: "To-do list",
     href: "/todolist",
     icon: homeIcon,
-  },
-  {
-    label: "Tools",
-    href: "/tools",
-    icon: loadoutsIcon,
   },
 ];
 
