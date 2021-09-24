@@ -11,8 +11,8 @@ const Accordion = ({
 }: {
   initialHeight?: string;
   className?: string;
-  children: JSX.Element[];
-}) => {
+  children: JSX.Element[] | JSX.Element;
+}): JSX.Element => {
   const defaultHeight = initialHeight || "48px";
 
   const [open, toggle] = useState(false);

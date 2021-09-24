@@ -1,13 +1,8 @@
 import { GAME_TIMEZONE } from "@config/constants";
 import { utcToZonedTime } from "date-fns-tz/esm";
-import format from "date-fns/esm/format";
-import React, { useState } from "react";
-import SVG from "react-inlinesvg";
+import React from "react";
 import Image from "next/image";
-import Lines from "@components/decorations/Lines";
-import BtnTertiary from "@components/btn/tertiary";
-
-import { Menu, MenuList, MenuButton, MenuItem } from "@reach/menu-button";
+import Disclosure from "@components/Disclosure";
 
 // used for listing all daily types
 const DAYS_OF_WEEK = Array.from(Array(7).keys());
@@ -16,6 +11,7 @@ type WeaponType = "sword" | "greatsword" | "spear" | "fist" | "staff" | "gun";
 
 type DailyInfo = {
   gems: string[];
+  enhancementMaterials?: WeaponType[];
   weaponUpgrades: WeaponType[];
 };
 
@@ -36,36 +32,50 @@ const dailyTypes = (dayOfWeek: number): DailyInfo => {
           "fist",
           "staff",
         ],
+        enhancementMaterials: [
+          "sword",
+          "greatsword",
+          "gun",
+          "spear",
+          "fist",
+          "staff",
+        ],
       };
     case 1: // Monday
       return {
         gems: ["emerald"],
         weaponUpgrades: ["sword"],
+        enhancementMaterials: ["greatsword", "sword"],
       };
     case 2: // Tuesday
       return {
         gems: ["ruby"],
         weaponUpgrades: ["greatsword"],
+        enhancementMaterials: ["spear", "fist"],
       };
     case 3: // Wednesday
       return {
         gems: ["aquamarine"],
         weaponUpgrades: ["gun"],
+        enhancementMaterials: ["gun", "staff"],
       };
     case 4: // Thursday
       return {
         gems: ["topaz"],
         weaponUpgrades: ["spear"],
+        enhancementMaterials: ["greatsword", "sword"],
       };
     case 5: // Friday
       return {
         gems: ["tanzanite"],
         weaponUpgrades: ["fist"],
+        enhancementMaterials: ["spear", "fist"],
       };
     case 6: // Saturday
       return {
         gems: ["aquamarine", "emerald", "ruby"],
         weaponUpgrades: ["staff"],
+        enhancementMaterials: ["gun", "staff"],
       };
   }
 };
@@ -97,7 +107,7 @@ import spearIcon from "../../public/ui/material/material321003_standard.png";
 import fistIcon from "../../public/ui/material/material321004_standard.png";
 import staffIcon from "../../public/ui/material/material321005_standard.png";
 import gunIcon from "../../public/ui/material/material321006_standard.png";
-import classNames from "classnames";
+import { format } from "date-fns/esm";
 
 const weaponToIcon = (weapon: string): StaticImageData => {
   switch (weapon) {
@@ -119,24 +129,40 @@ const weaponToIcon = (weapon: string): StaticImageData => {
 export { weaponToIcon };
 
 function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
-  const dailyInfo = dailyTypes(dayOfWeek.getDay());
-  const gems = dailyInfo.gems;
-  const weaponUpgrades = dailyInfo.weaponUpgrades;
+  const { gems, weaponUpgrades, enhancementMaterials } = dailyTypes(
+    dayOfWeek.getDay()
+  );
 
   return (
-    <div className="flex justify-center w-full">
-      <div className="flex place-items-center">
-        <div className="flex justify-center flex-wrap">
+    <div className="flex flex-col w-full bg-grey-dark bordered relative p-4">
+      <div className="grid grid-cols-3">
+        <h4 className="text-2xl text-beige mr-4">Daily Quest Rewards</h4>
+
+        <div className="flex flex-wrap col-span-2">
           {gems.map((gem, index) => (
             <div key={index} className="relative h-20 w-20">
               <Image src={gemToIcon(gem)} alt={`${gem} icon`} title={gem} />
             </div>
           ))}
+
+          {enhancementMaterials.map((weapon, index) => (
+            <div key={index} className="relative h-20 w-20">
+              <Image
+                src={weaponToIcon(weapon)}
+                alt={`${weapon} icon`}
+                title={weapon}
+              />
+            </div>
+          ))}
         </div>
+      </div>
 
-        <SVG src="/decorations/squares.svg" className="text-beige h-4 mx-4" />
+      <hr className="my-4 border-t border-beige" />
 
-        <div className="flex justify-center flex-wrap">
+      <div className="grid grid-cols-3">
+        <h4 className="text-2xl text-beige mr-4 w-28">Guerilla Rewards</h4>
+
+        <div className="flex flex-wrap col-span-2">
           {weaponUpgrades.map((weaponUpgrade, index) => (
             <div key={index} className="relative h-20 w-20">
               <Image
@@ -163,51 +189,20 @@ function DailyInfo(): JSX.Element {
     return currentDate;
   });
 
-  const [selectedDayIndex, setSelectedDayIndex] = useState(0);
-
   return (
     <section className="flex items-start flex-col">
-      <h2 className="overlap">Daily Quests</h2>
+      <h2 className="overlap">Daily Quests & Guerillas</h2>
 
-      <Lines>
-        <Menu>
-          <MenuButton as="div" className="w-full">
-            <BtnTertiary className="py-4 w-full md:w-32 mx-auto flex items-center justify-center">
-              <div className="flex flex-col gap-y-1">
-                <span>{format(daysOfWeek[selectedDayIndex], "eeee")}</span>
-                <SVG
-                  src="/decorations/arrow.svg"
-                  className="transform rotate-90 h-5"
-                />
-              </div>
-            </BtnTertiary>
-          </MenuButton>
-
-          <MenuList>
-            {daysOfWeek.map((day, index) => (
-              <MenuItem
-                onSelect={() => setSelectedDayIndex(index)}
-                key={day.getTime()}
-              >
-                <span
-                  className={classNames(
-                    selectedDayIndex === index && "text-beige",
-                    daysOfWeek[0].getTime() === day.getTime()
-                      ? "font-semibold"
-                      : null
-                  )}
-                >
-                  {format(day, "eeee")}
-                </span>
-              </MenuItem>
-            ))}
-          </MenuList>
-        </Menu>
-      </Lines>
-
-      <div className="grid grid-cols-1 w-full mt-4">
-        <DailyRow dayOfWeek={daysOfWeek[selectedDayIndex]} />
-      </div>
+      <Disclosure initialHeight="400px">
+        <div className="flex flex-col gap-y-4 max-w-xl mx-auto my-4 pb-8">
+          {daysOfWeek.map((dayOfWeek, index) => (
+            <div key={`daily-${index}`}>
+              <h3 className="text-3xl">{format(dayOfWeek, "cccc")}</h3>
+              <DailyRow dayOfWeek={daysOfWeek[index]} />
+            </div>
+          ))}
+        </div>
+      </Disclosure>
     </section>
   );
 }
