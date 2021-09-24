@@ -23,7 +23,7 @@ interface DatabaseStoriesProps {
 export default function Databaseweapons({
   allWeapons,
 }: DatabaseStoriesProps): JSX.Element {
-  const weapons: Weapon[] = JSON.parse(allWeapons);
+  const weapons: Weapon[] = JSON.parse(allWeapons).reverse();
 
   const [filteredWeapons, setFilteredWeapons] = useState(weapons);
   const [weaponRarity, setWeaponRarity] = useState(new Set<CostumeRarity>());
@@ -165,7 +165,7 @@ export default function Databaseweapons({
           {filteredWeapons.length} weapons found.
         </p>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-y-12 gap-8 lg:gap-20">
+        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-y-12 gap-8 lg:gap-20 px-2 md:px-8">
           {filteredWeapons.map((weapon) => (
             <Link
               href={`/database/weapons/${
@@ -181,8 +181,12 @@ export default function Databaseweapons({
                   rarity={weapon.rarity}
                   isDark={weapon.isDark}
                   type={weapon.type}
+                  isLarge
                 />
-                <p className="text-center text-xs mt-2">{weapon.name.en}</p>
+                <p className="text-center text-sm mt-2">
+                  {weapon.isDark && <span className="text-rarity-4">EX </span>}
+                  {weapon.name.en ? weapon.name.en : "**Missing data**"}
+                </p>
               </a>
             </Link>
           ))}

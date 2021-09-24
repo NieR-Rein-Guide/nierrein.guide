@@ -15,6 +15,7 @@ interface WeaponThumbnailProps {
   element: ElementTypes;
   imgClasses?: string;
   className?: string;
+  isLarge?: boolean;
 }
 
 export default function CostumeThumbnail({
@@ -26,8 +27,66 @@ export default function CostumeThumbnail({
   element,
   imgClasses = "",
   className = "",
+  isLarge = false,
 }: WeaponThumbnailProps): JSX.Element {
   const weaponRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
+
+  if (isLarge) {
+    return (
+      <div
+        className={classNames("relative", className)}
+        style={{
+          backgroundImage: `url(/decorations/background_rarity_${weaponRarity}_large.png)`,
+          width: "156px",
+          height: "336px",
+        }}
+      >
+        <div className="mt-1 ml-1">
+          <Image
+            className="z-10"
+            layout="fixed"
+            width={148}
+            height={328}
+            src={`/decorations/corners_rarity_${weaponRarity}_large.png`}
+            alt={alt}
+          />
+        </div>
+        <div
+          className="z-10 absolute"
+          style={{
+            top: "30px",
+            left: "8px",
+          }}
+        >
+          <div className="flex flex-col w-8">
+            <Element type={element} />
+            <Image src={weaponsIcons[type]} alt={alt} />
+            {isDark && (
+              <SVG src="/icons/weapons/dark.svg" className="h-8 w-8" />
+            )}
+          </div>
+        </div>
+
+        <div
+          className="absolute inset-0"
+          style={{
+            width: "156px",
+            height: "336px",
+          }}
+        >
+          <Image
+            layout="fill"
+            objectFit="cover"
+            height={700}
+            width={502}
+            className={classNames("z-0", imgClasses)}
+            src={`/ui/weapon/wp${id}_full.png`}
+            alt={alt}
+          />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
