@@ -431,12 +431,12 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             </div>
           </div>
 
-          {costume.costume.weapon?.metadata?.sources?.length > 0 && (
+          {costume.costume.weapon?.metadata?.weapon?.sources?.length > 0 && (
             <div className="mt-8">
               <h3 className="font-display text-2xl mb-4">Weapon Sources</h3>
 
               <div className="flex flex-wrap gap-4">
-                {costume.costume.weapon.metadata.sources.map(
+                {costume.costume.weapon.metadata?.weapon?.sources.map(
                   (source, index) => (
                     <div
                       key={`${costume.costume.weapon.ids.asset}source${index}`}
