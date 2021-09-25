@@ -34,7 +34,7 @@ export default function CostumeThumbnail({
   if (isLarge) {
     return (
       <div
-        className={classNames("relative", className)}
+        className={classNames("relative overflow-hidden", className)}
         style={{
           backgroundImage: `url(/decorations/background_rarity_${weaponRarity}_large.png)`,
           width: "156px",
@@ -58,7 +58,7 @@ export default function CostumeThumbnail({
             left: "8px",
           }}
         >
-          <div className="flex flex-col w-8">
+          <div className="flex flex-col w-9">
             <Element type={element} />
             <Image src={weaponsIcons[type]} alt={alt} />
             {isDark && (
@@ -68,7 +68,10 @@ export default function CostumeThumbnail({
         </div>
 
         <div
-          className="absolute inset-0"
+          className={classNames(
+            "absolute inset-0 transform",
+            type === "GUN" || type === "FIST" ? "-rotate-45" : ""
+          )}
           style={{
             width: "156px",
             height: "336px",
@@ -77,8 +80,6 @@ export default function CostumeThumbnail({
           <Image
             layout="fill"
             objectFit="cover"
-            height={700}
-            width={502}
             className={classNames("z-0", imgClasses)}
             src={`/ui/weapon/wp${id}_full.png`}
             alt={alt}

@@ -134,15 +134,38 @@ export type Weapon = {
   isStory: boolean;
   isRestrictDiscard: boolean;
   metadata?: {
-    id: string,
-    inLibrary: boolean,
-    isDarkWeapon: boolean,
-    characterName: string,
-    characterTitle: string,
-    sources: {
-      sourceType: string,
-      storeName: string
-    }[]
+    character: {
+      id: number;
+      inLibrary: boolean;
+      initialLevel: number;
+      sources: {
+        firstClear: boolean;
+        groupName: string;
+        isBookOnly: boolean;
+        questName: string;
+        questType: string;
+        sourceType: string;
+      }[];
+      spoiler: null | string;
+      weapon: string;
+      weaponId: string;
+    };
+    weapon: {
+      id: string,
+      inLibrary: boolean,
+      isDarkWeapon: boolean,
+      characterName: string,
+      characterTitle: string,
+      sources: {
+        difficulty: string;
+        firstClear: boolean;
+        groupName: string;
+        questName: string;
+        questType: string;
+        sourceType: string,
+        storeName: string
+      }[]
+    };
   }
 }
 
@@ -256,6 +279,6 @@ export type Costume = {
       maxNoAscension: CostumeStats
       min: CostumeStats
     };
-    sources: CostumeSource[]
+    sources: CostumeSource[];
   },
 }

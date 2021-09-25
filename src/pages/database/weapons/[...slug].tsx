@@ -16,6 +16,12 @@ import Radio from "@components/form/Radio";
 import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import Slider from "rc-slider";
+import { sheets } from "@libs/s3";
+import pMemoize from "p-memoize";
+
+const getFromSheet = pMemoize(sheets.get, {
+  maxAge: 1000 * 60 * 60,
+});
 
 interface DatabaseWeaponProps {
   weapon: Weapon;
@@ -296,9 +302,15 @@ export default function SingleWeapon({
             </div>
           </div>
 
+          <div className="flex flex-col gap-y-4 mt-6">
+            <h4 className="text-3xl bg-grey-lighter">Stats</h4>
+
+            <p>Coming soon...</p>
+          </div>
+
           {weapon?.stories.length > 0 && (
             <div className="flex flex-col gap-y-4 mt-6">
-              <h4 className="text-3xl bg-grey-lighter p-3">Stories</h4>
+              <h4 className="text-3xl bg-grey-lighter">Stories</h4>
 
               {weapon.stories.map((story, index) => (
                 <p
@@ -312,18 +324,21 @@ export default function SingleWeapon({
             </div>
           )}
 
-          {weapon?.metadata?.sources?.length > 0 && (
+          {weapon?.metadata?.weapon?.sources?.length > 0 && (
             <div className="mt-8">
               <h3 className="font-display text-2xl mb-4">Weapon Sources</h3>
 
               <div className="flex flex-wrap gap-4">
-                {weapon.metadata.sources.map((source, index) => (
+                {weapon.metadata.weapon.sources.map((source, index) => (
                   <div
                     key={`${weapon.ids.asset}source${index}`}
                     className="flex justify-center gap-x-4 items-center border border-beige-inactive border-opacity-50 bg-grey-dark p-4"
                   >
                     <h3 className="text-2xl text-beige-inactive">
-                      {source.sourceType && <p>{source.sourceType}</p>}
+                      {source.questType && <p>{source.questType}</p>}
+                      {source.groupName && <p>{source.groupName}</p>}
+                      {source.questName && <p>{source.questName}</p>}
+                      {source.difficulty && <p>{source.difficulty}</p>}
                       {source.storeName && <p>{source.storeName}</p>}
                     </h3>
                   </div>
@@ -339,11 +354,32 @@ export default function SingleWeapon({
 
 export async function getStaticProps(context) {
   const [, id] = context.params.slug;
-  const weapon = await getSingleWeapon(Number(id));
+
+  const [weapon, charactersSheet, weaponsSheet] = await Promise.all([
+    getSingleWeapon(Number(id)),
+    sheets.get("characters"),
+    sheets.get("weapons"),
+  ]);
+
+  const characterMetadata = charactersSheet.find(
+    (character) => character.weaponId === weapon.ids.base.toString()
+  );
+
+  const weaponMetadata = weaponsSheet.find(
+    (sheetWeapon) => sheetWeapon.id === weapon.ids.base.toString()
+  );
 
   return {
     props: {
-      weapon: JSON.parse(JSON.stringify(weapon)),
+      weapon: JSON.parse(
+        JSON.stringify({
+          ...weapon,
+          metadata: {
+            character: characterMetadata,
+            weapon: weaponMetadata,
+          },
+        })
+      ),
     },
   };
 }

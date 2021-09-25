@@ -29,10 +29,13 @@ async function getAllWeapons(): Promise<Weapon[]> {
 }
 
 async function getSingleWeapon(BaseWeaponId: number): Promise<Weapon | null> {
-	const [weapons, weaponsSheet] = await Promise.all([
+	const [weapons, weaponsSheet, charactersSheet] = await Promise.all([
 		getWeapons(),
-		sheets.get("weapons")
+		sheets.get("weapons"),
+		sheets.get("characters"),
 	]);
+
+
 
 	const weapon = weapons.find((weapon) => weapon.BaseWeaponId === BaseWeaponId);
 
@@ -40,7 +43,11 @@ async function getSingleWeapon(BaseWeaponId: number): Promise<Weapon | null> {
 		return null
 	}
 
-	const metadata = weaponsSheet.find(
+	const metadataCharacter = charactersSheet.find(
+		(character) => character.weaponId === weapon.BaseWeaponId
+	);
+
+	const metadataWeapon = weaponsSheet.find(
 		(sheetWeapon) => sheetWeapon.id === weapon.BaseWeaponId
 		);
 
@@ -48,7 +55,10 @@ async function getSingleWeapon(BaseWeaponId: number): Promise<Weapon | null> {
 	// @ts-ignore
 	return {
 		...getWeapon(weapon),
-		metadata
+		metadata: {
+			character: metadataCharacter,
+			weapon: metadataWeapon,
+		}
 	}
 }
 

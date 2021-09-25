@@ -174,7 +174,7 @@ export default function Databaseweapons({
               passHref
               key={weapon.ids.base}
             >
-              <a className="flex flex-col justify-start items-center">
+              <a className="flex flex-col justify-start items-center transform  ease-out-cubic transition-transform hover:scale-105">
                 <WeaponThumbnail
                   id={weapon.ids.asset}
                   element={weapon.attribute}
@@ -184,7 +184,9 @@ export default function Databaseweapons({
                   isLarge
                 />
                 <p className="text-center text-sm mt-2">
-                  {weapon.isDark && <span className="text-rarity-4">EX </span>}
+                  {weapon.isDark && (
+                    <span className="block text-rarity-4">EX</span>
+                  )}
                   {weapon.name.en ? weapon.name.en : "**Missing data**"}
                 </p>
               </a>
@@ -196,7 +198,7 @@ export default function Databaseweapons({
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const allWeapons = await getAllWeapons();
 
   return {
