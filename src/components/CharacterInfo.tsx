@@ -110,6 +110,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                 AssetCategoryId={skill[skillLevel].SkillAssetCategoryId}
                 AssetVariationId={skill[skillLevel].SkillAssetVariationId}
                 level={skillLevel + 1}
+                ascendLevel={ascendLevel}
               />
             </div>
 

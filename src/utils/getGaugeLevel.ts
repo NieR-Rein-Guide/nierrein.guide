@@ -9,5 +9,9 @@ export default function getGaugeLevel(cooltime: number) {
     return Number(level) >= cooltime
   })
 
+  if (!gaugeLevel) {
+    return 'A'
+  }
+
   return GAUGE_LEVELS[gaugeLevel]
 }

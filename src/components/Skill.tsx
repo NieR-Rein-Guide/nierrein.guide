@@ -10,6 +10,7 @@ interface SkillProps {
   SkillCooltimeValue?: number;
   AssetCategoryId: number;
   AssetVariationId: number;
+  ascendLevel?: number;
   level?: number;
   maxLevel?: number;
   isWeapon?: boolean;
@@ -22,6 +23,7 @@ export default function Skill({
   SkillCooltimeValue,
   AssetCategoryId,
   AssetVariationId,
+  ascendLevel,
   level = 1,
   maxLevel = 15,
   isWeapon = false,
@@ -48,6 +50,19 @@ export default function Skill({
               alt=""
               src={getSkillIcon(AssetCategoryId, AssetVariationId)}
             />
+            <div className="absolute -top-1 right-1">
+              <Image
+                className={classNames(
+                  "transform transition-transform ease-out-cubic",
+                  ascendLevel === 4 ? "scale-100" : "scale-0"
+                )}
+                layout="fixed"
+                width={24}
+                height={24}
+                alt=""
+                src="/decorations/costume_full_asc.png"
+              />
+            </div>
           </div>
         </div>
         <div className="flex flex-col items-start">
