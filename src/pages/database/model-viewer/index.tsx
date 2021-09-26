@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 import classNames from "classnames";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
+import getModelPath from "@utils/getModelPath";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -29,10 +30,6 @@ interface ModelType {
 
 interface DatabasePageProps {
   models: ModelType[];
-}
-
-function getModelPath(type = "character", folderName = "sk_ch031001") {
-  return `https://s3.eu-central-1.wasabisys.com/models/${type}/${folderName}/${folderName}.fbx`;
 }
 
 export default function Database({ models }: DatabasePageProps): JSX.Element {

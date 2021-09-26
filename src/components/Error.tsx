@@ -16,11 +16,11 @@ export default class ErrorBoundary extends React.Component {
 
   render(): React.ReactNode {
     if (this.state.hasError) {
+      console.log(this.state.error);
       // You can render any custom fallback UI
       return (
         <div className="flex flex-col items-center justify-center mt-12">
           <p>Something went wrong.</p>
-          <code>{this.state.error}</code>
         </div>
       );
     }

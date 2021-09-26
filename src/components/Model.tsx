@@ -6,21 +6,30 @@ import {
   useProgress,
   PerspectiveCamera,
   OrbitControls,
+  Environment,
 } from "@react-three/drei";
+import Error from "@components/Error";
 
 export default function Scene({ path }: { path: string }): JSX.Element {
   return (
-    <Canvas className="border border-beige-dark" style={{ cursor: "grab" }}>
-      <PerspectiveCamera makeDefault position={[0, 1, 10]} zoom={4} />
-      <OrbitControls enablePan={true} enableZoom={true} enableRotate={true} />
-      <ambientLight />
+    <Error>
+      <Canvas style={{ cursor: "grab" }}>
+        <group position={[0, -1, 0]}>
+          <Suspense fallback={<Loader />}>
+            <PerspectiveCamera makeDefault position={[0, 1, 10]} zoom={4} />
+            <OrbitControls
+              enablePan={true}
+              enableZoom={true}
+              enableRotate={true}
+            />
+            <ambientLight />
+            <Environment background={false} preset="studio" />
 
-      <group position={[0, -1, 0]}>
-        <Suspense fallback={<Loader />}>
-          <Model path={path} />
-        </Suspense>
-      </group>
-    </Canvas>
+            <Model path={path} />
+          </Suspense>
+        </group>
+      </Canvas>
+    </Error>
   );
 }
 

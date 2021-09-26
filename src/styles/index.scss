@@ -264,6 +264,10 @@ iframe {
   @apply filter invert;
 }
 
+.rc-slider {
+  cursor: pointer;
+}
+
 .rc-slider-rail {
   background-color: theme('colors.beige.dark') !important;
 }

@@ -1,6 +1,5 @@
 import { Costume } from "@models/types";
 import Image from "next/image";
-import Rank from "./decorations/Rank";
 import HR from "./decorations/HR";
 import Star from "./decorations/Star";
 import SVG from "react-inlinesvg";
@@ -21,11 +20,32 @@ import { BtnSecondary } from "@components/btn";
 import Ascend from "@components/decorations/Ascend";
 import urlSlug from "url-slug";
 import Slider from "rc-slider";
+import dynamic from "next/dynamic";
+import Link from "next/link";
+import getModelPath from "@utils/getModelPath";
+const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
+  ssr: false,
+});
+
+const dcTypeCostumes = [
+  "ch006006",
+  "ch006009",
+  "ch009009",
+  "ch010003",
+  "ch010007",
+  "ch012005",
+  "ch014007",
+  "ch019001",
+  "ch019010",
+  "ch019012",
+];
 
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
   const [skillLevel, setSkillLevel] = useState(14);
   const [abilityLevel, setAbilityLevel] = useState(3);
+  const [isShowingModel, setIsShowingModel] = useState(false);
+  const [ascendLevel, setAscendLevel] = useState(4);
 
   const firstAbility = Object.entries(costume.abilities[0])
     .slice(0, 4)
@@ -35,7 +55,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
     .slice(0, 4)
     .map(([, value]) => value);
 
-  const skill = Object.entries(costume.skills[1])
+  const skill = Object.entries(costume.skills[ascendLevel === 4 ? 1 : 0])
     .slice(0, 15)
     .map(([, value]) => value);
 
@@ -83,12 +103,13 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                 <h2 className="text-2xl">Skill</h2>
               </Lines>
               <Skill
-                name={costume.skills[1][0].name}
-                description={costume.skills[1][14].description.long}
-                SkillCooltimeValue={costume.skills[1][0].SkillCooltimeValue}
-                AssetCategoryId={costume.skills[1][0].SkillAssetCategoryId}
-                AssetVariationId={costume.skills[1][0].SkillAssetVariationId}
-                level={15}
+                className="flex-1"
+                name={skill[skillLevel].name}
+                description={skill[skillLevel].description.long}
+                SkillCooltimeValue={skill[skillLevel].SkillCooltimeValue}
+                AssetCategoryId={skill[skillLevel].SkillAssetCategoryId}
+                AssetVariationId={skill[skillLevel].SkillAssetVariationId}
+                level={skillLevel + 1}
               />
             </div>
 
@@ -100,16 +121,59 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               >
                 <h2 className="text-2xl">Abilities</h2>
               </Lines>
-              {costume.abilities.map((ability) => (
-                <Ability
-                  key={`${costume.ids.costume}ability${ability[3].name}`}
-                  name={ability[3].name}
-                  description={ability[3].description.long}
-                  AssetCategoryId={ability[3].AssetCategoryId}
-                  AssetVariationId={ability[3].AssetVariationId}
-                  level={4}
+              <Ability
+                className="flex-1"
+                key={`${costume.ids.costume}ability${firstAbility[abilityLevel].name}`}
+                name={firstAbility[abilityLevel].name}
+                description={firstAbility[abilityLevel].description.long}
+                AssetCategoryId={firstAbility[abilityLevel].AssetCategoryId}
+                AssetVariationId={firstAbility[abilityLevel].AssetVariationId}
+                level={abilityLevel + 1}
+              />
+
+              <Ability
+                className="flex-1"
+                key={`${costume.ids.costume}ability${secondAbility[abilityLevel].name}`}
+                name={secondAbility[abilityLevel].name}
+                description={secondAbility[abilityLevel].description.long}
+                AssetCategoryId={secondAbility[abilityLevel].AssetCategoryId}
+                AssetVariationId={secondAbility[abilityLevel].AssetVariationId}
+                level={abilityLevel + 1}
+              />
+            </div>
+
+            {/* Controls */}
+            <div>
+              <div className="mt-2">
+                <p className="text-beige">Skill Lv. {skillLevel + 1}</p>
+                <Slider
+                  value={skillLevel}
+                  className="mt-2 xl:mt-0 max-w-lg"
+                  min={0}
+                  max={14}
+                  onChange={(value) => setSkillLevel(value)}
                 />
-              ))}
+              </div>
+              <div className="mt-2">
+                <p className="text-beige">Abilities Lv. {abilityLevel + 1}</p>
+                <Slider
+                  value={abilityLevel}
+                  className="mt-2 xl:mt-0 max-w-lg"
+                  min={0}
+                  max={3}
+                  onChange={(value) => setAbilityLevel(value)}
+                />
+              </div>
+              <div className="mt-2">
+                <p className="text-beige">Ascend Lv. {ascendLevel}</p>
+                <Slider
+                  value={ascendLevel}
+                  className="mt-2 xl:mt-0 max-w-lg"
+                  min={1}
+                  max={4}
+                  onChange={(value) => setAscendLevel(value)}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -121,12 +185,23 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         >
           <div className="bordered-lg bg-grey-dark h-full w-full">
             <div className="relative z-10 h-full w-full">
-              <Image
-                layout="fill"
-                objectFit="cover"
-                src={`/character_medium/${costume.ids.actor}_full-1920-1080.png`}
-                alt={`${costume.character.en} (${costume.costume.name.en}) illustration`}
-              />
+              {(isShowingModel && (
+                <ModelWithNoSSR
+                  path={getModelPath(
+                    "character",
+                    `${
+                      dcTypeCostumes.includes(costume.ids.actor) ? "dc" : "sk"
+                    }_${costume.ids.actor}`
+                  )}
+                />
+              )) || (
+                <Image
+                  layout="fill"
+                  objectFit="cover"
+                  src={`/character_medium/${costume.ids.actor}_full-1920-1080.png`}
+                  alt={`${costume.character.en} (${costume.costume.name.en}) illustration`}
+                />
+              )}
             </div>
 
             <div className="absolute inset-0 z-0">
@@ -162,19 +237,36 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           </span>
 
           {costume.costume.weapon && (
-            <div className="absolute left-6 bottom-6">
-              <WeaponThumbnail
-                type={costume.costume.weapon.type}
-                element={costume.costume.weapon.attribute}
-                id={costume.costume.weapon.ids.asset}
-                rarity={costume.costume.weapon.rarity}
-                isDark={costume.costume.weapon.isDark}
-              />
-            </div>
+            <Link
+              href={`/database/weapons/${urlSlug(
+                costume.costume?.weapon?.name?.en ?? "unnamed"
+              )}/${costume.costume.weapon.ids.base}`}
+              passHref
+            >
+              <a className="absolute left-6 bottom-6 transform transition-transform ease-out-cubic hover:scale-105 z-50">
+                <WeaponThumbnail
+                  type={costume.costume.weapon.type}
+                  element={costume.costume.weapon.attribute}
+                  id={costume.costume.weapon.ids.asset}
+                  rarity={costume.costume.weapon.rarity}
+                  isDark={costume.costume.weapon.isDark}
+                />
+              </a>
+            </Link>
           )}
 
-          <div className="absolute top-4 left-4 w-24 h-24 p-1">
-            <Rank rank="S" />
+          <div className="absolute top-4 left-4 w-42 h-24 p-1 z-50">
+            {/* <Rank rank="S" /> */}
+            <button
+              className="btn"
+              onClick={() => setIsShowingModel(!isShowingModel)}
+            >
+              {(isShowingModel && "View Artwork") || "View 3D Model"}
+            </button>
+          </div>
+
+          <div className="absolute top-6 right-8">
+            <Ascend level={ascendLevel} />
           </div>
         </div>
       </div>
@@ -243,96 +335,43 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </div>
       )}
 
-      <div className="relative mb-16">
-        <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
-          Skill & Abilities
-        </h2>
-        <HR className="my-8" />
-
-        <div className="flex flex-col xl:flex-row items-stretch justify-center mb-12 px-8 gap-y-4">
-          <div className="flex-1">
-            <p className="text-beige">Skill Lv. {skillLevel + 1}</p>
-            <Slider
-              value={skillLevel}
-              className="mt-2 xl:mt-0 max-w-lg"
-              min={0}
-              max={14}
-              onChange={(value) => setSkillLevel(value)}
-            />
-          </div>
-          <div className="flex-1">
-            <p className="text-beige">Abilities Lv. {abilityLevel + 1}</p>
-            <Slider
-              value={abilityLevel}
-              className="mt-2 xl:mt-0 max-w-lg"
-              min={0}
-              max={3}
-              onChange={(value) => setAbilityLevel(value)}
-            />
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col xl:flex-row">
-            <Skill
-              className="flex-1"
-              name={skill[skillLevel].name}
-              description={skill[skillLevel].description.long}
-              SkillCooltimeValue={skill[skillLevel].SkillCooltimeValue}
-              AssetCategoryId={skill[skillLevel].SkillAssetCategoryId}
-              AssetVariationId={skill[skillLevel].SkillAssetVariationId}
-              level={skillLevel + 1}
-            />
-
-            <div className="flex flex-col flex-1 items-center my-8 xl:mt-0">
-              <h4 className="text-2xl">Skill Cooltime Value</h4>
-              <p className="flex gap-x-1 my-2">
-                <Ascend level={3} />
-                <span className="ml-4 text-xs bg-brown px-2 py-1">
-                  Gauge level :{" "}
-                  {getGaugeLevel(costume.skills[0][0].SkillCooltimeValue)}
-                </span>
-                <span className="w-20 text-right">
-                  {costume.skills[0][0].SkillCooltimeValue}
-                </span>
-              </p>
-              <p className="flex gap-x-1">
-                <Ascend level={4} />
-                <span className="ml-4 text-xs bg-brown px-2 py-1">
-                  Gauge level :{" "}
-                  {getGaugeLevel(costume.skills[1][0].SkillCooltimeValue)}
-                </span>
-                <span className="w-20 text-right">
-                  {costume.skills[1][0].SkillCooltimeValue}
-                </span>
-              </p>
-              <p className="text-xs mt-4">Lower value is better.</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col xl:flex-row">
-            <Ability
-              className="flex-1"
-              key={`${costume.ids.costume}ability${firstAbility[abilityLevel].name}`}
-              name={firstAbility[abilityLevel].name}
-              description={firstAbility[abilityLevel].description.long}
-              AssetCategoryId={firstAbility[abilityLevel].AssetCategoryId}
-              AssetVariationId={firstAbility[abilityLevel].AssetVariationId}
-              level={abilityLevel + 1}
-            />
-
-            <Ability
-              className="flex-1"
-              key={`${costume.ids.costume}ability${secondAbility[abilityLevel].name}`}
-              name={secondAbility[abilityLevel].name}
-              description={secondAbility[abilityLevel].description.long}
-              AssetCategoryId={secondAbility[abilityLevel].AssetCategoryId}
-              AssetVariationId={secondAbility[abilityLevel].AssetVariationId}
-              level={abilityLevel + 1}
-            />
+      {costume?.metadata?.sources?.length > 0 && (
+        <div className="relative my-8">
+          <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
+            Costume Sources
+          </h2>
+          <HR className="my-8" />
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+            {costume.metadata.sources.map((source, index) => (
+              <div
+                key={`${costume.ids.costume}source${index}`}
+                className="flex justify-center gap-x-4 items-center border border-beige-inactive border-opacity-50 bg-grey-dark p-4"
+              >
+                {source.isBookOnly && (
+                  <div className="relative">
+                    <Image
+                      height={64}
+                      width={64}
+                      layout="fixed"
+                      src={`/ui/material/material${costume.ids.material}_standard.png`}
+                      alt={`Handbook of ${costume.costume.name.en}`}
+                    />
+                  </div>
+                )}
+                <h3 className="text-2xl text-beige-inactive">
+                  {source.sourceType} {source.questType ? " > " : ""}
+                  {source.banner}
+                  {source.questType} {source.groupName ? " > " : ""}
+                  {source.groupName} {source.questName ? " > " : ""}
+                  {source.questName} {source.difficulty ? " > " : ""}
+                  {source.storeName}
+                  {source.difficulty}
+                </h3>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
+      )}
 
       {costume?.costume?.weapon && (
         <div className="relative mb-16">
@@ -461,42 +500,6 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             >
               Learn more
             </BtnSecondary>
-          </div>
-        </div>
-      )}
-
-      {costume?.metadata?.sources?.length > 0 && (
-        <div className="relative my-16">
-          <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
-            Costume Sources
-          </h2>
-          <HR className="my-8" />
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-            {costume.metadata.sources.map((source, index) => (
-              <div
-                key={`${costume.ids.costume}source${index}`}
-                className="flex justify-center gap-x-4 items-center border border-beige-inactive border-opacity-50 bg-grey-dark p-4"
-              >
-                {source.isBookOnly && (
-                  <div className="relative">
-                    <Image
-                      height={64}
-                      width={64}
-                      layout="fixed"
-                      src={`/ui/material/material${costume.ids.material}_standard.png`}
-                      alt={`Handbook of ${costume.costume.name.en}`}
-                    />
-                  </div>
-                )}
-                <h3 className="text-2xl text-beige-inactive">
-                  {source.sourceType} {source.questType ? " > " : ""}
-                  {source.questType} {source.groupName ? " > " : ""}
-                  {source.groupName} {source.questName ? " > " : ""}
-                  {source.questName} {source.difficulty ? " > " : ""}
-                  {source.difficulty}
-                </h3>
-              </div>
-            ))}
           </div>
         </div>
       )}

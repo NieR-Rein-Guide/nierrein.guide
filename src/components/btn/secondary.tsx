@@ -2,7 +2,7 @@ import Squares from "@components/decorations/Squares";
 import classNames from "classnames";
 
 export default function BtnSecondary({
-  children,
+  children = null,
   href = null,
   className = "",
   ...props

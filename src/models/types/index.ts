@@ -197,12 +197,14 @@ export type CostumeStatsList = {
 }
 
 export type CostumeSource = {
-  sourceType: string;
-  isBookOnly: boolean;
+  banner?: string;
+  sourceType?: string;
+  isBookOnly?: boolean;
   difficulty?: string;
   groupName?: string;
   questName?: string;
   questType?: string;
+  storeName?: string;
 }
 
 export type CostumeSkill = {
