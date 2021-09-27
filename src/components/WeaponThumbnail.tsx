@@ -54,8 +54,8 @@ export default function CostumeThumbnail({
         <div
           className="z-10 absolute"
           style={{
-            top: "30px",
-            left: "8px",
+            top: "4px",
+            left: "2px",
           }}
         >
           <div className="flex flex-col w-9">

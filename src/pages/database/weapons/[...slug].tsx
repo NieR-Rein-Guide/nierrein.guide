@@ -223,6 +223,7 @@ export default function SingleWeapon({
                 }
                 level={skillAbilitiesLevel + 1}
                 isWeapon={true}
+                ascendLevel={evolutionStage === 10 ? 4 : 1}
               />
 
               <Skill
@@ -247,6 +248,7 @@ export default function SingleWeapon({
                 }
                 level={skillAbilitiesLevel + 1}
                 isWeapon={true}
+                ascendLevel={evolutionStage === 10 ? 4 : 1}
               />
 
               <Lines
