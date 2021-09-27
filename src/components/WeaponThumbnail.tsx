@@ -58,7 +58,7 @@ export default function CostumeThumbnail({
             left: "2px",
           }}
         >
-          <div className="flex flex-col w-9">
+          <div className="flex flex-col w-8">
             <Element type={element} />
             <Image src={weaponsIcons[type]} alt={alt} />
             {isDark && (
