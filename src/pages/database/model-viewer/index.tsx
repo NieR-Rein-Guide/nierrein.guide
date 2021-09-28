@@ -117,11 +117,9 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
 
               <h3>Known issues :</h3>
               <ul>
-                <li>Previous button doesn't work, refresh the page to "fix"</li>
                 <li>UX is not good at the moment</li>
                 <li>
-                  If you cannot see the model it is likely black on black or off
-                  camera
+                  If you cannot see the model it is likely off camera
                 </li>
               </ul>
 
