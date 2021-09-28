@@ -10,7 +10,7 @@ interface SkillProps {
   SkillCooltimeValue?: number;
   AssetCategoryId: number;
   AssetVariationId: number;
-  ascendLevel?: number;
+  isMaxAscended?: boolean;
   level?: number;
   maxLevel?: number;
   isWeapon?: boolean;
@@ -23,7 +23,7 @@ export default function Skill({
   SkillCooltimeValue,
   AssetCategoryId,
   AssetVariationId,
-  ascendLevel,
+  isMaxAscended,
   level = 1,
   maxLevel = 15,
   isWeapon = false,
@@ -54,7 +54,7 @@ export default function Skill({
               <Image
                 className={classNames(
                   "transform transition-transform ease-out-cubic",
-                  ascendLevel === 4 ? "scale-100" : "scale-0"
+                  isMaxAscended ? "scale-100" : "scale-0"
                 )}
                 layout="fixed"
                 width={24}

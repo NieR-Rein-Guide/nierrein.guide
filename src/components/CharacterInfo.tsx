@@ -12,17 +12,16 @@ import classNames from "classnames";
 import { useState } from "react";
 import Radio from "@components/form/Radio";
 import WeaponThumbnail from "@components/WeaponThumbnail";
-import getGaugeLevel from "@utils/getGaugeLevel";
 import Skill from "@components/Skill";
-import Element from "@components/Element";
 import Ability from "@components/Ability";
-import { BtnSecondary } from "@components/btn";
 import Ascend from "@components/decorations/Ascend";
 import urlSlug from "url-slug";
 import Slider from "rc-slider";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import getModelPath from "@utils/getModelPath";
+import WeaponInfo from "@components/WeaponInfo";
+import ErrorBoundary from "./Error";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -110,7 +109,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                 AssetCategoryId={skill[skillLevel].SkillAssetCategoryId}
                 AssetVariationId={skill[skillLevel].SkillAssetVariationId}
                 level={skillLevel + 1}
-                ascendLevel={ascendLevel}
+                isMaxAscended={ascendLevel === 4}
               />
             </div>
 
@@ -374,136 +373,13 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </div>
       )}
 
-      {costume?.costume?.weapon && (
-        <div className="relative mb-16">
-          <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
-            Weapon
-          </h2>
-          <HR className="my-8" />
-          <div className="flex flex-col xl:flex-row justify-between">
-            <div className="flex-1">
-              <div
-                className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 w-full"
-                style={{ height: "700px" }}
-              >
-                <div className="bordered-lg bg-grey-dark h-full w-full">
-                  <div className="relative z-10 h-full w-full">
-                    <Image
-                      layout="fill"
-                      objectFit="cover"
-                      src={`/ui/weapon/wp${costume.costume.weapon.ids.asset}_full.png`}
-                      alt={`${costume.costume.weapon.name.en} thumbnail`}
-                    />
-                  </div>
-
-                  <div className="absolute inset-0 z-0">
-                    <div className="absolute -left-24 top-24 transform -scale-1">
-                      <SVG
-                        src="/decorations/square-right.svg"
-                        className="h-48 filter brightness-30 floating"
-                      />
-                    </div>
-
-                    <SVG
-                      src="/decorations/square-right.svg"
-                      className="h-48 absolute -right-20 -top-16 filter brightness-30 floating"
-                    />
-                    <SVG
-                      src="/decorations/c_rect_inside.svg"
-                      className="absolute -left-64 floating"
-                    />
-                    <SVG
-                      src="/decorations/c_rect_outside.svg"
-                      className="absolute -left-64 floating"
-                    />
-                  </div>
-                </div>
-                <span className="flex absolute bottom-6 right-6">
-                  {Array.from({
-                    length: RARITY[costume.costume.weapon.rarity],
-                  }).map((_, index) => (
-                    <div className="w-8 h-8" key={index}>
-                      <Star rarity={RARITY[costume.costume.weapon.rarity]} />
-                    </div>
-                  ))}
-                </span>
-
-                <div className="absolute left-6 bottom-6 text-xl z-50">
-                  {costume.costume.weapon.name.en}
-                </div>
-
-                <div className="absolute flex flex-col gap-y-4 top-4 left-4 p-1">
-                  <div className="w-16 h-16">
-                    <Element type={costume.costume.weapon.attribute} />
-                  </div>
-                  <div className="w-16 h-16">
-                    <Image
-                      src={weaponsIcons[costume.costume.weapon.type]}
-                      alt={costume.costume.weapon.type}
-                    />
-                  </div>
-
-                  {costume.costume.weapon.isDark && (
-                    <SVG src="/icons/weapons/dark.svg" className="h-16 w-16" />
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-col flex-1 justify-between gap-y-6 p-2">
-              {costume.costume.weapon?.stories.length > 0 && (
-                <>
-                  <h4 className="text-3xl bg-grey-lighter p-3 mt-8 xl:mt-0">
-                    Stories
-                  </h4>
-
-                  {costume.costume.weapon.stories.map((story, index) => (
-                    <p
-                      className="bg-grey-dark p-4 border border-beige-inactive border-opacity-50"
-                      key={`${costume.costume.weapon.ids.base}-${index}`}
-                      dangerouslySetInnerHTML={{
-                        __html: `${story.replaceAll("\\n", "<br>")}`,
-                      }}
-                    ></p>
-                  ))}
-                </>
-              )}
-            </div>
+      <ErrorBoundary>
+        {costume?.costume?.weapon && (
+          <div className="mt-16">
+            <WeaponInfo weapon={costume.costume.weapon} />
           </div>
-
-          {costume.costume.weapon?.metadata?.weapon?.sources?.length > 0 && (
-            <div className="mt-8">
-              <h3 className="font-display text-2xl mb-4">Weapon Sources</h3>
-
-              <div className="flex flex-wrap gap-4">
-                {costume.costume.weapon.metadata?.weapon?.sources.map(
-                  (source, index) => (
-                    <div
-                      key={`${costume.costume.weapon.ids.asset}source${index}`}
-                      className="flex justify-center gap-x-4 items-center border border-beige-inactive border-opacity-50 bg-grey-dark p-4"
-                    >
-                      <h3 className="text-2xl text-beige-inactive">
-                        {source.sourceType && <p>{source.sourceType}</p>}
-                        {source.storeName && <p>{source.storeName}</p>}
-                      </h3>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-          )}
-
-          <div className="flex justify-center mt-8">
-            <BtnSecondary
-              href={`/database/weapons/${urlSlug(
-                costume.costume.weapon.name.en
-              )}/${costume.costume.weapon.ids.base}`}
-            >
-              Learn more
-            </BtnSecondary>
-          </div>
-        </div>
-      )}
+        )}
+      </ErrorBoundary>
     </>
   );
 }

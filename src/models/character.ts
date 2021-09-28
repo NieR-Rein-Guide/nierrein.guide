@@ -60,7 +60,7 @@ async function getAllCostumes({
       metadata,
     }
 
-    const weaponCostume = weaponsSheet.find((weapon) => weapon.characterTitle === finalCostume.costume.name.en);
+    const weaponCostume = weaponsSheet.find((weapon) => weapon.id === finalCostume.metadata.weaponId);
 
     // This weapon belongs to a costume
     if (weaponCostume) {
