@@ -47,6 +47,7 @@ export default function Scene({ path }: { path: string }): JSX.Element {
 
 function Model({ path }): JSX.Element {
   const fbx = useFBX(path);
+  fbx.visible = true;
   return <primitive key={path} object={fbx} dispose={null} />;
 }
 
