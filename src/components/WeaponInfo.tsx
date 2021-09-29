@@ -29,7 +29,6 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
     : evolutionStage === 1;
 
   useEffect(() => {
-    console.log(weapon);
     setEvolutionStage(weapon.evolutions.length - 1);
     setSkillAbilitiesLevel(14);
   }, [weapon]);

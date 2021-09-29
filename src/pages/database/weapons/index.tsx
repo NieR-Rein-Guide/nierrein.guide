@@ -46,7 +46,6 @@ export default function Databaseweapons({
 
   function handleFor<T>(setter: Dispatch<SetStateAction<Set<T>>>, set: Set<T>) {
     return (value: T) => {
-      console.log(value);
       // faster than has, then delete or add
       if (!set.delete(value)) {
         set.add(value);

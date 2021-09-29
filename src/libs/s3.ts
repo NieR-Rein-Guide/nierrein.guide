@@ -41,11 +41,18 @@ type SheetsTypes = 'characters' | 'ranks' | 'character-abilities' | 'pvp-tier' |
 class Sheets {
   endpoint = process.env.API_DUMPS_ENDPOINT
 
+  cache = new Map()
+
   /**
    * Get request to the dumps endpoint, fetch a .json file
    */
   async get(type: SheetsTypes) {
+    if (this.cache.has(type)) {
+      return this.cache.get(type)
+    }
+
     const { data } = await axios.get(`${this.endpoint}${type}.json`)
+    this.cache.set(type, data)
 
     return data
   }

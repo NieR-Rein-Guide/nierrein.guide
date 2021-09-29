@@ -13,7 +13,6 @@ export default function Databaseweapons({
   allMemoirs,
 }: DatabaseMemoirsProps): JSX.Element {
   const memoirs = JSON.parse(allMemoirs);
-  console.log(memoirs);
 
   return (
     <Layout>

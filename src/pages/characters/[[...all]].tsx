@@ -123,7 +123,6 @@ export default function CharactersPage({
         type="text"
         value={querySearch}
         onChange={(ev) => {
-          console.log(ev.target.value);
           setQuerySearch(ev.target.value);
         }}
       />
