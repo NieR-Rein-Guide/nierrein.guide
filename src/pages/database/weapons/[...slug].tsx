@@ -47,7 +47,9 @@ export async function getStaticProps(context) {
   const [, id] = context.params.slug;
 
   const [weapon, charactersSheet, weaponsSheet] = await Promise.all([
-    getSingleWeapon(Number(id)),
+    getSingleWeapon({
+      BaseWeaponId: Number(id),
+    }),
     sheets.get("characters"),
     sheets.get("weapons"),
   ]);

@@ -28,36 +28,46 @@ async function getAllWeapons(): Promise<Weapon[]> {
 	return JSON.parse(JSON.stringify(allWeapons))
 }
 
-async function getSingleWeapon(BaseWeaponId: number): Promise<Weapon | null> {
+async function getSingleWeapon({
+	BaseWeaponId,
+}: {
+	BaseWeaponId: number;
+}): Promise<Weapon | null> {
 	const [weapons, weaponsSheet, charactersSheet] = await Promise.all([
 		getWeapons(),
 		sheets.get("weapons"),
 		sheets.get("characters"),
 	]);
 
+	let weapon = null
 
-
-	const weapon = weapons.find((weapon) => weapon.BaseWeaponId === BaseWeaponId);
+	if (BaseWeaponId) {
+		weapon = weapons.find((weapon) => weapon.BaseWeaponId === BaseWeaponId);
+	}
 
 	if (!weapon) {
 		return null
 	}
 
-	const metadataCharacter = charactersSheet.find(
-		(character) => character.weaponId === weapon.BaseWeaponId
-	);
+	const singleWeapon = {
+		...getWeapon(weapon),
+	}
 
-	const metadataWeapon = weaponsSheet.find(
-		(sheetWeapon) => sheetWeapon.id === weapon.BaseWeaponId
-		);
+	const characterMetadata = charactersSheet.find(
+    (character) => character.weaponId === singleWeapon.ids.base.toString()
+  );
+
+  const weaponMetadata = weaponsSheet.find(
+    (sheetWeapon) => sheetWeapon.id === singleWeapon.ids.base.toString()
+  );
 
 	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 	// @ts-ignore
 	return {
-		...getWeapon(weapon),
+		...singleWeapon,
 		metadata: {
-			character: metadataCharacter,
-			weapon: metadataWeapon,
+			character: characterMetadata,
+			weapon: weaponMetadata,
 		}
 	}
 }
@@ -255,8 +265,12 @@ const memGetAllWeapons = pMemoize(getAllWeapons, {
 	maxAge: 3600000,
 })
 
+const memGetSingleWeapon = pMemoize(getSingleWeapon, {
+	maxAge: 3600000,
+})
+
 export {
 	memGetAllWeapons as getAllWeapons,
-	getSingleWeapon,
+	memGetSingleWeapon as getSingleWeapon,
 	getWeapon,
 }
