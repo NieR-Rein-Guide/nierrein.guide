@@ -235,6 +235,12 @@ export type CostumeAbility = {
   name: string;
 }
 
+export type CharacterRank = {
+  amount: number;
+  stat: string;
+  type: 'percent' | 'flat'
+}
+
 export type Costume = {
   ids: {
     costume: number,
@@ -282,5 +288,35 @@ export type Costume = {
       min: CostumeStats
     };
     sources: CostumeSource[];
+    ranks: {
+      name: string;
+      ranks: CharacterRank[];
+      totals: {
+        agility: {
+          flat: number;
+          percent: number;
+        }
+        atk: {
+          flat: number;
+          percent: number;
+        }
+        critDamage: {
+          flat: number;
+          percent: number;
+        }
+        critRate: {
+          flat: number;
+          percent: number;
+        }
+        def: {
+          flat: number;
+          percent: number;
+        }
+        hp: {
+          flat: number;
+          percent: number;
+        }
+      }
+    }
   },
 }

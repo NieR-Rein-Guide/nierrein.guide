@@ -43,6 +43,12 @@ class Sheets {
 
   cache = new Map()
 
+  constructor() {
+    setInterval(() => {
+      this.cache.clear()
+    }, 1000 * 60 * 60)
+  }
+
   /**
    * Get request to the dumps endpoint, fetch a .json file
    */

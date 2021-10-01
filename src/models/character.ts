@@ -18,11 +18,12 @@ async function getAllCostumes({
 }): Promise<Costume[]> {
   // Get the connection before calling 2 queries at the same time that will create 2 connections.
   await mongo.get();
-  const [costumes, charactersSheet, weapons, weaponsSheet] = await Promise.all([
+  const [costumes, charactersSheet, weapons, weaponsSheet, ranks] = await Promise.all([
       getCostumes(),
       sheets.get("characters"),
       getWeapons(),
-      sheets.get('weapons')
+      sheets.get('weapons'),
+      sheets.get('ranks')
   ]);
 
   const allCostumes = costumes.map((costume) => {
@@ -47,7 +48,7 @@ async function getAllCostumes({
           en: getCostumeName(costume.ActorAssetId),
         },
         description: {
-            en: getCostumeDescription(costume.ActorAssetId),
+          en: getCostumeDescription(costume.ActorAssetId),
         },
         emblem: getCostumeEmblem(costume.CostumeEmblemAssetId),
         weapon: null,
@@ -60,7 +61,11 @@ async function getAllCostumes({
       metadata,
     }
 
+    const characterRanks = ranks.find(rank => rank.name === finalCostume.character.en)
+
     const weaponCostume = weaponsSheet.find((weapon) => weapon.id === finalCostume.metadata.weaponId);
+
+    finalCostume.metadata.ranks = characterRanks
 
     // This weapon belongs to a costume
     if (weaponCostume) {

@@ -42,9 +42,10 @@ const dcTypeCostumes = [
 function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
   const [skillLevel, setSkillLevel] = useState(14);
-  const [abilityLevel, setAbilityLevel] = useState(3);
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [ascendLevel, setAscendLevel] = useState(4);
+
+  const abilityLevel = ascendLevel - 1;
 
   const firstAbility = Object.entries(costume.abilities[0])
     .slice(0, 4)
@@ -152,16 +153,6 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                   min={0}
                   max={14}
                   onChange={(value) => setSkillLevel(value)}
-                />
-              </div>
-              <div className="mt-2">
-                <p className="text-beige">Abilities Lv. {abilityLevel + 1}</p>
-                <Slider
-                  value={abilityLevel}
-                  className="mt-2 xl:mt-0 max-w-lg"
-                  min={0}
-                  max={3}
-                  onChange={(value) => setAbilityLevel(value)}
                 />
               </div>
               <div className="mt-2">
@@ -332,6 +323,33 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
           <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
             Timed or conditional passives are not included in the stats.
           </p>
+
+          {costume.metadata?.ranks?.ranks && (
+            <div className="mt-16">
+              <h3 className="text-2xl text-beige">Ranks bonuses</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
+                {costume.metadata.ranks.ranks.map((rank, index) => (
+                  <div
+                    key={`${costume.ids.costume}-${rank.type}`}
+                    className="bg-beige-darker flex flex-col justify-center items-center py-2"
+                  >
+                    <span>Rank {index + 1}</span>
+                    <div className="flex items-center">
+                      <Image
+                        src={statsIcons[rank.stat]}
+                        alt={rank.stat}
+                        title={rank.stat}
+                        height={48}
+                        width={48}
+                      />{" "}
+                      {rank.amount}
+                      {rank.type === "percent" ? "%" : ""}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       )}
 
