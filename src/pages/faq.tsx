@@ -30,6 +30,13 @@ export default function FAQPage({ FAQ }: FAQProps): JSX.Element {
       <section>
         <h2 className="overlap">FAQ</h2>
 
+        <p>
+          Written by{" "}
+          <span className="text-beige font-semibold">Hastur#1312</span> (and
+          proofread by{" "}
+          <span className="text-beige font-semibold">cataclysmical#2221</span>).
+        </p>
+
         <div className="flex flex-col gap-y-14 xl:gap-y-24 mt-4">
           <Accordion items={items} />
         </div>
