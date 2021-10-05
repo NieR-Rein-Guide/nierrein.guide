@@ -4,6 +4,8 @@ import Article from "@components/Article";
 import { getAllGuides } from "@models/guide";
 import { Guide } from "@models/types";
 import Link from "next/link";
+import Image from "next/image";
+import SVG from "react-inlinesvg";
 
 interface GuidesProps {
   guides: Guide[];
@@ -17,6 +19,17 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
         description="Learn several aspects of the game by reading our guides."
         cover="https://nierrein.guide/cover-guides.jpg"
       />
+
+      <Link href="/faq" passHref>
+        <a className="inline-block mx-auto">
+          <div className="mb-20 flex items-center">
+            <Image src={`/mama.png`} alt="Mama" height="60" width="60" />
+            <span className="relative bordered text-xl ml-4 bg-grey-lighter hover:bg-grey-dark p-8 transition-colors ease-out-cubic">
+              Read our FAQ
+            </span>
+          </div>
+        </a>
+      </Link>
 
       <section>
         <h2 className="overlap">Guides</h2>

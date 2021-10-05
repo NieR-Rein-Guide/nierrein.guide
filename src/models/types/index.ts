@@ -33,6 +33,19 @@ export type FanContent = {
   published_at?: string;
 }
 
+export type FAQ = {
+  created_at: string;
+  updated_at: string;
+  id: number;
+  locale: string;
+  localizations: [];
+  qa: {
+    id: number;
+    question: string;
+    answer: string;
+  }[]
+}
+
 export type Event = {
   title: string;
   slug: string;

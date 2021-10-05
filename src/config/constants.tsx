@@ -212,7 +212,7 @@ export const GITHUB_REPO_LINK =
 export const meta = {
   title: "NieR Re[in] Guide",
   description:
-    "Brings you free, high quality content : Guides, updated tierlists, complete databases, 3d model viewer and more!",
+    "A NieR Re[in]carnation guide. Brings you free, high quality content : Guides, updated tierlists, complete databases, 3d model viewer and more!",
   url: "https://nierrein.guide/",
   cover: "https://nierrein.guide/cover.jpg",
 };

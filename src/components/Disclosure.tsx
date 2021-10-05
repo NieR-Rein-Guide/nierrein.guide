@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSpring, animated } from "react-spring";
 import { useMeasure } from "react-use";
-import SVG from "react-inlinesvg";
 import classNames from "classnames";
 
-const Accordion = ({
+const Disclosure = ({
   className = "",
   initialHeight,
   children,
@@ -67,4 +66,4 @@ const Accordion = ({
   );
 };
 
-export default Accordion;
+export default Disclosure;
