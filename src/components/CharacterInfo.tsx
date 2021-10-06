@@ -330,7 +330,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
                 {costume.metadata.ranks.ranks.map((rank, index) => (
                   <div
-                    key={`${costume.ids.costume}-${rank.type}`}
+                    key={`${costume.ids.costume}-${rank.type}-${index}`}
                     className="bg-beige-darker flex flex-col justify-center items-center py-2"
                   >
                     <span>Rank {index + 1}</span>
