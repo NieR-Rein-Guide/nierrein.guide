@@ -85,7 +85,7 @@ export const CURRENT_PROJECTS: Project[] = [
     name: "Data compilation",
     startedBy: "Mayge and jonbttt",
     link: "https://docs.google.com/spreadsheets/d/14-DZc4wyi1deE_-s1lgcMoEorCfAvQGY-3nseyAWOnY/edit#gid=385153085",
-    progress: 80,
+    progress: 100,
   },
   {
     name: "Materials compilation",
@@ -94,22 +94,10 @@ export const CURRENT_PROJECTS: Project[] = [
     progress: 100,
   },
   {
-    name: "Quests Data",
-    startedBy: "keek",
-    link: "https://docs.google.com/spreadsheets/d/1TBNSDa_Ys2c4kBnrIsRKtCHukMuZYOvMe44pxdyZ72c/edit#gid=0",
-    progress: 60,
-  },
-  {
-    name: "Daily Rates",
-    startedBy: "keek",
-    link: "https://docs.google.com/spreadsheets/d/1FFL2Gej8UGphIVaGySk_Dwa7k4xc-PDB1pyqETfQ0JQ/edit#gid=0",
-    progress: 60,
-  },
-  {
     name: "Q/A Page",
     startedBy: "Senka",
     link: "https://docs.google.com/spreadsheets/d/1shgbaumBEGWPwj-1_1phakcln8fAn4KpVD9_SJK-z4Q/edit?usp=sharing",
-    progress: 10,
+    progress: 100,
   },
 ].sort((a, b) => b.progress - a.progress);
 

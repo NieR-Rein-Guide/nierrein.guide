@@ -289,6 +289,7 @@ export type Costume = {
     id: number;
     rarity: number;
     weapon: string;
+    weaponId: string | null;
     weaponType: string;
     story: string;
     actions: {
@@ -330,6 +331,7 @@ export type Costume = {
           percent: number;
         }
       }
-    }
+    };
+    releaseDate: string | null;
   },
 }
