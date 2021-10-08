@@ -54,6 +54,23 @@ export default function Database(): JSX.Element {
           </a>
         </Link>
 
+        <Link href="/tools/materials">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
+            <Image
+              height={350}
+              width={200}
+              layout="fill"
+              objectFit="cover"
+              className="-z-1 filter brightness-50"
+              src={materialsImg}
+              alt="Materials thumbnail"
+            />
+            <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
+              Materials calc
+            </h3>
+          </a>
+        </Link>
+
         <Link href="/tools">
           <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
@@ -84,23 +101,6 @@ export default function Database(): JSX.Element {
             />
             <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
               Loadout builder (WIP)
-            </h3>
-          </a>
-        </Link>
-
-        <Link href="/tools">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
-            <Image
-              height={350}
-              width={200}
-              layout="fill"
-              objectFit="cover"
-              className="-z-1 filter brightness-50"
-              src={materialsImg}
-              alt="Materials thumbnail"
-            />
-            <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
-              Materials calc (WIP)
             </h3>
           </a>
         </Link>
