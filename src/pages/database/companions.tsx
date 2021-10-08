@@ -1,7 +1,6 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import Link from "next/link";
-import Image from "next/image";
 import SVG from "react-inlinesvg";
 import { getAllCompanions } from "@models/companion";
 import Slider from "rc-slider";
@@ -23,15 +22,13 @@ export default function DatabaseCostumes({ allCompanions }): JSX.Element {
     companionsByTypes[companion.Type] = [companion];
   });
 
-  console.log(companionsByTypes);
-
   const [skillLevel, setSkillLevel] = useState(14);
 
   return (
     <Layout>
       <Meta
         title="Companions - Database"
-        description="Companions index"
+        description="List of companions."
         cover="https://nierrein.guide/database/companions.jpg"
       />
 
@@ -65,11 +62,11 @@ export default function DatabaseCostumes({ allCompanions }): JSX.Element {
             </Lines>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-8 lg:gap-20">
               {companionsByTypes[type].map((companion) => (
-                <div key={companion.ActorAssetId}>
+                <div className="bg-grey-dark p-4" key={companion.ActorAssetId}>
                   <div className="flex justify-center">
                     <CompanionThumbnail companion={companion} />
                   </div>
-                  <span className="block text-center mb-4">
+                  <span className="text-xl block text-center mb-4">
                     {companion.name.split(":")[1]}
                   </span>
                   <Skill
