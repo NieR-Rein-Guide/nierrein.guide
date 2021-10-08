@@ -13,6 +13,10 @@
   &[disabled] {
     @apply bg-beige-darker cursor-not-allowed;
   }
+
+  svg {
+    @apply text-grey-dark;
+  }
 }
 
 .btn-secondary {

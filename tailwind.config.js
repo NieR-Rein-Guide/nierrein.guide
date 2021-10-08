@@ -32,6 +32,7 @@ module.exports = {
         },
       },
       zIndex: {
+        "menu": "9999",
         "-1": "-1",
       },
       gridTemplateColumns: {

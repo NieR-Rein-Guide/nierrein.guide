@@ -172,7 +172,7 @@ export default function Header(): JSX.Element {
         <animated.nav
           style={expand}
           className={classNames(
-            "nav flex justify-center items-center w-full nav-is-closed xl:w-auto fixed inset-0 z-50 bg-pattern xl:relative xl:block transform"
+            "nav flex justify-center items-center w-full nav-is-closed xl:w-auto fixed inset-0 z-menu bg-pattern xl:relative xl:block transform"
           )}
         >
           <animated.div
