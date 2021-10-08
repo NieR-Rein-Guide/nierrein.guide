@@ -65,6 +65,16 @@ async function getMemoirs() {
   };
 }
 
+async function getCompanions() {
+  const client = await mongo.get();
+  const db = client.db(dbName);
+  const companions = db.collection('COMPANION_DATA');
+
+  const companionsData = await companions.find({}).toArray()
+
+  return companionsData
+}
+
 const memGetCostumes = pMemoize(getCostumes, {
   maxAge: 1000 * 60 * 60 * 24
 });
@@ -80,6 +90,9 @@ const memGetSingleCostume = pMemoize(getSingleCostume, {
 const memGetMemoirs = pMemoize(getMemoirs, {
   maxAge: 1000 * 60 * 60 * 24
 });
+const memGetCompanions = pMemoize(getCompanions, {
+  maxAge: 1000 * 60 * 60 * 24
+});
 
 export {
   memGetCostumes as getCostumes,
@@ -87,4 +100,5 @@ export {
   memGetWeapon as getWeapon,
   memGetSingleCostume as getSingleCostume,
   memGetMemoirs as getMemoirs,
+  memGetCompanions as getCompanions,
 }
