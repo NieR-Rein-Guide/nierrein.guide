@@ -16,7 +16,7 @@ export default function Database(): JSX.Element {
       <Meta
         title="Tools"
         description="Some tools."
-        cover="https://nierrein.guide/cover-tools.jpg"
+        cover="https://nierrein.guide/tools/xp.jpg"
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -71,6 +71,23 @@ export default function Database(): JSX.Element {
           </a>
         </Link>
 
+        <Link href="/tools/xp-calc">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
+            <Image
+              height={350}
+              width={200}
+              layout="fill"
+              objectFit="cover"
+              className="-z-1 filter brightness-50"
+              src={xpImg}
+              alt="Xp thumbnail"
+            />
+            <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
+              Xp calc
+            </h3>
+          </a>
+        </Link>
+
         <Link href="/tools">
           <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
@@ -88,7 +105,7 @@ export default function Database(): JSX.Element {
           </a>
         </Link>
 
-        <Link href="/tools">
+        <Link href="/xp-calc">
           <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
@@ -101,23 +118,6 @@ export default function Database(): JSX.Element {
             />
             <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
               Loadout builder (WIP)
-            </h3>
-          </a>
-        </Link>
-
-        <Link href="/tools">
-          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
-            <Image
-              height={350}
-              width={200}
-              layout="fill"
-              objectFit="cover"
-              className="-z-1 filter brightness-50"
-              src={xpImg}
-              alt="Xp thumbnail"
-            />
-            <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
-              Xp calc (WIP)
             </h3>
           </a>
         </Link>
