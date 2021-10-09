@@ -44,7 +44,7 @@ const enhancementsIcons = {
   Small: "material200001_standard",
   Medium: "material200002_standard",
   Large: "material200003_standard",
-  Spacial: "material200005_standard",
+  Special: "material200005_standard",
   XL: "material200004_standard",
 };
 
@@ -53,7 +53,7 @@ function WeaponCalculator(): JSX.Element {
     new Material("Small", 200),
     new Material("Medium", 400),
     new Material("Large", 800),
-    new Material("Spacial", 1200),
+    new Material("Special", 1200),
     new Material("XL", 1600),
   ];
 

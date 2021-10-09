@@ -41,7 +41,7 @@ const enhancementsIcons = {
   Small: "material100001_standard",
   Medium: "material100002_standard",
   Large: "material100003_standard",
-  Spacial: "material100005_standard",
+  Special: "material100005_standard",
   XL: "material100004_standard",
 };
 
@@ -50,7 +50,7 @@ function CharacterCalculator(): JSX.Element {
     new Material("Small", 200),
     new Material("Medium", 400),
     new Material("Large", 800),
-    new Material("Spacial", 1200),
+    new Material("Special", 1200),
     new Material("XL", 1600),
   ];
 
@@ -127,7 +127,7 @@ function CharacterCalculator(): JSX.Element {
         return 90;
 
       default:
-        throw new Error("xp-calc: Invalid weapon rarity " + characterRarity);
+        throw new Error("xp-calc: Invalid costume rarity " + characterRarity);
     }
   }
 
