@@ -2,6 +2,8 @@ import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
+import SVG from "react-inlinesvg";
 
 const darkMaterials = [
   {
@@ -116,8 +118,17 @@ export default function Database(): JSX.Element {
       <Meta
         title="Materials calc"
         description="Materials calc"
-        cover="https://nierrein.guide/cover-tools.jpg"
+        cover="https://nierrein.guide/tools/materials.jpg"
       />
+
+      <nav className="mb-16">
+        <Link href="/tools" passHref>
+          <a className="btn">
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
+            <span>Return to Tools</span>
+          </a>
+        </Link>
+      </nav>
 
       <section>
         <h2 className="overlap">Dark Character</h2>
