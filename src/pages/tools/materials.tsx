@@ -99,11 +99,11 @@ function getRemainingMaterials(currentStage = 1, targetStage = 11) {
   }
 }
 
-export default function Database(): JSX.Element {
+export default function MaterialsCalculator(): JSX.Element {
   const [currentStage, setCurrentStage] = useState(1);
   const [targetStage, setTargetStage] = useState(11);
-  const [dropRate, setDropRate] = useState(0.0025);
-  const [darkDailyStamina, setDarkDailyStamina] = useState(15);
+  const [dropRate, setDropRate] = useState(0.003);
+  const [darkDailyStamina] = useState(15);
   const [maxStamina, setMaxStamina] = useState(150);
 
   const remainingDarkMats = getRemainingMaterials(currentStage, targetStage);
@@ -111,7 +111,7 @@ export default function Database(): JSX.Element {
   function handleDarkInput(value, setValue) {
     const stage = Number(value);
 
-    if (stage < 0 || stage > 11) {
+    if (stage <= 0 || stage > 11) {
       return;
     }
 
@@ -127,13 +127,13 @@ export default function Database(): JSX.Element {
   return (
     <Layout>
       <Meta
-        title="Materials calc"
-        description="Materials calc"
+        title="Materials calculator"
+        description="Dark materials calculator."
         cover="https://nierrein.guide/cover-tools.jpg"
       />
 
       <section>
-        <h2 className="overlap">Dark Character</h2>
+        <h2 className="overlap">Dark Materials</h2>
 
         <form className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mb-8">
           <div className="input-field">
@@ -179,6 +179,9 @@ export default function Database(): JSX.Element {
                 type="number"
               />
             </label>
+            <p className="text-xs mt-1">
+              Current drop rate is 60% from 0,5% (dailies)
+            </p>
           </div>
 
           <div className="input-field">
@@ -197,7 +200,7 @@ export default function Database(): JSX.Element {
           </div>
         </form>
 
-        <div className="grid grid-cols-2 gap-y-8 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-y-8 sm:grid-cols-4 bg-grey-dark p-8 relative bordered">
           <div className="flex flex-col items-center">
             <span>Jewels</span>
             <Image
@@ -244,11 +247,11 @@ export default function Database(): JSX.Element {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-x-12 wysiwyg mt-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 wysiwyg mt-8">
           <ul>
             <li>
-              <span className="text-beige">{zenithRuns}</span> runs to get{" "}
-              {remainingDarkMats.zenith} Zenith's Brilliance.
+              <span className="text-beige">{zenithRuns}</span> dailies runs to
+              get {remainingDarkMats.zenith} Zenith's Brilliance.
             </li>
             <li>{staminaForZeniths} total stamina.</li>
           </ul>
@@ -283,6 +286,14 @@ export default function Database(): JSX.Element {
               />{" "}
               {staminaForZeniths / maxStamina} large pots.
             </div>
+          </div>
+          <div>
+            <h6>Approximate drop rates for purple (dailies)</h6>
+            <ol>
+              <li>Zenith's Brilliance: 60%</li>
+              <li>Polycristal of Thought: 30%</li>
+              <li>Adoration: 10%</li>
+            </ol>
           </div>
         </div>
       </section>
