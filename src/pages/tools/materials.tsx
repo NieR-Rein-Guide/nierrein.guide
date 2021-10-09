@@ -121,7 +121,7 @@ export default function MaterialsCalculator(): JSX.Element {
   const smallPot = 10;
   const mediumPot = maxStamina / 2;
 
-  const zenithRuns = remainingDarkMats.zenith / dropRate;
+  const zenithRuns = Math.round(remainingDarkMats.zenith / dropRate);
   const staminaForZeniths = zenithRuns * darkDailyStamina;
 
   return (
