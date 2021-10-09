@@ -84,15 +84,19 @@ function getRemainingMaterials(currentStage = 1, targetStage = 11) {
     zenith: 0,
   };
 
-  for (let index = currentStage - 1; index < targetStage - 1; index++) {
-    const stage = darkMaterials[index];
-    materials.jewels += stage.jewels;
-    materials.lights += stage.lights;
-    materials.memories += stage.memories;
-    materials.zenith += stage.zenith;
-  }
+  try {
+    for (let index = currentStage - 1; index < targetStage - 1; index++) {
+      const stage = darkMaterials[index];
+      materials.jewels += stage.jewels;
+      materials.lights += stage.lights;
+      materials.memories += stage.memories;
+      materials.zenith += stage.zenith;
+    }
 
-  return materials;
+    return materials;
+  } catch (error) {
+    return materials;
+  }
 }
 
 export default function Database(): JSX.Element {
@@ -243,8 +247,8 @@ export default function Database(): JSX.Element {
         <div className="flex flex-col sm:flex-row gap-x-12 wysiwyg mt-8">
           <ul>
             <li>
-              <span className="text-beige">{zenithRuns}</span> runs to get 5
-              Zenith's Brilliance.
+              <span className="text-beige">{zenithRuns}</span> runs to get{" "}
+              {remainingDarkMats.zenith} Zenith's Brilliance.
             </li>
             <li>{staminaForZeniths} total stamina.</li>
           </ul>
