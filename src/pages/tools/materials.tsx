@@ -97,7 +97,10 @@ function getRemainingMaterials(currentStage = 1, targetStage = 11) {
 
 export default function Database(): JSX.Element {
   const [currentStage, setCurrentStage] = useState(1);
-  const [targetStage, setTargetStage] = useState(2);
+  const [targetStage, setTargetStage] = useState(11);
+  const [dropRate, setDropRate] = useState(0.0025);
+  const [darkDailyStamina, setDarkDailyStamina] = useState(15);
+  const [maxStamina, setMaxStamina] = useState(150);
 
   const remainingDarkMats = getRemainingMaterials(currentStage, targetStage);
 
@@ -111,6 +114,12 @@ export default function Database(): JSX.Element {
     setValue(Number(stage));
   }
 
+  const smallPot = 10;
+  const mediumPot = maxStamina / 2;
+
+  const zenithRuns = remainingDarkMats.zenith / dropRate;
+  const staminaForZeniths = zenithRuns * darkDailyStamina;
+
   return (
     <Layout>
       <Meta
@@ -122,7 +131,7 @@ export default function Database(): JSX.Element {
       <section>
         <h2 className="overlap">Dark Character</h2>
 
-        <form className="mb-8">
+        <form className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mb-8">
           <div className="input-field">
             <label>
               Current Stage (min 1)
@@ -155,9 +164,36 @@ export default function Database(): JSX.Element {
               />
             </label>
           </div>
+
+          <div className="input-field">
+            <label>
+              Zenith's drop rate
+              <input
+                value={dropRate}
+                onChange={(e) => setDropRate(Number(e.target.value))}
+                placeholder="0.0025"
+                type="number"
+              />
+            </label>
+          </div>
+
+          <div className="input-field">
+            <label>
+              Max Stamina
+              <input
+                value={maxStamina}
+                onChange={(e) => setMaxStamina(Number(e.target.value))}
+                placeholder="Your max stamina (150)"
+                type="number"
+                min="50"
+                max="999"
+                step="1"
+              />
+            </label>
+          </div>
         </form>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-y-8 sm:grid-cols-4">
           <div className="flex flex-col items-center">
             <span>Jewels</span>
             <Image
@@ -201,6 +237,48 @@ export default function Database(): JSX.Element {
               alt=""
             />
             <span>{remainingDarkMats.zenith}</span>
+          </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-x-12 wysiwyg mt-8">
+          <ul>
+            <li>
+              <span className="text-beige">{zenithRuns}</span> runs to get 5
+              Zenith's Brilliance.
+            </li>
+            <li>{staminaForZeniths} total stamina.</li>
+          </ul>
+          <div>
+            <div className="flex items-center">
+              <Image
+                src="/ui/consumable_item/consumable300001_standard.png"
+                alt="Small pots"
+                layout="fixed"
+                height="48"
+                width="48"
+              />{" "}
+              {staminaForZeniths / smallPot} small pots.
+            </div>
+            <div className="flex items-center">
+              <Image
+                src="/ui/consumable_item/consumable300002_standard.png"
+                alt="Small pots"
+                layout="fixed"
+                height="48"
+                width="48"
+              />{" "}
+              {staminaForZeniths / mediumPot} medium pots.
+            </div>
+            <div className="flex items-center">
+              <Image
+                src="/ui/consumable_item/consumable300003_standard.png"
+                alt="Small pots"
+                layout="fixed"
+                height="48"
+                width="48"
+              />{" "}
+              {staminaForZeniths / maxStamina} large pots.
+            </div>
           </div>
         </div>
       </section>
