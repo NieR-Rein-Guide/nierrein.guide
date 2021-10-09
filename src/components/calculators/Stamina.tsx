@@ -21,7 +21,7 @@ function capStamina(number) {
 
 function StaminaCalculator(): JSX.Element {
   const [stamina, setStamina] = useState(0);
-  const [maxStamina, setMaxStamina] = useState(10);
+  const [maxStamina, setMaxStamina] = useState(50);
 
   useEffect(() => {
     getLocalStamina();
