@@ -177,7 +177,7 @@ export default function TierList({
                         ? "/" + slugify(item.title, { lower: true })
                         : ""
                     }`}
-                    passHref={true}
+                    passHref
                   >
                     <a className="flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1">
                       {(costume && (
@@ -263,7 +263,7 @@ export default function TierList({
 
       {tier.content && (
         <div
-          className="darken-img"
+          className="darken-img -z-1"
           dangerouslySetInnerHTML={{ __html: tier.content }}
         ></div>
       )}
