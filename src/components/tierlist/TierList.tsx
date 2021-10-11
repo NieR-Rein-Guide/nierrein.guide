@@ -260,13 +260,6 @@ export default function TierList({
           The tier list and statistics were done by <code>yuuru#0107</code>
         </span>
       )}
-
-      {tier.content && (
-        <div
-          className="darken-img -z-1"
-          dangerouslySetInnerHTML={{ __html: tier.content }}
-        ></div>
-      )}
     </div>
   );
 }
