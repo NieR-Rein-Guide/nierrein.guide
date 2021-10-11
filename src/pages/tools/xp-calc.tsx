@@ -11,7 +11,7 @@ export default function XpCalcPage(): JSX.Element {
       <Meta
         title="XP Calculation"
         description="Tool to calculate amounts of materials to level up characters and weapons."
-        cover="https://nierrein.guide/cover-tools.jpg"
+        cover="https://nierrein.guide/tools/xp.jpg"
       />
 
       <nav className="mb-16">
