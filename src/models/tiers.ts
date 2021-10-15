@@ -9,6 +9,7 @@ import SearchRankB from '../../public/ui/search/search_rank_3.png';
 import SearchRankC from '../../public/ui/search/search_rank_4.png';
 import SearchRankD from '../../public/ui/search/search_rank_5.png';
 import SearchRankE from '../../public/ui/search/search_rank_6.png';
+import SearchRankF from '../../public/ui/search/search_rank_7.png';
 import { sheets } from "@libs/s3";
 
 export interface SheetCostume {
@@ -68,6 +69,7 @@ const RANK_THUMBNAILS = {
   C: SearchRankC,
   D: SearchRankD,
   E: SearchRankE,
+  F: SearchRankF,
 }
 
 function forceToNumber(number: string | number) {
