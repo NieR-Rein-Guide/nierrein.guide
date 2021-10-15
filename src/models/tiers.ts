@@ -33,10 +33,10 @@ export interface Tier {
   tooltip?: string;
   title?: string;
   points: {
-    agility: number;
-    atk: number;
-    def: number;
-    total: number;
+    agility: number | null;
+    atk: number | null;
+    def: number | null;
+    total: number | null;
   };
 }
 
@@ -72,20 +72,14 @@ const RANK_THUMBNAILS = {
   F: SearchRankF,
 }
 
-function forceToNumber(number: string | number) {
+function forceToNumber(number: string | number): number | null {
+  if (!number) return null
   const string = number.toString().replaceAll(' ', '')
   return Number.parseInt(string, 10)
 }
 
-async function getTiers() {
-  const [pvpSheet, pvpSheetInfo] = await Promise.all([
-    sheets.get('pvp-tier'),
-    sheets.get('pvp-tier-info')
-  ])
-
-  const pvpInfo = pvpSheetInfo[0]
-
-  const pvpTiers = pvpSheet.reduce((acc, costume) => {
+function sheetToTier(sheet) {
+  return sheet.reduce((acc, costume) => {
     const newCostume = {
       ...costume,
       isEX: costume.title.toLowerCase().includes('reborn'),
@@ -106,6 +100,20 @@ async function getTiers() {
 
     return acc;
   }, {});
+}
+
+async function getTiers() {
+  const [tiersInfo, pvpSheet, subjSheet] = await Promise.all([
+    sheets.get('tierlist-info'),
+    sheets.get('pvp-tier'),
+    sheets.get('pve-tier_subj')
+  ])
+
+  const pvpInfo = tiersInfo[0]
+  const subjInfo = tiersInfo[1]
+
+  const pvpTiers = sheetToTier(pvpSheet)
+  const subjTiers = sheetToTier(subjSheet)
 
   const pvpTier = {
     label: "PvP",
@@ -331,10 +339,10 @@ async function getTiers() {
   const subjugationTier = {
     label: "Subjugation",
     type: 'characters',
-    lastUpdated: "2021-10-15T11:43:43.654Z",
+    lastUpdated: subjInfo.date,
     backgroundImg: pveBackgroundImg,
     coverImg: "https://nierrein.guide/tierlists/cover-pve.jpg",
-    tiers: {},
+    tiers: subjTiers,
   }
 
   const weaponsTier = {

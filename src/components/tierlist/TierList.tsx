@@ -214,33 +214,39 @@ export default function TierList({
                       <span className="text-sm">
                         {Math.round(item.points.total)} points
                       </span>
-                      <div className="h-6">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart layout="vertical" data={[item.points]}>
-                            <XAxis type="number" hide domain={[0, maxAtk]} />
-                            <YAxis type="category" width={1} dataKey="name" />
-                            <Bar dataKey="atk" fill="#F87171" />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-                      <div className="h-6">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart layout="vertical" data={[item.points]}>
-                            <XAxis type="number" hide domain={[0, maxDef]} />
-                            <YAxis type="category" width={1} dataKey="name" />
-                            <Bar dataKey="def" fill="#60A5FA" />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
-                      <div className="h-6">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <BarChart layout="vertical" data={[item.points]}>
-                            <XAxis type="number" hide domain={[0, maxAgi]} />
-                            <YAxis type="category" width={1} dataKey="name" />
-                            <Bar dataKey="agility" fill="#34D399" />
-                          </BarChart>
-                        </ResponsiveContainer>
-                      </div>
+                      {item.points.atk && (
+                        <div className="h-6">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <BarChart layout="vertical" data={[item.points]}>
+                              <XAxis type="number" hide domain={[0, maxAtk]} />
+                              <YAxis type="category" width={1} dataKey="name" />
+                              <Bar dataKey="atk" fill="#F87171" />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      )}
+                      {item.points.def && (
+                        <div className="h-6">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <BarChart layout="vertical" data={[item.points]}>
+                              <XAxis type="number" hide domain={[0, maxDef]} />
+                              <YAxis type="category" width={1} dataKey="name" />
+                              <Bar dataKey="def" fill="#60A5FA" />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      )}
+                      {item.points.agility && (
+                        <div className="h-6">
+                          <ResponsiveContainer width="100%" height="100%">
+                            <BarChart layout="vertical" data={[item.points]}>
+                              <XAxis type="number" hide domain={[0, maxAgi]} />
+                              <YAxis type="category" width={1} dataKey="name" />
+                              <Bar dataKey="agility" fill="#34D399" />
+                            </BarChart>
+                          </ResponsiveContainer>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
