@@ -282,5 +282,26 @@ iframe {
 }
 
 canvas {
-    background-color: black;
+  background-color: black;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: theme('colors.grey.dark');
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: theme('colors.beige.DEFAULT');
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: theme('colors.grey.detail');
 }

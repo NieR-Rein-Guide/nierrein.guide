@@ -25,7 +25,6 @@ export default function TierlistsPageProps({
 }: TierlistsPageProps): JSX.Element {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(defaultTab);
-  const content = useRef<HTMLDivElement>(null);
 
   const handleTabsChange = (index) => {
     setTabIndex(index);
@@ -34,10 +33,6 @@ export default function TierlistsPageProps({
       null,
       `/tierlists/${slugify(tiers[index].label, { lower: true })}`
     );
-
-    content.current.scrollIntoView({
-      behavior: "smooth",
-    });
   };
 
   return (
@@ -53,52 +48,30 @@ export default function TierlistsPageProps({
         />
       )}
 
-      <div className="flex flex-col gap-y-24 mt-12">
+      <section className="flex flex-col gap-y-24 mt-12">
+        <h2 className="overlap">Tierlists</h2>
         {!router.isFallback && (
           <Tabs defaultIndex={tabIndex} onChange={handleTabsChange}>
-            <TabList className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+            <TabList className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16 m:mb-14">
               {tiers.map((tier) => (
-                <TierListTab
-                  key={tier.index}
-                  index={tier.index}
-                  image={tier.backgroundImg}
-                >
+                <TierListTab key={tier.index} index={tier.index}>
                   {tier.label}
                 </TierListTab>
               ))}
             </TabList>
 
-            <p className="mb-24 text-lg md:text-xl text-center max-w-4xl mx-auto px-4 border border-beige py-4">
-              Tier lists are meant to give a general idea, they are <b>NOT</b>{" "}
-              an absolute truth.
-              <br />
-              Follow what you want and do what feel right for you.
-              <br />
-              Tier lists are made by <code>Insta#9504</code> and{" "}
-              <code>yuuru#0107</code>.
-              <br />
-              If you have any suggestions or want to update the tier list{" "}
-              <span className="wysiwyg">
-                <a href={DISCORD_URL} rel="noopener noreferrer" target="_blank">
-                  join us on Discord
-                </a>
-              </span>
-            </p>
-
-            <TabPanels ref={content}>
+            <TabPanels>
               {tiers.map((tier) => (
                 <TabPanel key={tier.index}>
-                  <section className="mt-8">
-                    <h2 className="overlap">{tier.label} Tier List</h2>
-
+                  <div>
                     <TierList tier={tier} costumes={costumes} />
-                  </section>
+                  </div>
                 </TabPanel>
               ))}
             </TabPanels>
           </Tabs>
         )}
-      </div>
+      </section>
     </Layout>
   );
 }
@@ -107,8 +80,13 @@ export async function getStaticProps(context) {
   const costumes = await getAllCostumes({
     allStats: false,
   });
-  const { pveTier, pvpTier, weaponsTier } = await getTiers();
-  const tiers = [pveTier, pvpTier, weaponsTier];
+  const { pveTier, pvpTier, weaponsTier, subjugationTier } = await getTiers();
+  const tiers = [pvpTier, subjugationTier, pveTier, weaponsTier].map(
+    (tier, index) => ({
+      ...tier,
+      index,
+    })
+  );
   let defaultTab = 0;
 
   if (context?.params?.slug && context.params.slug.length > 0) {
@@ -128,8 +106,8 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const { pveTier, pvpTier, weaponsTier } = await getTiers();
-  const tiers = [pveTier, pvpTier, weaponsTier];
+  const { pveTier, pvpTier, subjugationTier } = await getTiers();
+  const tiers = [pvpTier, pveTier, subjugationTier];
 
   const paths = tiers.map((tier) => ({
     params: { slug: [slugify(tier.label, { lower: true })] },

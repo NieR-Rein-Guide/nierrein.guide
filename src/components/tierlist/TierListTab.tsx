@@ -1,29 +1,24 @@
-import Image from "next/image";
 import { useTabsContext, Tab } from "@reach/tabs";
 import classNames from "classnames";
 
-export default function TierlistTab({ children, index, image }): JSX.Element {
+export default function TierlistTab({ children, index }): JSX.Element {
   const { selectedIndex } = useTabsContext();
 
   return (
     <Tab
       className={classNames(
-        "px-4 py-2 h-24 md:h-52 relative z-10 border-4",
-        selectedIndex === index ? "border-beige" : "border-transparent"
+        "p-4 transition-colors ease-out-cubic relative bordered",
+        selectedIndex === index ? "bg-grey-foreground" : "bg-beige"
       )}
     >
-      <Image
-        height={350}
-        width={200}
-        layout="fill"
-        objectFit="cover"
-        className="-z-1 filter brightness-50"
-        src={image}
-        alt={`${children} thumbnail`}
-      />
-      <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
+      <span
+        className={classNames(
+          "font-display font-bold text-lg tracking-wider transition-colors ease-out-cubic",
+          selectedIndex === index ? "text-beige" : "text-grey-foreground"
+        )}
+      >
         {children}
-      </h3>
+      </span>
     </Tab>
   );
 }

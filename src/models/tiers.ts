@@ -51,7 +51,7 @@ export interface Tiers {
 }
 
 export interface TiersTabs {
-  index: number;
+  index?: number;
   label: string;
   type: 'characters' | 'weapons';
   backgroundImg: StaticImageData;
@@ -78,7 +78,6 @@ function forceToNumber(number: string | number) {
 }
 
 async function getTiers() {
-  // SheetCostume[]
   const [pvpSheet, pvpSheetInfo] = await Promise.all([
     sheets.get('pvp-tier'),
     sheets.get('pvp-tier-info')
@@ -108,8 +107,17 @@ async function getTiers() {
     return acc;
   }, {});
 
+  const pvpTier = {
+    label: "PvP",
+    type: 'characters',
+    backgroundImg: pvpBackgroundImg,
+    lastUpdated: pvpInfo.date,
+    coverImg: "https://nierrein.guide/tierlists/cover-pvp.jpg",
+    content: `<img src="${pvpInfo.image}" alt="" loading="lazy" />`,
+    tiers: pvpTiers,
+  }
+
   const pveTier = {
-    index: 0,
     label: "PvE",
     type: 'characters',
     lastUpdated: "2021-08-25T20:09:04.030Z",
@@ -318,33 +326,30 @@ async function getTiers() {
         },
       ],
     },
-    }
+  }
 
-  const pvpTier = {
-    index: 1,
-    label: "PvP",
+  const subjugationTier = {
+    label: "Subjugation",
     type: 'characters',
-    backgroundImg: pvpBackgroundImg,
-    lastUpdated: pvpInfo.date,
-    coverImg: "https://nierrein.guide/tierlists/cover-pvp.jpg",
-    content: `<img src="${pvpInfo.image}" alt="" loading="lazy" />`,
-    tiers: pvpTiers,
+    lastUpdated: "2021-10-15T11:43:43.654Z",
+    backgroundImg: pveBackgroundImg,
+    coverImg: "https://nierrein.guide/tierlists/cover-pve.jpg",
+    tiers: {},
   }
 
   const weaponsTier = {
-    index: 2,
     label: "Weapons",
     type: 'weapons',
     backgroundImg: weaponsBackgroundImg,
     lastUpdated: "2021-08-25T20:09:04.030Z",
     coverImg: "https://nierrein.guide/tierlists/cover-weapons.jpg",
-    content: '<img src="https://share.keziahmoselle.fr/2021/08/brave_NNe3zhirLW.png" alt="Weapons tier list" />',
     tiers: {},
   }
 
   return {
     pveTier,
     pvpTier,
+    subjugationTier,
     weaponsTier,
     pvpSheet
   }

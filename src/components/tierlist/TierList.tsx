@@ -179,7 +179,7 @@ export default function TierList({
                     }`}
                     passHref
                   >
-                    <a className="flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1">
+                    <a className="flex flex-col items-center w-28 transform transition-transform ease-out-cubic hover:-translate-y-1">
                       {(costume && (
                         <CostumeThumbnail
                           src={`/character/thumbnails/${costume.ids.actor}_thumbnail.png`}
@@ -195,7 +195,7 @@ export default function TierList({
                           alt={`${item.name} thumbnail`}
                         />
                       )}
-                      <span className="text-center font-mono line-clamp-1">
+                      <span className="text-center font-mono line-clamp-1 mt-1">
                         {item.isEX && (
                           <span className="text-rarity-4">EX </span>
                         )}
