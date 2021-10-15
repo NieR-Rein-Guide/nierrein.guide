@@ -14,7 +14,7 @@ interface GuidesProps {
 }
 
 export default function Events({ events }: GuidesProps): JSX.Element {
-  const [tabIndex, setTabIndex] = useState(0);
+  const [tabIndex] = useState(0);
 
   const allEvents = events.map((event) => ({
     ...event,
@@ -34,12 +34,8 @@ export default function Events({ events }: GuidesProps): JSX.Element {
       />
       <Tabs defaultIndex={tabIndex}>
         <TabList className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
-          <TierlistTab index={0} image="/events/current.jpg">
-            Current Events
-          </TierlistTab>
-          <TierlistTab index={1} image="/events/past.jpg">
-            Past Events
-          </TierlistTab>
+          <TierlistTab index={0}>Current Events</TierlistTab>
+          <TierlistTab index={1}>Past Events</TierlistTab>
         </TabList>
 
         <TabPanels>
