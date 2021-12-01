@@ -17,7 +17,7 @@ interface EventsSlider {
 export default function EventsSlider({
   currentEvents,
 }: EventsSlider): JSX.Element {
-  const [activeEvent, setActiveEvent] = useState(currentEvents[0]);
+  const [activeEvent, setActiveEvent] = useState(currentEvents[0] ?? null);
   const nextGuerilla = useGuerilla();
 
   function handleSlideChange(event) {
@@ -82,13 +82,15 @@ export default function EventsSlider({
               ))}
             </Swiper>
           </div>
-          <div className="relative">
-            <Link href={`/event/${activeEvent.slug}`}>
-              <a className="btn absolute bottom-6 sm:bottom-5 left-1/2 transform -translate-x-1/2 z-20">
-                See Event
-              </a>
-            </Link>
-          </div>
+          {activeEvent && (
+            <div className="relative">
+              <Link href={`/event/${activeEvent.slug}`}>
+                <a className="btn absolute bottom-6 sm:bottom-5 left-1/2 transform -translate-x-1/2 z-20">
+                  See Event
+                </a>
+              </Link>
+            </div>
+          )}
         </section>
 
         <div className="border border-beige-inactive bg-grey-lighter">
