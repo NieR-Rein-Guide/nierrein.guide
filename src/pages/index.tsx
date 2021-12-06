@@ -46,93 +46,99 @@ export default function Home({
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
         {!isMobile && <AnimatedBanner />}
         <EventsSlider currentEvents={currentEvents} />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {futureEvents.length > 0 && (
-            <ListingEvents title="Upcoming Events">
-              {futureEvents.slice(0, 3).map((event) => (
-                <Link
-                  key={event.slug}
-                  href={`/event/${event.slug}`}
-                  passHref={true}
-                >
-                  <a className="slider__other-event">
-                    <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
-                      <div className="absolute bottom-0 w-full p-2 bg-grey-lighter bg-opacity-70 z-20 flex justify-center gap-x-3">
-                        <span>
-                          Starts{" "}
-                          {formatDistanceToNow(new Date(event.start_date), {
-                            addSuffix: true,
-                          })}
-                        </span>
-                      </div>
-                      <Image
-                        layout="fill"
-                        objectFit="cover"
-                        height={128}
-                        width={232}
-                        src={
-                          event.image.formats?.medium?.url ??
-                          event.image.formats?.small.url ??
-                          event.image.formats?.thumbnail?.url
-                        }
-                        alt={`Thumbnail ${event.title}`}
-                        placeholder="blur"
-                        blurDataURL={
-                          event.image.formats?.medium?.hash ??
-                          event.image.formats?.small.hash ??
-                          event.image.formats?.thumbnail?.hash
-                        }
-                      />
-                    </div>
-                  </a>
-                </Link>
-              ))}
-            </ListingEvents>
-          )}
 
-          {endingEvents.length > 0 && (
-            <ListingEvents title="Events Ending soon">
-              {endingEvents.map((event) => (
-                <Link
-                  key={event.slug}
-                  href={`/event/${event.slug}`}
-                  passHref={true}
-                >
-                  <a className="slider__other-event">
-                    <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
-                      <div className="absolute bottom-0 w-full p-2 bg-grey-lighter bg-opacity-70 z-20 flex justify-center gap-x-3">
-                        <span>
-                          Ends{" "}
-                          {formatDistanceToNow(new Date(event.end_date), {
-                            addSuffix: true,
-                          })}
-                        </span>
+        <section>
+          <h2 className="overlap">Events</h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {futureEvents.length > 0 && (
+              <ListingEvents title="Upcoming Events">
+                {futureEvents.map((event) => (
+                  <Link
+                    key={event.slug}
+                    href={`/event/${event.slug}`}
+                    passHref={true}
+                  >
+                    <a className="slider__other-event">
+                      <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
+                        <div className="absolute bottom-0 w-full p-2 bg-grey-lighter bg-opacity-70 z-20 flex justify-center gap-x-3">
+                          <span>
+                            Starts{" "}
+                            {formatDistanceToNow(new Date(event.end_date), {
+                              addSuffix: true,
+                            })}
+                          </span>
+                        </div>
+                        <Image
+                          layout="fill"
+                          objectFit="cover"
+                          height={128}
+                          width={232}
+                          src={
+                            event.image.formats?.medium?.url ??
+                            event.image.formats?.small.url ??
+                            event.image.formats?.thumbnail?.url
+                          }
+                          alt={`Thumbnail ${event.title}`}
+                          placeholder="blur"
+                          blurDataURL={
+                            event.image.formats?.medium?.hash ??
+                            event.image.formats?.small.hash ??
+                            event.image.formats?.thumbnail?.hash
+                          }
+                        />
                       </div>
-                      <Image
-                        layout="fill"
-                        objectFit="cover"
-                        height={128}
-                        width={232}
-                        src={
-                          event.image.formats?.medium?.url ??
-                          event.image.formats?.small.url ??
-                          event.image.formats?.thumbnail?.url
-                        }
-                        alt={`Thumbnail ${event.title}`}
-                        placeholder="blur"
-                        blurDataURL={
-                          event.image.formats?.medium?.hash ??
-                          event.image.formats?.small.hash ??
-                          event.image.formats?.thumbnail?.hash
-                        }
-                      />
-                    </div>
-                  </a>
-                </Link>
-              ))}
-            </ListingEvents>
-          )}
-        </div>
+                    </a>
+                  </Link>
+                ))}
+              </ListingEvents>
+            )}
+
+            {endingEvents.length > 0 && (
+              <ListingEvents title="Events Ending soon">
+                {endingEvents.map((event) => (
+                  <Link
+                    key={event.slug}
+                    href={`/event/${event.slug}`}
+                    passHref={true}
+                  >
+                    <a className="slider__other-event">
+                      <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
+                        <div className="absolute bottom-0 w-full p-2 bg-grey-lighter bg-opacity-70 z-20 flex justify-center gap-x-3">
+                          <span>
+                            Ends{" "}
+                            {formatDistanceToNow(new Date(event.end_date), {
+                              addSuffix: true,
+                            })}
+                          </span>
+                        </div>
+                        <Image
+                          layout="fill"
+                          objectFit="cover"
+                          height={128}
+                          width={232}
+                          src={
+                            event.image.formats?.medium?.url ??
+                            event.image.formats?.small.url ??
+                            event.image.formats?.thumbnail?.url
+                          }
+                          alt={`Thumbnail ${event.title}`}
+                          placeholder="blur"
+                          blurDataURL={
+                            event.image.formats?.medium?.hash ??
+                            event.image.formats?.small.hash ??
+                            event.image.formats?.thumbnail?.hash
+                          }
+                        />
+                      </div>
+                    </a>
+                  </Link>
+                ))}
+              </ListingEvents>
+            )}
+          </div>
+        </section>
+
         <section>
           <h2 className="overlap">New costumes</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
