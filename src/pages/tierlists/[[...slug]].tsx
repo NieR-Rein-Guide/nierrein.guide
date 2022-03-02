@@ -64,7 +64,7 @@ export default function TierlistsPageProps({
               {tiers.map((tier) => (
                 <TabPanel key={tier.index}>
                   <div>
-                    <TierList tier={tier} costumes={costumes} />
+                    <TierList tier={tier} />
                   </div>
                 </TabPanel>
               ))}
@@ -77,16 +77,13 @@ export default function TierlistsPageProps({
 }
 
 export async function getStaticProps(context) {
-  const costumes = await getAllCostumes({
-    allStats: false,
-  });
-  const { pveTier, pvpTier, weaponsTier, subjugationTier } = await getTiers();
-  const tiers = [pvpTier, subjugationTier, pveTier, weaponsTier].map(
-    (tier, index) => ({
-      ...tier,
-      index,
-    })
-  );
+  const { subjugationTier } = getTiers();
+
+  const tiers = [subjugationTier].map((tier, index) => ({
+    ...tier,
+    index,
+  }));
+
   let defaultTab = 0;
 
   if (context?.params?.slug && context.params.slug.length > 0) {
@@ -99,15 +96,14 @@ export async function getStaticProps(context) {
     props: {
       defaultTab,
       tiers,
-      costumes,
     },
-    revalidate: 120,
+    revalidate: 86400,
   };
 }
 
 export async function getStaticPaths() {
-  const { pveTier, pvpTier, subjugationTier } = await getTiers();
-  const tiers = [pvpTier, pveTier, subjugationTier];
+  const { subjugationTier } = getTiers();
+  const tiers = [subjugationTier];
 
   const paths = tiers.map((tier) => ({
     params: { slug: [slugify(tier.label, { lower: true })] },

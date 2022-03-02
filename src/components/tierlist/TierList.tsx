@@ -1,23 +1,19 @@
 import Image from "next/image";
 import { RANK_THUMBNAILS, TiersTabs } from "@models/tiers";
-import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+
+/* import Link from "next/link";
 import ReactTooltip from "react-tooltip";
 import { useState } from "react";
 import classNames from "classnames";
 import { FiBarChart2 } from "react-icons/fi";
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import { useEffect } from "react";
+import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from "recharts";
 import slugify from "slugify";
 import CostumeThumbnail from "@components/CostumeThumbnail";
-import { Costume } from "@models/types";
+import { Costume } from "@models/types"; */
 
-interface TierListProps {
-  tier: TiersTabs;
-  costumes: Costume[];
-}
-
-function findMaxStat(lists, property: "atk" | "def" | "agility") {
+/* function findMaxStat(lists, property: "atk" | "def" | "agility") {
   return lists.reduce((acc, [, list]) => {
     const max = list.reduce((acc, costume) => {
       const stat = costume.points[property];
@@ -35,13 +31,10 @@ function findMaxStat(lists, property: "atk" | "def" | "agility") {
 
     return max;
   }, 0);
-}
+} */
 
-export default function TierList({
-  tier,
-  costumes,
-}: TierListProps): JSX.Element {
-  const [isStatsEnabled, setIsStatsEnabled] = useState(false);
+export default function TierList({ tier }): JSX.Element {
+  /* const [isStatsEnabled, setIsStatsEnabled] = useState(false);
   const [maxAtk, setMaxAtk] = useState(10000);
   const [maxDef, setMaxDef] = useState(10000);
   const [maxAgi, setMaxAgi] = useState(10000);
@@ -59,24 +52,21 @@ export default function TierList({
     setMaxAgi(findMaxStat(lists, "agility"));
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isStatsEnabled]);
+  }, [isStatsEnabled]); */
 
-  if (lists.length === 0) {
+  /* if (lists.length === 0) {
     return (
       <div>
-        <div>
-          <p>
-            Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
-          </p>
-        </div>
+        <p>
+          Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
+        </p>
 
-        <p className="text-3xl mb-4">Work In Progress</p>
         {tier.content && (
           <div dangerouslySetInnerHTML={{ __html: tier.content }}></div>
         )}
       </div>
     );
-  }
+  } */
 
   return (
     <div className="flex flex-col gap-y-8 relative">
@@ -85,9 +75,20 @@ export default function TierList({
           <p>
             Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
           </p>
+          <p>
+            This tierlist has been made by{" "}
+            <span className="text-beige">Raon Miru#7516</span>
+            <br />
+            <a
+              className="underline"
+              href="https://docs.google.com/document/d/1YNG8cR9lTYwNUFBOOeEAU3bNPP48MQIUGXCfpl1POwA/edit?usp=sharing"
+            >
+              You can find the source here
+            </a>
+          </p>
         </div>
 
-        {hasStats && (
+        {/* {hasStats && (
           <div className="flex flex-row-reverse md:flex-row flex-wrap justify-center mt-4 md:mt-0 gap-4">
             <div className="w-full md:w-28 order-2 md:order-1">
               <p className="flex items-center gap-x-2">
@@ -130,15 +131,27 @@ export default function TierList({
               </li>
             </label>
           </div>
-        )}
+        )} */}
       </div>
 
-      {lists.map(([rank, items]) => (
-        <div className="tierlist__row" key={rank}>
-          <Image src={RANK_THUMBNAILS[rank]} alt={rank} />
+      {tier.tiers.map((tier) => (
+        <div className="tierlist__row" key={tier.label}>
+          {(RANK_THUMBNAILS[tier.label] && (
+            <Image src={RANK_THUMBNAILS[tier.label]} alt={tier.label} />
+          )) || <h2 className="text-2xl">{tier.label}</h2>}
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            {items.map((item, index) => {
+            {tier.characters.map((character) => (
+              <div
+                className="h-20 w-20 bg-contain"
+                style={{
+                  backgroundImage: `url(${character.src})`,
+                }}
+                key={character.src}
+              ></div>
+            ))}
+
+            {/* {items.map((item, index) => {
               const costume = costumes.find(
                 (costume) => costume.costume.name.en === item.title
               );
@@ -251,7 +264,7 @@ export default function TierList({
                   )}
                 </div>
               );
-            })}
+            })} */}
           </div>
           <img
             className="py-8 w-full col-span-full opacity-20"
@@ -261,11 +274,11 @@ export default function TierList({
         </div>
       ))}
 
-      {hasStats && (
+      {/* {hasStats && (
         <span>
           The tier list and statistics were done by <code>yuuru#0107</code>
         </span>
-      )}
+      )} */}
     </div>
   );
 }

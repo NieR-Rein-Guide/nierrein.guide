@@ -212,6 +212,6 @@ export async function getStaticProps() {
       endingEvents,
       recentCostumes,
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 }

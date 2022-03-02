@@ -118,9 +118,7 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
               <h3>Known issues :</h3>
               <ul>
                 <li>UX is not good at the moment</li>
-                <li>
-                  If you cannot see the model it is likely off camera
-                </li>
+                <li>If you cannot see the model it is likely off camera</li>
               </ul>
 
               <h3>How to use ?</h3>
@@ -201,7 +199,7 @@ export async function getStaticProps(context) {
     props: {
       models,
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 }
 

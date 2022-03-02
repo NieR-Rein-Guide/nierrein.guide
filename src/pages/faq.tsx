@@ -52,6 +52,6 @@ export async function getStaticProps() {
     props: {
       FAQ,
     },
-    revalidate: 60,
+    revalidate: 86400,
   };
 }
