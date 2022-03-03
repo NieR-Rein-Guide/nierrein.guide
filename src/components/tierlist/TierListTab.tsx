@@ -13,7 +13,7 @@ export default function TierlistTab({ children, index }): JSX.Element {
     >
       <span
         className={classNames(
-          "font-display font-bold text-lg tracking-wider transition-colors ease-out-cubic",
+          "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
           selectedIndex === index ? "text-beige" : "text-grey-foreground"
         )}
       >

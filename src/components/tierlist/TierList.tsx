@@ -70,21 +70,32 @@ export default function TierList({ tier }): JSX.Element {
 
   return (
     <div className="flex flex-col gap-y-8 relative">
-      <div className="flex flex-col md:flex-row justify-between pb-8">
-        <div>
+      <div className="flex flex-col md:flex-row justify-between pb-8 w-full">
+        <div className="w-full">
+          <div className="flex flex-col md:flex-row justify-between">
+            <p className="mb-4">
+              Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))}{" "}
+              ago
+            </p>
+            <p>
+              This tierlist has been made by{" "}
+              <span className="text-beige">Raon Miru#7516</span>
+            </p>
+          </div>
           <p>
-            Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))} ago
-          </p>
-          <p>
-            This tierlist has been made by{" "}
-            <span className="text-beige">Raon Miru#7516</span>
-            <br />
-            <a
-              className="underline"
-              href="https://docs.google.com/document/d/1YNG8cR9lTYwNUFBOOeEAU3bNPP48MQIUGXCfpl1POwA/edit?usp=sharing"
-            >
-              You can find the source here
-            </a>
+            <div className="text-center mt-8 max-w-xl mx-auto">
+              <p>
+                Damage dealers are ranked from SSS tier to B tier, while
+                characters of other roles are not ranked in different tier but
+                only from left to right
+              </p>
+              <a
+                className="text-beige border-b border-dotted hover:border-transparent"
+                href="https://docs.google.com/document/d/1YNG8cR9lTYwNUFBOOeEAU3bNPP48MQIUGXCfpl1POwA/edit?usp=sharing"
+              >
+                More info on categorizing can be read here
+              </a>
+            </div>
           </p>
         </div>
 

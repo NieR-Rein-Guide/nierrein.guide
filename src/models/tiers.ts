@@ -1,5 +1,6 @@
 import tierlistSubjugation from '../data/tierlist_subjugation.json'
 
+import SearchRankSSS from '../../public/ui/search/search_rank_sss.png';
 import SearchRankSS from '../../public/ui/search/search_rank_ss.png';
 import SearchRankS from '../../public/ui/search/search_rank_1.png';
 import SearchRankA from '../../public/ui/search/search_rank_2.png';
@@ -38,6 +39,7 @@ export interface Tier {
 }
 
 export interface Tiers {
+  SSS?: Tier[];
   SS?: Tier[];
   S?: Tier[];
   A?: Tier[];
@@ -64,6 +66,7 @@ export interface TiersTabs {
 }
 
 const RANK_THUMBNAILS = {
+  SSS: SearchRankSSS,
   SS: SearchRankSS,
   S: SearchRankS,
   A: SearchRankA,
