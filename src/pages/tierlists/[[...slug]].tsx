@@ -97,7 +97,6 @@ export async function getStaticProps(context) {
       defaultTab,
       tiers,
     },
-    revalidate: 86400,
   };
 }
 
