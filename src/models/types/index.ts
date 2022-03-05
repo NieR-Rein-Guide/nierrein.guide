@@ -335,3 +335,14 @@ export type Costume = {
     releaseDate: string | null;
   },
 }
+
+export interface NierNotification {
+  informationId: number
+  informationType: string
+  postscriptDatetime: number
+  publishStartDatetime: number
+  thumbnailImagePath: string | null
+  title: string
+  webviewMissionId: number
+  body?: string
+}

@@ -10,17 +10,24 @@ import AnimatedBanner from "@components/AnimatedBanner";
 import ListingEvents from "@components/ListingEvents";
 import Meta from "@components/Meta";
 import { getFeaturedGuides } from "@models/guide";
-import { Guide, Event, Costume } from "@models/types";
+import { Guide, Event, Costume, NierNotification } from "@models/types";
 import { getCurrentEvents, getFutureEvents } from "@models/event";
 import { formatDistanceToNow } from "date-fns";
 import { useMedia } from "react-use";
 import { getAllCostumes } from "@models/character";
 import CostumeArtwork from "@components/CostumeArtwork";
 import urlSlug from "url-slug";
+import { getNotifications } from "@models/notifications";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
 });
+const NotificationsWithNoSSR = dynamic(
+  () => import("../components/Notifications"),
+  {
+    ssr: false,
+  }
+);
 
 interface HomeProps {
   featuredGuides: Guide[];
@@ -28,6 +35,7 @@ interface HomeProps {
   futureEvents: Event[];
   endingEvents: Event[];
   recentCostumes: Costume[];
+  notifications: NierNotification[];
 }
 
 export default function Home({
@@ -36,6 +44,7 @@ export default function Home({
   futureEvents = [],
   endingEvents = [],
   recentCostumes = [],
+  notifications = [],
 }: HomeProps): JSX.Element {
   const isMobile = useMedia("(max-width: 1279px)");
 
@@ -46,6 +55,8 @@ export default function Home({
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
         {!isMobile && <AnimatedBanner />}
         <EventsSlider currentEvents={currentEvents} />
+
+        <NotificationsWithNoSSR notifications={notifications} />
 
         <section>
           <h2 className="overlap">Events</h2>
@@ -178,13 +189,19 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const [featuredGuides, currentEvents, futureEvents, allCostumes] =
-    await Promise.all([
-      getFeaturedGuides(),
-      getCurrentEvents({ currentDate: new Date().toISOString() }),
-      getFutureEvents({ currentDate: new Date().toISOString() }),
-      getAllCostumes({ allStats: false }),
-    ]);
+  const [
+    featuredGuides,
+    currentEvents,
+    futureEvents,
+    allCostumes,
+    notifications,
+  ] = await Promise.all([
+    getFeaturedGuides(),
+    getCurrentEvents({ currentDate: new Date().toISOString() }),
+    getFutureEvents({ currentDate: new Date().toISOString() }),
+    getAllCostumes({ allStats: false }),
+    getNotifications(),
+  ]);
 
   const releasedCostumes = allCostumes.filter(
     (costume) => costume.metadata.releaseDate
@@ -211,6 +228,7 @@ export async function getStaticProps() {
       futureEvents,
       endingEvents,
       recentCostumes,
+      notifications,
     },
     revalidate: 86400,
   };

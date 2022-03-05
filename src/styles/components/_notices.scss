@@ -1,0 +1,17 @@
+.notice__body {
+  section {
+    @apply bg-grey-dark border border-beige-inactive border-opacity-30 py-8;
+  }
+
+  img {
+    @apply mb-4;
+  }
+
+  h3, h4 {
+    @apply text-3xl text-center text-beige mb-4;
+  }
+
+  .holding-period {
+    @apply text-center;
+  }
+}
