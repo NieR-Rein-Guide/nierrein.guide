@@ -5,7 +5,7 @@
     "description": "Brings you free, high quality content : Guides, updated tierlists, complete databases, 3d model viewer and more!",
     "start_url": ".",
     "theme_color": "black",
-    "categories": ["game", "education", "guide"]
+    "categories": ["game", "education", "guide"],
     "icons": [
         {
             "src": "/favicon.png",
