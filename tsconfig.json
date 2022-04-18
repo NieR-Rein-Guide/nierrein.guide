@@ -22,7 +22,9 @@
       "@libs/*": ["libs/*"],
       "@utils/*": ["utils/*"],
       "@hooks/*": ["hooks/*"]
-    }
+    },
+    "sourceMap": true,
+    "outDir": "dist"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]

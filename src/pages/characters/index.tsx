@@ -13,6 +13,7 @@ import slugify from "slugify";
 import { Costume } from "@models/types";
 import Checkbox from "@components/form/Checkbox";
 import { useStore } from "@libs/user-settings";
+import { PrismaClient } from "@prisma/client";
 
 const getBaseCostume = (costumes: Costume[]): Costume => {
   const query = useRouter().query;
@@ -154,7 +155,9 @@ export default function CharactersPage({
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
+  const prisma = new PrismaClient();
+  const allCostumes = await prisma.costume.findMany();
   const costumes = await getAllCostumes({
     allStats: false,
   });
@@ -162,6 +165,7 @@ export async function getServerSideProps() {
   return {
     props: {
       costumes,
+      allCostumes,
     },
   };
 }

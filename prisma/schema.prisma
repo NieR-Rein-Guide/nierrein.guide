@@ -1,0 +1,54 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model character {
+  character_id         Int                    @id(map: "PK_character") @default(autoincrement())
+  name                 String?
+  image_path           String?
+  character_rank_bonus character_rank_bonus[]
+  costume              costume[]
+}
+
+model character_rank_bonus {
+  rank_bonus_id    Int
+  rank_bonus_level Int
+  description      String?
+  stat             String?
+  type             String?
+  amount           Int
+  character_id     Int
+  character        character @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_character_rank_bonus_character_character_id")
+
+  @@id([rank_bonus_id, rank_bonus_level], map: "PK_character_rank_bonus")
+  @@index([character_id], map: "IX_character_rank_bonus_character_id")
+}
+
+model costume {
+  costume_id   Int       @id(map: "PK_costume") @default(autoincrement())
+  character_id Int
+  emblem_id    Int
+  title        String?
+  story        String?
+  weapon_type  String?
+  rarity_type  String?
+  character    character @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_character_character_id")
+  emblem       emblem    @relation(fields: [emblem_id], references: [emblem_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_emblem_emblem_id")
+
+  @@index([character_id], map: "IX_costume_character_id")
+  @@index([emblem_id], map: "IX_costume_emblem_id")
+}
+
+model emblem {
+  emblem_id      Int       @id(map: "PK_emblem") @default(autoincrement())
+  name           String?
+  main_message   String?
+  small_messages String?
+  icon_path      String?
+  costume        costume[]
+}

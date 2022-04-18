@@ -230,6 +230,5 @@ export async function getStaticProps() {
       recentCostumes,
       notifications,
     },
-    revalidate: 86400,
   };
 }
