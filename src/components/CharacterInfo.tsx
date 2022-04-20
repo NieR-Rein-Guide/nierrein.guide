@@ -228,7 +228,7 @@ function CostumeDetails({
         </div>
       </div>
 
-      {costume?.stats && (
+      {/* {costume?.stats && (
         <div className="relative mb-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Statistics
@@ -317,7 +317,7 @@ function CostumeDetails({
             </div>
           )}
         </div>
-      )}
+      )} */}
 
       {/* {costume?.metadata?.sources?.length > 0 && (
         <div className="relative my-8">
