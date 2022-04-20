@@ -7,6 +7,8 @@ import SVG from "react-inlinesvg";
 interface AbilityProps {
   name: string;
   description: string;
+  AssetCategoryId?: number;
+  AssetVariationId?: number;
   level?: number;
   maxLevel?: number;
   className?: string;
