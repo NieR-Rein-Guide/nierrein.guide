@@ -2,22 +2,15 @@
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import CostumeDetails from "@components/CharacterInfo";
-import { getAllCostumes } from "@models/character";
 import { useEffect, useState } from "react";
 import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
 import CharacterRows from "@components/characters/CharacterRows";
 import CostumeSelect from "@components/characters/CostumeSelect";
-import { useRouter } from "next/router";
-import slugify from "slugify";
-import { Costume } from "@models/types";
-import Checkbox from "@components/form/Checkbox";
-import { useStore } from "@libs/user-settings";
 import {
   character,
   costume,
   PrismaClient,
-  costume_ability,
   character_rank_bonus,
 } from "@prisma/client";
 
@@ -40,7 +33,6 @@ export default function CharactersPage({
   stats,
   rankBonus,
 }: CharactersPageProps): JSX.Element {
-  const userSettings = useStore((state) => state);
   const [currentCostume, setCurrentCostume] = useState<costume | null>(
     costumes[0]
   );

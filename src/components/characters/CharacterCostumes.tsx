@@ -1,4 +1,3 @@
-import { Costume } from "@models/types";
 import React, { Dispatch, SetStateAction } from "react";
 import Star from "@components/decorations/Star";
 import CostumeThumbnail from "@components/CostumeThumbnail";

@@ -85,17 +85,19 @@ function CostumeDetails({
               >
                 <h2 className="text-2xl">Skill</h2>
               </Lines>
-              <Skill
-                className="flex-1"
-                name={skill[skillLevel].costume_skill.name}
-                description={skill[skillLevel].costume_skill.description}
-                SkillCooltimeValue={
-                  skill[skillLevel].costume_skill.cooldown_time
-                }
-                level={skillLevel + 1}
-                isMaxAscended={ascendLevel === 4}
-                imagePathBase={skill[skillLevel].costume_skill.image_path}
-              />
+              {skill && skill[skillLevel].length > 0 && (
+                <Skill
+                  className="flex-1"
+                  name={skill[skillLevel].costume_skill.name}
+                  description={skill[skillLevel].costume_skill.description}
+                  SkillCooltimeValue={
+                    skill[skillLevel].costume_skill.cooldown_time
+                  }
+                  level={skillLevel + 1}
+                  isMaxAscended={ascendLevel === 4}
+                  imagePathBase={skill[skillLevel].costume_skill.image_path}
+                />
+              )}
             </div>
 
             <div>
@@ -106,20 +108,21 @@ function CostumeDetails({
               >
                 <h2 className="text-2xl">Abilities</h2>
               </Lines>
-              {abilities.map((ability, index) => (
-                <Ability
-                  className="flex-1"
-                  key={`${costume.costume_id}ability${index}`}
-                  name={ability[abilityLevel].costume_ability.name}
-                  description={
-                    ability[abilityLevel].costume_ability.description
-                  }
-                  imagePathBase={
-                    ability[abilityLevel].costume_ability.image_path_base
-                  }
-                  level={abilityLevel + 1}
-                />
-              ))}
+              {abilities &&
+                abilities.map((ability, index) => (
+                  <Ability
+                    className="flex-1"
+                    key={`${costume.costume_id}ability${index}`}
+                    name={ability[abilityLevel].costume_ability.name}
+                    description={
+                      ability[abilityLevel].costume_ability.description
+                    }
+                    imagePathBase={
+                      ability[abilityLevel].costume_ability.image_path_base
+                    }
+                    level={abilityLevel + 1}
+                  />
+                ))}
             </div>
 
             {/* Controls */}

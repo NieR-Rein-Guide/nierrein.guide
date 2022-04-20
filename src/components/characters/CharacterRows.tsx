@@ -14,7 +14,11 @@ function CharacterDiamond({
   labelTop: boolean;
 }): JSX.Element {
   return (
-    <Link href={`/characters/${character.character_id}`} passHref>
+    <Link
+      href={`/characters/${character.character_id}`}
+      passHref
+      scroll={false}
+    >
       <a className="relative">
         <div
           className={`line-clamp-1 text-center absolute text-sm pointer-events-auto ${
