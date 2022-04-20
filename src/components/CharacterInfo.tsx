@@ -302,7 +302,7 @@ function CostumeDetails({
                   .sort((a, b) => a.rank_bonus_level - b.rank_bonus_level)
                   .map((rank, index) => (
                     <div
-                      key={`${costume.character_id}${rank.type}${costume.costume_id}`}
+                      key={`${costume.character_id}${rank.type}${costume.costume_id}${index}`}
                       className="bg-beige-darker flex flex-col justify-center items-center py-2"
                     >
                       <span>Rank {rank.rank_bonus_level}</span>
@@ -442,7 +442,7 @@ function StatsOfLevel({
         <SingleStat
           icon={statsIcons.cd}
           name="Critical Damage"
-          value={`${stats.crit_atk ?? "???"}%`}
+          value={`${stats.crit_atk / 10 ?? "???"}%`}
         />
       </div>
     </div>

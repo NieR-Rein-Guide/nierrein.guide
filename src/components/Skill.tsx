@@ -9,14 +9,14 @@ interface SkillProps {
   name: string;
   description: string;
   SkillCooltimeValue?: number;
-  AssetCategoryId: number;
+  AssetCategoryId?: number;
   AssetVariationId?: number;
   isMaxAscended?: boolean;
   level?: number;
   maxLevel?: number;
   isWeapon?: boolean;
   className?: string;
-  imagePathBase: string;
+  imagePathBase?: string;
 }
 
 export default function Skill({
