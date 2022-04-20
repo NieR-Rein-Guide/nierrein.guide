@@ -9,7 +9,7 @@ interface SkillProps {
   name: string;
   description: string;
   SkillCooltimeValue?: number;
-  AssetCategoryId?: number;
+  AssetCategoryId: number;
   AssetVariationId?: number;
   isMaxAscended?: boolean;
   level?: number;
@@ -28,7 +28,7 @@ export default function Skill({
   maxLevel = 15,
   isWeapon = false,
   className,
-  imagePathBase,
+  imagePathBase = "",
 }: SkillProps): JSX.Element {
   return (
     <div

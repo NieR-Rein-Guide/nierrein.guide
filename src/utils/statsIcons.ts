@@ -16,6 +16,7 @@ const statsIcons = {
   "HP": hpIcon,
   "ATTACK": atkIcon,
   "VITALITY": defIcon,
+  "CRITICAL_RATIO": crIcon
 };
 
 export default statsIcons;

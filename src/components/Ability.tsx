@@ -12,13 +12,13 @@ interface AbilityProps {
   level?: number;
   maxLevel?: number;
   className?: string;
-  imagePathBase: string;
+  imagePathBase?: string;
 }
 
 export default function Ability({
   name,
   description,
-  imagePathBase,
+  imagePathBase = "",
   level = 1,
   maxLevel = 4,
   className = "",
