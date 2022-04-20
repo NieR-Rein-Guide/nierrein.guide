@@ -37,7 +37,7 @@ export default function CharacterCostumes({
             onClick={() => setCostume(costume)}
           >
             <CostumeThumbnail
-              src={`${CDN_URL}/costume/${costume.costume_id}.jpg`}
+              src={`${CDN_URL}${costume.image_path_base}battle.png`}
               alt={`${costume.title} thumbnail`}
               rarity={RARITY[costume.rarity_type]}
               imgClasses={classNames(

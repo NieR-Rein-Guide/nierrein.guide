@@ -13,18 +13,27 @@ import slugify from "slugify";
 import { Costume } from "@models/types";
 import Checkbox from "@components/form/Checkbox";
 import { useStore } from "@libs/user-settings";
-import { character, costume, PrismaClient } from "@prisma/client";
+import {
+  character,
+  costume,
+  PrismaClient,
+  costume_ability,
+} from "@prisma/client";
 
 interface CharactersPageProps {
   currentCharacter: character;
   characters: character[];
   costumes: costume[];
+  abilities;
+  skills;
 }
 
 export default function CharactersPage({
   currentCharacter,
   characters,
   costumes,
+  abilities,
+  skills,
 }: CharactersPageProps): JSX.Element {
   const userSettings = useStore((state) => state);
   const [currentCostume, setCurrentCostume] = useState<costume | null>(
@@ -61,7 +70,11 @@ export default function CharactersPage({
         <CostumeSelect characters={characters} />
       </div>
 
-      <CostumeDetails costume={currentCostume} />
+      <CostumeDetails
+        costume={currentCostume}
+        abilities={abilities[currentCostume.costume_id]}
+        skill={skills[currentCostume.costume_id]}
+      />
     </Layout>
   );
 }
@@ -73,8 +86,40 @@ export async function getStaticProps(context) {
     prisma.character.findMany(),
     prisma.costume.findMany({
       where: { character_id: Number(id) },
+      include: {
+        emblem: true,
+      },
     }),
   ]);
+
+  const abilities = {};
+  const skills = {};
+
+  for (const costume of selectedCostumes) {
+    const allAbilities = await prisma.costume_ability_link.findMany({
+      where: {
+        costume_id: costume.costume_id,
+      },
+      include: {
+        costume_ability: true,
+      },
+    });
+
+    abilities[costume.costume_id] = Object.values(
+      groupByKey(allAbilities, "ability_id")
+    );
+
+    const allSkills = await prisma.costume_skill_link.findMany({
+      where: {
+        costume_id: costume.costume_id,
+      },
+      include: {
+        costume_skill: true,
+      },
+    });
+
+    skills[costume.costume_id] = allSkills;
+  }
 
   prisma.$disconnect();
 
@@ -87,6 +132,8 @@ export async function getStaticProps(context) {
       currentCharacter,
       characters: JSON.parse(JSON.stringify(characters)),
       costumes: JSON.parse(JSON.stringify(selectedCostumes)),
+      abilities: JSON.parse(JSON.stringify(abilities)),
+      skills: JSON.parse(JSON.stringify(skills)),
     },
   };
 }
@@ -111,4 +158,14 @@ export async function getStaticPaths() {
     paths,
     fallback: false,
   };
+}
+
+function groupByKey(list, key) {
+  return list.reduce(
+    (hash, obj) => ({
+      ...hash,
+      [obj[key]]: (hash[obj[key]] || []).concat(obj),
+    }),
+    {}
+  );
 }

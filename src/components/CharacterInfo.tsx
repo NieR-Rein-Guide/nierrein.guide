@@ -1,4 +1,3 @@
-import { Costume } from "@models/types";
 import Image from "next/image";
 import HR from "./decorations/HR";
 import Star from "./decorations/Star";
@@ -28,7 +27,15 @@ const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
-function CostumeDetails({ costume }: { costume: costume }): JSX.Element {
+function CostumeDetails({
+  costume,
+  abilities,
+  skill,
+}: {
+  costume: costume;
+  abilities;
+  skill;
+}): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
   const [skillLevel, setSkillLevel] = useState(14);
   const [isShowingModel, setIsShowingModel] = useState(false);
@@ -66,7 +73,7 @@ function CostumeDetails({ costume }: { costume: costume }): JSX.Element {
 
           {/* Costume skills & abilities */}
           <div className="flex flex-col gap-y-8 mb-6">
-            {/* <div>
+            <div>
               <Lines
                 className="mb-2"
                 containerClass="justify-center"
@@ -76,13 +83,14 @@ function CostumeDetails({ costume }: { costume: costume }): JSX.Element {
               </Lines>
               <Skill
                 className="flex-1"
-                name={skill[skillLevel].name}
-                description={skill[skillLevel].description.long}
-                SkillCooltimeValue={skill[skillLevel].SkillCooltimeValue}
-                AssetCategoryId={skill[skillLevel].SkillAssetCategoryId}
-                AssetVariationId={skill[skillLevel].SkillAssetVariationId}
+                name={skill[skillLevel].costume_skill.name}
+                description={skill[skillLevel].costume_skill.description}
+                SkillCooltimeValue={
+                  skill[skillLevel].costume_skill.cooldown_time
+                }
                 level={skillLevel + 1}
                 isMaxAscended={ascendLevel === 4}
+                imagePathBase={skill[skillLevel].costume_skill.image_path}
               />
             </div>
 
@@ -94,26 +102,21 @@ function CostumeDetails({ costume }: { costume: costume }): JSX.Element {
               >
                 <h2 className="text-2xl">Abilities</h2>
               </Lines>
-              <Ability
-                className="flex-1"
-                key={`${costume.ids.costume}ability${firstAbility[abilityLevel].name}`}
-                name={firstAbility[abilityLevel].name}
-                description={firstAbility[abilityLevel].description.long}
-                AssetCategoryId={firstAbility[abilityLevel].AssetCategoryId}
-                AssetVariationId={firstAbility[abilityLevel].AssetVariationId}
-                level={abilityLevel + 1}
-              />
-
-              <Ability
-                className="flex-1"
-                key={`${costume.ids.costume}ability${secondAbility[abilityLevel].name}`}
-                name={secondAbility[abilityLevel].name}
-                description={secondAbility[abilityLevel].description.long}
-                AssetCategoryId={secondAbility[abilityLevel].AssetCategoryId}
-                AssetVariationId={secondAbility[abilityLevel].AssetVariationId}
-                level={abilityLevel + 1}
-              />
-            </div> */}
+              {abilities.map((ability, index) => (
+                <Ability
+                  className="flex-1"
+                  key={`${costume.costume_id}ability${index}`}
+                  name={ability[abilityLevel].costume_ability.name}
+                  description={
+                    ability[abilityLevel].costume_ability.description
+                  }
+                  imagePathBase={
+                    ability[abilityLevel].costume_ability.image_path_base
+                  }
+                  level={abilityLevel + 1}
+                />
+              ))}
+            </div>
 
             {/* Controls */}
             <div>
@@ -151,8 +154,8 @@ function CostumeDetails({ costume }: { costume: costume }): JSX.Element {
               {(isShowingModel && <ModelWithNoSSR path={null} />) || (
                 <Image
                   layout="fill"
-                  objectFit="cover"
-                  src={`${CDN_URL}${costume.costume_id}`}
+                  objectFit="contain"
+                  src={`${CDN_URL}${costume.image_path_base}full.png`}
                   alt={`${costume.title} (${costume.title}) illustration`}
                 />
               )}
@@ -190,7 +193,7 @@ function CostumeDetails({ costume }: { costume: costume }): JSX.Element {
             )}
           </span>
 
-          {costume?.weapon && (
+          {/* {costume?.weapon && (
             <Link
               href={`/database/weapons/${urlSlug(
                 costume.costume?.weapon?.name?.en ?? "unnamed"
@@ -207,7 +210,7 @@ function CostumeDetails({ costume }: { costume: costume }): JSX.Element {
                 />
               </a>
             </Link>
-          )}
+          )} */}
 
           <div className="absolute top-4 left-4 w-42 h-24 p-1 z-50">
             {/* <Rank rank="S" /> */}
