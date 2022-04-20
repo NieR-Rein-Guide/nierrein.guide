@@ -16,15 +16,12 @@ import { useStore } from "@libs/user-settings";
 import { character, PrismaClient } from "@prisma/client";
 
 interface CharactersPageProps {
-  costumes: character[];
+  characters: character[];
 }
 
 export default function CharactersPage({
   characters,
 }: CharactersPageProps): JSX.Element {
-  const userSettings = useStore((state) => state);
-  const [character, setCharacter] = useState<character | null>(null);
-
   return (
     <Layout>
       <Meta
@@ -33,11 +30,7 @@ export default function CharactersPage({
         cover="https://nierrein.guide/cover-characters.jpg"
       />
 
-      <CharacterRows
-        characters={characters}
-        currentCharacter={character}
-        setCharacter={setCharacter}
-      />
+      <CharacterRows characters={characters} currentCharacter={null} />
 
       {/*
       <div className="hidden md:inline">
