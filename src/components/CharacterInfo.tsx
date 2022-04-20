@@ -1,4 +1,3 @@
-import { Costume } from "@models/types";
 import Image from "next/image";
 import HR from "./decorations/HR";
 import Star from "./decorations/Star";
@@ -22,42 +21,31 @@ import Link from "next/link";
 import getModelPath from "@utils/getModelPath";
 import WeaponInfo from "@components/WeaponInfo";
 import ErrorBoundary from "./Error";
+import { character_rank_bonus, costume, costume_stat } from "@prisma/client";
+import { CDN_URL } from "@config/constants";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
-const dcTypeCostumes = [
-  "ch006006",
-  "ch006009",
-  "ch009009",
-  "ch010003",
-  "ch010007",
-  "ch012005",
-  "ch014007",
-  "ch019001",
-  "ch019010",
-  "ch019012",
-];
-
-function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
+function CostumeDetails({
+  costume,
+  abilities,
+  skill,
+  stats,
+  rankBonus,
+}: {
+  costume: costume;
+  abilities;
+  skill;
+  stats: costume_stat[];
+  rankBonus: character_rank_bonus[];
+}): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
   const [skillLevel, setSkillLevel] = useState(14);
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [ascendLevel, setAscendLevel] = useState(4);
 
   const abilityLevel = ascendLevel - 1;
-
-  const firstAbility = Object.entries(costume.abilities[0])
-    .slice(0, 4)
-    .map(([, value]) => value);
-
-  const secondAbility = Object.entries(costume.abilities[1])
-    .slice(0, 4)
-    .map(([, value]) => value);
-
-  const skill = Object.entries(costume.skills[ascendLevel === 4 ? 1 : 0])
-    .slice(0, 15)
-    .map(([, value]) => value);
 
   return (
     <>
@@ -70,24 +58,19 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               <div className="w-8">
                 <Image
                   layout="responsive"
-                  src={weaponsIcons[costume.costume.weaponType]}
-                  alt={costume.costume.weaponType}
+                  src={weaponsIcons[costume.weapon_type]}
+                  alt={costume.weapon_type}
                 />
               </div>
               <span className="uppercase px-2 text-black bg-beige">
-                {costume.character.en}
+                {costume.title}
               </span>
-              <span className="uppercase text-beige">
-                {costume.costume.name.en}
-              </span>
+              <span className="uppercase text-beige">{costume.title}</span>
             </div>
             <p
               className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
               dangerouslySetInnerHTML={{
-                __html: `${costume.costume.description.en.replaceAll(
-                  "\\n",
-                  "<br>"
-                )}`,
+                __html: `${costume.story.replaceAll("\\n", "<br>")}`,
               }}
             ></p>
           </div>
@@ -102,16 +85,19 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               >
                 <h2 className="text-2xl">Skill</h2>
               </Lines>
-              <Skill
-                className="flex-1"
-                name={skill[skillLevel].name}
-                description={skill[skillLevel].description.long}
-                SkillCooltimeValue={skill[skillLevel].SkillCooltimeValue}
-                AssetCategoryId={skill[skillLevel].SkillAssetCategoryId}
-                AssetVariationId={skill[skillLevel].SkillAssetVariationId}
-                level={skillLevel + 1}
-                isMaxAscended={ascendLevel === 4}
-              />
+              {skill && skill[skillLevel].length > 0 && (
+                <Skill
+                  className="flex-1"
+                  name={skill[skillLevel].costume_skill.name}
+                  description={skill[skillLevel].costume_skill.description}
+                  SkillCooltimeValue={
+                    skill[skillLevel].costume_skill.cooldown_time
+                  }
+                  level={skillLevel + 1}
+                  isMaxAscended={ascendLevel === 4}
+                  imagePathBase={skill[skillLevel].costume_skill.image_path}
+                />
+              )}
             </div>
 
             <div>
@@ -122,25 +108,21 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               >
                 <h2 className="text-2xl">Abilities</h2>
               </Lines>
-              <Ability
-                className="flex-1"
-                key={`${costume.ids.costume}ability${firstAbility[abilityLevel].name}`}
-                name={firstAbility[abilityLevel].name}
-                description={firstAbility[abilityLevel].description.long}
-                AssetCategoryId={firstAbility[abilityLevel].AssetCategoryId}
-                AssetVariationId={firstAbility[abilityLevel].AssetVariationId}
-                level={abilityLevel + 1}
-              />
-
-              <Ability
-                className="flex-1"
-                key={`${costume.ids.costume}ability${secondAbility[abilityLevel].name}`}
-                name={secondAbility[abilityLevel].name}
-                description={secondAbility[abilityLevel].description.long}
-                AssetCategoryId={secondAbility[abilityLevel].AssetCategoryId}
-                AssetVariationId={secondAbility[abilityLevel].AssetVariationId}
-                level={abilityLevel + 1}
-              />
+              {abilities &&
+                abilities.map((ability, index) => (
+                  <Ability
+                    className="flex-1"
+                    key={`${costume.costume_id}ability${index}`}
+                    name={ability[abilityLevel].costume_ability.name}
+                    description={
+                      ability[abilityLevel].costume_ability.description
+                    }
+                    imagePathBase={
+                      ability[abilityLevel].costume_ability.image_path_base
+                    }
+                    level={abilityLevel + 1}
+                  />
+                ))}
             </div>
 
             {/* Controls */}
@@ -176,21 +158,12 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         >
           <div className="bordered-lg bg-grey-dark h-full w-full">
             <div className="relative z-10 h-full w-full">
-              {(isShowingModel && (
-                <ModelWithNoSSR
-                  path={getModelPath(
-                    "character",
-                    `${
-                      dcTypeCostumes.includes(costume.ids.actor) ? "dc" : "sk"
-                    }_${costume.ids.actor}`
-                  )}
-                />
-              )) || (
+              {(isShowingModel && <ModelWithNoSSR path={null} />) || (
                 <Image
                   layout="fill"
-                  objectFit="cover"
-                  src={`/character_medium/${costume.ids.actor}_full-1920-1080.png`}
-                  alt={`${costume.character.en} (${costume.costume.name.en}) illustration`}
+                  objectFit="contain"
+                  src={`${CDN_URL}${costume.image_path_base}full.png`}
+                  alt={`${costume.title} (${costume.title}) illustration`}
                 />
               )}
             </div>
@@ -218,16 +191,16 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             </div>
           </div>
           <span className="flex absolute bottom-6 right-6">
-            {Array.from({ length: RARITY[costume.costume.rarity] }).map(
+            {Array.from({ length: RARITY[costume.rarity_type] }).map(
               (_, index) => (
                 <div className="w-8 h-8" key={index}>
-                  <Star rarity={RARITY[costume.costume.rarity]} />
+                  <Star rarity={RARITY[costume.rarity_type]} />
                 </div>
               )
             )}
           </span>
 
-          {costume.costume.weapon && (
+          {/* {costume?.weapon && (
             <Link
               href={`/database/weapons/${urlSlug(
                 costume.costume?.weapon?.name?.en ?? "unnamed"
@@ -244,7 +217,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                 />
               </a>
             </Link>
-          )}
+          )} */}
 
           <div className="absolute top-4 left-4 w-42 h-24 p-1 z-50">
             {/* <Rank rank="S" /> */}
@@ -262,7 +235,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </div>
       </div>
 
-      {costume?.costume?.stats && (
+      {stats && (
         <div className="relative mb-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Statistics
@@ -277,44 +250,44 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               setState={setStatType}
             />
 
-            <Radio
+            {/* <Radio
               name="Stats with passive abilities"
               value="displayed"
               isChecked={statType === "displayed"}
               setState={setStatType}
-            />
+            /> */}
           </div>
           <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
             <StatsOfLevel
-              stats={costume.costume.stats.base[statType]}
+              stats={stats[0]}
               label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).base
+                getCostumeLevelsByRarity(costume.rarity_type).base
               }`}
               description={
                 statType === "displayed"
-                  ? `${costume.abilities[0][3].name} is at level 1`
+                  ? `${abilities[0][3].name} is at level 1`
                   : ""
               }
             />
             <StatsOfLevel
-              stats={costume.costume.stats.maxNoAscension[statType]}
+              stats={stats[1]}
               label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).maxNoAsc
+                getCostumeLevelsByRarity(costume.rarity_type).maxNoAsc
               } (No ascension)`}
               description={
                 statType === "displayed"
-                  ? `${costume.abilities[0][3].name} is at level 1`
+                  ? `${abilities[0][3].name} is at level 1`
                   : ""
               }
             />
             <StatsOfLevel
-              stats={costume.costume.stats.maxWithAscension[statType]}
+              stats={stats[2]}
               label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).maxWithAsc
+                getCostumeLevelsByRarity(costume.rarity_type).maxWithAsc
               } (Max ascension)`}
               description={
                 statType === "displayed"
-                  ? `${costume.abilities[0][3].name} & ${costume.abilities[1][3].name} are at level 4`
+                  ? `${abilities[0][3].name} & ${abilities[1][3].name} are at level 4`
                   : ""
               }
             />
@@ -324,36 +297,37 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             Timed or conditional passives are not included in the stats.
           </p>
 
-          {costume.metadata?.ranks?.ranks && (
+          {rankBonus && (
             <div className="mt-16">
               <h3 className="text-2xl text-beige">Ranks bonuses</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
-                {costume.metadata.ranks.ranks.map((rank, index) => (
-                  <div
-                    key={`${costume.ids.costume}-${rank.type}-${index}`}
-                    className="bg-beige-darker flex flex-col justify-center items-center py-2"
-                  >
-                    <span>Rank {index + 1}</span>
-                    <div className="flex items-center">
-                      <Image
-                        src={statsIcons[rank.stat]}
-                        alt={rank.stat}
-                        title={rank.stat}
-                        height={48}
-                        width={48}
-                      />{" "}
-                      {rank.amount}
-                      {rank.type === "percent" ? "%" : ""}
+                {rankBonus
+                  .sort((a, b) => a.rank_bonus_level - b.rank_bonus_level)
+                  .map((rank, index) => (
+                    <div
+                      key={`${costume.character_id}${rank.type}${costume.costume_id}${index}`}
+                      className="bg-beige-darker flex flex-col justify-center items-center py-2"
+                    >
+                      <span>Rank {rank.rank_bonus_level}</span>
+                      <div className="flex items-center">
+                        <Image
+                          src={statsIcons[rank.stat]}
+                          alt={rank.stat}
+                          title={rank.stat}
+                          height={48}
+                          width={48}
+                        />{" "}
+                        {rank.description}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           )}
         </div>
       )}
 
-      {costume?.metadata?.sources?.length > 0 && (
+      {/* {costume?.metadata?.sources?.length > 0 && (
         <div className="relative my-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Costume Sources
@@ -389,15 +363,15 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
-      <ErrorBoundary>
+      {/* <ErrorBoundary>
         {costume?.costume?.weapon && (
           <div className="mt-16">
             <WeaponInfo weapon={costume.costume.weapon} />
           </div>
         )}
-      </ErrorBoundary>
+      </ErrorBoundary> */}
     </>
   );
 }
@@ -434,7 +408,7 @@ function StatsOfLevel({
   description,
 }: {
   label: string;
-  stats;
+  stats: costume_stat;
   description: string;
 }): JSX.Element {
   return (
@@ -456,22 +430,22 @@ function StatsOfLevel({
         <SingleStat
           icon={statsIcons.def}
           name="Defense"
-          value={stats.def ?? "???"}
+          value={stats.vit ?? "???"}
         />
         <SingleStat
           icon={statsIcons.agility}
           name="Agility"
-          value={stats.agility ?? "???"}
+          value={stats.agi ?? "???"}
         />
         <SingleStat
           icon={statsIcons.cr}
           name="Critical Rate"
-          value={`${stats.cr ?? "???"}%`}
+          value={`${stats.crit_rate ?? "???"}%`}
         />
         <SingleStat
           icon={statsIcons.cd}
           name="Critical Damage"
-          value={`${stats.cd ?? "???"}%`}
+          value={`${stats.crit_atk / 10 ?? "???"}%`}
         />
       </div>
     </div>

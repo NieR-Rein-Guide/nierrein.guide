@@ -1,87 +1,73 @@
-import { Costume } from "@models/types";
+import { CDN_URL } from "@config/constants";
+import { character } from "@prisma/client";
 import React, { Dispatch, SetStateAction } from "react";
-
-function getIconUrl(costume: Costume): string {
-  if (costume.character.en == "2P") {
-    return `/ui/actor/ch001003_01_actor_icon.png`;
-  }
-  let assetId = costume.ids.actor;
-  if (!assetId.endsWith("1")) {
-    assetId = assetId.substring(0, assetId.length - 3) + "001";
-  }
-  return `/ui/actor/${assetId}_01_actor_icon.png`;
-}
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 function CharacterDiamond({
-  costume,
-  setCostume,
+  character,
   active,
   labelTop,
 }: {
-  costume: Costume;
-  setCostume: Dispatch<SetStateAction<Costume>>;
+  character: character;
   active: boolean;
   labelTop: boolean;
 }): JSX.Element {
-  const onClick = () => {
-    setCostume(costume);
-  };
-
   return (
-    <div className="relative">
-      <div
-        className={`line-clamp-1 text-center absolute text-sm pointer-events-auto ${
-          labelTop ? "bottom-20" : "top-20"
-        } right-0 flex justify-center text-white ${
-          active ? "" : "text-opacity-60"
-        }`}
-        style={{ width: "56px" }}
-        onClick={onClick}
-      >
-        {costume?.character?.en}
-      </div>
-      <div
-        className={`pointer-events-auto overflow-hidden iso-bg ${
-          active ? "active" : ""
-        }`}
-        onClick={onClick}
-      >
-        <img
-          style={{
-            minWidth: "74px",
-            maxWidth: "74px",
-            minHeight: "74px",
-            maxHeight: "74px",
-          }}
-          className="select-none"
-          alt={costume?.character?.en}
-          title={costume?.character?.en}
-          src={getIconUrl(costume)}
-        />
-      </div>
-    </div>
+    <Link
+      href={`/characters/${character.character_id}`}
+      passHref
+      scroll={false}
+    >
+      <a className="relative">
+        <div
+          className={`line-clamp-1 text-center absolute text-sm pointer-events-auto ${
+            labelTop ? "bottom-20" : "top-20"
+          } right-0 flex justify-center text-white ${
+            active ? "" : "text-opacity-60"
+          }`}
+          style={{ width: "56px" }}
+        >
+          {character.name}
+        </div>
+        <div
+          className={`pointer-events-auto overflow-hidden iso-bg ${
+            active ? "active" : ""
+          }`}
+        >
+          <img
+            style={{
+              minWidth: "74px",
+              maxWidth: "74px",
+              minHeight: "74px",
+              maxHeight: "74px",
+            }}
+            className="select-none object-none"
+            alt={character.name}
+            title={character.name}
+            src={`${CDN_URL}${character.image_path}`}
+          />
+        </div>
+      </a>
+    </Link>
   );
 }
 
 export default function CharacterRows({
-  currentCostume,
-  setCostume,
-  costumes,
+  characters,
+  currentCharacter,
 }: {
-  currentCostume: Costume;
-  setCostume: Dispatch<SetStateAction<Costume>>;
-  costumes: Map<string, Costume>;
+  characters: character[];
+  currentCharacter: character;
 }): JSX.Element {
-  const firstRow: Costume[] = [];
-  const secondRow: Costume[] = [];
+  const firstRow: character[] = [];
+  const secondRow: character[] = [];
 
-  const characters = Array.from(costumes.values());
-
-  characters.forEach((costume, index) => {
+  characters.forEach((character, index) => {
     if (index % 2 == 1) {
-      firstRow.push(costume);
+      firstRow.push(character);
     } else {
-      secondRow.push(costume);
+      secondRow.push(character);
     }
   });
 
@@ -89,11 +75,14 @@ export default function CharacterRows({
     <div className="overflow-auto sm:self-center hidden md:inline">
       <div className="relative h-32 mt-20 mb-20 mx-20">
         <div className="flex gap-6 pointer-events-none">
-          {firstRow.map((costume) => (
-            <React.Fragment key={costume?.ids?.costume}>
+          {firstRow.map((character) => (
+            <React.Fragment key={character.character_id}>
               <CharacterDiamond
-                {...{ costume, setCostume }}
-                active={costume?.character?.en == currentCostume?.character?.en}
+                key={character.character_id}
+                character={character}
+                active={
+                  character.character_id === currentCharacter?.character_id
+                }
                 labelTop={true}
               />
             </React.Fragment>
@@ -106,11 +95,14 @@ export default function CharacterRows({
             top: "42px",
           }}
         >
-          {secondRow.map((costume) => (
-            <React.Fragment key={costume?.ids?.costume}>
+          {secondRow.map((character) => (
+            <React.Fragment key={character.character_id}>
               <CharacterDiamond
-                {...{ costume, setCostume }}
-                active={costume?.character?.en == currentCostume?.character?.en}
+                key={character.character_id}
+                character={character}
+                active={
+                  character.character_id === currentCharacter?.character_id
+                }
                 labelTop={false}
               />
             </React.Fragment>

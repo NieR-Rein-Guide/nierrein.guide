@@ -1,0 +1,137 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model character {
+  character_id         Int                    @id(map: "PK_character") @default(autoincrement())
+  DefaultCostumeId     Int
+  name                 String?
+  image_path           String?
+  character_rank_bonus character_rank_bonus[]
+  costume              costume[]
+}
+
+model character_rank_bonus {
+  rank_bonus_id    Int
+  rank_bonus_level Int
+  description      String?
+  stat             String?
+  type             String?
+  amount           Int
+  character_id     Int
+  character        character @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_character_rank_bonus_character_character_id")
+
+  @@id([rank_bonus_id, rank_bonus_level], map: "PK_character_rank_bonus")
+  @@index([character_id], map: "IX_character_rank_bonus_character_id")
+}
+
+model costume {
+  costume_id           Int                    @id(map: "PK_costume") @default(autoincrement())
+  character_id         Int
+  emblem_id            Int?
+  weapon_type          String?
+  rarity_type          String?
+  release_time         DateTime               @db.Timestamptz(6)
+  is_ex_costume        Boolean
+  title                String?
+  story                String?
+  image_path_base      String?
+  character            character              @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_character_character_id")
+  emblem               emblem?                @relation(fields: [emblem_id], references: [emblem_id], onDelete: Restrict, onUpdate: NoAction, map: "FK_costume_emblem_emblem_id")
+  costume_ability_link costume_ability_link[]
+  costume_skill_link   costume_skill_link[]
+  costume_stat         costume_stat[]
+
+  @@index([character_id], map: "IX_costume_character_id")
+  @@index([emblem_id], map: "IX_costume_emblem_id")
+}
+
+model emblem {
+  emblem_id      Int       @id(map: "PK_emblem") @default(autoincrement())
+  name           String?
+  main_message   String?
+  small_messages String?
+  icon_path      String?
+  costume        costume[]
+}
+
+model costume_ability {
+  ability_id           Int
+  ability_level        Int
+  name                 String?
+  description          String?
+  image_path_base      String?
+  costume_ability_link costume_ability_link[]
+
+  @@id([ability_id, ability_level], map: "PK_costume_ability")
+}
+
+model costume_ability_link {
+  costume_id      Int
+  ability_slot    Int
+  ability_id      Int
+  ability_level   Int
+  costume_ability costume_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_ability_link_costume_ability_ability_id_ability_lev~")
+  costume         costume         @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_ability_link_costume_costume_id")
+
+  @@id([costume_id, ability_slot, ability_id, ability_level], map: "PK_costume_ability_link")
+  @@index([ability_id, ability_level], map: "IX_costume_ability_link_ability_id_ability_level")
+}
+
+model costume_skill {
+  skill_id           Int
+  skill_level        Int
+  gauge_rise_speed   String?
+  cooldown_time      Int
+  name               String?
+  description        String?
+  short_description  String?
+  image_path         String?
+  costume_skill_link costume_skill_link[]
+
+  @@id([skill_id, skill_level], map: "PK_costume_skill")
+}
+
+model costume_skill_link {
+  costume_id    Int
+  skill_id      Int
+  skill_level   Int
+  costume       costume       @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_skill_link_costume_costume_id")
+  costume_skill costume_skill @relation(fields: [skill_id, skill_level], references: [skill_id, skill_level], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_skill_link_costume_skill_skill_id_skill_level")
+
+  @@id([costume_id, skill_id, skill_level], map: "PK_costume_skill_link")
+  @@index([skill_id, skill_level], map: "IX_costume_skill_link_skill_id_skill_level")
+}
+
+model costume_stat {
+  costume_id Int
+  level      Int
+  agi        Int
+  atk        Int
+  crit_atk   Int
+  crit_rate  Int
+  eva_rate   Int
+  hp         Int
+  vit        Int
+  costume    costume @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_stat_costume_costume_id")
+
+  @@id([costume_id, level], map: "PK_costume_stat")
+}
+
+model weapon {
+  weapon_id          Int     @id(map: "PK_weapon") @default(autoincrement())
+  evolution_group_id Int
+  evolution_order    Int
+  weapon_type        String?
+  rarity             String?
+  attribute          String?
+  name               String?
+  stories            String?
+
+  @@unique([evolution_group_id, evolution_order], map: "AK_weapon_evolution_group_id_evolution_order")
+}

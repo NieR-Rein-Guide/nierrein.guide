@@ -1,45 +1,26 @@
-import { Costume } from "@models/types";
-import RARITY from "@utils/rarity";
-import React, { Dispatch, SetStateAction } from "react";
+import { character } from "@prisma/client";
+import { useRouter } from "next/router";
 
 export default function CostumeSelect({
-  currentCostume,
-  setCostume,
-  costumes,
+  characters,
 }: {
-  currentCostume: Costume;
-  setCostume: Dispatch<SetStateAction<Costume>>;
-  costumes: Costume[];
+  characters: character[];
 }): JSX.Element {
-  const costumesByCharacter = costumes.reduce((acc, costume) => {
-    if (!acc[costume.character.en]) {
-      acc[costume.character.en] = [];
-    }
-    acc[costume.character.en].push(costume);
-    return acc;
-  }, {});
+  const router = useRouter();
+
+  function onSelect(character_id: string) {
+    router.push(`/characters/${character_id}`);
+  }
 
   return (
     <select
       className="bg-black text-white w-full"
-      onChange={function (ev) {
-        const newId = +ev.target.value;
-        costumes.find((costume) => {
-          if (costume.ids.costume === newId) {
-            setCostume(costume);
-            return true;
-          }
-        });
-      }}
+      onChange={(e) => onSelect(e.target.value)}
     >
-      {Object.entries(costumesByCharacter).map(([name, costumes]) => (
-        <optgroup key={name} label={name}>
-          {(costumes as Costume[]).map((costume) => (
-            <option key={costume.ids.costume} value={costume.ids.costume}>
-              ({RARITY[costume.costume.rarity]}*) {costume.costume.name.en}
-            </option>
-          ))}
-        </optgroup>
+      {characters.map((character) => (
+        <option key={character.character_id} value={character.character_id}>
+          {character.name}
+        </option>
       ))}
     </select>
   );

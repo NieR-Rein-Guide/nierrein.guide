@@ -2,7 +2,7 @@ import classNames from "classnames";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { NAVIGATION } from "config/constants";
+import { DISCORD_URL, NAVIGATION } from "config/constants";
 import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
@@ -61,14 +61,13 @@ export default function Header(): JSX.Element {
     <>
       <div className="absolute right-0 left-0 top-0 mx-auto z-50">
         <a
-          href={GITHUB_REPO_LINK}
-          title="Click to view the source code on GitHub"
+          href={DISCORD_URL}
+          title="Click to join us on Discord"
           rel="noopener noreferrer"
           target="_blank"
           className="flex justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50"
         >
-          <FiGithub />
-          <span>We are working on a data update! (New costumes/weapons)</span>
+          <span>Updating our database...</span>
         </a>
       </div>
       <header className="container relative">

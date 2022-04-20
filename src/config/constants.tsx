@@ -8,6 +8,9 @@ import fanContentIcon from "../../public/icons/fancontent.png";
 import SVG from "react-inlinesvg";
 import { RiInstagramFill, RiRedditFill } from "react-icons/ri";
 
+export const CDN_URL =
+  "https://s3.eu-central-1.wasabisys.com/nierreincarnation/";
+
 export const NAVIGATION = [
   {
     label: "Home",

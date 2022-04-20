@@ -11,7 +11,12 @@ const statsIcons = {
   cd: cdIcon,
   cr: crIcon,
   def: defIcon,
-  hp: hpIcon
+  hp: hpIcon,
+  "AGILITY": agilityIcon,
+  "HP": hpIcon,
+  "ATTACK": atkIcon,
+  "VITALITY": defIcon,
+  "CRITICAL_RATIO": crIcon
 };
 
 export default statsIcons;

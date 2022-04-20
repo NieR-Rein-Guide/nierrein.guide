@@ -1,3 +1,4 @@
+import { CDN_URL } from "@config/constants";
 import getGaugeLevel from "@utils/getGaugeLevel";
 import getSkillIcon from "@utils/getSkillIcon";
 import classNames from "classnames";
@@ -8,26 +9,26 @@ interface SkillProps {
   name: string;
   description: string;
   SkillCooltimeValue?: number;
-  AssetCategoryId: number;
-  AssetVariationId: number;
+  AssetCategoryId?: number;
+  AssetVariationId?: number;
   isMaxAscended?: boolean;
   level?: number;
   maxLevel?: number;
   isWeapon?: boolean;
   className?: string;
+  imagePathBase?: string;
 }
 
 export default function Skill({
   name,
   description,
   SkillCooltimeValue,
-  AssetCategoryId,
-  AssetVariationId,
   isMaxAscended,
   level = 1,
   maxLevel = 15,
   isWeapon = false,
   className,
+  imagePathBase = "",
 }: SkillProps): JSX.Element {
   return (
     <div
@@ -48,7 +49,7 @@ export default function Skill({
               width={64}
               height={64}
               alt=""
-              src={getSkillIcon(AssetCategoryId, AssetVariationId)}
+              src={`${CDN_URL}${imagePathBase}`}
             />
             <div className="absolute -top-1 right-1">
               <Image

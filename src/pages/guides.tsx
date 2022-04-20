@@ -65,6 +65,5 @@ export async function getStaticProps() {
     props: {
       guides,
     },
-    revalidate: 86400,
   };
 }

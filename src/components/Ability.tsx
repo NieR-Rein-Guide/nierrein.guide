@@ -1,3 +1,4 @@
+import { CDN_URL } from "@config/constants";
 import getAbilityIcon from "@utils/getAbilityIcon";
 import classNames from "classnames";
 import Image from "next/image";
@@ -6,18 +7,18 @@ import SVG from "react-inlinesvg";
 interface AbilityProps {
   name: string;
   description: string;
-  AssetCategoryId: number;
-  AssetVariationId: number;
+  AssetCategoryId?: number;
+  AssetVariationId?: number;
   level?: number;
   maxLevel?: number;
   className?: string;
+  imagePathBase?: string;
 }
 
 export default function Ability({
   name,
   description,
-  AssetCategoryId,
-  AssetVariationId,
+  imagePathBase = "",
   level = 1,
   maxLevel = 4,
   className = "",
@@ -41,7 +42,7 @@ export default function Ability({
               width={64}
               height={64}
               alt=""
-              src={getAbilityIcon(AssetCategoryId, AssetVariationId)}
+              src={`${CDN_URL}${imagePathBase}standard.png`}
             />
           </div>
         </div>
