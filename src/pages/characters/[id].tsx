@@ -18,6 +18,7 @@ import {
   costume,
   PrismaClient,
   costume_ability,
+  character_rank_bonus,
 } from "@prisma/client";
 
 interface CharactersPageProps {
@@ -27,6 +28,7 @@ interface CharactersPageProps {
   abilities;
   skills;
   stats;
+  rankBonus: character_rank_bonus[];
 }
 
 export default function CharactersPage({
@@ -36,6 +38,7 @@ export default function CharactersPage({
   abilities,
   skills,
   stats,
+  rankBonus,
 }: CharactersPageProps): JSX.Element {
   const userSettings = useStore((state) => state);
   const [currentCostume, setCurrentCostume] = useState<costume | null>(
@@ -77,6 +80,7 @@ export default function CharactersPage({
         abilities={abilities[currentCostume.costume_id]}
         skill={skills[currentCostume.costume_id]}
         stats={stats[currentCostume.costume_id]}
+        rankBonus={rankBonus}
       />
     </Layout>
   );
@@ -85,12 +89,17 @@ export default function CharactersPage({
 export async function getStaticProps(context) {
   const { id } = context.params;
   const prisma = new PrismaClient();
-  const [characters, selectedCostumes] = await Promise.all([
+  const [characters, selectedCostumes, rankBonus] = await Promise.all([
     prisma.character.findMany(),
     prisma.costume.findMany({
       where: { character_id: Number(id) },
       include: {
         emblem: true,
+      },
+    }),
+    prisma.character_rank_bonus.findMany({
+      where: {
+        character_id: Number(id),
       },
     }),
   ]);
@@ -147,6 +156,7 @@ export async function getStaticProps(context) {
       abilities: JSON.parse(JSON.stringify(abilities)),
       skills: JSON.parse(JSON.stringify(skills)),
       stats: JSON.parse(JSON.stringify(stats)),
+      rankBonus: JSON.parse(JSON.stringify(rankBonus)),
     },
   };
 }

@@ -21,7 +21,7 @@ import Link from "next/link";
 import getModelPath from "@utils/getModelPath";
 import WeaponInfo from "@components/WeaponInfo";
 import ErrorBoundary from "./Error";
-import { costume, costume_stat } from "@prisma/client";
+import { character_rank_bonus, costume, costume_stat } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -32,11 +32,13 @@ function CostumeDetails({
   abilities,
   skill,
   stats,
+  rankBonus,
 }: {
   costume: costume;
   abilities;
   skill;
   stats: costume_stat[];
+  rankBonus: character_rank_bonus[];
 }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
   const [skillLevel, setSkillLevel] = useState(14);
@@ -292,32 +294,33 @@ function CostumeDetails({
             Timed or conditional passives are not included in the stats.
           </p>
 
-          {/* {costume.metadata?.ranks?.ranks && (
+          {rankBonus && (
             <div className="mt-16">
               <h3 className="text-2xl text-beige">Ranks bonuses</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
-                {costume.metadata.ranks.ranks.map((rank, index) => (
-                  <div
-                    key={`${costume.ids.costume}-${rank.type}-${index}`}
-                    className="bg-beige-darker flex flex-col justify-center items-center py-2"
-                  >
-                    <span>Rank {index + 1}</span>
-                    <div className="flex items-center">
-                      <Image
-                        src={statsIcons[rank.stat]}
-                        alt={rank.stat}
-                        title={rank.stat}
-                        height={48}
-                        width={48}
-                      />{" "}
-                      {rank.amount}
-                      {rank.type === "percent" ? "%" : ""}
+                {rankBonus
+                  .sort((a, b) => a.rank_bonus_level - b.rank_bonus_level)
+                  .map((rank, index) => (
+                    <div
+                      key={`${costume.character_id}${rank.type}${costume.costume_id}`}
+                      className="bg-beige-darker flex flex-col justify-center items-center py-2"
+                    >
+                      <span>Rank {rank.rank_bonus_level}</span>
+                      <div className="flex items-center">
+                        <Image
+                          src={statsIcons[rank.stat]}
+                          alt={rank.stat}
+                          title={rank.stat}
+                          height={48}
+                          width={48}
+                        />{" "}
+                        {rank.description}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
-          )} */}
+          )}
         </div>
       )}
 
