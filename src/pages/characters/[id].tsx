@@ -75,13 +75,15 @@ export default function CharactersPage({
         <CostumeSelect characters={characters} />
       </div>
 
-      <CostumeDetails
-        costume={currentCostume}
-        abilities={abilities[currentCostume.costume_id]}
-        skill={skills[currentCostume.costume_id]}
-        stats={stats[currentCostume.costume_id]}
-        rankBonus={rankBonus}
-      />
+      {costumes.length > 0 && (
+        <CostumeDetails
+          costume={currentCostume}
+          abilities={abilities[currentCostume.costume_id]}
+          skill={skills[currentCostume.costume_id]}
+          stats={stats[currentCostume.costume_id]}
+          rankBonus={rankBonus}
+        />
+      )}
     </Layout>
   );
 }
