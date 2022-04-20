@@ -6,7 +6,7 @@ interface LevelsByRarity {
   maxWithAsc: number;
 }
 
-export default function getCostumeLevelsByRarity(rarity: CostumeRarity): LevelsByRarity {
+export default function getCostumeLevelsByRarity(rarity: CostumeRarity | string): LevelsByRarity {
   const base = 1;
   let maxNoAsc = 0;
   let maxWithAsc = 0;

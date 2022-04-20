@@ -21,7 +21,7 @@ import Link from "next/link";
 import getModelPath from "@utils/getModelPath";
 import WeaponInfo from "@components/WeaponInfo";
 import ErrorBoundary from "./Error";
-import { costume } from "@prisma/client";
+import { costume, costume_stat } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -31,10 +31,12 @@ function CostumeDetails({
   costume,
   abilities,
   skill,
+  stats,
 }: {
   costume: costume;
   abilities;
   skill;
+  stats: costume_stat[];
 }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
   const [skillLevel, setSkillLevel] = useState(14);
@@ -228,7 +230,7 @@ function CostumeDetails({
         </div>
       </div>
 
-      {/* {costume?.stats && (
+      {stats && (
         <div className="relative mb-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Statistics
@@ -243,44 +245,44 @@ function CostumeDetails({
               setState={setStatType}
             />
 
-            <Radio
+            {/* <Radio
               name="Stats with passive abilities"
               value="displayed"
               isChecked={statType === "displayed"}
               setState={setStatType}
-            />
+            /> */}
           </div>
           <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
             <StatsOfLevel
-              stats={costume.costume.stats.base[statType]}
+              stats={stats[0]}
               label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).base
+                getCostumeLevelsByRarity(costume.rarity_type).base
               }`}
               description={
                 statType === "displayed"
-                  ? `${costume.abilities[0][3].name} is at level 1`
+                  ? `${abilities[0][3].name} is at level 1`
                   : ""
               }
             />
             <StatsOfLevel
-              stats={costume.costume.stats.maxNoAscension[statType]}
+              stats={stats[1]}
               label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).maxNoAsc
+                getCostumeLevelsByRarity(costume.rarity_type).maxNoAsc
               } (No ascension)`}
               description={
                 statType === "displayed"
-                  ? `${costume.abilities[0][3].name} is at level 1`
+                  ? `${abilities[0][3].name} is at level 1`
                   : ""
               }
             />
             <StatsOfLevel
-              stats={costume.costume.stats.maxWithAscension[statType]}
+              stats={stats[2]}
               label={`Level ${
-                getCostumeLevelsByRarity(costume.costume.rarity).maxWithAsc
+                getCostumeLevelsByRarity(costume.rarity_type).maxWithAsc
               } (Max ascension)`}
               description={
                 statType === "displayed"
-                  ? `${costume.abilities[0][3].name} & ${costume.abilities[1][3].name} are at level 4`
+                  ? `${abilities[0][3].name} & ${abilities[1][3].name} are at level 4`
                   : ""
               }
             />
@@ -290,7 +292,7 @@ function CostumeDetails({
             Timed or conditional passives are not included in the stats.
           </p>
 
-          {costume.metadata?.ranks?.ranks && (
+          {/* {costume.metadata?.ranks?.ranks && (
             <div className="mt-16">
               <h3 className="text-2xl text-beige">Ranks bonuses</h3>
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
@@ -315,9 +317,9 @@ function CostumeDetails({
                 ))}
               </div>
             </div>
-          )}
+          )} */}
         </div>
-      )} */}
+      )}
 
       {/* {costume?.metadata?.sources?.length > 0 && (
         <div className="relative my-8">
@@ -400,7 +402,7 @@ function StatsOfLevel({
   description,
 }: {
   label: string;
-  stats;
+  stats: costume_stat;
   description: string;
 }): JSX.Element {
   return (
@@ -422,22 +424,22 @@ function StatsOfLevel({
         <SingleStat
           icon={statsIcons.def}
           name="Defense"
-          value={stats.def ?? "???"}
+          value={stats.vit ?? "???"}
         />
         <SingleStat
           icon={statsIcons.agility}
           name="Agility"
-          value={stats.agility ?? "???"}
+          value={stats.agi ?? "???"}
         />
         <SingleStat
           icon={statsIcons.cr}
           name="Critical Rate"
-          value={`${stats.cr ?? "???"}%`}
+          value={`${stats.crit_rate ?? "???"}%`}
         />
         <SingleStat
           icon={statsIcons.cd}
           name="Critical Damage"
-          value={`${stats.cd ?? "???"}%`}
+          value={`${stats.crit_atk ?? "???"}%`}
         />
       </div>
     </div>

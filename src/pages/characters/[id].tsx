@@ -26,6 +26,7 @@ interface CharactersPageProps {
   costumes: costume[];
   abilities;
   skills;
+  stats;
 }
 
 export default function CharactersPage({
@@ -34,6 +35,7 @@ export default function CharactersPage({
   costumes,
   abilities,
   skills,
+  stats,
 }: CharactersPageProps): JSX.Element {
   const userSettings = useStore((state) => state);
   const [currentCostume, setCurrentCostume] = useState<costume | null>(
@@ -74,6 +76,7 @@ export default function CharactersPage({
         costume={currentCostume}
         abilities={abilities[currentCostume.costume_id]}
         skill={skills[currentCostume.costume_id]}
+        stats={stats[currentCostume.costume_id]}
       />
     </Layout>
   );
@@ -92,6 +95,7 @@ export async function getStaticProps(context) {
     }),
   ]);
 
+  const stats = {};
   const abilities = {};
   const skills = {};
 
@@ -119,6 +123,14 @@ export async function getStaticProps(context) {
     });
 
     skills[costume.costume_id] = allSkills;
+
+    const allStats = await prisma.costume_stat.findMany({
+      where: {
+        costume_id: costume.costume_id,
+      },
+    });
+
+    stats[costume.costume_id] = allStats.sort((a, b) => a.level - b.level);
   }
 
   prisma.$disconnect();
@@ -134,6 +146,7 @@ export async function getStaticProps(context) {
       costumes: JSON.parse(JSON.stringify(selectedCostumes)),
       abilities: JSON.parse(JSON.stringify(abilities)),
       skills: JSON.parse(JSON.stringify(skills)),
+      stats: JSON.parse(JSON.stringify(stats)),
     },
   };
 }
