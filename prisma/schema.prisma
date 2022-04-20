@@ -122,3 +122,16 @@ model costume_stat {
 
   @@id([costume_id, level], map: "PK_costume_stat")
 }
+
+model weapon {
+  weapon_id          Int     @id(map: "PK_weapon") @default(autoincrement())
+  evolution_group_id Int
+  evolution_order    Int
+  weapon_type        String?
+  rarity             String?
+  attribute          String?
+  name               String?
+  stories            String?
+
+  @@unique([evolution_group_id, evolution_order], map: "AK_weapon_evolution_group_id_evolution_order")
+}

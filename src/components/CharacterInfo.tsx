@@ -22,42 +22,19 @@ import Link from "next/link";
 import getModelPath from "@utils/getModelPath";
 import WeaponInfo from "@components/WeaponInfo";
 import ErrorBoundary from "./Error";
+import { costume } from "@prisma/client";
+import { CDN_URL } from "@config/constants";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
-const dcTypeCostumes = [
-  "ch006006",
-  "ch006009",
-  "ch009009",
-  "ch010003",
-  "ch010007",
-  "ch012005",
-  "ch014007",
-  "ch019001",
-  "ch019010",
-  "ch019012",
-];
-
-function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
+function CostumeDetails({ costume }: { costume: costume }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
   const [skillLevel, setSkillLevel] = useState(14);
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [ascendLevel, setAscendLevel] = useState(4);
 
   const abilityLevel = ascendLevel - 1;
-
-  const firstAbility = Object.entries(costume.abilities[0])
-    .slice(0, 4)
-    .map(([, value]) => value);
-
-  const secondAbility = Object.entries(costume.abilities[1])
-    .slice(0, 4)
-    .map(([, value]) => value);
-
-  const skill = Object.entries(costume.skills[ascendLevel === 4 ? 1 : 0])
-    .slice(0, 15)
-    .map(([, value]) => value);
 
   return (
     <>
@@ -70,31 +47,26 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
               <div className="w-8">
                 <Image
                   layout="responsive"
-                  src={weaponsIcons[costume.costume.weaponType]}
-                  alt={costume.costume.weaponType}
+                  src={weaponsIcons[costume.weapon_type]}
+                  alt={costume.weapon_type}
                 />
               </div>
               <span className="uppercase px-2 text-black bg-beige">
-                {costume.character.en}
+                {costume.title}
               </span>
-              <span className="uppercase text-beige">
-                {costume.costume.name.en}
-              </span>
+              <span className="uppercase text-beige">{costume.title}</span>
             </div>
             <p
               className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
               dangerouslySetInnerHTML={{
-                __html: `${costume.costume.description.en.replaceAll(
-                  "\\n",
-                  "<br>"
-                )}`,
+                __html: `${costume.story.replaceAll("\\n", "<br>")}`,
               }}
             ></p>
           </div>
 
           {/* Costume skills & abilities */}
           <div className="flex flex-col gap-y-8 mb-6">
-            <div>
+            {/* <div>
               <Lines
                 className="mb-2"
                 containerClass="justify-center"
@@ -141,7 +113,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
                 AssetVariationId={secondAbility[abilityLevel].AssetVariationId}
                 level={abilityLevel + 1}
               />
-            </div>
+            </div> */}
 
             {/* Controls */}
             <div>
@@ -176,21 +148,12 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         >
           <div className="bordered-lg bg-grey-dark h-full w-full">
             <div className="relative z-10 h-full w-full">
-              {(isShowingModel && (
-                <ModelWithNoSSR
-                  path={getModelPath(
-                    "character",
-                    `${
-                      dcTypeCostumes.includes(costume.ids.actor) ? "dc" : "sk"
-                    }_${costume.ids.actor}`
-                  )}
-                />
-              )) || (
+              {(isShowingModel && <ModelWithNoSSR path={null} />) || (
                 <Image
                   layout="fill"
                   objectFit="cover"
-                  src={`/character_medium/${costume.ids.actor}_full-1920-1080.png`}
-                  alt={`${costume.character.en} (${costume.costume.name.en}) illustration`}
+                  src={`${CDN_URL}${costume.costume_id}`}
+                  alt={`${costume.title} (${costume.title}) illustration`}
                 />
               )}
             </div>
@@ -218,16 +181,16 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             </div>
           </div>
           <span className="flex absolute bottom-6 right-6">
-            {Array.from({ length: RARITY[costume.costume.rarity] }).map(
+            {Array.from({ length: RARITY[costume.rarity_type] }).map(
               (_, index) => (
                 <div className="w-8 h-8" key={index}>
-                  <Star rarity={RARITY[costume.costume.rarity]} />
+                  <Star rarity={RARITY[costume.rarity_type]} />
                 </div>
               )
             )}
           </span>
 
-          {costume.costume.weapon && (
+          {costume?.weapon && (
             <Link
               href={`/database/weapons/${urlSlug(
                 costume.costume?.weapon?.name?.en ?? "unnamed"
@@ -262,7 +225,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </div>
       </div>
 
-      {costume?.costume?.stats && (
+      {costume?.stats && (
         <div className="relative mb-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Statistics
@@ -353,7 +316,7 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
         </div>
       )}
 
-      {costume?.metadata?.sources?.length > 0 && (
+      {/* {costume?.metadata?.sources?.length > 0 && (
         <div className="relative my-8">
           <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
             Costume Sources
@@ -389,15 +352,15 @@ function CostumeDetails({ costume }: { costume: Costume }): JSX.Element {
             ))}
           </div>
         </div>
-      )}
+      )} */}
 
-      <ErrorBoundary>
+      {/* <ErrorBoundary>
         {costume?.costume?.weapon && (
           <div className="mt-16">
             <WeaponInfo weapon={costume.costume.weapon} />
           </div>
         )}
-      </ErrorBoundary>
+      </ErrorBoundary> */}
     </>
   );
 }
