@@ -21,7 +21,12 @@ import Link from "next/link";
 import getModelPath from "@utils/getModelPath";
 import WeaponInfo from "@components/WeaponInfo";
 import ErrorBoundary from "./Error";
-import { character_rank_bonus, costume, costume_stat } from "@prisma/client";
+import {
+  character,
+  character_rank_bonus,
+  costume,
+  costume_stat,
+} from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -33,12 +38,14 @@ function CostumeDetails({
   skill,
   stats,
   rankBonus,
+  character,
 }: {
   costume: costume;
   abilities;
   skill;
   stats: costume_stat[];
   rankBonus: character_rank_bonus[];
+  character: character;
 }): JSX.Element {
   const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
   const [skillLevel, setSkillLevel] = useState(14);
@@ -63,14 +70,14 @@ function CostumeDetails({
                 />
               </div>
               <span className="uppercase px-2 text-black bg-beige">
-                {costume.title}
+                {character.name}
               </span>
               <span className="uppercase text-beige">{costume.title}</span>
             </div>
             <p
               className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
               dangerouslySetInnerHTML={{
-                __html: `${costume.story.replaceAll("\\n", "<br>")}`,
+                __html: `${costume.description.replaceAll("\\n", "<br>")}`,
               }}
             ></p>
           </div>
@@ -85,7 +92,7 @@ function CostumeDetails({
               >
                 <h2 className="text-2xl">Skill</h2>
               </Lines>
-              {skill && skill[skillLevel].length > 0 && (
+              {skill && (
                 <Skill
                   className="flex-1"
                   name={skill[skillLevel].costume_skill.name}
@@ -191,13 +198,11 @@ function CostumeDetails({
             </div>
           </div>
           <span className="flex absolute bottom-6 right-6">
-            {Array.from({ length: RARITY[costume.rarity_type] }).map(
-              (_, index) => (
-                <div className="w-8 h-8" key={index}>
-                  <Star rarity={RARITY[costume.rarity_type]} />
-                </div>
-              )
-            )}
+            {Array.from({ length: RARITY[costume.rarity] }).map((_, index) => (
+              <div className="w-8 h-8" key={index}>
+                <Star rarity={RARITY[costume.rarity]} />
+              </div>
+            ))}
           </span>
 
           {/* {costume?.weapon && (
@@ -260,9 +265,7 @@ function CostumeDetails({
           <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
             <StatsOfLevel
               stats={stats[0]}
-              label={`Level ${
-                getCostumeLevelsByRarity(costume.rarity_type).base
-              }`}
+              label={`Level ${stats[0].level}`}
               description={
                 statType === "displayed"
                   ? `${abilities[0][3].name} is at level 1`
@@ -271,9 +274,7 @@ function CostumeDetails({
             />
             <StatsOfLevel
               stats={stats[1]}
-              label={`Level ${
-                getCostumeLevelsByRarity(costume.rarity_type).maxNoAsc
-              } (No ascension)`}
+              label={`Level ${stats[1].level} (No ascension)`}
               description={
                 statType === "displayed"
                   ? `${abilities[0][3].name} is at level 1`
@@ -282,9 +283,7 @@ function CostumeDetails({
             />
             <StatsOfLevel
               stats={stats[2]}
-              label={`Level ${
-                getCostumeLevelsByRarity(costume.rarity_type).maxWithAsc
-              } (Max ascension)`}
+              label={`Level ${stats[2].level} (Max ascension)`}
               description={
                 statType === "displayed"
                   ? `${abilities[0][3].name} & ${abilities[1][3].name} are at level 4`

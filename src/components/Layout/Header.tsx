@@ -54,8 +54,8 @@ export default function Header(): JSX.Element {
     setIsNavOpened(!isNavOpened);
   }
 
-  const firstNavRow = NAVIGATION.slice(0, 5);
-  const secondNavRow = NAVIGATION.slice(5, NAVIGATION.length);
+  const firstNavRow = NAVIGATION.slice(0, 4);
+  const secondNavRow = NAVIGATION.slice(4, NAVIGATION.length);
 
   return (
     <>

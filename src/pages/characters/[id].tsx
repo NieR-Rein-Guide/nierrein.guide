@@ -69,6 +69,7 @@ export default function CharactersPage({
 
       {costumes.length > 0 && (
         <CostumeDetails
+          character={currentCharacter}
           costume={currentCostume}
           abilities={abilities[currentCostume.costume_id]}
           skill={skills[currentCostume.costume_id]}
@@ -84,14 +85,24 @@ export async function getStaticProps(context) {
   const { id } = context.params;
   const prisma = new PrismaClient();
   const [characters, selectedCostumes, rankBonus] = await Promise.all([
-    prisma.character.findMany(),
+    prisma.character.findMany({
+      orderBy: {
+        character_id: "asc",
+      },
+    }),
     prisma.costume.findMany({
+      orderBy: {
+        costume_id: "asc",
+      },
       where: { character_id: Number(id) },
       include: {
         emblem: true,
       },
     }),
     prisma.character_rank_bonus.findMany({
+      orderBy: {
+        rank_bonus_id: "asc",
+      },
       where: {
         character_id: Number(id),
       },

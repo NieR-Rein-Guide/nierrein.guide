@@ -39,11 +39,6 @@ export const NAVIGATION = [
   //   disabled: true,
   // },
   {
-    label: "Fan Content",
-    href: "/fan-content",
-    icon: fanContentIcon,
-  },
-  {
     label: "Characters",
     href: "/characters",
     icon: charactersIcon,

@@ -18,7 +18,7 @@ export default function CharacterCostumes({
   costumes: costume[];
 }): JSX.Element {
   const selectedCharacterCostumes = costumes.sort(
-    (a, b) => RARITY[a.rarity_type] - RARITY[b.rarity_type]
+    (a, b) => RARITY[a.rarity] - RARITY[b.rarity]
   );
 
   return (
@@ -38,7 +38,7 @@ export default function CharacterCostumes({
             <CostumeThumbnail
               src={`${CDN_URL}${costume.image_path_base}battle.png`}
               alt={`${costume.title} thumbnail`}
-              rarity={RARITY[costume.rarity_type]}
+              rarity={RARITY[costume.rarity]}
               imgClasses={classNames(
                 "transition-all filter group-hover:brightness-100",
                 currentCostume.costume_id === costume.costume_id
