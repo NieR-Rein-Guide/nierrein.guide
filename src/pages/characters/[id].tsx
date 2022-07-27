@@ -121,6 +121,9 @@ export async function getStaticProps(context) {
       include: {
         costume_ability: true,
       },
+      orderBy: {
+        ability_level: "asc",
+      },
     });
 
     abilities[costume.costume_id] = Object.values(
@@ -133,6 +136,9 @@ export async function getStaticProps(context) {
       },
       include: {
         costume_skill: true,
+      },
+      orderBy: {
+        skill_level: "asc",
       },
     });
 
