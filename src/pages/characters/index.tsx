@@ -56,7 +56,11 @@ export default function CharactersPage({
 
 export async function getStaticProps() {
   const prisma = new PrismaClient();
-  const characters = await prisma.character.findMany();
+  const characters = await prisma.character.findMany({
+    orderBy: {
+      character_id: "asc",
+    },
+  });
 
   prisma.$disconnect();
 
