@@ -41,6 +41,7 @@ export default function CostumePage({
 
   // Select the first costume if the character changes
   useEffect(() => {
+    if (selectedCostume) return;
     setCurrentCostume(costumes[0]);
   }, [costumes, currentCharacter]);
 

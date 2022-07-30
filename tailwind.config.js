@@ -60,6 +60,12 @@ module.exports = {
       },
       scale: {
         '-1': '-1'
+      },
+      minWidth: {
+        20: '5rem',
+      },
+      minHeight: {
+        20: '5rem',
       }
     },
   },

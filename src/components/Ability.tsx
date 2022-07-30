@@ -36,11 +36,11 @@ export default function Ability({
       <div className="flex items-center">
         <div className="relative mr-4">
           <SVG src="/decorations/frame-ability.svg" className="h-16 w-16" />
-          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
             <Image
               layout="fixed"
-              width={64}
-              height={64}
+              width={32}
+              height={32}
               alt=""
               src={`${CDN_URL}${imagePathBase}standard.png`}
             />

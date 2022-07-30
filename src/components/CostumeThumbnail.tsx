@@ -26,7 +26,7 @@ export default function CostumeThumbnail({
 
   return (
     <div
-      className={classNames("h-20 w-20 relative", className)}
+      className={classNames("min-h-20 min-w-20 h-20 w-20 relative", className)}
       style={{
         backgroundImage: `url(/decorations/background_rarity_${costumeRarity}.png)`,
       }}

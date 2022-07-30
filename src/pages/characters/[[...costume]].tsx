@@ -56,6 +56,7 @@ export default function CharactersPage({
 export async function getStaticProps(context) {
   const prisma = new PrismaClient();
 
+  // No route parameters, show index page
   if (Object.entries(context.params).length === 0) {
     const characters = await prisma.character.findMany({
       orderBy: {
@@ -109,6 +110,7 @@ export async function getStaticProps(context) {
     };
   }
 
+  // Show costume page
   const [character, costume] = context.params.costume;
 
   const characters = await prisma.character.findMany({
