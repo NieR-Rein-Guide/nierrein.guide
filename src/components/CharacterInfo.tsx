@@ -6,21 +6,14 @@ import RARITY from "@utils/rarity";
 import weaponsIcons from "@utils/weaponsIcons";
 import statsIcons from "@utils/statsIcons";
 import Lines from "./decorations/Lines";
-import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import classNames from "classnames";
 import { useState } from "react";
 import Radio from "@components/form/Radio";
-import WeaponThumbnail from "@components/WeaponThumbnail";
 import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import Ascend from "@components/decorations/Ascend";
-import urlSlug from "url-slug";
 import Slider from "rc-slider";
 import dynamic from "next/dynamic";
-import Link from "next/link";
-import getModelPath from "@utils/getModelPath";
-import WeaponInfo from "@components/WeaponInfo";
-import ErrorBoundary from "./Error";
 import {
   character,
   character_rank_bonus,
@@ -165,8 +158,10 @@ function CostumeDetails({
         >
           <div className="bordered-lg bg-grey-dark h-full w-full">
             <div className="relative z-10 h-full w-full">
-              {(isShowingModel && <ModelWithNoSSR path={null} />) || (
+              {isShowingModel && <ModelWithNoSSR path={null} />}
+              {!isShowingModel && (
                 <Image
+                  key={`${CDN_URL}${costume.image_path_base}full.png`}
                   layout="fill"
                   objectFit="contain"
                   src={`${CDN_URL}${costume.image_path_base}full.png`}

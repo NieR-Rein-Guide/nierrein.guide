@@ -11,9 +11,10 @@ export default function Notifications({
       <h2 className="overlap">In game notices</h2>
 
       <div className="flex flex-col gap-y-8">
-        {notifications.map((notification) => (
+        Maintenance
+        {/* {notifications.map((notification) => (
           <Notice key={notification.informationId} {...notification} />
-        ))}
+        ))} */}
       </div>
     </section>
   );

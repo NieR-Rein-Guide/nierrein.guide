@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import { Costume } from "@models/types";
 import getModelPath from "@utils/getModelPath";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import Star from "@components/decorations/Star";
@@ -10,22 +9,15 @@ import RARITY from "@utils/rarity";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import urlSlug from "url-slug";
+import { character, costume } from "@prisma/client";
+import { CDN_URL } from "@config/constants";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
-const dcTypeCostumes = [
-  "ch006006",
-  "ch006009",
-  "ch009009",
-  "ch010003",
-  "ch010007",
-  "ch012005",
-  "ch014007",
-  "ch019001",
-  "ch019010",
-  "ch019012",
-];
+type Costume = costume & {
+  character: character;
+};
 
 interface CostumeArtworkProps {
   costume: Costume;
@@ -47,19 +39,14 @@ export default function CostumeArtwork({
         <div className="relative z-10 h-full w-full">
           {(isShowingModel && (
             <ModelWithNoSSR
-              path={getModelPath(
-                "character",
-                `${dcTypeCostumes.includes(costume.ids.actor) ? "dc" : "sk"}_${
-                  costume.ids.actor
-                }`
-              )}
+              path={getModelPath("character", "costume.costume_id")}
             />
           )) || (
             <Image
               layout="fill"
               objectFit="cover"
-              src={`/character_medium/${costume.ids.actor}_full-1920-1080.png`}
-              alt={`${costume.character.en} (${costume.costume.name.en}) illustration`}
+              src={`${CDN_URL}${costume.image_path_base}full.png`}
+              alt={`${costume.title} (${costume.title}) illustration`}
             />
           )}
         </div>
@@ -87,16 +74,14 @@ export default function CostumeArtwork({
         </div>
       </div>
       <span className="flex absolute bottom-6 right-6">
-        {Array.from({ length: RARITY[costume.costume.rarity] }).map(
-          (_, index) => (
-            <div className="w-8 h-8" key={index}>
-              <Star rarity={RARITY[costume.costume.rarity]} />
-            </div>
-          )
-        )}
+        {Array.from({ length: RARITY[costume.rarity] }).map((_, index) => (
+          <div className="w-8 h-8" key={index}>
+            <Star rarity={RARITY[costume.rarity]} />
+          </div>
+        ))}
       </span>
 
-      {costume.costume.weapon && (
+      {/* {costume.costume.weapon && (
         <Link
           href={`/database/weapons/${urlSlug(
             costume.costume?.weapon?.name?.en ?? "unnamed"
@@ -113,16 +98,16 @@ export default function CostumeArtwork({
             />
           </a>
         </Link>
-      )}
+      )} */}
 
-      <div className="absolute top-4 left-4 w-42 h-24 p-1 z-50">
+      {/* <div className="absolute top-4 left-4 w-42 h-24 p-1 z-50">
         <button
           className="btn"
           onClick={() => setIsShowingModel(!isShowingModel)}
         >
           {(isShowingModel && "View Artwork") || "View 3D Model"}
         </button>
-      </div>
+      </div> */}
 
       <div className="absolute top-6 right-8">
         <Ascend level={ascendLevel} />
