@@ -109,6 +109,7 @@ model costume {
   rarity               String?
   release_time         DateTime               @db.Timestamptz(6)
   is_ex_costume        Boolean
+  slug                 String?
   title                String?
   description          String?
   image_path_base      String?
@@ -226,6 +227,7 @@ model weapon {
   attribute           String?
   is_ex_weapon        Boolean
   release_time        DateTime?             @db.Timestamptz(6)
+  slug                String?
   name                String?
   image_path          String?
   weapon_ability_link weapon_ability_link[]

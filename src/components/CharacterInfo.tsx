@@ -7,7 +7,7 @@ import weaponsIcons from "@utils/weaponsIcons";
 import statsIcons from "@utils/statsIcons";
 import Lines from "./decorations/Lines";
 import classNames from "classnames";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Radio from "@components/form/Radio";
 import Skill from "@components/Skill";
 import Ability from "@components/Ability";
@@ -21,6 +21,7 @@ import {
   costume_stat,
 } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
+import { format, formatDistanceToNow } from "date-fns";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -44,6 +45,13 @@ function CostumeDetails({
   const [skillLevel, setSkillLevel] = useState(14);
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [ascendLevel, setAscendLevel] = useState(4);
+  const [dateRelative, setDateRelative] = useState(
+    formatDistanceToNow(new Date(costume.release_time))
+  );
+
+  useEffect(() => {
+    setDateRelative(formatDistanceToNow(new Date(costume.release_time)));
+  }, [costume]);
 
   const abilityLevel = ascendLevel - 1;
 
@@ -67,6 +75,10 @@ function CostumeDetails({
               </span>
               <span className="uppercase text-beige">{costume.title}</span>
             </div>
+            <p className="text-beige text-opacity-90 mt-2">
+              Added {format(new Date(costume.release_time), "MM/dd/yyyy")} (
+              {dateRelative} ago)
+            </p>
             <p
               className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
               dangerouslySetInnerHTML={{
