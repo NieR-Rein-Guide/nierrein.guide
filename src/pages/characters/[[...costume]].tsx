@@ -1,6 +1,4 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import Meta from "@components/Meta";
-import Layout from "@components/Layout";
 import React from "react";
 import {
   character,
@@ -16,7 +14,7 @@ interface CharactersPageProps {
   isIndex: boolean;
   currentCharacter: character;
   selectedCostume: costume;
-  characters: character[];
+  characters;
   costumes: costume[];
   abilities;
   skills;

@@ -15,8 +15,6 @@ import { CDN_URL } from "@config/constants";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
-import Skill from "@components/Skill";
-import Ability from "@components/Ability";
 import statsIcons from "@utils/statsIcons";
 import Image from "next/image";
 import Link from "next/link";
