@@ -24,8 +24,9 @@
       "@hooks/*": ["hooks/*"]
     },
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["./global-types.d.ts", "next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
 }
