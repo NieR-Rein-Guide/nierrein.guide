@@ -49,8 +49,10 @@ export default function CharactersPage({
       <div className="grid lg:grid-cols-2">
         {characters.map((character) => (
           <div className="bg-black p-4 pl-8" key={character.character_id}>
-            <div className="flex items-center my-8 relative">
-              <div className={`pointer-events-auto overflow-hidden iso-bg`}>
+            <div className="group relative flex items-center py-8">
+              <div
+                className={`pointer-events-auto overflow-hidden iso-bg group-hover:border-beige transition`}
+              >
                 <img
                   style={{
                     minWidth: "74px",
@@ -64,10 +66,23 @@ export default function CharactersPage({
                   src={`${CDN_URL}${character.image_path}`}
                 />
               </div>
-              <h2 className="text-3xl ml-8">{character.name}</h2>
-              <p className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
+              <h2 className="text-3xl ml-8 group-hover:underline">
+                {character.name}
+              </h2>
+              <p className="absolute top-1/2 transform -translate-y-1/2 right-4 text-xs bg-brown px-2 py-1">
                 {character.costume.length} costumes.
               </p>
+
+              <Link href={`/characters/${slug(character.name)}`} passHref>
+                <a
+                  className="absolute inset-0"
+                  title={`View ${character.name} costumes`}
+                >
+                  <span className="sr-only">
+                    View {character.name} costumes
+                  </span>
+                </a>
+              </Link>
             </div>
 
             <div className="space-y-4">

@@ -15,7 +15,7 @@ import { getCurrentEvents, getFutureEvents } from "@models/event";
 import { formatDistanceToNow } from "date-fns";
 import { useMedia } from "react-use";
 import CostumeArtwork from "@components/CostumeArtwork";
-import urlSlug from "url-slug";
+import slug from "slugg";
 import { getNotifications } from "@models/notifications";
 import { character, costume, PrismaClient } from "@prisma/client";
 
@@ -162,7 +162,12 @@ export default function Home({
                   {costume.character.name} - {costume.title}
                 </h3>
                 <CostumeArtwork costume={costume} />
-                <Link href={`/characters/${costume.costume_id}`} passHref>
+                <Link
+                  href={`/characters/${slug(costume.character.name)}/${slug(
+                    costume.title
+                  )}`}
+                  passHref
+                >
                   <a className="btn absolute z-50 -bottom-2 transform -translate-x-1/2 left-1/2">
                     See costume
                   </a>
