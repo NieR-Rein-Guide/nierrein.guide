@@ -5,47 +5,41 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'GET') {
     try {
       const prisma = new PrismaClient();
-      const characters = await prisma.character.findMany({
+      const costumes = await prisma.costume.findMany({
         orderBy: {
           character_id: "asc",
         },
         include: {
-          costume: {
+          character: true,
+          costume_ability_link: {
+            where: {
+              ability_level: 4,
+            },
             orderBy: {
-              costume_id: "asc",
+              ability_slot: "asc",
             },
             include: {
-              costume_ability_link: {
-                where: {
-                  ability_level: 4,
-                },
-                orderBy: {
-                  ability_slot: "asc",
-                },
-                include: {
-                  costume_ability: true,
-                },
-              },
-              costume_skill_link: {
-                where: {
-                  skill_level: 15,
-                },
-                include: {
-                  costume_skill: true,
-                },
-              },
-              costume_stat: {
-                take: 1,
-                orderBy: {
-                  level: "desc",
-                },
-              },
+              costume_ability: true,
+            },
+          },
+          costume_skill_link: {
+            where: {
+              skill_level: 15,
+            },
+            include: {
+              costume_skill: true,
+            },
+          },
+          costume_stat: {
+            take: 1,
+            orderBy: {
+              level: "desc",
             },
           },
         },
       });
 
-      return res.status(200).json(characters)
+      return res.status(200).json(costumes)
     } catch (error) {
       console.error(error)
     }
