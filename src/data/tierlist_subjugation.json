@@ -1,296 +1,393 @@
 {
-  "tiers": [{
-      "label": "SSS",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/larspng.png"
+    "tiers": [
+        {
+            "label": "SSS",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci85png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/griffpng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/o63png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci120png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz165257653314noellepng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1657690276img20220713151742jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/larspng.png"
+                }
+            ]
         },
         {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/zz1645272367ci85png.png"
+            "label": "SS",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci19png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci81png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci124png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci74png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/levpng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1657690276img20220713151648jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci80png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1659258047ci152png.png"
+                }
+            ]
         },
         {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/o63png.png"
+            "label": "S",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci92png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci129png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci59png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci86png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci17png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci111png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/argopng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci69png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci71png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci67png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/puriepng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci72png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci64png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/noellepng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/gaylepng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci34jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci83png.png"
+                }
+            ]
+        },
+        {
+            "label": "A",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci70png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1657690213ci49png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci35png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci118png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci94png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci31png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci99png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci14png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci48png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ekehapng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci6png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci18png.png"
+                }
+            ]
+        },
+        {
+            "label": "Dmg Buff",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci108png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1657690276ci143png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci54png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1655303960ci139png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci98png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci84png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci88-1png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci62png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci57png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci4png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1657690276ci144png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci96png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci127png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci95jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci89jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1657969465exmariepng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci33jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci56png.png"
+                }
+            ]
+        },
+        {
+            "label": "Defese Breaker",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci121png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1651647651ci85png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1657969465exyuriepng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1651647686levpng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci90png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci8png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci63jpg.png"
+                }
+            ]
+        },
+        {
+            "label": "Elemental Buffer",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci104png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci106png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci101png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci134png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci126png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci131png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci109png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci128png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci133png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci112jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci52png.png"
+                }
+            ]
+        },
+        {
+            "label": "Elemental DPS",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci113png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1655304256ci138png.png"
+                }
+            ]
+        },
+        {
+            "label": "Healer",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci102png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1657690276img20220713152921jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/saryupng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci28png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/rionpng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci82png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci58png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci125png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1651646780ci27png.png"
+                }
+            ]
+        },
+        {
+            "label": "Tank/Def support",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1659258047ci151png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci110png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci122png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci87-1png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci5png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci103png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/fiopng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz1655303960ci141png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci117png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci107png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci123png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci105jpg.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz16525765331463png.png"
+                }
+            ]
+        },
+        {
+            "label": "Useless",
+            "characters": [
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci93png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/zz165257653314rionpng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci12png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/f66png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/dimispng.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci53png.png"
+                },
+                {
+                    "src": "https://tiermaker.com/images/chart/chart/raons-tier-list-may-2022-1569216/ci15png.png"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "label": "SS",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci19png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci81png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/levpng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/puriepng.png"
-        }
-      ]
-    },
-    {
-      "label": "S",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci92png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci74png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci80png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci86png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci120png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci59png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci67png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci72png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/griffpng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci64png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/argopng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/gaylepng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci111png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci69png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci71png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci17png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/noellepng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci94png.png"
-        }
-      ]
-    },
-    {
-      "label": "A",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci83png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci99png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci57png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci48png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci52png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci34png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci118png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci70png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci31png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ekehapng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci6png.png"
-        }
-      ]
-    },
-    {
-      "label": "B",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci15png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci18png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/fiopng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/f66png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci14png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/dimispng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci53png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci35png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci12png.png"
-        }
-      ]
-    },
-    {
-      "label": "Elemental specific",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci113png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci104png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci106png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci101png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci109png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci112png.png"
-        }
-      ]
-    },
-    {
-      "label": "Healer/ Atk debuffer",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci122png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci102png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci28png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/saryupng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/rionpng.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci58png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci82png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci107png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci5png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci87-1png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci54png.png"
-        }
-      ]
-    },
-    {
-      "label": "Dmg buff",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci108png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci98png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci84png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci88-1png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci62png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci4png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci96png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci89png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci95png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci33png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/zz1645274618ci56png.png"
-        }
-      ]
-    },
-    {
-      "label": "Def Breaker",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci121png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci85png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci90png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci8png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci63png.png"
-        }
-      ]
-    },
-    {
-      "label": "Useless/ tank",
-      "characters": [{
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci110png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci117png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci103png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci105png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci123png.png"
-        },
-        {
-          "src": "https://tiermaker.com/images/chart/chart/nier-reincarnation-updated-characters-template-1418429/ci93png.png"
-        }
-      ]
-    }
-  ],
-  "updatedAt": "2022-03-02T00:43:26.179Z"
+    ],
+    "updatedAt": "2022-08-01T11:23:46.338Z"
 }
