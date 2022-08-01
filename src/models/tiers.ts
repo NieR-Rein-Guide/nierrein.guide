@@ -109,7 +109,7 @@ function sheetToTier(sheet) {
 
 function getTiers() {
   const subjugationTier = {
-    label: "Subjugation & Abyss",
+    label: "PvE",
     type: 'characters',
     lastUpdated: tierlistSubjugation.updatedAt,
     coverImg: "https://nierrein.guide/tierlists/cover-pve.jpg",
