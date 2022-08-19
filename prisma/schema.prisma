@@ -8,7 +8,8 @@ datasource db {
 }
 
 model character {
-  character_id         Int                    @id(map: "PK_character") @default(autoincrement())
+  character_id         Int                    @id(map: "pk_character") @default(autoincrement())
+  slug                 String?
   name                 String?
   image_path           String?
   character_rank_bonus character_rank_bonus[]
@@ -23,14 +24,14 @@ model character_rank_bonus {
   stat             String?
   type             String?
   amount           Int
-  character        character @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_character_rank_bonus_character_character_id")
+  character        character @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_character_rank_bonus_character_character_id")
 
-  @@id([rank_bonus_id, rank_bonus_level], map: "PK_character_rank_bonus")
-  @@index([character_id], map: "IX_character_rank_bonus_character_id")
+  @@id([rank_bonus_id, rank_bonus_level], map: "pk_character_rank_bonus")
+  @@index([character_id], map: "ix_character_rank_bonus_character_id")
 }
 
 model companion {
-  companion_id           Int                      @id(map: "PK_companion") @default(autoincrement())
+  companion_id           Int                      @id(map: "pk_companion") @default(autoincrement())
   attribute              String?
   type                   String?
   release_time           DateTime                 @db.Timestamptz(6)
@@ -50,7 +51,7 @@ model companion_ability {
   image_path_base        String?
   companion_ability_link companion_ability_link[]
 
-  @@id([ability_id, ability_level], map: "PK_companion_ability")
+  @@id([ability_id, ability_level], map: "pk_companion_ability")
 }
 
 model companion_ability_link {
@@ -58,11 +59,11 @@ model companion_ability_link {
   companion_level   Int
   ability_id        Int
   ability_level     Int
-  companion_ability companion_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "FK_companion_ability_link_companion_ability_ability_id_ability~")
-  companion         companion         @relation(fields: [companion_id], references: [companion_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_companion_ability_link_companion_companion_id")
+  companion_ability companion_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "fk_companion_ability_link_companion_ability_ability_id1_abilit")
+  companion         companion         @relation(fields: [companion_id], references: [companion_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_companion_ability_link_companion_companion_id")
 
-  @@id([companion_id, companion_level, ability_id, ability_level], map: "PK_companion_ability_link")
-  @@index([ability_id, ability_level], map: "IX_companion_ability_link_ability_id_ability_level")
+  @@id([companion_id, companion_level, ability_id, ability_level], map: "pk_companion_ability_link")
+  @@index([ability_id, ability_level], map: "ix_companion_ability_link_ability_id_ability_level")
 }
 
 model companion_skill {
@@ -75,7 +76,7 @@ model companion_skill {
   image_path           String?
   companion_skill_link companion_skill_link[]
 
-  @@id([skill_id, skill_level], map: "PK_companion_skill")
+  @@id([skill_id, skill_level], map: "pk_companion_skill")
 }
 
 model companion_skill_link {
@@ -83,11 +84,11 @@ model companion_skill_link {
   companion_level Int
   skill_id        Int
   skill_level     Int
-  companion       companion       @relation(fields: [companion_id], references: [companion_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_companion_skill_link_companion_companion_id")
-  companion_skill companion_skill @relation(fields: [skill_id, skill_level], references: [skill_id, skill_level], onDelete: Cascade, onUpdate: NoAction, map: "FK_companion_skill_link_companion_skill_skill_id_skill_level")
+  companion       companion       @relation(fields: [companion_id], references: [companion_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_companion_skill_link_companion_companion_id")
+  companion_skill companion_skill @relation(fields: [skill_id, skill_level], references: [skill_id, skill_level], onDelete: Cascade, onUpdate: NoAction, map: "fk_companion_skill_link_companion_skill_skill_id1_skill_level1")
 
-  @@id([companion_id, companion_level, skill_id, skill_level], map: "PK_companion_skill_link")
-  @@index([skill_id, skill_level], map: "IX_companion_skill_link_skill_id_skill_level")
+  @@id([companion_id, companion_level, skill_id, skill_level], map: "pk_companion_skill_link")
+  @@index([skill_id, skill_level], map: "ix_companion_skill_link_skill_id_skill_level")
 }
 
 model companion_stat {
@@ -96,13 +97,13 @@ model companion_stat {
   atk          Int
   hp           Int
   vit          Int
-  companion    companion @relation(fields: [companion_id], references: [companion_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_companion_stat_companion_companion_id")
+  companion    companion @relation(fields: [companion_id], references: [companion_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_companion_stat_companion_companion_id")
 
-  @@id([companion_id, level], map: "PK_companion_stat")
+  @@id([companion_id, level], map: "pk_companion_stat")
 }
 
 model costume {
-  costume_id           Int                    @id(map: "PK_costume") @default(autoincrement())
+  costume_id           Int                    @id(map: "pk_costume") @default(autoincrement())
   character_id         Int
   emblem_id            Int?
   weapon_type          String?
@@ -113,14 +114,14 @@ model costume {
   title                String?
   description          String?
   image_path_base      String?
-  character            character              @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_character_character_id")
-  emblem               emblem?                @relation(fields: [emblem_id], references: [emblem_id], onDelete: Restrict, onUpdate: NoAction, map: "FK_costume_emblem_emblem_id")
+  character            character              @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_character_character_id")
+  emblem               emblem?                @relation(fields: [emblem_id], references: [emblem_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_costume_emblem_emblem_id")
   costume_ability_link costume_ability_link[]
   costume_skill_link   costume_skill_link[]
   costume_stat         costume_stat[]
 
-  @@index([character_id], map: "IX_costume_character_id")
-  @@index([emblem_id], map: "IX_costume_emblem_id")
+  @@index([character_id], map: "ix_costume_character_id")
+  @@index([emblem_id], map: "ix_costume_emblem_id")
 }
 
 model costume_ability {
@@ -131,7 +132,7 @@ model costume_ability {
   image_path_base      String?
   costume_ability_link costume_ability_link[]
 
-  @@id([ability_id, ability_level], map: "PK_costume_ability")
+  @@id([ability_id, ability_level], map: "pk_costume_ability")
 }
 
 model costume_ability_link {
@@ -139,11 +140,11 @@ model costume_ability_link {
   ability_slot    Int
   ability_id      Int
   ability_level   Int
-  costume_ability costume_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_ability_link_costume_ability_ability_id_ability_lev~")
-  costume         costume         @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_ability_link_costume_costume_id")
+  costume_ability costume_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_ability_link_costume_ability_costume_ability_abilit")
+  costume         costume         @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_ability_link_costume_costume_id")
 
-  @@id([costume_id, ability_slot, ability_id, ability_level], map: "PK_costume_ability_link")
-  @@index([ability_id, ability_level], map: "IX_costume_ability_link_ability_id_ability_level")
+  @@id([costume_id, ability_slot, ability_id, ability_level], map: "pk_costume_ability_link")
+  @@index([ability_id, ability_level], map: "ix_costume_ability_link_ability_id_ability_level")
 }
 
 model costume_skill {
@@ -157,18 +158,18 @@ model costume_skill {
   image_path         String?
   costume_skill_link costume_skill_link[]
 
-  @@id([skill_id, skill_level], map: "PK_costume_skill")
+  @@id([skill_id, skill_level], map: "pk_costume_skill")
 }
 
 model costume_skill_link {
   costume_id    Int
   skill_id      Int
   skill_level   Int
-  costume       costume       @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_skill_link_costume_costume_id")
-  costume_skill costume_skill @relation(fields: [skill_id, skill_level], references: [skill_id, skill_level], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_skill_link_costume_skill_skill_id_skill_level")
+  costume       costume       @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_skill_link_costume_costume_id")
+  costume_skill costume_skill @relation(fields: [skill_id, skill_level], references: [skill_id, skill_level], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_skill_link_costume_skill_costume_skill_skill_id_cos")
 
-  @@id([costume_id, skill_id, skill_level], map: "PK_costume_skill_link")
-  @@index([skill_id, skill_level], map: "IX_costume_skill_link_skill_id_skill_level")
+  @@id([costume_id, skill_id, skill_level], map: "pk_costume_skill_link")
+  @@index([skill_id, skill_level], map: "ix_costume_skill_link_skill_id_skill_level")
 }
 
 model costume_stat {
@@ -181,37 +182,37 @@ model costume_stat {
   eva_rate   Int
   hp         Int
   vit        Int
-  costume    costume @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_costume_stat_costume_costume_id")
+  costume    costume @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_stat_costume_costume_id")
 
-  @@id([costume_id, level], map: "PK_costume_stat")
+  @@id([costume_id, level], map: "pk_costume_stat")
 }
 
 model emblem {
-  emblem_id      Int       @id(map: "PK_emblem") @default(autoincrement())
+  emblem_id      Int       @id(map: "pk_emblem") @default(autoincrement())
   name           String?
   main_message   String?
   small_messages String?
-  icon_path      String?
+  image_path     String?
   costume        costume[]
 }
 
 model memoir {
-  memoir_id       Int
-  lottery_id      Int
-  rarity          String?
-  release_time    DateTime       @db.Timestamptz(6)
-  name            String?
-  story           String?
-  image_path_base String?
-  MemoirSeriesId  Int?
-  memoir_series   memoir_series? @relation(fields: [MemoirSeriesId], references: [memoir_series_id], onDelete: Restrict, onUpdate: NoAction, map: "FK_memoir_memoir_series_MemoirSeriesId")
+  memoir_id        Int
+  lottery_id       Int
+  rarity           String?
+  release_time     DateTime       @db.Timestamptz(6)
+  name             String?
+  story            String?
+  image_path_base  String?
+  memoir_series_id Int?
+  memoir_series    memoir_series? @relation(fields: [memoir_series_id], references: [memoir_series_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_memoir_memoir_series_memoir_series_id")
 
-  @@id([memoir_id, lottery_id], map: "PK_memoir")
-  @@index([MemoirSeriesId], map: "IX_memoir_MemoirSeriesId")
+  @@id([memoir_id, lottery_id], map: "pk_memoir")
+  @@index([memoir_series_id], map: "ix_memoir_memoir_series_id")
 }
 
 model memoir_series {
-  memoir_series_id      Int      @id(map: "PK_memoir_series") @default(autoincrement())
+  memoir_series_id      Int      @id(map: "pk_memoir_series") @default(autoincrement())
   name                  String?
   small_set_description String?
   large_set_description String?
@@ -219,7 +220,7 @@ model memoir_series {
 }
 
 model weapon {
-  weapon_id           Int                   @id(map: "PK_weapon") @default(autoincrement())
+  weapon_id           Int                   @id(map: "pk_weapon") @default(autoincrement())
   evolution_group_id  Int
   evolution_order     Int
   weapon_type         String?
@@ -235,7 +236,7 @@ model weapon {
   weapon_stat         weapon_stat[]
   weapon_story_link   weapon_story_link[]
 
-  @@unique([evolution_group_id, evolution_order], map: "AK_weapon_evolution_group_id_evolution_order")
+  @@unique([evolution_group_id, evolution_order], map: "ak_weapon_evolution_group_id_evolution_order")
 }
 
 model weapon_ability {
@@ -246,7 +247,7 @@ model weapon_ability {
   image_path_base     String?
   weapon_ability_link weapon_ability_link[]
 
-  @@id([ability_id, ability_level], map: "PK_weapon_ability")
+  @@id([ability_id, ability_level], map: "pk_weapon_ability")
 }
 
 model weapon_ability_link {
@@ -254,11 +255,11 @@ model weapon_ability_link {
   slot_number    Int
   ability_id     Int
   ability_level  Int
-  weapon_ability weapon_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "FK_weapon_ability_link_weapon_ability_ability_id_ability_level")
-  weapon         weapon         @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_weapon_ability_link_weapon_weapon_id")
+  weapon_ability weapon_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_ability_link_weapon_ability_weapon_ability_ability_i")
+  weapon         weapon         @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_ability_link_weapon_weapon_id")
 
-  @@id([weapon_id, slot_number, ability_id, ability_level], map: "PK_weapon_ability_link")
-  @@index([ability_id, ability_level], map: "IX_weapon_ability_link_ability_id_ability_level")
+  @@id([weapon_id, slot_number, ability_id, ability_level], map: "pk_weapon_ability_link")
+  @@index([ability_id, ability_level], map: "ix_weapon_ability_link_ability_id_ability_level")
 }
 
 model weapon_skill {
@@ -271,7 +272,7 @@ model weapon_skill {
   image_path        String?
   weapon_skill_link weapon_skill_link[]
 
-  @@id([skill_id, skill_level], map: "PK_weapon_skill")
+  @@id([skill_id, skill_level], map: "pk_weapon_skill")
 }
 
 model weapon_skill_link {
@@ -279,11 +280,11 @@ model weapon_skill_link {
   slot_number  Int
   skill_id     Int
   skill_level  Int
-  weapon_skill weapon_skill @relation(fields: [skill_id, skill_level], references: [skill_id, skill_level], onDelete: Cascade, onUpdate: NoAction, map: "FK_weapon_skill_link_weapon_skill_skill_id_skill_level")
-  weapon       weapon       @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_weapon_skill_link_weapon_weapon_id")
+  weapon_skill weapon_skill @relation(fields: [skill_id, skill_level], references: [skill_id, skill_level], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_skill_link_weapon_skill_weapon_skill_skill_id_weapon")
+  weapon       weapon       @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_skill_link_weapon_weapon_id")
 
-  @@id([weapon_id, slot_number, skill_id, skill_level], map: "PK_weapon_skill_link")
-  @@index([skill_id, skill_level], map: "IX_weapon_skill_link_skill_id_skill_level")
+  @@id([weapon_id, slot_number, skill_id, skill_level], map: "pk_weapon_skill_link")
+  @@index([skill_id, skill_level], map: "ix_weapon_skill_link_skill_id_skill_level")
 }
 
 model weapon_stat {
@@ -292,13 +293,13 @@ model weapon_stat {
   atk       Int
   hp        Int
   vit       Int
-  weapon    weapon @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_weapon_stat_weapon_weapon_id")
+  weapon    weapon @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_stat_weapon_weapon_id")
 
-  @@id([weapon_id, level], map: "PK_weapon_stat")
+  @@id([weapon_id, level], map: "pk_weapon_stat")
 }
 
 model weapon_story {
-  id                Int                 @id(map: "PK_weapon_story") @default(autoincrement())
+  id                Int                 @id(map: "pk_weapon_story") @default(autoincrement())
   story             String?
   weapon_story_link weapon_story_link[]
 }
@@ -306,9 +307,17 @@ model weapon_story {
 model weapon_story_link {
   weapon_id       Int
   weapon_story_id Int
-  weapon          weapon       @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "FK_weapon_story_link_weapon_weapon_id")
-  weapon_story    weapon_story @relation(fields: [weapon_story_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "FK_weapon_story_link_weapon_story_weapon_story_id")
+  weapon          weapon       @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_story_link_weapon_weapon_id")
+  weapon_story    weapon_story @relation(fields: [weapon_story_id], references: [id], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_story_link_weapon_story_weapon_story_id")
 
-  @@id([weapon_id, weapon_story_id], map: "PK_weapon_story_link")
-  @@index([weapon_story_id], map: "IX_weapon_story_link_weapon_story_id")
+  @@id([weapon_id, weapon_story_id], map: "pk_weapon_story_link")
+  @@index([weapon_story_id], map: "ix_weapon_story_link_weapon_story_id")
+}
+
+model debris {
+  debris_id       Int      @id(map: "pk_debris") @default(autoincrement())
+  rarity          Int
+  release_time    DateTime @db.Timestamptz(6)
+  name            String?
+  image_path_base String?
 }
