@@ -7,10 +7,6 @@ import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
-import { FiGithub } from "react-icons/fi";
-import { GITHUB_REPO_LINK } from "@config/constants";
-import pkg from "../../../package.json";
-import { useSpring, animated } from "react-spring";
 
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
@@ -26,16 +22,6 @@ export default function Header(): JSX.Element {
   function done() {
     setIsAnimating(false);
   }
-
-  const expand = useSpring({
-    config: { friction: 25 },
-    transform: isNavOpened ? "translateY(0vh)" : "translateY(-100vh)",
-  });
-
-  const shrink = useSpring({
-    config: { friction: 25 },
-    transform: isNavOpened ? "scale(1)" : "scale(0.8)",
-  });
 
   useEffect(() => {
     router.events.on("routeChangeStart", start);
@@ -67,7 +53,7 @@ export default function Header(): JSX.Element {
           target="_blank"
           className="flex justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50"
         >
-          <span>Updated: 30 july, 2022</span>
+          <span>Updated: 19 Aug, 2022</span>
         </a>
       </div>
       <header className="container relative">
@@ -168,15 +154,17 @@ export default function Header(): JSX.Element {
           </nav>
         </div>
 
-        <animated.nav
-          style={expand}
+        <nav
           className={classNames(
-            "nav flex justify-center items-center w-full nav-is-closed xl:w-auto fixed inset-0 z-menu bg-pattern xl:relative xl:block transform"
+            "nav flex justify-center items-center w-full nav-is-closed xl:w-auto fixed inset-0 z-menu bg-pattern xl:relative xl:block transform",
+            isNavOpened ? "translate-y-0" : "-translate-y-screen"
           )}
         >
-          <animated.div
-            style={shrink}
-            className="bg-grey-lighter h-9/10 w-4/5 overflow-y-auto border border-beige-inactive xl:border-none xl:bg-transparent xl:hidden pointer-events-auto"
+          <div
+            className={classNames(
+              "bg-grey-lighter h-9/10 w-4/5 overflow-y-auto border border-beige-inactive xl:border-none xl:bg-transparent xl:hidden pointer-events-auto",
+              isNavOpened ? "scale-100" : "scale-75"
+            )}
           >
             <div className="flex justify-end mb-11 xl:hidden">
               <button onClick={handleNavToggle} className="mt-4 mr-4 xl:hidden">
@@ -214,8 +202,8 @@ export default function Header(): JSX.Element {
                 </li>
               ))}
             </ul>
-          </animated.div>
-        </animated.nav>
+          </div>
+        </nav>
       </header>
     </>
   );

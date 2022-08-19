@@ -7,6 +7,7 @@ import localforage from "localforage";
 import { useState, useEffect } from "react";
 import useGametime from "@hooks/useGametime";
 import StaminaCalculator from "@components/calculators/Stamina";
+import { CDN_URL } from "@config/constants";
 
 // import { Guide, Event } from "@models/types";
 // import { getCurrentEvents } from "@models/event";
@@ -81,6 +82,11 @@ const defaultSecondLoginTodos: Todo[] = [
 ];
 
 const defaultOptionalTodos: Todo[] = [
+  {
+    checked: false,
+    label: "Subjugation",
+    icon: `${CDN_URL}ui/material/material402051/material402051_standard.png`,
+  },
   {
     checked: false,
     label: "Daily Quests",
@@ -348,11 +354,6 @@ export default function TodolistPage(): JSX.Element {
                 />
               ))}
             </ul>
-
-            <p className="mb-4 bg-grey-dark p-4 mt-8">
-              The icons will be updated automatically based on the current day
-              in the near future.
-            </p>
           </section>
         </div>
 

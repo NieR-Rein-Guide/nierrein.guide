@@ -105,7 +105,7 @@ function EventsListing({ label, events }) {
           </Link>
         ))}
 
-        {events.length === 0 && <h2 className="text-2xl">No past events</h2>}
+        {events.length === 0 && <h2 className="text-2xl">No events</h2>}
       </div>
     </section>
   );
