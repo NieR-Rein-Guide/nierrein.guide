@@ -23,18 +23,22 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             take: 1,
           },
           weapon_ability_link: {
-            take: 1,
+            where: {
+              ability_level: 15,
+            },
             orderBy: {
-              ability_level: 'desc',
+              slot_number: 'asc',
             },
             include: {
               weapon_ability: true,
             }
           },
           weapon_skill_link: {
-            take: 1,
+            where: {
+              skill_level: 15,
+            },
             orderBy: {
-              skill_level: 'desc',
+              slot_number: 'asc',
             },
             include: {
               weapon_skill: true,
