@@ -187,7 +187,7 @@ export async function getStaticProps(context) {
 
   const rankBonus = await prisma.character_rank_bonus.findMany({
     where: {
-      character_id: selectedCostume.character_id,
+      character_id: currentCharacter.character_id,
     },
     orderBy: {
       rank_bonus_level: "asc",
