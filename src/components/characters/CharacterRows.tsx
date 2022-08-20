@@ -70,7 +70,7 @@ export default function CharacterRows({
 
   return (
     <div className="overflow-auto sm:self-center hidden md:inline">
-      <div className="relative h-32 mt-20 mb-20 mx-20">
+      <div className="relative h-48 mt-4 mx-20">
         <div className="flex gap-6 pointer-events-none">
           {firstRow.map((character) => (
             <React.Fragment key={character.character_id}>

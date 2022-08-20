@@ -8,7 +8,7 @@ type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
 interface CostumeThumbnailProps {
   src: string;
   alt: string;
-  weaponType?: WeaponType;
+  weaponType?: WeaponType | string;
   rarity?: number | string;
   imgClasses?: string;
   className?: string;

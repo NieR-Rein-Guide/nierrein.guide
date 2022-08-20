@@ -18,6 +18,8 @@ import Image from "next/image";
 import weaponsIcons from "@utils/weaponsIcons";
 import { useRouter } from "next/router";
 import SVG from "react-inlinesvg";
+import Star from "@components/decorations/Star";
+import RARITY from "@utils/rarity";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -49,6 +51,12 @@ const weaponTypesLookup = {
   STAFF: "Staff",
 };
 
+const rarityLookup = {
+  S_RARE: "3*",
+  SS_RARE: "4*",
+  LEGEND: "5*",
+};
+
 export default function WeaponsPage({
   weapons,
   abilitiesLookup,
@@ -56,7 +64,7 @@ export default function WeaponsPage({
   const router = useRouter();
 
   return (
-    <Layout hasContainer={false}>
+    <Layout hasContainer={false} className="overflow-x-auto">
       <Meta
         title="Weapons"
         description="All the weapons of NieR Re[in]carnation"
@@ -93,6 +101,7 @@ export default function WeaponsPage({
               cellStyle: {
                 textAlign: "center",
               },
+              hideFilterIcon: true,
               customFilterAndSearch: (term, weapon) =>
                 weapon.weapon_stat[0].hp >= Number(term),
             },
@@ -102,7 +111,9 @@ export default function WeaponsPage({
               type: "numeric",
               cellStyle: {
                 textAlign: "center",
+                color: "rgba(252,165,165,var(--tw-text-opacity))",
               },
+              hideFilterIcon: true,
               customFilterAndSearch: (term, weapon) =>
                 weapon.weapon_stat[0].atk >= Number(term),
             },
@@ -112,7 +123,9 @@ export default function WeaponsPage({
               type: "numeric",
               cellStyle: {
                 textAlign: "center",
+                color: "rgba(147,197,253,var(--tw-text-opacity))",
               },
+              hideFilterIcon: true,
               customFilterAndSearch: (term, weapon) =>
                 weapon.weapon_stat[0].vit >= Number(term),
             },
@@ -159,6 +172,24 @@ export default function WeaponsPage({
               },
             },
             {
+              field: "weapon_skill_link[0].weapon_skill.cooldown_time",
+              title: "Cooldown Skill 1",
+              type: "numeric",
+              hideFilterIcon: true,
+              customFilterAndSearch: (term, weapon) =>
+                weapon.weapon_skill_link[0].weapon_skill.cooldown_time <=
+                Number(term),
+            },
+            {
+              field: "weapon_skill_link[1].weapon_skill.cooldown_time",
+              title: "Cooldown Skill 2",
+              type: "numeric",
+              hideFilterIcon: true,
+              customFilterAndSearch: (term, weapon) =>
+                weapon.weapon_skill_link[1].weapon_skill.cooldown_time <=
+                Number(term),
+            },
+            {
               field: "attribute",
               title: "Attribute",
               cellStyle: {
@@ -202,7 +233,10 @@ export default function WeaponsPage({
               render: (weapon) => (
                 <>
                   {weapon.is_ex_weapon ? (
-                    <SVG src="/icons/weapons/dark.svg" className="h-8 w-8" />
+                    <SVG
+                      src="/icons/weapons/dark.svg"
+                      className="h-8 w-8 mx-auto"
+                    />
                   ) : (
                     <span>No</span>
                   )}
@@ -210,15 +244,22 @@ export default function WeaponsPage({
               ),
             },
             {
-              field: "weapon_stat[0].level",
-              title: "Level",
-              type: "numeric",
-              cellStyle: {
-                textAlign: "center",
+              field: "rarity",
+              title: "Rarity",
+              lookup: rarityLookup,
+              customFilterAndSearch: (term, costume) => {
+                if (term.length === 0) return true;
+                return term.includes(costume.rarity);
               },
+              render: (costume) => (
+                <div className="w-8 h-8 mx-auto">
+                  <Star rarity={RARITY[costume.rarity]} />
+                </div>
+              ),
             },
           ]}
           options={{
+            grouping: true,
             searchFieldAlignment: "right",
             filtering: true,
             pageSize: 25,

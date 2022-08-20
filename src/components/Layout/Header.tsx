@@ -53,7 +53,7 @@ export default function Header(): JSX.Element {
           target="_blank"
           className="flex justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50"
         >
-          <span>Updated: 19 Aug, 2022</span>
+          <span>Updated: 20 Aug, 2022</span>
         </a>
       </div>
       <header className="container relative">

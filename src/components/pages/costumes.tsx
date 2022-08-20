@@ -10,198 +10,270 @@ import {
   costume_skill,
   costume_skill_link,
   costume_stat,
+  emblem,
 } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import RARITY from "@utils/rarity";
-import classNames from "classnames";
-import statsIcons from "@utils/statsIcons";
 import Image from "next/image";
-import Link from "next/link";
-import slug from "slugg";
 import SVG from "react-inlinesvg";
+import MaterialTable from "@material-table/core";
+import { ExportCsv, ExportPdf } from "@material-table/exporters";
+import { useRouter } from "next/router";
+import weaponsIcons from "@utils/weaponsIcons";
+import Star from "@components/decorations/Star";
 
 interface CharactersPageProps {
-  characters: (character & {
-    costume: (costume & {
-      costume_ability_link: (costume_ability_link & {
-        costume_ability: costume_ability;
-      })[];
-      costume_skill_link: (costume_skill_link & {
-        costume_skill: costume_skill;
-      })[];
-      costume_stat: costume_stat[];
+  costumes: (costume & {
+    costume_ability_link: (costume_ability_link & {
+      costume_ability: costume_ability;
     })[];
+    costume_skill_link: (costume_skill_link & {
+      costume_skill: costume_skill;
+    })[];
+    costume_stat: costume_stat[];
+    character: character;
+    emblem: emblem;
   })[];
+  abilitiesLookup;
+  charactersLookup;
 }
 
+const weaponTypesLookup = {
+  SWORD: "1H Sword",
+  BIG_SWORD: "2H Sword",
+  FIST: "Fist",
+  GUN: "Gun",
+  SPEAR: "Spear",
+  STAFF: "Staff",
+};
+
+const rarityLookup = {
+  RARE: "2*",
+  S_RARE: "3*",
+  SS_RARE: "4*",
+};
+
+const gaugeLookup = {
+  A: "A",
+  B: "B",
+  C: "C",
+};
+
 export default function CharactersPage({
-  characters,
+  costumes,
+  abilitiesLookup,
+  charactersLookup,
 }: CharactersPageProps): JSX.Element {
+  const router = useRouter();
+
   return (
-    <Layout>
+    <Layout hasContainer={false} className="overflow-x-auto">
       <Meta
         title="Characters"
         description="All the costumes of NieR Re[in]carnation"
         cover="https://nierrein.guide/cover-characters.jpg"
       />
 
-      <div className="grid lg:grid-cols-2">
-        {characters.map((character) => (
-          <div className="bg-black p-4 pl-8" key={character.character_id}>
-            <div className="group relative flex items-center py-8">
-              <div
-                className={`pointer-events-auto overflow-hidden iso-bg group-hover:border-beige transition`}
-              >
-                <img
-                  style={{
-                    minWidth: "74px",
-                    maxWidth: "74px",
-                    minHeight: "74px",
-                    maxHeight: "74px",
-                  }}
-                  className="select-none object-none"
-                  alt={character.name}
-                  title={character.name}
-                  src={`${CDN_URL}${character.image_path}`}
-                />
-              </div>
-              <h2 className="text-3xl ml-8 group-hover:underline">
-                {character.name}
-              </h2>
-              <p className="absolute top-1/2 transform -translate-y-1/2 right-4 text-xs bg-brown px-2 py-1">
-                {character.costume.length} costumes.
-              </p>
-
-              <Link href={`/characters/${slug(character.name)}`} passHref>
-                <a
-                  className="absolute inset-0"
-                  title={`View ${character.name} costumes`}
-                >
-                  <span className="sr-only">
-                    View {character.name} costumes
-                  </span>
-                </a>
-              </Link>
-            </div>
-
-            <div className="space-y-4">
-              {character.costume.map((costume) => (
-                <div
-                  key={costume.costume_id}
-                  className="relative flex flex-col items-start lg:items-stretch p-4 border border-beige-inactive bg-grey-lighter hover:bg-grey-foreground transition"
-                >
-                  <div className="flex flex-col gap-y-4 lg:gap-y-0 lg:flex-row lg:items-center justify-between">
-                    {/* Thumbnail / Name */}
-                    <div className="flex">
-                      <CostumeThumbnail
-                        src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                        alt={`${costume.title} thumbnail`}
-                        rarity={RARITY[costume.rarity]}
-                        imgClasses={classNames(
-                          "transition-all filter group-hover:brightness-100"
-                        )}
-                      />
-                      <div className="flex flex-col justify-center px-4">
-                        <h3 className="text-2xl lg:text-xl truncate text-beige-active">
-                          {costume.title}
-                        </h3>
-                        <h3 className="text-xl text-beige-inactive">
-                          Level {costume.costume_stat[0].level}
-                        </h3>
-                      </div>
-                    </div>
-                    {/* Stats */}
-                    <div className="flex">
-                      <div className="grid grid-rows-2 grid-cols-3">
-                        <SingleStat
-                          icon={statsIcons.hp}
-                          name="HP"
-                          value={costume.costume_stat[0].hp ?? "???"}
-                        />
-                        <SingleStat
-                          icon={statsIcons.atk}
-                          name="Attack"
-                          value={costume.costume_stat[0].atk ?? "???"}
-                        />
-                        <SingleStat
-                          icon={statsIcons.def}
-                          name="Defense"
-                          value={costume.costume_stat[0].vit ?? "???"}
-                        />
-                        <SingleStat
-                          icon={statsIcons.agility}
-                          name="Agility"
-                          value={costume.costume_stat[0].agi ?? "???"}
-                        />
-                        <SingleStat
-                          icon={statsIcons.cr}
-                          name="Critical Rate"
-                          value={`${
-                            costume.costume_stat[0].crit_rate ?? "???"
-                          }%`}
-                        />
-                        <SingleStat
-                          icon={statsIcons.cd}
-                          name="Critical Damage"
-                          value={`${
-                            costume.costume_stat[0].crit_atk / 10 ?? "???"
-                          }%`}
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  <a className="absolute top-1/2 right-8 transform -translate-y-1/2 bg-beige h-14 w-14 rounded-full flex justify-center items-center lg:hidden">
-                    <SVG
-                      className="h-6 transition-transform ease-out-cubic text-black transform -scale-x-1"
-                      src="/decorations/arrow-left.svg"
-                    />
-                  </a>
-
-                  <Link
-                    href={`/characters/${slug(character.name)}/${slug(
-                      costume.title
-                    )}`}
-                    passHref
-                  >
-                    <a className="absolute inset-0">
-                      <span className="sr-only">View costume info</span>
-                    </a>
-                  </Link>
+      <section className="mx-auto p-6">
+        <MaterialTable
+          title={`${costumes.length} costumes in the database.`}
+          data={costumes}
+          columns={[
+            {
+              field: "character.name",
+              title: "Character",
+              lookup: charactersLookup,
+              customFilterAndSearch: (term, costume) => {
+                if (term.length === 0) return true;
+                return term.includes(costume.character.name);
+              },
+            },
+            {
+              field: "title",
+              title: "Title",
+              type: "string",
+              render: (costume) => (
+                <div className="flex items-center gap-x-4 w-80">
+                  <CostumeThumbnail
+                    src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                    alt={`${costume.title} thumbnail`}
+                    rarity={RARITY[costume.rarity]}
+                  />
+                  <span>{costume.title}</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    </Layout>
-  );
-}
-
-function SingleStat({ name, value, icon }): JSX.Element {
-  const colors = {
-    Attack: "text-red-300",
-    Defense: "text-blue-300",
-    Agility: "text-green-300",
-    "Critical Rate": "",
-    "Critical Damage": "",
-  };
-
-  return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap text-beige-light px-2">
-        <Image
-          layout="intrinsic"
-          src={icon}
-          alt={name}
-          width={32}
-          height={32}
+              ),
+            },
+            {
+              field: "costume_stat[0].hp",
+              title: "HP",
+              type: "numeric",
+              cellStyle: {
+                textAlign: "center",
+              },
+              hideFilterIcon: true,
+              customFilterAndSearch: (term, costume) =>
+                costume.costume_stat[0].hp >= Number(term),
+            },
+            {
+              field: "costume_stat[0].atk",
+              title: "ATK",
+              type: "numeric",
+              cellStyle: {
+                textAlign: "center",
+                color: "rgba(252,165,165,var(--tw-text-opacity))",
+              },
+              hideFilterIcon: true,
+              customFilterAndSearch: (term, costume) =>
+                costume.costume_stat[0].atk >= Number(term),
+            },
+            {
+              field: "costume_stat[0].vit",
+              title: "DEF",
+              type: "numeric",
+              cellStyle: {
+                textAlign: "center",
+                color: "rgba(147,197,253,var(--tw-text-opacity))",
+              },
+              hideFilterIcon: true,
+              customFilterAndSearch: (term, costume) =>
+                costume.costume_stat[0].vit >= Number(term),
+            },
+            {
+              field: "costume_stat[0].agi",
+              title: "AGI",
+              type: "numeric",
+              hideFilterIcon: true,
+              cellStyle: {
+                textAlign: "center",
+                color: "rgba(110,231,183,var(--tw-text-opacity))",
+              },
+              customFilterAndSearch: (term, costume) =>
+                costume.costume_stat[0].agi >= Number(term),
+            },
+            {
+              field: "costume_ability_link[0].costume_ability.name",
+              title: "Ability 1",
+              lookup: abilitiesLookup,
+              customFilterAndSearch: (term, costume) => {
+                if (term.length === 0) return true;
+                return term.includes(
+                  costume.costume_ability_link[0].costume_ability.name
+                );
+              },
+              cellStyle: {
+                textAlign: "center",
+              },
+            },
+            {
+              field: "costume_ability_link[1].costume_ability.name",
+              title: "Ability 2",
+              lookup: abilitiesLookup,
+              customFilterAndSearch: (term, costume) => {
+                if (term.length === 0) return true;
+                return term.includes(
+                  costume.costume_ability_link[1].costume_ability.name
+                );
+              },
+              cellStyle: {
+                textAlign: "center",
+              },
+            },
+            {
+              field: "costume_skill_link[0].costume_skill.gauge_rise_speed",
+              title: "CS Gauge",
+              lookup: gaugeLookup,
+              customFilterAndSearch: (term, costume) => {
+                if (term.length === 0) return true;
+                return term.includes(
+                  costume.costume_skill_link[0].costume_skill.gauge_rise_speed
+                );
+              },
+              cellStyle: {
+                textAlign: "center",
+              },
+            },
+            {
+              field: "is_ex_weapon",
+              title: "EX",
+              cellStyle: {
+                textAlign: "center",
+              },
+              type: "boolean",
+              render: (costume) => (
+                <>
+                  {costume.is_ex_costume ? (
+                    <SVG
+                      src="/icons/weapons/dark.svg"
+                      className="h-8 w-8 mx-auto"
+                    />
+                  ) : (
+                    <span>No</span>
+                  )}
+                </>
+              ),
+            },
+            {
+              field: "weapon_type",
+              title: "Type",
+              cellStyle: {
+                textAlign: "center",
+              },
+              lookup: weaponTypesLookup,
+              customFilterAndSearch: (term, costume) => {
+                if (term.length === 0) return true;
+                return term.includes(costume.weapon_type);
+              },
+              render: (weapon) => (
+                <div className="w-8 mx-auto">
+                  <Image
+                    layout="responsive"
+                    src={weaponsIcons[weapon.weapon_type]}
+                    alt={weapon.weapon_type}
+                  />
+                </div>
+              ),
+            },
+            {
+              field: "rarity",
+              title: "Rarity",
+              lookup: rarityLookup,
+              customFilterAndSearch: (term, costume) => {
+                if (term.length === 0) return true;
+                return term.includes(costume.rarity);
+              },
+              render: (costume) => (
+                <div className="w-8 h-8 mx-auto">
+                  <Star rarity={RARITY[costume.rarity]} />
+                </div>
+              ),
+            },
+          ]}
+          options={{
+            grouping: true,
+            searchFieldAlignment: "right",
+            filtering: true,
+            pageSize: 25,
+            pageSizeOptions: [25, 50, 100, 200, 500],
+            exportMenu: [
+              {
+                label: "Export PDF",
+                exportFunc: (cols, datas) =>
+                  ExportPdf(cols, datas, "myPdfFileName"),
+              },
+              {
+                label: "Export CSV",
+                exportFunc: (cols, datas) =>
+                  ExportCsv(cols, datas, "myCsvFileName"),
+              },
+            ],
+            exportAllData: true,
+          }}
+          onRowClick={(event, costume) =>
+            router.push(`/characters/${costume.character.slug}/${costume.slug}`)
+          }
         />
-      </div>
-      <div className={classNames("font-light text-s", colors[name])}>
-        {value}
-      </div>
-    </div>
+      </section>
+    </Layout>
   );
 }

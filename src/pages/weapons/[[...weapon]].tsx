@@ -10,7 +10,6 @@ import {
   weapon_story_link,
   weapon_story,
 } from "@prisma/client";
-import slug from "slugg";
 import Weapons from "../../components/pages/weapons";
 import Weapon from "../../components/pages/weapon";
 import prisma from "@libs/prisma";

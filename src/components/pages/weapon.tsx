@@ -55,6 +55,7 @@ export default function WeaponPage({
           </a>
         </Link>
       </nav>
+
       <WeaponInfo weapons={weapon} />
     </Layout>
   );

@@ -1,6 +1,16 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
-import { character, costume, character_rank_bonus } from "@prisma/client";
+import {
+  character,
+  costume,
+  character_rank_bonus,
+  costume_ability_link,
+  costume_ability,
+  costume_skill_link,
+  costume_skill,
+  costume_stat,
+  emblem,
+} from "@prisma/client";
 import slug from "slugg";
 import Costume from "../../components/pages/costume";
 import Index from "../../components/pages/costumes";
@@ -11,11 +21,23 @@ interface CharactersPageProps {
   currentCharacter: character;
   selectedCostume: costume;
   characters;
-  costumes: costume[];
+  costumes: (costume & {
+    costume_ability_link: (costume_ability_link & {
+      costume_ability: costume_ability;
+    })[];
+    costume_skill_link: (costume_skill_link & {
+      costume_skill: costume_skill;
+    })[];
+    costume_stat: costume_stat[];
+    character: character;
+    emblem: emblem;
+  })[];
   abilities;
   skills;
   stats;
   rankBonus: character_rank_bonus[];
+  abilitiesLookup;
+  charactersLookup;
 }
 
 export default function CharactersPage({
@@ -28,6 +50,8 @@ export default function CharactersPage({
   skills,
   stats,
   rankBonus,
+  abilitiesLookup,
+  charactersLookup,
 }: CharactersPageProps): JSX.Element {
   if (!isIndex) {
     return (
@@ -44,51 +68,79 @@ export default function CharactersPage({
     );
   }
 
-  return <Index characters={characters} />;
+  return (
+    <Index
+      costumes={costumes}
+      abilitiesLookup={abilitiesLookup}
+      charactersLookup={charactersLookup}
+    />
+  );
 }
 
 export async function getStaticProps(context) {
   // No route parameters, show index page
   if (Object.entries(context.params).length === 0) {
-    const characters = await prisma.character.findMany({
+    const costumes = await prisma.costume.findMany({
       orderBy: {
-        character_id: "asc",
+        release_time: "desc",
       },
       include: {
-        costume: {
+        character: true,
+        costume_ability_link: {
+          where: {
+            ability_level: 4,
+          },
           orderBy: {
-            costume_id: "asc",
+            ability_slot: "asc",
           },
           include: {
-            costume_ability_link: {
-              where: {
-                ability_level: 4,
-              },
-              orderBy: {
-                ability_slot: "asc",
-              },
-              include: {
-                costume_ability: true,
-              },
-            },
-            costume_skill_link: {
-              where: {
-                skill_level: 15,
-              },
-              include: {
-                costume_skill: true,
-              },
-            },
-            costume_stat: {
-              take: 1,
-              orderBy: {
-                level: "desc",
-              },
-            },
+            costume_ability: true,
+          },
+        },
+        costume_skill_link: {
+          where: {
+            skill_level: 15,
+          },
+          include: {
+            costume_skill: true,
+          },
+        },
+        costume_stat: {
+          take: 1,
+          orderBy: {
+            level: "desc",
           },
         },
       },
     });
+
+    const abilitiesLookupData = await prisma.costume_ability.findMany({
+      orderBy: {
+        name: "asc",
+      },
+      select: {
+        name: true,
+      },
+      distinct: ["name"],
+    });
+
+    const abilitiesLookup = abilitiesLookupData.reduce((acc, current) => {
+      acc[current.name] = current.name;
+      return acc;
+    }, {});
+
+    const charactersLookupData = await prisma.character.findMany({
+      select: {
+        name: true,
+      },
+      orderBy: {
+        name: "asc",
+      },
+    });
+    const charactersLookup = charactersLookupData.reduce((acc, current) => {
+      acc[current.name] = current.name;
+      return acc;
+    }, {});
 
     return {
       props: JSON.parse(
@@ -96,7 +148,9 @@ export async function getStaticProps(context) {
           isIndex: true,
           currentCharacter: null,
           selectedCostume: null,
-          characters: characters,
+          costumes,
+          abilitiesLookup,
+          charactersLookup,
         })
       ),
     };
@@ -131,7 +185,14 @@ export async function getStaticProps(context) {
     return ch.slug === slug(costume);
   });
 
-  const rankBonus = [];
+  const rankBonus = await prisma.character_rank_bonus.findMany({
+    where: {
+      character_id: selectedCostume.character_id,
+    },
+    orderBy: {
+      rank_bonus_level: "asc",
+    },
+  });
 
   const stats = {};
   const abilities = {};
@@ -182,12 +243,12 @@ export async function getStaticProps(context) {
       JSON.stringify({
         currentCharacter,
         selectedCostume,
-        characters: characters,
+        characters,
         costumes: selectedCostumes,
-        abilities: abilities,
-        skills: skills,
-        stats: stats,
-        rankBonus: rankBonus,
+        abilities,
+        skills,
+        stats,
+        rankBonus,
       })
     ),
   };

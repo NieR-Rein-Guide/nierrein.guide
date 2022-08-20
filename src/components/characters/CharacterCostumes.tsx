@@ -23,7 +23,7 @@ export default function CharacterCostumes({
 
   return (
     <div className="my-2 p-2 lg:pl-6 overflow-auto">
-      <p className="mb-4 text-beige">
+      <p className="text-beige">
         {selectedCharacterCostumes.length} costumes found for{" "}
         {currentCharacter.name}
       </p>

@@ -11,6 +11,8 @@ import { character, costume, character_rank_bonus } from "@prisma/client";
 import slug from "slugg";
 import { useRouter } from "next/router";
 import { CDN_URL } from "@config/constants";
+import Link from "next/link";
+import SVG from "react-inlinesvg";
 
 interface CharactersPageProps {
   currentCharacter: character;
@@ -71,6 +73,15 @@ export default function CostumePage({
           selectedCostume?.image_path_base ?? costumes[0].image_path_base
         }full.png}`}
       />
+
+      <nav className="mb-4">
+        <Link href="/characters" passHref={true}>
+          <a className="btn">
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
+            <span>Return to Characters</span>
+          </a>
+        </Link>
+      </nav>
 
       <CharacterRows
         characters={characters}

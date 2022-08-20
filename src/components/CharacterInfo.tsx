@@ -123,7 +123,10 @@ function CostumeDetails({
               {abilities &&
                 abilities.map((ability, index) => (
                   <Ability
-                    className="flex-1"
+                    className={classNames(
+                      "flex-1 transition-opacity",
+                      ascendLevel === 1 && index > 0 ? "opacity-50" : ""
+                    )}
                     key={`${costume.costume_id}ability${index}`}
                     name={ability[abilityLevel].costume_ability.name}
                     description={
