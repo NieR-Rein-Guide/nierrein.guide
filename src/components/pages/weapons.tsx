@@ -91,6 +91,9 @@ export default function WeaponsPage({
               field: "weapon_stat[0].hp",
               title: "HP",
               type: "numeric",
+              cellStyle: {
+                textAlign: "center",
+              },
               customFilterAndSearch: (term, weapon) =>
                 weapon.weapon_stat[0].hp >= Number(term),
             },
@@ -98,6 +101,9 @@ export default function WeaponsPage({
               field: "weapon_stat[0].atk",
               title: "ATK",
               type: "numeric",
+              cellStyle: {
+                textAlign: "center",
+              },
               customFilterAndSearch: (term, weapon) =>
                 weapon.weapon_stat[0].atk >= Number(term),
             },
@@ -105,12 +111,18 @@ export default function WeaponsPage({
               field: "weapon_stat[0].vit",
               title: "DEF",
               type: "numeric",
+              cellStyle: {
+                textAlign: "center",
+              },
               customFilterAndSearch: (term, weapon) =>
                 weapon.weapon_stat[0].vit >= Number(term),
             },
             {
               field: "weapon_ability_link[0].weapon_ability.name",
               title: "Ability 1",
+              cellStyle: {
+                textAlign: "center",
+              },
               lookup: abilitiesLookup,
               customFilterAndSearch: (term, weapon) => {
                 if (term.length === 0) return true;
@@ -122,6 +134,9 @@ export default function WeaponsPage({
             {
               field: "weapon_ability_link[1].weapon_ability.name",
               title: "Ability 2",
+              cellStyle: {
+                textAlign: "center",
+              },
               lookup: abilitiesLookup,
               customFilterAndSearch: (term, weapon) => {
                 if (term.length === 0) return true;
@@ -133,6 +148,9 @@ export default function WeaponsPage({
             {
               field: "weapon_ability_link[2].weapon_ability.name",
               title: "Ability 3",
+              cellStyle: {
+                textAlign: "center",
+              },
               lookup: abilitiesLookup,
               customFilterAndSearch: (term, weapon) => {
                 if (term.length === 0) return true;
@@ -157,6 +175,9 @@ export default function WeaponsPage({
             {
               field: "weapon_type",
               title: "Type",
+              cellStyle: {
+                textAlign: "center",
+              },
               lookup: weaponTypesLookup,
               customFilterAndSearch: (term, weapon) => {
                 if (term.length === 0) return true;
@@ -175,6 +196,9 @@ export default function WeaponsPage({
             {
               field: "is_ex_weapon",
               title: "EX",
+              cellStyle: {
+                textAlign: "center",
+              },
               type: "boolean",
               render: (weapon) => (
                 <>
@@ -190,6 +214,9 @@ export default function WeaponsPage({
               field: "weapon_stat[0].level",
               title: "Level",
               type: "numeric",
+              cellStyle: {
+                textAlign: "center",
+              },
             },
           ]}
           options={{

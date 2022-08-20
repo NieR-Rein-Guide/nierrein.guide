@@ -48,7 +48,7 @@ export default function WeaponPage({
       />
 
       <nav className="mb-4">
-        <Link href="/database" passHref={true}>
+        <Link href="/weapons" passHref={true}>
           <a className="btn">
             <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Return to Weapons</span>
