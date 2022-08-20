@@ -5,8 +5,8 @@ import {
   DisclosureButton,
   DisclosurePanel,
 } from "@reach/disclosure";
-import { NierNotification } from "@models/types";
 import { useState } from "react";
+import { notification } from "@prisma/client";
 
 const EVENT_TYPES = {
   Event: "Event",
@@ -22,14 +22,15 @@ const intl = new Intl.DateTimeFormat(navigator.language, {
 
 export default function Notice({
   title,
-  informationType,
-  publishStartDatetime,
-  thumbnailImagePath,
   body,
-}: NierNotification): JSX.Element {
+  information_type,
+  notification_id,
+  release_time,
+  thumbnail_path,
+}: notification): JSX.Element {
   const [isOpen, setOpen] = useState(false);
 
-  const publishedDate = intl.format(new Date(publishStartDatetime));
+  const publishedDate = intl.format(new Date(release_time));
 
   return (
     <Disclosure open={isOpen} onChange={() => setOpen(!isOpen)}>
@@ -39,15 +40,15 @@ export default function Notice({
             <div
               className={classNames(
                 "flex flex-col md:flex-row md:items-center gap-x-4 bg-beige-darker filter hover:bg-grey-dark transition ease-out-cubic pb-8",
-                !thumbnailImagePath && "p-4 md:pb-4",
-                thumbnailImagePath && "md:pb-0",
+                !thumbnail_path && "p-4 md:pb-4",
+                thumbnail_path && "md:pb-0",
                 isOpen && "bg-grey-dark"
               )}
             >
-              {thumbnailImagePath && (
+              {thumbnail_path && (
                 <img
                   className="h-28 object-contain mt-4 mb-2 md:mt-0 md:mb-0"
-                  src={`https://web.app.nierreincarnation.com${thumbnailImagePath}`}
+                  src={`https://web.app.nierreincarnation.com${thumbnail_path}`}
                   alt=""
                 />
               )}

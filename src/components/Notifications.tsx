@@ -1,21 +1,36 @@
-import { NierNotification } from "@models/types";
 import Notice from "@components/Notice";
+import { notification } from "@prisma/client";
+import Link from "next/link";
+import { BtnSecondary } from "./btn";
 
 export default function Notifications({
   notifications,
 }: {
-  notifications: NierNotification[];
+  notifications: notification[];
 }): JSX.Element {
-  return (
-    <section>
-      <h2 className="overlap">In game notices</h2>
+  const notificationsTypes = new Set();
 
-      <div className="flex flex-col gap-y-8">
-        Maintenance
-        {/* {notifications.map((notification) => (
-          <Notice key={notification.informationId} {...notification} />
-        ))} */}
+  notifications.forEach((notification) =>
+    notificationsTypes.add(notification.information_type)
+  );
+
+  return (
+    <div>
+      <section>
+        <h2 className="overlap">In game notices</h2>
+
+        <div className="flex flex-col gap-y-8">
+          {notifications.map((notification) => (
+            <Notice key={notification.notification_id} {...notification} />
+          ))}
+        </div>
+      </section>
+
+      <div className="flex justify-center mt-8">
+        <Link href="/notices" passHref>
+          <BtnSecondary>See more notices</BtnSecondary>
+        </Link>
       </div>
-    </section>
+    </div>
   );
 }

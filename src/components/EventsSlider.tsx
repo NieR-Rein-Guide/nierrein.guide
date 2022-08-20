@@ -80,6 +80,35 @@ export default function EventsSlider({
                   />
                 </SwiperSlide>
               ))}
+
+              {currentEvents.length === 0 && (
+                <SwiperSlide className="select-none">
+                  <div className="flex flex-col lg:flex-row items-baseline justify-between mt-4 mb-12 md:mt-0">
+                    <h3 className="font-labor text-2xl text-beige-text">
+                      We need more contributors to keep up with events.
+                    </h3>
+                    <SVG
+                      className="lg:hidden"
+                      src="/decorations/small-title-separator.svg"
+                    />
+                    <div className="hidden absolute mt-7 lg:flex items-center w-full">
+                      <span
+                        style={{ height: "1px" }}
+                        className="w-full bg-beige-dark"
+                      ></span>
+                      <SVG src="/decorations/inner-square.svg" />
+                    </div>
+                  </div>
+                  <Image
+                    layout="responsive"
+                    objectFit="cover"
+                    height={500}
+                    width={800}
+                    src="/tierlists/weapons.jpg"
+                    alt="No event has been created"
+                  />
+                </SwiperSlide>
+              )}
             </Swiper>
           </div>
           {activeEvent && (
