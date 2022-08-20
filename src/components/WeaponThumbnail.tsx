@@ -5,21 +5,22 @@ import Element from "@components/Element";
 import { ElementTypes, WeaponType } from "@models/types";
 import weaponsIcons from "@utils/weaponsIcons";
 import SVG from "react-inlinesvg";
+import { CDN_URL } from "@config/constants";
 
 interface WeaponThumbnailProps {
   id: string | number;
   alt?: string;
   rarity: number | string;
-  type: WeaponType;
+  type: WeaponType | string;
   isDark?: boolean;
-  element: ElementTypes;
+  element: ElementTypes | string;
   imgClasses?: string;
   className?: string;
   isLarge?: boolean;
+  image_path: string;
 }
 
-export default function CostumeThumbnail({
-  id,
+export default function WeaponThumbnail({
   alt,
   rarity,
   type,
@@ -28,8 +29,12 @@ export default function CostumeThumbnail({
   imgClasses = "",
   className = "",
   isLarge = false,
+  image_path,
 }: WeaponThumbnailProps): JSX.Element {
-  const weaponRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
+  let weaponRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
+  if (rarity === "LEGEND") {
+    weaponRarity = 4;
+  }
 
   if (isLarge) {
     return (
@@ -81,7 +86,7 @@ export default function CostumeThumbnail({
             layout="fill"
             objectFit="cover"
             className={classNames("z-0", imgClasses)}
-            src={`/ui/weapon/wp${id}_full.png`}
+            src={`${CDN_URL}${image_path}standard.png`}
             alt={alt}
           />
         </div>
@@ -136,7 +141,7 @@ export default function CostumeThumbnail({
       <Image
         layout="fill"
         className={classNames("z-0", imgClasses)}
-        src={`/weapons_thumbnails/wp${id}_thumbnail.png`}
+        src={`${CDN_URL}${image_path}standard.png`}
         alt={alt}
       />
     </div>

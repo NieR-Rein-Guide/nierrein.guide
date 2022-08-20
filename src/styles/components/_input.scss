@@ -15,10 +15,10 @@
   }
 }
 
-input[type="text"],
-input[type="url"],
-input[type="number"],
-select,
+input[type="text"]:not(.MuiInput-input),
+input[type="url"]:not(.MuiInput-input),
+input[type="number"]:not(.MuiInput-input),
+select:not(.MuiInput-input),
 .input {
   @apply bg-beige-darker border border-beige px-2 py-4 w-full;
 

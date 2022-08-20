@@ -10,14 +10,13 @@ import {
   weapon_skill_link,
   weapon_stat,
 } from "@prisma/client";
-import { CDN_URL } from "@config/constants";
-import RARITY from "@utils/rarity";
-import classNames from "classnames";
-import statsIcons from "@utils/statsIcons";
+import MaterialTable from "@material-table/core";
+import { ExportCsv, ExportPdf } from "@material-table/exporters";
+import Element from "@components/Element";
+import WeaponThumbnail from "@components/WeaponThumbnail";
 import Image from "next/image";
-import Link from "next/link";
-import slug from "slugg";
-import SVG from "react-inlinesvg";
+import weaponsIcons from "@utils/weaponsIcons";
+import { useRouter } from "next/router";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -29,23 +28,177 @@ interface CharactersPageProps {
     })[];
     weapon_stat: weapon_stat[];
   })[];
+  abilitiesLookup: { [key: string]: string };
 }
 
-export default function CharactersPage({
+const attributesLookup = {
+  LIGHT: "Light",
+  DARK: "Dark",
+  FIRE: "Fire",
+  WIND: "Wind",
+  WATER: "Water",
+};
+
+const weaponTypesLookup = {
+  SWORD: "1H Sword",
+  BIG_SWORD: "2H Sword",
+  FIST: "Fist",
+  GUN: "Gun",
+  SPEAR: "Spear",
+  STAFF: "Staff",
+};
+
+export default function WeaponsPage({
   weapons,
+  abilitiesLookup,
 }: CharactersPageProps): JSX.Element {
+  const router = useRouter();
+
   return (
-    <Layout>
+    <Layout hasContainer={false}>
       <Meta
         title="Weapons"
         description="All the weapons of NieR Re[in]carnation"
         cover="https://nierrein.guide/cover-weapons.jpg"
       />
 
-      <div className="grid lg:grid-cols-2">
-        <img src={`${CDN_URL}${weapons[0].image_path}full.png`} />
-        <pre>{JSON.stringify(weapons, null, 2)}</pre>
-      </div>
+      <section className="mx-auto p-6">
+        <MaterialTable
+          title={`${weapons.length} weapons in the database.`}
+          data={weapons}
+          columns={[
+            {
+              field: "name",
+              title: "Name",
+              type: "string",
+              render: (weapon) => (
+                <div className="flex items-center gap-x-4 w-80">
+                  <WeaponThumbnail
+                    element={weapon.attribute}
+                    rarity={weapon.rarity}
+                    type={weapon.weapon_type}
+                    id={weapon.weapon_id}
+                    isDark={weapon.is_ex_weapon}
+                    alt={weapon.name}
+                    image_path={weapon.image_path}
+                  />
+                  <span>{weapon.name}</span>
+                </div>
+              ),
+            },
+            {
+              field: "weapon_stat[0].hp",
+              title: "HP",
+              type: "numeric",
+              customFilterAndSearch: (term, weapon) =>
+                weapon.weapon_stat[0].hp >= Number(term),
+            },
+            {
+              field: "weapon_stat[0].atk",
+              title: "ATK",
+              type: "numeric",
+              customFilterAndSearch: (term, weapon) =>
+                weapon.weapon_stat[0].atk >= Number(term),
+            },
+            {
+              field: "weapon_stat[0].vit",
+              title: "DEF",
+              type: "numeric",
+              customFilterAndSearch: (term, weapon) =>
+                weapon.weapon_stat[0].vit >= Number(term),
+            },
+            {
+              field: "weapon_ability_link[0].weapon_ability.name",
+              title: "Ability 1",
+              lookup: abilitiesLookup,
+              customFilterAndSearch: (term, weapon) => {
+                if (term.length === 0) return true;
+                return term.includes(
+                  weapon.weapon_ability_link?.[0]?.weapon_ability.name
+                );
+              },
+            },
+            {
+              field: "weapon_ability_link[1].weapon_ability.name",
+              title: "Ability 2",
+              lookup: abilitiesLookup,
+              customFilterAndSearch: (term, weapon) => {
+                if (term.length === 0) return true;
+                return term.includes(
+                  weapon.weapon_ability_link?.[1]?.weapon_ability.name
+                );
+              },
+            },
+            {
+              field: "weapon_ability_link[2].weapon_ability.name",
+              title: "Ability 3",
+              lookup: abilitiesLookup,
+              customFilterAndSearch: (term, weapon) => {
+                if (term.length === 0) return true;
+                return term.includes(
+                  weapon.weapon_ability_link?.[2]?.weapon_ability.name
+                );
+              },
+            },
+            {
+              field: "attribute",
+              title: "Attribute",
+              cellStyle: {
+                textAlign: "center",
+              },
+              lookup: attributesLookup,
+              customFilterAndSearch: (term, weapon) => {
+                if (term.length === 0) return true;
+                return term.includes(weapon.attribute);
+              },
+              render: (weapon) => <Element type={weapon.attribute} size={32} />,
+            },
+            {
+              field: "weapon_type",
+              title: "Type",
+              lookup: weaponTypesLookup,
+              customFilterAndSearch: (term, weapon) => {
+                if (term.length === 0) return true;
+                return term.includes(weapon.weapon_type);
+              },
+              render: (weapon) => (
+                <div className="w-8">
+                  <Image
+                    layout="responsive"
+                    src={weaponsIcons[weapon.weapon_type]}
+                    alt={weapon.weapon_type}
+                  />
+                </div>
+              ),
+            },
+            {
+              field: "weapon_stat[0].level",
+              title: "Level",
+              type: "numeric",
+            },
+          ]}
+          options={{
+            searchFieldAlignment: "right",
+            filtering: true,
+            pageSize: 25,
+            pageSizeOptions: [25, 50, 100, 200, 500],
+            exportMenu: [
+              {
+                label: "Export PDF",
+                exportFunc: (cols, datas) =>
+                  ExportPdf(cols, datas, "myPdfFileName"),
+              },
+              {
+                label: "Export CSV",
+                exportFunc: (cols, datas) =>
+                  ExportCsv(cols, datas, "myCsvFileName"),
+              },
+            ],
+            exportAllData: true,
+          }}
+          onRowClick={(event, weapon) => router.push(`/weapons/${weapon.slug}`)}
+        />
+      </section>
     </Layout>
   );
 }

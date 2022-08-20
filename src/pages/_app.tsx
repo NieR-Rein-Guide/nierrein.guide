@@ -6,13 +6,27 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "@reach/menu-button/styles.css";
 import "rc-slider/assets/index.css";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
+const muiTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#bda699",
+    },
+  },
+});
 
 import NProgress from "@components/nprogress";
 
 function App({ Component, pageProps }): JSX.Element {
   return (
     <>
-      <Component {...pageProps} />
+      <ThemeProvider theme={muiTheme}>
+        <CssBaseline />
+        <Component {...pageProps} />
+      </ThemeProvider>
       <NProgress />
     </>
   );

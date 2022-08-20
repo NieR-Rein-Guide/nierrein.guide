@@ -8,17 +8,22 @@ import { ElementTypes } from "@models/types";
 // import windIcon from "../../public/elements/wind.png";
 
 interface ElementProps {
-  type: ElementTypes;
+  type: ElementTypes | string;
+  size?: number;
 }
 
-export default function Element({ type, ...props }: ElementProps): JSX.Element {
+export default function Element({
+  type,
+  size = 64,
+  ...props
+}: ElementProps): JSX.Element {
   const attribute = type.toLowerCase();
 
   return (
     <Image
       src={`/elements/${attribute}.png`}
-      height={64}
-      width={64}
+      height={size}
+      width={size}
       alt={type}
       {...props}
     />

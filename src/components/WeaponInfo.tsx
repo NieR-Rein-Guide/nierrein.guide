@@ -8,34 +8,48 @@ import Radio from "@components/form/Radio";
 import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import Slider from "rc-slider";
-import { Weapon } from "@models/types";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
+import {
+  weapon_ability_link,
+  weapon_ability,
+  weapon_skill_link,
+  weapon_skill,
+  weapon_stat,
+  weapon,
+} from "@prisma/client";
+import { CDN_URL } from "@config/constants";
 
 interface WeaponInfoProps {
-  weapon: Weapon;
+  weapon: weapon & {
+    weapon_ability_link: (weapon_ability_link & {
+      weapon_ability: weapon_ability;
+    })[];
+    weapon_skill_link: (weapon_skill_link & {
+      weapon_skill: weapon_skill;
+    })[];
+    weapon_stat: weapon_stat[];
+  };
 }
 
 export default function WeaponInfo({ weapon }: WeaponInfoProps) {
-  const [evolutionStage, setEvolutionStage] = useState(
-    weapon.evolutions.length - 1
-  );
+  const [evolutionStage, setEvolutionStage] = useState(0);
 
   // 0 is Lv. 1 and 14 is Lv. 15
   const [skillAbilitiesLevel, setSkillAbilitiesLevel] = useState(14);
 
-  const isMaxAscended = weapon.isDark
+  const isMaxAscended = weapon.is_ex_weapon
     ? evolutionStage === 10
     : evolutionStage === 1;
 
   useEffect(() => {
-    setEvolutionStage(weapon.evolutions.length - 1);
+    // setEvolutionStage(weapon.evolutions.length - 1);
     setSkillAbilitiesLevel(14);
   }, [weapon]);
 
   return (
     <div className="weapon-info">
-      {(weapon.isDark && (
+      {(weapon.is_ex_weapon && (
         <div className="flex flex-wrap justify-around gap-4 bg-grey-dark p-4 mb-6">
           <Radio
             name="Stage 1"
@@ -95,8 +109,8 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
                   <Image
                     layout="fill"
                     objectFit="cover"
-                    src={`/ui/weapon/wp${weapon.evolutions[evolutionStage]?.AssetId}_full.png`}
-                    alt={`${weapon.name.en} thumbnail`}
+                    src={`${CDN_URL}${weapon.image_path}full.png`}
+                    alt={`${weapon.name} thumbnail`}
                   />
                 </div>
 
@@ -123,7 +137,7 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
                 </div>
               </div>
               <span className="flex absolute bottom-6 right-6">
-                {Array.from({
+                {/* {Array.from({
                   length: RARITY[weapon.evolutions[evolutionStage]?.RarityType],
                 }).map((_, index) => (
                   <div className="w-8 h-8" key={index}>
@@ -133,11 +147,11 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
                       }
                     />
                   </div>
-                ))}
+                ))} */}
               </span>
 
               <div className="absolute left-6 bottom-6 text-xl z-50">
-                {weapon.name.en}
+                {weapon.name}
               </div>
 
               <div className="absolute flex flex-col gap-y-4 top-4 left-4 p-1">
@@ -145,10 +159,13 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
                   <Element type={weapon.attribute} />
                 </div>
                 <div className="w-16 h-16">
-                  <Image src={weaponsIcons[weapon.type]} alt={weapon.type} />
+                  <Image
+                    src={weaponsIcons[weapon.weapon_type]}
+                    alt={weapon.weapon_type}
+                  />
                 </div>
 
-                {weapon.isDark && (
+                {weapon.is_ex_weapon && (
                   <SVG src="/icons/weapons/dark.svg" className="h-16 w-16" />
                 )}
               </div>
@@ -176,7 +193,7 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
             >
               <h2 className="text-2xl">Skills</h2>
             </Lines>
-            {weapon.skills[evolutionStage]?.[0] && (
+            {/* {weapon.skills[evolutionStage]?.[0] && (
               <Skill
                 name={
                   weapon.skills[evolutionStage]?.[0][skillAbilitiesLevel].name
@@ -228,7 +245,7 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
                 isWeapon={true}
                 isMaxAscended={isMaxAscended}
               />
-            )}
+            )} */}
 
             <Lines
               className="mb-2 mt-8"
@@ -238,7 +255,7 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
               <h2 className="text-2xl">Abilities</h2>
             </Lines>
 
-            {weapon.abilities[evolutionStage]?.[0] && (
+            {/* {weapon.abilities[evolutionStage]?.[0] && (
               <Ability
                 name={
                   weapon.abilities[evolutionStage][0][skillAbilitiesLevel].name
@@ -280,7 +297,7 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
                 level={skillAbilitiesLevel + 1}
                 maxLevel={15}
               />
-            )}
+            )} */}
           </div>
         </div>
 
@@ -290,7 +307,7 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
           <p>Coming soon...</p>
         </div>
 
-        {weapon?.stories.length > 0 && (
+        {/* {weapon?.stories.length > 0 && (
           <div className="flex flex-col gap-y-4 mt-6">
             <h4 className="text-3xl bg-grey-lighter">Stories</h4>
 
@@ -304,9 +321,9 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
               ></p>
             ))}
           </div>
-        )}
+        )} */}
 
-        {weapon?.metadata?.weapon?.sources?.length > 0 && (
+        {/* {weapon?.metadata?.weapon?.sources?.length > 0 && (
           <div className="mt-8">
             <h3 className="font-display text-2xl mb-4">Weapon Sources</h3>
 
@@ -327,7 +344,7 @@ export default function WeaponInfo({ weapon }: WeaponInfoProps) {
               ))}
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </div>
   );

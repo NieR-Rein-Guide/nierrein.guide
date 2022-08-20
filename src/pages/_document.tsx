@@ -14,6 +14,10 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap"
             rel="stylesheet"
           />
+          <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          />
           <link rel="manifest" href="/app.webmanifest" />
           <link rel="shortcut icon" href="/favicon.png" />
           <link rel="apple-touch-icon" sizes="64x64" href="/favicon.png" />

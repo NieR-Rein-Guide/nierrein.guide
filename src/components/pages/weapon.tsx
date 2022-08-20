@@ -1,12 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
-import CostumeDetails from "@components/CharacterInfo";
-import { useEffect, useState } from "react";
 import React from "react";
-import CharacterCostumes from "@components/characters/CharacterCostumes";
-import CharacterRows from "@components/characters/CharacterRows";
-import CostumeSelect from "@components/characters/CostumeSelect";
 import {
   weapon_ability_link,
   weapon_ability,
@@ -15,9 +10,8 @@ import {
   weapon_stat,
   weapon,
 } from "@prisma/client";
-import slug from "slugg";
-import { useRouter } from "next/router";
 import { CDN_URL } from "@config/constants";
+import WeaponInfo from "@components/WeaponInfo";
 
 interface CharactersPageProps {
   weapon: (weapon & {
@@ -31,40 +25,23 @@ interface CharactersPageProps {
   })[];
 }
 
-export default function CostumePage({
+export default function WeaponPage({
   weapon,
 }: CharactersPageProps): JSX.Element {
-  /* const router = useRouter();
-
-  const [currentCostume, setCurrentCostume] = useState<costume | null>(
-    selectedCostume || costumes[0]
-  );
-
-  // Select the first costume if the character changes
-  useEffect(() => {
-    if (selectedCostume) return;
-    setCurrentCostume(costumes[0]);
-  }, [costumes, currentCharacter]);
-
-  // Update current route
-  useEffect(() => {
-    if (currentCharacter && currentCostume) {
-      router.push(
-        `/characters/${slug(currentCharacter.name)}/${slug(
-          currentCostume.title
-        )}`,
-        undefined,
-        {
-          shallow: true,
-        }
-      );
-    }
-  }, [currentCostume]); */
+  const lastStageWeapon = weapon[weapon.length - 1];
 
   return (
     <Layout>
-      <Meta title="" description="" cover="" />
-      Weapon
+      <Meta
+        title={`${lastStageWeapon.name}`}
+        description={`${
+          lastStageWeapon.name
+        } is a ${lastStageWeapon.attribute.toLowerCase()} weapon.`}
+        cover={`${CDN_URL}${lastStageWeapon.image_path}full.png`}
+      />
+
+      <WeaponInfo weapon={weapon[0]} />
+      <pre>{JSON.stringify(lastStageWeapon, null, 2)}</pre>
     </Layout>
   );
 }

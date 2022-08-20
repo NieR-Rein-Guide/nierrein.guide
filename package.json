@@ -14,7 +14,12 @@
     "node": "16.x"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
     "@lukeed/uuid": "^2.0.0",
+    "@material-table/core": "^0.2.35",
+    "@material-table/exporters": "^1.0.12",
+    "@mui/material": "^5.10.1",
     "@prisma/client": "^3.12.0",
     "@reach/accordion": "^0.16.1",
     "@reach/dialog": "^0.16.0",

@@ -11,8 +11,8 @@ import {
   weapon_stat,
 } from "@prisma/client";
 import slug from "slugg";
-import Weapons from "../../../components/pages/weapons";
-import Weapon from "../../../components/pages/weapon";
+import Weapons from "../../components/pages/weapons";
+import Weapon from "../../components/pages/weapon";
 
 interface WeaponsPageProps {
   isIndex: boolean;
@@ -34,18 +34,20 @@ interface WeaponsPageProps {
     })[];
     weapon_stat: weapon_stat[];
   })[];
+  abilitiesLookup: { [key: string]: string };
 }
 
 export default function WeaponsPage({
   isIndex,
   weapons,
   selectedWeapon,
+  abilitiesLookup,
 }: WeaponsPageProps): JSX.Element {
   if (!isIndex) {
     return <Weapon weapon={selectedWeapon} />;
   }
 
-  return <Weapons weapons={weapons} />;
+  return <Weapons weapons={weapons} abilitiesLookup={abilitiesLookup} />;
 }
 
 export async function getStaticProps(context) {
@@ -55,7 +57,7 @@ export async function getStaticProps(context) {
   if (Object.entries(context.params).length === 0) {
     const weapons = await prisma.weapon.findMany({
       orderBy: {
-        weapon_id: "asc",
+        release_time: "desc",
       },
       where: {
         evolution_order: {
@@ -71,18 +73,22 @@ export async function getStaticProps(context) {
           take: 1,
         },
         weapon_ability_link: {
-          take: 1,
+          where: {
+            ability_level: 15,
+          },
           orderBy: {
-            ability_level: "desc",
+            slot_number: "asc",
           },
           include: {
             weapon_ability: true,
           },
         },
         weapon_skill_link: {
-          take: 1,
+          where: {
+            skill_level: 15,
+          },
           orderBy: {
-            skill_level: "desc",
+            slot_number: "asc",
           },
           include: {
             weapon_skill: true,
@@ -91,12 +97,28 @@ export async function getStaticProps(context) {
       },
     });
 
+    const abilitiesLookupData = await prisma.weapon_ability.findMany({
+      orderBy: {
+        name: "asc",
+      },
+      select: {
+        name: true,
+      },
+      distinct: ["name"],
+    });
+
+    const abilitiesLookup = abilitiesLookupData.reduce((acc, current) => {
+      acc[current.name] = current.name;
+      return acc;
+    }, {});
+
     return {
       props: JSON.parse(
         JSON.stringify({
           isIndex: true,
           selectedWeapon: null,
           weapons,
+          abilitiesLookup,
         })
       ),
     };
