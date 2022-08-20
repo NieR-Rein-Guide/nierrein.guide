@@ -63,7 +63,7 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
   return (
     <div className="weapon-info">
       {(selectedWeapon.is_ex_weapon && (
-        <div className="flex flex-wrap justify-around gap-4 bg-grey-dark p-4 mb-6">
+        <div className="flex flex-wrap justify-around gap-4 bg-grey-dark px-4 py-6 mb-6 bordered relative">
           <Radio
             name="Stage 1"
             value={0}
@@ -93,7 +93,7 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
           />
         </div>
       )) || (
-        <div className="flex flex-wrap justify-around gap-4 bg-grey-dark p-4 mb-6">
+        <div className="flex flex-wrap justify-around gap-4 bg-grey-dark px-4 py-6 mb-6 bordered relative">
           <Radio
             name="First Stage"
             value={0}
@@ -314,44 +314,27 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
           </div>
         </div>
 
-        {/* {weapon?.stories.length > 0 && (
-          <div className="flex flex-col gap-y-4 mt-6">
-            <h4 className="text-3xl bg-grey-lighter">Stories</h4>
+        {selectedWeapon.weapon_story_link.length > 0 && (
+          <div className="flex flex-col gap-y-4 mt-6 relative">
+            <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
+              Stories
+            </h2>
+            <HR className="my-8" />
 
-            {weapon.stories.map((story, index) => (
+            {selectedWeapon.weapon_story_link.map((story) => (
               <p
                 className="bg-grey-dark p-4 border border-beige-inactive border-opacity-50"
-                key={`${weapon.ids.base}-${index}`}
+                key={story.weapon_story_id}
                 dangerouslySetInnerHTML={{
-                  __html: `${story.replaceAll("\\n", "<br>")}`,
+                  __html: `${story.weapon_story.story.replaceAll(
+                    "\\n",
+                    "<br>"
+                  )}`,
                 }}
               ></p>
             ))}
           </div>
-        )} */}
-
-        {/* {weapon?.metadata?.weapon?.sources?.length > 0 && (
-          <div className="mt-8">
-            <h3 className="font-display text-2xl mb-4">Weapon Sources</h3>
-
-            <div className="flex flex-wrap gap-4">
-              {weapon.metadata.weapon.sources.map((source, index) => (
-                <div
-                  key={`${weapon.ids.asset}source${index}`}
-                  className="flex justify-center gap-x-4 items-center border border-beige-inactive border-opacity-50 bg-grey-dark p-4"
-                >
-                  <h3 className="text-2xl text-beige-inactive">
-                    {source.questType && <p>{source.questType}</p>}
-                    {source.groupName && <p>{source.groupName}</p>}
-                    {source.questName && <p>{source.questName}</p>}
-                    {source.difficulty && <p>{source.difficulty}</p>}
-                    {source.storeName && <p>{source.storeName}</p>}
-                  </h3>
-                </div>
-              ))}
-            </div>
-          </div>
-        )} */}
+        )}
       </div>
     </div>
   );

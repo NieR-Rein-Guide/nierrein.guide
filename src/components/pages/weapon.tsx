@@ -14,6 +14,8 @@ import {
 } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 import WeaponInfo from "@components/WeaponInfo";
+import Link from "next/link";
+import SVG from "react-inlinesvg";
 
 interface CharactersPageProps {
   weapon: (weapon & {
@@ -45,8 +47,15 @@ export default function WeaponPage({
         cover={`${CDN_URL}${lastStageWeapon.image_path}full.png`}
       />
 
+      <nav className="mb-4">
+        <Link href="/database" passHref={true}>
+          <a className="btn">
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
+            <span>Return to Weapons</span>
+          </a>
+        </Link>
+      </nav>
       <WeaponInfo weapons={weapon} />
-      <pre>{JSON.stringify(weapon, null, 2)}</pre>
     </Layout>
   );
 }
