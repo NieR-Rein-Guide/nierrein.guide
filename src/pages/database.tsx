@@ -7,7 +7,7 @@ import storiesImg from "../../public/database/stories.jpg";
 import assetsImg from "../../public/database/assets.jpg";
 import artworksImg from "../../public/database/artworks.jpg";
 import costumesImg from "../../public/database/costumes.jpg";
-import weaponsImg from "../../public/database/weapons.jpg";
+import weaponsImg from "../../public/weapons.jpg";
 import memoirsImg from "../../public/database/memoirs.jpg";
 import companionsImg from "../../public/database/companions.jpg";
 

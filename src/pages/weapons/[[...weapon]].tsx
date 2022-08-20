@@ -1,7 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import {
-  costume,
   PrismaClient,
   weapon,
   weapon_ability_link,
@@ -63,6 +62,7 @@ export async function getStaticProps(context) {
         evolution_order: {
           gt: 1,
         },
+        is_ex_weapon: false,
       },
       distinct: "evolution_group_id",
       include: {
@@ -97,6 +97,55 @@ export async function getStaticProps(context) {
       },
     });
 
+    const exWeapons = await prisma.weapon.findMany({
+      orderBy: {
+        release_time: "desc",
+      },
+      where: {
+        evolution_order: {
+          gt: 10,
+        },
+        is_ex_weapon: true,
+      },
+      distinct: "evolution_group_id",
+      include: {
+        weapon_stat: {
+          orderBy: {
+            level: "desc",
+          },
+          take: 1,
+        },
+        weapon_ability_link: {
+          where: {
+            ability_level: 15,
+          },
+          orderBy: {
+            slot_number: "asc",
+          },
+          include: {
+            weapon_ability: true,
+          },
+        },
+        weapon_skill_link: {
+          where: {
+            skill_level: 15,
+          },
+          orderBy: {
+            slot_number: "asc",
+          },
+          include: {
+            weapon_skill: true,
+          },
+        },
+      },
+    });
+
+    const allWeapons = [...weapons, ...exWeapons];
+    allWeapons.sort(
+      // @ts-expect-error date sorting.
+      (a, b) => new Date(b.release_time) - new Date(a.release_time)
+    );
+
     const abilitiesLookupData = await prisma.weapon_ability.findMany({
       orderBy: {
         name: "asc",
@@ -117,7 +166,7 @@ export async function getStaticProps(context) {
         JSON.stringify({
           isIndex: true,
           selectedWeapon: null,
-          weapons,
+          weapons: allWeapons,
           abilitiesLookup,
         })
       ),
@@ -127,12 +176,21 @@ export async function getStaticProps(context) {
   // Show costume page
   const [weaponSlug] = context.params.weapon;
 
+  const tempWeapon = await prisma.weapon.findFirst({
+    select: {
+      evolution_group_id: true,
+    },
+    where: {
+      slug: slug(weaponSlug),
+    },
+  });
+
   const selectedWeapon = await prisma.weapon.findMany({
     orderBy: {
       weapon_id: "asc",
     },
     where: {
-      slug: slug(weaponSlug),
+      evolution_group_id: tempWeapon.evolution_group_id,
     },
     include: {
       weapon_stat: {
@@ -156,6 +214,11 @@ export async function getStaticProps(context) {
           weapon_skill: true,
         },
       },
+      weapon_story_link: {
+        include: {
+          weapon_story: true,
+        },
+      },
     },
   });
 
@@ -175,6 +238,9 @@ export async function getStaticPaths() {
   const prisma = new PrismaClient();
   const weapons = await prisma.weapon.findMany({
     distinct: "evolution_group_id",
+    where: {
+      evolution_order: 1,
+    },
   });
 
   prisma.$disconnect();

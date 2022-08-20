@@ -83,7 +83,7 @@ export default function CostumeArtwork({
 
       {/* {costume.costume.weapon && (
         <Link
-          href={`/database/weapons/${urlSlug(
+          href={`/weapons/${urlSlug(
             costume.costume?.weapon?.name?.en ?? "unnamed"
           )}/${costume.costume.weapon.ids.base}`}
           passHref

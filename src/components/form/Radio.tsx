@@ -6,7 +6,7 @@ interface CheckboxProps {
   name?: string;
   value?: string | number | boolean;
   isChecked: boolean;
-  setState: Dispatch<SetStateAction<string | number | boolean>>;
+  setState?: Dispatch<SetStateAction<string | number | boolean>>;
 }
 
 export default function Checkbox({

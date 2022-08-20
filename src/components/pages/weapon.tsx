@@ -9,6 +9,8 @@ import {
   weapon_skill,
   weapon_stat,
   weapon,
+  weapon_story,
+  weapon_story_link,
 } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 import WeaponInfo from "@components/WeaponInfo";
@@ -22,6 +24,9 @@ interface CharactersPageProps {
       weapon_skill: weapon_skill;
     })[];
     weapon_stat: weapon_stat[];
+    weapon_story_link: (weapon_story_link & {
+      weapon_story: weapon_story;
+    })[];
   })[];
 }
 
@@ -40,8 +45,8 @@ export default function WeaponPage({
         cover={`${CDN_URL}${lastStageWeapon.image_path}full.png`}
       />
 
-      <WeaponInfo weapon={weapon[0]} />
-      <pre>{JSON.stringify(lastStageWeapon, null, 2)}</pre>
+      <WeaponInfo weapons={weapon} />
+      <pre>{JSON.stringify(weapon, null, 2)}</pre>
     </Layout>
   );
 }

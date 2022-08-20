@@ -45,7 +45,7 @@ export const NAVIGATION = [
   },
   {
     label: "Weapons",
-    href: "/database/weapons",
+    href: "/weapons",
     icon: loadoutsIcon,
   },
   {

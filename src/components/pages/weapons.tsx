@@ -17,6 +17,7 @@ import WeaponThumbnail from "@components/WeaponThumbnail";
 import Image from "next/image";
 import weaponsIcons from "@utils/weaponsIcons";
 import { useRouter } from "next/router";
+import SVG from "react-inlinesvg";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -169,6 +170,20 @@ export default function WeaponsPage({
                     alt={weapon.weapon_type}
                   />
                 </div>
+              ),
+            },
+            {
+              field: "is_ex_weapon",
+              title: "EX",
+              type: "boolean",
+              render: (weapon) => (
+                <>
+                  {weapon.is_ex_weapon ? (
+                    <SVG src="/icons/weapons/dark.svg" className="h-8 w-8" />
+                  ) : (
+                    <span>No</span>
+                  )}
+                </>
               ),
             },
             {
