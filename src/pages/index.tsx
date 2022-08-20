@@ -17,7 +17,8 @@ import { useMedia } from "react-use";
 import CostumeArtwork from "@components/CostumeArtwork";
 import slug from "slugg";
 import { getNotifications } from "@models/notifications";
-import { character, costume, PrismaClient } from "@prisma/client";
+import { character, costume } from "@prisma/client";
+import prisma from "@libs/prisma";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
@@ -192,7 +193,6 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  const prisma = new PrismaClient();
   const [
     featuredGuides,
     currentEvents,

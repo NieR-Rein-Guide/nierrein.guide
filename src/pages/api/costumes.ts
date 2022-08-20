@@ -1,10 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
+import prisma from "@libs/prisma";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     try {
-      const prisma = new PrismaClient();
       const costumes = await prisma.costume.findMany({
         orderBy: {
           character_id: "asc",

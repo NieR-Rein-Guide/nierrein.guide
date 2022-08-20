@@ -78,7 +78,6 @@ export default function WeaponsPage({
                     element={weapon.attribute}
                     rarity={weapon.rarity}
                     type={weapon.weapon_type}
-                    id={weapon.weapon_id}
                     isDark={weapon.is_ex_weapon}
                     alt={weapon.name}
                     image_path={weapon.image_path}

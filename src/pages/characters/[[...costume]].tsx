@@ -1,14 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
-import {
-  character,
-  costume,
-  PrismaClient,
-  character_rank_bonus,
-} from "@prisma/client";
+import { character, costume, character_rank_bonus } from "@prisma/client";
 import slug from "slugg";
 import Costume from "../../components/pages/costume";
 import Index from "../../components/pages/costumes";
+import prisma from "@libs/prisma";
 
 interface CharactersPageProps {
   isIndex: boolean;
@@ -52,8 +48,6 @@ export default function CharactersPage({
 }
 
 export async function getStaticProps(context) {
-  const prisma = new PrismaClient();
-
   // No route parameters, show index page
   if (Object.entries(context.params).length === 0) {
     const characters = await prisma.character.findMany({
@@ -183,8 +177,6 @@ export async function getStaticProps(context) {
     stats[costume.costume_id] = allStats.sort((a, b) => a.level - b.level);
   }
 
-  prisma.$disconnect();
-
   return {
     props: JSON.parse(
       JSON.stringify({
@@ -202,7 +194,6 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const prisma = new PrismaClient();
   const costumes = await prisma.costume.findMany({
     include: {
       character: true,
@@ -210,8 +201,6 @@ export async function getStaticPaths() {
   });
 
   const characters = await prisma.character.findMany({});
-
-  prisma.$disconnect();
 
   const costumesPaths = costumes.map((costume) => ({
     params: {

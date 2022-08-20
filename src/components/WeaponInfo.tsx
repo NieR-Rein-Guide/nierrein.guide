@@ -120,7 +120,7 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
               <div className="bordered-lg bg-grey-dark h-full w-full">
                 <div className="relative z-10 h-full w-full">
                   <img
-                    className="h-full mx-auto"
+                    className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
                     src={`${CDN_URL}${selectedWeapon.image_path}full.png`}
                     alt={`${selectedWeapon.name} thumbnail`}
                   />

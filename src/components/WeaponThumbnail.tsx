@@ -8,7 +8,6 @@ import SVG from "react-inlinesvg";
 import { CDN_URL } from "@config/constants";
 
 interface WeaponThumbnailProps {
-  id: string | number;
   alt?: string;
   rarity: number | string;
   type: WeaponType | string;

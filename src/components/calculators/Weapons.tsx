@@ -1,6 +1,7 @@
 import { memo, useState, useEffect } from "react";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import Image from "next/image";
+import { CDN_URL } from "@config/constants";
 
 class Material {
   name: string;
@@ -190,8 +191,8 @@ function WeaponCalculator(): JSX.Element {
           <WeaponThumbnail
             type={dummyWeapons[weaponRarity].type}
             element={dummyWeapons[weaponRarity].element}
-            id={dummyWeapons[weaponRarity].id}
             rarity={weaponRarity}
+            image_path={`ui/weapon/wp${dummyWeapons[weaponRarity].id}/wp${dummyWeapons[weaponRarity].id}_`}
           />
           <div>
             <label>

@@ -1,17 +1,19 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
 import {
-  PrismaClient,
   weapon,
   weapon_ability_link,
   weapon_ability,
   weapon_skill_link,
   weapon_skill,
   weapon_stat,
+  weapon_story_link,
+  weapon_story,
 } from "@prisma/client";
 import slug from "slugg";
 import Weapons from "../../components/pages/weapons";
 import Weapon from "../../components/pages/weapon";
+import prisma from "@libs/prisma";
 
 interface WeaponsPageProps {
   isIndex: boolean;
@@ -23,6 +25,9 @@ interface WeaponsPageProps {
       weapon_skill: weapon_skill;
     })[];
     weapon_stat: weapon_stat[];
+    weapon_story_link: (weapon_story_link & {
+      weapon_story: weapon_story;
+    })[];
   })[];
   weapons: (weapon & {
     weapon_ability_link: (weapon_ability_link & {
@@ -50,8 +55,6 @@ export default function WeaponsPage({
 }
 
 export async function getStaticProps(context) {
-  const prisma = new PrismaClient();
-
   // No route parameters, show index page
   if (Object.entries(context.params).length === 0) {
     const weapons = await prisma.weapon.findMany({
@@ -59,9 +62,7 @@ export async function getStaticProps(context) {
         release_time: "desc",
       },
       where: {
-        evolution_order: {
-          gt: 1,
-        },
+        evolution_order: 2,
         is_ex_weapon: false,
       },
       distinct: "evolution_group_id",
@@ -181,7 +182,7 @@ export async function getStaticProps(context) {
       evolution_group_id: true,
     },
     where: {
-      slug: slug(weaponSlug),
+      slug: weaponSlug,
     },
   });
 
@@ -222,8 +223,6 @@ export async function getStaticProps(context) {
     },
   });
 
-  prisma.$disconnect();
-
   return {
     props: JSON.parse(
       JSON.stringify({
@@ -235,19 +234,43 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const prisma = new PrismaClient();
   const weapons = await prisma.weapon.findMany({
-    distinct: "evolution_group_id",
-    where: {
-      evolution_order: 1,
+    select: {
+      slug: true,
     },
+    orderBy: {
+      release_time: "desc",
+    },
+    where: {
+      evolution_order: 2,
+      is_ex_weapon: false,
+    },
+    distinct: "evolution_group_id",
   });
 
-  prisma.$disconnect();
+  const exWeapons = await prisma.weapon.findMany({
+    select: {
+      slug: true,
+    },
+    orderBy: {
+      release_time: "desc",
+    },
+    where: {
+      evolution_order: 11,
+      is_ex_weapon: true,
+    },
+    distinct: "evolution_group_id",
+  });
 
-  const weaponsPaths = weapons.map((weapon) => ({
+  const allWeapons = [...weapons, ...exWeapons];
+  allWeapons.sort(
+    // @ts-expect-error date sorting.
+    (a, b) => new Date(b.release_time) - new Date(a.release_time)
+  );
+
+  const weaponsPaths = allWeapons.map((weapon) => ({
     params: {
-      weapon: [slug(weapon.slug)],
+      weapon: [weapon.slug],
     },
   }));
 

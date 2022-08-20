@@ -10,6 +10,8 @@ interface SkillProps {
   description: string;
   SkillCooltimeValue?: number;
   isMaxAscended?: boolean;
+  AssetCategoryId?: number;
+  AssetVariationId?: number;
   level?: number;
   maxLevel?: number;
   isWeapon?: boolean;
