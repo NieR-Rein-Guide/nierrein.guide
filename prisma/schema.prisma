@@ -321,3 +321,12 @@ model debris {
   name            String?
   image_path_base String?
 }
+
+model notification {
+  notification_id  Int       @id(map: "pk_notification") @default(autoincrement())
+  information_type String?
+  title            String?
+  body             String?
+  release_time     DateTime? @db.Timestamptz(6)
+  thumbnail_path   String?
+}
