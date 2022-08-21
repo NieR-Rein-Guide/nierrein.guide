@@ -4,12 +4,71 @@ import getModelPath from "@utils/getModelPath";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import Element from "@components/Element";
+import {
+  companion,
+  companion_ability,
+  companion_ability_link,
+  companion_skill,
+  companion_skill_link,
+  companion_stat,
+} from "@prisma/client";
+import { CDN_URL } from "@config/constants";
+import classNames from "classnames";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
-export default function CostumeArtwork({ companion }): JSX.Element {
+interface CompanionThumbnailProps {
+  companion: companion & {
+    companion_ability_link: (companion_ability_link & {
+      companion_ability: companion_ability;
+    })[];
+    companion_skill_link: (companion_skill_link & {
+      companion_skill: companion_skill;
+    })[];
+    companion_stat: companion_stat[];
+  };
+  small?: boolean;
+}
+
+export default function CompanionThumbnail({
+  companion,
+  small,
+}: CompanionThumbnailProps): JSX.Element {
   const [isShowingModel, setIsShowingModel] = useState(false);
+
+  if (small) {
+    return (
+      <div
+        className="h-20 w-20 relative"
+        style={{
+          backgroundImage: `url(/decorations/background_rarity_1.png)`,
+        }}
+      >
+        <Image
+          className="z-10"
+          layout="fill"
+          src={`/decorations/corners_rarity_1.png`}
+          alt=""
+        />
+        <div
+          className="z-10 h-6 w-6 absolute"
+          style={{
+            top: "1px",
+            left: "1px",
+          }}
+        >
+          <Element type={companion.attribute} />
+        </div>
+
+        <img
+          className="z-0 h-full w-auto mx-auto p-1"
+          src={`${CDN_URL}${companion.image_path_base}full.png`}
+          alt={companion.name}
+        />
+      </div>
+    );
+  }
 
   return (
     <div
@@ -17,21 +76,17 @@ export default function CostumeArtwork({ companion }): JSX.Element {
       style={{ height: "222px" }}
     >
       <div className="bordered-lg bg-grey-dark h-full w-full">
-        <div className="relative z-10 h-full w-full">
+        <div className="relative z-10 h-full w-full py-4">
           {(isShowingModel && (
             <ModelWithNoSSR
-              path={getModelPath("companion", `sk_${companion.ActorAssetId}`)}
+              path={getModelPath("companion", `sk_${companion.companion_id}`)}
             />
           )) || (
-            <div className="flex justify-center">
-              <Image
-                src={`https://s3.eu-central-1.wasabisys.com/rein-ui/companion/${companion.ActorAssetId}/${companion.ActorAssetId}_full.png`}
-                alt={companion.ActorAssetId}
-                layout="intrinsic"
-                height="222"
-                width="153"
-              />
-            </div>
+            <img
+              className="mx-auto h-full"
+              src={`${CDN_URL}${companion.image_path_base}full.png`}
+              alt={companion.name}
+            />
           )}
         </div>
 
@@ -68,7 +123,7 @@ export default function CostumeArtwork({ companion }): JSX.Element {
       </div>
 
       <div className="absolute top-6 right-8">
-        <Element type={companion.AttributeType} />
+        <Element type={companion.attribute} />
       </div>
     </div>
   );

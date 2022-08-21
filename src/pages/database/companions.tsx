@@ -2,28 +2,49 @@ import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import { getAllCompanions } from "@models/companion";
-import Slider from "rc-slider";
-import { useState } from "react";
 import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import CompanionThumbnail from "@components/CompanionThumbnail";
-import Lines from "@components/decorations/Lines";
+import prisma from "@libs/prisma";
+import {
+  companion,
+  companion_ability,
+  companion_ability_link,
+  companion_skill,
+  companion_skill_link,
+  companion_stat,
+} from "@prisma/client";
+import MaterialTable from "@material-table/core";
+import { ExportCsv, ExportPdf } from "@material-table/exporters";
+import Element from "@components/Element";
 
-export default function DatabaseCostumes({ allCompanions }): JSX.Element {
-  const companions = JSON.parse(allCompanions);
-  const companionsByTypes = {};
+interface CompanionsPageProps {
+  companions: (companion & {
+    companion_ability_link: (companion_ability_link & {
+      companion_ability: companion_ability;
+    })[];
+    companion_skill_link: (companion_skill_link & {
+      companion_skill: companion_skill;
+    })[];
+    companion_stat: companion_stat[];
+  })[];
+  abilitiesLookup;
+  skillsLookup;
+}
 
-  companions.forEach((companion) => {
-    if (companionsByTypes[companion.Type]) {
-      return companionsByTypes[companion.Type].push(companion);
-    }
+const attributesLookup = {
+  LIGHT: "Light",
+  DARK: "Dark",
+  FIRE: "Fire",
+  WIND: "Wind",
+  WATER: "Water",
+};
 
-    companionsByTypes[companion.Type] = [companion];
-  });
-
-  const [skillLevel, setSkillLevel] = useState(14);
-
+export default function CompanionsPage({
+  companions,
+  abilitiesLookup,
+  skillsLookup,
+}: CompanionsPageProps): JSX.Element {
   return (
     <Layout>
       <Meta
@@ -41,28 +62,74 @@ export default function DatabaseCostumes({ allCompanions }): JSX.Element {
         </Link>
       </nav>
 
-      <section>
-        <h2 className="overlap">Companions</h2>
-
-        <div className="mb-12">
-          <p className="text-beige">Skill & Abilities Lv. {skillLevel + 1}</p>
-          <Slider
-            value={skillLevel}
-            className="mt-2 xl:mt-0 max-w-lg"
-            min={0}
-            max={14}
-            onChange={(value) => setSkillLevel(value)}
-          />
-        </div>
-
-        {Object.keys(companionsByTypes).map((type) => (
-          <div className="mb-12" key={type}>
-            <Lines containerClass="justify-center" className="mb-12">
-              <h2 className="text-5xl text-beige">{type}</h2>
-            </Lines>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-12 gap-8 lg:gap-20">
-              {companionsByTypes[type].map((companion) => (
-                <div className="bg-grey-dark p-4" key={companion.ActorAssetId}>
+      <section className="mx-auto p-6">
+        <MaterialTable
+          title={`${companions.length} companions in the database.`}
+          data={companions}
+          columns={[
+            {
+              field: "type",
+              title: "Type",
+            },
+            {
+              field: "name",
+              title: "Name",
+              render: (companion) => (
+                <div className="flex items-center gap-x-4 w-80">
+                  <CompanionThumbnail companion={companion} small />
+                  <span>{companion.name}</span>
+                </div>
+              ),
+            },
+            {
+              field: "companion_skill_link[0].companion_skill.name",
+              title: "Skill",
+              lookup: skillsLookup,
+              customFilterAndSearch: (term, companion) => {
+                if (term.length === 0) return true;
+                return term.includes(
+                  companion.companion_skill_link?.[0]?.companion_skill.name
+                );
+              },
+            },
+            {
+              field: "companion_skill_link[0].companion_skill.cooldown_time",
+              title: "Skill Cooldown",
+              type: "numeric",
+              hideFilterIcon: true,
+              customFilterAndSearch: (term, companion) =>
+                companion.companion_skill_link[0].companion_skill
+                  .cooldown_time <= Number(term),
+            },
+            {
+              field: "companion_ability_link[0].companion_ability.name",
+              title: "Ability",
+              lookup: abilitiesLookup,
+              customFilterAndSearch: (term, companion) => {
+                if (term.length === 0) return true;
+                return term.includes(
+                  companion.companion_ability_link?.[0]?.companion_ability.name
+                );
+              },
+            },
+            {
+              field: "attribute",
+              title: "Attribute",
+              cellStyle: {
+                textAlign: "center",
+              },
+              lookup: attributesLookup,
+              customFilterAndSearch: (term, weapon) => {
+                if (term.length === 0) return true;
+                return term.includes(weapon.attribute);
+              },
+              render: (weapon) => <Element type={weapon.attribute} size={32} />,
+            },
+          ]}
+          detailPanel={({ rowData: companion }) => {
+            return (
+              <section className="p-4">
+                <div className="bg-grey-dark p-4">
                   <div className="flex justify-center">
                     <CompanionThumbnail companion={companion} />
                   </div>
@@ -70,44 +137,128 @@ export default function DatabaseCostumes({ allCompanions }): JSX.Element {
                     {companion.name.split(":")[1]}
                   </span>
                   <Skill
-                    name={companion.skills[skillLevel].name}
-                    description={companion.skills[skillLevel].description}
-                    AssetCategoryId={
-                      companion.skills[skillLevel].SkillAssetCategoryId
+                    name={
+                      companion.companion_skill_link[0].companion_skill.name
                     }
-                    AssetVariationId={
-                      companion.skills[skillLevel].SkillAssetVariationId
+                    description={
+                      companion.companion_skill_link[0].companion_skill
+                        .description
                     }
-                    level={skillLevel + 1}
+                    imagePathBase={
+                      companion.companion_skill_link[0].companion_skill
+                        .image_path
+                    }
+                    level={15}
                   />
                   <Ability
-                    name={companion.abilities[skillLevel].name}
-                    description={companion.abilities[skillLevel].description}
-                    AssetCategoryId={
-                      companion.abilities[skillLevel].AssetCategoryId
+                    name={
+                      companion.companion_ability_link[0].companion_ability.name
                     }
-                    AssetVariationId={
-                      companion.abilities[skillLevel].AssetVariationId
+                    description={
+                      companion.companion_ability_link[0].companion_ability
+                        .description
                     }
-                    level={skillLevel + 1}
+                    imagePathBase={
+                      companion.companion_ability_link[0].companion_ability
+                        .image_path_base
+                    }
+                    level={15}
                     maxLevel={15}
                   />
                 </div>
-              ))}
-            </div>
-          </div>
-        ))}
+              </section>
+            );
+          }}
+          options={{
+            grouping: true,
+            searchFieldAlignment: "right",
+            filtering: true,
+            pageSize: 25,
+            pageSizeOptions: [25, 50, 100, 200, 500],
+            exportMenu: [
+              {
+                label: "Export PDF",
+                exportFunc: (cols, datas) =>
+                  ExportPdf(cols, datas, "myPdfFileName"),
+              },
+              {
+                label: "Export CSV",
+                exportFunc: (cols, datas) =>
+                  ExportCsv(cols, datas, "myCsvFileName"),
+              },
+            ],
+            exportAllData: true,
+          }}
+          onRowClick={(event, rowData, togglePanel) => togglePanel()}
+        />
       </section>
     </Layout>
   );
 }
 
 export async function getStaticProps() {
-  const allCompanions = await getAllCompanions();
+  const companions = await prisma.companion.findMany({
+    orderBy: {
+      release_time: "desc",
+    },
+    include: {
+      companion_ability_link: {
+        where: {
+          companion_level: 50,
+        },
+        include: {
+          companion_ability: true,
+        },
+      },
+      companion_skill_link: {
+        where: {
+          companion_level: 50,
+        },
+        include: {
+          companion_skill: true,
+        },
+      },
+      companion_stat: true,
+    },
+  });
+
+  const skillsLookupData = await prisma.companion_skill.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    select: {
+      name: true,
+    },
+    distinct: ["name"],
+  });
+
+  const skillsLookup = skillsLookupData.reduce((acc, current) => {
+    acc[current.name] = current.name;
+    return acc;
+  }, {});
+
+  const abilitiesLookupData = await prisma.companion_ability.findMany({
+    orderBy: {
+      name: "asc",
+    },
+    select: {
+      name: true,
+    },
+    distinct: ["name"],
+  });
+
+  const abilitiesLookup = abilitiesLookupData.reduce((acc, current) => {
+    acc[current.name] = current.name;
+    return acc;
+  }, {});
 
   return {
-    props: {
-      allCompanions: JSON.stringify(allCompanions),
-    },
+    props: JSON.parse(
+      JSON.stringify({
+        companions,
+        abilitiesLookup,
+        skillsLookup,
+      })
+    ),
   };
 }
