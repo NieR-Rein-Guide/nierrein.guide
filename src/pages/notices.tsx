@@ -21,7 +21,7 @@ export default function Events({ notifications }: NoticesProps): JSX.Element {
       <Meta
         title="Notices"
         description="A list of past and current in-game notices."
-        cover="https://nierrein.guide/cover-events.jpg"
+        cover="https://nierrein.guide/cover-notices.jpg"
       />
 
       <NotificationsWithNoSSR notifications={notifications} />
