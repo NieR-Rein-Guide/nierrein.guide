@@ -3,13 +3,10 @@ import { useState } from "react";
 import Layout from "@components/Layout";
 import TierListTab from "@components/tierlist/TierListTab";
 import TierList from "@components/tierlist/TierList";
-import { getTiers, Tier, TiersTabs } from "@models/tiers";
+import { getTiers, TiersTabs } from "@models/tiers";
 import Meta from "@components/Meta";
-import { DISCORD_URL } from "@config/constants";
 import slugify from "slugify";
-import { useRef } from "react";
 import { useRouter } from "next/router";
-import { getAllCostumes } from "@models/character";
 import { Costume } from "@models/types";
 
 interface TierlistsPageProps {
