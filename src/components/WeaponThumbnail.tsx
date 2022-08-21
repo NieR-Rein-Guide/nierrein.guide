@@ -17,11 +17,12 @@ interface WeaponThumbnailProps {
   className?: string;
   isLarge?: boolean;
   image_path: string;
+  onClick?: () => void | undefined;
 }
 
 export default function WeaponThumbnail({
   alt,
-  rarity,
+  rarity = 2,
   type,
   isDark = false,
   element,
@@ -29,6 +30,7 @@ export default function WeaponThumbnail({
   className = "",
   isLarge = false,
   image_path,
+  onClick = undefined,
 }: WeaponThumbnailProps): JSX.Element {
   let weaponRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   if (rarity === "LEGEND") {
@@ -95,7 +97,12 @@ export default function WeaponThumbnail({
 
   return (
     <div
-      className={classNames("h-20 w-20 relative", className)}
+      onClick={onClick}
+      className={classNames(
+        "h-20 w-20 relative",
+        onClick ? "cursor-pointer hover:scale-105 transition transform" : "",
+        className
+      )}
       style={{
         backgroundImage: `url(/decorations/background_rarity_${weaponRarity}.png)`,
       }}

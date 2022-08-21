@@ -39,7 +39,7 @@ interface CharactersPageProps {
   charactersLookup;
 }
 
-const weaponTypesLookup = {
+export const weaponTypesLookup = {
   SWORD: "1H Sword",
   BIG_SWORD: "2H Sword",
   FIST: "Fist",
@@ -48,13 +48,13 @@ const weaponTypesLookup = {
   STAFF: "Staff",
 };
 
-const rarityLookup = {
+export const rarityLookup = {
   RARE: "2*",
   S_RARE: "3*",
   SS_RARE: "4*",
 };
 
-const gaugeLookup = {
+export const gaugeLookup = {
   A: "A",
   B: "B",
   C: "C",

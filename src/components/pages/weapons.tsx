@@ -34,7 +34,7 @@ interface CharactersPageProps {
   abilitiesLookup: { [key: string]: string };
 }
 
-const attributesLookup = {
+export const attributesLookup = {
   LIGHT: "Light",
   DARK: "Dark",
   FIRE: "Fire",
@@ -42,7 +42,7 @@ const attributesLookup = {
   WATER: "Water",
 };
 
-const weaponTypesLookup = {
+export const weaponTypesLookup = {
   SWORD: "1H Sword",
   BIG_SWORD: "2H Sword",
   FIST: "Fist",
@@ -51,7 +51,7 @@ const weaponTypesLookup = {
   STAFF: "Staff",
 };
 
-const rarityLookup = {
+export const rarityLookup = {
   S_RARE: "3*",
   SS_RARE: "4*",
   LEGEND: "5*",

@@ -12,6 +12,7 @@ interface CostumeThumbnailProps {
   rarity?: number | string;
   imgClasses?: string;
   className?: string;
+  onClick?: () => void | undefined;
 }
 
 export default function CostumeThumbnail({
@@ -21,12 +22,18 @@ export default function CostumeThumbnail({
   rarity = 1,
   imgClasses = "",
   className = "",
+  onClick = undefined,
 }: CostumeThumbnailProps): JSX.Element {
   const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
 
   return (
     <div
-      className={classNames("min-h-20 min-w-20 h-20 w-20 relative", className)}
+      onClick={onClick}
+      className={classNames(
+        "min-h-20 min-w-20 h-20 w-20 relative",
+        onClick ? "cursor-pointer hover:scale-105 transition transform" : "",
+        className
+      )}
       style={{
         backgroundImage: `url(/decorations/background_rarity_${costumeRarity}.png)`,
       }}

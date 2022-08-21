@@ -305,3 +305,7 @@ canvas {
 ::-webkit-scrollbar-thumb:hover {
   background: theme('colors.grey.detail');
 }
+
+.MuiModal-root {
+  @apply overflow-auto;
+}
