@@ -19,7 +19,7 @@ export default function CostumeThumbnail({
   src,
   alt,
   weaponType,
-  rarity = 1,
+  rarity = 2,
   imgClasses = "",
   className = "",
   onClick = undefined,
@@ -42,7 +42,7 @@ export default function CostumeThumbnail({
         className="z-10"
         layout="fill"
         src={`/decorations/corners_rarity_${costumeRarity}.png`}
-        alt={alt}
+        alt=""
       />
       {weaponType && (
         <div
@@ -55,12 +55,14 @@ export default function CostumeThumbnail({
           <Image layout="fill" src={weaponsIcons[weaponType]} alt={alt} />
         </div>
       )}
-      <Image
-        className={classNames("z-0", imgClasses)}
-        layout="fill"
-        src={src}
-        alt={alt}
-      />
+      {!alt.includes("undefined") && (
+        <Image
+          className={classNames("z-0", imgClasses)}
+          layout="fill"
+          src={src}
+          alt={alt}
+        />
+      )}
     </div>
   );
 }

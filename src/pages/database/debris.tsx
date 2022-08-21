@@ -13,13 +13,13 @@ interface DebrisPageProps {
   debris: debris[];
 }
 
-const DEBRIS_RARITY = {
+export const DEBRIS_RARITY = {
   20: 2,
   30: 3,
   40: 4,
 };
 
-const rarityLookup = {
+export const rarityLookup = {
   20: "2*",
   30: "3*",
   40: "4*",

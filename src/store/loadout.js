@@ -31,8 +31,11 @@ export const useLoadoutStore = create((set) => ({
   costumeModal: false,
   weaponsModal: false,
   companionModal: false,
+  debrisModal: false,
+  memoirsModal: false,
   currentSlotIndex: 0,
   currentWeaponIndex: 0,
+  currentMemoirIndex: 0,
   setTitle: (newTitle) => set({ title: newTitle }),
   setDescription: (newDesc) => set({ description: newDesc }),
   setType: (newType) => set({ type: newType }),
@@ -105,5 +108,37 @@ export const useLoadoutStore = create((set) => ({
         slots: newSlots,
         companionModal: false,
       };
+    }),
+  setDebris: (debris) =>
+    set((state) => {
+      const newSlots = [...state.slots];
+      newSlots[state.currentSlotIndex].debris = debris;
+
+      return {
+        slots: newSlots,
+        debrisModal: false,
+      };
+    }),
+  setDebrisModal: (currentSlotIndex, newState) =>
+    set({
+      debrisModal: newState,
+      currentSlotIndex,
+    }),
+  setMemoir: (memoir) =>
+    set((state) => {
+      const newSlots = [...state.slots];
+      newSlots[state.currentSlotIndex].memoirs[state.currentMemoirIndex] =
+        memoir;
+
+      return {
+        slots: newSlots,
+        memoirsModal: false,
+      };
+    }),
+  setMemoirsModal: (currentSlotIndex, currentMemoirIndex, newState) =>
+    set({
+      memoirsModal: newState,
+      currentSlotIndex,
+      currentMemoirIndex,
     }),
 }));

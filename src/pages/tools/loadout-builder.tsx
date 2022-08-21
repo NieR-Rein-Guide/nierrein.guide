@@ -9,7 +9,6 @@ import DebrisThumbnail from "@components/DebrisThumbnail";
 import { useEffect } from "react";
 import prisma from "@libs/prisma";
 import Modal from "@mui/material/Modal";
-import { useState } from "react";
 import { companion, costume, debris, memoir, weapon } from "@prisma/client";
 import MaterialTable from "@material-table/core";
 import { CDN_URL } from "@config/constants";
@@ -21,13 +20,24 @@ import weaponsIcons from "@utils/weaponsIcons";
 import Image from "next/image";
 import Element from "@components/Element";
 import { attributesLookup } from "@components/pages/weapons";
+import {
+  DEBRIS_RARITY,
+  rarityLookup as debrisRarityLookup,
+} from "pages/database/debris";
+import MemoirThumbnail from "@components/MemoirThumbnail";
 
 interface LoadoutBuilderProps {
   costumes: costume[];
   weapons: weapon[];
   companions: companion[];
   debris: debris[];
-  memoirs: memoir[];
+  memoirs: (memoir & {
+    memoir_series: {
+      name: string;
+      large_set_description: string;
+    };
+  })[];
+  memoirsSetLookup;
 }
 
 export default function LoadoutBuilder({
@@ -36,33 +46,50 @@ export default function LoadoutBuilder({
   companions,
   debris,
   memoirs,
+  memoirsSetLookup,
 }: LoadoutBuilderProps): JSX.Element {
-  const title = useLoadoutStore((state) => state.title);
-  const setTitle = useLoadoutStore((state) => state.setTitle);
-  const type = useLoadoutStore((state) => state.type);
-  const setType = useLoadoutStore((state) => state.setType);
-  const description = useLoadoutStore((state) => state.description);
-  const setDescription = useLoadoutStore((state) => state.setDescription);
+  /**
+   * Loadout slots
+   */
   const slots = useLoadoutStore((state) => state.slots);
-  const setSlotSize = useLoadoutStore((state) => state.setSlotSize);
+
+  /**
+   * Select a costume
+   */
   const setCostume = useLoadoutStore((state) => state.setCostume);
   const costumeModal = useLoadoutStore((state) => state.costumeModal);
   const setCostumeModal = useLoadoutStore((state) => state.setCostumeModal);
+
+  /**
+   * Select up to 3 weapons
+   */
   const weaponsModal = useLoadoutStore((state) => state.weaponsModal);
   const setWeaponsModal = useLoadoutStore((state) => state.setWeaponsModal);
   const setWeapon = useLoadoutStore((state) => state.setWeapon);
+
+  /**
+   * Companion
+   */
   const companionModal = useLoadoutStore((state) => state.companionModal);
   const setCompanionModal = useLoadoutStore((state) => state.setCompanionModal);
   const setCompanion = useLoadoutStore((state) => state.setCompanion);
 
-  const loadout = useLoadoutStore((state) => state);
+  /**
+   * Debris
+   */
+  const debrisModal = useLoadoutStore((state) => state.debrisModal);
+  const setDebrisModal = useLoadoutStore((state) => state.setDebrisModal);
+  const setDebris = useLoadoutStore((state) => state.setDebris);
 
-  useEffect(() => {
-    setSlotSize(LOADOUT_TYPES[type].slotSize);
-  }, [type, setSlotSize]);
+  /**
+   * Memoirs
+   */
+  const memoirsModal = useLoadoutStore((state) => state.memoirsModal);
+  const setMemoirsModal = useLoadoutStore((state) => state.setMemoirsModal);
+  const setMemoir = useLoadoutStore((state) => state.setMemoir);
 
   return (
-    <Layout hasContainer={false}>
+    <Layout>
       <Meta
         title="Loadout Builder"
         description="Build your own loadout."
@@ -70,44 +97,17 @@ export default function LoadoutBuilder({
       />
 
       <section className="p-8">
-        <div className="flex items-center justify-between bg-grey-dark relative bordered p-4">
-          <div>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-            />
-          </div>
-          <div className="flex  gap-x-4 relative">
-            {Object.entries(LOADOUT_TYPES).map(([key, currentType]) => (
-              <div key={key} className="relative">
-                <Radio
-                  name={currentType.label}
-                  value={key}
-                  isChecked={type === key}
-                  setState={setType}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="bg-grey-dark p-4">
-          <textarea value={description} onChange={setDescription}></textarea>
-        </div>
+        <LoadoutSettings />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
           {slots.map((slot, index) => (
             <CostumeSlot key={index} index={index} />
           ))}
         </div>
-
-        <pre className="mt-24 bg-grey-dark">
-          {JSON.stringify(loadout, null, 2)}
-        </pre>
       </section>
 
       {/* Modals for selection */}
+      {/* MODAL COSTUMES */}
       <Modal
         open={costumeModal}
         onClose={() => setCostumeModal(0, false)}
@@ -201,6 +201,7 @@ export default function LoadoutBuilder({
         />
       </Modal>
 
+      {/* MODAL WEAPONS */}
       <Modal
         open={weaponsModal}
         onClose={() => setWeaponsModal(0, false)}
@@ -310,6 +311,7 @@ export default function LoadoutBuilder({
         />
       </Modal>
 
+      {/* MODAL COMPANIONS */}
       <Modal
         open={companionModal}
         onClose={() => setCompanionModal(0, false)}
@@ -359,7 +361,165 @@ export default function LoadoutBuilder({
           onRowClick={(event, companion) => setCompanion(companion)}
         />
       </Modal>
+
+      {/* MODAL DEBRIS */}
+      <Modal
+        open={debrisModal}
+        onClose={() => setDebrisModal(0, false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        keepMounted
+      >
+        <MaterialTable
+          title={`${debris.length} debris in the database.`}
+          data={debris}
+          columns={[
+            {
+              field: "name",
+              title: "Name",
+              render: (debris) => (
+                <div className="flex items-center gap-x-4 w-80">
+                  <DebrisThumbnail {...debris} />
+                  <span>{debris.name.split("Debris:")[1]}</span>
+                </div>
+              ),
+            },
+            {
+              field: "ability",
+              title: "Ability",
+              lookup: { 0: "WIP" },
+              render: () => <span>WIP</span>,
+            },
+            {
+              field: "rarity",
+              title: "Rarity",
+              lookup: debrisRarityLookup,
+              customFilterAndSearch: (term, debris) => {
+                if (term.length === 0) return true;
+                return term.includes(debris.rarity.toString());
+              },
+              render: (debris) => (
+                <div className="w-8 h-8 mx-auto">
+                  <Star rarity={DEBRIS_RARITY[debris.rarity]} />
+                </div>
+              ),
+            },
+            {
+              field: "release_time",
+              title: "Released date",
+              type: "datetime",
+              customFilterAndSearch: (term, debris) => {
+                return term < new Date(debris.release_time);
+              },
+            },
+          ]}
+          options={{
+            grouping: true,
+            searchFieldAlignment: "right",
+            filtering: true,
+            pageSize: 25,
+            pageSizeOptions: [25, 50, 100, 200, 500],
+          }}
+          onRowClick={(event, debris) => setDebris(debris)}
+        />
+      </Modal>
+
+      {/* MEMOIRS DEBRIS */}
+      <Modal
+        open={memoirsModal}
+        onClose={() => setMemoirsModal(0, 0, false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+        keepMounted
+      >
+        <MaterialTable
+          title={`${memoirs.length} memoirs in the database.`}
+          data={memoirs}
+          columns={[
+            {
+              field: "memoir_series.name",
+              title: "Set",
+              lookup: memoirsSetLookup,
+              customFilterAndSearch: (term, memoir) => {
+                if (term.length === 0) return true;
+                return term.includes(memoir.memoir_series.name);
+              },
+            },
+            {
+              field: "name",
+              render: (memoir) => (
+                <div className="flex items-center gap-x-4 w-80">
+                  <MemoirThumbnail {...memoir} />
+                  <span>{memoir.name}</span>
+                </div>
+              ),
+            },
+            {
+              field: "memoir_series.large_set_description",
+              title: "Description",
+            },
+          ]}
+          options={{
+            grouping: true,
+            searchFieldAlignment: "right",
+            filtering: true,
+            pageSize: 25,
+            pageSizeOptions: [25, 50, 100, 200, 500],
+          }}
+          onRowClick={(event, memoir) => setMemoir(memoir)}
+        />
+      </Modal>
     </Layout>
+  );
+}
+
+function LoadoutSettings() {
+  const setSlotSize = useLoadoutStore((state) => state.setSlotSize);
+
+  const title = useLoadoutStore((state) => state.title);
+  const setTitle = useLoadoutStore((state) => state.setTitle);
+
+  const type = useLoadoutStore((state) => state.type);
+  const setType = useLoadoutStore((state) => state.setType);
+
+  const description = useLoadoutStore((state) => state.description);
+  const setDescription = useLoadoutStore((state) => state.setDescription);
+
+  useEffect(() => {
+    setSlotSize(LOADOUT_TYPES[type].slotSize);
+  }, [type, setSlotSize]);
+
+  return (
+    <div>
+      <div className="flex items-center justify-between bg-grey-dark relative bordered p-4">
+        <div>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="flex  gap-x-4 relative">
+          {Object.entries(LOADOUT_TYPES).map(([key, currentType]) => (
+            <div key={key} className="relative">
+              <Radio
+                name={currentType.label}
+                value={key}
+                isChecked={type === key}
+                setState={setType}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="bg-grey-dark p-4">
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        ></textarea>
+      </div>
+    </div>
   );
 }
 
@@ -368,16 +528,26 @@ interface CostumeSlotProps {
 }
 
 function CostumeSlot({ index }: CostumeSlotProps): JSX.Element {
+  /**
+   * Current slot in the loadout.
+   */
   const slot = useLoadoutStore((state) => state.slots[index]);
+
+  /**
+   * Methods to open the selection modal for this item.
+   */
   const setCostumeModal = useLoadoutStore((state) => state.setCostumeModal);
   const setWeaponsModal = useLoadoutStore((state) => state.setWeaponsModal);
   const setCompanionModal = useLoadoutStore((state) => state.setCompanionModal);
+  const setDebrisModal = useLoadoutStore((state) => state.setDebrisModal);
+  const setMemoirsModal = useLoadoutStore((state) => state.setMemoirsModal);
 
   return (
-    <div className="bg-grey-lighter">
+    <div className="bg-grey-foreground">
       <div className="bg-beige-active text-grey-foreground text-lg pl-2 py-1">
         Details
       </div>
+      {/* CHARACTER */}
       <div>
         <h3 className="text-xl">Character</h3>
         <CostumeThumbnail
@@ -387,9 +557,10 @@ function CostumeSlot({ index }: CostumeSlotProps): JSX.Element {
           rarity={RARITY[slot.costume?.rarity]}
         />
       </div>
+      {/* WEAPONS */}
       <div>
         <h3 className="text-xl">Weapons</h3>
-        <div className="flex gap-x-4">
+        <div className="grid grid-cols-1 md:grid-cols-3">
           {slot.weapons.map((weapon: weapon, weaponIndex) => (
             <WeaponThumbnail
               key={`${index}-${weaponIndex}`}
@@ -404,7 +575,8 @@ function CostumeSlot({ index }: CostumeSlotProps): JSX.Element {
           ))}
         </div>
       </div>
-      <div className="flex justify-between">
+      {/* COMPANION & DEBRIS */}
+      <div className="grid grid-cols-1 md:grid-cols-3">
         <div>
           <h3 className="text-xl">Companion</h3>
           <CompanionThumbnail
@@ -413,59 +585,85 @@ function CostumeSlot({ index }: CostumeSlotProps): JSX.Element {
             small
           />
         </div>
-        <div>
+        <div className="col-start-3">
           <h3 className="text-xl">Debris</h3>
-          {(slot.debris && <DebrisThumbnail {...slot.debris} />) || (
-            <div>Select a debris</div>
-          )}
+          <DebrisThumbnail
+            onClick={() => setDebrisModal(index, true)}
+            {...slot.debris}
+          />
         </div>
       </div>
+      {/* MEMOIRS */}
       <div>
         <h3 className="text-xl">Memoirs</h3>
-        {slot.memoirs.map((memoir) => {
-          if (memoir) {
-            return memoir.name;
-          }
-
-          return "Select";
-        })}
+        <div className="grid grid-cols-1 md:grid-cols-3">
+          {slot.memoirs.map((memoir, memoirIndex) => (
+            <MemoirThumbnail
+              onClick={() => setMemoirsModal(index, memoirIndex, true)}
+              key={`${index}-${memoirIndex}`}
+              {...memoir}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
 }
 
 export async function getStaticProps(context) {
-  const [costumes, weapons, companions, debris, memoirs] = await Promise.all([
-    prisma.costume.findMany({
-      orderBy: {
-        release_time: "asc",
-      },
-    }),
-    prisma.weapon.findMany({
-      orderBy: {
-        release_time: "asc",
-      },
-      where: {
-        evolution_order: 1,
-      },
-    }),
-    prisma.companion.findMany({
-      orderBy: {
-        release_time: "asc",
-      },
-    }),
-    prisma.debris.findMany({
-      orderBy: {
-        release_time: "asc",
-      },
-    }),
-    prisma.memoir.findMany({
-      where: {
-        lottery_id: 5,
-        rarity: "SS_RARE",
-      },
-    }),
-  ]);
+  const [costumes, weapons, companions, debris, memoirs, memoirsLookupData] =
+    await Promise.all([
+      prisma.costume.findMany({
+        orderBy: {
+          release_time: "asc",
+        },
+      }),
+      prisma.weapon.findMany({
+        orderBy: {
+          release_time: "asc",
+        },
+        where: {
+          evolution_order: 1,
+        },
+      }),
+      prisma.companion.findMany({
+        orderBy: {
+          release_time: "asc",
+        },
+      }),
+      prisma.debris.findMany({
+        orderBy: {
+          release_time: "asc",
+        },
+      }),
+      prisma.memoir.findMany({
+        where: {
+          lottery_id: 5,
+          rarity: "SS_RARE",
+        },
+        include: {
+          memoir_series: {
+            select: {
+              large_set_description: true,
+              name: true,
+            },
+          },
+        },
+      }),
+      prisma.memoir_series.findMany({
+        orderBy: {
+          memoir_series_id: "asc",
+        },
+        select: {
+          name: true,
+        },
+      }),
+    ]);
+
+  const memoirsSetLookup = memoirsLookupData.reduce((acc, current) => {
+    acc[current.name] = current.name;
+    return acc;
+  }, {});
 
   return {
     props: JSON.parse(
@@ -475,6 +673,7 @@ export async function getStaticProps(context) {
         companions,
         debris,
         memoirs,
+        memoirsSetLookup,
       })
     ),
   };

@@ -48,13 +48,13 @@ export default function CompanionThumbnail({
           onClick ? "cursor-pointer hover:scale-105 transition transform" : ""
         )}
         style={{
-          backgroundImage: `url(/decorations/background_rarity_1.png)`,
+          backgroundImage: `url(/decorations/background_rarity_2.png)`,
         }}
       >
         <Image
           className="z-10"
           layout="fill"
-          src={`/decorations/corners_rarity_1.png`}
+          src={`/decorations/corners_rarity_2.png`}
           alt=""
         />
         <div
@@ -67,11 +67,13 @@ export default function CompanionThumbnail({
           <Element type={companion?.attribute} />
         </div>
 
-        <img
-          className="z-0 h-full w-auto mx-auto p-1"
-          src={`${CDN_URL}${companion?.image_path_base}full.png`}
-          alt={companion?.name}
-        />
+        {companion?.name && (
+          <img
+            className="z-0 h-full w-auto mx-auto p-1"
+            src={`${CDN_URL}${companion?.image_path_base}full.png`}
+            alt={companion?.name}
+          />
+        )}
       </div>
     );
   }
