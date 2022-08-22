@@ -495,8 +495,8 @@ function LoadoutSettings() {
   }, [type, setSlotSize]);
 
   return (
-    <div>
-      <div className="flex items-center justify-between bg-grey-dark relative bordered p-4">
+    <div className="relative bordered">
+      <div className="flex items-center justify-between bg-grey-dark p-4">
         <div>
           <input
             type="text"
@@ -1095,13 +1095,16 @@ function CostumeSlot({ index }: CostumeSlotProps): JSX.Element {
   const setMemoirsModal = useLoadoutStore((state) => state.setMemoirsModal);
 
   return (
-    <div className="bg-grey-foreground pb-2">
+    <div className="bg-grey-foreground pb-4">
       <div className="bg-beige-active text-grey-foreground text-lg pl-2 py-1">
         Details
       </div>
       {/* CHARACTER */}
-      <div className="px-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center px-2 mt-2">
         <h3 className="text-xl">Character</h3>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center px-2">
         <CostumeThumbnail
           onClick={() => setCostumeModal(index, true)}
           src={`${CDN_URL}${slot.costume?.image_path_base}battle.png`}
@@ -1110,35 +1113,35 @@ function CostumeSlot({ index }: CostumeSlotProps): JSX.Element {
         />
       </div>
       {/* WEAPONS */}
-      <div className="px-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center px-2 mt-2">
         <h3 className="text-xl">Weapons</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 place-items-center">
-          {slot.weapons.map((weapon: weapon, weaponIndex) => (
-            <WeaponThumbnail
-              key={`${index}-${weaponIndex}`}
-              onClick={() => setWeaponsModal(index, weaponIndex, true)}
-              element={weapon?.attribute}
-              rarity={weapon?.rarity}
-              type={weapon?.weapon_type}
-              isDark={weapon?.is_ex_weapon}
-              alt={weapon?.name}
-              image_path={weapon?.image_path}
-            />
-          ))}
-        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center px-2">
+        {slot.weapons.map((weapon: weapon, weaponIndex) => (
+          <WeaponThumbnail
+            key={`${index}-${weaponIndex}`}
+            onClick={() => setWeaponsModal(index, weaponIndex, true)}
+            element={weapon?.attribute}
+            rarity={weapon?.rarity}
+            type={weapon?.weapon_type}
+            isDark={weapon?.is_ex_weapon}
+            alt={weapon?.name}
+            image_path={weapon?.image_path}
+          />
+        ))}
       </div>
       {/* COMPANION & DEBRIS */}
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center px-2 mt-2">
+        <h3 className="text-xl">Companion</h3>
+        <h3 className="text-xl col-start-3">Debris</h3>
+      </div>
       <div className="px-2 grid grid-cols-1 md:grid-cols-3 place-items-center">
-        <div>
-          <h3 className="text-xl">Companion</h3>
-          <CompanionThumbnail
-            onClick={() => setCompanionModal(index, true)}
-            companion={slot.companion}
-            small
-          />
-        </div>
+        <CompanionThumbnail
+          onClick={() => setCompanionModal(index, true)}
+          companion={slot.companion}
+          small
+        />
         <div className="col-start-3">
-          <h3 className="text-xl">Debris</h3>
           <DebrisThumbnail
             onClick={() => setDebrisModal(index, true)}
             {...slot.debris}
@@ -1146,17 +1149,17 @@ function CostumeSlot({ index }: CostumeSlotProps): JSX.Element {
         </div>
       </div>
       {/* MEMOIRS */}
-      <div className="px-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center px-2 mt-2">
         <h3 className="text-xl">Memoirs</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 place-items-center">
-          {slot.memoirs.map((memoir, memoirIndex) => (
-            <MemoirThumbnail
-              onClick={() => setMemoirsModal(index, memoirIndex, true)}
-              key={`${index}-${memoirIndex}`}
-              {...memoir}
-            />
-          ))}
-        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 place-items-center px-2">
+        {slot.memoirs.map((memoir, memoirIndex) => (
+          <MemoirThumbnail
+            onClick={() => setMemoirsModal(index, memoirIndex, true)}
+            key={`${index}-${memoirIndex}`}
+            {...memoir}
+          />
+        ))}
       </div>
     </div>
   );

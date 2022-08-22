@@ -21,7 +21,7 @@ export const DEFAULT_SLOT = {
   companion: null,
   debris: null,
   memoirs: [null, null, null],
-}
+};
 
 export const useLoadoutStore = create((set) => ({
   title: "My Loadout",
@@ -40,8 +40,49 @@ export const useLoadoutStore = create((set) => ({
   setDescription: (newDesc) => set({ description: newDesc }),
   setType: (newType) => set({ type: newType }),
   setSlotSize: (newSize) =>
-    set({
-      slots: JSON.parse(JSON.stringify(new Array(newSize).fill(DEFAULT_SLOT))),
+    set((state) => {
+      /**
+       * First time loading the page, fill 3 default slots
+       */
+      if (state.slots.length === 0) {
+        return {
+          slots: JSON.parse(
+            JSON.stringify(new Array(newSize).fill(DEFAULT_SLOT))
+          ),
+        };
+      }
+
+      /**
+       * If switching from "quests" or "arena" to "subj"
+       * Keep old loadout and fill the rest
+       */
+      if (newSize > state.slots.length) {
+        const oldSlots = [...state.slots]
+
+        const slotsToCreate = newSize - state.slots.length
+        const newSlots = new Array(slotsToCreate).fill(DEFAULT_SLOT);
+
+        return {
+          slots: JSON.parse(
+            JSON.stringify([...oldSlots, ...newSlots])
+          ),
+        };
+      }
+
+      if (newSize < state.slots.length) {
+        const newSlots = state.slots.slice(0, newSize)
+
+        return {
+          slots: JSON.parse(JSON.stringify(newSlots)),
+        };
+      }
+
+      /**
+       * Same slots length so just return the same slots
+       */
+      return {
+        slots: state.slots,
+      }
     }),
   /**
    * Update the costume on a specific slot (slot index is set when opening modal)
