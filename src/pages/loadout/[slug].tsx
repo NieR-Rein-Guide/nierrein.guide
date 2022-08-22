@@ -35,11 +35,7 @@ interface LoadoutProps {
 export default function Loadout({ loadout, slots }: LoadoutProps): JSX.Element {
   return (
     <Layout>
-      <Meta
-        title={loadout.title}
-        description={loadout.description}
-        cover="https://nierrein.guide/tools/loadout-builder.jpg"
-      />
+      <Meta title={loadout.title} description={loadout.description} />
 
       <section className="p-8">
         <LoadoutInfo loadout={loadout} />
