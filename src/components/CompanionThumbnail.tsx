@@ -19,15 +19,17 @@ const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
 });
 
 interface CompanionThumbnailProps {
-  companion: companion & {
-    companion_ability_link: (companion_ability_link & {
-      companion_ability: companion_ability;
-    })[];
-    companion_skill_link: (companion_skill_link & {
-      companion_skill: companion_skill;
-    })[];
-    companion_stat: companion_stat[];
-  };
+  companion:
+    | (companion & {
+        companion_ability_link: (companion_ability_link & {
+          companion_ability: companion_ability;
+        })[];
+        companion_skill_link: (companion_skill_link & {
+          companion_skill: companion_skill;
+        })[];
+        companion_stat: companion_stat[];
+      })
+    | companion;
   small?: boolean;
   onClick?: () => void | undefined;
 }
