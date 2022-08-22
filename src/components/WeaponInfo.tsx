@@ -10,20 +10,11 @@ import Ability from "@components/Ability";
 import Slider from "rc-slider";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
-import {
-  weapon_ability_link,
-  weapon_ability,
-  weapon_skill_link,
-  weapon_skill,
-  weapon_stat,
-  weapon,
-  weapon_story_link,
-  weapon_story,
-} from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 import statsIcons from "@utils/statsIcons";
 import HR from "./decorations/HR";
 import classNames from "classnames";
+import { weapon, weapon_ability, weapon_ability_link, weapon_skill, weapon_skill_link, weapon_stat, weapon_story, weapon_story_link } from "generated/dump";
 
 interface WeaponInfoProps {
   weapons: (weapon & {

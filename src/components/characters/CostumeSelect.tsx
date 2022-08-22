@@ -1,4 +1,4 @@
-import { character } from "@prisma/client";
+import { character } from "generated/dump";
 import { useRouter } from "next/router";
 
 export default function CostumeSelect({

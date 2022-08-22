@@ -9,8 +9,8 @@ import RARITY from "@utils/rarity";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import urlSlug from "url-slug";
-import { character, costume } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
+import { character, costume } from "generated/dump";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });

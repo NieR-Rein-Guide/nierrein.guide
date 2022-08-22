@@ -5,12 +5,12 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npm run prisma:generate",
     "build": "next build",
     "start": "next start",
     "lint": "eslint src",
     "fix": "eslint src --fix",
-    "prisma-generate": "prisma generate --schema prisma/schema.prisma && prisma generate --schema prisma/nierreinguide.prisma",
-    "postinstall": "npm run prisma-generate"
+    "prisma:generate": "cd databases/dump && npx prisma generate && cd ../nierreinguide && npx prisma generate"
   },
   "engines": {
     "node": "16.x"

@@ -5,17 +5,17 @@ import CostumeThumbnail from "@components/CostumeThumbnail";
 import CompanionThumbnail from "@components/CompanionThumbnail";
 import DebrisThumbnail from "@components/DebrisThumbnail";
 import prisma, { nrgprisma } from "@libs/prisma";
-import { companion, costume, debris, memoir, weapon } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import MemoirThumbnail from "@components/MemoirThumbnail";
 import Radio from "@components/form/Radio";
 import { NextPageContext } from "next";
-import { loadouts, loadout_slots } from "../../../prisma/generated/client2";
 import { formatDistanceToNow } from "date-fns";
 import { useEffect, useState } from "react";
 import { LOADOUT_TYPES } from "@store/loadout";
 import Element from "@components/Element";
+import { companion, costume, debris, memoir, weapon } from "generated/dump";
+import { loadouts, loadout_slots } from "generated/nierreinguide";
 
 interface Slot {
   costume: costume;

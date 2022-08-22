@@ -14,14 +14,9 @@ import Ability from "@components/Ability";
 import Ascend from "@components/decorations/Ascend";
 import Slider from "rc-slider";
 import dynamic from "next/dynamic";
-import {
-  character,
-  character_rank_bonus,
-  costume,
-  costume_stat,
-} from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 import { format, formatDistanceToNow } from "date-fns";
+import { character, character_rank_bonus, costume, costume_stat } from "generated/dump";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });

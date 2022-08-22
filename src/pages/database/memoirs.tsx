@@ -4,12 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
 import prisma from "@libs/prisma";
-import { memoir, memoir_series } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
 import TierListTab from "@components/tierlist/TierListTab";
 import slug from "slugg";
 import { useState } from "react";
+import { memoir, memoir_series } from "generated/dump";
 
 interface MemoirByDungeonsInterface {
   name: string;

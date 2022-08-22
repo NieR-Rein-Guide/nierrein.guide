@@ -1,18 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
-import {
-  weapon,
-  weapon_ability_link,
-  weapon_ability,
-  weapon_skill_link,
-  weapon_skill,
-  weapon_stat,
-  weapon_story_link,
-  weapon_story,
-} from "@prisma/client";
 import Weapons from "../../components/pages/weapons";
 import Weapon from "../../components/pages/weapon";
 import prisma from "@libs/prisma";
+import { weapon, weapon_ability, weapon_ability_link, weapon_skill, weapon_skill_link, weapon_stat, weapon_story, weapon_story_link } from "generated/dump";
 
 interface WeaponsPageProps {
   isIndex: boolean;

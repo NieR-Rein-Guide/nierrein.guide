@@ -16,11 +16,11 @@ import { formatDistanceToNow } from "date-fns";
 import { useMedia } from "react-use";
 import CostumeArtwork from "@components/CostumeArtwork";
 import slug from "slugg";
-import { character, costume, notification, weapon } from "@prisma/client";
 import prisma from "@libs/prisma";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import { BtnSecondary } from "@components/btn";
 import Tools from "@components/pages/tools";
+import { character, costume, notification, weapon } from "generated/dump";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,

@@ -6,7 +6,7 @@ import {
   DisclosurePanel,
 } from "@reach/disclosure";
 import { useState } from "react";
-import { notification } from "@prisma/client";
+import { notification } from "generated/dump";
 
 const EVENT_TYPES = {
   Event: "Event",

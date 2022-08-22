@@ -2,14 +2,6 @@
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import React from "react";
-import {
-  weapon,
-  weapon_ability,
-  weapon_ability_link,
-  weapon_skill,
-  weapon_skill_link,
-  weapon_stat,
-} from "@prisma/client";
 import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import Element from "@components/Element";
@@ -20,6 +12,7 @@ import { useRouter } from "next/router";
 import SVG from "react-inlinesvg";
 import Star from "@components/decorations/Star";
 import RARITY from "@utils/rarity";
+import { weapon, weapon_ability, weapon_ability_link, weapon_skill, weapon_skill_link, weapon_stat } from "generated/dump";
 
 interface CharactersPageProps {
   weapons: (weapon & {

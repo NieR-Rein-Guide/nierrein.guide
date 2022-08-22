@@ -1,9 +1,9 @@
 import { CDN_URL } from "@config/constants";
-import { character } from "@prisma/client";
 import React, { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import slug from "slugg";
+import { character } from "generated/dump";
 
 function CharacterDiamond({
   character,

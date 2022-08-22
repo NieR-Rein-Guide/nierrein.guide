@@ -1,26 +1,38 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-namespace */
-import { PrismaClient as PrismaClient1 } from '@prisma/client'
-import { PrismaClient as PrismaClient2 } from '../../prisma/generated/client2'
+import { PrismaClient as PrismaDump } from '../generated/dump'
+import { PrismaClient as PrismaNRG } from '../generated/nierreinguide'
 
 
 declare global {
   namespace NodeJS {
     interface Global {
-      prisma: PrismaClient1;
+      prisma: PrismaDump;
     }
   }
 }
 
-let prisma: PrismaClient1;
+let prisma: PrismaDump;
 
 if (!global.prisma) {
-  global.prisma = new PrismaClient1({
+  global.prisma = new PrismaDump({
+    datasources: {
+      db: {
+        url: process.env.DATABASE_URL,
+      }
+    },
     log: ["info"],
   });
 }
 prisma = global.prisma;
 
-export const nrgprisma = new PrismaClient2()
+export const nrgprisma = new PrismaNRG({
+  datasources: {
+    db: {
+      url: process.env.NIERREINGUIDE_DATABASE_URL,
+    }
+  },
+  log: ["info"],
+})
 
 export default prisma;

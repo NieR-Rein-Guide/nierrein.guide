@@ -9,7 +9,6 @@ import DebrisThumbnail from "@components/DebrisThumbnail";
 import { useEffect, useState } from "react";
 import prisma from "@libs/prisma";
 import Modal from "@mui/material/Modal";
-import { companion, costume, debris, memoir, weapon } from "@prisma/client";
 import MaterialTable from "@material-table/core";
 import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
@@ -31,6 +30,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import ATTRIBUTES from "@utils/attributes";
+import { companion, costume, debris, memoir, weapon } from "generated/dump";
 
 interface LoadoutBuilderProps {
   costumes: costume[];
