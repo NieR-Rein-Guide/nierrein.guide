@@ -26,14 +26,3 @@ jobs:
         run: npm i
       - name: run linter
         run: npm run lint
-      - name: make a build
-        run: npm run build
-        env:
-          S3_ACCESS_KEY: ${{ secrets.S3_ACCESS_KEY }}
-          S3_SECRET_KEY: ${{ secrets.S3_SECRET_KEY }}
-          REGION: ${{ secrets.REGION }}
-          S3_DOMAIN: ${{ secrets.S3_DOMAIN }}
-          GRAPHQL_API_ENDPOINT: ${{ secrets.GRAPHQL_API_ENDPOINT }}
-          API_DUMPS_ENDPOINT: ${{ secrets.API_DUMPS_ENDPOINT }}
-          NEXT_PUBLIC_GRAPHQL_API_ENDPOINT: ${{ secrets.NEXT_PUBLIC_GRAPHQL_API_ENDPOINT }}
-          MONGODB_URI: ${{ secrets.MONGODB_URI }}
