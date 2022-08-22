@@ -32,10 +32,7 @@ interface LoadoutProps {
   slots: Slot[];
 }
 
-export default function LoadoutBuilder({
-  loadout,
-  slots,
-}: LoadoutProps): JSX.Element {
+export default function Loadout({ loadout, slots }: LoadoutProps): JSX.Element {
   return (
     <Layout>
       <Meta
