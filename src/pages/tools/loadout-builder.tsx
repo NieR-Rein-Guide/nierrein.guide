@@ -29,6 +29,8 @@ import { BtnSecondary } from "@components/btn";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import ATTRIBUTES from "@utils/attributes";
 
 interface LoadoutBuilderProps {
   costumes: costume[];
@@ -100,7 +102,7 @@ export default function LoadoutBuilder({
         cover="https://nierrein.guide/tools/loadout-builder.jpg"
       />
 
-      <section className="p-8">
+      <section className="p-4 md:p-8">
         <LoadoutSettings />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
@@ -491,6 +493,9 @@ function LoadoutSettings() {
   const description = useLoadoutStore((state) => state.description);
   const setDescription = useLoadoutStore((state) => state.setDescription);
 
+  const attribute = useLoadoutStore((state) => state.attribute);
+  const setAttribute = useLoadoutStore((state) => state.setAttribute);
+
   useEffect(() => {
     setSlotSize(LOADOUT_TYPES[type].slotSize);
   }, [type, setSlotSize]);
@@ -505,17 +510,35 @@ function LoadoutSettings() {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="flex justify-center gap-x-4 relative mt-8 md:mt-0">
-          {Object.entries(LOADOUT_TYPES).map(([key, currentType]) => (
-            <div key={key} className="relative">
-              <Radio
-                name={currentType.label}
-                value={key}
-                isChecked={type === key}
-                setState={setType}
-              />
-            </div>
-          ))}
+        <div className="flex flex-col md:flex-row items-center gap-x-4">
+          <FormControl className="w-32 mt-8 md:mt-0">
+            <InputLabel id="attribute-select-label">Attribute</InputLabel>
+            <Select
+              labelId="attribute-select-label"
+              value={attribute}
+              label="Attribute"
+              onChange={(e) => setAttribute(e.target.value)}
+            >
+              <MenuItem value="all">All</MenuItem>
+              {ATTRIBUTES.map((attribute) => (
+                <MenuItem key={attribute} value={attribute}>
+                  {attribute}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+          <div className="flex justify-center gap-x-4 relative mt-8 md:mt-0">
+            {Object.entries(LOADOUT_TYPES).map(([key, currentType]) => (
+              <div key={key} className="relative">
+                <Radio
+                  name={currentType.label}
+                  value={key}
+                  isChecked={type === key}
+                  setState={setType}
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -536,6 +559,7 @@ function LoadoutSave() {
     title: state.title,
     description: state.description,
     type: state.type,
+    attribute: state.attribute,
     slots: state.slots,
   }));
 
@@ -561,6 +585,7 @@ function LoadoutSave() {
 
   return (
     <div className="flex justify-center mt-8">
+      {loading && <div className="fixed inset-0 bg-black bg-opacity-50" />}
       {(loading && <BtnSecondary>Loading...</BtnSecondary>) || (
         <BtnSecondary onClick={saveLoadout}>Save</BtnSecondary>
       )}

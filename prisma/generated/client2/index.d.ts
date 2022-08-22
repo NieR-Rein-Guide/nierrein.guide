@@ -42,6 +42,7 @@ export type loadouts = {
   type: string
   created_at: Date | null
   slug: string
+  attribute: string
 }
 
 
@@ -1126,7 +1127,6 @@ export namespace Prisma {
 
   export type loadout_slotsSelect = {
     id?: boolean
-    loadout?: boolean | loadoutsArgs
     loadoutId?: boolean
     slot_position?: boolean
     costume_id?: boolean
@@ -1138,6 +1138,7 @@ export namespace Prisma {
     memoir_1_id?: boolean
     memoir_2_id?: boolean
     memoir_3_id?: boolean
+    loadout?: boolean | loadoutsArgs
   }
 
   export type loadout_slotsInclude = {
@@ -1858,6 +1859,7 @@ export namespace Prisma {
     type: string | null
     created_at: Date | null
     slug: string | null
+    attribute: string | null
   }
 
   export type LoadoutsMaxAggregateOutputType = {
@@ -1867,6 +1869,7 @@ export namespace Prisma {
     type: string | null
     created_at: Date | null
     slug: string | null
+    attribute: string | null
   }
 
   export type LoadoutsCountAggregateOutputType = {
@@ -1876,6 +1879,7 @@ export namespace Prisma {
     type: number
     created_at: number
     slug: number
+    attribute: number
     _all: number
   }
 
@@ -1895,6 +1899,7 @@ export namespace Prisma {
     type?: true
     created_at?: true
     slug?: true
+    attribute?: true
   }
 
   export type LoadoutsMaxAggregateInputType = {
@@ -1904,6 +1909,7 @@ export namespace Prisma {
     type?: true
     created_at?: true
     slug?: true
+    attribute?: true
   }
 
   export type LoadoutsCountAggregateInputType = {
@@ -1913,6 +1919,7 @@ export namespace Prisma {
     type?: true
     created_at?: true
     slug?: true
+    attribute?: true
     _all?: true
   }
 
@@ -2015,6 +2022,7 @@ export namespace Prisma {
     type: string
     created_at: Date | null
     slug: string
+    attribute: string
     _count: LoadoutsCountAggregateOutputType | null
     _avg: LoadoutsAvgAggregateOutputType | null
     _sum: LoadoutsSumAggregateOutputType | null
@@ -2043,6 +2051,7 @@ export namespace Prisma {
     type?: boolean
     created_at?: boolean
     slug?: boolean
+    attribute?: boolean
     loadout_slots?: boolean | loadout_slotsFindManyArgs
     _count?: boolean | LoadoutsCountOutputTypeArgs
   }
@@ -2771,7 +2780,8 @@ export namespace Prisma {
     description: 'description',
     type: 'type',
     created_at: 'created_at',
-    slug: 'slug'
+    slug: 'slug',
+    attribute: 'attribute'
   };
 
   export type LoadoutsScalarFieldEnum = (typeof LoadoutsScalarFieldEnum)[keyof typeof LoadoutsScalarFieldEnum]
@@ -2803,7 +2813,6 @@ export namespace Prisma {
     OR?: Enumerable<loadout_slotsWhereInput>
     NOT?: Enumerable<loadout_slotsWhereInput>
     id?: IntFilter | number
-    loadout?: XOR<LoadoutsRelationFilter, loadoutsWhereInput>
     loadoutId?: IntFilter | number
     slot_position?: IntFilter | number
     costume_id?: IntNullableFilter | number | null
@@ -2815,11 +2824,11 @@ export namespace Prisma {
     memoir_1_id?: IntNullableFilter | number | null
     memoir_2_id?: IntNullableFilter | number | null
     memoir_3_id?: IntNullableFilter | number | null
+    loadout?: XOR<LoadoutsRelationFilter, loadoutsWhereInput>
   }
 
   export type loadout_slotsOrderByWithRelationInput = {
     id?: SortOrder
-    loadout?: loadoutsOrderByWithRelationInput
     loadoutId?: SortOrder
     slot_position?: SortOrder
     costume_id?: SortOrder
@@ -2831,6 +2840,7 @@ export namespace Prisma {
     memoir_1_id?: SortOrder
     memoir_2_id?: SortOrder
     memoir_3_id?: SortOrder
+    loadout?: loadoutsOrderByWithRelationInput
   }
 
   export type loadout_slotsWhereUniqueInput = {
@@ -2885,6 +2895,7 @@ export namespace Prisma {
     type?: StringFilter | string
     created_at?: DateTimeNullableFilter | Date | string | null
     slug?: StringFilter | string
+    attribute?: StringFilter | string
     loadout_slots?: Loadout_slotsListRelationFilter
   }
 
@@ -2895,6 +2906,7 @@ export namespace Prisma {
     type?: SortOrder
     created_at?: SortOrder
     slug?: SortOrder
+    attribute?: SortOrder
     loadout_slots?: loadout_slotsOrderByRelationAggregateInput
   }
 
@@ -2909,6 +2921,7 @@ export namespace Prisma {
     type?: SortOrder
     created_at?: SortOrder
     slug?: SortOrder
+    attribute?: SortOrder
     _count?: loadoutsCountOrderByAggregateInput
     _avg?: loadoutsAvgOrderByAggregateInput
     _max?: loadoutsMaxOrderByAggregateInput
@@ -2926,10 +2939,10 @@ export namespace Prisma {
     type?: StringWithAggregatesFilter | string
     created_at?: DateTimeNullableWithAggregatesFilter | Date | string | null
     slug?: StringWithAggregatesFilter | string
+    attribute?: StringWithAggregatesFilter | string
   }
 
   export type loadout_slotsCreateInput = {
-    loadout: loadoutsCreateNestedOneWithoutLoadout_slotsInput
     slot_position: number
     costume_id?: number | null
     weapon_1_id?: number | null
@@ -2940,6 +2953,7 @@ export namespace Prisma {
     memoir_1_id?: number | null
     memoir_2_id?: number | null
     memoir_3_id?: number | null
+    loadout: loadoutsCreateNestedOneWithoutLoadout_slotsInput
   }
 
   export type loadout_slotsUncheckedCreateInput = {
@@ -2958,7 +2972,6 @@ export namespace Prisma {
   }
 
   export type loadout_slotsUpdateInput = {
-    loadout?: loadoutsUpdateOneRequiredWithoutLoadout_slotsInput
     slot_position?: IntFieldUpdateOperationsInput | number
     costume_id?: NullableIntFieldUpdateOperationsInput | number | null
     weapon_1_id?: NullableIntFieldUpdateOperationsInput | number | null
@@ -2969,6 +2982,7 @@ export namespace Prisma {
     memoir_1_id?: NullableIntFieldUpdateOperationsInput | number | null
     memoir_2_id?: NullableIntFieldUpdateOperationsInput | number | null
     memoir_3_id?: NullableIntFieldUpdateOperationsInput | number | null
+    loadout?: loadoutsUpdateOneRequiredWithoutLoadout_slotsInput
   }
 
   export type loadout_slotsUncheckedUpdateInput = {
@@ -3035,6 +3049,7 @@ export namespace Prisma {
     type?: string
     created_at?: Date | string | null
     slug: string
+    attribute: string
     loadout_slots?: loadout_slotsCreateNestedManyWithoutLoadoutInput
   }
 
@@ -3045,6 +3060,7 @@ export namespace Prisma {
     type?: string
     created_at?: Date | string | null
     slug: string
+    attribute: string
     loadout_slots?: loadout_slotsUncheckedCreateNestedManyWithoutLoadoutInput
   }
 
@@ -3054,6 +3070,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    attribute?: StringFieldUpdateOperationsInput | string
     loadout_slots?: loadout_slotsUpdateManyWithoutLoadoutInput
   }
 
@@ -3064,6 +3081,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    attribute?: StringFieldUpdateOperationsInput | string
     loadout_slots?: loadout_slotsUncheckedUpdateManyWithoutLoadoutInput
   }
 
@@ -3074,6 +3092,7 @@ export namespace Prisma {
     type?: string
     created_at?: Date | string | null
     slug: string
+    attribute: string
   }
 
   export type loadoutsUpdateManyMutationInput = {
@@ -3082,6 +3101,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    attribute?: StringFieldUpdateOperationsInput | string
   }
 
   export type loadoutsUncheckedUpdateManyInput = {
@@ -3091,6 +3111,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    attribute?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter = {
@@ -3104,11 +3125,6 @@ export namespace Prisma {
     not?: NestedIntFilter | number
   }
 
-  export type LoadoutsRelationFilter = {
-    is?: loadoutsWhereInput
-    isNot?: loadoutsWhereInput
-  }
-
   export type IntNullableFilter = {
     equals?: number | null
     in?: Enumerable<number> | null
@@ -3118,6 +3134,11 @@ export namespace Prisma {
     gt?: number
     gte?: number
     not?: NestedIntNullableFilter | number | null
+  }
+
+  export type LoadoutsRelationFilter = {
+    is?: loadoutsWhereInput
+    isNot?: loadoutsWhereInput
   }
 
   export type loadout_slotsCountOrderByAggregateInput = {
@@ -3285,6 +3306,7 @@ export namespace Prisma {
     type?: SortOrder
     created_at?: SortOrder
     slug?: SortOrder
+    attribute?: SortOrder
   }
 
   export type loadoutsAvgOrderByAggregateInput = {
@@ -3298,6 +3320,7 @@ export namespace Prisma {
     type?: SortOrder
     created_at?: SortOrder
     slug?: SortOrder
+    attribute?: SortOrder
   }
 
   export type loadoutsMinOrderByAggregateInput = {
@@ -3307,6 +3330,7 @@ export namespace Prisma {
     type?: SortOrder
     created_at?: SortOrder
     slug?: SortOrder
+    attribute?: SortOrder
   }
 
   export type loadoutsSumOrderByAggregateInput = {
@@ -3369,14 +3393,6 @@ export namespace Prisma {
     connect?: loadoutsWhereUniqueInput
   }
 
-  export type loadoutsUpdateOneRequiredWithoutLoadout_slotsInput = {
-    create?: XOR<loadoutsCreateWithoutLoadout_slotsInput, loadoutsUncheckedCreateWithoutLoadout_slotsInput>
-    connectOrCreate?: loadoutsCreateOrConnectWithoutLoadout_slotsInput
-    upsert?: loadoutsUpsertWithoutLoadout_slotsInput
-    connect?: loadoutsWhereUniqueInput
-    update?: XOR<loadoutsUpdateWithoutLoadout_slotsInput, loadoutsUncheckedUpdateWithoutLoadout_slotsInput>
-  }
-
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -3391,6 +3407,14 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type loadoutsUpdateOneRequiredWithoutLoadout_slotsInput = {
+    create?: XOR<loadoutsCreateWithoutLoadout_slotsInput, loadoutsUncheckedCreateWithoutLoadout_slotsInput>
+    connectOrCreate?: loadoutsCreateOrConnectWithoutLoadout_slotsInput
+    upsert?: loadoutsUpsertWithoutLoadout_slotsInput
+    connect?: loadoutsWhereUniqueInput
+    update?: XOR<loadoutsUpdateWithoutLoadout_slotsInput, loadoutsUncheckedUpdateWithoutLoadout_slotsInput>
   }
 
   export type loadout_slotsCreateNestedManyWithoutLoadoutInput = {
@@ -3616,6 +3640,7 @@ export namespace Prisma {
     type?: string
     created_at?: Date | string | null
     slug: string
+    attribute: string
   }
 
   export type loadoutsUncheckedCreateWithoutLoadout_slotsInput = {
@@ -3625,6 +3650,7 @@ export namespace Prisma {
     type?: string
     created_at?: Date | string | null
     slug: string
+    attribute: string
   }
 
   export type loadoutsCreateOrConnectWithoutLoadout_slotsInput = {
@@ -3643,6 +3669,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    attribute?: StringFieldUpdateOperationsInput | string
   }
 
   export type loadoutsUncheckedUpdateWithoutLoadout_slotsInput = {
@@ -3652,6 +3679,7 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     created_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     slug?: StringFieldUpdateOperationsInput | string
+    attribute?: StringFieldUpdateOperationsInput | string
   }
 
   export type loadout_slotsCreateWithoutLoadoutInput = {

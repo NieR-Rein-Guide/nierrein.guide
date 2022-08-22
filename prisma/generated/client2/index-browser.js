@@ -97,7 +97,8 @@ exports.Prisma.LoadoutsScalarFieldEnum = makeEnum({
   description: 'description',
   type: 'type',
   created_at: 'created_at',
-  slug: 'slug'
+  slug: 'slug',
+  attribute: 'attribute'
 });
 
 exports.Prisma.SortOrder = makeEnum({

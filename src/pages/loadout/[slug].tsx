@@ -15,6 +15,7 @@ import { loadouts, loadout_slots } from "../../../prisma/generated/client2";
 import { formatDistanceToNow } from "date-fns";
 import { useEffect, useState } from "react";
 import { LOADOUT_TYPES } from "@store/loadout";
+import Element from "@components/Element";
 
 interface Slot {
   costume: costume;
@@ -81,6 +82,26 @@ function LoadoutInfo({ loadout }: LoadoutInfoProps) {
           <p className="text-beige">Created {createdAt}</p>
         </div>
         <div className="flex gap-x-4 relative">
+          {(loadout.attribute === "all" && (
+            <div className="relative flex">
+              <div>
+                <Element size={32} type="DARK" />
+              </div>
+              <div className="-ml-3">
+                <Element size={32} type="LIGHT" />
+              </div>
+              <div className="-ml-3">
+                <Element size={32} type="FIRE" />
+              </div>
+              <div className="-ml-3">
+                <Element size={32} type="WATER" />
+              </div>
+              <div className="-ml-3">
+                <Element size={32} type="WIND" />
+              </div>
+            </div>
+          )) || <Element size={32} type={loadout.attribute} />}
+
           <Radio
             name={LOADOUT_TYPES[loadout.type].label}
             value={loadout.type}

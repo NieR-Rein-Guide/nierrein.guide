@@ -10,7 +10,6 @@ datasource db {
 
 model loadout_slots {
   id            Int      @id @default(autoincrement())
-  loadout       loadouts @relation(references: [loadout_id], fields: [loadoutId])
   loadoutId     Int
   slot_position Int
   costume_id    Int?
@@ -22,6 +21,7 @@ model loadout_slots {
   memoir_1_id   Int?
   memoir_2_id   Int?
   memoir_3_id   Int?
+  loadout       loadouts @relation(fields: [loadoutId], references: [loadout_id])
 }
 
 model loadouts {
@@ -31,5 +31,6 @@ model loadouts {
   type          String          @default(dbgenerated("'quests'::bpchar"))
   created_at    DateTime?       @db.Timestamptz(6)
   slug          String
+  attribute     String
   loadout_slots loadout_slots[]
 }

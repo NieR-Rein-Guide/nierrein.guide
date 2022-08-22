@@ -27,6 +27,7 @@ export const useLoadoutStore = create((set) => ({
   title: "My Loadout",
   description: "Description of the loadout",
   type: "quests",
+  attribute: "all",
   slots: [],
   costumeModal: false,
   weaponsModal: false,
@@ -39,6 +40,7 @@ export const useLoadoutStore = create((set) => ({
   setTitle: (newTitle) => set({ title: newTitle }),
   setDescription: (newDesc) => set({ description: newDesc }),
   setType: (newType) => set({ type: newType }),
+  setAttribute: (newAttribute) => set({ attribute: newAttribute }),
   setSlotSize: (newSize) =>
     set((state) => {
       /**

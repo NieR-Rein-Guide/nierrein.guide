@@ -14,9 +14,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         description,
         type,
         slots,
+        attribute,
       } = req.body.loadout
 
-      if (!title || !type || slots.length === 0) {
+      if (!title || !type || !attribute || !slots.some(slot => slot.costume)) {
         return res.status(400).json({
           error: 'Missing either "title", "type" or "slots" key.',
         })
@@ -28,6 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           slug: `${slug(title)}-${uid()}`,
           description,
           type,
+          attribute,
           created_at: new Date(),
         }
       })
