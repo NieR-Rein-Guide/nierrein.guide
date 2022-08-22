@@ -10,7 +10,7 @@
     "lint": "eslint src",
     "fix": "eslint src --fix",
     "prisma-generate": "prisma generate --schema prisma/schema.prisma && prisma generate --schema prisma/nierreinguide.prisma",
-    "prebuild": "npm run prisma-generate && npx prisma generate"
+    "postinstall": "npm run prisma-generate && npx prisma generate"
   },
   "engines": {
     "node": "16.x"

@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-namespace */
-import { PrismaClient as PrismaClient1 } from '../../prisma/generated/client1'
+import { PrismaClient as PrismaClient1 } from '@prisma/client'
 import { PrismaClient as PrismaClient2 } from '../../prisma/generated/client2'
 
 
