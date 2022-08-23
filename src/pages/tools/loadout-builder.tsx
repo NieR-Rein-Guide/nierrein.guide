@@ -31,6 +31,7 @@ import { useRouter } from "next/router";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import ATTRIBUTES from "@utils/attributes";
 import { companion, costume, debris, memoir, weapon } from "@prisma/client";
+import Link from "next/link";
 
 interface LoadoutBuilderProps {
   costumes: costume[];
@@ -101,6 +102,15 @@ export default function LoadoutBuilder({
         description="Build your own loadout."
         cover="https://nierrein.guide/tools/loadout-builder.jpg"
       />
+
+      <nav className="mb-8">
+        <Link href="/loadouts" passHref={true}>
+          <a className="btn">
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
+            <span>See all loadouts</span>
+          </a>
+        </Link>
+      </nav>
 
       <section className="p-4 md:p-8">
         <LoadoutSettings />

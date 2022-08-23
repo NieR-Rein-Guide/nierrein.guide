@@ -17,10 +17,13 @@ import { useMedia } from "react-use";
 import CostumeArtwork from "@components/CostumeArtwork";
 import slug from "slugg";
 import prisma from "@libs/prisma";
+import { nrgprisma } from "@libs/prisma";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import { BtnSecondary } from "@components/btn";
 import Tools from "@components/pages/tools";
 import { character, costume, notification, weapon } from "@prisma/client";
+import { loadouts } from "@prisma/client-nrg";
+import LoadoutListingItem from "@components/LoadoutListingItem";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
@@ -44,6 +47,7 @@ interface HomeProps {
   recentCostumes: Costume[];
   recentWeapons: weapon[];
   notifications: notification[];
+  loadouts: loadouts[];
 }
 
 export default function Home({
@@ -54,6 +58,7 @@ export default function Home({
   recentCostumes = [],
   recentWeapons = [],
   notifications = [],
+  loadouts = [],
 }: HomeProps): JSX.Element {
   const isMobile = useMedia("(max-width: 1279px)");
 
@@ -230,6 +235,23 @@ export default function Home({
             </Link>
           </div>
         </div>
+
+        <div>
+          <section>
+            <h2 className="overlap">New community loadouts</h2>
+            <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {loadouts.map((loadout) => (
+                <LoadoutListingItem key={loadout.loadout_id} {...loadout} />
+              ))}
+            </div>
+          </section>
+          <div className="flex justify-center mt-8">
+            <Link href="/loadouts" passHref>
+              <BtnSecondary>See all loadouts</BtnSecondary>
+            </Link>
+          </div>
+        </div>
+
         <DailyInfoWithNoSSR />
         <FeaturedGuides guides={featuredGuides} />
         <Socials />
@@ -249,6 +271,7 @@ export async function getStaticProps() {
       futureEvents,
       recentCostumes,
       notificationsData,
+      loadouts,
     ] = await Promise.all([
       getFeaturedGuides(),
       getCurrentEvents({ currentDate: new Date().toISOString() }),
@@ -266,6 +289,12 @@ export async function getStaticProps() {
         take: 10,
         orderBy: {
           release_time: "desc",
+        },
+      }),
+      nrgprisma.loadouts.findMany({
+        take: 6,
+        orderBy: {
+          created_at: "desc",
         },
       }),
     ]);
@@ -310,6 +339,7 @@ export async function getStaticProps() {
           recentCostumes,
           notifications,
           recentWeapons,
+          loadouts,
         })
       ),
       revalidate: 43200, // 12 hours in seconds (2 updates per day)

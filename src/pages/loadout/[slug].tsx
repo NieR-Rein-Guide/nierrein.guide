@@ -16,6 +16,9 @@ import { LOADOUT_TYPES } from "@store/loadout";
 import Element from "@components/Element";
 import { companion, costume, debris, memoir, weapon } from "@prisma/client";
 import { loadouts, loadout_slots } from "@prisma/client-nrg";
+import Link from "next/link";
+import SVG from "react-inlinesvg";
+import { useRouter } from "next/router";
 
 interface Slot {
   costume: costume;
@@ -33,9 +36,20 @@ interface LoadoutProps {
 }
 
 export default function Loadout({ loadout, slots }: LoadoutProps): JSX.Element {
+  const router = useRouter();
+
   return (
     <Layout>
       <Meta title={loadout.title} description={loadout.description} />
+
+      <nav className="mb-8">
+        <Link href="/loadouts" passHref>
+          <a className="btn">
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
+            <span>Go back to loadouts</span>
+          </a>
+        </Link>
+      </nav>
 
       <section className="p-8">
         <LoadoutInfo loadout={loadout} />
@@ -178,6 +192,8 @@ function CostumeSlot({
 }
 
 export async function getServerSideProps(context: NextPageContext) {
+  context.res.setHeader("Cache-Control", "public, maxage=86400");
+
   const loadout = await nrgprisma.loadouts.findFirst({
     where: {
       slug: context.query.slug as string,
