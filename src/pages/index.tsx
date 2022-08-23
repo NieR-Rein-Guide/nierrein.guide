@@ -253,9 +253,21 @@ export default function Home({
           <section>
             <h2 className="overlap">New community loadouts</h2>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {loadouts.map((loadout) => (
-                <LoadoutListingItem key={loadout.loadout_id} {...loadout} />
-              ))}
+              {true && (
+                <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg md:col-span-2 lg:col-span-3">
+                  <img
+                    className="inline-block"
+                    src="/decorations/fio-confused.png"
+                    alt="Fio confused"
+                  />
+                  <p className="mt-4">Sorry, no loadouts found.</p>
+                  <div className="flex justify-center mt-4">
+                    <Link href="/tools/loadout-builder" passHref>
+                      <a className="btn">Create one!</a>
+                    </Link>
+                  </div>
+                </div>
+              )}
             </div>
           </section>
           <div className="flex justify-center mt-8">

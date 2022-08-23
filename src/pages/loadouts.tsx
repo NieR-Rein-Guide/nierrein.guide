@@ -13,6 +13,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { sub } from "date-fns";
+import Link from "next/link";
 
 interface LoadoutProps {
   loadouts: loadouts[];
@@ -59,7 +60,13 @@ export default function ListingLoadout({
       <section>
         <h2 className="overlap">Community loadouts</h2>
 
-        <div className="flex flex-col items-center md:flex-row gap-x-4 bg-grey-dark border border-beige border-opacity-50 p-4 mb-8">
+        <Link href="/tools/loadout-builder" passHref>
+          <a className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
+            Create a loadout
+          </a>
+        </Link>
+
+        <div className="flex flex-col items-center md:flex-row gap-y-4 gap-x-4 bg-grey-dark border border-beige border-opacity-50 p-4 mb-8">
           <FormControl className="mt-8 md:mt-0">
             <InputLabel id="attribute-select-label">Sort by</InputLabel>
             <Select
@@ -74,6 +81,7 @@ export default function ListingLoadout({
           </FormControl>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <MobileDatePicker
+              className="mt-4 md:mt-0"
               label="Created after"
               inputFormat="MM/dd/yyyy"
               value={fromDate}
@@ -122,13 +130,18 @@ export default function ListingLoadout({
         )}
 
         {loadouts.length === 0 && (
-          <div className="bg-grey-dark text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
+          <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
             <img
               className="inline-block"
               src="/decorations/fio-confused.png"
               alt="Fio confused"
             />
-            <p>Sorry, no loadouts found.</p>
+            <p className="mt-4">Sorry, no loadouts found.</p>
+            <div className="flex justify-center mt-4">
+              <Link href="/tools/loadout-builder" passHref>
+                <a className="btn">Create one!</a>
+              </Link>
+            </div>
           </div>
         )}
       </section>
