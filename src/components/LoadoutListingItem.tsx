@@ -11,14 +11,15 @@ export default function LoadoutListinItem({
   type,
   attribute,
   slug,
+  votes,
 }: loadouts) {
   return (
     <div
       key={loadout_id}
-      className="flex flex-col gap-x-4 w-80 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter overflow-hidden"
+      className="flex flex-col gap-x-4 w-80 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter overflow-hidden w-full h-full"
     >
       <div className="absolute top-4 right-4">
-        <Chip variant="outlined" label={"0"} />
+        <Chip variant="outlined" label={votes} />
       </div>
       <h3 className="text-xl truncate">{title}</h3>
       <p className="text-xs text-beige mt-1 truncate">{description}</p>

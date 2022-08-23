@@ -28,6 +28,7 @@ export default function ListingLoadout({
     months: 1,
   });
 
+  const [sortBy, setSortBy] = useState("created_at");
   const [fromDate, setFromDate] = useState<Date | null>(defaultFromDate);
   const [attribute, setAttribute] = useState("all");
   const [type, setType] = useState("all");
@@ -36,9 +37,9 @@ export default function ListingLoadout({
     if (firstUpdate.current) return;
 
     router.push(
-      `/loadouts?attribute=${attribute}&type=${type}&from=${fromDate.toISOString()}`
+      `/loadouts?attribute=${attribute}&type=${type}&from=${fromDate.toISOString()}&sortBy=${sortBy}`
     );
-  }, [attribute, type, fromDate]);
+  }, [attribute, type, fromDate, sortBy]);
 
   useEffect(() => {
     if (firstUpdate.current) {
@@ -59,6 +60,18 @@ export default function ListingLoadout({
         <h2 className="overlap">Community loadouts</h2>
 
         <div className="flex flex-col items-center md:flex-row gap-x-4 bg-grey-dark border border-beige border-opacity-50 p-4 mb-8">
+          <FormControl className="mt-8 md:mt-0">
+            <InputLabel id="attribute-select-label">Sort by</InputLabel>
+            <Select
+              labelId="attribute-select-label"
+              value={sortBy}
+              label="Attribute"
+              onChange={(e) => setSortBy(e.target.value)}
+            >
+              <MenuItem value="created_at">Created date</MenuItem>
+              <MenuItem value="votes">Votes</MenuItem>
+            </Select>
+          </FormControl>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <MobileDatePicker
               label="Created after"
@@ -125,7 +138,11 @@ export default function ListingLoadout({
 
 export async function getServerSideProps(context: NextPageContext) {
   const where = {};
+  let orderBy = {};
 
+  /**
+   * Filters
+   */
   if (context.query.attribute) {
     if (context.query.attribute !== "all") {
       where["attribute"] = context.query.attribute;
@@ -141,11 +158,23 @@ export async function getServerSideProps(context: NextPageContext) {
     where["created_at"]["gte"] = context.query.from;
   }
 
+  /**
+   * Order by
+   */
+
+  if (context.query.sortBy) {
+    orderBy = {
+      [context.query.sortBy as string]: "desc",
+    };
+  } else {
+    orderBy = {
+      created_at: "desc",
+    };
+  }
+
   const loadouts = await nrgprisma.loadouts.findMany({
     where,
-    orderBy: {
-      created_at: "desc",
-    },
+    orderBy,
   });
 
   return {

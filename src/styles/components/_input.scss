@@ -15,7 +15,7 @@
   }
 }
 
-input[type="text"]:not(.MuiInput-input),
+input[type="text"]:not(.MuiInput-input):not(.MuiInputBase-input),
 input[type="url"]:not(.MuiInput-input),
 input[type="number"]:not(.MuiInput-input),
 select:not(.MuiInput-input),

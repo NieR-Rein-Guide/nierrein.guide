@@ -32,5 +32,6 @@ model loadouts {
   created_at    DateTime?       @db.Timestamptz(6)
   slug          String
   attribute     String
+  votes         Int?            @default(0)
   loadout_slots loadout_slots[]
 }

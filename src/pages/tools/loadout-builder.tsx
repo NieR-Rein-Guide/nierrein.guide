@@ -520,8 +520,8 @@ function LoadoutSettings() {
             onChange={(e) => setTitle(e.target.value)}
           />
         </div>
-        <div className="flex flex-col md:flex-row items-center gap-x-4">
-          <FormControl className="w-32 mt-8 md:mt-0">
+        <div className="flex flex-col md:flex-row items-center gap-x-4 mt-8 md:mt-0">
+          <FormControl className="w-32">
             <InputLabel id="attribute-select-label">Attribute</InputLabel>
             <Select
               labelId="attribute-select-label"
