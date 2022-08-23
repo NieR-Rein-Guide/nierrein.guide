@@ -20,7 +20,7 @@ import prisma from "@libs/prisma";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import { BtnSecondary } from "@components/btn";
 import Tools from "@components/pages/tools";
-import { character, costume, notification, weapon } from "generated/dump";
+import { character, costume, notification, weapon } from "@prisma/client";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,

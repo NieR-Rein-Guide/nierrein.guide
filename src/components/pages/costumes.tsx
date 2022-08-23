@@ -12,7 +12,16 @@ import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import { useRouter } from "next/router";
 import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
-import { character, costume, costume_ability, costume_ability_link, costume_skill, costume_skill_link, costume_stat, emblem } from "generated/dump";
+import {
+  character,
+  costume,
+  costume_ability,
+  costume_ability_link,
+  costume_skill,
+  costume_skill_link,
+  costume_stat,
+  emblem,
+} from "@prisma/client";
 
 interface CharactersPageProps {
   costumes: (costume & {

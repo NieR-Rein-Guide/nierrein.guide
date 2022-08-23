@@ -2,7 +2,7 @@ import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import prisma from "@libs/prisma";
 import dynamic from "next/dynamic";
-import { notification } from "generated/dump";
+import { notification } from "@prisma/client";
 
 const NotificationsWithNoSSR = dynamic(
   () => import("../components/Notifications"),

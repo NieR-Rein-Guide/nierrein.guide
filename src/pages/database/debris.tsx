@@ -7,7 +7,7 @@ import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import DebrisThumbnail from "@components/DebrisThumbnail";
 import Star from "@components/decorations/Star";
-import { debris } from "generated/dump";
+import { debris } from "@prisma/client";
 
 interface DebrisPageProps {
   debris: debris[];

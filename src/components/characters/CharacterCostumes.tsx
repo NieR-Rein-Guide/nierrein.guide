@@ -4,7 +4,7 @@ import CostumeThumbnail from "@components/CostumeThumbnail";
 import classNames from "classnames";
 import RARITY from "@utils/rarity";
 import { CDN_URL } from "@config/constants";
-import { character, costume } from "generated/dump";
+import { character, costume } from "@prisma/client";
 
 export default function CharacterCostumes({
   currentCharacter,

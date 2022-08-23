@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import Image from "next/image";
 import { CDN_URL } from "@config/constants";
-import { debris } from "generated/dump";
+import { debris } from "@prisma/client";
 
 interface DebrisThumbnailProps extends debris {
   className?: string | string[];

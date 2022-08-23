@@ -9,7 +9,14 @@ import prisma from "@libs/prisma";
 import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import Element from "@components/Element";
-import { companion, companion_ability, companion_ability_link, companion_skill, companion_skill_link, companion_stat } from "generated/dump";
+import {
+  companion,
+  companion_ability,
+  companion_ability_link,
+  companion_skill,
+  companion_skill_link,
+  companion_stat,
+} from "@prisma/client";
 
 interface CompanionsPageProps {
   companions: (companion & {

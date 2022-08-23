@@ -2,7 +2,7 @@ import RARITY from "@utils/rarity";
 import classNames from "classnames";
 import Image from "next/image";
 import { CDN_URL } from "@config/constants";
-import { memoir } from "generated/dump";
+import { memoir } from "@prisma/client";
 
 interface MemoirThumbnailProps extends memoir {
   onClick?: () => void | undefined;

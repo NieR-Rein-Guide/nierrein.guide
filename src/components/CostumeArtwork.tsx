@@ -10,7 +10,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import urlSlug from "url-slug";
 import { CDN_URL } from "@config/constants";
-import { character, costume } from "generated/dump";
+import { character, costume } from "@prisma/client";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });

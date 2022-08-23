@@ -6,7 +6,14 @@ import { useState } from "react";
 import Element from "@components/Element";
 import { CDN_URL } from "@config/constants";
 import classNames from "classnames";
-import { companion, companion_ability, companion_ability_link, companion_skill, companion_skill_link, companion_stat } from "generated/dump";
+import {
+  companion,
+  companion_ability,
+  companion_ability_link,
+  companion_skill,
+  companion_skill_link,
+  companion_stat,
+} from "@prisma/client";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });

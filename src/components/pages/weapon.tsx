@@ -6,7 +6,16 @@ import { CDN_URL } from "@config/constants";
 import WeaponInfo from "@components/WeaponInfo";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import { weapon, weapon_ability, weapon_ability_link, weapon_skill, weapon_skill_link, weapon_stat, weapon_story, weapon_story_link } from "generated/dump";
+import {
+  weapon,
+  weapon_ability,
+  weapon_ability_link,
+  weapon_skill,
+  weapon_skill_link,
+  weapon_stat,
+  weapon_story,
+  weapon_story_link,
+} from "@prisma/client";
 
 interface CharactersPageProps {
   weapon: (weapon & {

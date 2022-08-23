@@ -30,7 +30,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import ATTRIBUTES from "@utils/attributes";
-import { companion, costume, debris, memoir, weapon } from "generated/dump";
+import { companion, costume, debris, memoir, weapon } from "@prisma/client";
 
 interface LoadoutBuilderProps {
   costumes: costume[];

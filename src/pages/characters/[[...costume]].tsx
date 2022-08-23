@@ -4,7 +4,17 @@ import slug from "slugg";
 import Costume from "../../components/pages/costume";
 import Index from "../../components/pages/costumes";
 import prisma from "@libs/prisma";
-import { character, character_rank_bonus, costume, costume_ability, costume_ability_link, costume_skill, costume_skill_link, costume_stat, emblem } from "generated/dump";
+import {
+  character,
+  character_rank_bonus,
+  costume,
+  costume_ability,
+  costume_ability_link,
+  costume_skill,
+  costume_skill_link,
+  costume_stat,
+  emblem,
+} from "@prisma/client";
 
 interface CharactersPageProps {
   isIndex: boolean;

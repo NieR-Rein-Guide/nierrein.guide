@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { CDN_URL } from "@config/constants";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import { character, character_rank_bonus, costume } from "generated/dump";
+import { character, character_rank_bonus, costume } from "@prisma/client";
 
 interface CharactersPageProps {
   currentCharacter: character;

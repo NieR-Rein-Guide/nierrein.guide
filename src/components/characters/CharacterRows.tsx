@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import slug from "slugg";
-import { character } from "generated/dump";
+import { character } from "@prisma/client";
 
 function CharacterDiamond({
   character,

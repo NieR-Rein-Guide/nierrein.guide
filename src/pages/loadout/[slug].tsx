@@ -14,8 +14,8 @@ import { formatDistanceToNow } from "date-fns";
 import { useEffect, useState } from "react";
 import { LOADOUT_TYPES } from "@store/loadout";
 import Element from "@components/Element";
-import { companion, costume, debris, memoir, weapon } from "generated/dump";
-import { loadouts, loadout_slots } from "generated/nierreinguide";
+import { companion, costume, debris, memoir, weapon } from "@prisma/client";
+import { loadouts, loadout_slots } from "@prisma/client-nrg";
 
 interface Slot {
   costume: costume;

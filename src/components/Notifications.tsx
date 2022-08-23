@@ -1,5 +1,5 @@
 import Notice from "@components/Notice";
-import { notification } from "generated/dump";
+import { notification } from "@prisma/client";
 import Link from "next/link";
 import { BtnSecondary } from "./btn";
 

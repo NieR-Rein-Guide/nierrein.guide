@@ -9,7 +9,7 @@ import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
 import TierListTab from "@components/tierlist/TierListTab";
 import slug from "slugg";
 import { useState } from "react";
-import { memoir, memoir_series } from "generated/dump";
+import { memoir, memoir_series } from "@prisma/client";
 
 interface MemoirByDungeonsInterface {
   name: string;

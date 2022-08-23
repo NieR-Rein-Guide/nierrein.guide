@@ -14,7 +14,16 @@ import { CDN_URL } from "@config/constants";
 import statsIcons from "@utils/statsIcons";
 import HR from "./decorations/HR";
 import classNames from "classnames";
-import { weapon, weapon_ability, weapon_ability_link, weapon_skill, weapon_skill_link, weapon_stat, weapon_story, weapon_story_link } from "generated/dump";
+import {
+  weapon,
+  weapon_ability,
+  weapon_ability_link,
+  weapon_skill,
+  weapon_skill_link,
+  weapon_stat,
+  weapon_story,
+  weapon_story_link,
+} from "@prisma/client";
 
 interface WeaponInfoProps {
   weapons: (weapon & {

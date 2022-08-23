@@ -3,7 +3,16 @@ import React from "react";
 import Weapons from "../../components/pages/weapons";
 import Weapon from "../../components/pages/weapon";
 import prisma from "@libs/prisma";
-import { weapon, weapon_ability, weapon_ability_link, weapon_skill, weapon_skill_link, weapon_stat, weapon_story, weapon_story_link } from "generated/dump";
+import {
+  weapon,
+  weapon_ability,
+  weapon_ability_link,
+  weapon_skill,
+  weapon_skill_link,
+  weapon_stat,
+  weapon_story,
+  weapon_story_link,
+} from "@prisma/client";
 
 interface WeaponsPageProps {
   isIndex: boolean;

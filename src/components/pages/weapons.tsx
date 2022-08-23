@@ -12,7 +12,14 @@ import { useRouter } from "next/router";
 import SVG from "react-inlinesvg";
 import Star from "@components/decorations/Star";
 import RARITY from "@utils/rarity";
-import { weapon, weapon_ability, weapon_ability_link, weapon_skill, weapon_skill_link, weapon_stat } from "generated/dump";
+import {
+  weapon,
+  weapon_ability,
+  weapon_ability_link,
+  weapon_skill,
+  weapon_skill_link,
+  weapon_stat,
+} from "@prisma/client";
 
 interface CharactersPageProps {
   weapons: (weapon & {
