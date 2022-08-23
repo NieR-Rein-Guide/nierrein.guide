@@ -2,11 +2,13 @@ import classNames from "classnames";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
-import { DISCORD_URL, NAVIGATION } from "config/constants";
+import { NAVIGATION } from "config/constants";
 import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
+import { FormControlLabel, Switch } from "@mui/material";
+import { useSettingsStore } from "../../store/settings";
 
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
@@ -14,6 +16,7 @@ export default function Header(): JSX.Element {
   const defaultAnimationPosition = 18;
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
+  const settings = useSettingsStore((state) => state);
 
   function start() {
     setIsAnimating(true);
@@ -46,16 +49,26 @@ export default function Header(): JSX.Element {
   return (
     <>
       <div className="absolute right-0 left-0 top-0 mx-auto z-50">
-        <a
-          href={DISCORD_URL}
-          title="Click to join us on Discord"
-          rel="noopener noreferrer"
-          target="_blank"
-          className="flex justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50"
-        >
-          <span>Updated: 21 Aug, 2022</span>
-        </a>
+        <div className="relative flex justify-start md:justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50">
+          <span className="text-xs md:text-base">Updated: 23 Aug, 2022</span>
+
+          <div className="absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
+            <FormControlLabel
+              control={
+                <Switch
+                  size="small"
+                  onChange={(e) =>
+                    settings.setShowUnreleasedContent(e.target.checked)
+                  }
+                  checked={settings.showUnreleasedContent}
+                />
+              }
+              label="Show unreleased content"
+            />
+          </div>
+        </div>
       </div>
+
       <header className="container relative">
         <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-16 xl:mb-24 xl:mt-24">
           <Link href="/" passHref={true}>

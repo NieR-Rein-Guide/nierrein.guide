@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { CDN_URL } from "@config/constants";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
+import { useSettingsStore } from "store/settings";
 
 interface CharactersPageProps {
   currentCharacter: character;
@@ -39,6 +40,9 @@ export default function CostumePage({
 
   const [currentCostume, setCurrentCostume] = useState<costume | null>(
     selectedCostume || costumes[0]
+  );
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
   );
 
   // Select the first costume if the character changes
@@ -91,7 +95,10 @@ export default function CostumePage({
       <div className="hidden md:inline">
         <CharacterCostumes
           currentCharacter={currentCharacter}
-          costumes={costumes}
+          costumes={costumes.filter((costume) => {
+            if (showUnreleasedContent) return true;
+            return new Date() > new Date(costume.release_time);
+          })}
           setCostume={setCurrentCostume}
           currentCostume={currentCostume}
         />
@@ -102,14 +109,23 @@ export default function CostumePage({
       </div>
 
       {costumes.length > 0 && (
-        <CostumeDetails
-          character={currentCharacter}
-          costume={currentCostume}
-          abilities={abilities[currentCostume.costume_id]}
-          skill={skills[currentCostume.costume_id]}
-          stats={stats[currentCostume.costume_id]}
-          rankBonus={rankBonus}
-        />
+        <>
+          {(!showUnreleasedContent &&
+            new Date() < new Date(currentCostume.release_time) && (
+              <div className="bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center">
+                Costume hidden.
+              </div>
+            )) || (
+            <CostumeDetails
+              character={currentCharacter}
+              costume={currentCostume}
+              abilities={abilities[currentCostume.costume_id]}
+              skill={skills[currentCostume.costume_id]}
+              stats={stats[currentCostume.costume_id]}
+              rankBonus={rankBonus}
+            />
+          )}
+        </>
       )}
     </Layout>
   );

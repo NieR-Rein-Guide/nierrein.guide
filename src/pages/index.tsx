@@ -20,6 +20,7 @@ import { character, costume, notification, weapon } from "@prisma/client";
 import prisma from "@libs/prisma";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import { BtnSecondary } from "@components/btn";
+import { useSettingsStore } from "../store/settings";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
@@ -55,6 +56,9 @@ export default function Home({
   notifications = [],
 }: HomeProps): JSX.Element {
   const isMobile = useMedia("(max-width: 1279px)");
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
 
   return (
     <Layout>
@@ -266,6 +270,15 @@ export default function Home({
                       See costume
                     </a>
                   </Link>
+
+                  {!showUnreleasedContent &&
+                    new Date() < new Date(costume.release_time) && (
+                      <div className="absolute inset-0 z-50 bg-grey-lighter bordered flex items-center justify-center">
+                        <span className="text-beige text-3xl">
+                          Hidden costume
+                        </span>
+                      </div>
+                    )}
                 </div>
               ))}
             </div>

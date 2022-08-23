@@ -9,7 +9,10 @@ export default function CostumeSelect({
   const router = useRouter();
 
   function onSelect(character_id: string) {
-    router.push(`/characters/${character_id}`);
+    const selected = characters.find(
+      (char) => char.character_id === Number(character_id)
+    );
+    router.push(`/characters/${selected.slug}`);
   }
 
   return (

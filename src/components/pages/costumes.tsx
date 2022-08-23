@@ -22,6 +22,7 @@ import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import { useRouter } from "next/router";
 import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
+import { useSettingsStore } from "../../store/settings";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -66,6 +67,9 @@ export default function CharactersPage({
   charactersLookup,
 }: CharactersPageProps): JSX.Element {
   const router = useRouter();
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
 
   return (
     <Layout hasContainer={false} className="overflow-x-auto">
@@ -78,7 +82,10 @@ export default function CharactersPage({
       <section className="mx-auto p-6">
         <MaterialTable
           title={`${costumes.length} costumes in the database.`}
-          data={costumes}
+          data={costumes.filter((costume) => {
+            if (showUnreleasedContent) return true;
+            return new Date() > new Date(costume.release_time);
+          })}
           columns={[
             {
               field: "character.name",
