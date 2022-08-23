@@ -7,6 +7,7 @@ interface CheckboxProps {
   value?: string | number | boolean;
   isChecked: boolean;
   setState?: Dispatch<SetStateAction<string | number | boolean>>;
+  className?: string | string[];
 }
 
 export default function Checkbox({
@@ -14,9 +15,10 @@ export default function Checkbox({
   setState,
   value,
   name,
+  className,
 }: CheckboxProps): JSX.Element {
   return (
-    <label className="cursor-pointer relative">
+    <label className={classNames("cursor-pointer relative", className)}>
       {name && <span className="pl-10">{name}</span>}
       <SVG
         className="transform transition-all absolute -top-1"

@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../../../node_modules/@prisma/client-nrg"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("NIERREINGUIDE_DATABASE_URL")
+}
+
+model loadout_slots {
+  id            Int      @id @default(autoincrement())
+  loadoutId     Int
+  slot_position Int
+  costume_id    Int?
+  weapon_1_id   Int?
+  weapon_2_id   Int?
+  weapon_3_id   Int?
+  companion_id  Int?
+  debris_id     Int?
+  memoir_1_id   Int?
+  memoir_2_id   Int?
+  memoir_3_id   Int?
+  loadouts      loadouts @relation(fields: [loadoutId], references: [loadout_id])
+}
+
+model loadouts {
+  loadout_id    Int             @id @default(autoincrement())
+  title         String
+  description   String?
+  type          String          @default(dbgenerated("'quests'::bpchar"))
+  created_at    DateTime?       @db.Timestamptz(6)
+  slug          String
+  attribute     String
+  votes         Int?            @default(0)
+  loadout_slots loadout_slots[]
+}

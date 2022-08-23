@@ -7,12 +7,12 @@ import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
 import CharacterRows from "@components/characters/CharacterRows";
 import CostumeSelect from "@components/characters/CostumeSelect";
-import { character, costume, character_rank_bonus } from "@prisma/client";
 import slug from "slugg";
 import { useRouter } from "next/router";
 import { CDN_URL } from "@config/constants";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
+import { character, character_rank_bonus, costume } from "@prisma/client";
 import { useSettingsStore } from "store/settings";
 
 interface CharactersPageProps {

@@ -3,8 +3,8 @@ import Star from "@components/decorations/Star";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import classNames from "classnames";
 import RARITY from "@utils/rarity";
-import { character, costume } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
+import { character, costume } from "@prisma/client";
 
 export default function CharacterCostumes({
   currentCharacter,

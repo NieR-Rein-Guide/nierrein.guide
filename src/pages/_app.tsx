@@ -8,6 +8,7 @@ import "@reach/menu-button/styles.css";
 import "rc-slider/assets/index.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { Toaster } from "react-hot-toast";
 
 const muiTheme = createTheme({
   palette: {
@@ -25,6 +26,7 @@ function App({ Component, pageProps }): JSX.Element {
     <>
       <ThemeProvider theme={muiTheme}>
         <CssBaseline />
+        <Toaster />
         <Component {...pageProps} />
       </ThemeProvider>
       <NProgress />

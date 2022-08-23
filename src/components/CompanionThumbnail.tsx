@@ -4,6 +4,8 @@ import getModelPath from "@utils/getModelPath";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import Element from "@components/Element";
+import { CDN_URL } from "@config/constants";
+import classNames from "classnames";
 import {
   companion,
   companion_ability,
@@ -12,43 +14,49 @@ import {
   companion_skill_link,
   companion_stat,
 } from "@prisma/client";
-import { CDN_URL } from "@config/constants";
-import classNames from "classnames";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
 interface CompanionThumbnailProps {
-  companion: companion & {
-    companion_ability_link: (companion_ability_link & {
-      companion_ability: companion_ability;
-    })[];
-    companion_skill_link: (companion_skill_link & {
-      companion_skill: companion_skill;
-    })[];
-    companion_stat: companion_stat[];
-  };
+  companion:
+    | (companion & {
+        companion_ability_link: (companion_ability_link & {
+          companion_ability: companion_ability;
+        })[];
+        companion_skill_link: (companion_skill_link & {
+          companion_skill: companion_skill;
+        })[];
+        companion_stat: companion_stat[];
+      })
+    | companion;
   small?: boolean;
+  onClick?: () => void | undefined;
 }
 
 export default function CompanionThumbnail({
   companion,
   small,
+  onClick = undefined,
 }: CompanionThumbnailProps): JSX.Element {
   const [isShowingModel, setIsShowingModel] = useState(false);
 
   if (small) {
     return (
       <div
-        className="h-20 w-20 relative"
+        onClick={onClick}
+        className={classNames(
+          "h-20 w-20 relative",
+          onClick ? "cursor-pointer hover:scale-105 transition transform" : ""
+        )}
         style={{
-          backgroundImage: `url(/decorations/background_rarity_1.png)`,
+          backgroundImage: `url(/decorations/background_rarity_2.png)`,
         }}
       >
         <Image
           className="z-10"
           layout="fill"
-          src={`/decorations/corners_rarity_1.png`}
+          src={`/decorations/corners_rarity_2.png`}
           alt=""
         />
         <div
@@ -58,14 +66,16 @@ export default function CompanionThumbnail({
             left: "1px",
           }}
         >
-          <Element type={companion.attribute} />
+          <Element type={companion?.attribute} />
         </div>
 
-        <img
-          className="z-0 h-full w-auto mx-auto p-1"
-          src={`${CDN_URL}${companion.image_path_base}full.png`}
-          alt={companion.name}
-        />
+        {companion?.name && (
+          <img
+            className="z-0 h-full w-auto mx-auto p-1"
+            src={`${CDN_URL}${companion?.image_path_base}full.png`}
+            alt={companion?.name}
+          />
+        )}
       </div>
     );
   }
@@ -79,13 +89,13 @@ export default function CompanionThumbnail({
         <div className="relative z-10 h-full w-full py-4">
           {(isShowingModel && (
             <ModelWithNoSSR
-              path={getModelPath("companion", `sk_${companion.companion_id}`)}
+              path={getModelPath("companion", `sk_${companion?.companion_id}`)}
             />
           )) || (
             <img
               className="mx-auto h-full"
-              src={`${CDN_URL}${companion.image_path_base}full.png`}
-              alt={companion.name}
+              src={`${CDN_URL}${companion?.image_path_base}full.png`}
+              alt={companion?.name}
             />
           )}
         </div>
@@ -123,7 +133,7 @@ export default function CompanionThumbnail({
       </div>
 
       <div className="absolute top-6 right-8">
-        <Element type={companion.attribute} />
+        <Element type={companion?.attribute} />
       </div>
     </div>
   );

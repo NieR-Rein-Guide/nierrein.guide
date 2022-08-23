@@ -21,7 +21,8 @@
       "@models/*": ["models/*"],
       "@libs/*": ["libs/*"],
       "@utils/*": ["utils/*"],
-      "@hooks/*": ["hooks/*"]
+      "@hooks/*": ["hooks/*"],
+      "@store/*": ["store/*"]
     },
     "sourceMap": true,
     "outDir": "dist",

@@ -6,6 +6,9 @@ import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import CompanionThumbnail from "@components/CompanionThumbnail";
 import prisma from "@libs/prisma";
+import MaterialTable from "@material-table/core";
+import { ExportCsv, ExportPdf } from "@material-table/exporters";
+import Element from "@components/Element";
 import {
   companion,
   companion_ability,
@@ -14,9 +17,6 @@ import {
   companion_skill_link,
   companion_stat,
 } from "@prisma/client";
-import MaterialTable from "@material-table/core";
-import { ExportCsv, ExportPdf } from "@material-table/exporters";
-import Element from "@components/Element";
 
 interface CompanionsPageProps {
   companions: (companion & {

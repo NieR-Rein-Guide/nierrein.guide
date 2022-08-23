@@ -187,6 +187,14 @@ model costume_stat {
   @@id([costume_id, level], map: "pk_costume_stat")
 }
 
+model debris {
+  debris_id       Int      @id(map: "pk_debris") @default(autoincrement())
+  rarity          Int
+  release_time    DateTime @db.Timestamptz(6)
+  name            String?
+  image_path_base String?
+}
+
 model emblem {
   emblem_id      Int       @id(map: "pk_emblem") @default(autoincrement())
   name           String?
@@ -217,6 +225,15 @@ model memoir_series {
   small_set_description String?
   large_set_description String?
   memoir                memoir[]
+}
+
+model notification {
+  notification_id  Int       @id(map: "pk_notification") @default(autoincrement())
+  information_type String?
+  title            String?
+  body             String?
+  release_time     DateTime? @db.Timestamptz(6)
+  thumbnail_path   String?
 }
 
 model weapon {
@@ -312,21 +329,4 @@ model weapon_story_link {
 
   @@id([weapon_id, weapon_story_id], map: "pk_weapon_story_link")
   @@index([weapon_story_id], map: "ix_weapon_story_link_weapon_story_id")
-}
-
-model debris {
-  debris_id       Int      @id(map: "pk_debris") @default(autoincrement())
-  rarity          Int
-  release_time    DateTime @db.Timestamptz(6)
-  name            String?
-  image_path_base String?
-}
-
-model notification {
-  notification_id  Int       @id(map: "pk_notification") @default(autoincrement())
-  information_type String?
-  title            String?
-  body             String?
-  release_time     DateTime? @db.Timestamptz(6)
-  thumbnail_path   String?
 }

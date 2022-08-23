@@ -17,7 +17,7 @@ export default function Element({
   size = 64,
   ...props
 }: ElementProps): JSX.Element {
-  const attribute = type.toLowerCase();
+  const attribute = type && type.toLowerCase();
 
   return (
     <Image

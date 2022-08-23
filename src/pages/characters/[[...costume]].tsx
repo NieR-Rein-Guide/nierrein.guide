@@ -1,20 +1,20 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React from "react";
-import {
-  character,
-  costume,
-  character_rank_bonus,
-  costume_ability_link,
-  costume_ability,
-  costume_skill_link,
-  costume_skill,
-  costume_stat,
-  emblem,
-} from "@prisma/client";
 import slug from "slugg";
 import Costume from "../../components/pages/costume";
 import Index from "../../components/pages/costumes";
 import prisma from "@libs/prisma";
+import {
+  character,
+  character_rank_bonus,
+  costume,
+  costume_ability,
+  costume_ability_link,
+  costume_skill,
+  costume_skill_link,
+  costume_stat,
+  emblem,
+} from "@prisma/client";
 
 interface CharactersPageProps {
   isIndex: boolean;

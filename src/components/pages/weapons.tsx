@@ -2,14 +2,6 @@
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import React from "react";
-import {
-  weapon,
-  weapon_ability,
-  weapon_ability_link,
-  weapon_skill,
-  weapon_skill_link,
-  weapon_stat,
-} from "@prisma/client";
 import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import Element from "@components/Element";
@@ -20,6 +12,14 @@ import { useRouter } from "next/router";
 import SVG from "react-inlinesvg";
 import Star from "@components/decorations/Star";
 import RARITY from "@utils/rarity";
+import {
+  weapon,
+  weapon_ability,
+  weapon_ability_link,
+  weapon_skill,
+  weapon_skill_link,
+  weapon_stat,
+} from "@prisma/client";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -34,7 +34,7 @@ interface CharactersPageProps {
   abilitiesLookup: { [key: string]: string };
 }
 
-const attributesLookup = {
+export const attributesLookup = {
   LIGHT: "Light",
   DARK: "Dark",
   FIRE: "Fire",
@@ -42,7 +42,7 @@ const attributesLookup = {
   WATER: "Water",
 };
 
-const weaponTypesLookup = {
+export const weaponTypesLookup = {
   SWORD: "1H Sword",
   BIG_SWORD: "2H Sword",
   FIST: "Fist",
@@ -51,7 +51,7 @@ const weaponTypesLookup = {
   STAFF: "Staff",
 };
 
-const rarityLookup = {
+export const rarityLookup = {
   S_RARE: "3*",
   SS_RARE: "4*",
   LEGEND: "5*",

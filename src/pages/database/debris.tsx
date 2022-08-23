@@ -5,21 +5,21 @@ import SVG from "react-inlinesvg";
 import prisma from "@libs/prisma";
 import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
-import { debris } from "@prisma/client";
 import DebrisThumbnail from "@components/DebrisThumbnail";
 import Star from "@components/decorations/Star";
+import { debris } from "@prisma/client";
 
 interface DebrisPageProps {
   debris: debris[];
 }
 
-const DEBRIS_RARITY = {
+export const DEBRIS_RARITY = {
   20: 2,
   30: 3,
   40: 4,
 };
 
-const rarityLookup = {
+export const rarityLookup = {
   20: "2*",
   30: "3*",
   40: "4*",
