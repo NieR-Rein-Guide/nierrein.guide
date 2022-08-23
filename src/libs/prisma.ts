@@ -1,7 +1,7 @@
 /* eslint-disable prefer-const */
 /* eslint-disable @typescript-eslint/no-namespace */
-import { PrismaClient as PrismaDump } from '../generated/dump'
-import { PrismaClient as PrismaNRG } from '../generated/nierreinguide'
+import { PrismaClient as PrismaDump } from '@prisma/client'
+import { PrismaClient as PrismaNRG } from '@prisma/client-nrg'
 
 
 declare global {
