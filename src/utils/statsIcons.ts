@@ -8,9 +8,13 @@ import hpIcon from "../../public/stats/hp.png";
 const statsIcons = {
   atk: atkIcon,
   agility: agilityIcon,
+  agi: agilityIcon,
   cd: cdIcon,
+  crit_atk: cdIcon,
   cr: crIcon,
+  crit_rate	: crIcon,
   def: defIcon,
+  vit: defIcon,
   hp: hpIcon,
   "AGILITY": agilityIcon,
   "HP": hpIcon,

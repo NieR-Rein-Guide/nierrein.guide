@@ -15,6 +15,7 @@ import {
   costume_stat,
   emblem,
 } from "@prisma/client";
+import { getAllCostumes } from "@models/costume";
 
 interface CharactersPageProps {
   isIndex: boolean;
@@ -80,67 +81,8 @@ export default function CharactersPage({
 export async function getStaticProps(context) {
   // No route parameters, show index page
   if (Object.entries(context.params).length === 0) {
-    const costumes = await prisma.costume.findMany({
-      orderBy: {
-        release_time: "desc",
-      },
-      include: {
-        character: true,
-        costume_ability_link: {
-          where: {
-            ability_level: 4,
-          },
-          orderBy: {
-            ability_slot: "asc",
-          },
-          include: {
-            costume_ability: true,
-          },
-        },
-        costume_skill_link: {
-          where: {
-            skill_level: 15,
-          },
-          include: {
-            costume_skill: true,
-          },
-        },
-        costume_stat: {
-          take: 1,
-          orderBy: {
-            level: "desc",
-          },
-        },
-      },
-    });
-
-    const abilitiesLookupData = await prisma.costume_ability.findMany({
-      orderBy: {
-        name: "asc",
-      },
-      select: {
-        name: true,
-      },
-      distinct: ["name"],
-    });
-
-    const abilitiesLookup = abilitiesLookupData.reduce((acc, current) => {
-      acc[current.name] = current.name;
-      return acc;
-    }, {});
-
-    const charactersLookupData = await prisma.character.findMany({
-      select: {
-        name: true,
-      },
-      orderBy: {
-        name: "asc",
-      },
-    });
-    const charactersLookup = charactersLookupData.reduce((acc, current) => {
-      acc[current.name] = current.name;
-      return acc;
-    }, {});
+    const { costumes, abilitiesLookup, charactersLookup } =
+      await getAllCostumes();
 
     return {
       props: JSON.parse(

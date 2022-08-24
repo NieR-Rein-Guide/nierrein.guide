@@ -63,7 +63,7 @@ export default function Header(): JSX.Element {
                   checked={settings.showUnreleasedContent}
                 />
               }
-              label="Show unreleased content"
+              label="Show spoilers"
             />
           </div>
         </div>

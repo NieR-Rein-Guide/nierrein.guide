@@ -15,7 +15,7 @@ function ListingTools() {
             src="/tools/loadout.jpg"
             alt="Loadout thumbnail"
           />
-          <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
+          <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow text-center">
             Loadout builder
           </h3>
         </a>

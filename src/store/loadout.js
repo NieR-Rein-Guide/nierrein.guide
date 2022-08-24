@@ -24,7 +24,7 @@ export const DEFAULT_SLOT = {
   memoirs: [null, null, null],
 };
 
-export const useLoadoutStore = create((set) => ({
+export const useLoadoutStore = create((set, get) => ({
   title: "My Loadout",
   description: "Description of the loadout",
   type: "quests",
@@ -51,7 +51,7 @@ export const useLoadoutStore = create((set) => ({
         return {
           slots: produce(new Array(newSize), (draft) => {
             draft.fill(DEFAULT_SLOT);
-          })
+          }),
         };
       }
 
@@ -60,13 +60,13 @@ export const useLoadoutStore = create((set) => ({
        * Keep old loadout and fill the rest
        */
       if (newSize > state.slots.length) {
-        const slotsToCreate = newSize - state.slots.length
+        const slotsToCreate = newSize - state.slots.length;
         const newSlots = new Array(slotsToCreate).fill(DEFAULT_SLOT);
 
         return {
           slots: produce(state.slots, (draft) => {
-            newSlots.forEach(slot => draft.push(slot))
-          })
+            newSlots.forEach((slot) => draft.push(slot));
+          }),
         };
       }
 
@@ -84,7 +84,7 @@ export const useLoadoutStore = create((set) => ({
        */
       return {
         slots: state.slots,
-      }
+      };
     }),
   /**
    * Update the costume on a specific slot (slot index is set when opening modal)
@@ -159,7 +159,7 @@ export const useLoadoutStore = create((set) => ({
     set((state) => {
       const newSlots = produce(state.slots, (draft) => {
         draft[state.currentSlotIndex].debris = debris;
-      })
+      });
 
       return {
         slots: newSlots,
@@ -174,8 +174,9 @@ export const useLoadoutStore = create((set) => ({
   setMemoir: (memoir) =>
     set((state) => {
       const newSlots = produce(state.slots, (draft) => {
-        draft[state.currentSlotIndex].memoirs[state.currentMemoirIndex] = memoir;
-      })
+        draft[state.currentSlotIndex].memoirs[state.currentMemoirIndex] =
+          memoir;
+      });
 
       return {
         slots: newSlots,

@@ -46,6 +46,7 @@
     "graphql": "^15.5.1",
     "graphql-request": "^3.5.0",
     "gsap": "^3.7.1",
+    "immer": "^9.0.15",
     "localforage": "^1.10.0",
     "marked": "^3.0.0",
     "mongodb": "^4.1.1",
