@@ -1,4 +1,5 @@
 import create from 'zustand';
+import produce from "immer";
 
 export const LOADOUT_TYPES = {
   quests: {
@@ -48,9 +49,9 @@ export const useLoadoutStore = create((set) => ({
        */
       if (state.slots.length === 0) {
         return {
-          slots: JSON.parse(
-            JSON.stringify(new Array(newSize).fill(DEFAULT_SLOT))
-          ),
+          slots: produce(new Array(newSize), (draft) => {
+            draft.fill(DEFAULT_SLOT);
+          })
         };
       }
 
@@ -59,23 +60,22 @@ export const useLoadoutStore = create((set) => ({
        * Keep old loadout and fill the rest
        */
       if (newSize > state.slots.length) {
-        const oldSlots = [...state.slots]
-
         const slotsToCreate = newSize - state.slots.length
         const newSlots = new Array(slotsToCreate).fill(DEFAULT_SLOT);
 
         return {
-          slots: JSON.parse(
-            JSON.stringify([...oldSlots, ...newSlots])
-          ),
+          slots: produce(state.slots, (draft) => {
+            newSlots.forEach(slot => draft.push(slot))
+          })
         };
       }
 
+      /**
+       * If switching from "subj" to "quests" or "arena"
+       */
       if (newSize < state.slots.length) {
-        const newSlots = state.slots.slice(0, newSize)
-
         return {
-          slots: JSON.parse(JSON.stringify(newSlots)),
+          slots: state.slots.slice(0, newSize),
         };
       }
 
@@ -91,8 +91,9 @@ export const useLoadoutStore = create((set) => ({
    */
   setCostume: (costume) =>
     set((state) => {
-      const newSlots = [...state.slots];
-      newSlots[state.currentSlotIndex].costume = costume;
+      const newSlots = produce(state.slots, (draft) => {
+        draft[state.currentSlotIndex].costume = costume;
+      });
 
       return {
         slots: newSlots,
@@ -122,9 +123,10 @@ export const useLoadoutStore = create((set) => ({
    */
   setWeapon: (weapon) =>
     set((state) => {
-      const newSlots = [...state.slots];
-      newSlots[state.currentSlotIndex].weapons[state.currentWeaponIndex] =
-        weapon;
+      const newSlots = produce(state.slots, (draft) => {
+        draft[state.currentSlotIndex].weapons[state.currentWeaponIndex] =
+          weapon;
+      });
 
       return {
         slots: newSlots,
@@ -144,8 +146,9 @@ export const useLoadoutStore = create((set) => ({
    */
   setCompanion: (companion) =>
     set((state) => {
-      const newSlots = [...state.slots];
-      newSlots[state.currentSlotIndex].companion = companion;
+      const newSlots = produce(state.slots, (draft) => {
+        draft[state.currentSlotIndex].companion = companion;
+      });
 
       return {
         slots: newSlots,
@@ -154,8 +157,9 @@ export const useLoadoutStore = create((set) => ({
     }),
   setDebris: (debris) =>
     set((state) => {
-      const newSlots = [...state.slots];
-      newSlots[state.currentSlotIndex].debris = debris;
+      const newSlots = produce(state.slots, (draft) => {
+        draft[state.currentSlotIndex].debris = debris;
+      })
 
       return {
         slots: newSlots,
@@ -169,9 +173,9 @@ export const useLoadoutStore = create((set) => ({
     }),
   setMemoir: (memoir) =>
     set((state) => {
-      const newSlots = [...state.slots];
-      newSlots[state.currentSlotIndex].memoirs[state.currentMemoirIndex] =
-        memoir;
+      const newSlots = produce(state.slots, (draft) => {
+        draft[state.currentSlotIndex].memoirs[state.currentMemoirIndex] = memoir;
+      })
 
       return {
         slots: newSlots,
