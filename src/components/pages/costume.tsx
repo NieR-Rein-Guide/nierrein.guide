@@ -5,25 +5,52 @@ import CostumeDetails from "@components/CharacterInfo";
 import { useEffect, useState } from "react";
 import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
-import CharacterRows from "@components/characters/CharacterRows";
 import CostumeSelect from "@components/characters/CostumeSelect";
 import slug from "slugg";
 import { useRouter } from "next/router";
 import { CDN_URL } from "@config/constants";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import { character, character_rank_bonus, costume } from "@prisma/client";
+import {
+  character,
+  character_rank_bonus,
+  costume,
+  costume_ability,
+  costume_ability_link,
+  costume_skill,
+  costume_skill_link,
+  costume_stat,
+  emblem,
+} from "@prisma/client";
 import { useSettingsStore } from "store/settings";
+import Slider from "rc-slider";
 
 interface CharactersPageProps {
   currentCharacter: character;
   selectedCostume: costume;
   characters: character[];
-  costumes: costume[];
+  costumes: (costume & {
+    costume_ability_link: (costume_ability_link & {
+      costume_ability: costume_ability;
+    })[];
+    costume_skill_link: (costume_skill_link & {
+      costume_skill: costume_skill;
+    })[];
+    costume_stat: costume_stat[];
+    character: character;
+    emblem: emblem;
+  })[];
   abilities;
   skills;
   stats;
   rankBonus: character_rank_bonus[];
+  selectCostumes: {
+    title: string;
+    character: character;
+    slug: string;
+    image_path_base: string;
+    release_time: Date;
+  }[];
 }
 
 export default function CostumePage({
@@ -35,6 +62,7 @@ export default function CostumePage({
   skills,
   stats,
   rankBonus,
+  selectCostumes,
 }: CharactersPageProps): JSX.Element {
   const router = useRouter();
 
@@ -44,6 +72,8 @@ export default function CostumePage({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
+  const [skillLevel, setSkillLevel] = useState(14);
+  const [ascendLevel, setAscendLevel] = useState(4);
 
   // Select the first costume if the character changes
   useEffect(() => {
@@ -78,21 +108,67 @@ export default function CostumePage({
         }full.png}`}
       />
 
-      <nav className="mb-4">
+      <nav className="flex flex-col items-center gap-y-4 md:flex-row justify-between">
         <Link href="/characters" passHref={true}>
           <a className="btn">
             <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Return to Characters</span>
           </a>
         </Link>
+
+        <div className="flex items-center gap-x-4 w-full md:w-auto">
+          <div className="hidden md:block mr-4 w-32">
+            <p className="text-beige">Skill Lv. {skillLevel + 1}</p>
+            <Slider
+              value={skillLevel}
+              className="mt-2 xl:mt-0 max-w-lg"
+              min={0}
+              max={14}
+              onChange={(value) => setSkillLevel(value)}
+            />
+          </div>
+          <div className="hidden md:block mr-4 w-32">
+            <p className="text-beige">Ascend Lv. {ascendLevel}</p>
+            <Slider
+              value={ascendLevel}
+              className="mt-2 xl:mt-0 max-w-lg"
+              min={1}
+              max={4}
+              onChange={(value) => setAscendLevel(value)}
+            />
+          </div>
+          {/* <div className="hidden md:flex flex-col justify-between">
+            <p className="text-beige">Ascend Lv. {ascendLevel}</p>
+            <Rating
+              name="ascend-levels"
+              max={4}
+              value={ascendLevel}
+              defaultValue={4}
+              onChange={(e, newValue) => {
+                if (typeof newValue !== "number") {
+                  console.log(newValue);
+                  console.log(ascendLevel);
+                  setAscendLevel(1);
+                  console.log(ascendLevel);
+                }
+                setAscendLevel(newValue);
+              }}
+              getLabelText={(value: number) => `Ascend level ${value}`}
+              precision={1}
+              icon={<AscendFull />}
+              emptyIcon={<AscendEmpty />}
+            />
+          </div> */}
+          <CostumeSelect costumes={selectCostumes} />
+        </div>
       </nav>
 
-      <CharacterRows
+      {/* <CharacterRows
         characters={characters}
         currentCharacter={currentCharacter}
-      />
+      /> */}
 
-      <div className="hidden md:inline">
+      <div className="hidden md:block">
         <CharacterCostumes
           currentCharacter={currentCharacter}
           costumes={costumes.filter((costume) => {
@@ -102,10 +178,6 @@ export default function CostumePage({
           setCostume={setCurrentCostume}
           currentCostume={currentCostume}
         />
-      </div>
-
-      <div className="inline md:hidden">
-        <CostumeSelect characters={characters} />
       </div>
 
       {costumes.length > 0 && (
@@ -123,6 +195,8 @@ export default function CostumePage({
               skill={skills[currentCostume.costume_id]}
               stats={stats[currentCostume.costume_id]}
               rankBonus={rankBonus}
+              ascendLevel={ascendLevel}
+              skillLevel={skillLevel}
             />
           )}
         </>

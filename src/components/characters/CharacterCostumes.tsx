@@ -22,13 +22,13 @@ export default function CharacterCostumes({
   );
 
   return (
-    <div className="my-2 p-2 lg:pl-6 overflow-auto">
+    <div className="my-2 p-2 overflow-auto">
       <p className="text-beige">
         {selectedCharacterCostumes.length} costumes found for{" "}
         {currentCharacter.name}
       </p>
 
-      <div className="flex flex-wrap gap-2">
+      <div className="grid md:grid-cols-6 lg:grid-cols-8 gap-2">
         {selectedCharacterCostumes.map((costume) => (
           <div
             key={costume.costume_id}
@@ -46,7 +46,7 @@ export default function CharacterCostumes({
                   : "brightness-50"
               )}
             />
-            <span className="text-xs line-clamp-1 mt-1">
+            <span className="text-xs truncate mt-1">
               {costume.title ? costume.title : "No translation"}
             </span>
           </div>

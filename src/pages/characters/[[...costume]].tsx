@@ -39,6 +39,13 @@ interface CharactersPageProps {
   rankBonus: character_rank_bonus[];
   abilitiesLookup;
   charactersLookup;
+  selectCostumes: {
+    title: string;
+    character: character;
+    slug: string;
+    image_path_base: string;
+    release_time: Date;
+  }[];
 }
 
 export default function CharactersPage({
@@ -53,6 +60,7 @@ export default function CharactersPage({
   rankBonus,
   abilitiesLookup,
   charactersLookup,
+  selectCostumes,
 }: CharactersPageProps): JSX.Element {
   if (!isIndex) {
     return (
@@ -65,6 +73,7 @@ export default function CharactersPage({
         skills={skills}
         stats={stats}
         rankBonus={rankBonus}
+        selectCostumes={selectCostumes}
       />
     );
   }
@@ -108,32 +117,49 @@ export async function getStaticProps(context) {
   });
 
   const currentCharacter = characters.find((ch) => {
-    return slug(ch.name) === slug(character);
+    return ch.slug === slug(character);
   });
 
-  const selectedCostumes = await prisma.costume.findMany({
-    orderBy: {
-      costume_id: "asc",
-    },
-    where: {
-      character_id: currentCharacter.character_id,
-    },
-    include: {
-      emblem: true,
-    },
-  });
+  const [selectedCostumes, rankBonus, selectCostumes] = await Promise.all([
+    prisma.costume.findMany({
+      orderBy: {
+        costume_id: "asc",
+      },
+      where: {
+        character_id: currentCharacter.character_id,
+      },
+      include: {
+        emblem: true,
+      },
+    }),
+    prisma.character_rank_bonus.findMany({
+      where: {
+        character_id: currentCharacter.character_id,
+      },
+      orderBy: {
+        rank_bonus_level: "asc",
+      },
+    }),
+    prisma.costume.findMany({
+      orderBy: {
+        costume_id: "asc",
+      },
+      select: {
+        character,
+        title: true,
+        slug: true,
+        image_path_base: true,
+        release_time: true,
+      },
+    }),
+  ]);
+
+  selectCostumes.sort(
+    (a, b) => -b.character.name.localeCompare(a.character.name)
+  );
 
   const selectedCostume = selectedCostumes.find((ch) => {
     return ch.slug === slug(costume);
-  });
-
-  const rankBonus = await prisma.character_rank_bonus.findMany({
-    where: {
-      character_id: currentCharacter.character_id,
-    },
-    orderBy: {
-      rank_bonus_level: "asc",
-    },
   });
 
   const stats = {};
@@ -141,42 +167,40 @@ export async function getStaticProps(context) {
   const skills = {};
 
   for (const costume of selectedCostumes) {
-    const allAbilities = await prisma.costume_ability_link.findMany({
-      where: {
-        costume_id: costume.costume_id,
-      },
-      include: {
-        costume_ability: true,
-      },
-      orderBy: {
-        ability_level: "asc",
-      },
-    });
+    const [allAbilities, allSkills, allStats] = await Promise.all([
+      prisma.costume_ability_link.findMany({
+        where: {
+          costume_id: costume.costume_id,
+        },
+        include: {
+          costume_ability: true,
+        },
+        orderBy: {
+          ability_level: "asc",
+        },
+      }),
+      prisma.costume_skill_link.findMany({
+        where: {
+          costume_id: costume.costume_id,
+        },
+        include: {
+          costume_skill: true,
+        },
+        orderBy: {
+          skill_level: "asc",
+        },
+      }),
+      prisma.costume_stat.findMany({
+        where: {
+          costume_id: costume.costume_id,
+        },
+      }),
+    ]);
 
     abilities[costume.costume_id] = Object.values(
       groupByKey(allAbilities, "ability_id")
     );
-
-    const allSkills = await prisma.costume_skill_link.findMany({
-      where: {
-        costume_id: costume.costume_id,
-      },
-      include: {
-        costume_skill: true,
-      },
-      orderBy: {
-        skill_level: "asc",
-      },
-    });
-
     skills[costume.costume_id] = allSkills;
-
-    const allStats = await prisma.costume_stat.findMany({
-      where: {
-        costume_id: costume.costume_id,
-      },
-    });
-
     stats[costume.costume_id] = allStats.sort((a, b) => a.level - b.level);
   }
 
@@ -191,6 +215,7 @@ export async function getStaticProps(context) {
         skills,
         stats,
         rankBonus,
+        selectCostumes,
       })
     ),
   };

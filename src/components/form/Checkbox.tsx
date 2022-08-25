@@ -3,7 +3,7 @@ import React, { Dispatch, SetStateAction } from "react";
 import SVG from "react-inlinesvg";
 
 interface CheckboxProps {
-  children: JSX.Element[] | JSX.Element;
+  label: string;
   isChecked: boolean;
   setState: Dispatch<SetStateAction<any>>;
 }
@@ -11,11 +11,11 @@ interface CheckboxProps {
 export default function Checkbox({
   isChecked,
   setState,
-  children,
+  label,
 }: CheckboxProps): JSX.Element {
   return (
-    <label className="cursor-pointer relative">
-      <div className="pl-10 flex justify-center items-center">{children}</div>
+    <label className="flex flex-col cursor-pointer relative">
+      <div className="text-beige">{label}</div>
       <SVG
         className="transform transition-all absolute -top-1"
         src="/decorations/checkbox.svg"

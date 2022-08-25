@@ -25,3 +25,11 @@ export default function Ascend({ level, ...props }: { level: number }) {
     </div>
   );
 }
+
+export function AscendFull() {
+  return <SVG src="/decorations/ascend-full.svg" className="h-6 w-auto" />;
+}
+
+export function AscendEmpty() {
+  return <SVG src="/decorations/ascend.svg" className="h-6 w-auto" />;
+}

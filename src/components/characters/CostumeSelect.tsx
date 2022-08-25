@@ -1,30 +1,75 @@
+import { CDN_URL } from "@config/constants";
+import { Autocomplete, Box, TextField } from "@mui/material";
 import { character } from "@prisma/client";
+import { useSettingsStore } from "@store/settings";
 import { useRouter } from "next/router";
 
+interface CostumeSelectRow {
+  title: string;
+  character: character;
+  slug: string;
+  image_path_base: string;
+  release_time: Date;
+}
+
 export default function CostumeSelect({
-  characters,
+  costumes,
 }: {
-  characters: character[];
+  costumes: CostumeSelectRow[];
 }): JSX.Element {
   const router = useRouter();
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
 
-  function onSelect(character_id: string) {
-    const selected = characters.find(
-      (char) => char.character_id === Number(character_id)
+  function onSelect(costume: CostumeSelectRow) {
+    if (!costume) return;
+    console.log(
+      "🚀 ~ file: CostumeSelect.tsx ~ line 22 ~ onSelect ~ costume",
+      costume
     );
-    router.push(`/characters/${selected.slug}`);
+
+    console.log(`/characters/${costume.character.slug}/${costume.slug}`);
+    // router.push(`/characters/${costume.character.slug}/${costume.slug}`);
   }
 
   return (
-    <select
-      className="bg-black text-white w-full"
-      onChange={(e) => onSelect(e.target.value)}
-    >
-      {characters.map((character) => (
-        <option key={character.character_id} value={character.character_id}>
-          {character.name}
-        </option>
-      ))}
-    </select>
+    <Autocomplete
+      onChange={(e, value) => onSelect(value as CostumeSelectRow)}
+      className="w-full md:w-72"
+      options={costumes.filter((costume) => {
+        if (showUnreleasedContent) return true;
+        return new Date() > new Date(costume.release_time);
+      })}
+      autoHighlight
+      groupBy={(costume) => costume.character.name}
+      getOptionLabel={(option) =>
+        typeof option === "object" && `${option.title} ${option.character.name}`
+      }
+      renderOption={(props, option) => (
+        <Box
+          component="li"
+          sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+          {...props}
+        >
+          <img
+            loading="lazy"
+            width="40"
+            src={`${CDN_URL}${option.image_path_base}battle.png`}
+          />
+          {option.title}
+        </Box>
+      )}
+      renderInput={(params) => (
+        <TextField
+          {...params}
+          label="Search costume..."
+          inputProps={{
+            ...params.inputProps,
+            autoComplete: "new-password", // disable autocomplete and autofill
+          }}
+        />
+      )}
+    />
   );
 }
