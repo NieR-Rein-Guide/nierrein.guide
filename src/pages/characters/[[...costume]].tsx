@@ -167,35 +167,35 @@ export async function getStaticProps(context) {
   const skills = {};
 
   for (const costume of selectedCostumes) {
-    const [allAbilities, allSkills, allStats] = await Promise.all([
-      prisma.costume_ability_link.findMany({
-        where: {
-          costume_id: costume.costume_id,
-        },
-        include: {
-          costume_ability: true,
-        },
-        orderBy: {
-          ability_level: "asc",
-        },
-      }),
-      prisma.costume_skill_link.findMany({
-        where: {
-          costume_id: costume.costume_id,
-        },
-        include: {
-          costume_skill: true,
-        },
-        orderBy: {
-          skill_level: "asc",
-        },
-      }),
-      prisma.costume_stat.findMany({
-        where: {
-          costume_id: costume.costume_id,
-        },
-      }),
-    ]);
+    const allAbilities = await prisma.costume_ability_link.findMany({
+      where: {
+        costume_id: costume.costume_id,
+      },
+      include: {
+        costume_ability: true,
+      },
+      orderBy: {
+        ability_level: "asc",
+      },
+    });
+
+    const allSkills = await prisma.costume_skill_link.findMany({
+      where: {
+        costume_id: costume.costume_id,
+      },
+      include: {
+        costume_skill: true,
+      },
+      orderBy: {
+        skill_level: "asc",
+      },
+    });
+
+    const allStats = await prisma.costume_stat.findMany({
+      where: {
+        costume_id: costume.costume_id,
+      },
+    });
 
     abilities[costume.costume_id] = Object.values(
       groupByKey(allAbilities, "ability_id")
