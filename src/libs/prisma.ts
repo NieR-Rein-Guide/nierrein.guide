@@ -22,7 +22,7 @@ let prisma: PrismaDump = global.prisma || new PrismaDump({
   log: ["info"],
 })
 
-let nrgprisma: PrismaNRG = global.nrgprisma || new PrismaNRG({
+export let nrgprisma: PrismaNRG = global.nrgprisma || new PrismaNRG({
   datasources: {
     db: {
       url: process.env.NIERREINGUIDE_DATABASE_URL,
@@ -31,7 +31,7 @@ let nrgprisma: PrismaNRG = global.nrgprisma || new PrismaNRG({
   log: ["info"],
 })
 
+if (process.env.NODE_ENV !== 'production') global.prisma = prisma
+if (process.env.NODE_ENV !== 'production') global.nrgprisma = nrgprisma
+
 export default prisma;
-export {
-  nrgprisma
-}
