@@ -17,7 +17,6 @@ import { useMedia } from "react-use";
 import CostumeArtwork from "@components/CostumeArtwork";
 import slug from "slugg";
 import prisma from "@libs/prisma";
-import { nrgprisma } from "@libs/prisma";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import { BtnSecondary } from "@components/btn";
 import Tools from "@components/pages/tools";
@@ -309,7 +308,7 @@ export async function getStaticProps() {
       getFeaturedGuides(),
       getCurrentEvents({ currentDate: new Date().toISOString() }),
       getFutureEvents({ currentDate: new Date().toISOString() }),
-      prisma.costume.findMany({
+      prisma.dump.costume.findMany({
         orderBy: {
           release_time: "desc",
         },
@@ -318,13 +317,13 @@ export async function getStaticProps() {
         },
         take: 4,
       }),
-      prisma.notification.findMany({
+      prisma.dump.notification.findMany({
         take: 10,
         orderBy: {
           release_time: "desc",
         },
       }),
-      nrgprisma.loadouts.findMany({
+      prisma.nrg.loadouts.findMany({
         take: 6,
         orderBy: {
           votes: "desc",
@@ -332,7 +331,7 @@ export async function getStaticProps() {
       }),
     ]);
 
-    const recentWeapons = await prisma.weapon.findMany({
+    const recentWeapons = await prisma.dump.weapon.findMany({
       take: 6,
       orderBy: {
         release_time: "desc",

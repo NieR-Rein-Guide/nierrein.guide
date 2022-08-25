@@ -4,32 +4,25 @@ import { PrismaClient as PrismaDump } from '@prisma/client'
 import { PrismaClient as PrismaNRG } from '@prisma/client-nrg'
 
 
-declare global {
-  namespace NodeJS {
-    interface Global {
-      prisma: PrismaDump;
-    }
-  }
-}
-
-if (!global.prisma) {
-  global.prisma = new PrismaDump({
+const prisma = {
+  dump: new PrismaDump({
     datasources: {
       db: {
         url: process.env.DATABASE_URL,
       }
     },
     log: ["info"],
+  }),
+  nrg: new PrismaNRG({
+    datasources: {
+      db: {
+        url: process.env.NIERREINGUIDE_DATABASE_URL,
+      }
+    },
+    log: ["info"],
   })
-}
+};
 
-export const nrgprisma = new PrismaNRG({
-  datasources: {
-    db: {
-      url: process.env.NIERREINGUIDE_DATABASE_URL,
-    }
-  },
-  log: ["info"],
-})
+Object.freeze(prisma);
 
-export default global.prisma;
+export default prisma;

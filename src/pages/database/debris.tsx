@@ -114,7 +114,7 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
 }
 
 export async function getStaticProps() {
-  const debris = await prisma.debris.findMany({
+  const debris = await prisma.dump.debris.findMany({
     orderBy: {
       release_time: "desc",
     },

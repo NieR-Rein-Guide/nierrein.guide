@@ -197,7 +197,7 @@ export default function CompanionsPage({
 }
 
 export async function getStaticProps() {
-  const companions = await prisma.companion.findMany({
+  const companions = await prisma.dump.companion.findMany({
     orderBy: {
       release_time: "desc",
     },
@@ -222,7 +222,7 @@ export async function getStaticProps() {
     },
   });
 
-  const skillsLookupData = await prisma.companion_skill.findMany({
+  const skillsLookupData = await prisma.dump.companion_skill.findMany({
     orderBy: {
       name: "asc",
     },
@@ -237,7 +237,7 @@ export async function getStaticProps() {
     return acc;
   }, {});
 
-  const abilitiesLookupData = await prisma.companion_ability.findMany({
+  const abilitiesLookupData = await prisma.dump.companion_ability.findMany({
     orderBy: {
       name: "asc",
     },

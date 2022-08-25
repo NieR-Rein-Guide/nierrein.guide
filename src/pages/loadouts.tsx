@@ -1,6 +1,6 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import { nrgprisma } from "@libs/prisma";
+import prisma from "@libs/prisma";
 import { NextPageContext } from "next";
 import { loadouts } from "@prisma/client-nrg";
 import LoadoutListingItem from "@components/LoadoutListingItem";
@@ -185,7 +185,7 @@ export async function getServerSideProps(context: NextPageContext) {
     };
   }
 
-  const loadouts = await nrgprisma.loadouts.findMany({
+  const loadouts = await prisma.nrg.loadouts.findMany({
     where,
     orderBy,
   });

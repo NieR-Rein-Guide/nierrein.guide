@@ -110,7 +110,7 @@ export async function getStaticProps(context) {
   // Show costume page
   const [character, costume] = context.params.costume;
 
-  const characters = await prisma.character.findMany({
+  const characters = await prisma.dump.character.findMany({
     orderBy: {
       character_id: "asc",
     },
@@ -121,7 +121,7 @@ export async function getStaticProps(context) {
   });
 
   const [selectedCostumes, rankBonus, selectCostumes] = await Promise.all([
-    prisma.costume.findMany({
+    prisma.dump.costume.findMany({
       orderBy: {
         costume_id: "asc",
       },
@@ -132,7 +132,7 @@ export async function getStaticProps(context) {
         emblem: true,
       },
     }),
-    prisma.character_rank_bonus.findMany({
+    prisma.dump.character_rank_bonus.findMany({
       where: {
         character_id: currentCharacter.character_id,
       },
@@ -140,7 +140,7 @@ export async function getStaticProps(context) {
         rank_bonus_level: "asc",
       },
     }),
-    prisma.costume.findMany({
+    prisma.dump.costume.findMany({
       orderBy: {
         costume_id: "asc",
       },
@@ -167,7 +167,7 @@ export async function getStaticProps(context) {
   const skills = {};
 
   for (const costume of selectedCostumes) {
-    const allAbilities = await prisma.costume_ability_link.findMany({
+    const allAbilities = await prisma.dump.costume_ability_link.findMany({
       where: {
         costume_id: costume.costume_id,
       },
@@ -179,7 +179,7 @@ export async function getStaticProps(context) {
       },
     });
 
-    const allSkills = await prisma.costume_skill_link.findMany({
+    const allSkills = await prisma.dump.costume_skill_link.findMany({
       where: {
         costume_id: costume.costume_id,
       },
@@ -191,7 +191,7 @@ export async function getStaticProps(context) {
       },
     });
 
-    const allStats = await prisma.costume_stat.findMany({
+    const allStats = await prisma.dump.costume_stat.findMany({
       where: {
         costume_id: costume.costume_id,
       },
@@ -222,13 +222,13 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const costumes = await prisma.costume.findMany({
+  const costumes = await prisma.dump.costume.findMany({
     include: {
       character: true,
     },
   });
 
-  const characters = await prisma.character.findMany({});
+  const characters = await prisma.dump.character.findMany({});
 
   const costumesPaths = costumes.map((costume) => ({
     params: {

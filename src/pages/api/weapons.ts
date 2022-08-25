@@ -4,7 +4,7 @@ import prisma from "@libs/prisma";
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
     try {
-      const weapons = await prisma.weapon.findMany({
+      const weapons = await prisma.dump.weapon.findMany({
         orderBy: {
           weapon_id: 'asc',
         },

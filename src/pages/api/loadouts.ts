@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { nrgprisma } from "@libs/prisma";
+import prisma from "@libs/prisma";
 import slug from "slugg";
 import { uid } from 'uid';
 
@@ -23,7 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         })
       }
 
-      const result = await nrgprisma.loadouts.create({
+      const result = await prisma.nrg.loadouts.create({
         data: {
           title,
           slug: `${slug(title)}-${uid()}`,
@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
       })
 
-      await nrgprisma.loadout_slots.createMany({
+      await prisma.nrg.loadout_slots.createMany({
         data: slots.map((slot, index) => {
           const options = {
             loadoutId: result.loadout_id,

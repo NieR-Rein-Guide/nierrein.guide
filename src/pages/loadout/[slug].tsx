@@ -4,7 +4,7 @@ import WeaponThumbnail from "@components/WeaponThumbnail";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import CompanionThumbnail from "@components/CompanionThumbnail";
 import DebrisThumbnail from "@components/DebrisThumbnail";
-import prisma, { nrgprisma } from "@libs/prisma";
+import prisma from "@libs/prisma";
 import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import MemoirThumbnail from "@components/MemoirThumbnail";
@@ -191,7 +191,7 @@ function CostumeSlot({
 export async function getServerSideProps(context: NextPageContext) {
   context.res.setHeader("Cache-Control", "public, maxage=86400");
 
-  const loadout = await nrgprisma.loadouts.findFirst({
+  const loadout = await prisma.nrg.loadouts.findFirst({
     where: {
       slug: context.query.slug as string,
     },
@@ -226,7 +226,7 @@ async function getSlotData(slot: loadout_slots) {
      * Get costume
      */
     slot.costume_id
-      ? prisma.costume.findFirst({
+      ? prisma.dump.costume.findFirst({
           where: {
             costume_id: slot.costume_id,
           },
@@ -237,7 +237,7 @@ async function getSlotData(slot: loadout_slots) {
      * Get companion
      */
     slot.companion_id
-      ? prisma.companion.findFirst({
+      ? prisma.dump.companion.findFirst({
           where: {
             companion_id: slot.companion_id,
           },
@@ -248,7 +248,7 @@ async function getSlotData(slot: loadout_slots) {
      * Get debris
      */
     slot.debris_id
-      ? prisma.debris.findFirst({
+      ? prisma.dump.debris.findFirst({
           where: {
             debris_id: slot.debris_id,
           },
@@ -267,7 +267,7 @@ async function getSlotData(slot: loadout_slots) {
 
   const weapons = await Promise.all(
     weaponsIds.map((id) =>
-      prisma.weapon.findFirst({
+      prisma.dump.weapon.findFirst({
         where: {
           weapon_id: id,
         },
@@ -286,7 +286,7 @@ async function getSlotData(slot: loadout_slots) {
 
   const memoirs = await Promise.all(
     memoirsIds.map((id) =>
-      prisma.memoir.findFirst({
+      prisma.dump.memoir.findFirst({
         where: {
           memoir_id: id,
         },

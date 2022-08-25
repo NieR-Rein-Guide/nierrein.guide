@@ -664,17 +664,17 @@ export async function getStaticProps() {
   ] = await Promise.all([
     getAllCostumes(),
     getAllWeapons(),
-    prisma.companion.findMany({
+    prisma.dump.companion.findMany({
       orderBy: {
         release_time: "asc",
       },
     }),
-    prisma.debris.findMany({
+    prisma.dump.debris.findMany({
       orderBy: {
         release_time: "asc",
       },
     }),
-    prisma.memoir.findMany({
+    prisma.dump.memoir.findMany({
       orderBy: {
         memoir_series_id: "asc",
       },
@@ -691,7 +691,7 @@ export async function getStaticProps() {
         },
       },
     }),
-    prisma.memoir_series.findMany({
+    prisma.dump.memoir_series.findMany({
       orderBy: {
         memoir_series_id: "asc",
       },

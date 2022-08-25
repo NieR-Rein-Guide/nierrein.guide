@@ -1,7 +1,7 @@
 import prisma from "@libs/prisma";
 
 export async function getAllWeapons() {
-	const weapons = await prisma.weapon.findMany({
+	const weapons = await prisma.dump.weapon.findMany({
 		orderBy: {
 			release_time: "desc",
 		},
@@ -42,7 +42,7 @@ export async function getAllWeapons() {
 		},
 	});
 
-	const exWeapons = await prisma.weapon.findMany({
+	const exWeapons = await prisma.dump.weapon.findMany({
 		orderBy: {
 			release_time: "desc",
 		},
@@ -91,7 +91,7 @@ export async function getAllWeapons() {
 		(a, b) => new Date(b.release_time) - new Date(a.release_time)
 	);
 
-	const abilitiesLookupData = await prisma.weapon_ability.findMany({
+	const abilitiesLookupData = await prisma.dump.weapon_ability.findMany({
 		orderBy: {
 			name: "asc",
 		},

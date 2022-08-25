@@ -74,7 +74,7 @@ export async function getStaticProps(context) {
   // Show costume page
   const [weaponSlug] = context.params.weapon;
 
-  const tempWeapon = await prisma.weapon.findFirst({
+  const tempWeapon = await prisma.dump.weapon.findFirst({
     select: {
       evolution_group_id: true,
     },
@@ -83,7 +83,7 @@ export async function getStaticProps(context) {
     },
   });
 
-  const selectedWeapon = await prisma.weapon.findMany({
+  const selectedWeapon = await prisma.dump.weapon.findMany({
     orderBy: {
       weapon_id: "asc",
     },
@@ -131,7 +131,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const weapons = await prisma.weapon.findMany({
+  const weapons = await prisma.dump.weapon.findMany({
     select: {
       slug: true,
     },
@@ -145,7 +145,7 @@ export async function getStaticPaths() {
     distinct: "evolution_group_id",
   });
 
-  const exWeapons = await prisma.weapon.findMany({
+  const exWeapons = await prisma.dump.weapon.findMany({
     select: {
       slug: true,
     },

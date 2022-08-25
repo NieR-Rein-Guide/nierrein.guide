@@ -164,7 +164,7 @@ export default function MemoirsPage({
 }
 
 export async function getStaticProps() {
-  const memoirs = await prisma.memoir_series.findMany({
+  const memoirs = await prisma.dump.memoir_series.findMany({
     orderBy: {
       memoir_series_id: "asc",
     },
