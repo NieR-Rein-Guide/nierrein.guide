@@ -1,7 +1,7 @@
 import prisma from "@libs/prisma";
 
 export async function getAllCostumes() {
-  const costumes = await prisma.costume.findMany({
+  const costumes = await prisma.dump.costume.findMany({
     orderBy: {
       release_time: "desc",
     },
@@ -35,7 +35,7 @@ export async function getAllCostumes() {
     },
   });
 
-  const abilitiesLookupData = await prisma.costume_ability.findMany({
+  const abilitiesLookupData = await prisma.dump.costume_ability.findMany({
     orderBy: {
       name: "asc",
     },
@@ -50,7 +50,7 @@ export async function getAllCostumes() {
     return acc;
   }, {});
 
-  const charactersLookupData = await prisma.character.findMany({
+  const charactersLookupData = await prisma.dump.character.findMany({
     select: {
       name: true,
     },
