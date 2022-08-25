@@ -8,25 +8,21 @@ declare global {
   namespace NodeJS {
     interface Global {
       prisma: PrismaDump;
+      nrgprisma: PrismaNRG;
     }
   }
 }
 
-let prisma: PrismaDump;
+let prisma: PrismaDump = global.prisma || new PrismaDump({
+  datasources: {
+    db: {
+      url: process.env.DATABASE_URL,
+    }
+  },
+  log: ["info"],
+})
 
-if (!global.prisma) {
-  global.prisma = new PrismaDump({
-    datasources: {
-      db: {
-        url: process.env.DATABASE_URL,
-      }
-    },
-    log: ["info"],
-  });
-}
-prisma = global.prisma;
-
-export const nrgprisma = new PrismaNRG({
+let nrgprisma: PrismaNRG = global.nrgprisma || new PrismaNRG({
   datasources: {
     db: {
       url: process.env.NIERREINGUIDE_DATABASE_URL,
@@ -36,3 +32,6 @@ export const nrgprisma = new PrismaNRG({
 })
 
 export default prisma;
+export {
+  nrgprisma
+}
