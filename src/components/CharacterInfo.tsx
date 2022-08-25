@@ -271,16 +271,14 @@ function CostumeDetails({
                 </a>
               </Link>
             )} */}
-            <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
-              {/* <Rank rank="S" /> */}
+            {/* <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
               <button
-                disabled
                 className="btn opacity-50"
                 onClick={() => setIsShowingModel(!isShowingModel)}
               >
                 {(isShowingModel && "View Artwork") || "View 3D Model"}
               </button>
-            </div>
+            </div> */}
             <div className="absolute top-6 right-8">
               <Ascend level={ascendLevel} />
             </div>

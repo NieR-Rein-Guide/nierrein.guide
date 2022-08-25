@@ -17,14 +17,14 @@ export default function CostumeSelect({
 }: {
   costumes: CostumeSelectRow[];
 }): JSX.Element {
-  const router = useRouter();
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
 
   function onSelect(costume: CostumeSelectRow) {
     if (!costume) return;
-    router.push(`/characters/${costume.character.slug}/${costume.slug}`);
+    // @ts-expect-error location
+    window.location = `/characters/${costume.character.slug}/${costume.slug}`;
   }
 
   return (
