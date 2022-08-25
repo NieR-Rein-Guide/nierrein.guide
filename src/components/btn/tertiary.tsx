@@ -1,4 +1,3 @@
-import Squares from "@components/decorations/Squares";
 import classNames from "classnames";
 
 export default function BtnTertiary({

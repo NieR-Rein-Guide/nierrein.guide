@@ -4,7 +4,6 @@ import loadoutsIcon from "../../public/icons/loadout.png";
 import tierlistIcon from "../../public/icons/tierlist.png";
 import charactersIcon from "../../public/icons/characters.png";
 import databaseIcon from "../../public/icons/database.png";
-import fanContentIcon from "../../public/icons/fancontent.png";
 import SVG from "react-inlinesvg";
 import { RiInstagramFill, RiRedditFill } from "react-icons/ri";
 
@@ -32,12 +31,12 @@ export const NAVIGATION = [
     href: "/tools",
     icon: loadoutsIcon,
   },
-  // {
-  //   label: "Loadouts",
-  //   href: "/loadouts",
-  //   icon: loadoutsIcon,
-  //   disabled: true,
-  // },
+  {
+    label: "Loadouts",
+    href: "/loadouts",
+    icon: loadoutsIcon,
+    disabled: true,
+  },
   {
     label: "Characters",
     href: "/characters",
@@ -57,6 +56,35 @@ export const NAVIGATION = [
     label: "To-do list",
     href: "/todolist",
     icon: homeIcon,
+  },
+];
+
+export const TOOLS = [
+  {
+    href: "/tools/loadout-builder",
+    label: "Loadout builder",
+    src: "/tools/loadout.jpg",
+    class: "md:col-span-2",
+  },
+  {
+    href: "/todolist",
+    label: "Todolist",
+    src: "/tools/stamina.jpg",
+  },
+  {
+    href: "https://billycool.github.io/NierReinGachaSimulator/",
+    label: "Gacha simulator",
+    src: "/tools/summons.jpg",
+  },
+  {
+    href: "/tools/materials",
+    label: "EX weapons materials calc",
+    src: "/tools/materials.jpg",
+  },
+  {
+    href: "/tools/xp-calc",
+    label: "XP calc",
+    src: "/tools/xp.jpg",
   },
 ];
 

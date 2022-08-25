@@ -1,9 +1,6 @@
-import { CREDITS, FOOTER_NAVIGATION, OUR_SOCIALS } from "config/constants";
+import { FOOTER_NAVIGATION, OUR_SOCIALS } from "config/constants";
 import SVG from "react-inlinesvg";
 import Link from "next/link";
-import Image from "next/image";
-import slugify from "slugify";
-import ReactTooltip from "react-tooltip";
 
 export default function Footer(): JSX.Element {
   return (

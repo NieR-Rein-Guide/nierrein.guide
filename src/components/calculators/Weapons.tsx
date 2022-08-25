@@ -1,7 +1,6 @@
 import { memo, useState, useEffect } from "react";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import Image from "next/image";
-import { CDN_URL } from "@config/constants";
 
 class Material {
   name: string;

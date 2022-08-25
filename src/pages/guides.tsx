@@ -5,7 +5,6 @@ import { getAllGuides } from "@models/guide";
 import { Guide } from "@models/types";
 import Link from "next/link";
 import Image from "next/image";
-import SVG from "react-inlinesvg";
 
 interface GuidesProps {
   guides: Guide[];

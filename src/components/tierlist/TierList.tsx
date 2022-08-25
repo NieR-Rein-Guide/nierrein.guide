@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { RANK_THUMBNAILS, TiersTabs } from "@models/tiers";
+import { RANK_THUMBNAILS } from "@models/tiers";
 import { formatDistanceToNow } from "date-fns";
 
 /* import Link from "next/link";

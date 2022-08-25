@@ -25,21 +25,23 @@ import {
 import { useSettingsStore } from "store/settings";
 import Slider from "rc-slider";
 
+type Costume = costume & {
+  costume_ability_link: (costume_ability_link & {
+    costume_ability: costume_ability;
+  })[];
+  costume_skill_link: (costume_skill_link & {
+    costume_skill: costume_skill;
+  })[];
+  costume_stat: costume_stat[];
+  character: character;
+  emblem: emblem;
+};
+
 interface CharactersPageProps {
   currentCharacter: character;
   selectedCostume: costume;
   characters: character[];
-  costumes: (costume & {
-    costume_ability_link: (costume_ability_link & {
-      costume_ability: costume_ability;
-    })[];
-    costume_skill_link: (costume_skill_link & {
-      costume_skill: costume_skill;
-    })[];
-    costume_stat: costume_stat[];
-    character: character;
-    emblem: emblem;
-  })[];
+  costumes: Costume[];
   abilities;
   skills;
   stats;
@@ -56,7 +58,6 @@ interface CharactersPageProps {
 export default function CostumePage({
   currentCharacter,
   selectedCostume,
-  characters,
   costumes,
   abilities,
   skills,
@@ -66,9 +67,9 @@ export default function CostumePage({
 }: CharactersPageProps): JSX.Element {
   const router = useRouter();
 
-  const [currentCostume, setCurrentCostume] = useState<costume | null>(
-    selectedCostume || costumes[0]
-  );
+  const [currentCostume, setCurrentCostume] = useState<
+    Costume | costume | null
+  >(selectedCostume || costumes[0]);
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );

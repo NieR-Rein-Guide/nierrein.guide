@@ -232,13 +232,13 @@ export async function getStaticPaths() {
 
   const costumesPaths = costumes.map((costume) => ({
     params: {
-      costume: [slug(costume.character.name), slug(costume.title)],
+      costume: [costume.character.slug, costume.slug],
     },
   }));
 
   const charactersPaths = characters.map((character) => ({
     params: {
-      costume: [slug(character.name)],
+      costume: [character.slug],
     },
   }));
 

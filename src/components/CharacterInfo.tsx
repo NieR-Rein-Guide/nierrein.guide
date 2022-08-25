@@ -8,7 +8,6 @@ import statsIcons from "@utils/statsIcons";
 import Lines from "./decorations/Lines";
 import classNames from "classnames";
 import { useEffect, useState } from "react";
-import Radio from "@components/form/Radio";
 import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import Ascend from "@components/decorations/Ascend";
@@ -62,7 +61,7 @@ function CostumeDetails({
   ascendLevel: number;
   skillLevel: number;
 }): JSX.Element {
-  const [statType, setStatType] = useState("base"); // can be 'base' or 'displayed'
+  const [statType] = useState("base"); // can be 'base' or 'displayed'
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [dateRelative, setDateRelative] = useState(
     formatDistanceToNow(new Date(costume.release_time), {

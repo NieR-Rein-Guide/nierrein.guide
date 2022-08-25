@@ -25,6 +25,7 @@ import { character, costume, notification, weapon } from "@prisma/client";
 import { loadouts } from "@prisma/client-nrg";
 import LoadoutListingItem from "@components/LoadoutListingItem";
 import { useSettingsStore } from "../store/settings";
+import classNames from "classnames";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
@@ -217,10 +218,13 @@ export default function Home({
           <section>
             <h2 className="overlap">New weapons</h2>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {recentWeapons.map((weapon) => (
+              {recentWeapons.map((weapon, index) => (
                 <div
                   key={weapon.weapon_id}
-                  className="flex items-center gap-x-4 w-80 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter"
+                  className={classNames(
+                    "flex items-center gap-x-4 w-80 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter",
+                    index > 2 ? "hidden md:flex" : ""
+                  )}
                 >
                   <WeaponThumbnail
                     element={weapon.attribute}
@@ -253,7 +257,7 @@ export default function Home({
           <section>
             <h2 className="overlap">New community loadouts</h2>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {true && (
+              {loadouts.length === 0 && (
                 <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg md:col-span-2 lg:col-span-3">
                   <img
                     className="inline-block"
@@ -268,6 +272,10 @@ export default function Home({
                   </div>
                 </div>
               )}
+
+              {loadouts.map((loadout) => (
+                <LoadoutListingItem key={loadout.loadout_id} {...loadout} />
+              ))}
             </div>
           </section>
           <div className="flex justify-center mt-8">
@@ -319,13 +327,13 @@ export async function getStaticProps() {
       nrgprisma.loadouts.findMany({
         take: 6,
         orderBy: {
-          created_at: "desc",
+          votes: "desc",
         },
       }),
     ]);
 
     const recentWeapons = await prisma.weapon.findMany({
-      take: 9,
+      take: 6,
       orderBy: {
         release_time: "desc",
       },

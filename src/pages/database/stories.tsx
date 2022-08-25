@@ -63,7 +63,7 @@ export default function DatabaseStories({
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const stories = await getAllStories();
 
   return {

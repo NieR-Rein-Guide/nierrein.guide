@@ -1,5 +1,4 @@
 import React, { Dispatch, SetStateAction } from "react";
-import Star from "@components/decorations/Star";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import classNames from "classnames";
 import RARITY from "@utils/rarity";

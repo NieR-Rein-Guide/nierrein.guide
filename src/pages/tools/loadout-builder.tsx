@@ -51,9 +51,6 @@ import Link from "next/link";
 import { getAllCostumes } from "@models/costume";
 import { useSettingsStore } from "../../store/settings";
 import { getAllWeapons } from "@models/weapon";
-import classNames from "classnames";
-import statsIcons from "@utils/statsIcons";
-import Image from "next/image";
 
 interface LoadoutBuilderProps {
   costumes: (costume & {
@@ -656,7 +653,7 @@ const CostumeSlot = memo(function CostumeSlot({ index }: CostumeSlotProps) {
   );
 });
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const [
     costumesData,
     weaponsData,

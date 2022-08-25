@@ -1,10 +1,6 @@
-import { GAME_TIMEZONE } from "@config/constants";
 import { formatDistanceToNow } from "date-fns";
-import { zonedTimeToUtc } from "date-fns-tz";
 import { closestTo } from "date-fns/esm";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import { weaponToIcon } from "./DailyQuests";
 
 interface Guerilla {
   start: number[];
@@ -34,7 +30,7 @@ const GUERILLAS: GuerillasList = [
   },
 ];
 
-const timeFormat = new Intl.DateTimeFormat(navigator.language, {
+/* const timeFormat = new Intl.DateTimeFormat(navigator.language, {
   timeStyle: "short",
 });
 
@@ -58,9 +54,9 @@ const guerillaTypes = (dayOfWeek: number, startHour: number): string[] => {
     return ["sword", "greatsword", "gun"];
   }
   return ["spear", "fist", "staff"];
-};
+}; */
 
-const TimerRow = ({ guerilla }): JSX.Element => {
+/* const TimerRow = ({ guerilla }): JSX.Element => {
   const now = new Date();
 
   let startDate = new Date();
@@ -111,7 +107,7 @@ const TimerRow = ({ guerilla }): JSX.Element => {
       </span>
     </div>
   );
-};
+}; */
 
 const EVERY_MINUTE = 60 * 1000;
 

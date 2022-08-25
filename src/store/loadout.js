@@ -24,7 +24,7 @@ export const DEFAULT_SLOT = {
   memoirs: [null, null, null],
 };
 
-export const useLoadoutStore = create((set, get) => ({
+export const useLoadoutStore = create((set) => ({
   title: "My Loadout",
   description: "Description of the loadout",
   type: "quests",

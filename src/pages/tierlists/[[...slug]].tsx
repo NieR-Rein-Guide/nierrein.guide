@@ -18,7 +18,6 @@ interface TierlistsPageProps {
 export default function TierlistsPageProps({
   defaultTab = 0,
   tiers,
-  costumes,
 }: TierlistsPageProps): JSX.Element {
   const router = useRouter();
   const [tabIndex, setTabIndex] = useState(defaultTab);

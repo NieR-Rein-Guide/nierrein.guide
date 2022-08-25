@@ -16,11 +16,9 @@ const DEBRIS_RARITY = {
 };
 
 export default function DebrisThumbnail({
-  debris_id,
   image_path_base,
   name,
   rarity = 20,
-  release_time,
   className,
   imgClasses,
   onClick = undefined,

@@ -6,7 +6,7 @@ export default function Ascend({ level, ...props }: { level: number }) {
 
   return (
     <div className="flex">
-      {levels.map((level, index) => (
+      {levels.map((level) => (
         <SVG
           key={level}
           src="/decorations/ascend-full.svg"
@@ -14,7 +14,7 @@ export default function Ascend({ level, ...props }: { level: number }) {
           {...props}
         />
       ))}
-      {missing.map((level, index) => (
+      {missing.map((level) => (
         <SVG
           key={level}
           src="/decorations/ascend.svg"

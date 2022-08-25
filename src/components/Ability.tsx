@@ -1,5 +1,4 @@
 import { CDN_URL } from "@config/constants";
-import getAbilityIcon from "@utils/getAbilityIcon";
 import classNames from "classnames";
 import Image from "next/image";
 import SVG from "react-inlinesvg";

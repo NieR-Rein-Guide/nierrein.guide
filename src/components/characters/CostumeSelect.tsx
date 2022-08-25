@@ -24,13 +24,7 @@ export default function CostumeSelect({
 
   function onSelect(costume: CostumeSelectRow) {
     if (!costume) return;
-    console.log(
-      "🚀 ~ file: CostumeSelect.tsx ~ line 22 ~ onSelect ~ costume",
-      costume
-    );
-
-    console.log(`/characters/${costume.character.slug}/${costume.slug}`);
-    // router.push(`/characters/${costume.character.slug}/${costume.slug}`);
+    router.push(`/characters/${costume.character.slug}/${costume.slug}`);
   }
 
   return (

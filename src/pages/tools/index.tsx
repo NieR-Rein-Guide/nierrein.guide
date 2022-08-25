@@ -1,7 +1,5 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import Image from "next/image";
-import Link from "next/link";
 import Tools from "@components/pages/tools";
 
 export default function Database(): JSX.Element {

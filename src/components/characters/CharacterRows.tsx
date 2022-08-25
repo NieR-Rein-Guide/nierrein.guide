@@ -1,6 +1,5 @@
 import { CDN_URL } from "@config/constants";
-import React, { Dispatch, SetStateAction } from "react";
-import { useRouter } from "next/router";
+import React from "react";
 import Link from "next/link";
 import slug from "slugg";
 import { character } from "@prisma/client";

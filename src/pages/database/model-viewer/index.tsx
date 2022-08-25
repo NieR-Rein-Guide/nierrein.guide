@@ -1,4 +1,3 @@
-import { Tabs, TabList, TabPanels, TabPanel, Tab } from "@reach/tabs";
 import {
   Disclosure,
   DisclosureButton,
@@ -181,7 +180,7 @@ export default function Database({ models }: DatabasePageProps): JSX.Element {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   // List all the models types (weapons, characters, ..)
   const modelsTypes = await listModelsTypes();
 

@@ -1,14 +1,11 @@
 import Image from "next/image";
-import Link from "next/link";
 import SVG from "react-inlinesvg";
 import getModelPath from "@utils/getModelPath";
-import WeaponThumbnail from "@components/WeaponThumbnail";
 import Star from "@components/decorations/Star";
 import Ascend from "@components/decorations/Ascend";
 import RARITY from "@utils/rarity";
 import dynamic from "next/dynamic";
 import { useState } from "react";
-import urlSlug from "url-slug";
 import { CDN_URL } from "@config/constants";
 import { character, costume } from "@prisma/client";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
@@ -28,7 +25,7 @@ export default function CostumeArtwork({
   costume,
   ascendLevel = 4,
 }: CostumeArtworkProps): JSX.Element {
-  const [isShowingModel, setIsShowingModel] = useState(false);
+  const [isShowingModel] = useState(false);
 
   return (
     <div

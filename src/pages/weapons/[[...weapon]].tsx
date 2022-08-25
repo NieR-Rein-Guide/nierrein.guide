@@ -183,13 +183,3 @@ export async function getStaticPaths() {
     fallback: false,
   };
 }
-
-function groupByKey(list, key) {
-  return list.reduce(
-    (hash, obj) => ({
-      ...hash,
-      [obj[key]]: (hash[obj[key]] || []).concat(obj),
-    }),
-    {}
-  );
-}

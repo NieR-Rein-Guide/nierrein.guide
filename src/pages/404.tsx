@@ -1,10 +1,7 @@
 import Meta from "@components/Meta";
-import { useRouter } from "next/router";
 import Layout from "@components/Layout";
 
 export default function NotFound(): JSX.Element {
-  const router = useRouter();
-
   return (
     <Layout className="justify-center">
       <Meta

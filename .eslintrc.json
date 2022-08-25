@@ -1,5 +1,4 @@
 {
-  "plugins": ["unused-imports"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -17,12 +16,10 @@
   "rules": {
     "@next/next/no-img-element": "off",
     "react/no-unescaped-entities": "off",
-    "@typescript-eslint/no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": "warn",
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "jsx-a11y/alt-text": "off",
-    "unused-imports/no-unused-imports": "warn",
-    "unused-imports/no-unused-vars": "off"
+    "jsx-a11y/alt-text": "off"
   }
 }

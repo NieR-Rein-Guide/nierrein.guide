@@ -2,7 +2,7 @@ import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import { nrgprisma } from "@libs/prisma";
 import { NextPageContext } from "next";
-import { loadouts, loadout_slots } from "@prisma/client-nrg";
+import { loadouts } from "@prisma/client-nrg";
 import LoadoutListingItem from "@components/LoadoutListingItem";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import ATTRIBUTES from "@utils/attributes";

@@ -111,7 +111,7 @@ function EventsListing({ label, events }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const events = await getAllEvents();
 
   return {

@@ -18,7 +18,6 @@ import { companion, costume, debris, memoir, weapon } from "@prisma/client";
 import { loadouts, loadout_slots } from "@prisma/client-nrg";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import { useRouter } from "next/router";
 
 interface Slot {
   costume: costume;
@@ -36,8 +35,6 @@ interface LoadoutProps {
 }
 
 export default function Loadout({ loadout, slots }: LoadoutProps): JSX.Element {
-  const router = useRouter();
-
   return (
     <Layout>
       <Meta title={loadout.title} description={loadout.description} />
