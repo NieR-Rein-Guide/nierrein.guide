@@ -166,9 +166,14 @@ export function WeaponsTable({
           lookup: abilitiesLookup,
           customFilterAndSearch: (term, weapon) => {
             if (term.length === 0) return true;
-            return term.includes(
-              weapon.weapon_ability_link?.[0]?.weapon_ability.name
-            );
+            const hasAbilityInEitherSlot =
+              term.includes(
+                weapon.weapon_ability_link?.[0]?.weapon_ability.name
+              ) ||
+              term.includes(
+                weapon.weapon_ability_link?.[1]?.weapon_ability.name
+              );
+            return hasAbilityInEitherSlot;
           },
         },
         {
@@ -180,9 +185,14 @@ export function WeaponsTable({
           lookup: abilitiesLookup,
           customFilterAndSearch: (term, weapon) => {
             if (term.length === 0) return true;
-            return term.includes(
-              weapon.weapon_ability_link?.[1]?.weapon_ability.name
-            );
+            const hasAbilityInEitherSlot =
+              term.includes(
+                weapon.weapon_ability_link?.[0]?.weapon_ability.name
+              ) ||
+              term.includes(
+                weapon.weapon_ability_link?.[1]?.weapon_ability.name
+              );
+            return hasAbilityInEitherSlot;
           },
         },
         {

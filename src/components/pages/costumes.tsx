@@ -202,9 +202,14 @@ export function CostumesTable({
           lookup: abilitiesLookup,
           customFilterAndSearch: (term, costume) => {
             if (term.length === 0) return true;
-            return term.includes(
-              costume.costume_ability_link[0].costume_ability.name
-            );
+            const hasAbilityInEitherSlot =
+              term.includes(
+                costume.costume_ability_link[0].costume_ability.name
+              ) ||
+              term.includes(
+                costume.costume_ability_link[1].costume_ability.name
+              );
+            return hasAbilityInEitherSlot;
           },
           cellStyle: {
             textAlign: "center",
@@ -216,9 +221,14 @@ export function CostumesTable({
           lookup: abilitiesLookup,
           customFilterAndSearch: (term, costume) => {
             if (term.length === 0) return true;
-            return term.includes(
-              costume.costume_ability_link[1].costume_ability.name
-            );
+            const hasAbilityInEitherSlot =
+              term.includes(
+                costume.costume_ability_link[0].costume_ability.name
+              ) ||
+              term.includes(
+                costume.costume_ability_link[1].costume_ability.name
+              );
+            return hasAbilityInEitherSlot;
           },
           cellStyle: {
             textAlign: "center",
