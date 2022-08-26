@@ -44,11 +44,11 @@ export default function TierlistsPageProps({
         />
       )}
 
-      <section className="flex flex-col gap-y-24 mt-12">
+      <section className="flex flex-col gap-y-24">
         <h2 className="overlap">Tierlists</h2>
         {!router.isFallback && (
           <Tabs defaultIndex={tabIndex} onChange={handleTabsChange}>
-            <TabList className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+            <TabList className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
               {tiers.map((tier) => (
                 <TierListTab key={tier.index} index={tier.index}>
                   {tier.label}

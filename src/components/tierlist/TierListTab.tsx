@@ -8,13 +8,13 @@ export default function TierlistTab({ children, index }): JSX.Element {
     <Tab
       className={classNames(
         "p-4 transition-colors ease-out-cubic relative bordered",
-        selectedIndex === index ? "bg-grey-foreground" : "bg-beige"
+        selectedIndex === index ? "active bg-beige" : "bg-grey-foreground"
       )}
     >
       <span
         className={classNames(
           "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
-          selectedIndex === index ? "text-beige" : "text-grey-foreground"
+          selectedIndex === index ? "text-grey-lighter" : "text-beige"
         )}
       >
         {children}

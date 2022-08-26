@@ -17,6 +17,7 @@ import {
   companion_skill_link,
   companion_stat,
 } from "@prisma/client";
+import DatabaseNavbar from "@components/DatabaseNavbar";
 
 interface CompanionsPageProps {
   companions: (companion & {
@@ -53,16 +54,8 @@ export default function CompanionsPage({
         cover="https://nierrein.guide/database/companions.jpg"
       />
 
-      <nav className="mb-16">
-        <Link href="/database" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Database</span>
-          </a>
-        </Link>
-      </nav>
-
       <section className="mx-auto p-6">
+        <DatabaseNavbar />
         <MaterialTable
           title={`${companions.length} companions in the database.`}
           data={companions}

@@ -10,6 +10,7 @@ import TierListTab from "@components/tierlist/TierListTab";
 import slug from "slugg";
 import { useState } from "react";
 import { memoir, memoir_series } from "@prisma/client";
+import DatabaseNavbar from "@components/DatabaseNavbar";
 
 interface MemoirByDungeonsInterface {
   name: string;
@@ -54,20 +55,15 @@ export default function MemoirsPage({
         cover="https://nierrein.guide/database/memoirs.jpg"
       />
 
-      <nav className="mb-16">
-        <Link href="/database" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Database</span>
-          </a>
-        </Link>
-      </nav>
+      <section className="p-6">
+        <DatabaseNavbar />
 
-      <section>
-        <h2 className="overlap">Memoirs</h2>
-
-        <Tabs defaultIndex={tabIndex} onChange={(index) => setTabIndex(index)}>
-          <TabList className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
+        <Tabs
+          className="mt-4"
+          defaultIndex={tabIndex}
+          onChange={(index) => setTabIndex(index)}
+        >
+          <TabList className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-8">
             {TABS.map((tab) => (
               <TierListTab key={tab.index} index={tab.index}>
                 {tab.label}
@@ -134,12 +130,13 @@ export default function MemoirsPage({
             <TabPanel>
               {memoirs.map((memoir) => (
                 <div className="mb-8" key={memoir.memoir_series_id}>
-                  <h3 className="text-beige text-3xl">
-                    {memoir.name} ({memoir.memoir_series_id})
-                  </h3>
-                  <span className="text-sm text-beige-text">
+                  <h3 className="text-beige text-3xl">{memoir.name}</h3>
+                  <p className="text-beige-text">
+                    Large set: {memoir.large_set_description}
+                  </p>
+                  <p className="text-sm text-beige-text">
                     Small set: {memoir.small_set_description}
-                  </span>
+                  </p>
 
                   <div className="flex gap-2 mt-4">
                     {memoir.memoir.map((memoir) => (

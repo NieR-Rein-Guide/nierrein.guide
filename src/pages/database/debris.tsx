@@ -8,6 +8,7 @@ import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import DebrisThumbnail from "@components/DebrisThumbnail";
 import Star from "@components/decorations/Star";
 import { debris } from "@prisma/client";
+import DatabaseNavbar from "@components/DatabaseNavbar";
 
 interface DebrisPageProps {
   debris: debris[];
@@ -34,16 +35,8 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
         cover="https://nierrein.guide/database/debris.jpg"
       />
 
-      <nav className="mb-16">
-        <Link href="/database" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Database</span>
-          </a>
-        </Link>
-      </nav>
-
       <section className="mx-auto p-6">
+        <DatabaseNavbar />
         <MaterialTable
           title={`${debris.length} debris in the database.`}
           data={debris}

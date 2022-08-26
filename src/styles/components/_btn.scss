@@ -51,6 +51,14 @@
     }
 }
 
+button, a {
+  &.bordered:not(.active) {
+    &:hover::before {
+      @apply scale-105;
+    }
+  }
+}
+
 .bordered {
   &::before {
     @apply block absolute border border-beige-active border-opacity-50 pointer-events-none transition-transform transform ease-out-cubic;

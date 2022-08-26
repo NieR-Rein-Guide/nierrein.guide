@@ -23,6 +23,8 @@ import { useRouter } from "next/router";
 import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
 import { useSettingsStore } from "../../store/settings";
+import getGaugeLevel from "@utils/getGaugeLevel";
+import DatabaseNavbar from "@components/DatabaseNavbar";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -74,12 +76,13 @@ export default function CharactersPage({
   return (
     <Layout hasContainer={false} className="overflow-x-auto">
       <Meta
-        title="Characters"
-        description="All the costumes of NieR Re[in]carnation"
+        title="Costumes"
+        description={`${costumes.length} costumes in the database.`}
         cover="https://nierrein.guide/cover-characters.jpg"
       />
 
       <section className="mx-auto p-6">
+        <DatabaseNavbar />
         <CostumesTable
           costumes={costumes}
           abilitiesLookup={abilitiesLookup}

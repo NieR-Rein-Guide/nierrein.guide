@@ -20,6 +20,7 @@ import {
   weapon_skill_link,
   weapon_stat,
 } from "@prisma/client";
+import DatabaseNavbar from "@components/DatabaseNavbar";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -72,6 +73,7 @@ export default function WeaponsPage({
       />
 
       <section className="mx-auto p-6">
+        <DatabaseNavbar />
         <WeaponsTable
           weapons={weapons}
           abilitiesLookup={abilitiesLookup}
