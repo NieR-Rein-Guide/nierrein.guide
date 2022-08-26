@@ -214,8 +214,13 @@ export function WeaponsTable({
           title: "Cooldown Skill 1",
           type: "numeric",
           hideFilterIcon: true,
+          render: (weapon) => (
+            <span>
+              {weapon.weapon_skill_link[0].weapon_skill.cooldown_time / 30} sec
+            </span>
+          ),
           customFilterAndSearch: (term, weapon) =>
-            weapon.weapon_skill_link[0].weapon_skill.cooldown_time <=
+            weapon.weapon_skill_link[0].weapon_skill.cooldown_time / 30 <=
             Number(term),
         },
         {
@@ -223,8 +228,13 @@ export function WeaponsTable({
           title: "Cooldown Skill 2",
           type: "numeric",
           hideFilterIcon: true,
+          render: (weapon) => (
+            <span>
+              {weapon.weapon_skill_link[1].weapon_skill.cooldown_time / 30} sec
+            </span>
+          ),
           customFilterAndSearch: (term, weapon) =>
-            weapon.weapon_skill_link[1].weapon_skill.cooldown_time <=
+            weapon.weapon_skill_link[1].weapon_skill.cooldown_time / 30 <=
             Number(term),
         },
         {
