@@ -24,6 +24,7 @@ import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
 import { useSettingsStore } from "../../store/settings";
 import DatabaseNavbar from "@components/DatabaseNavbar";
+import Link from "next/link";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -381,7 +382,7 @@ export function CostumesGrid({
           return new Date() > new Date(costume.release_time);
         })
         .map((cost) => (
-          <div key={cost.costume_id}>
+          <div className="group relative" key={cost.costume_id}>
             <CostumeThumbnail
               src={`${CDN_URL}${cost.image_path_base}portrait.png`}
               alt={cost.title}
@@ -389,11 +390,21 @@ export function CostumesGrid({
               rarity={cost.rarity}
               isLarge
               isDark={cost.is_ex_costume}
+              imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
             />
             <span className="text-sm text-center line-clamp-1 mt-1">
               {cost.is_ex_costume && <span className="text-rarity-4">EX </span>}
               {cost.title}
             </span>
+
+            <Link
+              href={`/characters/${cost.character.slug}/${cost.slug}`}
+              passHref
+            >
+              <a className="absolute inset-0 z-10">
+                <span className="sr-only">See more about {cost.title}</span>
+              </a>
+            </Link>
           </div>
         ))}
     </div>
