@@ -375,7 +375,7 @@ export function CostumesGrid({
   onRowClick?;
 }) {
   return (
-    <div className="grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
+    <div className="relative grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
       {costumes
         .filter((costume) => {
           if (showUnreleasedContent) return true;
