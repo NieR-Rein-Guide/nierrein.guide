@@ -22,7 +22,8 @@ export default function Checkbox({
       />
       <SVG
         className={classNames(
-          "transform transition-all absolute -top-1 opacity-0 scale-75 ease-out-cubic",
+          "transform transition-all absolute -top-1 ease-out-cubic",
+          !isChecked && "opacity-0 scale-75",
           isChecked && "opacity-100 scale-100"
         )}
         src="/decorations/checkbox_checked.svg"
