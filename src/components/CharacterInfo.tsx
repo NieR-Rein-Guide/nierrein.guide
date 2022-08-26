@@ -453,7 +453,7 @@ function StatsOfLevel({
         <SingleStat
           icon={statsIcons.cr}
           name="Critical Rate"
-          value={`${stats.crit_rate ?? "???"}`}
+          value={`${stats.crit_rate / 10 ?? "???"}%`}
         />
         <SingleStat
           icon={statsIcons.cd}
