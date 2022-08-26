@@ -8,18 +8,24 @@ interface CheckboxProps {
   isChecked: boolean;
   setState?: Dispatch<SetStateAction<string | number | boolean>>;
   className?: string | string[];
+  labelClassname?: string | string[];
 }
 
-export default function Checkbox({
+export default function Radio({
   isChecked,
   setState,
   value,
   name,
   className,
+  labelClassname,
 }: CheckboxProps): JSX.Element {
   return (
-    <label className={classNames("cursor-pointer relative", className)}>
-      {name && <span className="pl-10">{name}</span>}
+    <label
+      className={classNames("cursor-pointer inline-block relative", className)}
+    >
+      {name && (
+        <span className={classNames("pl-10", labelClassname)}>{name}</span>
+      )}
       <SVG
         className="transform transition-all absolute -top-1"
         src="/decorations/radio.svg"

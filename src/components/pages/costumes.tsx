@@ -23,7 +23,6 @@ import { useRouter } from "next/router";
 import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
 import { useSettingsStore } from "../../store/settings";
-import getGaugeLevel from "@utils/getGaugeLevel";
 import DatabaseNavbar from "@components/DatabaseNavbar";
 
 interface CharactersPageProps {
@@ -72,6 +71,9 @@ export default function CharactersPage({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
+  const databaseDisplayType = useSettingsStore(
+    (state) => state.databaseDisplayType
+  );
 
   return (
     <Layout hasContainer={false} className="overflow-x-auto">
@@ -83,15 +85,34 @@ export default function CharactersPage({
 
       <section className="mx-auto p-6">
         <DatabaseNavbar />
-        <CostumesTable
-          costumes={costumes}
-          abilitiesLookup={abilitiesLookup}
-          charactersLookup={charactersLookup}
-          onRowClick={(event, costume) =>
-            router.push(`/characters/${costume.character.slug}/${costume.slug}`)
-          }
-          showUnreleasedContent={showUnreleasedContent}
-        />
+
+        {databaseDisplayType === "table" && (
+          <CostumesTable
+            costumes={costumes}
+            abilitiesLookup={abilitiesLookup}
+            charactersLookup={charactersLookup}
+            onRowClick={(event, costume) =>
+              router.push(
+                `/characters/${costume.character.slug}/${costume.slug}`
+              )
+            }
+            showUnreleasedContent={showUnreleasedContent}
+          />
+        )}
+
+        {databaseDisplayType === "grid" && (
+          <CostumesGrid
+            costumes={costumes}
+            abilitiesLookup={abilitiesLookup}
+            charactersLookup={charactersLookup}
+            onRowClick={(event, costume) =>
+              router.push(
+                `/characters/${costume.character.slug}/${costume.slug}`
+              )
+            }
+            showUnreleasedContent={showUnreleasedContent}
+          />
+        )}
       </section>
     </Layout>
   );
@@ -329,5 +350,52 @@ export function CostumesTable({
       }}
       onRowClick={onRowClick}
     />
+  );
+}
+
+export function CostumesGrid({
+  costumes,
+  showUnreleasedContent = true,
+}: {
+  costumes: (costume & {
+    costume_ability_link: (costume_ability_link & {
+      costume_ability: costume_ability;
+    })[];
+    costume_skill_link: (costume_skill_link & {
+      costume_skill: costume_skill;
+    })[];
+    costume_stat: costume_stat[];
+    character: character;
+    emblem: emblem;
+  })[];
+  showUnreleasedContent?: boolean;
+  charactersLookup;
+  abilitiesLookup;
+  onRowClick?;
+}) {
+  return (
+    <div className="grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
+      {costumes
+        .filter((costume) => {
+          if (showUnreleasedContent) return true;
+          return new Date() > new Date(costume.release_time);
+        })
+        .map((cost) => (
+          <div key={cost.costume_id}>
+            <CostumeThumbnail
+              src={`${CDN_URL}${cost.image_path_base}portrait.png`}
+              alt={cost.title}
+              weaponType={cost.weapon_type}
+              rarity={cost.rarity}
+              isLarge
+              isDark={cost.is_ex_costume}
+            />
+            <span className="text-sm text-center line-clamp-1 mt-1">
+              {cost.is_ex_costume && <span className="text-rarity-4">EX </span>}
+              {cost.title}
+            </span>
+          </div>
+        ))}
+    </div>
   );
 }

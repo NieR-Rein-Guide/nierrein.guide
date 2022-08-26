@@ -103,7 +103,6 @@ export default function CostumePage({
         title={`${currentCharacter.name} - ${
           selectedCostume?.title ?? costumes[0].title
         }`}
-        description={selectedCostume.description}
         cover={`${CDN_URL}${
           selectedCostume?.image_path_base ?? costumes[0].image_path_base
         }full.png}`}

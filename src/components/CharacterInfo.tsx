@@ -200,7 +200,7 @@ function CostumeDetails({
         {/* Second column */}
         <div className="order-1 xl:order-2">
           {/* Costume artwork */}
-          <div className="relative overflow-hidden max-w-xl mx-auto w-full h-[600px] md:h-[700px]">
+          <div className="relative overflow-hidden max-w-xl mx-auto w-full h-[600px] md:h-full">
             <div className="bordered-lg bg-grey-dark h-full w-full">
               {costume.emblem && (
                 <img
