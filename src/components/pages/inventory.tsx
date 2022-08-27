@@ -134,7 +134,7 @@ export default function Inventory({
         </TabPanel>
         <TabPanel>
           <WeaponsTable
-            title={`${filteredWeapons.length}/${weapons.length} costumes in your inventory.`}
+            title={`${filteredWeapons.length}/${weapons.length} weapons in your inventory.`}
             weapons={filteredWeapons}
             abilitiesLookup={weaponsAbilitiesLookup}
             onRowClick={(event, weapon) =>
