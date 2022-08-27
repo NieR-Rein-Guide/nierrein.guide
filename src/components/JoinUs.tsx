@@ -20,13 +20,15 @@ function JoinUs(): JSX.Element {
           </a>
         </div>
       </div>
-      <Image
-        className="opacity-10 filter blur-sm"
-        layout="fill"
-        objectFit="cover"
-        src="/launched.jpg"
-        alt=""
-      />
+      <div className="pointer-events-none">
+        <Image
+          className="opacity-10 filter blur-sm"
+          layout="fill"
+          objectFit="cover"
+          src="/launched.jpg"
+          alt=""
+        />
+      </div>
     </section>
   );
 }
