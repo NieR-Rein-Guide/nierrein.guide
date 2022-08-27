@@ -2,7 +2,6 @@ import { CDN_URL } from "@config/constants";
 import { Autocomplete, Box, TextField } from "@mui/material";
 import { character } from "@prisma/client";
 import { useSettingsStore } from "@store/settings";
-import { useRouter } from "next/router";
 
 interface CostumeSelectRow {
   title: string;
@@ -12,24 +11,26 @@ interface CostumeSelectRow {
   release_time: Date;
 }
 
+function defaultOnSelect(e, costume: CostumeSelectRow) {
+  if (!costume) return;
+  // @ts-expect-error location
+  window.location = `/characters/${costume.character.slug}/${costume.slug}`;
+}
+
 export default function CostumeSelect({
   costumes,
+  onSelect = defaultOnSelect,
 }: {
   costumes: CostumeSelectRow[];
+  onSelect?: (e, costume: CostumeSelectRow) => void;
 }): JSX.Element {
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
 
-  function onSelect(costume: CostumeSelectRow) {
-    if (!costume) return;
-    // @ts-expect-error location
-    window.location = `/characters/${costume.character.slug}/${costume.slug}`;
-  }
-
   return (
     <Autocomplete
-      onChange={(e, value) => onSelect(value as CostumeSelectRow)}
+      onChange={onSelect}
       className="w-full md:w-72"
       options={costumes.filter((costume) => {
         if (showUnreleasedContent) return true;

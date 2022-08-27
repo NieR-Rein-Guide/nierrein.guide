@@ -107,7 +107,7 @@ export default function Database(): JSX.Element {
           </a>
         </Link>
 
-        <Link href="/database/stories">
+        <Link href="/database/stories/costumes">
           <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}

@@ -3,9 +3,9 @@ import Meta from "@components/Meta";
 import { getAllStories } from "@models/stories";
 import { Story } from "@models/types";
 import Link from "next/link";
-import SVG from "react-inlinesvg";
 import Image from "next/image";
-import coverStory from "../../../public/cover-story.jpg";
+import coverStory from "../../../../public/cover-story.jpg";
+import { StoriesNavbar } from "./index";
 
 interface DatabaseStoriesProps {
   stories: Story[];
@@ -18,21 +18,14 @@ export default function DatabaseStories({
     <Layout>
       <Meta
         title="Stories - Database"
-        description="Index of stories in the game."
+        description="CMS Content."
         cover="https://nierrein.guide/cover-database.jpg"
       />
 
-      <nav className="mb-16">
-        <Link href="/database" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Database</span>
-          </a>
-        </Link>
-      </nav>
-
       <section>
         <h2 className="overlap">Stories</h2>
+
+        <StoriesNavbar />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-8 lg:gap-20">
           {stories.map((story) => (
