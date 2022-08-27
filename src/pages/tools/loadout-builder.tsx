@@ -51,6 +51,8 @@ import Link from "next/link";
 import { getAllCostumes } from "@models/costume";
 import { useSettingsStore } from "../../store/settings";
 import { getAllWeapons } from "@models/weapon";
+import { useInventoryStore } from "@store/inventory";
+import Checkbox from "@components/form/Checkbox";
 
 interface LoadoutBuilderProps {
   costumes: (costume & {
@@ -142,6 +144,13 @@ export default function LoadoutBuilder({
   const setMemoirsModal = useLoadoutStore((state) => state.setMemoirsModal);
   const setMemoir = useLoadoutStore((state) => state.setMemoir);
 
+  /**
+   * Inventory
+   */
+  const [showOnlyInventory, setShowOnlyInventory] = useState(false);
+  const ownedCostumes = useInventoryStore((state) => state.costumes);
+  const ownedWeapons = useInventoryStore((state) => state.weapons);
+
   return (
     <Layout>
       <Meta
@@ -160,7 +169,10 @@ export default function LoadoutBuilder({
       </nav>
 
       <section className="p-4 md:p-8">
-        <LoadoutSettings />
+        <LoadoutSettings
+          showOnlyInventory={showOnlyInventory}
+          setShowOnlyInventory={setShowOnlyInventory}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-4">
           {slots.map((slot, index) => (
@@ -181,7 +193,10 @@ export default function LoadoutBuilder({
         keepMounted
       >
         <CostumesTable
-          costumes={costumes}
+          costumes={costumes.filter((cost) => {
+            if (!showOnlyInventory) return true;
+            return ownedCostumes.includes(cost.costume_id);
+          })}
           abilitiesLookup={abilitiesLookup}
           charactersLookup={charactersLookup}
           showUnreleasedContent={showUnreleasedContent}
@@ -198,7 +213,10 @@ export default function LoadoutBuilder({
         keepMounted
       >
         <WeaponsTable
-          weapons={weapons}
+          weapons={weapons.filter((weap) => {
+            if (!showOnlyInventory) return true;
+            return ownedWeapons.includes(weap.weapon_id);
+          })}
           onRowClick={(event, weapon) => setWeapon(weapon)}
           abilitiesLookup={weaponsAbilitiesLookup}
         />
@@ -366,7 +384,13 @@ export default function LoadoutBuilder({
   );
 }
 
-function LoadoutSettings() {
+function LoadoutSettings({
+  showOnlyInventory,
+  setShowOnlyInventory,
+}: {
+  showOnlyInventory: boolean;
+  setShowOnlyInventory: (bool: boolean) => void;
+}) {
   const setSlotSize = useLoadoutStore((state) => state.setSlotSize);
 
   const title = useLoadoutStore((state) => state.title);
@@ -396,6 +420,13 @@ function LoadoutSettings() {
           />
         </div>
         <div className="flex flex-col md:flex-row items-center gap-x-4 mt-8 md:mt-0">
+          <div className="mb-6 md:mb-0">
+            <Checkbox
+              label="Only inventory"
+              isChecked={showOnlyInventory}
+              setState={(e) => setShowOnlyInventory(e.target.checked)}
+            />
+          </div>
           <FormControl className="w-32">
             <InputLabel id="attribute-select-label">Attribute</InputLabel>
             <Select
