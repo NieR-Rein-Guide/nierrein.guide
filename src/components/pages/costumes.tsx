@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   character,
   costume,
@@ -72,9 +72,20 @@ export default function CharactersPage({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
+
+  /**
+   * Using a state and useEffect here because Next.js is
+   * complaining about differences between Server/Client
+   * And cause rehydration issues that breaks the layout.
+   */
+  const [displayType, setDisplayType] = useState("table");
   const databaseDisplayType = useSettingsStore(
     (state) => state.databaseDisplayType
   );
+
+  useEffect(() => {
+    setDisplayType(databaseDisplayType);
+  }, [databaseDisplayType]);
 
   return (
     <Layout hasContainer={false} className="overflow-x-auto">
@@ -87,8 +98,8 @@ export default function CharactersPage({
       <section className="mx-auto p-6">
         <DatabaseNavbar />
 
-        {databaseDisplayType === "table" && (
-          <CostumesTable
+        {displayType === "grid" && (
+          <CostumesGrid
             costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
@@ -100,9 +111,8 @@ export default function CharactersPage({
             showUnreleasedContent={showUnreleasedContent}
           />
         )}
-
-        {databaseDisplayType === "grid" && (
-          <CostumesGrid
+        {displayType === "table" && (
+          <CostumesTable
             costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
@@ -375,7 +385,7 @@ export function CostumesGrid({
   onRowClick?;
 }) {
   return (
-    <div className="relative grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
+    <div className="grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
       {costumes
         .filter((costume) => {
           if (showUnreleasedContent) return true;

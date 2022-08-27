@@ -74,10 +74,7 @@ export default function WeaponThumbnail({
         </div>
 
         <div
-          className={classNames(
-            "absolute inset-0 transform",
-            type === "GUN" || type === "FIST" ? "-rotate-45" : ""
-          )}
+          className="absolute inset-0 transform"
           style={{
             width: "156px",
             height: "336px",
@@ -85,9 +82,9 @@ export default function WeaponThumbnail({
         >
           <Image
             layout="fill"
-            objectFit="cover"
+            objectFit="contain"
             className={classNames("z-0", imgClasses)}
-            src={`${CDN_URL}${image_path}standard.png`}
+            src={`${CDN_URL}${image_path}full.png`}
             alt={alt}
           />
         </div>
