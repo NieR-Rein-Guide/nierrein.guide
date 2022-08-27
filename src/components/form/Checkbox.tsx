@@ -5,17 +5,17 @@ import SVG from "react-inlinesvg";
 interface CheckboxProps {
   label: string;
   isChecked: boolean;
-  setState: Dispatch<SetStateAction<any>>;
+  setState?: Dispatch<SetStateAction<any>>;
 }
 
 export default function Checkbox({
   isChecked,
-  setState,
+  setState = undefined,
   label,
 }: CheckboxProps): JSX.Element {
   return (
-    <label className="flex flex-col cursor-pointer relative">
-      <div className="text-beige">{label}</div>
+    <label className="flex cursor-pointer relative">
+      <div className="ml-12 mb-2 text-beige">{label}</div>
       <SVG
         className="transform transition-all absolute -top-1"
         src="/decorations/checkbox.svg"

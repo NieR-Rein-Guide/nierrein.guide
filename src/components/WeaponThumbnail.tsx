@@ -18,6 +18,7 @@ interface WeaponThumbnailProps {
   isLarge?: boolean;
   image_path: string;
   onClick?: () => void | undefined;
+  children?: JSX.Element;
 }
 
 export default function WeaponThumbnail({
@@ -31,6 +32,7 @@ export default function WeaponThumbnail({
   isLarge = false,
   image_path,
   onClick = undefined,
+  children,
 }: WeaponThumbnailProps): JSX.Element {
   let weaponRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   if (rarity === "LEGEND") {
@@ -47,6 +49,7 @@ export default function WeaponThumbnail({
           height: "336px",
         }}
       >
+        {children}
         <div className="mt-1 ml-1">
           <Image
             className="z-10"

@@ -17,6 +17,7 @@ interface CostumeThumbnailProps {
   isLarge?: boolean;
   isDark?: boolean;
   onClick?: () => void | undefined;
+  children?: JSX.Element;
 }
 
 export default function CostumeThumbnail({
@@ -29,6 +30,7 @@ export default function CostumeThumbnail({
   onClick = undefined,
   isLarge,
   isDark,
+  children,
 }: CostumeThumbnailProps): JSX.Element {
   const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
 
@@ -42,6 +44,7 @@ export default function CostumeThumbnail({
           height: "336px",
         }}
       >
+        {children}
         <div className="mt-1 ml-1">
           <Image
             className="z-10 pointer-events-none"

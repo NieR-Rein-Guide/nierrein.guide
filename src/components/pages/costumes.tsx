@@ -23,8 +23,10 @@ import { useRouter } from "next/router";
 import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
 import { useSettingsStore } from "../../store/settings";
+import { useInventoryStore } from "../../store/inventory";
 import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
+import Checkbox from "@components/form/Checkbox";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -384,6 +386,9 @@ export function CostumesGrid({
   abilitiesLookup;
   onRowClick?;
 }) {
+  const ownedCostumes = useInventoryStore((state) => state.costumes);
+  const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
+
   return (
     <div className="grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
       {costumes
@@ -392,7 +397,11 @@ export function CostumesGrid({
           return new Date() > new Date(costume.release_time);
         })
         .map((cost) => (
-          <div className="group relative" key={cost.costume_id}>
+          <div className="relative" key={cost.costume_id}>
+            <p className="text-sm text-center line-clamp-1 mb-1">
+              {cost.is_ex_costume && <span className="text-rarity-4">EX </span>}
+              {cost.title}
+            </p>
             <CostumeThumbnail
               src={`${CDN_URL}${cost.image_path_base}portrait.png`}
               alt={cost.title}
@@ -400,21 +409,27 @@ export function CostumesGrid({
               rarity={cost.rarity}
               isLarge
               isDark={cost.is_ex_costume}
+              className="group"
               imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
-            />
-            <span className="text-sm text-center line-clamp-1 mt-1">
-              {cost.is_ex_costume && <span className="text-rarity-4">EX </span>}
-              {cost.title}
-            </span>
-
-            <Link
-              href={`/characters/${cost.character.slug}/${cost.slug}`}
-              passHref
             >
-              <a className="absolute inset-0 z-10">
-                <span className="sr-only">See more about {cost.title}</span>
-              </a>
-            </Link>
+              <Link
+                href={`/characters/${cost.character.slug}/${cost.slug}`}
+                passHref
+              >
+                <a className="absolute inset-0 z-10">
+                  <span className="sr-only">See more about {cost.title}</span>
+                </a>
+              </Link>
+            </CostumeThumbnail>
+            <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
+              <Checkbox
+                label={
+                  ownedCostumes.includes(cost.costume_id) ? "Owned" : "Owned?"
+                }
+                isChecked={ownedCostumes.includes(cost.costume_id)}
+                setState={() => toggleFromInventory(cost.costume_id)}
+              />
+            </div>
           </div>
         ))}
     </div>
