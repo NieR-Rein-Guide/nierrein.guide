@@ -3,6 +3,7 @@ import classNames from "classnames";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import Radio from "./form/Radio";
+import { MdOutlineInventory } from "react-icons/md";
 
 const SUPPORTED_MULTIPLE_DISPLAY = ["/characters", "/weapons"];
 
@@ -40,9 +41,33 @@ export default function DatabaseNavbar() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-9 lg:grid-cols-12 p-4 bg-grey-foreground border border-beige border-opacity-30">
+      <Link href="/inventory">
+        <a
+          className={classNames(
+            "order-2 mt-4 md:col-span-3 lg:mt-0 lg:order-first lg:col-span-2 p-4 transition-colors ease-out-cubic relative bordered text-center",
+            router.asPath === "/inventory"
+              ? "active bg-beige active"
+              : "bg-grey-lighter",
+            SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath) ? "w-64" : ""
+          )}
+        >
+          <span
+            className={classNames(
+              "inline-flex items-center gap-x-2 font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
+              router.asPath === "/inventory"
+                ? "text-grey-lighter"
+                : "text-beige"
+            )}
+          >
+            <MdOutlineInventory size={24} />
+            Inventory
+          </span>
+        </a>
+      </Link>
+
       <nav
         className={classNames(
-          "overflow-x-auto flex xl:justify-center gap-x-1 gap-y-2 md:col-span-9 xl:col-start-3 xl:col-span-8"
+          "overflow-x-auto flex xl:justify-center gap-x-1 gap-y-2 md:col-span-9 lg:col-start-4 xl:col-start-3 xl:col-span-8"
         )}
       >
         {ITEMS.map((item) => (
@@ -71,7 +96,7 @@ export default function DatabaseNavbar() {
       </nav>
 
       {SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath) && (
-        <div className="flex gap-x-4 mt-6 md:mt-0 md:flex-col md:items-end gap-y-3 md:col-span-3 xl:col-span-2">
+        <div className="flex gap-x-4 mt-6 xl:mt-0 xl:flex-col md:items-end gap-y-3 md:col-span-3 xl:col-span-2">
           <Radio
             name="Table"
             value="table"

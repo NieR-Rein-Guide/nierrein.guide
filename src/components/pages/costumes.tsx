@@ -27,6 +27,7 @@ import { useInventoryStore } from "../../store/inventory";
 import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
 import Checkbox from "@components/form/Checkbox";
+import { MdOutlineLibraryAdd, MdLibraryAddCheck } from "react-icons/md";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -132,6 +133,7 @@ export default function CharactersPage({
 }
 
 export function CostumesTable({
+  title,
   costumes,
   showUnreleasedContent = true,
   charactersLookup = {},
@@ -153,10 +155,19 @@ export function CostumesTable({
   charactersLookup;
   abilitiesLookup;
   onRowClick?;
+  title?: string;
 }) {
+  const [ownedCostumes, setOwnedCostumes] = useState<number[]>([]);
+  const localCostumes = useInventoryStore((state) => state.costumes);
+  const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
+
+  useEffect(() => {
+    setOwnedCostumes(localCostumes as number[]);
+  }, [localCostumes]);
+
   return (
     <MaterialTable
-      title={`${costumes.length} costumes in the database.`}
+      title={title ?? `${costumes.length} costumes in the database.`}
       data={costumes.filter((costume) => {
         if (showUnreleasedContent) return true;
         return new Date() > new Date(costume.release_time);
@@ -341,7 +352,23 @@ export function CostumesTable({
           ),
         },
       ]}
+      actions={[
+        (costume) => ({
+          _icon: ownedCostumes.includes(costume.costume_id)
+            ? MdLibraryAddCheck
+            : MdOutlineLibraryAdd,
+          get icon() {
+            return this._icon;
+          },
+          set icon(value) {
+            this._icon = value;
+          },
+          tooltip: "Add/Remove to your inventory",
+          onClick: () => toggleFromInventory(costume.costume_id),
+        }),
+      ]}
       options={{
+        actionsColumnIndex: -1,
         grouping: true,
         searchFieldAlignment: "right",
         filtering: true,

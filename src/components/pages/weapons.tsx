@@ -25,6 +25,7 @@ import { useSettingsStore } from "@store/settings";
 import Link from "next/link";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "@components/form/Checkbox";
+import { MdLibraryAddCheck, MdOutlineLibraryAdd } from "react-icons/md";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -111,9 +112,10 @@ export default function WeaponsPage({
 }
 
 export function WeaponsTable({
+  title,
   weapons,
   abilitiesLookup,
-  onRowClick,
+  onRowClick = undefined,
 }: {
   weapons: (weapon & {
     weapon_ability_link: (weapon_ability_link & {
@@ -125,11 +127,20 @@ export function WeaponsTable({
     weapon_stat: weapon_stat[];
   })[];
   abilitiesLookup;
-  onRowClick;
+  onRowClick?;
+  title?: string;
 }) {
+  const [ownedWeapons, setOwnedWeapons] = useState<number[]>([]);
+  const localWeapons = useInventoryStore((state) => state.weapons);
+  const toggleFromInventory = useInventoryStore((state) => state.toggleWeapon);
+
+  useEffect(() => {
+    setOwnedWeapons(localWeapons as number[]);
+  }, [localWeapons]);
+
   return (
     <MaterialTable
-      title={`${weapons.length} weapons in the database.`}
+      title={title ?? `${weapons.length} weapons in the database.`}
       data={weapons}
       columns={[
         {
@@ -334,7 +345,23 @@ export function WeaponsTable({
           ),
         },
       ]}
+      actions={[
+        (weapon) => ({
+          _icon: ownedWeapons.includes(weapon.weapon_id)
+            ? MdLibraryAddCheck
+            : MdOutlineLibraryAdd,
+          get icon() {
+            return this._icon;
+          },
+          set icon(value) {
+            this._icon = value;
+          },
+          tooltip: "Add/Remove to your inventory",
+          onClick: () => toggleFromInventory(weapon.weapon_id),
+        }),
+      ]}
       options={{
+        actionsColumnIndex: -1,
         grouping: true,
         searchFieldAlignment: "right",
         filtering: true,
