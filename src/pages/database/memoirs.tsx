@@ -63,7 +63,7 @@ export default function MemoirsPage({
           defaultIndex={tabIndex}
           onChange={(index) => setTabIndex(index)}
         >
-          <TabList className="grid grid-cols-2 md:grid-cols-3 gap-8 mb-8">
+          <TabList className="grid grid-cols-2 gap-8 mb-8">
             {TABS.map((tab) => (
               <TierListTab key={tab.index} index={tab.index}>
                 {tab.label}
@@ -127,18 +127,18 @@ export default function MemoirsPage({
                 </div>
               ))}
             </TabPanel>
-            <TabPanel>
+            <TabPanel className="grid grid-cols-1 md:grid-cols-2 place-items-center text-center gap-8">
               {memoirs.map((memoir) => (
-                <div className="mb-8" key={memoir.memoir_series_id}>
+                <div key={memoir.memoir_series_id}>
                   <h3 className="text-beige text-3xl">{memoir.name}</h3>
-                  <p className="text-beige-text">
-                    Large set: {memoir.large_set_description}
-                  </p>
                   <p className="text-sm text-beige-text">
-                    Small set: {memoir.small_set_description}
+                    {memoir.large_set_description}
+                  </p>
+                  <p className="text-xs text-beige-text">
+                    2 pieces: {memoir.small_set_description}
                   </p>
 
-                  <div className="flex gap-2 mt-4">
+                  <div className="flex justify-center gap-2 mt-4">
                     {memoir.memoir.map((memoir) => (
                       <div className="relative" key={memoir.memoir_id}>
                         <Image
