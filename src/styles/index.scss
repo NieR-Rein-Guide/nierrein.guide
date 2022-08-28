@@ -315,6 +315,10 @@ canvas {
   color: theme('colors.beige.DEFAULT') !important;
 }
 
+.rct-scroll {
+  width: 100% !important;
+}
+
 .rct-header-root, .react-calendar-timeline .rct-calendar-header {
   border-bottom: none !important;
 }
@@ -336,4 +340,9 @@ canvas {
   background: theme('colors.beige.dark') !important;
   border: none !important;
   /* height: 90px !important; */
+}
+
+// Hide the sidebar with groups
+.rct-sidebar {
+  display: none !important;
 }

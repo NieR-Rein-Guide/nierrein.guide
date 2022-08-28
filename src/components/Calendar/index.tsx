@@ -2,20 +2,29 @@ import Timeline, {
   TimelineMarkers,
   TodayMarker,
   TimelineHeaders,
+  SidebarHeader,
   DateHeader,
 } from "react-calendar-timeline";
 import "react-calendar-timeline/lib/Timeline.css";
 import { add, sub } from "date-fns";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Calendar({ groups, items }) {
+  const debugLibrary = useRef(true);
   const ABSOLUTE_MAX = items[0].end_time.getTime();
   const ABSOLUTE_MIN = items[items.length - 1].start_time.getTime();
-  const [timeStart, setTimeStart] = useState(new Date().getTime());
-  const [timeEnd, setTimeEnd] = useState(
-    add(new Date(), { weeks: 1 }).getTime()
-  );
+  const DEFAULT_TIME_START = sub(new Date(), { weeks: 3 }).getTime();
+  const DEFAULT_TIME_END = add(new Date(), { weeks: 3 }).getTime();
+
+  const [timeStart, setTimeStart] = useState(DEFAULT_TIME_START);
+  const [timeEnd, setTimeEnd] = useState(DEFAULT_TIME_END);
+
+  useEffect(() => {
+    setTimeout(() => {
+      debugLibrary.current = false;
+    }, 2000);
+  }, []);
 
   const onPrevClick = () => {
     const zoom = timeEnd - timeStart;
@@ -33,6 +42,10 @@ export default function Calendar({ groups, items }) {
   };
 
   const handleTimeChange = (visibleTimeStart, visibleTimeEnd) => {
+    if (debugLibrary.current) {
+      console.log("lol");
+      return;
+    }
     const scrollingToLeft = timeEnd > visibleTimeEnd;
     console.log(scrollingToLeft);
     if (scrollingToLeft) {
@@ -48,7 +61,6 @@ export default function Calendar({ groups, items }) {
       items={items}
       itemsSorted
       itemTouchSendsClick={false}
-      stackItems
       itemHeightRatio={1}
       showCursorLine
       canMove={false}
@@ -61,6 +73,26 @@ export default function Calendar({ groups, items }) {
       onTimeChange={handleTimeChange}
     >
       <TimelineHeaders className="sticky">
+        <SidebarHeader>
+          {({ getRootProps }) => {
+            return (
+              <div
+                className="flex items-center justify-center"
+                {...getRootProps()}
+              >
+                <button
+                  className="btn"
+                  onClick={() => {
+                    setTimeStart(DEFAULT_TIME_START);
+                    setTimeEnd(DEFAULT_TIME_END);
+                  }}
+                >
+                  Today
+                </button>
+              </div>
+            );
+          }}
+        </SidebarHeader>
         <DateHeader unit="primaryHeader" />
         <DateHeader />
       </TimelineHeaders>
