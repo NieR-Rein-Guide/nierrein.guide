@@ -309,3 +309,31 @@ canvas {
 .MuiModal-root {
   @apply overflow-auto;
 }
+
+.rct-header-root, .rct-sidebar, .rct-dateHeader {
+  background-color: theme('colors.grey.dark') !important;
+  color: theme('colors.beige.DEFAULT') !important;
+}
+
+.rct-header-root, .react-calendar-timeline .rct-calendar-header {
+  border-bottom: none !important;
+}
+
+.rct-day-6, .rct-day-0 {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.rct-hl-even, .rct-hl-odd {
+  /* height: 100px !important; */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.rct-vl {
+  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.rct-item {
+  background: theme('colors.beige.dark') !important;
+  border: none !important;
+  /* height: 90px !important; */
+}

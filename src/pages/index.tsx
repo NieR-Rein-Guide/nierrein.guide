@@ -5,13 +5,12 @@ import Layout from "@components/Layout";
 import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
 import FeaturedGuides from "@components/FeaturedGuides";
-import EventsSlider from "@components/EventsSlider";
 import AnimatedBanner from "@components/AnimatedBanner";
 import ListingEvents from "@components/ListingEvents";
 import Meta from "@components/Meta";
 import { getFeaturedGuides } from "@models/guide";
 import { Guide, Event } from "@models/types";
-import { getCurrentEvents, getFutureEvents } from "@models/event";
+import { getAllEvents, getCurrentEvents, getFutureEvents } from "@models/event";
 import { formatDistanceToNow } from "date-fns";
 import { useMedia } from "react-use";
 import CostumeArtwork from "@components/CostumeArtwork";
@@ -27,6 +26,9 @@ import { useSettingsStore } from "../store/settings";
 import classNames from "classnames";
 
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
+  ssr: false,
+});
+const EventsSlider = dynamic(() => import("../components/EventsSlider"), {
   ssr: false,
 });
 const NotificationsWithNoSSR = dynamic(
@@ -60,6 +62,7 @@ export default function Home({
   recentWeapons = [],
   notifications = [],
   loadouts = [],
+  allEvents,
 }: HomeProps): JSX.Element {
   const isMobile = useMedia("(max-width: 1279px)");
   const showUnreleasedContent = useSettingsStore(
@@ -71,8 +74,7 @@ export default function Home({
       <Meta />
 
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
-        {!isMobile && <AnimatedBanner />}
-        <EventsSlider currentEvents={currentEvents} />
+        <EventsSlider currentEvents={allEvents} />
 
         <section className="p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -304,6 +306,7 @@ export async function getStaticProps() {
       recentCostumes,
       notificationsData,
       loadouts,
+      allEvents,
     ] = await Promise.all([
       getFeaturedGuides(),
       getCurrentEvents({ currentDate: new Date().toISOString() }),
@@ -329,6 +332,7 @@ export async function getStaticProps() {
           votes: "desc",
         },
       }),
+      getAllEvents(),
     ]);
 
     const recentWeapons = await prisma.dump.weapon.findMany({
@@ -372,6 +376,7 @@ export async function getStaticProps() {
           notifications,
           recentWeapons,
           loadouts,
+          allEvents,
         })
       ),
       revalidate: 43200, // 12 hours in seconds (2 updates per day)
