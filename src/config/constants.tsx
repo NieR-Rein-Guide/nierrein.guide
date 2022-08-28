@@ -236,6 +236,9 @@ export const CREDITS = [
       },
     ],
   },
+  {
+    name: "Hastur",
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const GITHUB_REPO_LINK =
