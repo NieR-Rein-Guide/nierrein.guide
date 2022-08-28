@@ -24,7 +24,7 @@ export default function AboutPage(): JSX.Element {
           <ul>
             <li>
               <p>
-                (April 2021) Datamined data is now coming from the dump tool
+                (April 2022) Datamined data is now coming from the dump tool
                 created by{" "}
                 <a
                   href="https://github.com/onepiecefreak3"
