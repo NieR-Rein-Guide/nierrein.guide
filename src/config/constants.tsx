@@ -6,6 +6,7 @@ import charactersIcon from "../../public/icons/characters.png";
 import databaseIcon from "../../public/icons/database.png";
 import SVG from "react-inlinesvg";
 import { RiInstagramFill, RiRedditFill } from "react-icons/ri";
+import { FiGithub } from "react-icons/fi";
 
 export const CDN_URL =
   "https://s3.eu-central-1.wasabisys.com/nierreincarnation/";
@@ -217,6 +218,23 @@ export const CREDITS = [
   },
   {
     name: "Momonga",
+  },
+  {
+    name: "Luke",
+    link: "https://www.twitch.tv/luke_cip",
+  },
+  {
+    name: "onepiecefreak",
+    links: [
+      {
+        Icon: <FiGithub size={24} />,
+        href: "https://github.com/FanTranslatorsInternational",
+      },
+      {
+        Icon: <FiGithub size={24} />,
+        href: "https://github.com/onepiecefreak3",
+      },
+    ],
   },
 ].sort((a, b) => a.name.localeCompare(b.name));
 

@@ -32,20 +32,39 @@ export default function Credits(): JSX.Element {
   );
 }
 
-function Contributor({ credit }): JSX.Element {
-  const Content = (
-    <li className="flex items-center gap-x-6 hover-bg w-full p-2">
-      <Image
-        height="64"
-        width="64"
-        className="h-16"
-        src={`/credits/${slugify(credit.name, { lower: true })}.png`}
-        alt={`NieR Avatar of ${credit.name}`}
-        loading="lazy"
-      />
-      <span className="serif text-2xl w-44 lg:w-auto">{credit.name}</span>
-    </li>
-  );
+function Contributor({ credit, children }): JSX.Element {
+  function Content({ children }: { children?: JSX.Element }) {
+    return (
+      <li className="flex items-center gap-x-6 hover-bg w-full p-2">
+        <Image
+          height="64"
+          width="64"
+          className="h-16"
+          src={`/credits/${slugify(credit.name, { lower: true })}.png`}
+          alt={`NieR Avatar of ${credit.name}`}
+          loading="lazy"
+        />
+        <div>
+          <span className="serif text-2xl w-44 lg:w-auto">{credit.name}</span>
+          {children}
+        </div>
+      </li>
+    );
+  }
+
+  if (credit.links) {
+    return (
+      <Content>
+        <div className="flex gap-x-2 mt-2">
+          {credit.links.map((link) => (
+            <a key={link.label} href={link.href}>
+              {link.Icon}
+            </a>
+          ))}
+        </div>
+      </Content>
+    );
+  }
 
   if (credit.link) {
     return (
@@ -56,10 +75,10 @@ function Contributor({ credit }): JSX.Element {
         target="_blank"
         className="w-full"
       >
-        {Content}
+        <Content />
       </a>
     );
   }
 
-  return <>{Content}</>;
+  return <Content />;
 }
