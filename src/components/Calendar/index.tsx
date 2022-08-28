@@ -27,14 +27,14 @@ export default function Calendar({ groups, items }) {
   }, []);
 
   const onPrevClick = () => {
-    const zoom = timeEnd - timeStart;
+    const zoom = 1000 * 60 * 60 * 24;
     const visibleTimeStart = timeStart - zoom;
     const visibleTimeEnd = timeEnd - zoom;
     setTimeStart(visibleTimeStart);
     setTimeEnd(visibleTimeEnd);
   };
   const onNextClick = () => {
-    const zoom = timeEnd - timeStart;
+    const zoom = 1000 * 60 * 60 * 24;
     const visibleTimeStart = timeStart + zoom;
     const visibleTimeEnd = timeEnd + zoom;
     setTimeStart(visibleTimeStart);
@@ -43,12 +43,11 @@ export default function Calendar({ groups, items }) {
 
   const handleTimeChange = (visibleTimeStart, visibleTimeEnd) => {
     if (debugLibrary.current) {
-      console.log("lol");
       return;
     }
-    const scrollingToLeft = timeEnd > visibleTimeEnd;
-    console.log(scrollingToLeft);
-    if (scrollingToLeft) {
+    const scrollDirection = timeEnd > visibleTimeEnd ? "left" : "right";
+    console.log(scrollDirection, timeEnd > visibleTimeEnd);
+    if (scrollDirection === "left") {
       onPrevClick();
     } else {
       onNextClick();

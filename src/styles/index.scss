@@ -324,16 +324,16 @@ canvas {
 }
 
 .rct-day-6, .rct-day-0 {
-  background: rgba(255, 255, 255, 0.1) !important;
+  background: transparent !important;
 }
 
 .rct-hl-even, .rct-hl-odd {
   /* height: 100px !important; */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
 .rct-vl {
-  border-left: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-left: none !important;
 }
 
 .rct-item {
