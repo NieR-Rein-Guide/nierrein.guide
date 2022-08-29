@@ -68,6 +68,9 @@ export default function WeaponsPage({
   abilitiesLookup,
 }: CharactersPageProps): JSX.Element {
   const router = useRouter();
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
 
   /**
    * Using a state and useEffect here because Next.js is
@@ -98,6 +101,7 @@ export default function WeaponsPage({
           <WeaponsTable
             key="table"
             weapons={weapons}
+            showUnreleasedContent={showUnreleasedContent}
             abilitiesLookup={abilitiesLookup}
             onRowClick={(event, weapon) =>
               router.push(`/weapons/${weapon.slug}`)
@@ -105,7 +109,13 @@ export default function WeaponsPage({
           />
         )}
 
-        {displayType === "grid" && <WeaponsGrid key="grid" weapons={weapons} />}
+        {displayType === "grid" && (
+          <WeaponsGrid
+            key="grid"
+            weapons={weapons}
+            showUnreleasedContent={showUnreleasedContent}
+          />
+        )}
       </section>
     </Layout>
   );
@@ -116,6 +126,7 @@ export function WeaponsTable({
   weapons,
   abilitiesLookup,
   onRowClick = undefined,
+  showUnreleasedContent,
 }: {
   weapons: (weapon & {
     weapon_ability_link: (weapon_ability_link & {
@@ -129,6 +140,7 @@ export function WeaponsTable({
   abilitiesLookup;
   onRowClick?;
   title?: string;
+  showUnreleasedContent: boolean;
 }) {
   const [ownedWeapons, setOwnedWeapons] = useState<number[]>([]);
   const localWeapons = useInventoryStore((state) => state.weapons);
@@ -141,7 +153,10 @@ export function WeaponsTable({
   return (
     <MaterialTable
       title={title ?? `${weapons.length} weapons in the database.`}
-      data={weapons}
+      data={weapons.filter((weapon) => {
+        if (showUnreleasedContent) return true;
+        return new Date() > new Date(weapon.release_time);
+      })}
       columns={[
         {
           field: "name",
@@ -388,6 +403,7 @@ export function WeaponsTable({
 
 export function WeaponsGrid({
   weapons,
+  showUnreleasedContent,
 }: {
   weapons: (weapon & {
     weapon_ability_link: (weapon_ability_link & {
@@ -398,51 +414,57 @@ export function WeaponsGrid({
     })[];
     weapon_stat: weapon_stat[];
   })[];
+  showUnreleasedContent: boolean;
 }) {
   const ownedWeapons = useInventoryStore((state) => state.weapons);
   const toggleFromInventory = useInventoryStore((state) => state.toggleWeapon);
 
   return (
     <div className="relative grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
-      {weapons.map((weap) => (
-        <div
-          className="relative flex flex-col items-center"
-          key={weap.weapon_id}
-        >
-          <p className="text-sm text-center line-clamp-1 mb-1">
-            {weap.is_ex_weapon && <span className="text-rarity-4">EX </span>}
-            {weap.name}
-          </p>
-          <div>
-            <div className="group relative">
-              <WeaponThumbnail
-                image_path={weap.image_path}
-                alt={weap.name}
-                type={weap.weapon_type}
-                element={weap.attribute}
-                rarity={weap.rarity}
-                isLarge
-                isDark={weap.is_ex_weapon}
-                imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
-              />
-              <Link href={`/weapons/${weap.slug}`} passHref>
-                <a className="absolute inset-0 z-10">
-                  <span className="sr-only">See more about {weap.name}</span>
-                </a>
-              </Link>
-            </div>
-            <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
-              <Checkbox
-                label={
-                  ownedWeapons.includes(weap.weapon_id) ? "Owned" : "Owned?"
-                }
-                isChecked={ownedWeapons.includes(weap.weapon_id)}
-                setState={() => toggleFromInventory(weap.weapon_id)}
-              />
+      {weapons
+        .filter((weapon) => {
+          if (showUnreleasedContent) return true;
+          return new Date() > new Date(weapon.release_time);
+        })
+        .map((weap) => (
+          <div
+            className="relative flex flex-col items-center"
+            key={weap.weapon_id}
+          >
+            <p className="text-sm text-center line-clamp-1 mb-1">
+              {weap.is_ex_weapon && <span className="text-rarity-4">EX </span>}
+              {weap.name}
+            </p>
+            <div>
+              <div className="group relative">
+                <WeaponThumbnail
+                  image_path={weap.image_path}
+                  alt={weap.name}
+                  type={weap.weapon_type}
+                  element={weap.attribute}
+                  rarity={weap.rarity}
+                  isLarge
+                  isDark={weap.is_ex_weapon}
+                  imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
+                />
+                <Link href={`/weapons/${weap.slug}`} passHref>
+                  <a className="absolute inset-0 z-10">
+                    <span className="sr-only">See more about {weap.name}</span>
+                  </a>
+                </Link>
+              </div>
+              <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
+                <Checkbox
+                  label={
+                    ownedWeapons.includes(weap.weapon_id) ? "Owned" : "Owned?"
+                  }
+                  isChecked={ownedWeapons.includes(weap.weapon_id)}
+                  setState={() => toggleFromInventory(weap.weapon_id)}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
     </div>
   );
 }

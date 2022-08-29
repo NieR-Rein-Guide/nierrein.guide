@@ -16,6 +16,7 @@ import { NextPageContext } from "next";
 import { Box } from "@mui/system";
 import { StoriesNavbar } from "./index";
 import WeaponThumbnail from "@components/WeaponThumbnail";
+import { useSettingsStore } from "@store/settings";
 
 interface DatabaseStoriesWeaponsProps {
   weapons: (weapon & {
@@ -40,6 +41,10 @@ export default function DatabaseStoriesWeapons({
 }: DatabaseStoriesWeaponsProps): JSX.Element {
   const router = useRouter();
   const firstUpdate = useRef(true);
+
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
 
   const [fromDate, setFromDate] = useState<Date | null>(DEFAULT_FROM_DATE);
   const [weaponSlug, setWeaponSlug] = useState("all");
@@ -136,40 +141,45 @@ export default function DatabaseStoriesWeapons({
         </div>
 
         <div>
-          {weapons.map((weapon) => (
-            <div
-              key={weapon.weapon_id}
-              className="lg:col-start-3 lg:col-span-8 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4"
-            >
-              <div className="ml-auto mr-auto mb-4 md:mb-0 md:ml-0 md:mr-0">
-                <WeaponThumbnail
-                  image_path={weapon.image_path}
-                  alt={`${weapon.name} thumbnail`}
-                  rarity={RARITY[weapon.rarity]}
-                  type={weapon.weapon_type}
-                  isDark={weapon.is_ex_weapon}
-                  element={weapon.attribute}
-                />
+          {weapons
+            .filter((costume) => {
+              if (showUnreleasedContent) return true;
+              return new Date() > new Date(costume.release_time);
+            })
+            .map((weapon) => (
+              <div
+                key={weapon.weapon_id}
+                className="lg:col-start-3 lg:col-span-8 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4"
+              >
+                <div className="ml-auto mr-auto mb-4 md:mb-0 md:ml-0 md:mr-0">
+                  <WeaponThumbnail
+                    image_path={weapon.image_path}
+                    alt={`${weapon.name} thumbnail`}
+                    rarity={RARITY[weapon.rarity]}
+                    type={weapon.weapon_type}
+                    isDark={weapon.is_ex_weapon}
+                    element={weapon.attribute}
+                  />
+                </div>
+                <div>
+                  <h3 className="font-labor text-center md:text-left md:text-lg text-beige mb-1">
+                    {weapon.name}
+                  </h3>
+                  {weapon.weapon_story_link.map((story) => (
+                    <div
+                      key={story.weapon_story_id}
+                      className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
+                      dangerouslySetInnerHTML={{
+                        __html: story.weapon_story.story.replaceAll(
+                          "\\n",
+                          "<br>"
+                        ),
+                      }}
+                    ></div>
+                  ))}
+                </div>
               </div>
-              <div>
-                <h3 className="font-labor text-center md:text-left md:text-lg text-beige mb-1">
-                  {weapon.name}
-                </h3>
-                {weapon.weapon_story_link.map((story) => (
-                  <div
-                    key={story.weapon_story_id}
-                    className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
-                    dangerouslySetInnerHTML={{
-                      __html: story.weapon_story.story.replaceAll(
-                        "\\n",
-                        "<br>"
-                      ),
-                    }}
-                  ></div>
-                ))}
-              </div>
-            </div>
-          ))}
+            ))}
 
           {weapons.length === 0 && (
             <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">

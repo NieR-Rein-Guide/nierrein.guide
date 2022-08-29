@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { NextPageContext } from "next";
 import { Box } from "@mui/system";
 import { StoriesNavbar } from "./index";
+import { useSettingsStore } from "@store/settings";
 
 interface DatabaseStoriesCostumesProps {
   costumes: costume[];
@@ -45,6 +46,9 @@ export default function DatabaseStoriesCostumes({
 }: DatabaseStoriesCostumesProps): JSX.Element {
   const router = useRouter();
   const firstUpdate = useRef(true);
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
 
   const [fromDate, setFromDate] = useState<Date | null>(DEFAULT_FROM_DATE);
   const [costumeSlug, setCostumeSlug] = useState("all");
@@ -162,30 +166,38 @@ export default function DatabaseStoriesCostumes({
         </div>
 
         <div>
-          {costumes.map((costume) => (
-            <div
-              key={costume.costume_id}
-              className="flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4"
-            >
-              <div className="ml-auto mr-auto mb-4 md:mb-0 md:ml-0 md:mr-0">
-                <CostumeThumbnail
-                  src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                  alt={`${costume.title} thumbnail`}
-                  rarity={RARITY[costume.rarity]}
-                />
+          {costumes
+            .filter((costume) => {
+              if (showUnreleasedContent) return true;
+              return new Date() > new Date(costume.release_time);
+            })
+            .map((costume) => (
+              <div
+                key={costume.costume_id}
+                className="flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4"
+              >
+                <div className="ml-auto mr-auto mb-4 md:mb-0 md:ml-0 md:mr-0">
+                  <CostumeThumbnail
+                    src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                    alt={`${costume.title} thumbnail`}
+                    rarity={RARITY[costume.rarity]}
+                  />
+                </div>
+                <div className="text-beige-text whitespace-pre-wrap text-base mb-4">
+                  <h3 className="font-labor text-center md:text-left md:text-lg text-beige mb-1">
+                    {costume.title}
+                  </h3>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: `${costume.description.replaceAll(
+                        "\\n",
+                        "<br>"
+                      )}`,
+                    }}
+                  />
+                </div>
               </div>
-              <div className="text-beige-text whitespace-pre-wrap text-base mb-4">
-                <h3 className="font-labor text-center md:text-left md:text-lg text-beige mb-1">
-                  {costume.title}
-                </h3>
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: `${costume.description.replaceAll("\\n", "<br>")}`,
-                  }}
-                />
-              </div>
-            </div>
-          ))}
+            ))}
 
           {costumes.length === 0 && (
             <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">

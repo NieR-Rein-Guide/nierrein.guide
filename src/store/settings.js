@@ -5,7 +5,7 @@ export const useSettingsStore = create(
   persist(
     (set) => ({
       databaseDisplayType: "table", // 'table' | 'grid'
-      showUnreleasedContent: true,
+      showUnreleasedContent: false,
       setShowUnreleasedContent: (showUnreleasedContent) =>
         set({ showUnreleasedContent }),
       setDatabaseDisplayType: (databaseDisplayType) =>
