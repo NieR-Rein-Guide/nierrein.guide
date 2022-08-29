@@ -4,9 +4,13 @@
 
 html,
 body {
-  @apply font-labor bg-black text-white overflow-x-hidden;
+  @apply text-sm font-labor bg-black text-white overflow-x-hidden;
   background-image: url(/decorations/pattern.png);
   background-repeat: repeat;
+
+  @screen sm {
+    @apply text-base;
+  }
 }
 
 * {

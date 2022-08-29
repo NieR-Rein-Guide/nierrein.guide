@@ -70,6 +70,7 @@ async function getGuide(slug: string): Promise<Guide> {
     query GetSingleGuide($slug: String!) {
       guides (where: {slug: $slug}) {
         title
+        description
         slug
         author
         content

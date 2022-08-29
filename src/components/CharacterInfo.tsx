@@ -85,17 +85,19 @@ function CostumeDetails({
         {/* Costume info */}
         <div className="flex flex-col mt-4 mx-4 xl:mt-0 order-2 xl:order-1">
           <div className="flex flex-col items-center xl:items-start mb-12 xl:mb-0">
-            <div className="flex items-center gap-x-2 text-xl">
-              <div className="w-8">
-                <Image
-                  layout="responsive"
-                  src={weaponsIcons[costume.weapon_type]}
-                  alt={costume.weapon_type}
-                />
+            <div className="flex flex-col md:flex-row items-center gap-x-2 text-xl">
+              <div className="flex items-center gap-x-2">
+                <div className="w-8">
+                  <Image
+                    layout="responsive"
+                    src={weaponsIcons[costume.weapon_type]}
+                    alt={costume.weapon_type}
+                  />
+                </div>
+                <span className="uppercase px-2 text-black bg-beige">
+                  {character.name}
+                </span>
               </div>
-              <span className="uppercase px-2 text-black bg-beige">
-                {character.name}
-              </span>
               <span className="uppercase text-beige">{costume.title}</span>
             </div>
             <p className="text-white text-opacity-60 mt-1 text-sm">

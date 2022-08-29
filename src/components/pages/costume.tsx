@@ -181,14 +181,18 @@ export default function CostumePage({
       </div>
 
       {costumes.length > 0 && (
-        <>
+        <div>
           {(!showUnreleasedContent &&
             new Date() < new Date(currentCostume.release_time) && (
-              <div className="bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center">
+              <div
+                key="hidden"
+                className="bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50 p-0 md:p-8 text-center"
+              >
                 Costume hidden.
               </div>
             )) || (
             <CostumeDetails
+              key="details"
               character={currentCharacter}
               costume={currentCostume}
               abilities={abilities[currentCostume.costume_id]}
@@ -199,7 +203,7 @@ export default function CostumePage({
               skillLevel={skillLevel}
             />
           )}
-        </>
+        </div>
       )}
     </Layout>
   );

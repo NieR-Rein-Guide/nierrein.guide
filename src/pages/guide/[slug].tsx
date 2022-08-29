@@ -21,7 +21,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
       {!router.isFallback && (
         <Meta
           title={`${guide.title} - Guide`}
-          description={`Read this guide to learn more about : ${guide.title}`}
+          description={guide.description}
           cover={guide?.cover?.url ?? "https://nierrein.guide/cover-guides.jpg"}
         />
       )}
