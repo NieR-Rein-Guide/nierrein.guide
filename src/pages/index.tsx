@@ -173,6 +173,7 @@ export default function Home({
           </section>
         )}
 
+        {/* NEW COSTUMES */}
         <div>
           <section>
             <h2 className="overlap">New costumes</h2>
@@ -213,36 +214,42 @@ export default function Home({
           </div>
         </div>
 
+        {/* NEW WEAPONS */}
         <div>
           <section>
             <h2 className="overlap">New weapons</h2>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {recentWeapons.map((weapon, index) => (
-                <div
-                  key={weapon.weapon_id}
-                  className={classNames(
-                    "flex items-center gap-x-4 w-80 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter",
-                    index > 2 ? "hidden md:flex" : ""
-                  )}
-                >
-                  <WeaponThumbnail
-                    element={weapon.attribute}
-                    rarity={weapon.rarity}
-                    type={weapon.weapon_type}
-                    isDark={weapon.is_ex_weapon}
-                    alt={weapon.name}
-                    image_path={weapon.image_path}
-                  />
-                  <span>{weapon.name}</span>
-                  <Link href={`/weapons/${weapon.slug}`} passHref>
-                    <a className="absolute inset-0 z-10">
-                      <span className="sr-only">
-                        See more about {weapon.name}
-                      </span>
-                    </a>
-                  </Link>
-                </div>
-              ))}
+              {recentWeapons
+                .filter((weapon) => {
+                  if (showUnreleasedContent) return true;
+                  return new Date() > new Date(weapon.release_time);
+                })
+                .map((weapon, index) => (
+                  <div
+                    key={weapon.weapon_id}
+                    className={classNames(
+                      "flex items-center gap-x-4 w-80 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter",
+                      index > 2 ? "hidden md:flex" : ""
+                    )}
+                  >
+                    <WeaponThumbnail
+                      element={weapon.attribute}
+                      rarity={weapon.rarity}
+                      type={weapon.weapon_type}
+                      isDark={weapon.is_ex_weapon}
+                      alt={weapon.name}
+                      image_path={weapon.image_path}
+                    />
+                    <span>{weapon.name}</span>
+                    <Link href={`/weapons/${weapon.slug}`} passHref>
+                      <a className="absolute inset-0 z-10">
+                        <span className="sr-only">
+                          See more about {weapon.name}
+                        </span>
+                      </a>
+                    </Link>
+                  </div>
+                ))}
             </div>
           </section>
           <div className="flex justify-center mt-8">
@@ -252,6 +259,7 @@ export default function Home({
           </div>
         </div>
 
+        {/* NEW LOADOUTS */}
         <div>
           <section>
             <h2 className="overlap">New community loadouts</h2>
@@ -284,8 +292,8 @@ export default function Home({
           </div>
         </div>
 
-        <DailyInfoWithNoSSR />
         <FeaturedGuides guides={featuredGuides} />
+        <DailyInfoWithNoSSR />
         <Socials />
         <JoinUs />
       </div>
