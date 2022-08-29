@@ -29,6 +29,11 @@ async function getFeaturedGuides(): Promise<Guide[]> {
   `
 
   const { featuredGuide } = await client.request(GET_GUIDES)
+
+  featuredGuide.guides.sort(
+    (a, b) =>
+      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
+  )
   return featuredGuide.guides
 }
 
