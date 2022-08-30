@@ -163,7 +163,7 @@ export function WeaponsTable({
           title: "Name",
           type: "string",
           render: (weapon) => (
-            <div className="flex items-center gap-x-4 w-80">
+            <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
               <WeaponThumbnail
                 element={weapon.attribute}
                 rarity={weapon.rarity}
@@ -173,6 +173,12 @@ export function WeaponsTable({
                 image_path={weapon.image_path}
               />
               <span>{weapon.name}</span>
+
+              <Link href={`/weapons/${weapon.slug}`} passHref>
+                <a className="absolute inset-0 z-10">
+                  <span className="sr-only">See more about {weapon.name}</span>
+                </a>
+              </Link>
             </div>
           ),
         },
@@ -396,7 +402,6 @@ export function WeaponsTable({
         ],
         exportAllData: true,
       }}
-      onRowClick={onRowClick}
     />
   );
 }

@@ -187,13 +187,24 @@ export function CostumesTable({
           title: "Title",
           type: "string",
           render: (costume) => (
-            <div className="flex items-center gap-x-4 w-80">
+            <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
               <CostumeThumbnail
                 src={`${CDN_URL}${costume.image_path_base}battle.png`}
                 alt={`${costume.title} thumbnail`}
                 rarity={RARITY[costume.rarity]}
               />
               <span>{costume.title}</span>
+
+              <Link
+                href={`/characters/${costume.character.slug}/${costume.slug}`}
+                passHref
+              >
+                <a className="absolute inset-0 z-10">
+                  <span className="sr-only">
+                    See more about {costume.title}
+                  </span>
+                </a>
+              </Link>
             </div>
           ),
         },
@@ -388,7 +399,6 @@ export function CostumesTable({
         ],
         exportAllData: true,
       }}
-      onRowClick={onRowClick}
     />
   );
 }
