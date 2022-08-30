@@ -163,11 +163,6 @@ export default function CostumePage({
         </div>
       </nav>
 
-      {/* <CharacterRows
-        characters={characters}
-        currentCharacter={currentCharacter}
-      /> */}
-
       <div className="hidden md:block">
         <CharacterCostumes
           currentCharacter={currentCharacter}

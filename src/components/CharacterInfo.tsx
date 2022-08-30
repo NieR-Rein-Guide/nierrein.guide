@@ -80,7 +80,7 @@ function CostumeDetails({
   const abilityLevel = ascendLevel - 1;
 
   return (
-    <>
+    <div>
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
         {/* Costume info */}
         <div className="flex flex-col mt-4 mx-4 xl:mt-0 order-2 xl:order-1">
@@ -387,7 +387,7 @@ function CostumeDetails({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

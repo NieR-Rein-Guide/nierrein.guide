@@ -113,10 +113,7 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
       <div className="relative mb-16">
         <div className="flex flex-col xl:flex-row justify-between">
           <div className="flex-1">
-            <div
-              className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 w-full"
-              style={{ height: "700px" }}
-            >
+            <div className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 h-[600px] md:h-full w-full">
               <div className="bordered-lg bg-grey-dark h-full w-full">
                 <div className="relative z-10 h-full w-full">
                   <img
@@ -293,7 +290,7 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
             </h2>
             <HR className="my-8" />
 
-            <div className="flex flex-col md:flex-row mt-3 gap-6 mx-4">
+            <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
               <StatsOfLevel
                 stats={selectedWeapon.weapon_stat[0]}
                 label={`Level ${selectedWeapon.weapon_stat[0].level}`}
