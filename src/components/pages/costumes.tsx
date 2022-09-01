@@ -195,16 +195,18 @@ export function CostumesTable({
               />
               <span>{costume.title}</span>
 
-              <Link
-                href={`/characters/${costume.character.slug}/${costume.slug}`}
-                passHref
-              >
-                <a className="absolute inset-0 z-10">
-                  <span className="sr-only">
-                    See more about {costume.title}
-                  </span>
-                </a>
-              </Link>
+              {!onRowClick && (
+                <Link
+                  href={`/characters/${costume.character.slug}/${costume.slug}`}
+                  passHref
+                >
+                  <a className="absolute inset-0 z-10">
+                    <span className="sr-only">
+                      See more about {costume.title}
+                    </span>
+                  </a>
+                </Link>
+              )}
             </div>
           ),
         },
@@ -399,6 +401,7 @@ export function CostumesTable({
         ],
         exportAllData: true,
       }}
+      onRowClick={onRowClick}
     />
   );
 }

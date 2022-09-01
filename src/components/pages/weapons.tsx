@@ -174,11 +174,15 @@ export function WeaponsTable({
               />
               <span>{weapon.name}</span>
 
-              <Link href={`/weapons/${weapon.slug}`} passHref>
-                <a className="absolute inset-0 z-10">
-                  <span className="sr-only">See more about {weapon.name}</span>
-                </a>
-              </Link>
+              {!onRowClick && (
+                <Link href={`/weapons/${weapon.slug}`} passHref>
+                  <a className="absolute inset-0 z-10">
+                    <span className="sr-only">
+                      See more about {weapon.name}
+                    </span>
+                  </a>
+                </Link>
+              )}
             </div>
           ),
         },
@@ -402,6 +406,7 @@ export function WeaponsTable({
         ],
         exportAllData: true,
       }}
+      onRowClick={onRowClick}
     />
   );
 }
