@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+import { env } from "../env";
 
 class MyDocument extends Document {
   render(): JSX.Element {
@@ -22,7 +23,7 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.png" />
           <link rel="apple-touch-icon" sizes="64x64" href="/favicon.png" />
           <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
-          {process.env.NODE_ENV === "production" && (
+          {env.NODE_ENV === "production" && (
             <script
               async
               defer

@@ -2,7 +2,7 @@ import client from "@libs/api"
 import axios from "axios"
 import { gql } from "graphql-request"
 import { FanContent } from "./types"
-
+import { env } from '../env'
 
 async function getAllFanContents(): Promise<FanContent[]> {
   const GET_FAN_CONTENTS = gql`
@@ -38,14 +38,14 @@ function submitFanContent({ type, author = '', link, image }: SubmitFanContentAr
   if (type === 'video') {
     formData.append('data', JSON.stringify({ link, type }))
 
-    return axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fan-contents`, formData)
+    return axios.post(`${env.NEXT_PUBLIC_API_ENDPOINT}fan-contents`, formData)
   }
 
   if (type === 'art') {
     formData.append('data', JSON.stringify({ author, link, type }))
     formData.append(`files.image`, image, image.name);
 
-    return axios.post(`${process.env.NEXT_PUBLIC_API_ENDPOINT}fan-contents`, formData)
+    return axios.post(`${env.NEXT_PUBLIC_API_ENDPOINT}fan-contents`, formData)
   }
 }
 

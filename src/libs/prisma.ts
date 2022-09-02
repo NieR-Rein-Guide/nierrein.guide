@@ -2,13 +2,14 @@
 /* eslint-disable @typescript-eslint/no-namespace */
 import { PrismaClient as PrismaDump } from '@prisma/client'
 import { PrismaClient as PrismaNRG } from '@prisma/client-nrg'
+import { env } from '../env'
 
 
 const prisma = {
   dump: new PrismaDump({
     datasources: {
       db: {
-        url: process.env.DATABASE_URL,
+        url: env.DATABASE_URL,
       }
     },
     log: ["info"],
@@ -16,7 +17,7 @@ const prisma = {
   nrg: new PrismaNRG({
     datasources: {
       db: {
-        url: process.env.NIERREINGUIDE_DATABASE_URL,
+        url: env.NIERREINGUIDE_DATABASE_URL,
       }
     },
     log: ["info"],
