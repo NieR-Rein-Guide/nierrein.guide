@@ -3,6 +3,11 @@ import Link from "next/link";
 import Element from "./Element";
 import { loadouts } from "@prisma/client-nrg";
 import { Chip } from "@mui/material";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { FiThumbsUp } from "react-icons/fi";
+import Tooltip from "@mui/material/Tooltip";
+import { useLoadoutsVotes } from "@store/votes";
 
 export default function LoadoutListinItem({
   loadout_id,
@@ -13,13 +18,46 @@ export default function LoadoutListinItem({
   slug,
   votes,
 }: loadouts) {
+  const router = useRouter();
+  const localVotes = useLoadoutsVotes((state) => state.votes);
+  const addVote = useLoadoutsVotes((state) => state.addVote);
+
+  const hasVoted = localVotes.includes(loadout_id);
+
+  async function vote() {
+    if (hasVoted) {
+      return;
+    }
+
+    await axios.post("/api/loadouts/vote", {
+      loadout_id,
+    });
+
+    addVote(loadout_id);
+
+    router.replace(router.asPath, undefined, {
+      scroll: false,
+    });
+  }
+
   return (
     <div
       key={loadout_id}
-      className="flex flex-col gap-x-4 w-80 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter overflow-hidden w-full h-full"
+      className="flex flex-col gap-x-4 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter overflow-hidden w-full h-full"
     >
-      <div className="absolute top-4 right-4">
-        <Chip variant="outlined" label={votes} />
+      <div className="absolute top-4 right-4 z-40">
+        <Tooltip
+          title={hasVoted ? "You already voted for this loadout" : "Vote"}
+        >
+          <Chip
+            className="pl-2"
+            onClick={hasVoted ? undefined : vote}
+            color={hasVoted ? "success" : "default"}
+            variant={hasVoted ? "outlined" : "filled"}
+            label={votes}
+            icon={<FiThumbsUp />}
+          />
+        </Tooltip>
       </div>
       <h3 className="text-xl truncate">{title}</h3>
       <p className="text-xs text-beige mt-1 truncate">{description}</p>
