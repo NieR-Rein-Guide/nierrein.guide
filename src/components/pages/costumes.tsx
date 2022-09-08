@@ -106,11 +106,6 @@ export default function CharactersPage({
             costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
-            onRowClick={(event, costume) =>
-              router.push(
-                `/characters/${costume.character.slug}/${costume.slug}`
-              )
-            }
             showUnreleasedContent={showUnreleasedContent}
           />
         )}

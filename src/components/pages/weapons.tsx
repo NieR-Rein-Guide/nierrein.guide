@@ -103,9 +103,6 @@ export default function WeaponsPage({
             weapons={weapons}
             showUnreleasedContent={showUnreleasedContent}
             abilitiesLookup={abilitiesLookup}
-            onRowClick={(event, weapon) =>
-              router.push(`/weapons/${weapon.slug}`)
-            }
           />
         )}
 
