@@ -3,7 +3,7 @@ import RARITY from "@utils/rarity";
 import classNames from "classnames";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
-import { CDN_URL } from "@config/constants";
+import Link from "next/link";
 
 type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
 
@@ -18,6 +18,7 @@ interface CostumeThumbnailProps {
   isDark?: boolean;
   onClick?: () => void | undefined;
   children?: JSX.Element;
+  href?: string;
 }
 
 export default function CostumeThumbnail({
@@ -31,6 +32,7 @@ export default function CostumeThumbnail({
   isLarge,
   isDark,
   children,
+  href,
 }: CostumeThumbnailProps): JSX.Element {
   const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   const emptyBackground = isLarge
@@ -98,7 +100,9 @@ export default function CostumeThumbnail({
       onClick={onClick}
       className={classNames(
         "min-h-20 min-w-20 h-20 w-20 relative",
-        onClick ? "cursor-pointer hover:scale-105 transition transform" : "",
+        onClick || href
+          ? "cursor-pointer hover:scale-105 transition transform"
+          : "",
         className
       )}
       style={{
@@ -131,6 +135,14 @@ export default function CostumeThumbnail({
         src={src ?? emptyBackground}
         alt={alt}
       />
+
+      {href && (
+        <Link href={href} passHref>
+          <a className="absolute inset-0 z-10">
+            <span className="sr-only">See costume</span>
+          </a>
+        </Link>
+      )}
     </div>
   );
 }

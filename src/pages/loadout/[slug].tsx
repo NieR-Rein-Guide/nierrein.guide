@@ -14,7 +14,14 @@ import { formatDistanceToNow } from "date-fns";
 import { useEffect, useState } from "react";
 import { LOADOUT_TYPES } from "@store/loadout";
 import Element from "@components/Element";
-import { companion, costume, debris, memoir, weapon } from "@prisma/client";
+import {
+  character,
+  companion,
+  costume,
+  debris,
+  memoir,
+  weapon,
+} from "@prisma/client";
 import { loadouts, loadout_slots } from "@prisma/client-nrg";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
@@ -22,9 +29,12 @@ import { Chip, Tooltip } from "@mui/material";
 import { FiThumbsUp } from "react-icons/fi";
 import { useRouter } from "next/router";
 import { useLoadoutsVotes } from "@store/votes";
+import axios from "axios";
 
 interface Slot {
-  costume: costume;
+  costume: costume & {
+    character: character;
+  };
   weapons: [weapon, weapon, weapon];
   companion: companion;
   debris: debris;
@@ -179,6 +189,11 @@ function CostumeSlot({
 
       <div className="grid grid-cols-1 md:grid-cols-3 place-items-center px-2">
         <CostumeThumbnail
+          href={
+            costume?.slug
+              ? `/characters/${costume.character.slug}/${costume.slug}`
+              : undefined
+          }
           src={`${CDN_URL}${costume?.image_path_base}battle.png`}
           alt={`${costume?.title} thumbnail`}
           rarity={RARITY[costume?.rarity]}
@@ -267,6 +282,9 @@ async function getSlotData(slot: loadout_slots) {
       ? prisma.dump.costume.findFirst({
           where: {
             costume_id: slot.costume_id,
+          },
+          include: {
+            character: true,
           },
         })
       : null,

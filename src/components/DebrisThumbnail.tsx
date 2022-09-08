@@ -34,7 +34,9 @@ export default function DebrisThumbnail({
         className
       )}
       style={{
-        backgroundImage: `url(/decorations/background_rarity_${debrisRarity}.png)`,
+        backgroundImage: image_path_base
+          ? `url(/decorations/background_rarity_${debrisRarity}.png)`
+          : undefined,
       }}
     >
       {image_path_base && (

@@ -6,6 +6,7 @@ import { ElementTypes, WeaponType } from "@models/types";
 import weaponsIcons from "@utils/weaponsIcons";
 import SVG from "react-inlinesvg";
 import { CDN_URL } from "@config/constants";
+import Link from "next/link";
 
 interface WeaponThumbnailProps {
   alt?: string;
@@ -19,6 +20,7 @@ interface WeaponThumbnailProps {
   image_path: string;
   onClick?: () => void | undefined;
   children?: JSX.Element;
+  href?: string;
 }
 
 export default function WeaponThumbnail({
@@ -33,6 +35,7 @@ export default function WeaponThumbnail({
   image_path,
   onClick = undefined,
   children,
+  href,
 }: WeaponThumbnailProps): JSX.Element {
   let weaponRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   if (rarity === "LEGEND") {
@@ -104,11 +107,15 @@ export default function WeaponThumbnail({
       onClick={onClick}
       className={classNames(
         "h-20 w-20 relative",
-        onClick ? "cursor-pointer hover:scale-105 transition transform" : "",
+        onClick || href
+          ? "cursor-pointer hover:scale-105 transition transform"
+          : "",
         className
       )}
       style={{
-        backgroundImage: `url(/decorations/background_rarity_${weaponRarity}.png)`,
+        backgroundImage: image_path
+          ? `url(/decorations/background_rarity_${weaponRarity}.png)`
+          : undefined,
       }}
     >
       {image_path && (
@@ -119,6 +126,7 @@ export default function WeaponThumbnail({
           alt={alt}
         />
       )}
+
       {element && (
         <div
           className="z-10 h-6 w-6 absolute"
@@ -131,15 +139,18 @@ export default function WeaponThumbnail({
         </div>
       )}
 
-      <div
-        className="z-10 h-6 w-6 absolute"
-        style={{
-          top: "26px",
-          left: "1px",
-        }}
-      >
-        <Image src={weaponsIcons[type]} alt={alt} />
-      </div>
+      {type && (
+        <div
+          className="z-10 h-6 w-6 absolute"
+          style={{
+            top: "26px",
+            left: "1px",
+          }}
+        >
+          <Image src={weaponsIcons[type]} alt={alt} />
+        </div>
+      )}
+
       {isDark && (
         <div
           className="z-10 h-6 w-6 absolute"
@@ -162,6 +173,14 @@ export default function WeaponThumbnail({
         }
         alt={alt}
       />
+
+      {href && (
+        <Link href={href} passHref>
+          <a className="absolute inset-0 z-10">
+            <span className="sr-only">See weapon</span>
+          </a>
+        </Link>
+      )}
     </div>
   );
 }
