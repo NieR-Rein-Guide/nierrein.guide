@@ -1,10 +1,14 @@
 import prisma from "@libs/prisma";
 
-export async function getAllCostumes() {
+export async function getAllCostumes({
+  orderBy = {
+    release_time: "desc",
+  },
+}: {
+  orderBy?;
+}) {
   const costumes = await prisma.dump.costume.findMany({
-    orderBy: {
-      release_time: "desc",
-    },
+    orderBy,
     include: {
       character: true,
       costume_ability_link: {
