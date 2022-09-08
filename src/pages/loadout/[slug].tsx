@@ -18,6 +18,10 @@ import { companion, costume, debris, memoir, weapon } from "@prisma/client";
 import { loadouts, loadout_slots } from "@prisma/client-nrg";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
+import { Chip, Tooltip } from "@mui/material";
+import { FiThumbsUp } from "react-icons/fi";
+import { useRouter } from "next/router";
+import { useLoadoutsVotes } from "@store/votes";
 
 interface Slot {
   costume: costume;
@@ -69,6 +73,27 @@ interface LoadoutInfoProps {
 
 function LoadoutInfo({ loadout }: LoadoutInfoProps) {
   const [createdAt, setCreatedAt] = useState("");
+  const router = useRouter();
+  const localVotes = useLoadoutsVotes((state) => state.votes);
+  const addVote = useLoadoutsVotes((state) => state.addVote);
+
+  const hasVoted = localVotes.includes(loadout.loadout_id);
+
+  async function vote() {
+    if (hasVoted) {
+      return;
+    }
+
+    await axios.post("/api/loadouts/vote", {
+      loadout_id: loadout.loadout_id,
+    });
+
+    addVote(loadout.loadout_id);
+
+    router.replace(router.asPath, undefined, {
+      scroll: false,
+    });
+  }
 
   useEffect(() => {
     setCreatedAt(
@@ -84,6 +109,18 @@ function LoadoutInfo({ loadout }: LoadoutInfoProps) {
         <div>
           <h2 className="text-3xl">{loadout.title}</h2>
           <p className="text-beige">Created {createdAt}</p>
+          <Tooltip
+            title={hasVoted ? "You already voted for this loadout" : "Vote"}
+          >
+            <Chip
+              className="pl-2 mt-4"
+              onClick={hasVoted ? undefined : vote}
+              color={hasVoted ? "success" : "default"}
+              variant={hasVoted ? "outlined" : "filled"}
+              label={loadout.votes}
+              icon={<FiThumbsUp />}
+            />
+          </Tooltip>
         </div>
         <div className="flex gap-x-4 relative">
           {(loadout.attribute === "all" && (
@@ -155,6 +192,7 @@ function CostumeSlot({
         {weapons.map((weapon: weapon, weaponIndex) => (
           <WeaponThumbnail
             key={weaponIndex}
+            href={weapon?.slug ? `/weapons/${weapon?.slug}` : undefined}
             element={weapon?.attribute}
             rarity={weapon?.rarity}
             type={weapon?.weapon_type}
