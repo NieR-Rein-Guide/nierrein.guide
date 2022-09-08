@@ -91,7 +91,11 @@ export async function getStaticProps(context) {
   // No route parameters, show index page
   if (Object.entries(context.params).length === 0) {
     const { costumes, abilitiesLookup, charactersLookup } =
-      await getAllCostumes();
+      await getAllCostumes({
+        orderBy: {
+          release_time: "desc",
+        },
+      });
 
     return {
       props: JSON.parse(

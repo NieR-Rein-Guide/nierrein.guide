@@ -91,7 +91,11 @@ export default function InventoryPage({
 
 export async function getStaticProps() {
   const [costumesData, weaponsData] = await Promise.all([
-    getAllCostumes(),
+    getAllCostumes({
+      orderBy: {
+        release_time: "desc",
+      },
+    }),
     getAllWeapons(),
   ]);
 

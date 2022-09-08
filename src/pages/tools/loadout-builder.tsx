@@ -697,7 +697,11 @@ export async function getStaticProps() {
     memoirs,
     memoirsLookupData,
   ] = await Promise.all([
-    getAllCostumes(),
+    getAllCostumes({
+      orderBy: {
+        release_time: "desc",
+      },
+    }),
     getAllWeapons(),
     prisma.dump.companion.findMany({
       orderBy: {
