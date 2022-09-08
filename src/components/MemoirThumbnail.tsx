@@ -26,18 +26,26 @@ export default function MemoirThumbnail({
         className
       )}
       style={{
-        backgroundImage: `url(/decorations/background_rarity_${memoirRarity}.png)`,
+        backgroundImage: image_path_base
+          ? `url(/decorations/background_rarity_${memoirRarity}.png)`
+          : undefined,
       }}
     >
-      <Image
-        className="z-10"
-        layout="fill"
-        src={`/decorations/corners_rarity_${memoirRarity}.png`}
-        alt=""
-      />
+      {image_path_base && (
+        <Image
+          className="z-10"
+          layout="fill"
+          src={`/decorations/corners_rarity_${memoirRarity}.png`}
+          alt=""
+        />
+      )}
       <img
         className="z-0 p-1"
-        src={`${CDN_URL}${image_path_base}full.png`}
+        src={
+          image_path_base
+            ? `${CDN_URL}${image_path_base}full.png`
+            : "/decorations/memory_empty_standard.png"
+        }
         alt=""
       />
     </div>

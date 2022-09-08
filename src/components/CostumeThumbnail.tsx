@@ -8,8 +8,8 @@ import { CDN_URL } from "@config/constants";
 type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
 
 interface CostumeThumbnailProps {
-  src: string;
-  alt: string;
+  src?: string | undefined;
+  alt?: string | undefined;
   weaponType?: WeaponType | string;
   rarity?: number | string;
   imgClasses?: string;
@@ -22,7 +22,7 @@ interface CostumeThumbnailProps {
 
 export default function CostumeThumbnail({
   src,
-  alt,
+  alt = "Empty",
   weaponType,
   rarity = 2,
   imgClasses = "",
@@ -33,6 +33,9 @@ export default function CostumeThumbnail({
   children,
 }: CostumeThumbnailProps): JSX.Element {
   const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
+  const emptyBackground = isLarge
+    ? "/decorations/costume_empty_large.png"
+    : "/decorations/costume_empty_standard.png";
 
   if (isLarge) {
     return (
@@ -102,12 +105,14 @@ export default function CostumeThumbnail({
         backgroundImage: `url(/decorations/background_rarity_${costumeRarity}.png)`,
       }}
     >
-      <Image
-        className="z-10"
-        layout="fill"
-        src={`/decorations/corners_rarity_${costumeRarity}.png`}
-        alt=""
-      />
+      {src && (
+        <Image
+          className="z-10"
+          layout="fill"
+          src={`/decorations/corners_rarity_${costumeRarity}.png`}
+          alt=""
+        />
+      )}
       {weaponType && (
         <div
           className="z-10 h-6 w-6 absolute"
@@ -119,14 +124,13 @@ export default function CostumeThumbnail({
           <Image layout="fill" src={weaponsIcons[weaponType]} alt={alt} />
         </div>
       )}
-      {!alt.includes("undefined") && (
-        <Image
-          className={classNames("z-0", imgClasses)}
-          layout="fill"
-          src={src}
-          alt={alt}
-        />
-      )}
+
+      <Image
+        className={classNames("z-0", imgClasses)}
+        layout="fill"
+        src={src ?? emptyBackground}
+        alt={alt}
+      />
     </div>
   );
 }

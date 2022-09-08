@@ -87,7 +87,11 @@ export default function WeaponThumbnail({
             layout="fill"
             objectFit="contain"
             className={classNames("z-0", imgClasses)}
-            src={`${CDN_URL}${image_path}full.png`}
+            src={
+              image_path
+                ? `${CDN_URL}${image_path}full.png`
+                : "/decorations/weapon_empty_standard.png"
+            }
             alt={alt}
           />
         </div>
@@ -107,21 +111,25 @@ export default function WeaponThumbnail({
         backgroundImage: `url(/decorations/background_rarity_${weaponRarity}.png)`,
       }}
     >
-      <Image
-        className="z-10"
-        layout="fill"
-        src={`/decorations/corners_rarity_${weaponRarity}.png`}
-        alt={alt}
-      />
-      <div
-        className="z-10 h-6 w-6 absolute"
-        style={{
-          top: "1px",
-          left: "1px",
-        }}
-      >
-        <Element type={element} />
-      </div>
+      {image_path && (
+        <Image
+          className="z-10"
+          layout="fill"
+          src={`/decorations/corners_rarity_${weaponRarity}.png`}
+          alt={alt}
+        />
+      )}
+      {element && (
+        <div
+          className="z-10 h-6 w-6 absolute"
+          style={{
+            top: "1px",
+            left: "1px",
+          }}
+        >
+          <Element type={element} />
+        </div>
+      )}
 
       <div
         className="z-10 h-6 w-6 absolute"
@@ -147,7 +155,11 @@ export default function WeaponThumbnail({
       <Image
         layout="fill"
         className={classNames("z-0", imgClasses)}
-        src={`${CDN_URL}${image_path}standard.png`}
+        src={
+          image_path
+            ? `${CDN_URL}${image_path}full.png`
+            : "/decorations/weapon_empty_standard.png"
+        }
         alt={alt}
       />
     </div>

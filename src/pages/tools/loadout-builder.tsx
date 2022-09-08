@@ -606,8 +606,12 @@ const CostumeSlot = memo(function CostumeSlot({ index }: CostumeSlotProps) {
       <div className="grid grid-cols-3 place-items-center px-2">
         <CostumeThumbnail
           onClick={() => setCostumeModal(index, true)}
-          src={`${CDN_URL}${slot.costume?.image_path_base}battle.png`}
-          alt={`${slot.costume?.title} thumbnail`}
+          src={
+            slot.costume
+              ? `${CDN_URL}${slot.costume?.image_path_base}battle.png`
+              : undefined
+          }
+          alt={slot.costume ? `${slot.costume?.title} thumbnail` : undefined}
           rarity={RARITY[slot.costume?.rarity]}
         />
       </div>

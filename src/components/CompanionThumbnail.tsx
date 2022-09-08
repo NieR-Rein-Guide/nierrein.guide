@@ -50,32 +50,40 @@ export default function CompanionThumbnail({
           onClick ? "cursor-pointer hover:scale-105 transition transform" : ""
         )}
         style={{
-          backgroundImage: `url(/decorations/background_rarity_2.png)`,
+          backgroundImage: companion?.name
+            ? `url(/decorations/background_rarity_2.png)`
+            : undefined,
         }}
       >
-        <Image
-          className="z-10"
-          layout="fill"
-          src={`/decorations/corners_rarity_2.png`}
-          alt=""
-        />
-        <div
-          className="z-10 h-6 w-6 absolute"
-          style={{
-            top: "1px",
-            left: "1px",
-          }}
-        >
-          <Element type={companion?.attribute} />
-        </div>
-
         {companion?.name && (
-          <img
-            className="z-0 h-full w-auto mx-auto p-1"
-            src={`${CDN_URL}${companion?.image_path_base}full.png`}
-            alt={companion?.name}
+          <Image
+            className="z-10"
+            layout="fill"
+            src={`/decorations/corners_rarity_2.png`}
+            alt=""
           />
         )}
+        {companion?.attribute && (
+          <div
+            className="z-10 h-6 w-6 absolute"
+            style={{
+              top: "1px",
+              left: "1px",
+            }}
+          >
+            <Element type={companion.attribute} />
+          </div>
+        )}
+
+        <img
+          className="z-0 h-full w-auto mx-auto p-1"
+          src={
+            companion?.image_path_base
+              ? `${CDN_URL}${companion?.image_path_base}full.png`
+              : "/decorations/companion_empty_standard.png"
+          }
+          alt={companion?.name}
+        />
       </div>
     );
   }

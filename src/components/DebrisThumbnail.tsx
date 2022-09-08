@@ -37,17 +37,23 @@ export default function DebrisThumbnail({
         backgroundImage: `url(/decorations/background_rarity_${debrisRarity}.png)`,
       }}
     >
-      <Image
-        className="z-10"
-        layout="fill"
-        src={`/decorations/corners_rarity_${debrisRarity}.png`}
-        alt={name}
-      />
+      {image_path_base && (
+        <Image
+          className="z-10"
+          layout="fill"
+          src={`/decorations/corners_rarity_${debrisRarity}.png`}
+          alt={name}
+        />
+      )}
 
       <Image
         layout="fill"
         className={classNames("z-0", imgClasses)}
-        src={`${CDN_URL}${image_path_base}standard.png`}
+        src={
+          image_path_base
+            ? `${CDN_URL}${image_path_base}standard.png`
+            : "/decorations/thought_empty_standard.png"
+        }
         alt={name}
       />
     </div>
