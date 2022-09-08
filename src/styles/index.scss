@@ -313,3 +313,25 @@ canvas {
 .MuiModal-root {
   @apply overflow-auto;
 }
+
+.tiptap__menubar {
+  button {
+    @apply rounded-lg border border-white px-2;
+
+    &.is-active {
+      @apply bg-beige;
+    }
+  }
+}
+
+.tiptap__editor {
+  @apply border border-beige px-2 py-2 mt-2;
+
+  .ProseMirror:focus {
+    @apply outline-none;
+  }
+
+  .ProseMirror {
+    min-height: 100px;
+  }
+}

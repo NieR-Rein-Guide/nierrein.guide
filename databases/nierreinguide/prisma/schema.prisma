@@ -35,3 +35,33 @@ model loadouts {
   votes         Int?            @default(0)
   loadout_slots loadout_slots[]
 }
+
+model tierlists {
+  tierlist_id Int       @id @default(autoincrement())
+  title       String
+  description String?
+  type        String    @default(dbgenerated("'costumes'::bpchar"))
+  created_at  DateTime? @db.Timestamptz(6)
+  slug        String
+  attribute   String
+  votes       Int?      @default(0)
+  tiers       tiers[]
+}
+
+model tiers {
+  id          Int           @id @default(autoincrement())
+  tierlist_id Int
+  tier        String
+  position    Int
+  tierslists  tierlists     @relation(fields: [tierlist_id], references: [tierlist_id])
+  tiers_items tiers_items[]
+}
+
+model tiers_items {
+  id       Int     @id @default(autoincrement())
+  tier_id  Int
+  item_id  Int
+  position Int
+  tooltip  String?
+  tiers    tiers   @relation(fields: [tier_id], references: [id])
+}

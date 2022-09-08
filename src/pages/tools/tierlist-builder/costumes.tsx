@@ -15,18 +15,27 @@ import Link from "next/link";
 import { getAllCostumes } from "@models/costume";
 import { useSettingsStore } from "../../../store/settings";
 import { useInventoryStore } from "@store/inventory";
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  resetServerContext,
-} from "react-beautiful-dnd";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
-import { FiArrowDownCircle, FiArrowUpCircle } from "react-icons/fi";
+import {
+  FiArrowDownCircle,
+  FiArrowUpCircle,
+  FiEdit,
+  FiXCircle,
+} from "react-icons/fi";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
+import Image from "next/image";
+import { RANK_THUMBNAILS } from "@models/tiers";
+import { Modal } from "@mui/material";
+import { BtnSecondary } from "@components/btn";
+import axios from "axios";
+import Checkbox from "@components/form/Checkbox";
+import Wysiwyg from "@components/Wysiwyg";
+import toast from "react-hot-toast";
+import { useRouter } from "next/router";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -58,7 +67,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   userSelect: "none",
 
   // change background colour if dragging
-  background: isDragging ? "lightgreen" : "#2D2D2D",
+  background: isDragging ? "lightgreen" : "transparent",
 
   // styles we need to apply on draggables
   ...draggableStyle,
@@ -79,16 +88,12 @@ interface TierlistBuilderProps {
     character: character;
     emblem: emblem;
   })[];
-  abilitiesLookup;
-  charactersLookup;
 }
 
 export default function TierlistBuilder({
   costumes,
-  abilitiesLookup,
-  charactersLookup,
 }: TierlistBuilderProps): JSX.Element {
-  resetServerContext();
+  const router = useRouter();
 
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
@@ -120,11 +125,34 @@ export default function TierlistBuilder({
       items: [],
     },
     {
+      tier: "SS",
+      items: [],
+    },
+    {
+      tier: "S",
+      items: [],
+    },
+    {
+      tier: "A",
+      items: [],
+    },
+    {
+      tier: "B",
+      items: [],
+    },
+    {
       tier: undefined,
       items: allCostumes,
     },
   ]);
   const [yup, setYup] = useState(false);
+  const [titleModal, setTitleModal] = useState(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [title, setTitle] = useState("My tierlist");
+  const [description, setDescription] = useState(
+    "<p>My awesome (and objective) tierlist.</p>"
+  );
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setYup(true);
@@ -171,8 +199,8 @@ export default function TierlistBuilder({
     setState(
       produce(state, (draft) => {
         if (index > 0) {
-          const item = state[index].items;
-          // draft.splice(index, 1);
+          const item = state[index];
+          draft.splice(index, 1);
           draft.splice(index - 1, 0, item);
         }
       })
@@ -182,11 +210,64 @@ export default function TierlistBuilder({
   function moveTierDown(index) {
     setState(
       produce(state, (draft) => {
-        const item = state[index].items;
-        // draft.splice(index, 1);
+        const item = state[index];
+        draft.splice(index, 1);
         draft.splice(index + 1, 0, item);
       })
     );
+  }
+
+  function removeTier(index) {
+    setState(
+      produce(state, (draft) => {
+        draft.splice(index, 1);
+      })
+    );
+  }
+
+  function editTitle(index) {
+    setCurrentIndex(index);
+    setTitleModal(true);
+  }
+
+  function handleTitleModalClose(event) {
+    event.preventDefault();
+    const value = event.target.elements[0].value;
+
+    if (!value) {
+      return;
+    }
+
+    const newState = produce(state, (draft) => {
+      draft[currentIndex].tier = value;
+    });
+    setState(newState);
+    setTitleModal(false);
+    setCurrentIndex(0);
+  }
+
+  async function save() {
+    if (loading) return;
+
+    try {
+      setLoading(true);
+
+      const response = await axios.post("/api/tierlists", {
+        title,
+        description,
+        type: "costumes",
+        attribute: "all",
+        tiers: state.slice(0, state.length - 1),
+      });
+
+      toast.success("Tier list saved! Redirecting...");
+
+      router.push(`/tierlist/${response.data.tierlist.slug}`);
+    } catch (error) {
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -207,24 +288,53 @@ export default function TierlistBuilder({
       </nav>
 
       <section className="p-4 md:p-8">
-        <button
-          className="btn"
-          type="button"
-          onClick={() => {
-            const costumesList = state[state.length - 1];
-            const tiers = state.slice(0, state.length - 1);
-            setState([
-              ...tiers,
-              {
-                tier: "N/A",
-                items: [],
-              },
-              costumesList,
-            ]);
-          }}
-        >
-          Add new tier
-        </button>
+        <div className="relative bordered mb-4">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between bg-grey-dark p-4">
+            <div>
+              <input
+                type="text"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="bg-grey-dark p-4">
+            <Wysiwyg
+              onBlur={(html) => setDescription(html)}
+              content="<p>My awesome (and objective) tierlist.</p>"
+            />
+          </div>
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            className="btn"
+            type="button"
+            onClick={() => {
+              const costumesList = state[state.length - 1];
+              const tiers = state.slice(0, state.length - 1);
+              setState([
+                ...tiers,
+                {
+                  tier: "N/A",
+                  items: [],
+                },
+                costumesList,
+              ]);
+            }}
+          >
+            Add new tier
+          </button>
+
+          <div>
+            {loading && (
+              <div className="fixed inset-0 bg-black bg-opacity-50" />
+            )}
+            {(loading && <BtnSecondary>Loading...</BtnSecondary>) || (
+              <BtnSecondary onClick={save}>Save</BtnSecondary>
+            )}
+          </div>
+        </div>
         {yup && (
           <div className="flex flex-col gap-y-8 mt-8">
             <DragDropContext onDragEnd={onDragEnd}>
@@ -246,6 +356,9 @@ export default function TierlistBuilder({
                           <button onClick={() => moveTierUp(ind)}>
                             <FiArrowUpCircle size="24" />
                           </button>
+                          <button onClick={() => removeTier(ind)}>
+                            <FiXCircle size="24" />
+                          </button>
                           <button onClick={() => moveTierDown(ind)}>
                             <FiArrowDownCircle size="24" />
                           </button>
@@ -253,13 +366,34 @@ export default function TierlistBuilder({
                       )}
                       <div
                         className={classNames(
-                          "flex gap-4",
+                          "gap-4",
                           ind === state.length - 1
-                            ? "flex-wrap"
-                            : "overflow-x-auto"
+                            ? "grid grid-cols-2 sm:grid-cols-4 md:grid-cols-10 place-items-center"
+                            : "flex overflow-x-auto"
                         )}
                       >
-                        <h3 className="text-3xl font-display">{el.tier}</h3>
+                        {ind !== state.length - 1 && (
+                          <button
+                            onClick={() => editTitle(ind)}
+                            className="absolute -left-7 top-1/2 transform -translate-y-1/2"
+                          >
+                            <FiEdit size="24" />
+                          </button>
+                        )}
+                        {(ind === state.length - 1 && (
+                          <p className="col-span-10">
+                            Drag & Drop costumes into the tiers.
+                          </p>
+                        )) || (
+                          <div className="flex justify-center items-center w-28">
+                            {(RANK_THUMBNAILS[el.tier] && (
+                              <Image
+                                src={RANK_THUMBNAILS[el.tier]}
+                                alt={el.tier}
+                              />
+                            )) || <h2 className="text-2xl">{el.tier}</h2>}
+                          </div>
+                        )}
                         {el.items?.map((item, index) => (
                           <Draggable
                             key={item.id}
@@ -283,6 +417,11 @@ export default function TierlistBuilder({
                                     alt={`${item.title} thumbnail`}
                                     rarity={RARITY[item.rarity]}
                                   />
+                                  {ind === state.length - 1 && (
+                                    <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">
+                                      {item.character.name} {item.title}
+                                    </p>
+                                  )}
                                 </div>
                               </div>
                             )}
@@ -299,21 +438,38 @@ export default function TierlistBuilder({
           </div>
         )}
       </section>
+
+      <Modal
+        open={titleModal}
+        onClose={() => setTitleModal(false)}
+        className="flex items-center justify-center"
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <form className="flex" onSubmit={handleTitleModalClose}>
+          <input
+            type="text"
+            name="tier"
+            placeholder={`New tier label (${state[currentIndex].tier})`}
+          />
+          <button type="submit" className="btn">
+            Save
+          </button>
+        </form>
+      </Modal>
     </Layout>
   );
 }
 
 export async function getStaticProps() {
-  const { costumes, abilitiesLookup, charactersLookup } = await getAllCostumes({
-    orderBy: { rarity: "asc" },
+  const { costumes } = await getAllCostumes({
+    orderBy: { costume_id: "desc" },
   });
 
   return {
     props: JSON.parse(
       JSON.stringify({
         costumes,
-        abilitiesLookup,
-        charactersLookup,
       })
     ),
   };

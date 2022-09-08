@@ -8,6 +8,7 @@ import Meta from "@components/Meta";
 import slugify from "slugify";
 import { useRouter } from "next/router";
 import { Costume } from "@models/types";
+import prisma from "@libs/prisma";
 
 interface TierlistsPageProps {
   defaultTab: number;
@@ -87,12 +88,25 @@ export async function getStaticProps(context) {
     );
   }
 
-  return {
-    props: {
-      defaultTab,
-      tiers,
+  const tierlists = await prisma.nrg.tierlists.findMany({
+    include: {
+      tiers: {
+        include: {
+          tiers_items: true,
+        },
+      },
     },
-  };
+  });
+
+  return JSON.parse(
+    JSON.stringify({
+      props: {
+        defaultTab,
+        tiers,
+        tierlists,
+      },
+    })
+  );
 }
 
 export async function getStaticPaths() {

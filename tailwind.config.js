@@ -85,6 +85,9 @@ module.exports = {
       },
       translate: {
         '-screen': '-100vh',
+      },
+      fontSize: {
+        xxs: '10px',
       }
     },
   },
