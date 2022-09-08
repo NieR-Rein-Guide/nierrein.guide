@@ -40,7 +40,9 @@ model tierlists {
   tierlist_id Int       @id @default(autoincrement())
   title       String
   description String?
+  edit_key    String
   type        String    @default(dbgenerated("'costumes'::bpchar"))
+  updated_at  DateTime? @db.Timestamptz(6)
   created_at  DateTime? @db.Timestamptz(6)
   slug        String
   attribute   String

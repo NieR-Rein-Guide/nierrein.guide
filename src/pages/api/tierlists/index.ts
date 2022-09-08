@@ -24,6 +24,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           description,
           type,
           attribute,
+          edit_key: uid(24),
+          updated_at: new Date(),
           created_at: new Date(),
         }
       })
