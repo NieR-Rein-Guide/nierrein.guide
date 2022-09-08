@@ -101,24 +101,20 @@ export default function CharactersPage({
       <section className="mx-auto p-6">
         <DatabaseNavbar />
 
-        {displayType === "grid" && (
-          <CostumesGrid
+        {displayType === "table" && (
+          <CostumesTable
             costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
           />
         )}
-        {displayType === "table" && (
-          <CostumesTable
+
+        {displayType === "grid" && (
+          <CostumesGrid
             costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
-            onRowClick={(event, costume) =>
-              router.push(
-                `/characters/${costume.character.slug}/${costume.slug}`
-              )
-            }
             showUnreleasedContent={showUnreleasedContent}
           />
         )}
