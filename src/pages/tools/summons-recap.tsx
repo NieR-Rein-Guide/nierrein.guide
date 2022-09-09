@@ -5,7 +5,6 @@ import CostumeThumbnail from "@components/CostumeThumbnail";
 import SVG from "react-inlinesvg";
 import { memo, useRef } from "react";
 import { toJpeg } from "html-to-image";
-import prisma from "@libs/prisma";
 import {
   character,
   costume,
@@ -81,7 +80,9 @@ export default function SummonsRecap({
     (a, b) => -b.character.name.localeCompare(a.character.name)
   );
 
-  const selectWeapons = [...allWeapons];
+  const selectWeapons = [...allWeapons].sort(
+    (a, b) => -b.weapon_type.localeCompare(a.weapon_type)
+  );
 
   function addCostume(costume) {
     setSummonedCostumes([...summonedCostumes, costume]);
@@ -203,17 +204,43 @@ const Selection = memo(function SummonSelection({
 }) {
   return (
     <>
+      <div className="relative mb-12 md:hidden">
+        <SVG
+          className="h-8 absolute left-1/2 transform -translate-x-1/2 -rotate-90"
+          src="/decorations/arrow.svg"
+        />
+      </div>
+      <div className="grid-cols-1 md:grid-cols-2 gap-4 mb-12 hidden md:grid">
+        <div className="relative">
+          <SVG
+            className="h-8 absolute left-1/2 transform -translate-x-1/2 -rotate-90"
+            src="/decorations/arrow.svg"
+          />
+        </div>
+        <div className="relative">
+          <SVG
+            className="h-8 absolute left-1/2 transform -translate-x-1/2 -rotate-90"
+            src="/decorations/arrow.svg"
+          />
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <CostumeSelect
           classes="w-full"
           costumes={selectCostumes}
-          onSelect={(e, value) => addCostume(value)}
+          onSelect={(e, value) => {
+            if (!value) return;
+            addCostume(value);
+          }}
           label="Add a costume..."
         />
         <WeaponSelect
           classes="w-full"
           weapons={selectWeapons}
-          onSelect={(e, value) => addWeapon(value)}
+          onSelect={(e, value) => {
+            if (!value) return;
+            addWeapon(value);
+          }}
           label="Add a weapon..."
         />
       </div>
