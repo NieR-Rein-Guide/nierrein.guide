@@ -168,7 +168,7 @@ export default function WeaponThumbnail({
         className={classNames("z-0", imgClasses)}
         src={
           image_path
-            ? `${CDN_URL}${image_path}full.png`
+            ? `${CDN_URL}${image_path}standard.png`
             : "/decorations/weapon_empty_standard.png"
         }
         alt={alt}

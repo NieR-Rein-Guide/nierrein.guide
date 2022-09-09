@@ -87,6 +87,12 @@ export const TOOLS = [
     label: "XP calc",
     src: "/tools/xp.jpg",
   },
+  {
+    href: "/tools/summons-recap",
+    label: "Summons recap",
+    src: "/tools/summons-recap.jpg",
+    class: "md:col-span-2",
+  },
 ];
 
 export const FOOTER_NAVIGATION = [

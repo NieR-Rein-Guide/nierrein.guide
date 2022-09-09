@@ -1,31 +1,33 @@
 import { CDN_URL } from "@config/constants";
 import { Autocomplete, Box, TextField } from "@mui/material";
-import { character } from "@prisma/client";
+import { weapon } from "@prisma/client";
 import { useSettingsStore } from "@store/settings";
 import classNames from "classnames";
 
-interface CostumeSelectRow {
-  title: string;
-  character: character;
-  slug: string;
-  image_path_base: string;
-  release_time: Date;
-}
+type WeaponSelectRow = weapon & {
+  weapon_ability_link: (weapon_ability_link & {
+    weapon_ability: weapon_ability;
+  })[];
+  weapon_skill_link: (weapon_skill_link & {
+    weapon_skill: weapon_skill;
+  })[];
+  weapon_stat: weapon_stat[];
+};
 
-function defaultOnSelect(e, costume: CostumeSelectRow) {
-  if (!costume) return;
+function defaultOnSelect(e, weapon: WeaponSelectRow) {
+  if (!weapon) return;
   // @ts-expect-error location
-  window.location = `/characters/${costume.character.slug}/${costume.slug}`;
+  window.location = `/weapons/${weapon.slug}`;
 }
 
-export default function CostumeSelect({
-  costumes,
+export default function WeaponSelect({
+  weapons,
   onSelect = defaultOnSelect,
-  label = "Search costume...",
+  label = "Search weapons...",
   classes = "w-full md:w-72",
 }: {
-  costumes: CostumeSelectRow[];
-  onSelect?: (e, costume: CostumeSelectRow) => void;
+  weapons: WeaponSelectRow[];
+  onSelect?: (e, weapon: WeaponSelectRow) => void;
   label?: string;
   classes?: string | string[];
 }): JSX.Element {
@@ -37,14 +39,14 @@ export default function CostumeSelect({
     <Autocomplete
       onChange={onSelect}
       className={classNames(classes)}
-      options={costumes.filter((costume) => {
+      options={weapons.filter((weapon) => {
         if (showUnreleasedContent) return true;
-        return new Date() > new Date(costume.release_time);
+        return new Date() > new Date(weapon.release_time);
       })}
       autoHighlight
-      groupBy={(costume) => costume.character.name}
+      groupBy={(weapon) => weapon.weapon_type}
       getOptionLabel={(option) =>
-        typeof option === "object" && `${option.title} ${option.character.name}`
+        typeof option === "object" && `${option.name}`
       }
       renderOption={(props, option) => (
         <Box
@@ -55,9 +57,9 @@ export default function CostumeSelect({
           <img
             loading="lazy"
             width="40"
-            src={`${CDN_URL}${option.image_path_base}battle.png`}
+            src={`${CDN_URL}${option.image_path}standard.png`}
           />
-          {option.title}
+          {option.name}
         </Box>
       )}
       renderInput={(params) => (
