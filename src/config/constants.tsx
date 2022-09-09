@@ -306,3 +306,79 @@ export const SOCIALS: Social[] = [
     icon: <SVG src="/logos/discord.svg" height="26" />,
   },
 ];
+
+export const VALUED_TYPES = {
+  ABILITY: "weapon_ability.name",
+  SKILL_COOLDOWN: "cooldown_time",
+};
+
+export const VALUED_WEAPONS = {
+  great: [
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Boon",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Bold Vigor",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Caged Vigor",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Pursuit",
+    },
+  ],
+  good: [
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Ambush",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Fatal",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Temporary Vigor",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Vigor",
+    },
+  ],
+  pvp: [
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Fleetfoot",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Temporary Fleetfoot",
+    },
+    // + good offensive passives
+    {
+      type: VALUED_TYPES.SKILL_COOLDOWN,
+      value: 16,
+    },
+  ],
+  supportMainhand: [
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Valiance",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Ire",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Crush",
+    },
+  ],
+  supportOffhand: [
+    // Tanky passives
+  ],
+};
