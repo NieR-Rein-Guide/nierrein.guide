@@ -39,6 +39,7 @@ interface WeaponsPageProps {
     weapon_stat: weapon_stat[];
   })[];
   abilitiesLookup: { [key: string]: string };
+  allAbilities;
 }
 
 export default function WeaponsPage({
@@ -46,7 +47,9 @@ export default function WeaponsPage({
   weapons,
   selectedWeapon,
   abilitiesLookup,
+  allAbilities,
 }: WeaponsPageProps): JSX.Element {
+  console.log(allAbilities.sort((a, b) => a.name.localeCompare(b.name)));
   if (!isIndex) {
     return <Weapon weapon={selectedWeapon} />;
   }
@@ -59,6 +62,12 @@ export async function getStaticProps(context) {
   if (Object.entries(context.params).length === 0) {
     const { weapons, abilitiesLookup } = await getAllWeapons();
 
+    const allAbilities = await prisma.dump.weapon_ability.findMany({
+      where: {
+        ability_level: 15,
+      },
+    });
+
     return {
       props: JSON.parse(
         JSON.stringify({
@@ -66,6 +75,7 @@ export async function getStaticProps(context) {
           selectedWeapon: null,
           weapons,
           abilitiesLookup,
+          allAbilities,
         })
       ),
     };

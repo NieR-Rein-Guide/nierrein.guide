@@ -26,6 +26,7 @@ import Link from "next/link";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "@components/form/Checkbox";
 import { MdLibraryAddCheck, MdOutlineLibraryAdd } from "react-icons/md";
+import { VALUED_TYPES, VALUED_WEAPONS } from "@config/constants";
 
 interface CharactersPageProps {
   weapons: (weapon & {
