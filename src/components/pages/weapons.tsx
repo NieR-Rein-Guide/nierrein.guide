@@ -8,7 +8,6 @@ import Element from "@components/Element";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import Image from "next/image";
 import weaponsIcons from "@utils/weaponsIcons";
-import { useRouter } from "next/router";
 import SVG from "react-inlinesvg";
 import Star from "@components/decorations/Star";
 import RARITY from "@utils/rarity";
@@ -26,7 +25,14 @@ import Link from "next/link";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "@components/form/Checkbox";
 import { MdLibraryAddCheck, MdOutlineLibraryAdd } from "react-icons/md";
-import { VALUED_TYPES, VALUED_WEAPONS } from "@config/constants";
+import {
+  CDN_URL,
+  VALUED_TYPES,
+  VALUED_TYPES_LABEL,
+  VALUED_WEAPONS,
+} from "@config/constants";
+import Radio from "@components/form/Radio";
+import classNames from "classnames";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -68,7 +74,6 @@ export default function WeaponsPage({
   weapons,
   abilitiesLookup,
 }: CharactersPageProps): JSX.Element {
-  const router = useRouter();
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
@@ -83,6 +88,8 @@ export default function WeaponsPage({
     (state) => state.databaseDisplayType
   );
 
+  const [valuedWeaponType, setValuedWeaponType] = useState("none");
+
   useEffect(() => {
     setDisplayType(databaseDisplayType);
   }, [databaseDisplayType]);
@@ -96,6 +103,26 @@ export default function WeaponsPage({
       />
 
       <section className="mx-auto p-6">
+        {displayType === "table" && (
+          <div>
+            <p>What are you looking for?</p>
+            <p className="text-beige-dark text-sm mb-3">
+              Highlight good weapons candidates.
+            </p>
+            <div className="flex gap-x-4 mb-8">
+              {Object.entries(VALUED_WEAPONS).map(([key], index) => (
+                <Radio
+                  key={`${key}-${index}`}
+                  name={VALUED_TYPES_LABEL[key].label}
+                  value={key}
+                  isChecked={valuedWeaponType === key}
+                  setState={setValuedWeaponType}
+                />
+              ))}
+            </div>
+          </div>
+        )}
+
         <DatabaseNavbar />
 
         {displayType === "table" && (
@@ -104,6 +131,7 @@ export default function WeaponsPage({
             weapons={weapons}
             showUnreleasedContent={showUnreleasedContent}
             abilitiesLookup={abilitiesLookup}
+            valuedWeaponType={valuedWeaponType}
           />
         )}
 
@@ -125,6 +153,7 @@ export function WeaponsTable({
   abilitiesLookup,
   onRowClick = undefined,
   showUnreleasedContent,
+  valuedWeaponType = "none",
 }: {
   weapons: (weapon & {
     weapon_ability_link: (weapon_ability_link & {
@@ -139,6 +168,7 @@ export function WeaponsTable({
   onRowClick?;
   title?: string;
   showUnreleasedContent: boolean;
+  valuedWeaponType?: string;
 }) {
   const [ownedWeapons, setOwnedWeapons] = useState<number[]>([]);
   const localWeapons = useInventoryStore((state) => state.weapons);
@@ -147,6 +177,8 @@ export function WeaponsTable({
   useEffect(() => {
     setOwnedWeapons(localWeapons as number[]);
   }, [localWeapons]);
+
+  console.log(VALUED_WEAPONS[valuedWeaponType]);
 
   return (
     <MaterialTable
@@ -237,6 +269,40 @@ export function WeaponsTable({
               );
             return hasAbilityInEitherSlot;
           },
+          render: (weapon) => {
+            const isValued = VALUED_WEAPONS[valuedWeaponType]
+              .filter(
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY
+              )
+              .find((valuedAbility) =>
+                weapon.weapon_ability_link[0].weapon_ability.name.includes(
+                  valuedAbility.value
+                )
+              );
+
+            return (
+              <div
+                className={classNames(
+                  "relative flex flex-col justify-center items-center",
+                  isValued ? "text-green-300" : ""
+                )}
+              >
+                <div className="h-4 w-4">
+                  <Image
+                    height={16}
+                    width={16}
+                    layout="responsive"
+                    alt={weapon.weapon_ability_link[0].weapon_ability.name}
+                    src={`${CDN_URL}${weapon.weapon_ability_link[0].weapon_ability.image_path_base}standard.png`}
+                  />
+                </div>
+
+                <p className="mt-2">
+                  {weapon.weapon_ability_link[0].weapon_ability.name}
+                </p>
+              </div>
+            );
+          },
         },
         {
           field: "weapon_ability_link[1].weapon_ability.name",
@@ -255,6 +321,40 @@ export function WeaponsTable({
                 weapon.weapon_ability_link?.[1]?.weapon_ability.name
               );
             return hasAbilityInEitherSlot;
+          },
+          render: (weapon) => {
+            const isValued = VALUED_WEAPONS[valuedWeaponType]
+              .filter(
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY
+              )
+              .find((valuedAbility) =>
+                weapon.weapon_ability_link[1].weapon_ability.name.includes(
+                  valuedAbility.value
+                )
+              );
+
+            return (
+              <div
+                className={classNames(
+                  "relative flex flex-col justify-center items-center",
+                  isValued ? "text-green-300" : ""
+                )}
+              >
+                <div className="h-4 w-4">
+                  <Image
+                    height={16}
+                    width={16}
+                    layout="responsive"
+                    alt={weapon.weapon_ability_link[1].weapon_ability.name}
+                    src={`${CDN_URL}${weapon.weapon_ability_link[1].weapon_ability.image_path_base}standard.png`}
+                  />
+                </div>
+
+                <p className="mt-2">
+                  {weapon.weapon_ability_link[1].weapon_ability.name}
+                </p>
+              </div>
+            );
           },
         },
         {
@@ -276,11 +376,23 @@ export function WeaponsTable({
           title: "Cooldown Skill 1",
           type: "numeric",
           hideFilterIcon: true,
-          render: (weapon) => (
-            <span>
-              {weapon.weapon_skill_link[0].weapon_skill.cooldown_time / 30} sec
-            </span>
-          ),
+          render: (weapon) => {
+            const cooldown =
+              weapon.weapon_skill_link[0].weapon_skill.cooldown_time / 30;
+
+            const isValued =
+              VALUED_WEAPONS[valuedWeaponType].filter(
+                (valuedAbility) =>
+                  valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN
+              )[0].value >= cooldown;
+            console.log(isValued);
+
+            return (
+              <span className={classNames(isValued ? "text-green-300" : "")}>
+                {cooldown} sec
+              </span>
+            );
+          },
           customFilterAndSearch: (term, weapon) =>
             weapon.weapon_skill_link[0].weapon_skill.cooldown_time / 30 <=
             Number(term),

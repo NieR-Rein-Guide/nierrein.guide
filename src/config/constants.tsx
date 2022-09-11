@@ -308,11 +308,50 @@ export const SOCIALS: Social[] = [
 ];
 
 export const VALUED_TYPES = {
-  ABILITY: "weapon_ability.name",
-  SKILL_COOLDOWN: "cooldown_time",
+  ABILITY: "ABILITY",
+  SKILL_COOLDOWN: "SKILL_COOLDOWN",
+};
+
+export const VALUED_TYPES_LABEL = {
+  none: {
+    label: "Nothing",
+    description: "",
+  },
+  great: {
+    label: "Great abilities",
+    description: "",
+  },
+  good: {
+    label: "Good abilities",
+    description: "",
+  },
+  pvp: {
+    label: "PvP",
+    description: "",
+  },
+  supportOffhand: {
+    label: "Tanky abilities",
+    description: "",
+  },
 };
 
 export const VALUED_WEAPONS = {
+  none: [],
+  pvp: [
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Fleetfoot",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Haste",
+    },
+    // + good offensive passives
+    {
+      type: VALUED_TYPES.SKILL_COOLDOWN,
+      value: 16,
+    },
+  ],
   great: [
     {
       type: VALUED_TYPES.ABILITY,
@@ -342,29 +381,18 @@ export const VALUED_WEAPONS = {
     },
     {
       type: VALUED_TYPES.ABILITY,
-      value: "Temporary Vigor",
-    },
-    {
-      type: VALUED_TYPES.ABILITY,
       value: "Vigor",
     },
-  ],
-  pvp: [
     {
       type: VALUED_TYPES.ABILITY,
-      value: "Fleetfoot",
+      value: "Pursuit",
     },
     {
       type: VALUED_TYPES.ABILITY,
-      value: "Temporary Fleetfoot",
-    },
-    // + good offensive passives
-    {
-      type: VALUED_TYPES.SKILL_COOLDOWN,
-      value: 16,
+      value: "Boon",
     },
   ],
-  supportMainhand: [
+  /* supportMainhand: [
     {
       type: VALUED_TYPES.ABILITY,
       value: "Valiance",
@@ -377,8 +405,20 @@ export const VALUED_WEAPONS = {
       type: VALUED_TYPES.ABILITY,
       value: "Crush",
     },
-  ],
+  ], */
   supportOffhand: [
     // Tanky passives
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Aegis",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Guard",
+    },
+    {
+      type: VALUED_TYPES.ABILITY,
+      value: "Toughness",
+    },
   ],
 };

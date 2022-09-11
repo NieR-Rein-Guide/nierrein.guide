@@ -39,7 +39,7 @@ interface WeaponsPageProps {
     weapon_stat: weapon_stat[];
   })[];
   abilitiesLookup: { [key: string]: string };
-  allAbilities;
+  allAbilities: weapon_ability[];
 }
 
 export default function WeaponsPage({
@@ -49,7 +49,10 @@ export default function WeaponsPage({
   abilitiesLookup,
   allAbilities,
 }: WeaponsPageProps): JSX.Element {
-  console.log(allAbilities.sort((a, b) => a.name.localeCompare(b.name)));
+  allAbilities.forEach((ability) =>
+    console.log(ability.name, ability.description)
+  );
+
   if (!isIndex) {
     return <Weapon weapon={selectedWeapon} />;
   }
@@ -67,6 +70,8 @@ export async function getStaticProps(context) {
         ability_level: 15,
       },
     });
+
+    allAbilities.sort((a, b) => -b.name.localeCompare(a.name));
 
     return {
       props: JSON.parse(
