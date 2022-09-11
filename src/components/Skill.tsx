@@ -1,4 +1,5 @@
 import { CDN_URL } from "@config/constants";
+import { Tooltip } from "@mui/material";
 import getGaugeLevel from "@utils/getGaugeLevel";
 import classNames from "classnames";
 import Image from "next/image";
@@ -71,14 +72,26 @@ export default function Skill({
             <span>{description}</span>
           </p>
           {SkillCooltimeValue && (
-            <p className="text-xs mt-2">
+            <p className="flex  items-end text-xs mt-2">
               <span className="bg-brown px-2 py-1 mr-2">
                 {!isWeapon &&
                   `Gauge Level: ${getGaugeLevel(SkillCooltimeValue)}`}
                 {isWeapon && `Cooldown: ${SkillCooltimeValue / 30}s`}
               </span>
               {!isWeapon && (
-                <span className="text-xs">{SkillCooltimeValue}</span>
+                <Tooltip title="A lower number means that it charges faster">
+                  <span
+                    className={classNames(
+                      "text-xs",
+                      isMaxAscended ? "inline-flex flex-col" : ""
+                    )}
+                  >
+                    <span>{SkillCooltimeValue}</span>
+                    {isMaxAscended && (
+                      <span>Max asc: {SkillCooltimeValue * 0.8}</span>
+                    )}
+                  </span>
+                </Tooltip>
               )}
             </p>
           )}

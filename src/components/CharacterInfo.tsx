@@ -122,9 +122,7 @@ function CostumeDetails({
                   name={skill[skillLevel].costume_skill.name}
                   description={skill[skillLevel].costume_skill.description}
                   SkillCooltimeValue={
-                    ascendLevel === 4
-                      ? skill[skillLevel].costume_skill.cooldown_time * 0.8
-                      : skill[skillLevel].costume_skill.cooldown_time
+                    skill[skillLevel].costume_skill.cooldown_time
                   }
                   level={skillLevel + 1}
                   isMaxAscended={ascendLevel === 4}
