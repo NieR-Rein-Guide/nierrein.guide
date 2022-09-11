@@ -290,10 +290,12 @@ function CostumeDetails({
 
       {stats && (
         <div className="relative mb-8">
-          <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
-            Statistics
-          </h2>
-          <HR className="my-8" />
+          <div className="mt-12">
+            <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+              Statistics
+            </h2>
+            <HR className="my-8" />
+          </div>
 
           <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
             <StatsOfLevel
@@ -349,10 +351,12 @@ function CostumeDetails({
       )}
 
       <div className="relative">
-        <h2 className="text-3xl absolute top-1 left-1/2 transform -translate-x-1/2">
-          Character story
-        </h2>
-        <HR className="my-8" />
+        <div className="mt-12">
+          <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+            Character story
+          </h2>
+          <HR className="my-8" />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-y-8">
           <div className="md:col-start-2 md:col-span-3 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4">
@@ -427,7 +431,7 @@ function StatsOfLevel({
   rowsClasses?: string | string[];
 }): JSX.Element {
   return (
-    <div className="flex-1 border border-beige-inactive bg-grey-lighter">
+    <div className="flex-1 border border-beige-inactive bg-grey-lighter pb-2">
       <div className="flex flex-col justify-center bg-grey-foreground py-4 text-center mb-2 h-24">
         <h3 className="text-2xl text-beige-inactive">{label}</h3>
         {description && (
@@ -461,6 +465,11 @@ function StatsOfLevel({
           icon={statsIcons.cd}
           name="Critical Damage"
           value={`${stats.crit_atk / 10 ?? "???"}%`}
+        />
+        <SingleStat
+          icon={statsIcons.eva_rate}
+          name="Evasion Rate"
+          value={`${stats.eva_rate / 10 ?? "???"}%`}
         />
       </div>
     </div>
