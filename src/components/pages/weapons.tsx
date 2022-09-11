@@ -384,7 +384,7 @@ export function WeaponsTable({
               VALUED_WEAPONS[valuedWeaponType].filter(
                 (valuedAbility) =>
                   valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN
-              )[0].value >= cooldown;
+              )[0]?.value >= cooldown;
             console.log(isValued);
 
             return (
@@ -410,7 +410,7 @@ export function WeaponsTable({
               VALUED_WEAPONS[valuedWeaponType].filter(
                 (valuedAbility) =>
                   valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN
-              )[0].value >= cooldown;
+              )[0]?.value >= cooldown;
             console.log(isValued);
 
             return (
