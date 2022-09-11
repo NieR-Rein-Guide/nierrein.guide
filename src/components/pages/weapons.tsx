@@ -402,11 +402,23 @@ export function WeaponsTable({
           title: "Cooldown Skill 2",
           type: "numeric",
           hideFilterIcon: true,
-          render: (weapon) => (
-            <span>
-              {weapon.weapon_skill_link[1].weapon_skill.cooldown_time / 30} sec
-            </span>
-          ),
+          render: (weapon) => {
+            const cooldown =
+              weapon.weapon_skill_link[1].weapon_skill.cooldown_time / 30;
+
+            const isValued =
+              VALUED_WEAPONS[valuedWeaponType].filter(
+                (valuedAbility) =>
+                  valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN
+              )[0].value >= cooldown;
+            console.log(isValued);
+
+            return (
+              <span className={classNames(isValued ? "text-green-300" : "")}>
+                {cooldown} sec
+              </span>
+            );
+          },
           customFilterAndSearch: (term, weapon) =>
             weapon.weapon_skill_link[1].weapon_skill.cooldown_time / 30 <=
             Number(term),
