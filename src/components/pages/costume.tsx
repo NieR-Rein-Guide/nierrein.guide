@@ -103,9 +103,8 @@ export default function CostumePage({
         title={`${currentCharacter.name} - ${
           selectedCostume?.title ?? costumes[0].title
         }`}
-        cover={`${CDN_URL}${
-          selectedCostume?.image_path_base ?? costumes[0].image_path_base
-        }full.png}`}
+        cover={`${CDN_URL}${currentCostume.image_path_base}full.png`}
+        description={currentCostume.description}
       />
 
       <nav className="flex flex-col items-center gap-y-4 md:flex-row justify-between">

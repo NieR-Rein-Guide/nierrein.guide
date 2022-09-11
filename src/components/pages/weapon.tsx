@@ -41,9 +41,7 @@ export default function WeaponPage({
     <Layout>
       <Meta
         title={`${lastStageWeapon.name}`}
-        description={`${
-          lastStageWeapon.name
-        } is a ${lastStageWeapon.attribute.toLowerCase()} weapon.`}
+        description={lastStageWeapon.weapon_story_link[0].weapon_story.story}
         cover={`${CDN_URL}${lastStageWeapon.image_path}full.png`}
       />
 

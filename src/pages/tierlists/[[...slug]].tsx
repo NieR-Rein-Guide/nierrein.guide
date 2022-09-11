@@ -36,7 +36,6 @@ export default function TierlistsPageProps({
       {!router.isFallback && (
         <Meta
           title="Tier Lists"
-          description="Tier lists for PvE, PvP and Weapons. Work In Progress."
           cover={
             tiers[tabIndex].coverImg ??
             "https://nierrein.guide/cover-tierlists.jpg"
