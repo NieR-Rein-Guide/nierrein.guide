@@ -224,8 +224,6 @@ export async function getServerSideProps(context: NextPageContext) {
     where["slug"] = context.query.weapon;
   }
 
-  console.log(where);
-
   const weapons = await prisma.dump.weapon.findMany({
     where,
     orderBy: {

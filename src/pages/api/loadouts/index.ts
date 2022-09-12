@@ -56,8 +56,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               options[`memoir_${index + 1}_id`] = memoir.memoir_id
             })
 
-          console.log(options)
-
           return options
         })
       })

@@ -164,8 +164,6 @@ export default function TierlistBuilder({
         id: `${costume.character.character_id}-${costume.costume_id}`,
       }));
 
-    console.log(state[state.length - 1]);
-
     setState(
       produce(state, (draft) => {
         draft[draft.length - 1].items = filteredCostumes;

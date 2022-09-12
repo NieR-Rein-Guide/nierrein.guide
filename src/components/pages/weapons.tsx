@@ -178,8 +178,6 @@ export function WeaponsTable({
     setOwnedWeapons(localWeapons as number[]);
   }, [localWeapons]);
 
-  console.log(VALUED_WEAPONS[valuedWeaponType]);
-
   return (
     <MaterialTable
       title={title ?? `${weapons.length} weapons in the database.`}
@@ -385,7 +383,6 @@ export function WeaponsTable({
                 (valuedAbility) =>
                   valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN
               )[0]?.value >= cooldown;
-            console.log(isValued);
 
             return (
               <span className={classNames(isValued ? "text-green-300" : "")}>
@@ -411,7 +408,6 @@ export function WeaponsTable({
                 (valuedAbility) =>
                   valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN
               )[0]?.value >= cooldown;
-            console.log(isValued);
 
             return (
               <span className={classNames(isValued ? "text-green-300" : "")}>
