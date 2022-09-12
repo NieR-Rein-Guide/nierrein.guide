@@ -330,7 +330,7 @@ function CostumeDetails({
           {rankBonus && (
             <div className="mt-1 flex flex-col">
               <h3 className="text-2xl text-beige text-center my-4">
-                Ranks bonuses
+                Rank bonuses
               </h3>
               <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                 {rankBonus.map((rank, index) => (
