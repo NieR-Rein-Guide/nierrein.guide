@@ -21,16 +21,16 @@ import {
   FiEdit,
   FiXCircle,
 } from "react-icons/fi";
-import RARITY from "@utils/rarity";
 import classNames from "classnames";
 import Image from "next/image";
-import { RANK_THUMBNAILS } from "@models/tiers";
 import {
+  Autocomplete,
   FormControl,
   InputLabel,
   MenuItem,
   Modal,
   Select,
+  TextField,
 } from "@mui/material";
 import { BtnSecondary } from "@components/btn";
 import axios from "axios";
@@ -42,6 +42,7 @@ import { getAllWeapons } from "@models/weapon";
 import WeaponSelect from "@components/weapons/WeaponSelect";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import ATTRIBUTES from "@utils/attributes";
+import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -69,13 +70,8 @@ const move = (source, destination, droppableSource, droppableDestination) => {
 };
 
 const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the items look a bit nicer
   userSelect: "none",
-
-  // change background colour if dragging
-  background: isDragging ? "lightgreen" : "transparent",
-
-  // styles we need to apply on draggables
+  background: "transparent",
   ...draggableStyle,
 });
 const getListStyle = (isDraggingOver) => ({
@@ -224,6 +220,10 @@ export default function TierlistBuilder({
   }
 
   function moveTierDown(index) {
+    if (index + 1 === state.length - 1) {
+      return;
+    }
+
     setState(
       produce(state, (draft) => {
         const item = state[index];
@@ -234,11 +234,13 @@ export default function TierlistBuilder({
   }
 
   function removeTier(index) {
-    setState(
-      produce(state, (draft) => {
-        draft.splice(index, 1);
-      })
-    );
+    if (window.confirm("Are you sure you want to delete this tier?")) {
+      setState(
+        produce(state, (draft) => {
+          draft.splice(index, 1);
+        })
+      );
+    }
   }
 
   function editTitle(index) {
@@ -345,15 +347,11 @@ export default function TierlistBuilder({
             />
           </div>
         </div>
-        <div className="flex items-center justify-between">
-          <div>
-            {loading && (
-              <div className="fixed inset-0 bg-black bg-opacity-50" />
-            )}
-            {(loading && <BtnSecondary>Loading...</BtnSecondary>) || (
-              <BtnSecondary onClick={save}>Save</BtnSecondary>
-            )}
-          </div>
+        <div className="flex justify-center">
+          {loading && <div className="fixed inset-0 bg-black bg-opacity-50" />}
+          {(loading && <BtnSecondary>Loading...</BtnSecondary>) || (
+            <BtnSecondary onClick={save}>Save</BtnSecondary>
+          )}
         </div>
         {yup && (
           <div className="flex flex-col gap-y-8 mt-8">
@@ -389,7 +387,7 @@ export default function TierlistBuilder({
                   >
                     {(provided, snapshot) => (
                       <div
-                        className="relative py-8 px-4"
+                        className="relative py-8 px-4 border border-beige border-opacity-50"
                         ref={provided.innerRef}
                         style={getListStyle(snapshot.isDraggingOver)}
                         {...provided.droppableProps}
@@ -418,7 +416,7 @@ export default function TierlistBuilder({
                           {ind !== state.length - 1 && (
                             <button
                               onClick={() => editTitle(ind)}
-                              className="absolute -left-7 top-1/2 transform -translate-y-1/2"
+                              className="absolute -left-3 top-1 transform -translate-y-1/2 bg-beige rounded-full h-10 w-10 flex items-center justify-center transition ease-out-cubic text-beige-darker hover:bg-beige-darker hover:text-white"
                             >
                               <FiEdit size="24" />
                             </button>
@@ -523,10 +521,16 @@ export default function TierlistBuilder({
         aria-describedby="modal-modal-description"
       >
         <form className="flex" onSubmit={handleTitleModalClose}>
-          <input
-            type="text"
-            name="tier"
-            placeholder={`New tier label (${state[currentIndex].tier})`}
+          <Autocomplete
+            className="w-96"
+            freeSolo
+            options={Object.entries(RANK_THUMBNAILS).map(([key]) => key)}
+            renderInput={(params) => (
+              <TextField
+                {...params}
+                label={`New tier label (${state[currentIndex].tier})`}
+              />
+            )}
           />
           <button type="submit" className="btn">
             Save

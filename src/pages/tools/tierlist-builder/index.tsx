@@ -10,7 +10,7 @@ export default function TierlistBuilderChoices(): JSX.Element {
       <Meta
         title="What kind of Tier list do you want to create?"
         description="Create a tierlist."
-        cover="https://nierrein.guide/tools/tierlist.jpg"
+        cover="https://nierrein.guide/cover-tierlists.jpg"
       />
 
       <h2 className="font-display text-4xl text-beige mb-8 text-center">

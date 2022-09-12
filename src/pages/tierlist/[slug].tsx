@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { RANK_THUMBNAILS } from "@models/tiers";
 import { formatDistanceToNow } from "date-fns";
 import prisma from "@libs/prisma";
 import { tiers, tiers_items, tierlists } from "@prisma/client-nrg";
@@ -11,6 +10,12 @@ import RARITY from "@utils/rarity";
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import WeaponThumbnail from "@components/WeaponThumbnail";
+import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
+import { useTierlistsVotes } from "@store/tierlist-votes";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { Chip, Tooltip } from "@mui/material";
+import { FiThumbsUp } from "react-icons/fi";
 
 interface TierListProps {
   tierlist: tierlists & {
@@ -32,85 +37,139 @@ export default function TierList({
       <Meta
         title={`${tierlist.title} - Tier List`}
         description="A community created tier list."
-        cover="https://nierrein.guide/cover-tierlists.jpg"
+        cover={
+          tierlist.type === "costumes"
+            ? "https://nierrein.guide/tools/tierlist-costumes.jpg"
+            : "https://nierrein.guide/tools/tierlist-weapons.jpg"
+        }
       />
 
       <section className="flex flex-col gap-y-24">
-        <h2 className="overlap">{tierlist.title}</h2>
-
-        <div className="flex flex-col gap-y-8 relative">
-          {tierlist.tiers.map((tier) => (
-            <div className="tierlist__row" key={tier.tier}>
-              {(RANK_THUMBNAILS[tier.tier] && (
-                <Image src={RANK_THUMBNAILS[tier.tier]} alt={tier.tier} />
-              )) || <h2 className="text-2xl">{tier.tier}</h2>}
-
-              <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                {tierlist.type === "costumes" && (
-                  <>
-                    {tier.tiers_items.map((tierItem) => {
-                      const costume = items.find(
-                        (item) => item.costume_id === tierItem.item_id
-                      );
-
-                      return (
-                        <CostumeThumbnail
-                          key={costume.costume_id}
-                          href={`/characters/${costume.character.slug}/${costume.slug}`}
-                          src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                          alt={`${costume.title} thumbnail`}
-                          rarity={RARITY[costume.rarity]}
-                          weaponType={costume.weapon_type}
-                        />
-                      );
-                    })}
-                  </>
-                )}
-
-                {tierlist.type === "weapons" && (
-                  <>
-                    {tier.tiers_items.map((tierItem, index) => {
-                      const weapon = items.find(
-                        (item) => item.weapon_id === tierItem.item_id
-                      );
-
-                      return (
-                        <WeaponThumbnail
-                          key={`${weapon.weapon_id}-${index}`}
-                          href={
-                            weapon?.slug
-                              ? `/weapons/${weapon?.slug}`
-                              : undefined
-                          }
-                          element={weapon?.attribute}
-                          rarity={weapon?.rarity}
-                          type={weapon?.weapon_type}
-                          isDark={weapon?.is_ex_weapon}
-                          alt={weapon?.name}
-                          image_path={weapon?.image_path}
-                        />
-                      );
-                    })}
-                  </>
-                )}
-              </div>
-              <img
-                className="py-8 w-full col-span-full opacity-20"
-                src="/border.svg"
-                alt=""
-              />
-            </div>
-          ))}
-        </div>
-
-        {tierlist.description && (
-          <div
-            className="wysiwyg"
-            dangerouslySetInnerHTML={{ __html: tierlist.description }}
-          ></div>
-        )}
+        <TierlistContent tierlist={tierlist} items={items} />
       </section>
     </Layout>
+  );
+}
+
+export function TierlistContent({ tierlist, items }) {
+  const router = useRouter();
+  const localVotes = useTierlistsVotes((state) => state.votes);
+  const addVote = useTierlistsVotes((state) => state.addVote);
+
+  const hasVoted = localVotes.includes(tierlist.tierlist_id);
+
+  async function vote() {
+    if (hasVoted) {
+      return;
+    }
+
+    await axios.post("/api/tierlists/vote", {
+      tierlist_id: tierlist.tierlist_id,
+    });
+
+    addVote(tierlist.tierlist_id);
+
+    router.replace(router.asPath, undefined, {
+      scroll: false,
+    });
+  }
+
+  return (
+    <>
+      <h2 className="overlap">{tierlist.title}</h2>
+
+      <div className="flex flex-col md:flex-row justify-between">
+        <Tooltip
+          title={hasVoted ? "You already voted for this tierlist" : "Vote"}
+        >
+          <Chip
+            className="pl-2"
+            onClick={hasVoted ? undefined : vote}
+            color={hasVoted ? "success" : "default"}
+            variant={hasVoted ? "outlined" : "filled"}
+            label={tierlist.votes}
+            icon={<FiThumbsUp />}
+          />
+        </Tooltip>
+
+        <p className="text-beige text-sm">
+          Last updated:{" "}
+          {formatDistanceToNow(new Date(tierlist.updated_at), {
+            addSuffix: true,
+          })}
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-y-8 relative">
+        {tierlist.tiers.map((tier) => (
+          <div className="tierlist__row" key={tier.tier}>
+            {(RANK_THUMBNAILS[tier.tier] && (
+              <Image src={RANK_THUMBNAILS[tier.tier]} alt={tier.tier} />
+            )) || <h2 className="text-2xl">{tier.tier}</h2>}
+
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
+              {tierlist.type === "costumes" && (
+                <>
+                  {tier.tiers_items.map((tierItem) => {
+                    const costume = items.find(
+                      (item) => item.costume_id === tierItem.item_id
+                    );
+
+                    return (
+                      <CostumeThumbnail
+                        key={costume.costume_id}
+                        href={`/characters/${costume.character.slug}/${costume.slug}`}
+                        src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                        alt={`${costume.title} thumbnail`}
+                        rarity={RARITY[costume.rarity]}
+                        weaponType={costume.weapon_type}
+                      />
+                    );
+                  })}
+                </>
+              )}
+
+              {tierlist.type === "weapons" && (
+                <>
+                  {tier.tiers_items.map((tierItem, index) => {
+                    const weapon = items.find(
+                      (item) => item.weapon_id === tierItem.item_id
+                    );
+
+                    return (
+                      <WeaponThumbnail
+                        key={`${weapon.weapon_id}-${index}`}
+                        href={
+                          weapon?.slug ? `/weapons/${weapon?.slug}` : undefined
+                        }
+                        element={weapon?.attribute}
+                        rarity={weapon?.rarity}
+                        type={weapon?.weapon_type}
+                        isDark={weapon?.is_ex_weapon}
+                        alt={weapon?.name}
+                        image_path={weapon?.image_path}
+                      />
+                    );
+                  })}
+                </>
+              )}
+            </div>
+            <img
+              className="py-8 w-full col-span-full opacity-20"
+              src="/border.svg"
+              alt=""
+            />
+          </div>
+        ))}
+      </div>
+
+      {tierlist.description && (
+        <div
+          className="wysiwyg"
+          dangerouslySetInnerHTML={{ __html: tierlist.description }}
+        ></div>
+      )}
+    </>
   );
 }
 

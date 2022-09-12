@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { RANK_THUMBNAILS } from "@models/tiers";
 import { formatDistanceToNow } from "date-fns";
+import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 
 /* import Link from "next/link";
 import ReactTooltip from "react-tooltip";

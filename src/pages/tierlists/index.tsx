@@ -3,16 +3,18 @@ import { useState } from "react";
 import Layout from "@components/Layout";
 import TierListTab from "@components/tierlist/TierListTab";
 import TierList from "@components/tierlist/TierList";
-import { getTiers, TiersTabs } from "@models/tiers";
+import { getTiers } from "@models/tiers";
 import Meta from "@components/Meta";
 import slugify from "slugify";
 import { useRouter } from "next/router";
 import { Costume } from "@models/types";
 import prisma from "@libs/prisma";
+import Link from "next/link";
+import classNames from "classnames";
 
 interface TierlistsPageProps {
   defaultTab: number;
-  tiers: TiersTabs[];
+  tiers;
   costumes: Costume[];
 }
 
@@ -54,6 +56,28 @@ export default function TierlistsPageProps({
                   {tier.label}
                 </TierListTab>
               ))}
+
+              <Link href="/tierlists/community">
+                <a
+                  className={classNames(
+                    "p-4 transition-colors ease-out-cubic relative bordered text-center",
+                    router.asPath === "/tierlists/community"
+                      ? "active bg-beige active"
+                      : "bg-grey-lighter"
+                  )}
+                >
+                  <span
+                    className={classNames(
+                      "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
+                      router.asPath === "/tierlists/community"
+                        ? "text-grey-lighter"
+                        : "text-beige"
+                    )}
+                  >
+                    Community
+                  </span>
+                </a>
+              </Link>
             </TabList>
 
             <TabPanels>
@@ -72,7 +96,7 @@ export default function TierlistsPageProps({
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps() {
   const { subjugationTier } = getTiers();
 
   const tiers = [subjugationTier].map((tier, index) => ({
@@ -80,45 +104,12 @@ export async function getStaticProps(context) {
     index,
   }));
 
-  let defaultTab = 0;
-
-  if (context?.params?.slug && context.params.slug.length > 0) {
-    defaultTab = tiers.findIndex(
-      (tier) => slugify(tier.label, { lower: true }) === context.params.slug[0]
-    );
-  }
-
-  const tierlists = await prisma.nrg.tierlists.findMany({
-    include: {
-      tiers: {
-        include: {
-          tiers_items: true,
-        },
-      },
-    },
-  });
-
   return JSON.parse(
     JSON.stringify({
       props: {
-        defaultTab,
+        defaultTab: 0,
         tiers,
-        tierlists,
       },
     })
   );
-}
-
-export async function getStaticPaths() {
-  const { subjugationTier } = getTiers();
-  const tiers = [subjugationTier];
-
-  const paths = tiers.map((tier) => ({
-    params: { slug: [slugify(tier.label, { lower: true })] },
-  }));
-
-  return {
-    paths,
-    fallback: true,
-  };
 }

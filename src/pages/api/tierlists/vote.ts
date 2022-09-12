@@ -3,22 +3,22 @@ import prisma from "@libs/prisma";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   /**
-   * VOTE FOR LOADOUT
+   * VOTE FOR TIERLIST
    */
   if (req.method === 'POST') {
     try {
       const {
-        loadout_id,
+        tierlist_id,
       } = req.body
 
-      if (!loadout_id) {
+      if (!tierlist_id) {
         return res.status(400).json({
-          error: 'Missing "loadout_id".',
+          error: 'Missing "tierlist_id".',
         })
       }
 
-      const response = await prisma.nrg.loadouts.update({
-        where: { loadout_id },
+      const response = await prisma.nrg.tierlists.update({
+        where: { tierlist_id },
         data: { votes: { increment: 1 }}
       })
 
