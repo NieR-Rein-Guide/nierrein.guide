@@ -50,7 +50,7 @@ export default function Header(): JSX.Element {
     <>
       <div className="absolute right-0 left-0 top-0 mx-auto z-50">
         <div className="relative flex justify-start md:justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50">
-          <span className="text-xs md:text-base">Updated: 8 Sept, 2022</span>
+          <span className="text-xs md:text-base">Updated: 12 Sept, 2022</span>
 
           <div className="absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
             <FormControlLabel
