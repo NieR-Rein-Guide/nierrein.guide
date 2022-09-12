@@ -43,6 +43,7 @@ import WeaponSelect from "@components/weapons/WeaponSelect";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import ATTRIBUTES from "@utils/attributes";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
+import { useCreatedTierlists } from "@store/created-tierlists";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -98,6 +99,8 @@ export default function TierlistBuilder({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
+
+  const addTierlist = useCreatedTierlists((state) => state.addTierlist);
 
   /**
    * Inventory
@@ -279,6 +282,8 @@ export default function TierlistBuilder({
       });
 
       toast.success("Tier list saved! Redirecting...");
+
+      addTierlist(response.data.tierlist);
 
       router.push(`/tierlist/${response.data.tierlist.slug}`);
     } catch (error) {

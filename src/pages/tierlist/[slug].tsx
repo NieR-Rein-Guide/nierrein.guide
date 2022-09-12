@@ -16,6 +16,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { Chip, Tooltip } from "@mui/material";
 import { FiThumbsUp } from "react-icons/fi";
+import { useCreatedTierlists } from "@store/created-tierlists";
 
 interface TierListProps {
   tierlist: tierlists & {
@@ -55,6 +56,11 @@ export function TierlistContent({ tierlist, items }) {
   const router = useRouter();
   const localVotes = useTierlistsVotes((state) => state.votes);
   const addVote = useTierlistsVotes((state) => state.addVote);
+  const createdTierlist = useCreatedTierlists((state) => state.tierlists);
+
+  const isOwner = createdTierlist.find(
+    (tier) => tier.tierlist_id === tierlist.tierlist_id
+  );
 
   const hasVoted = localVotes.includes(tierlist.tierlist_id);
 
@@ -91,6 +97,8 @@ export function TierlistContent({ tierlist, items }) {
             icon={<FiThumbsUp />}
           />
         </Tooltip>
+
+        <button className="absolute top-4 right-4 btn">Edit</button>
 
         <p className="text-beige text-sm">
           Last updated:{" "}

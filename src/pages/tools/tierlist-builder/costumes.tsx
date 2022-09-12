@@ -15,6 +15,7 @@ import {
 import Link from "next/link";
 import { getAllCostumes } from "@models/costume";
 import { useSettingsStore } from "../../../store/settings";
+import { useCreatedTierlists } from "../../../store/created-tierlists";
 import { useInventoryStore } from "@store/inventory";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
@@ -95,6 +96,8 @@ export default function TierlistBuilder({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
+
+  const addTierlist = useCreatedTierlists((state) => state.addTierlist);
 
   /**
    * Inventory
@@ -275,6 +278,8 @@ export default function TierlistBuilder({
       });
 
       toast.success("Tier list saved! Redirecting...");
+
+      addTierlist(response.data.tierlist);
 
       router.push(`/tierlist/${response.data.tierlist.slug}`);
     } catch (error) {
