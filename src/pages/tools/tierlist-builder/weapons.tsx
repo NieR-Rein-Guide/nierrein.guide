@@ -457,12 +457,13 @@ export default function TierlistBuilder({
                                   >
                                     <div className="flex flex-col justify-around">
                                       <WeaponThumbnail
-                                        image_path={item.image_path}
-                                        alt={`${item.name} thumbnail`}
-                                        rarity={RARITY[item.rarity]}
+                                        key={`${item.weapon_id}-${index}`}
+                                        element={item.attribute}
+                                        rarity={item.rarity}
                                         type={item.weapon_type}
                                         isDark={item.is_ex_weapon}
-                                        element={item.attribute}
+                                        alt={item.name}
+                                        image_path={item.image_path}
                                       />
                                       {ind === state.length - 1 && (
                                         <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">

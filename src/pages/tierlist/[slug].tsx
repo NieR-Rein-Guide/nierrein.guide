@@ -10,6 +10,7 @@ import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
+import WeaponThumbnail from "@components/WeaponThumbnail";
 
 interface TierListProps {
   tierlist: tierlists & {
@@ -36,6 +37,7 @@ export default function TierList({
 
       <section className="flex flex-col gap-y-24">
         <h2 className="overlap">{tierlist.title}</h2>
+
         <div className="flex flex-col gap-y-8 relative">
           {tierlist.tiers.map((tier) => (
             <div className="tierlist__row" key={tier.tier}>
@@ -44,22 +46,53 @@ export default function TierList({
               )) || <h2 className="text-2xl">{tier.tier}</h2>}
 
               <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                {tier.tiers_items.map((tierItem) => {
-                  const costume = items.find(
-                    (item) => item.costume_id === tierItem.item_id
-                  );
+                {tierlist.type === "costumes" && (
+                  <>
+                    {tier.tiers_items.map((tierItem) => {
+                      const costume = items.find(
+                        (item) => item.costume_id === tierItem.item_id
+                      );
 
-                  return (
-                    <CostumeThumbnail
-                      key={costume.costume_id}
-                      href={`/characters/${costume.character.slug}/${costume.slug}`}
-                      src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                      alt={`${costume.title} thumbnail`}
-                      rarity={RARITY[costume.rarity]}
-                      weaponType={costume.weapon_type}
-                    />
-                  );
-                })}
+                      return (
+                        <CostumeThumbnail
+                          key={costume.costume_id}
+                          href={`/characters/${costume.character.slug}/${costume.slug}`}
+                          src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                          alt={`${costume.title} thumbnail`}
+                          rarity={RARITY[costume.rarity]}
+                          weaponType={costume.weapon_type}
+                        />
+                      );
+                    })}
+                  </>
+                )}
+
+                {tierlist.type === "weapons" && (
+                  <>
+                    {tier.tiers_items.map((tierItem, index) => {
+                      const weapon = items.find(
+                        (item) => item.weapon_id === tierItem.item_id
+                      );
+
+                      return (
+                        <WeaponThumbnail
+                          key={`${weapon.weapon_id}-${index}`}
+                          href={
+                            weapon?.slug
+                              ? `/weapons/${weapon?.slug}`
+                              : undefined
+                          }
+                          element={weapon?.attribute}
+                          rarity={weapon?.rarity}
+                          type={weapon?.weapon_type}
+                          isDark={weapon?.is_ex_weapon}
+                          alt={weapon?.name}
+                          image_path={weapon?.image_path}
+                        />
+                      );
+                    })}
+                  </>
+                )}
               </div>
               <img
                 className="py-8 w-full col-span-full opacity-20"
@@ -110,6 +143,16 @@ export async function getServerSideProps(context: NextPageContext) {
       },
       where: {
         costume_id: {
+          in: ids,
+        },
+      },
+    });
+  }
+
+  if (tierlist.type === "weapons") {
+    items = await prisma.dump.weapon.findMany({
+      where: {
+        weapon_id: {
           in: ids,
         },
       },

@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
         await prisma.nrg.tiers_items.createMany({
           data: tier.items.map((item, index) => ({
-            item_id: item.costume_id,
+            item_id: item.costume_id || item.weapon_id,
             position: index,
             tier_id: tierResult.id,
           }))
