@@ -10,6 +10,7 @@ import {
   costume_skill,
   costume_skill_link,
   costume_stat,
+  emblem,
 } from "@prisma/client";
 import Link from "next/link";
 import { getAllCostumes } from "@models/costume";
@@ -36,6 +37,7 @@ import Wysiwyg from "@components/Wysiwyg";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 import CostumeSelect from "@components/characters/CostumeSelect";
+import Checkbox from "@components/form/Checkbox";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -108,9 +110,6 @@ export default function TierlistBuilder({
   /**
    * Costumes
    */
-  const [allCostumes, setAllCostumes] = useState([]);
-  const [additionalCostumes, setAdditionalCostumes] = useState([]);
-
   const [state, setState] = useState([
     {
       tier: "SSS",
@@ -134,7 +133,7 @@ export default function TierlistBuilder({
     },
     {
       tier: "ALL",
-      items: allCostumes,
+      items: [],
     },
   ]);
   const [yup, setYup] = useState(false);
@@ -165,16 +164,14 @@ export default function TierlistBuilder({
         id: `${costume.character.character_id}-${costume.costume_id}`,
       }));
 
-    setAllCostumes(filteredCostumes);
-  }, [showOnlyInventory, showUnreleasedContent]);
+    console.log(state[state.length - 1]);
 
-  useEffect(() => {
     setState(
       produce(state, (draft) => {
-        draft[draft.length - 1].items = allCostumes;
+        draft[draft.length - 1].items = filteredCostumes;
       })
     );
-  }, [allCostumes]);
+  }, [showOnlyInventory, showUnreleasedContent]);
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -315,6 +312,13 @@ export default function TierlistBuilder({
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
+            <div className="mb-6 md:mb-0">
+              <Checkbox
+                label="Only inventory"
+                isChecked={showOnlyInventory}
+                setState={(e) => setShowOnlyInventory(e.target.checked)}
+              />
+            </div>
           </div>
 
           <div className="bg-grey-dark p-4">
@@ -416,52 +420,70 @@ export default function TierlistBuilder({
                               )) || <h2 className="text-2xl">{el.tier}</h2>}
                             </div>
                           )}
-                          {el.items?.map((item, index) => (
-                            <Draggable
-                              key={item.id}
-                              draggableId={item.id}
-                              index={index}
-                            >
-                              {(provided, snapshot) => (
-                                <div
-                                  className="relative flex"
-                                  ref={provided.innerRef}
-                                  {...provided.draggableProps}
-                                  {...provided.dragHandleProps}
-                                  style={getItemStyle(
-                                    snapshot.isDragging,
-                                    provided.draggableProps.style
-                                  )}
-                                >
-                                  <div className="flex flex-col justify-around">
-                                    <CostumeThumbnail
-                                      src={`${CDN_URL}${item.image_path_base}battle.png`}
-                                      alt={`${item.title} thumbnail`}
-                                      rarity={RARITY[item.rarity]}
-                                    />
-                                    {ind === state.length - 1 && (
-                                      <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">
-                                        {item.character.name} {item.title}
-                                      </p>
+                          {el.items?.map((item, index) => {
+                            return (
+                              <Draggable
+                                key={item.id}
+                                draggableId={item.id}
+                                index={index}
+                              >
+                                {(provided, snapshot) => (
+                                  <div
+                                    className="relative flex"
+                                    ref={provided.innerRef}
+                                    {...provided.draggableProps}
+                                    {...provided.dragHandleProps}
+                                    style={getItemStyle(
+                                      snapshot.isDragging,
+                                      provided.draggableProps.style
                                     )}
+                                  >
+                                    <div className="flex flex-col justify-around">
+                                      <CostumeThumbnail
+                                        src={`${CDN_URL}${item.image_path_base}battle.png`}
+                                        alt={`${item.title} thumbnail`}
+                                        rarity={RARITY[item.rarity]}
+                                      />
+                                      {ind === state.length - 1 && (
+                                        <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">
+                                          {item.character.name} {item.title}
+                                        </p>
+                                      )}
+                                    </div>
                                   </div>
-                                </div>
-                              )}
-                            </Draggable>
-                          ))}
+                                )}
+                              </Draggable>
+                            );
+                          })}
                         </div>
 
-                        <div className="flex justify-center mt-8">
-                          <CostumeSelect
-                            costumes={[...costumes].sort(
-                              (a, b) =>
-                                -b.character.name.localeCompare(
-                                  a.character.name
-                                )
-                            )}
-                            onSelect={(e, v) => console.log(e, v)}
-                          />
-                        </div>
+                        {ind === state.length - 1 && (
+                          <div className="flex justify-center mt-8">
+                            <CostumeSelect
+                              label="Add a costume..."
+                              costumes={[...costumes].sort(
+                                (a, b) =>
+                                  -b.character.name.localeCompare(
+                                    a.character.name
+                                  )
+                              )}
+                              onSelect={(e, costume) => {
+                                if (!costume) {
+                                  return;
+                                }
+
+                                setState(
+                                  produce(state, (draft) => {
+                                    draft[draft.length - 1].items.push({
+                                      ...costume,
+                                      id: new Date().toISOString(),
+                                    });
+                                  })
+                                );
+                              }}
+                            />
+                          </div>
+                        )}
 
                         {provided.placeholder}
                       </div>
