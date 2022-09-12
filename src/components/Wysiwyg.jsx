@@ -72,7 +72,7 @@ function Wysiwyg({ content = '<p>Description...</p>', onBlur = undefined }) {
   })
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col wysiwyg">
       <MenuBar editor={editor} />
       <EditorContent className="tiptap__editor" editor={editor} />
     </div>

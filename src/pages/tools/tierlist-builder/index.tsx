@@ -14,7 +14,7 @@ export default function TierlistBuilderChoices(): JSX.Element {
       />
 
       <h2 className="font-display text-4xl text-beige mb-8 text-center">
-        What kind of tierlist you want to create?
+        What kind of tierlist do you want to create?
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <ListingItem

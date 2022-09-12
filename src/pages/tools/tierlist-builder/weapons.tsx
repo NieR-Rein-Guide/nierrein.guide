@@ -3,17 +3,14 @@ import Meta from "@components/Meta";
 import SVG from "react-inlinesvg";
 import produce from "immer";
 import {
-  character,
-  costume,
-  costume_ability,
-  costume_ability_link,
-  costume_skill,
-  costume_skill_link,
-  costume_stat,
-  emblem,
+  weapon,
+  weapon_ability,
+  weapon_ability_link,
+  weapon_skill,
+  weapon_skill_link,
+  weapon_stat,
 } from "@prisma/client";
 import Link from "next/link";
-import { getAllCostumes } from "@models/costume";
 import { useSettingsStore } from "../../../store/settings";
 import { useInventoryStore } from "@store/inventory";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -24,20 +21,27 @@ import {
   FiEdit,
   FiXCircle,
 } from "react-icons/fi";
-import CostumeThumbnail from "@components/CostumeThumbnail";
-import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
 import Image from "next/image";
 import { RANK_THUMBNAILS } from "@models/tiers";
-import { Modal } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Select,
+} from "@mui/material";
 import { BtnSecondary } from "@components/btn";
 import axios from "axios";
 import Wysiwyg from "@components/Wysiwyg";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
-import CostumeSelect from "@components/characters/CostumeSelect";
 import Checkbox from "@components/form/Checkbox";
+import { getAllWeapons } from "@models/weapon";
+import WeaponSelect from "@components/weapons/WeaponSelect";
+import WeaponThumbnail from "@components/WeaponThumbnail";
+import ATTRIBUTES from "@utils/attributes";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -79,21 +83,19 @@ const getListStyle = (isDraggingOver) => ({
 });
 
 interface TierlistBuilderProps {
-  costumes: (costume & {
-    costume_ability_link: (costume_ability_link & {
-      costume_ability: costume_ability;
+  weapons: (weapon & {
+    weapon_ability_link: (weapon_ability_link & {
+      weapon_ability: weapon_ability;
     })[];
-    costume_skill_link: (costume_skill_link & {
-      costume_skill: costume_skill;
+    weapon_skill_link: (weapon_skill_link & {
+      weapon_skill: weapon_skill;
     })[];
-    costume_stat: costume_stat[];
-    character: character;
-    emblem: emblem;
+    weapon_stat: weapon_stat[];
   })[];
 }
 
 export default function TierlistBuilder({
-  costumes,
+  weapons,
 }: TierlistBuilderProps): JSX.Element {
   const router = useRouter();
 
@@ -105,10 +107,10 @@ export default function TierlistBuilder({
    * Inventory
    */
   const [showOnlyInventory, setShowOnlyInventory] = useState(false);
-  const ownedCostumes = useInventoryStore((state) => state.costumes);
+  const ownedWeapons = useInventoryStore((state) => state.weapons);
 
   /**
-   * Costumes
+   * Weapons
    */
   const [state, setState] = useState([
     {
@@ -143,6 +145,7 @@ export default function TierlistBuilder({
   const [description, setDescription] = useState(
     "<p>My awesome (and objective) tierlist.</p>"
   );
+  const [attribute, setAttribute] = useState("all");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -150,25 +153,23 @@ export default function TierlistBuilder({
   }, []);
 
   useEffect(() => {
-    const filteredCostumes = costumes
+    const filteredWeapons = weapons
       .filter((costume) => {
         if (showUnreleasedContent) return true;
         return new Date() > new Date(costume.release_time);
       })
-      .filter((cost) => {
+      .filter((weap) => {
         if (!showOnlyInventory) return true;
-        return ownedCostumes.includes(cost.costume_id);
+        return ownedWeapons.includes(weap.weapon_id);
       })
-      .map((costume) => ({
-        ...costume,
-        id: `${costume.character.character_id}-${costume.costume_id}`,
+      .map((weap) => ({
+        ...weap,
+        id: `${weap.weapon_id}-${new Date().toISOString()}`,
       }));
-
-    console.log(state[state.length - 1]);
 
     setState(
       produce(state, (draft) => {
-        draft[draft.length - 1].items = filteredCostumes;
+        draft[draft.length - 1].items = filteredWeapons;
       })
     );
   }, [showOnlyInventory, showUnreleasedContent]);
@@ -270,8 +271,8 @@ export default function TierlistBuilder({
       const response = await axios.post("/api/tierlists", {
         title,
         description,
-        type: "costumes",
-        attribute: "all",
+        type: "weapons",
+        attribute,
         tiers: state.slice(0, state.length - 1),
       });
 
@@ -288,9 +289,9 @@ export default function TierlistBuilder({
   return (
     <Layout>
       <Meta
-        title="Tierlist Builder - Costumes"
-        description="Build your own costumes tier list."
-        cover="https://nierrein.guide/tools/tierlist-costumes.jpg"
+        title="Tierlist Builder - Weapons"
+        description="Build your own tier list."
+        cover="https://nierrein.guide/tools/tierlist-weapons.jpg"
       />
 
       <nav className="mb-8">
@@ -312,7 +313,23 @@ export default function TierlistBuilder({
                 onChange={(e) => setTitle(e.target.value)}
               />
             </div>
-            <div className="mb-6 md:mb-0">
+            <div className="flex items-center gap-x-8">
+              <FormControl className="w-32">
+                <InputLabel id="attribute-select-label">Attribute</InputLabel>
+                <Select
+                  labelId="attribute-select-label"
+                  value={attribute}
+                  label="Attribute"
+                  onChange={(e) => setAttribute(e.target.value)}
+                >
+                  <MenuItem value="all">All</MenuItem>
+                  {ATTRIBUTES.map((attribute) => (
+                    <MenuItem key={attribute} value={attribute}>
+                      {attribute}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
               <Checkbox
                 label="Only inventory"
                 isChecked={showOnlyInventory}
@@ -408,7 +425,7 @@ export default function TierlistBuilder({
                           )}
                           {(ind === state.length - 1 && (
                             <p className="col-span-10">
-                              Drag & Drop costumes into the tiers.
+                              Drag & Drop weapons into the tiers.
                             </p>
                           )) || (
                             <div className="flex justify-center items-center w-28">
@@ -439,14 +456,17 @@ export default function TierlistBuilder({
                                     )}
                                   >
                                     <div className="flex flex-col justify-around">
-                                      <CostumeThumbnail
-                                        src={`${CDN_URL}${item.image_path_base}battle.png`}
-                                        alt={`${item.title} thumbnail`}
+                                      <WeaponThumbnail
+                                        image_path={item.image_path}
+                                        alt={`${item.name} thumbnail`}
                                         rarity={RARITY[item.rarity]}
+                                        type={item.weapon_type}
+                                        isDark={item.is_ex_weapon}
+                                        element={item.attribute}
                                       />
                                       {ind === state.length - 1 && (
                                         <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">
-                                          {item.character.name} {item.title}
+                                          {item.name}
                                         </p>
                                       )}
                                     </div>
@@ -459,23 +479,21 @@ export default function TierlistBuilder({
 
                         {ind === state.length - 1 && (
                           <div className="flex justify-center mt-8">
-                            <CostumeSelect
-                              label="Add a costume..."
-                              costumes={[...costumes].sort(
+                            <WeaponSelect
+                              label="Add a weapon..."
+                              weapons={[...weapons].sort(
                                 (a, b) =>
-                                  -b.character.name.localeCompare(
-                                    a.character.name
-                                  )
+                                  -b.weapon_type.localeCompare(a.weapon_type)
                               )}
-                              onSelect={(e, costume) => {
-                                if (!costume) {
+                              onSelect={(e, weapon) => {
+                                if (!weapon) {
                                   return;
                                 }
 
                                 setState(
                                   produce(state, (draft) => {
                                     draft[draft.length - 1].items.push({
-                                      ...costume,
+                                      ...weapon,
                                       id: new Date().toISOString(),
                                     });
                                   })
@@ -519,14 +537,12 @@ export default function TierlistBuilder({
 }
 
 export async function getStaticProps() {
-  const { costumes } = await getAllCostumes({
-    orderBy: { costume_id: "desc" },
-  });
+  const { weapons } = await getAllWeapons();
 
   return {
     props: JSON.parse(
       JSON.stringify({
-        costumes,
+        weapons,
       })
     ),
   };

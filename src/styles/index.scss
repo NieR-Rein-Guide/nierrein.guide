@@ -316,7 +316,7 @@ canvas {
 
 .tiptap__menubar {
   button {
-    @apply rounded-lg border border-white px-2;
+    @apply rounded-lg border border-beige border-opacity-50 px-2;
 
     &.is-active {
       @apply bg-beige;
