@@ -393,12 +393,12 @@ export default function TierlistBuilder({
                         {...provided.droppableProps}
                       >
                         {ind !== state.length - 1 && (
-                          <div className="absolute top-1/2 transform -translate-y-1/2 -right-7 flex flex-col gap-2">
+                          <div className="absolute top-1/2 transform -translate-y-1/2 -right-7 flex flex-col gap-4">
                             <button onClick={() => moveTierUp(ind)}>
                               <FiArrowUpCircle size="24" />
                             </button>
                             <button onClick={() => removeTier(ind)}>
-                              <FiXCircle size="24" />
+                              <FiXCircle className="text-red-400" size="24" />
                             </button>
                             <button onClick={() => moveTierDown(ind)}>
                               <FiArrowDownCircle size="24" />
