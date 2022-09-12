@@ -68,6 +68,12 @@ export const TOOLS = [
     class: "md:col-span-2",
   },
   {
+    href: "/tools/tierlist-builder",
+    label: "Tierlist builder",
+    src: "/tools/tierlist.jpg",
+    class: "md:col-span-2",
+  },
+  {
     href: "/todolist",
     label: "Todolist",
     src: "/tools/stamina.jpg",

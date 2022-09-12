@@ -32,10 +32,10 @@ import { RANK_THUMBNAILS } from "@models/tiers";
 import { Modal } from "@mui/material";
 import { BtnSecondary } from "@components/btn";
 import axios from "axios";
-import Checkbox from "@components/form/Checkbox";
 import Wysiwyg from "@components/Wysiwyg";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
+import CostumeSelect from "@components/characters/CostumeSelect";
 
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
@@ -105,19 +105,11 @@ export default function TierlistBuilder({
   const [showOnlyInventory, setShowOnlyInventory] = useState(false);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
 
-  const allCostumes = costumes
-    .filter((costume) => {
-      if (showUnreleasedContent) return true;
-      return new Date() > new Date(costume.release_time);
-    })
-    .filter((cost) => {
-      if (!showOnlyInventory) return true;
-      return ownedCostumes.includes(cost.costume_id);
-    })
-    .map((costume) => ({
-      ...costume,
-      id: `${costume.character.character_id}-${costume.costume_id}`,
-    }));
+  /**
+   * Costumes
+   */
+  const [allCostumes, setAllCostumes] = useState([]);
+  const [additionalCostumes, setAdditionalCostumes] = useState([]);
 
   const [state, setState] = useState([
     {
@@ -141,7 +133,7 @@ export default function TierlistBuilder({
       items: [],
     },
     {
-      tier: undefined,
+      tier: "ALL",
       items: allCostumes,
     },
   ]);
@@ -157,6 +149,32 @@ export default function TierlistBuilder({
   useEffect(() => {
     setYup(true);
   }, []);
+
+  useEffect(() => {
+    const filteredCostumes = costumes
+      .filter((costume) => {
+        if (showUnreleasedContent) return true;
+        return new Date() > new Date(costume.release_time);
+      })
+      .filter((cost) => {
+        if (!showOnlyInventory) return true;
+        return ownedCostumes.includes(cost.costume_id);
+      })
+      .map((costume) => ({
+        ...costume,
+        id: `${costume.character.character_id}-${costume.costume_id}`,
+      }));
+
+    setAllCostumes(filteredCostumes);
+  }, [showOnlyInventory, showUnreleasedContent]);
+
+  useEffect(() => {
+    setState(
+      produce(state, (draft) => {
+        draft[draft.length - 1].items = allCostumes;
+      })
+    );
+  }, [allCostumes]);
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -307,25 +325,6 @@ export default function TierlistBuilder({
           </div>
         </div>
         <div className="flex items-center justify-between">
-          <button
-            className="btn"
-            type="button"
-            onClick={() => {
-              const costumesList = state[state.length - 1];
-              const tiers = state.slice(0, state.length - 1);
-              setState([
-                ...tiers,
-                {
-                  tier: "N/A",
-                  items: [],
-                },
-                costumesList,
-              ]);
-            }}
-          >
-            Add new tier
-          </button>
-
           <div>
             {loading && (
               <div className="fixed inset-0 bg-black bg-opacity-50" />
@@ -339,100 +338,136 @@ export default function TierlistBuilder({
           <div className="flex flex-col gap-y-8 mt-8">
             <DragDropContext onDragEnd={onDragEnd}>
               {state.map((el, ind) => (
-                <Droppable
-                  key={ind}
-                  droppableId={`${ind}`}
-                  direction="horizontal"
-                >
-                  {(provided, snapshot) => (
-                    <div
-                      className="relative py-8 px-4"
-                      ref={provided.innerRef}
-                      style={getListStyle(snapshot.isDraggingOver)}
-                      {...provided.droppableProps}
-                    >
-                      {ind !== state.length - 1 && (
-                        <div className="absolute top-1/2 transform -translate-y-1/2 -right-7 flex flex-col gap-2">
-                          <button onClick={() => moveTierUp(ind)}>
-                            <FiArrowUpCircle size="24" />
-                          </button>
-                          <button onClick={() => removeTier(ind)}>
-                            <FiXCircle size="24" />
-                          </button>
-                          <button onClick={() => moveTierDown(ind)}>
-                            <FiArrowDownCircle size="24" />
-                          </button>
-                        </div>
-                      )}
-                      <div
-                        className={classNames(
-                          "gap-4",
-                          ind === state.length - 1
-                            ? "grid grid-cols-2 sm:grid-cols-4 md:grid-cols-10 place-items-center"
-                            : "flex overflow-x-auto"
-                        )}
+                <>
+                  {ind === state.length - 1 && (
+                    <div className="flex justify-center">
+                      <button
+                        className="btn"
+                        type="button"
+                        onClick={() => {
+                          const costumesList = state[state.length - 1];
+                          const tiers = state.slice(0, state.length - 1);
+                          setState([
+                            ...tiers,
+                            {
+                              tier: "N/A",
+                              items: [],
+                            },
+                            costumesList,
+                          ]);
+                        }}
                       >
-                        {ind !== state.length - 1 && (
-                          <button
-                            onClick={() => editTitle(ind)}
-                            className="absolute -left-7 top-1/2 transform -translate-y-1/2"
-                          >
-                            <FiEdit size="24" />
-                          </button>
-                        )}
-                        {(ind === state.length - 1 && (
-                          <p className="col-span-10">
-                            Drag & Drop costumes into the tiers.
-                          </p>
-                        )) || (
-                          <div className="flex justify-center items-center w-28">
-                            {(RANK_THUMBNAILS[el.tier] && (
-                              <Image
-                                src={RANK_THUMBNAILS[el.tier]}
-                                alt={el.tier}
-                              />
-                            )) || <h2 className="text-2xl">{el.tier}</h2>}
-                          </div>
-                        )}
-                        {el.items?.map((item, index) => (
-                          <Draggable
-                            key={item.id}
-                            draggableId={item.id}
-                            index={index}
-                          >
-                            {(provided, snapshot) => (
-                              <div
-                                className="relative flex"
-                                ref={provided.innerRef}
-                                {...provided.draggableProps}
-                                {...provided.dragHandleProps}
-                                style={getItemStyle(
-                                  snapshot.isDragging,
-                                  provided.draggableProps.style
-                                )}
-                              >
-                                <div className="flex flex-col justify-around">
-                                  <CostumeThumbnail
-                                    src={`${CDN_URL}${item.image_path_base}battle.png`}
-                                    alt={`${item.title} thumbnail`}
-                                    rarity={RARITY[item.rarity]}
-                                  />
-                                  {ind === state.length - 1 && (
-                                    <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">
-                                      {item.character.name} {item.title}
-                                    </p>
-                                  )}
-                                </div>
-                              </div>
-                            )}
-                          </Draggable>
-                        ))}
-                      </div>
-
-                      {provided.placeholder}
+                        Add new tier
+                      </button>
                     </div>
                   )}
-                </Droppable>
+                  <Droppable
+                    key={ind}
+                    droppableId={`${ind}`}
+                    direction="horizontal"
+                  >
+                    {(provided, snapshot) => (
+                      <div
+                        className="relative py-8 px-4"
+                        ref={provided.innerRef}
+                        style={getListStyle(snapshot.isDraggingOver)}
+                        {...provided.droppableProps}
+                      >
+                        {ind !== state.length - 1 && (
+                          <div className="absolute top-1/2 transform -translate-y-1/2 -right-7 flex flex-col gap-2">
+                            <button onClick={() => moveTierUp(ind)}>
+                              <FiArrowUpCircle size="24" />
+                            </button>
+                            <button onClick={() => removeTier(ind)}>
+                              <FiXCircle size="24" />
+                            </button>
+                            <button onClick={() => moveTierDown(ind)}>
+                              <FiArrowDownCircle size="24" />
+                            </button>
+                          </div>
+                        )}
+                        <div
+                          className={classNames(
+                            "gap-4",
+                            ind === state.length - 1
+                              ? "grid grid-cols-2 sm:grid-cols-4 md:grid-cols-10 place-items-center"
+                              : "flex overflow-x-auto"
+                          )}
+                        >
+                          {ind !== state.length - 1 && (
+                            <button
+                              onClick={() => editTitle(ind)}
+                              className="absolute -left-7 top-1/2 transform -translate-y-1/2"
+                            >
+                              <FiEdit size="24" />
+                            </button>
+                          )}
+                          {(ind === state.length - 1 && (
+                            <p className="col-span-10">
+                              Drag & Drop costumes into the tiers.
+                            </p>
+                          )) || (
+                            <div className="flex justify-center items-center w-28">
+                              {(RANK_THUMBNAILS[el.tier] && (
+                                <Image
+                                  src={RANK_THUMBNAILS[el.tier]}
+                                  alt={el.tier}
+                                />
+                              )) || <h2 className="text-2xl">{el.tier}</h2>}
+                            </div>
+                          )}
+                          {el.items?.map((item, index) => (
+                            <Draggable
+                              key={item.id}
+                              draggableId={item.id}
+                              index={index}
+                            >
+                              {(provided, snapshot) => (
+                                <div
+                                  className="relative flex"
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  style={getItemStyle(
+                                    snapshot.isDragging,
+                                    provided.draggableProps.style
+                                  )}
+                                >
+                                  <div className="flex flex-col justify-around">
+                                    <CostumeThumbnail
+                                      src={`${CDN_URL}${item.image_path_base}battle.png`}
+                                      alt={`${item.title} thumbnail`}
+                                      rarity={RARITY[item.rarity]}
+                                    />
+                                    {ind === state.length - 1 && (
+                                      <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">
+                                        {item.character.name} {item.title}
+                                      </p>
+                                    )}
+                                  </div>
+                                </div>
+                              )}
+                            </Draggable>
+                          ))}
+                        </div>
+
+                        <div className="flex justify-center mt-8">
+                          <CostumeSelect
+                            costumes={[...costumes].sort(
+                              (a, b) =>
+                                -b.character.name.localeCompare(
+                                  a.character.name
+                                )
+                            )}
+                            onSelect={(e, v) => console.log(e, v)}
+                          />
+                        </div>
+
+                        {provided.placeholder}
+                      </div>
+                    )}
+                  </Droppable>
+                </>
               ))}
             </DragDropContext>
           </div>
