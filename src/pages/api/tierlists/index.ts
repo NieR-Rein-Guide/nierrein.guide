@@ -44,6 +44,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             item_id: item.costume_id || item.weapon_id,
             position: index,
             tier_id: tierResult.id,
+            tooltip: item.tooltip ?? undefined,
           }))
         })
       }

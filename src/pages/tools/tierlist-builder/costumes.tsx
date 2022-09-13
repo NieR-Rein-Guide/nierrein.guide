@@ -23,6 +23,7 @@ import {
   FiArrowDownCircle,
   FiArrowUpCircle,
   FiEdit,
+  FiMessageCircle,
   FiXCircle,
 } from "react-icons/fi";
 import CostumeThumbnail from "@components/CostumeThumbnail";
@@ -30,7 +31,7 @@ import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
 import Image from "next/image";
-import { Autocomplete, Modal, TextField } from "@mui/material";
+import { Autocomplete, Modal, TextField, Tooltip } from "@mui/material";
 import { BtnSecondary } from "@components/btn";
 import axios from "axios";
 import Wysiwyg from "@components/Wysiwyg";
@@ -136,11 +137,14 @@ export default function TierlistBuilder({
   ]);
   const [yup, setYup] = useState(false);
   const [titleModal, setTitleModal] = useState(false);
+  const [tooltipModal, setTooltipModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [title, setTitle] = useState("My tierlist");
   const [description, setDescription] = useState(
     "<p>My awesome (and objective) tierlist.</p>"
   );
+  const [currentTooltip, setCurrentTooltip] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -160,6 +164,7 @@ export default function TierlistBuilder({
       .map((costume) => ({
         ...costume,
         id: `${costume.character.character_id}-${costume.costume_id}`,
+        tooltip: "",
       }));
 
     setState(
@@ -261,6 +266,22 @@ export default function TierlistBuilder({
     setState(newState);
     setTitleModal(false);
     setCurrentIndex(0);
+  }
+
+  function handleTooltipModalClose(event) {
+    console.log(event.target);
+    if (!currentTooltip) {
+      return;
+    }
+
+    const newState = produce(state, (draft) => {
+      draft[currentIndex].items[currentItemIndex].tooltip = currentTooltip;
+    });
+    setState(newState);
+    setTooltipModal(false);
+    setCurrentIndex(0);
+    setCurrentItemIndex(0);
+    setCurrentTooltip("");
   }
 
   async function save() {
@@ -438,16 +459,45 @@ export default function TierlistBuilder({
                                       provided.draggableProps.style
                                     )}
                                   >
-                                    <div className="flex flex-col justify-around">
+                                    <div className="relative flex flex-col justify-around">
+                                      {item.tooltip && (
+                                        <div className="bg-beige absolute top-0 right-0 w-6 h-6 flex justify-center items-center z-20 rounded-full text-black">
+                                          <FiMessageCircle />
+                                        </div>
+                                      )}
                                       <CostumeThumbnail
                                         src={`${CDN_URL}${item.image_path_base}battle.png`}
                                         alt={`${item.title} thumbnail`}
                                         rarity={RARITY[item.rarity]}
                                       />
                                       {ind === state.length - 1 && (
-                                        <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">
-                                          {item.character.name} {item.title}
-                                        </p>
+                                        <div className="text-xxs text-center mt-1">
+                                          <p className="mb-0 leading-none">
+                                            {item.is_ex_costume && (
+                                              <span className="text-rarity-4">
+                                                EX{" "}
+                                              </span>
+                                            )}
+                                            {item.character.name}
+                                          </p>
+                                          <span className="text-center text-beige line-clamp-1 leading-none">
+                                            {item.title}
+                                          </span>
+                                        </div>
+                                      )}
+                                      {ind !== state.length - 1 && (
+                                        <Tooltip title="Add a comment on this item">
+                                          <button
+                                            onClick={() => {
+                                              setCurrentIndex(ind);
+                                              setCurrentItemIndex(index);
+                                              setTooltipModal(true);
+                                            }}
+                                            className="mt-1 bg-beige py-1 w-full flex justify-center items-center z-20 rounded-full text-black"
+                                          >
+                                            <FiMessageCircle />
+                                          </button>
+                                        </Tooltip>
                                       )}
                                     </div>
                                   </div>
@@ -477,6 +527,7 @@ export default function TierlistBuilder({
                                     draft[draft.length - 1].items.push({
                                       ...costume,
                                       id: new Date().toISOString(),
+                                      tooltip: "",
                                     });
                                   })
                                 );
@@ -519,6 +570,29 @@ export default function TierlistBuilder({
             Save
           </button>
         </form>
+      </Modal>
+
+      <Modal
+        open={tooltipModal}
+        onClose={() => setTooltipModal(false)}
+        className="flex items-center justify-center"
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="flex flex-col container bg-grey-dark relative bordered p-4">
+          <Wysiwyg
+            onBlur={(content) => setCurrentTooltip(content)}
+            content={
+              state[currentIndex]?.items[currentItemIndex]?.tooltip ??
+              "Add new tooltip..."
+            }
+          />
+          <div className="flex justify-center mt-4">
+            <button onClick={handleTooltipModalClose} className="btn">
+              Save
+            </button>
+          </div>
+        </div>
       </Modal>
     </Layout>
   );

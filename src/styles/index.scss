@@ -335,3 +335,7 @@ canvas {
     min-height: 100px;
   }
 }
+
+.MuiTooltip-tooltip {
+  @apply bg-grey-dark text-white p-4 relative bordered text-xs;
+}

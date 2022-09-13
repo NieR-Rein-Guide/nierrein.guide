@@ -1,7 +1,7 @@
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 
-const MenuBar = ({ editor }) => {
+function MenuBar ({ editor }) {
   if (!editor) {
     return null
   }
@@ -60,20 +60,24 @@ const MenuBar = ({ editor }) => {
   )
 }
 
-function Wysiwyg({ content = '<p>Description...</p>', onBlur = undefined }) {
+function Wysiwyg({ content = '<p>Description...</p>', onBlur = undefined, hasMenubar = true }) {
   const editor = useEditor({
     extensions: [
       StarterKit,
     ],
     content,
     onBlur({ editor }) {
-      onBlur(editor.getHTML())
+      if (onBlur && typeof onBlur === 'function') {
+        onBlur(editor.getHTML())
+      }
     }
   })
 
   return (
     <div className="flex flex-col wysiwyg">
-      <MenuBar editor={editor} />
+      {hasMenubar && (
+        <MenuBar editor={editor} />
+      )}
       <EditorContent className="tiptap__editor" editor={editor} />
     </div>
   )

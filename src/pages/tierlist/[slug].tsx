@@ -127,9 +127,23 @@ export function TierlistContent({ tierlist, items }) {
 
                     return (
                       <div
-                        className="flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
+                        className="relative flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
                         key={costume.costume_id}
                       >
+                        <Tooltip
+                          className=""
+                          title={
+                            <div
+                              dangerouslySetInnerHTML={{
+                                __html: tierItem.tooltip,
+                              }}
+                            ></div>
+                          }
+                        >
+                          <div className="absolute -top-2 right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-6 w-6 text-lg font-labor">
+                            ?
+                          </div>
+                        </Tooltip>
                         <CostumeThumbnail
                           href={`/characters/${costume.character.slug}/${costume.slug}`}
                           src={`${CDN_URL}${costume.image_path_base}battle.png`}

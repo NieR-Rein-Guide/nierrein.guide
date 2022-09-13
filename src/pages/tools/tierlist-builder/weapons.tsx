@@ -19,6 +19,7 @@ import {
   FiArrowDownCircle,
   FiArrowUpCircle,
   FiEdit,
+  FiMessageCircle,
   FiXCircle,
 } from "react-icons/fi";
 import classNames from "classnames";
@@ -31,6 +32,7 @@ import {
   Modal,
   Select,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import { BtnSecondary } from "@components/btn";
 import axios from "axios";
@@ -139,12 +141,15 @@ export default function TierlistBuilder({
   ]);
   const [yup, setYup] = useState(false);
   const [titleModal, setTitleModal] = useState(false);
+  const [tooltipModal, setTooltipModal] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [title, setTitle] = useState("My tierlist");
   const [description, setDescription] = useState(
     "<p>My awesome (and objective) tierlist.</p>"
   );
   const [attribute, setAttribute] = useState("all");
+  const [currentTooltip, setCurrentTooltip] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -164,6 +169,7 @@ export default function TierlistBuilder({
       .map((weap) => ({
         ...weap,
         id: `${weap.weapon_id}-${new Date().toISOString()}`,
+        tooltip: "",
       }));
 
     setState(
@@ -265,6 +271,22 @@ export default function TierlistBuilder({
     setState(newState);
     setTitleModal(false);
     setCurrentIndex(0);
+  }
+
+  function handleTooltipModalClose(event) {
+    console.log(event.target);
+    if (!currentTooltip) {
+      return;
+    }
+
+    const newState = produce(state, (draft) => {
+      draft[currentIndex].items[currentItemIndex].tooltip = currentTooltip;
+    });
+    setState(newState);
+    setTooltipModal(false);
+    setCurrentIndex(0);
+    setCurrentItemIndex(0);
+    setCurrentTooltip("");
   }
 
   async function save() {
@@ -469,9 +491,30 @@ export default function TierlistBuilder({
                                         image_path={item.image_path}
                                       />
                                       {ind === state.length - 1 && (
-                                        <p className="text-xxs line-clamp-2 leading-none text-center mt-1 h-5">
-                                          {item.name}
-                                        </p>
+                                        <div className="text-xxs text-center mt-1">
+                                          <span className="text-center text-beige line-clamp-1 leading-none">
+                                            {item.is_ex_weapon && (
+                                              <span className="text-rarity-4">
+                                                EX{" "}
+                                              </span>
+                                            )}
+                                            {item.name}
+                                          </span>
+                                        </div>
+                                      )}
+                                      {ind !== state.length - 1 && (
+                                        <Tooltip title="Add a comment on this item">
+                                          <button
+                                            onClick={() => {
+                                              setCurrentIndex(ind);
+                                              setCurrentItemIndex(index);
+                                              setTooltipModal(true);
+                                            }}
+                                            className="mt-1 bg-beige py-1 w-full flex justify-center items-center z-20 rounded-full text-black"
+                                          >
+                                            <FiMessageCircle />
+                                          </button>
+                                        </Tooltip>
                                       )}
                                     </div>
                                   </div>
@@ -499,6 +542,7 @@ export default function TierlistBuilder({
                                     draft[draft.length - 1].items.push({
                                       ...weapon,
                                       id: new Date().toISOString(),
+                                      tooltip: "",
                                     });
                                   })
                                 );
@@ -541,6 +585,29 @@ export default function TierlistBuilder({
             Save
           </button>
         </form>
+      </Modal>
+
+      <Modal
+        open={tooltipModal}
+        onClose={() => setTooltipModal(false)}
+        className="flex items-center justify-center"
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="flex flex-col container bg-grey-dark relative bordered p-4">
+          <Wysiwyg
+            onBlur={(content) => setCurrentTooltip(content)}
+            content={
+              state[currentIndex]?.items[currentItemIndex]?.tooltip ??
+              "Add new tooltip..."
+            }
+          />
+          <div className="flex justify-center mt-4">
+            <button onClick={handleTooltipModalClose} className="btn">
+              Save
+            </button>
+          </div>
+        </div>
       </Modal>
     </Layout>
   );
