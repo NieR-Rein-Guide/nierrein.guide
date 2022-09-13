@@ -98,7 +98,9 @@ export function TierlistContent({ tierlist, items }) {
           />
         </Tooltip>
 
-        <button className="absolute top-4 right-4 btn">Edit</button>
+        {isOwner && (
+          <button className="absolute top-4 right-4 btn">Edit</button>
+        )}
 
         <p className="text-beige text-sm">
           Last updated:{" "}
@@ -124,14 +126,27 @@ export function TierlistContent({ tierlist, items }) {
                     );
 
                     return (
-                      <CostumeThumbnail
+                      <div
+                        className="flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
                         key={costume.costume_id}
-                        href={`/characters/${costume.character.slug}/${costume.slug}`}
-                        src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                        alt={`${costume.title} thumbnail`}
-                        rarity={RARITY[costume.rarity]}
-                        weaponType={costume.weapon_type}
-                      />
+                      >
+                        <CostumeThumbnail
+                          href={`/characters/${costume.character.slug}/${costume.slug}`}
+                          src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                          alt={`${costume.title} thumbnail`}
+                          rarity={RARITY[costume.rarity]}
+                          weaponType={costume.weapon_type}
+                        />
+                        <p className="text-sm mb-0 leading-none">
+                          {costume.is_ex_costume && (
+                            <span className="text-rarity-4">EX </span>
+                          )}
+                          {costume.character.name}
+                        </p>
+                        <span className="text-xs text-center text-beige line-clamp-1 leading-none">
+                          {costume.title}
+                        </span>
+                      </div>
                     );
                   })}
                 </>
@@ -145,18 +160,33 @@ export function TierlistContent({ tierlist, items }) {
                     );
 
                     return (
-                      <WeaponThumbnail
-                        key={`${weapon.weapon_id}-${index}`}
-                        href={
-                          weapon?.slug ? `/weapons/${weapon?.slug}` : undefined
-                        }
-                        element={weapon?.attribute}
-                        rarity={weapon?.rarity}
-                        type={weapon?.weapon_type}
-                        isDark={weapon?.is_ex_weapon}
-                        alt={weapon?.name}
-                        image_path={weapon?.image_path}
-                      />
+                      <div
+                        className="flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
+                        key={weapon.weapon_id}
+                      >
+                        <WeaponThumbnail
+                          key={`${weapon.weapon_id}-${index}`}
+                          href={
+                            weapon?.slug
+                              ? `/weapons/${weapon?.slug}`
+                              : undefined
+                          }
+                          element={weapon?.attribute}
+                          rarity={weapon?.rarity}
+                          type={weapon?.weapon_type}
+                          isDark={weapon?.is_ex_weapon}
+                          alt={weapon?.name}
+                          image_path={weapon?.image_path}
+                        />
+                        <p className="text-sm mb-0 leading-none">
+                          {weapon.is_ex_weapon && (
+                            <span className="text-rarity-4">EX </span>
+                          )}
+                          <span className="text-xs text-center text-beige line-clamp-1 leading-none">
+                            {weapon.name}
+                          </span>
+                        </p>
+                      </div>
                     );
                   })}
                 </>
