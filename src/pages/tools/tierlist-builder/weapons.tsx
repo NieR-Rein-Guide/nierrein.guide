@@ -481,6 +481,11 @@ export default function TierlistBuilder({
                                     )}
                                   >
                                     <div className="flex flex-col justify-around">
+                                      {item.tooltip && (
+                                        <div className="bg-beige absolute top-0 right-0 w-6 h-6 flex justify-center items-center z-20 rounded-full text-black">
+                                          <FiMessageCircle />
+                                        </div>
+                                      )}
                                       <WeaponThumbnail
                                         key={`${item.weapon_id}-${index}`}
                                         element={item.attribute}
