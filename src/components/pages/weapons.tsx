@@ -33,6 +33,7 @@ import {
 } from "@config/constants";
 import Radio from "@components/form/Radio";
 import classNames from "classnames";
+import AbilityThumbnail from "@components/AbilityThumbnail";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -190,6 +191,7 @@ export function WeaponsTable({
           field: "name",
           title: "Name",
           type: "string",
+          filterPlaceholder: "Search name...",
           render: (weapon) => (
             <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
               <WeaponThumbnail
@@ -222,6 +224,7 @@ export function WeaponsTable({
             textAlign: "center",
           },
           hideFilterIcon: true,
+          filterPlaceholder: "> HP",
           customFilterAndSearch: (term, weapon) =>
             weapon.weapon_stat[0].hp >= Number(term),
         },
@@ -234,6 +237,7 @@ export function WeaponsTable({
             color: "rgba(252,165,165,var(--tw-text-opacity))",
           },
           hideFilterIcon: true,
+          filterPlaceholder: "> ATK",
           customFilterAndSearch: (term, weapon) =>
             weapon.weapon_stat[0].atk >= Number(term),
         },
@@ -246,6 +250,7 @@ export function WeaponsTable({
             color: "rgba(147,197,253,var(--tw-text-opacity))",
           },
           hideFilterIcon: true,
+          filterPlaceholder: "> DEF",
           customFilterAndSearch: (term, weapon) =>
             weapon.weapon_stat[0].vit >= Number(term),
         },
@@ -285,19 +290,9 @@ export function WeaponsTable({
                   isValued ? "text-green-300" : ""
                 )}
               >
-                <div className="h-4 w-4">
-                  <Image
-                    height={16}
-                    width={16}
-                    layout="responsive"
-                    alt={weapon.weapon_ability_link[0].weapon_ability.name}
-                    src={`${CDN_URL}${weapon.weapon_ability_link[0].weapon_ability.image_path_base}standard.png`}
-                  />
-                </div>
-
-                <p className="mt-2">
-                  {weapon.weapon_ability_link[0].weapon_ability.name}
-                </p>
+                <AbilityThumbnail
+                  ability={weapon.weapon_ability_link[0].weapon_ability}
+                />
               </div>
             );
           },
@@ -338,19 +333,9 @@ export function WeaponsTable({
                   isValued ? "text-green-300" : ""
                 )}
               >
-                <div className="h-4 w-4">
-                  <Image
-                    height={16}
-                    width={16}
-                    layout="responsive"
-                    alt={weapon.weapon_ability_link[1].weapon_ability.name}
-                    src={`${CDN_URL}${weapon.weapon_ability_link[1].weapon_ability.image_path_base}standard.png`}
-                  />
-                </div>
-
-                <p className="mt-2">
-                  {weapon.weapon_ability_link[1].weapon_ability.name}
-                </p>
+                <AbilityThumbnail
+                  ability={weapon.weapon_ability_link[1].weapon_ability}
+                />
               </div>
             );
           },
@@ -368,6 +353,23 @@ export function WeaponsTable({
               weapon.weapon_ability_link?.[2]?.weapon_ability.name
             );
           },
+          render: (weapon) => (
+            <>
+              {(weapon.weapon_ability_link?.[2]?.weapon_ability && (
+                <AbilityThumbnail
+                  ability={weapon.weapon_ability_link[2].weapon_ability}
+                >
+                  <span className="inline-block mt-1 text-xs text-center leading-none w-28">
+                    {
+                      weapon.weapon_ability_link[2].weapon_ability.name.split(
+                        "Barrier:"
+                      )[1]
+                    }
+                  </span>
+                </AbilityThumbnail>
+              )) || <span className="text-beige-dark">N/A</span>}
+            </>
+          ),
         },
         {
           field: "weapon_skill_link[0].weapon_skill.cooldown_time",

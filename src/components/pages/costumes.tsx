@@ -19,7 +19,6 @@ import Image from "next/image";
 import SVG from "react-inlinesvg";
 import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
-import { useRouter } from "next/router";
 import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
 import { useSettingsStore } from "../../store/settings";
@@ -28,6 +27,9 @@ import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
 import Checkbox from "@components/form/Checkbox";
 import { MdOutlineLibraryAdd, MdLibraryAddCheck } from "react-icons/md";
+import classNames from "classnames";
+import { Tooltip } from "@mui/material";
+import AbilityThumbnail from "@components/AbilityThumbnail";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -71,7 +73,6 @@ export default function CharactersPage({
   abilitiesLookup,
   charactersLookup,
 }: CharactersPageProps): JSX.Element {
-  const router = useRouter();
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
@@ -165,18 +166,10 @@ export function CostumesTable({
       })}
       columns={[
         {
-          field: "character.name",
-          title: "Character",
-          lookup: charactersLookup,
-          customFilterAndSearch: (term, costume) => {
-            if (term.length === 0) return true;
-            return term.includes(costume.character.name);
-          },
-        },
-        {
           field: "title",
           title: "Title",
           type: "string",
+          filterPlaceholder: "Search title or character...",
           render: (costume) => (
             <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
               <CostumeThumbnail
@@ -200,6 +193,12 @@ export function CostumesTable({
               )}
             </div>
           ),
+          customFilterAndSearch: (term, costume) => {
+            if (term.length === 0) return true;
+            return `${costume.character.name.toLowerCase()} ${costume.title.toLowerCase()}`.includes(
+              term.toLowerCase()
+            );
+          },
         },
         {
           field: "costume_stat[0].hp",
@@ -209,6 +208,7 @@ export function CostumesTable({
             textAlign: "center",
           },
           hideFilterIcon: true,
+          filterPlaceholder: "> HP",
           customFilterAndSearch: (term, costume) =>
             costume.costume_stat[0].hp >= Number(term),
         },
@@ -221,6 +221,7 @@ export function CostumesTable({
             color: "rgba(252,165,165,var(--tw-text-opacity))",
           },
           hideFilterIcon: true,
+          filterPlaceholder: "> ATK",
           customFilterAndSearch: (term, costume) =>
             costume.costume_stat[0].atk >= Number(term),
         },
@@ -233,6 +234,7 @@ export function CostumesTable({
             color: "rgba(147,197,253,var(--tw-text-opacity))",
           },
           hideFilterIcon: true,
+          filterPlaceholder: "> DEF",
           customFilterAndSearch: (term, costume) =>
             costume.costume_stat[0].vit >= Number(term),
         },
@@ -245,6 +247,7 @@ export function CostumesTable({
             textAlign: "center",
             color: "rgba(110,231,183,var(--tw-text-opacity))",
           },
+          filterPlaceholder: "> AGI",
           customFilterAndSearch: (term, costume) =>
             costume.costume_stat[0].agi >= Number(term),
         },
@@ -266,6 +269,11 @@ export function CostumesTable({
           cellStyle: {
             textAlign: "center",
           },
+          render: (costume) => (
+            <AbilityThumbnail
+              ability={costume.costume_ability_link[0].costume_ability}
+            />
+          ),
         },
         {
           field: "costume_ability_link[1].costume_ability.name",
@@ -285,6 +293,11 @@ export function CostumesTable({
           cellStyle: {
             textAlign: "center",
           },
+          render: (costume) => (
+            <AbilityThumbnail
+              ability={costume.costume_ability_link[1].costume_ability}
+            />
+          ),
         },
         {
           field: "costume_skill_link[0].costume_skill.gauge_rise_speed",
@@ -299,6 +312,30 @@ export function CostumesTable({
           cellStyle: {
             textAlign: "center",
           },
+          render: (costume) => (
+            <Tooltip title="Lower number means skill charge faster.">
+              <div
+                className={classNames({
+                  "text-red-400":
+                    costume.costume_skill_link[0].costume_skill
+                      .gauge_rise_speed === "A",
+                  "text-yellow-400":
+                    costume.costume_skill_link[0].costume_skill
+                      .gauge_rise_speed === "B",
+                  "text-green-400":
+                    costume.costume_skill_link[0].costume_skill
+                      .gauge_rise_speed === "C",
+                })}
+              >
+                <span className="block">
+                  {costume.costume_skill_link[0].costume_skill.gauge_rise_speed}
+                </span>
+                <span className="block text-xs">
+                  {costume.costume_skill_link[0].costume_skill.cooldown_time}
+                </span>
+              </div>
+            </Tooltip>
+          ),
         },
         {
           field: "is_ex_costume",
@@ -372,6 +409,7 @@ export function CostumesTable({
         }),
       ]}
       options={{
+        search: false,
         actionsColumnIndex: -1,
         grouping: true,
         searchFieldAlignment: "right",

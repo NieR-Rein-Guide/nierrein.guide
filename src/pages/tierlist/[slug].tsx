@@ -132,7 +132,7 @@ export function TierlistContent({ tierlist, items }) {
                       >
                         {tierItem.tooltip && (
                           <Tooltip
-                            className=""
+                            className="cursor-help"
                             title={
                               <div
                                 dangerouslySetInnerHTML={{
@@ -182,7 +182,7 @@ export function TierlistContent({ tierlist, items }) {
                       >
                         {tierItem.tooltip && (
                           <Tooltip
-                            className=""
+                            className="cursor-help"
                             title={
                               <div
                                 dangerouslySetInnerHTML={{
