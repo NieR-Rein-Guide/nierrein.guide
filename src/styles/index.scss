@@ -337,5 +337,9 @@ canvas {
 }
 
 .MuiTooltip-tooltip {
-  @apply bg-grey-dark text-white p-4 relative bordered text-xs;
+  background-color: theme('colors.grey.dark') !important;
+  color: white !important;
+  padding: 1rem !important;
+  position: relative !important;
+  @apply bordered;
 }

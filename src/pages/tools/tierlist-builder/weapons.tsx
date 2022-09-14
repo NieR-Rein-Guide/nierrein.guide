@@ -273,13 +273,17 @@ export default function TierlistBuilder({
     setCurrentIndex(0);
   }
 
-  function handleTooltipModalClose(event) {
-    console.log(event.target);
+  function handleTooltipModalClose() {
     if (!currentTooltip) {
       return;
     }
 
     const newState = produce(state, (draft) => {
+      if (currentTooltip === "<p></p>") {
+        draft[currentIndex].items[currentItemIndex].tooltip = "";
+        return;
+      }
+
       draft[currentIndex].items[currentItemIndex].tooltip = currentTooltip;
     });
     setState(newState);
@@ -359,11 +363,6 @@ export default function TierlistBuilder({
                   ))}
                 </Select>
               </FormControl>
-              <Checkbox
-                label="Only inventory"
-                isChecked={showOnlyInventory}
-                setState={(e) => setShowOnlyInventory(e.target.checked)}
-              />
             </div>
           </div>
 
@@ -449,9 +448,18 @@ export default function TierlistBuilder({
                             </button>
                           )}
                           {(ind === state.length - 1 && (
-                            <p className="col-span-10">
-                              Drag & Drop weapons into the tiers.
-                            </p>
+                            <div className="col-span-10 flex justify-between w-full">
+                              <p className="">
+                                Drag & Drop weapons into the tiers.
+                              </p>
+                              <Checkbox
+                                label="Only inventory"
+                                isChecked={showOnlyInventory}
+                                setState={(e) =>
+                                  setShowOnlyInventory(e.target.checked)
+                                }
+                              />
+                            </div>
                           )) || (
                             <div className="flex justify-center items-center w-28">
                               {(RANK_THUMBNAILS[el.tier] && (
