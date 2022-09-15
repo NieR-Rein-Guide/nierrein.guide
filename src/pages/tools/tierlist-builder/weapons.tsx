@@ -47,6 +47,8 @@ import ATTRIBUTES from "@utils/attributes";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 import { useCreatedTierlists } from "@store/created-tierlists";
 
+const DEFAULT_DESCRIPTION = "<p>My awesome (and objective) tierlist.</p>";
+
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -145,36 +147,30 @@ export default function TierlistBuilder({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [title, setTitle] = useState("My tierlist");
-  const [description, setDescription] = useState(
-    "<p>My awesome (and objective) tierlist.</p>"
-  );
+  const [description, setDescription] = useState(DEFAULT_DESCRIPTION);
   const [attribute, setAttribute] = useState("all");
   const [currentTooltip, setCurrentTooltip] = useState("");
   const [loading, setLoading] = useState(false);
+
+  /**
+   * Fetch existing tierlist if edit_key is found.
+   */
+  useEffect(() => {
+    if (router.query.edit_key) {
+      getExistingTierlist();
+    }
+  }, [router]);
 
   useEffect(() => {
     setYup(true);
   }, []);
 
   useEffect(() => {
-    const filteredWeapons = weapons
-      .filter((costume) => {
-        if (showUnreleasedContent) return true;
-        return new Date() > new Date(costume.release_time);
-      })
-      .filter((weap) => {
-        if (!showOnlyInventory) return true;
-        return ownedWeapons.includes(weap.weapon_id);
-      })
-      .map((weap) => ({
-        ...weap,
-        id: `${weap.weapon_id}-${new Date().toISOString()}`,
-        tooltip: "",
-      }));
+    const filteredSelection = getWeaponsSelection();
 
     setState(
       produce(state, (draft) => {
-        draft[draft.length - 1].items = filteredWeapons;
+        draft[draft.length - 1].items = filteredSelection;
       })
     );
   }, [showOnlyInventory, showUnreleasedContent]);
@@ -293,18 +289,72 @@ export default function TierlistBuilder({
     setCurrentTooltip("");
   }
 
+  function getWeaponsSelection() {
+    const filteredWeapons = weapons
+      .filter((costume) => {
+        if (showUnreleasedContent) return true;
+        return new Date() > new Date(costume.release_time);
+      })
+      .filter((weap) => {
+        if (!showOnlyInventory) return true;
+        return ownedWeapons.includes(weap.weapon_id);
+      })
+      .map((weap) => ({
+        ...weap,
+        id: `${weap.weapon_id}-${new Date().toISOString()}`,
+        tooltip: "",
+      }));
+
+    return filteredWeapons;
+  }
+
+  async function getExistingTierlist() {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `/api/tierlists?edit_key=${router.query.edit_key}`
+      );
+      const { tierlist, tiers } = data;
+      const filteredSelection = getWeaponsSelection();
+      const alreadySelectedItems = tiers.map((tier) => tier.items).flat();
+      const newSelection = filteredSelection.filter((item) => {
+        const isSelected = alreadySelectedItems.findIndex(
+          (it) => it.item_id === item.weapon_id
+        );
+
+        if (isSelected >= 0) {
+          return false;
+        }
+        return true;
+      });
+      setTitle(tierlist.title);
+      setDescription(tierlist.description);
+      setAttribute(tierlist.attribute);
+      setState([...tiers, { tier: "ALL", items: newSelection }]);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function save() {
     if (loading) return;
 
     try {
       setLoading(true);
 
-      const response = await axios.post("/api/tierlists", {
-        title,
-        description,
-        type: "weapons",
-        attribute,
-        tiers: state.slice(0, state.length - 1),
+      const response = await axios({
+        url: "/api/tierlists",
+        method: router.query.edit_key ? "PUT" : "POST",
+        data: {
+          title,
+          description,
+          type: "weapons",
+          attribute,
+          tiers: state.slice(0, state.length - 1),
+          edit_key: router.query.edit_key,
+        },
       });
 
       toast.success("Tier list saved! Redirecting...");
@@ -368,8 +418,9 @@ export default function TierlistBuilder({
 
           <div className="bg-grey-dark p-4">
             <Wysiwyg
+              key={description}
               onBlur={(html) => setDescription(html)}
-              content="<p>My awesome (and objective) tierlist.</p>"
+              content={description}
             />
           </div>
         </div>

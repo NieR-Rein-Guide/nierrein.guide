@@ -2,17 +2,24 @@ import prisma from '@libs/prisma';
 import tierlistSubjugation from '../data/tierlist_subjugation.json'
 
 
-export async function getTierlist(slug: string) {
+export async function getTierlist(where) {
   const tierlist = await prisma.nrg.tierlists.findFirst({
-    where: {
-      slug: slug,
-    },
-    include: {
+    where,
+    select: {
+      tierlist_id: true,
+      title: true,
+      description: true,
+      type: true,
+      updated_at: true,
+      created_at: true,
+      slug: true,
+      attribute: true,
+      votes: true,
       tiers: {
         include: {
           tiers_items: true,
-        },
-      },
+        }
+      }
     },
   });
 

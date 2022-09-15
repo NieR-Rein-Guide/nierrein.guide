@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { formatDistanceToNow } from "date-fns";
-import prisma from "@libs/prisma";
 import { tiers, tiers_items, tierlists } from "@prisma/client-nrg";
 import { NextPageContext } from "next";
 import { character, costume } from "@prisma/client";
@@ -17,6 +16,8 @@ import { useRouter } from "next/router";
 import { Chip, Tooltip } from "@mui/material";
 import { FiThumbsUp } from "react-icons/fi";
 import { useCreatedTierlists } from "@store/created-tierlists";
+import Link from "next/link";
+import { getTierlist } from "@models/tiers";
 
 interface TierListProps {
   tierlist: tierlists & {
@@ -99,7 +100,12 @@ export function TierlistContent({ tierlist, items }) {
         </Tooltip>
 
         {isOwner && (
-          <button className="absolute top-4 right-4 btn">Edit</button>
+          <Link
+            href={`/tools/tierlist-builder/${isOwner.type}?edit_key=${isOwner.edit_key}`}
+            passHref
+          >
+            <a className="absolute top-4 right-4 btn">Edit</a>
+          </Link>
         )}
 
         <p className="text-beige text-sm">
@@ -246,47 +252,9 @@ export function TierlistContent({ tierlist, items }) {
 export async function getServerSideProps(context: NextPageContext) {
   context.res.setHeader("Cache-Control", "public, maxage=86400");
 
-  const tierlist = await prisma.nrg.tierlists.findFirst({
-    where: {
-      slug: context.query.slug as string,
-    },
-    include: {
-      tiers: {
-        include: {
-          tiers_items: true,
-        },
-      },
-    },
+  const { tierlist, items } = await getTierlist({
+    slug: context.query.slug,
   });
-
-  let items = [];
-  const ids = [];
-  for (const tier of tierlist.tiers) {
-    ids.push(...tier.tiers_items.map((tier) => tier.item_id));
-  }
-
-  if (tierlist.type === "costumes") {
-    items = await prisma.dump.costume.findMany({
-      include: {
-        character: true,
-      },
-      where: {
-        costume_id: {
-          in: ids,
-        },
-      },
-    });
-  }
-
-  if (tierlist.type === "weapons") {
-    items = await prisma.dump.weapon.findMany({
-      where: {
-        weapon_id: {
-          in: ids,
-        },
-      },
-    });
-  }
 
   return {
     props: JSON.parse(

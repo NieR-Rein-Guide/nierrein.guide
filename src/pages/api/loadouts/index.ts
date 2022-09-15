@@ -5,7 +5,7 @@ import { uid } from 'uid';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   /**
-   * POST NEW LOADOUT
+   * POST NEW TIERLIST
    */
   if (req.method === 'POST') {
     try {

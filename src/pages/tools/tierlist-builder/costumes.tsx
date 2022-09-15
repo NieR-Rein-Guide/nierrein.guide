@@ -147,29 +147,30 @@ export default function TierlistBuilder({
   const [currentTooltip, setCurrentTooltip] = useState("");
   const [loading, setLoading] = useState(false);
 
+  /**
+   * Fetch existing tierlist if edit_key is found.
+   */
+  useEffect(() => {
+    if (router.query.edit_key) {
+      getExistingTierlist();
+    }
+  }, [router]);
+
+  /**
+   * Client side only
+   */
   useEffect(() => {
     setYup(true);
   }, []);
 
+  /**
+   * Filter costumes
+   */
   useEffect(() => {
-    const filteredCostumes = costumes
-      .filter((costume) => {
-        if (showUnreleasedContent) return true;
-        return new Date() > new Date(costume.release_time);
-      })
-      .filter((cost) => {
-        if (!showOnlyInventory) return true;
-        return ownedCostumes.includes(cost.costume_id);
-      })
-      .map((costume) => ({
-        ...costume,
-        id: `${costume.character.character_id}-${costume.costume_id}`,
-        tooltip: "",
-      }));
-
+    const filteredSelection = getCostumesSelection();
     setState(
       produce(state, (draft) => {
-        draft[draft.length - 1].items = filteredCostumes;
+        draft[draft.length - 1].items = filteredSelection;
       })
     );
   }, [showOnlyInventory, showUnreleasedContent]);
@@ -287,18 +288,71 @@ export default function TierlistBuilder({
     setCurrentTooltip("");
   }
 
+  function getCostumesSelection() {
+    const filteredCostumes = costumes
+      .filter((costume) => {
+        if (showUnreleasedContent) return true;
+        return new Date() > new Date(costume.release_time);
+      })
+      .filter((cost) => {
+        if (!showOnlyInventory) return true;
+        return ownedCostumes.includes(cost.costume_id);
+      })
+      .map((costume) => ({
+        ...costume,
+        id: `${costume.character.character_id}-${costume.costume_id}`,
+        tooltip: "",
+      }));
+
+    return filteredCostumes;
+  }
+
+  async function getExistingTierlist() {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `/api/tierlists?edit_key=${router.query.edit_key}`
+      );
+      const { tierlist, tiers } = data;
+      const filteredSelection = getCostumesSelection();
+      const alreadySelectedItems = tiers.map((tier) => tier.items).flat();
+      const newSelection = filteredSelection.filter((item) => {
+        const isSelected = alreadySelectedItems.findIndex(
+          (it) => it.item_id === item.costume_id
+        );
+
+        if (isSelected >= 0) {
+          return false;
+        }
+        return true;
+      });
+      setTitle(tierlist.title);
+      setDescription(tierlist.description);
+      setState([...tiers, { tier: "ALL", items: newSelection }]);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   async function save() {
     if (loading) return;
 
     try {
       setLoading(true);
 
-      const response = await axios.post("/api/tierlists", {
-        title,
-        description,
-        type: "costumes",
-        attribute: "all",
-        tiers: state.slice(0, state.length - 1),
+      const response = await axios({
+        url: "/api/tierlists",
+        method: router.query.edit_key ? "PUT" : "POST",
+        data: {
+          title,
+          description,
+          type: "costumes",
+          attribute: "all",
+          tiers: state.slice(0, state.length - 1),
+          edit_key: router.query.edit_key,
+        },
       });
 
       toast.success("Tier list saved! Redirecting...");
@@ -350,7 +404,9 @@ export default function TierlistBuilder({
           </div>
         </div>
         <div className="flex justify-center">
-          {loading && <div className="fixed inset-0 bg-black bg-opacity-50" />}
+          {loading && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 z-50" />
+          )}
           {(loading && <BtnSecondary>Loading...</BtnSecondary>) || (
             <BtnSecondary onClick={save}>Save</BtnSecondary>
           )}

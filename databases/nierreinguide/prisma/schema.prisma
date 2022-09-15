@@ -55,7 +55,7 @@ model tiers {
   tierlist_id Int
   tier        String
   position    Int
-  tierslists  tierlists     @relation(fields: [tierlist_id], references: [tierlist_id])
+  tierslists  tierlists     @relation(fields: [tierlist_id], references: [tierlist_id], onDelete: Cascade)
   tiers_items tiers_items[]
 }
 
@@ -65,5 +65,5 @@ model tiers_items {
   item_id  Int
   position Int
   tooltip  String?
-  tiers    tiers   @relation(fields: [tier_id], references: [id])
+  tiers    tiers   @relation(fields: [tier_id], references: [id], onDelete: Cascade)
 }
