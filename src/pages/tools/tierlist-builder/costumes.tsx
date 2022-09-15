@@ -41,6 +41,8 @@ import CostumeSelect from "@components/characters/CostumeSelect";
 import Checkbox from "@components/form/Checkbox";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 
+const DEFAULT_DESCRIPTION = "<p>My awesome (and objective) tierlist.</p>";
+
 const reorder = (list, startIndex, endIndex) => {
   const result = Array.from(list);
   const [removed] = result.splice(startIndex, 1);
@@ -141,9 +143,7 @@ export default function TierlistBuilder({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState(0);
   const [title, setTitle] = useState("My tierlist");
-  const [description, setDescription] = useState(
-    "<p>My awesome (and objective) tierlist.</p>"
-  );
+  const [description, setDescription] = useState(DEFAULT_DESCRIPTION);
   const [currentTooltip, setCurrentTooltip] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -398,8 +398,9 @@ export default function TierlistBuilder({
 
           <div className="bg-grey-dark p-4">
             <Wysiwyg
+              key={description}
               onBlur={(html) => setDescription(html)}
-              content="<p>My awesome (and objective) tierlist.</p>"
+              content={description}
             />
           </div>
         </div>
