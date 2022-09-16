@@ -1,7 +1,5 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import Link from "next/link";
-import SVG from "react-inlinesvg";
 import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import CompanionThumbnail from "@components/CompanionThumbnail";
@@ -18,6 +16,7 @@ import {
   companion_stat,
 } from "@prisma/client";
 import DatabaseNavbar from "@components/DatabaseNavbar";
+import { useSettingsStore } from "@store/settings";
 
 interface CompanionsPageProps {
   companions: (companion & {
@@ -46,6 +45,10 @@ export default function CompanionsPage({
   abilitiesLookup,
   skillsLookup,
 }: CompanionsPageProps): JSX.Element {
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
+
   return (
     <Layout>
       <Meta
@@ -58,7 +61,10 @@ export default function CompanionsPage({
         <DatabaseNavbar />
         <MaterialTable
           title={`${companions.length} companions in the database.`}
-          data={companions}
+          data={companions.filter((companion) => {
+            if (showUnreleasedContent) return true;
+            return new Date() > new Date(companion.release_time);
+          })}
           columns={[
             {
               field: "type",
