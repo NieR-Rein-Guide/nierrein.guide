@@ -74,8 +74,7 @@ export default function TierList({ tier }): JSX.Element {
         <div className="w-full">
           <div className="flex flex-col md:flex-row justify-between">
             <p className="mb-4">
-              Last updated: {formatDistanceToNow(new Date(tier.lastUpdated))}{" "}
-              ago
+              Last updated: {formatDistanceToNow(new Date(tier.updated_at))} ago
             </p>
             <p>
               This tierlist has been made by{" "}

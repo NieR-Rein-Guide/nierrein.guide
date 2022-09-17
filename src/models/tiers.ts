@@ -1,6 +1,7 @@
 import prisma from '@libs/prisma';
 import tierlistSubjugation from '../data/tierlist_subjugation.json'
-
+import { FEATURED_TIERLISTS } from '@config/constants'
+import { tiers, tiers_items } from '@prisma/client-nrg'
 
 export async function getTierlist(where) {
   const tierlist = await prisma.nrg.tierlists.findFirst({
@@ -55,18 +56,56 @@ export async function getTierlist(where) {
   return { tierlist, items };
 }
 
-function getTiers() {
+async function getTiers() {
+  const pveTierlists = await Promise.all(FEATURED_TIERLISTS.pve.map((tierlist_id) => getTierlist({
+    tierlist_id
+  })))
+  const pvpTierlists = await Promise.all(FEATURED_TIERLISTS.pvp.map((tierlist_id) => getTierlist({
+    tierlist_id
+  })))
+
+  /**
+   * Legacy tierlist
+   * to be deleted
+   */
   const subjugationTier = {
-    label: "Subjugation & Abyss",
-    type: 'characters',
-    lastUpdated: tierlistSubjugation.updatedAt,
-    coverImg: "https://nierrein.guide/tierlists/cover-pve.jpg",
+    tierlist: {
+      version: 'legacy',
+      title: "Subjugation & Abyss",
+      type: 'costumes',
+      updated_at: tierlistSubjugation.updatedAt,
+    },
+    version: 'legacy',
+    title: "Subjugation & Abyss",
+    type: 'costumes',
+    updated_at: tierlistSubjugation.updatedAt,
     tiers: tierlistSubjugation.tiers,
   }
 
+
   return {
-    subjugationTier,
-  }
+    tier: subjugationTier,
+    pve: pveTierlists,
+    pvp: pvpTierlists
+  };
+}
+
+export type Tierlist = {
+  tierlist: {
+    tierlist_id: number;
+    title: string;
+    description: string;
+    type: string;
+    updated_at: Date;
+    created_at: Date;
+    slug: string;
+    attribute: string;
+    votes: number;
+    tiers: (tiers & {
+      tiers_items: tiers_items[];
+    })[];
+  };
+  items: any[];
 }
 
 
