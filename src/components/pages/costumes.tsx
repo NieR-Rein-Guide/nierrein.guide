@@ -177,7 +177,12 @@ export function CostumesTable({
                 alt={`${costume.title} thumbnail`}
                 rarity={RARITY[costume.rarity]}
               />
-              <span>{costume.title}</span>
+              <span className="truncate">
+                {costume.is_ex_costume && (
+                  <span className="text-rarity-4">EX </span>
+                )}
+                {costume.title}
+              </span>
 
               {!onRowClick && (
                 <Link

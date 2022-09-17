@@ -202,7 +202,12 @@ export function WeaponsTable({
                 alt={weapon.name}
                 image_path={weapon.image_path}
               />
-              <span>{weapon.name}</span>
+              <span className="truncate">
+                {weapon.is_ex_weapon && (
+                  <span className="text-rarity-4">EX </span>
+                )}
+                {weapon.name}
+              </span>
 
               {!onRowClick && (
                 <Link href={`/weapons/${weapon.slug}`} passHref>
