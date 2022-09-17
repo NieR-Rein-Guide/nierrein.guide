@@ -8,6 +8,8 @@ import { FiThumbsUp } from "react-icons/fi";
 import Tooltip from "@mui/material/Tooltip";
 import { useTierlistsVotes } from "@store/tierlist-votes";
 import { formatDistanceToNow } from "date-fns";
+import Image from "next/image";
+import { CDN_URL } from "@config/constants";
 
 export default function TierlistListingItem({
   title,
@@ -44,7 +46,7 @@ export default function TierlistListingItem({
   return (
     <div
       key={tierlist_id}
-      className="flex flex-col gap-x-4 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter overflow-hidden w-full h-full"
+      className="flex flex-col gap-x-4 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter w-full h-full"
     >
       <div className="absolute top-4 right-4 z-40">
         <Tooltip
@@ -60,42 +62,62 @@ export default function TierlistListingItem({
           />
         </Tooltip>
       </div>
-      <h3 className="text-xl truncate">{title}</h3>
-      <p className="text-sm text-beige">
-        updated{" "}
-        {formatDistanceToNow(new Date(updated_at), {
-          addSuffix: true,
-        })}
-      </p>
+      <h3 className="text-xl truncate md:pr-12">{title}</h3>
 
       <div className="flex justify-between mt-4">
-        <div className="flex items-center text-sm px-2 bg-grey-lighter text-beige border border-beige-inactive border-opacity-50">
-          <span>{type}</span>
+        <div className="flex items-center justify-center w-7 h-7 bg-grey-lighter text-beige border border-beige-inactive border-opacity-50 rounded-full">
+          {type === "costumes" && (
+            <Image
+              src={`${CDN_URL}ui/character/character001004/character001004_standard.png`}
+              height={24}
+              width={24}
+              alt="Costumes"
+            />
+          )}
+          {type === "weapons" && (
+            <Image
+              src={`${CDN_URL}ui/weapon/wp001504/wp001504_standard.png`}
+              height={24}
+              width={24}
+              alt="Weapons"
+            />
+          )}
         </div>
 
-        {(attribute === "all" && (
-          <div className="relative flex">
-            <div>
-              <Element size={24} type="DARK" />
-            </div>
-            <div className="-ml-3">
-              <Element size={24} type="LIGHT" />
-            </div>
-            <div className="-ml-3">
-              <Element size={24} type="FIRE" />
-            </div>
-            <div className="-ml-3">
-              <Element size={24} type="WATER" />
-            </div>
-            <div className="-ml-3">
-              <Element size={24} type="WIND" />
-            </div>
-          </div>
-        )) || <Element size={24} type={attribute} />}
+        {type === "weapons" && (
+          <>
+            {(attribute === "all" && (
+              <div className="relative flex">
+                <div>
+                  <Element size={24} type="DARK" />
+                </div>
+                <div className="-ml-3">
+                  <Element size={24} type="LIGHT" />
+                </div>
+                <div className="-ml-3">
+                  <Element size={24} type="FIRE" />
+                </div>
+                <div className="-ml-3">
+                  <Element size={24} type="WATER" />
+                </div>
+                <div className="-ml-3">
+                  <Element size={24} type="WIND" />
+                </div>
+              </div>
+            )) || <Element size={24} type={attribute} />}
+          </>
+        )}
+
+        <p className="text-xs text-beige">
+          updated{" "}
+          {formatDistanceToNow(new Date(updated_at), {
+            addSuffix: true,
+          })}
+        </p>
       </div>
 
       <Link href={`/tierlist/${slug}`} passHref>
-        <a className="absolute inset-0 z-10">
+        <a title={title} className="absolute inset-0 z-10">
           <span className="sr-only">See more about {title}</span>
         </a>
       </Link>
