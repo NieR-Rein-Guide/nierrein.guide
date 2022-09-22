@@ -189,7 +189,9 @@ export default function CostumePage({
               key="details"
               character={currentCharacter}
               costume={currentCostume}
-              abilities={abilities[currentCostume.costume_id]}
+              abilities={abilities[currentCostume.costume_id].sort(
+                (a, b) => a[0].ability_slot - b[0].ability_slot
+              )}
               skill={skills[currentCostume.costume_id]}
               stats={stats[currentCostume.costume_id]}
               rankBonus={rankBonus}

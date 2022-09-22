@@ -78,6 +78,8 @@ function CostumeDetails({
   }, [costume]);
 
   const abilityLevel = ascendLevel - 1;
+  const costumeAbilities = abilities.slice(0, 2);
+  const awakeningAbility = abilities?.[2]?.[0];
 
   return (
     <div>
@@ -139,61 +141,46 @@ function CostumeDetails({
               >
                 <h2 className="text-2xl">Abilities</h2>
               </Lines>
-              {abilities &&
-                abilities.map((ability, index) => (
+              {costumeAbilities &&
+                costumeAbilities.map((ability, index) => (
                   <Ability
                     className={classNames(
                       "flex-1 transition-opacity",
                       ascendLevel === 1 && index > 0 ? "opacity-50" : ""
                     )}
                     key={`${costume.costume_id}ability${index}`}
-                    name={ability[abilityLevel].costume_ability.name}
+                    name={ability?.[abilityLevel]?.costume_ability.name}
                     description={
-                      ability[abilityLevel].costume_ability.description
+                      ability?.[abilityLevel]?.costume_ability.description
                     }
                     imagePathBase={
-                      ability[abilityLevel].costume_ability.image_path_base
+                      ability?.[abilityLevel]?.costume_ability.image_path_base
                     }
                     level={abilityLevel + 1}
                   />
                 ))}
             </div>
 
-            <div>
-              <Lines
-                className="mb-2"
-                containerClass="justify-center"
-                svgClass="w-96 xl:w-42"
-              >
-                <h2 className="text-2xl text-center">Awakening</h2>
-              </Lines>
-              <div
-                className={classNames(
-                  "flex gap-4 bg-grey-dark p-4 relative bordered opacity-50"
-                )}
-              >
-                <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
-                  Lv. 0
-                </span>
-                <div className="flex items-center">
-                  <div className="relative mr-4">
-                    <SVG
-                      src="/decorations/frame-ability.svg"
-                      className="h-16 w-16"
-                    />
-                    <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center"></div>
-                  </div>
-                  <div className="flex flex-col items-start">
-                    <strong className="font-display text-2xl text-beige">
-                      WIP
-                    </strong>
-                    <p className="text-beige-text">
-                      <span>WIP</span>
-                    </p>
-                  </div>
-                </div>
+            {awakeningAbility && (
+              <div key={costume.costume_id}>
+                <Lines
+                  className="mb-2"
+                  containerClass="justify-center"
+                  svgClass="w-96 xl:w-42"
+                >
+                  <h2 className="text-2xl text-center">Awakening</h2>
+                </Lines>
+                <Ability
+                  className={classNames("flex-1 transition-opacity")}
+                  name={awakeningAbility.costume_ability.name}
+                  description={awakeningAbility.costume_ability.description}
+                  imagePathBase={
+                    awakeningAbility.costume_ability.image_path_base
+                  }
+                  level={4}
+                />
               </div>
-            </div>
+            )}
           </div>
         </div>
 

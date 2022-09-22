@@ -188,11 +188,13 @@ model costume_stat {
 }
 
 model debris {
-  debris_id       Int      @id(map: "pk_debris") @default(autoincrement())
-  rarity          Int
-  release_time    DateTime @db.Timestamptz(6)
-  name            String?
-  image_path_base String?
+  debris_id         Int      @id(map: "pk_debris") @default(autoincrement())
+  rarity            Int
+  release_time      DateTime @db.Timestamptz(6)
+  name              String?
+  description_short String?
+  description_long  String?
+  image_path_base   String?
 }
 
 model emblem {
