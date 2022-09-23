@@ -101,10 +101,8 @@ export default function CompanionsPage({
                     filtering: false,
                     render: (ability) => {
                       const options = weaponsLink.filter((weap) => {
-                        return weap.weapon.weapon_ability_link.some((w) => {
-                          w.weapon_ability.description === ability.description;
-                        });
-                      });
+                        weap.weapon.
+                      })
                       return (
                         <Autocomplete
                           className="w-96"
@@ -297,24 +295,26 @@ export default function CompanionsPage({
 }
 
 export async function getStaticProps() {
-  const weaponAbilities = await prisma.dump.weapon_ability.findMany({
-    where: {
-      ability_level: 15,
-    },
-    distinct: ["description"],
-    orderBy: {
-      name: "asc",
-    },
-  });
-  const costumeAbilities = await prisma.dump.costume_ability.findMany({
-    where: {
-      ability_level: 4,
-    },
-    distinct: ["description"],
-    orderBy: {
-      name: "asc",
-    },
-  });
+  const [weaponAbilities, costumeAbilities] = await Promise.all([
+    prisma.dump.weapon_ability.findMany({
+      where: {
+        ability_level: 15,
+      },
+      distinct: ["description"],
+      orderBy: {
+        name: "asc",
+      },
+    }),
+    prisma.dump.costume_ability.findMany({
+      where: {
+        ability_level: 4,
+      },
+      distinct: ["description"],
+      orderBy: {
+        name: "asc",
+      },
+    }),
+  ]);
 
   return {
     props: JSON.parse(
