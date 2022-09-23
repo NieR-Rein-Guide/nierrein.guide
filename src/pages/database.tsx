@@ -11,6 +11,7 @@ import companionsImg from "../../public/database/companions.jpg";
 import debrisImg from "../../public/database/debris.jpg";
 import noticesImg from "../../public/database/notices.jpg";
 import eventsImg from "../../public/database/events.jpg";
+import abilitiesImg from "../../public/database/abilities.jpg";
 
 export default function Database(): JSX.Element {
   return (
@@ -22,6 +23,23 @@ export default function Database(): JSX.Element {
       />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <Link href="/database/abilities">
+          <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
+            <Image
+              height={350}
+              width={200}
+              layout="fill"
+              objectFit="cover"
+              className="-z-1 filter brightness-50"
+              src={abilitiesImg}
+              alt="Abilties thumbnail"
+            />
+            <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
+              Abilities
+            </h3>
+          </a>
+        </Link>
+
         <Link href="/database/memoirs">
           <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image

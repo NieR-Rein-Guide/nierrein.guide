@@ -1,6 +1,7 @@
 import { CDN_URL } from "@config/constants";
 import classNames from "classnames";
 import Image from "next/image";
+import Link from "next/link";
 import SVG from "react-inlinesvg";
 
 interface AbilityProps {
@@ -12,6 +13,7 @@ interface AbilityProps {
   maxLevel?: number;
   className?: string;
   imagePathBase?: string;
+  href?: string;
 }
 
 export default function Ability({
@@ -21,6 +23,7 @@ export default function Ability({
   level = 1,
   maxLevel = 4,
   className = "",
+  href,
 }: AbilityProps): JSX.Element {
   return (
     <div
@@ -33,11 +36,24 @@ export default function Ability({
         Lv. {level}/{maxLevel}
       </span>
       <div className="flex items-center">
-        <div className="relative mr-4">
+        <div
+          className={classNames(
+            "relative mr-4",
+            href ? "cursor-pointer hover:scale-105 transition transform" : ""
+          )}
+        >
           <SVG src="/decorations/frame-ability.svg" className="h-16 w-16" />
           <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
             <img alt="" src={`${CDN_URL}${imagePathBase}standard.png`} />
           </div>
+
+          {href && (
+            <Link href={href} passHref>
+              <a className="absolute inset-0 z-10">
+                <span className="sr-only">See ability {name}</span>
+              </a>
+            </Link>
+          )}
         </div>
         <div className="flex flex-col items-start">
           <strong className="font-display text-2xl text-beige">{name}</strong>

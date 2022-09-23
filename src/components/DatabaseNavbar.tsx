@@ -25,6 +25,10 @@ const ITEMS = [
     href: "/database/memoirs",
   },
   {
+    label: "Abilities",
+    href: "/database/abilities",
+  },
+  {
     label: "Debris",
     href: "/database/debris",
   },

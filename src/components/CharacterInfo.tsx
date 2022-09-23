@@ -28,6 +28,7 @@ import {
 import { Chip } from "@mui/material";
 import CostumeThumbnail from "./CostumeThumbnail";
 import getEmblemPath from "@utils/getEmblemPath";
+import slug from "slugg";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -144,6 +145,9 @@ function CostumeDetails({
               {costumeAbilities &&
                 costumeAbilities.map((ability, index) => (
                   <Ability
+                    href={`/ability/costume/${slug(
+                      ability?.[3]?.costume_ability.name
+                    )}-${ability?.[3]?.costume_ability.ability_id}`}
                     className={classNames(
                       "flex-1 transition-opacity",
                       ascendLevel === 1 && index > 0 ? "opacity-50" : ""
