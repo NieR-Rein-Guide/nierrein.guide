@@ -13,7 +13,24 @@ export async function getAllCostumes({
       character: true,
       costume_ability_link: {
         where: {
-          ability_level: 4,
+          OR: [
+            {
+              ability_level: 4,
+              AND: {
+                ability_slot: {
+                  lte: 2
+                }
+              }
+            },
+            {
+              ability_level: 1,
+              AND: {
+                ability_slot: {
+                  equals: 3,
+                }
+              }
+            }
+          ]
         },
         orderBy: {
           ability_slot: "asc",

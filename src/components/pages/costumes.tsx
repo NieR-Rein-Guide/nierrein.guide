@@ -305,6 +305,25 @@ export function CostumesTable({
           ),
         },
         {
+          field: "costume_ability_link[2].costume_ability.name",
+          title: "Awakening Ability",
+          lookup: abilitiesLookup,
+          customFilterAndSearch: (term, costume) => {
+            if (term.length === 0) return true;
+            return term.includes(
+              costume.costume_ability_link[2].costume_ability.name
+            );
+          },
+          cellStyle: {
+            textAlign: "center",
+          },
+          render: (costume) => (
+            <AbilityThumbnail
+              ability={costume.costume_ability_link[2].costume_ability}
+            />
+          ),
+        },
+        {
           field: "costume_skill_link[0].costume_skill.gauge_rise_speed",
           title: "CS Gauge",
           lookup: gaugeLookup,
