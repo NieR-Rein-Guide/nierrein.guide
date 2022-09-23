@@ -298,26 +298,25 @@ export default function CompanionsPage({
 }
 
 export async function getStaticProps() {
-  const [weaponAbilities, costumeAbilities] = await Promise.all([
-    prisma.dump.weapon_ability.findMany({
-      where: {
-        ability_level: 15,
-      },
-      distinct: ["description"],
-      orderBy: {
-        name: "asc",
-      },
-    }),
-    prisma.dump.costume_ability.findMany({
-      where: {
-        ability_level: 4,
-      },
-      distinct: ["description"],
-      orderBy: {
-        name: "asc",
-      },
-    }),
-  ]);
+  const weaponAbilities = await prisma.dump.weapon_ability.findMany({
+    where: {
+      ability_level: 15,
+    },
+    distinct: ["description"],
+    orderBy: {
+      name: "asc",
+    },
+  });
+
+  const costumeAbilities = await prisma.dump.costume_ability.findMany({
+    where: {
+      ability_level: 4,
+    },
+    distinct: ["description"],
+    orderBy: {
+      name: "asc",
+    },
+  });
 
   return {
     props: JSON.parse(
