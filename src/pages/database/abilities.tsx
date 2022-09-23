@@ -95,16 +95,14 @@ export default function CompanionsPage({
                         .includes(term.toLowerCase());
                     },
                   },
-                  /* {
+                  {
                     field: "ability",
                     title: "Used by",
                     filtering: false,
                     render: (ability) => {
-                      const options = weaponsLink.filter((weap) => {
-                        weap.weapon.
-                      })
                       return (
-                        <Autocomplete
+                        <>
+                          {/* <Autocomplete
                           className="w-96"
                           onChange={(e, v) => console.log(e, v)}
                           options={options}
@@ -137,10 +135,12 @@ export default function CompanionsPage({
                               }}
                             />
                           )}
-                        />
+                         />*/}
+                          <p>WIP</p>
+                        </>
                       );
                     },
-                  }, */
+                  },
                 ]}
                 options={{
                   search: false,
@@ -211,7 +211,7 @@ export default function CompanionsPage({
                         .includes(term.toLowerCase());
                     },
                   },
-                  /* {
+                  {
                     field: "ability",
                     title: "Used by",
                     filtering: false,
@@ -223,45 +223,48 @@ export default function CompanionsPage({
                           )
                       );
                       return (
-                        <Autocomplete
-                          className="w-96"
-                          onChange={(e, v) => console.log(e, v)}
-                          options={options}
-                          autoHighlight
-                          groupBy={(ability) => ability.costume.weapon_type}
-                          getOptionLabel={(option) =>
-                            typeof option === "object" &&
-                            `${option.costume.title}`
-                          }
-                          renderOption={(props, option) => (
-                            <Box
-                              component="li"
-                              sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                              {...props}
-                            >
-                              <CostumeThumbnail
-                                src={`${CDN_URL}${option.costume.image_path_base}battle.png`}
-                                alt={`${option.costume.title} thumbnail`}
-                                rarity={RARITY[option.costume.rarity]}
-                                weaponType={option.costume.weapon_type}
+                        <>
+                          {/* <Autocomplete
+                            className="w-96"
+                            onChange={(e, v) => console.log(e, v)}
+                            options={options}
+                            autoHighlight
+                            groupBy={(ability) => ability.costume.weapon_type}
+                            getOptionLabel={(option) =>
+                              typeof option === "object" &&
+                              `${option.costume.title}`
+                            }
+                            renderOption={(props, option) => (
+                              <Box
+                                component="li"
+                                sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                                {...props}
+                              >
+                                <CostumeThumbnail
+                                  src={`${CDN_URL}${option.costume.image_path_base}battle.png`}
+                                  alt={`${option.costume.title} thumbnail`}
+                                  rarity={RARITY[option.costume.rarity]}
+                                  weaponType={option.costume.weapon_type}
+                                />
+                                <p className="ml-4">{option.costume.title}</p>
+                              </Box>
+                            )}
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                label={`${options.length} Corresponding costumes...`}
+                                inputProps={{
+                                  ...params.inputProps,
+                                  autoComplete: "new-password", // disable autocomplete and autofill
+                                }}
                               />
-                              <p className="ml-4">{option.costume.title}</p>
-                            </Box>
-                          )}
-                          renderInput={(params) => (
-                            <TextField
-                              {...params}
-                              label={`${options.length} Corresponding costumes...`}
-                              inputProps={{
-                                ...params.inputProps,
-                                autoComplete: "new-password", // disable autocomplete and autofill
-                              }}
-                            />
-                          )}
-                        />
+                            )}
+                          /> */}
+                          <p>WIP</p>
+                        </>
                       );
                     },
-                  }, */
+                  },
                 ]}
                 options={{
                   search: false,

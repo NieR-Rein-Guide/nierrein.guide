@@ -98,6 +98,7 @@ export default function CostumeAbility({
               >
                 <div className="flex items-center flex-1">
                   <CostumeThumbnail
+                    href={`/characters/${costume.costume.character.slug}/${costume.costume.slug}`}
                     src={`${CDN_URL}${costume.costume.image_path_base}battle.png`}
                     alt={`${costume.costume.title} thumbnail`}
                     rarity={RARITY[costume.costume.rarity]}
