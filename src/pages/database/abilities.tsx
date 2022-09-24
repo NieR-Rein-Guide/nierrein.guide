@@ -216,12 +216,6 @@ export default function CompanionsPage({
                     title: "Used by",
                     filtering: false,
                     render: (ability) => {
-                      const options = ability.costume_ability_link.sort(
-                        (a, b) =>
-                          -b.costume.weapon_type.localeCompare(
-                            a.costume.weapon_type
-                          )
-                      );
                       return (
                         <>
                           {/* <Autocomplete
