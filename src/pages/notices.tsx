@@ -24,7 +24,7 @@ export default function Events({ notifications }: NoticesProps): JSX.Element {
         cover="https://nierrein.guide/cover-notices.jpg"
       />
 
-      <NotificationsWithNoSSR notifications={notifications} />
+      <NotificationsWithNoSSR hasBtn={false} notifications={notifications} />
     </Layout>
   );
 }

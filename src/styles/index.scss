@@ -344,3 +344,51 @@ canvas {
   font-size: 0.8rem !important;
   @apply bordered;
 }
+
+.vis-timeline {
+  border: 1px solid theme('colors.beige.DEFAULT') !important;
+}
+
+.vis-grid.vis-vertical {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.vis-panel {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}
+
+.vis-text, .vis-label {
+  color: theme('colors.beige.DEFAULT') !important;
+}
+
+.vis-item {
+  height: 7rem;
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.vis-item-overflow {
+  line-height: 6rem;
+}
+
+.vis-item-content {
+  width: 100%;
+  height: 100%;
+
+ > a {
+  @apply absolute inset-0 transform ease-out-cubic transition;
+
+    &:hover {
+      @apply brightness-150;
+    }
+
+  h4 {
+    font-size: 1.5rem;
+    @apply z-10 absolute top-1/2 transform -translate-y-1/2 left-4 text-white;
+  }
+
+  img {
+    @apply object-cover w-full h-full brightness-30;
+  }
+ }
+}

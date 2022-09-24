@@ -5,8 +5,10 @@ import { BtnSecondary } from "./btn";
 
 export default function Notifications({
   notifications,
+  hasBtn = true,
 }: {
   notifications: notification[];
+  hasBtn?: boolean;
 }): JSX.Element {
   const notificationsTypes = new Set();
 
@@ -26,11 +28,13 @@ export default function Notifications({
         </div>
       </section>
 
-      <div className="flex justify-center mt-8">
-        <Link href="/notices" passHref>
-          <BtnSecondary>See more notices</BtnSecondary>
-        </Link>
-      </div>
+      {hasBtn && (
+        <div className="flex justify-center mt-8">
+          <Link href="/notices" passHref>
+            <BtnSecondary>See more notices</BtnSecondary>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

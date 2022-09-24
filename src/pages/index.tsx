@@ -11,7 +11,7 @@ import ListingEvents from "@components/ListingEvents";
 import Meta from "@components/Meta";
 import { getFeaturedGuides } from "@models/guide";
 import { Guide, Event } from "@models/types";
-import { getCurrentEvents, getFutureEvents } from "@models/event";
+import { getCurrentEvents, getFutureEvents, getAllEvents } from "@models/event";
 import { formatDistanceToNow } from "date-fns";
 import { useMedia } from "react-use";
 import CostumeArtwork from "@components/CostumeArtwork";
@@ -25,7 +25,9 @@ import { loadouts } from "@prisma/client-nrg";
 import LoadoutListingItem from "@components/LoadoutListingItem";
 import { useSettingsStore } from "../store/settings";
 import classNames from "classnames";
-
+const EventsTimeline = dynamic(() => import("../components/EventsTimeline"), {
+  ssr: false,
+});
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
 });
@@ -72,7 +74,7 @@ export default function Home({
 
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
         {!isMobile && <AnimatedBanner />}
-        <EventsSlider currentEvents={currentEvents} />
+        <EventsTimeline items={currentEvents} />
 
         <section className="p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -81,97 +83,6 @@ export default function Home({
         </section>
 
         <NotificationsWithNoSSR notifications={notifications} />
-
-        {futureEvents.length > 0 && (
-          <section>
-            <h2 className="overlap">Events</h2>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <ListingEvents title="Upcoming Events">
-                {futureEvents.map((event) => (
-                  <Link
-                    key={event.slug}
-                    href={`/event/${event.slug}`}
-                    passHref={true}
-                  >
-                    <a className="slider__other-event">
-                      <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
-                        <div className="absolute bottom-0 w-full p-2 bg-grey-lighter bg-opacity-70 z-20 flex justify-center gap-x-3">
-                          <span>
-                            Starts{" "}
-                            {formatDistanceToNow(new Date(event.end_date), {
-                              addSuffix: true,
-                            })}
-                          </span>
-                        </div>
-                        <Image
-                          layout="fill"
-                          objectFit="cover"
-                          height={128}
-                          width={232}
-                          src={
-                            event.image.formats?.medium?.url ??
-                            event.image.formats?.small.url ??
-                            event.image.formats?.thumbnail?.url
-                          }
-                          alt={`Thumbnail ${event.title}`}
-                          placeholder="blur"
-                          blurDataURL={
-                            event.image.formats?.medium?.hash ??
-                            event.image.formats?.small.hash ??
-                            event.image.formats?.thumbnail?.hash
-                          }
-                        />
-                      </div>
-                    </a>
-                  </Link>
-                ))}
-              </ListingEvents>
-
-              {endingEvents.length > 0 && (
-                <ListingEvents title="Events Ending soon">
-                  {endingEvents.map((event) => (
-                    <Link
-                      key={event.slug}
-                      href={`/event/${event.slug}`}
-                      passHref={true}
-                    >
-                      <a className="slider__other-event">
-                        <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
-                          <div className="absolute bottom-0 w-full p-2 bg-grey-lighter bg-opacity-70 z-20 flex justify-center gap-x-3">
-                            <span>
-                              Ends{" "}
-                              {formatDistanceToNow(new Date(event.end_date), {
-                                addSuffix: true,
-                              })}
-                            </span>
-                          </div>
-                          <Image
-                            layout="fill"
-                            objectFit="cover"
-                            height={128}
-                            width={232}
-                            src={
-                              event.image.formats?.medium?.url ??
-                              event.image.formats?.small.url ??
-                              event.image.formats?.thumbnail?.url
-                            }
-                            alt={`Thumbnail ${event.title}`}
-                            placeholder="blur"
-                            blurDataURL={
-                              event.image.formats?.medium?.hash ??
-                              event.image.formats?.small.hash ??
-                              event.image.formats?.thumbnail?.hash
-                            }
-                          />
-                        </div>
-                      </a>
-                    </Link>
-                  ))}
-                </ListingEvents>
-              )}
-            </div>
-          </section>
-        )}
 
         {/* NEW COSTUMES */}
         <div>
@@ -314,7 +225,8 @@ export async function getStaticProps() {
       loadouts,
     ] = await Promise.all([
       getFeaturedGuides(),
-      getCurrentEvents({ currentDate: new Date().toISOString() }),
+      getAllEvents(),
+      //getCurrentEvents({ currentDate: new Date().toISOString() }),
       getFutureEvents({ currentDate: new Date().toISOString() }),
       prisma.dump.costume.findMany({
         orderBy: {
