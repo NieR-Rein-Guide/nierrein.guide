@@ -28,7 +28,7 @@ export const rarityLookup = {
 
 export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
   return (
-    <Layout>
+    <Layout hasContainer={false} className="overflow-x-auto">
       <Meta
         title="Debris - Database"
         description="List of debris."

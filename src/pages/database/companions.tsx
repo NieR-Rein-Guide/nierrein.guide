@@ -50,7 +50,7 @@ export default function CompanionsPage({
   );
 
   return (
-    <Layout>
+    <Layout hasContainer={false} className="overflow-x-auto">
       <Meta
         title="Companions - Database"
         description="List of companions."

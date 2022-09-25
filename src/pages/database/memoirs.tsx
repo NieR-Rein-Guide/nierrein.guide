@@ -48,7 +48,7 @@ export default function MemoirsPage({
   const [tabIndex, setTabIndex] = useState(0);
 
   return (
-    <Layout>
+    <Layout hasContainer={false} className="overflow-x-auto max-w-7xl">
       <Meta
         title="Memoirs - Database"
         description="All memoirs in the game."

@@ -45,7 +45,7 @@ export default function CompanionsPage({
   costumeAbilities,
 }: CompanionsPageProps): JSX.Element {
   return (
-    <Layout>
+    <Layout hasContainer={false} className="overflow-x-auto">
       <Meta
         title="Abilities - Database"
         description="List of abilities."
