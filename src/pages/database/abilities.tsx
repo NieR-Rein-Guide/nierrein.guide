@@ -208,6 +208,22 @@ export default function CompanionsPage({
                       );
                     },
                   },
+                  {
+                    field: "",
+                    title: "Actions",
+                    render: (ability) => (
+                      <Link
+                        href={`/ability/weapon/${slug(ability.name)}-${slug(
+                          ability.ability_id
+                        )}`}
+                        passHref
+                      >
+                        <a className="btn" title="Go to ability page">
+                          See ability page
+                        </a>
+                      </Link>
+                    ),
+                  },
                 ]}
                 options={{
                   search: false,
@@ -333,6 +349,22 @@ export default function CompanionsPage({
                         </>
                       );
                     },
+                  },
+                  {
+                    field: "",
+                    title: "Actions",
+                    render: (ability) => (
+                      <Link
+                        href={`/ability/costume/${slug(ability.name)}-${
+                          ability.ability_id
+                        }`}
+                        passHref
+                      >
+                        <a className="btn" title="Go to ability page">
+                          See ability page
+                        </a>
+                      </Link>
+                    ),
                   },
                 ]}
                 options={{

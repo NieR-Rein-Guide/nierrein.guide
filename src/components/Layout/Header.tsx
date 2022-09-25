@@ -72,7 +72,7 @@ export default function Header(): JSX.Element {
               >
                 <a title="See releases" className="hover:underline">
                   {release.tag_name} -{" "}
-                  <span className="text-sm">
+                  <span className="md:text-sm">
                     Published{" "}
                     {formatDistanceToNow(new Date(release.published_at), {
                       addSuffix: true,
