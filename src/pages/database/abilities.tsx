@@ -6,6 +6,7 @@ import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import DatabaseNavbar from "@components/DatabaseNavbar";
 import {
+  character,
   costume,
   costume_ability,
   costume_ability_link,
@@ -25,8 +26,18 @@ import RARITY from "@utils/rarity";
 import slug from "slugg";
 
 interface CompanionsPageProps {
-  weaponAbilities: weapon_ability[];
-  costumeAbilities: costume_ability[];
+  weaponAbilities: (weapon_ability & {
+    links: (weapon_ability_link & {
+      weapon: weapon;
+    })[];
+  })[];
+  costumeAbilities: (costume_ability & {
+    links: (costume_ability_link & {
+      costume: costume & {
+        character: character;
+      };
+    })[];
+  })[];
 }
 
 export default function CompanionsPage({
@@ -61,7 +72,7 @@ export default function CompanionsPage({
                     type: "string",
                     filterPlaceholder: "Search name or description...",
                     render: (ability) => (
-                      <div className="flex items-center gap-x-4 w-96 py-2 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
+                      <div className="flex items-center gap-x-4 p-2 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition md:w-96">
                         <Ability
                           className="flex-1"
                           name={ability.name}
@@ -100,43 +111,60 @@ export default function CompanionsPage({
                     title: "Used by",
                     filtering: false,
                     render: (ability) => {
+                      const options = ability.links
+                        .filter((link) => {
+                          if (link.weapon.is_ex_weapon) {
+                            return link.weapon.evolution_order === 11;
+                          } else {
+                            return link.weapon.evolution_order === 2;
+                          }
+                        })
+                        .sort(
+                          (a, b) =>
+                            -b.weapon.weapon_type.localeCompare(
+                              a.weapon.weapon_type
+                            )
+                        );
                       return (
                         <>
-                          {/* <Autocomplete
-                          className="w-96"
-                          onChange={(e, v) => console.log(e, v)}
-                          options={options}
-                          autoHighlight
-                          groupBy={(ability) => ability.weapon.weapon_type}
-                          getOptionLabel={(option) => option?.weapon?.name}
-                          renderOption={(props, option) => (
-                            <Box
-                              component="li"
-                              sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
-                              {...props}
-                            >
-                              <WeaponThumbnail
-                                type={option.weapon.weapon_type}
-                                element={option.weapon.attribute}
-                                rarity={option.weapon.rarity}
-                                image_path={option.weapon.image_path}
-                                isDark={option.weapon.is_ex_weapon}
+                          <Autocomplete
+                            className="w-96"
+                            onSelect={(e, weapon) => {
+                              if (!weapon) return;
+                              // @ts-expect-error location
+                              window.location = `/weapons/${weapon.slug}`;
+                            }}
+                            options={options}
+                            autoHighlight
+                            groupBy={(ability) => ability.weapon.weapon_type}
+                            getOptionLabel={(option) => option?.weapon?.name}
+                            renderOption={(props, option) => (
+                              <Box
+                                component="li"
+                                sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                                {...props}
+                              >
+                                <WeaponThumbnail
+                                  type={option.weapon.weapon_type}
+                                  element={option.weapon.attribute}
+                                  rarity={option.weapon.rarity}
+                                  image_path={option.weapon.image_path}
+                                  isDark={option.weapon.is_ex_weapon}
+                                />
+                                <p className="ml-4">{option.weapon.name}</p>
+                              </Box>
+                            )}
+                            renderInput={(params) => (
+                              <TextField
+                                {...params}
+                                label={`${options.length} Corresponding weapons...`}
+                                inputProps={{
+                                  ...params.inputProps,
+                                  autoComplete: "new-password", // disable autocomplete and autofill
+                                }}
                               />
-                              <p className="ml-4">{option.weapon.name}</p>
-                            </Box>
-                          )}
-                          renderInput={(params) => (
-                            <TextField
-                              {...params}
-                              label={`${options.length} Corresponding weapons...`}
-                              inputProps={{
-                                ...params.inputProps,
-                                autoComplete: "new-password", // disable autocomplete and autofill
-                              }}
-                            />
-                          )}
-                         />*/}
-                          <p>WIP</p>
+                            )}
+                          />
                         </>
                       );
                     },
@@ -177,7 +205,7 @@ export default function CompanionsPage({
                     type: "string",
                     filterPlaceholder: "Search name or description...",
                     render: (ability) => (
-                      <div className="flex items-center gap-x-4 w-96 py-2 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
+                      <div className="flex items-center gap-x-4 p-2 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition md:w-96">
                         <Ability
                           className="flex-1"
                           name={ability.name}
@@ -216,11 +244,21 @@ export default function CompanionsPage({
                     title: "Used by",
                     filtering: false,
                     render: (ability) => {
+                      const options = ability.links.sort(
+                        (a, b) =>
+                          -b.costume.weapon_type.localeCompare(
+                            a.costume.weapon_type
+                          )
+                      );
                       return (
                         <>
-                          {/* <Autocomplete
+                          <Autocomplete
                             className="w-96"
-                            onChange={(e, v) => console.log(e, v)}
+                            onSelect={(e, costume) => {
+                              if (!costume) return;
+                              // @ts-expect-error location
+                              window.location = `/characters/${costume.character.slug}/${costume.slug}`;
+                            }}
                             options={options}
                             autoHighlight
                             groupBy={(ability) => ability.costume.weapon_type}
@@ -253,8 +291,7 @@ export default function CompanionsPage({
                                 }}
                               />
                             )}
-                          /> */}
-                          <p>WIP</p>
+                          />
                         </>
                       );
                     },
@@ -302,6 +339,11 @@ export async function getStaticProps() {
     },
   });
 
+  for (const ability of weaponAbilities) {
+    const links = await getWeaponsLinks(ability);
+    ability["links"] = links;
+  }
+
   const costumeAbilities = await prisma.dump.costume_ability.findMany({
     where: {
       ability_level: 4,
@@ -312,6 +354,11 @@ export async function getStaticProps() {
     },
   });
 
+  for (const ability of costumeAbilities) {
+    const links = await getCostumesLinks(ability);
+    ability["links"] = links;
+  }
+
   return {
     props: JSON.parse(
       JSON.stringify({
@@ -320,4 +367,51 @@ export async function getStaticProps() {
       })
     ),
   };
+}
+
+async function getWeaponsLinks(ability: weapon_ability) {
+  const tempAbilityLinks = await prisma.dump.weapon_ability.findMany({
+    where: {
+      description: ability.description,
+      ability_level: 15,
+    },
+    include: {
+      weapon_ability_link: {
+        include: {
+          weapon: true,
+        },
+      },
+    },
+  });
+
+  const abilityLinks = tempAbilityLinks
+    .map((links) => links.weapon_ability_link)
+    .flat();
+
+  return abilityLinks;
+}
+
+async function getCostumesLinks(ability: costume_ability) {
+  const tempAbilityLinks = await prisma.dump.costume_ability.findMany({
+    where: {
+      description: ability.description,
+    },
+    include: {
+      costume_ability_link: {
+        include: {
+          costume: {
+            include: {
+              character: true,
+            },
+          },
+        },
+      },
+    },
+  });
+
+  const abilityLinks = tempAbilityLinks
+    .map((links) => links.costume_ability_link)
+    .flat();
+
+  return abilityLinks;
 }
