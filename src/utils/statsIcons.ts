@@ -6,6 +6,13 @@ import defIcon from "../../public/stats/def.png";
 import hpIcon from "../../public/stats/hp.png";
 import evasionIcon from "../../public/stats/evasion.png";
 
+import largeAtkIcon from "../../public/icons/stats/atk.png";
+import largeAgiIcon from "../../public/icons/stats/agi.png";
+import largeCdIcon from "../../public/icons/stats/cd.png";
+import largeCrIcon from "../../public/icons/stats/cr.png";
+import largeDefIcon from "../../public/icons/stats/def.png";
+import largeHpIcon from "../../public/icons/stats/hp.png";
+
 const statsIcons = {
   atk: atkIcon,
   agility: agilityIcon,
@@ -22,7 +29,13 @@ const statsIcons = {
   "HP": hpIcon,
   "ATTACK": atkIcon,
   "VITALITY": defIcon,
-  "CRITICAL_RATIO": crIcon
+  "CRITICAL_RATIO": crIcon,
+  largeAtk: largeAtkIcon,
+  largeAgi: largeAgiIcon,
+  largeCd: largeCdIcon,
+  largeCr: largeCrIcon,
+  largeDef: largeDefIcon,
+  largeHp: largeHpIcon,
 };
 
 export default statsIcons;

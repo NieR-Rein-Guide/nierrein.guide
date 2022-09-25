@@ -20,6 +20,9 @@ import classNames from "classnames";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import slug from "slugg";
 import SVG from "react-inlinesvg";
+import Image from "next/image";
+import statsIcons from "@utils/statsIcons";
+import { Chip } from "@mui/material";
 
 interface WeaponAbilityProps {
   ability: weapon_ability;
@@ -72,7 +75,7 @@ export default function WeaponAbility({
       />
 
       <nav className="mb-16">
-        <Link href="/database" passHref={true}>
+        <Link href="/database/abilities" passHref={true}>
           <a className="btn">
             <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Return to Abilities</span>
@@ -134,7 +137,12 @@ export default function WeaponAbility({
                   key={weapon.weapon.weapon_id}
                   className="relative bordered flex items-center bg-grey-dark p-4"
                 >
-                  <div className="flex items-center flex-1">
+                  <Chip
+                    className="absolute z-10 bg-beige text-black -right-2 -top-2"
+                    label={`Lv. ${weapon.weapon.weapon_stat[0].level}`}
+                    size="small"
+                  />
+                  <div className="flex lg:items-center flex-1">
                     <WeaponThumbnail
                       href={weaponSlug}
                       type={weapon.weapon.weapon_type}
@@ -144,19 +152,56 @@ export default function WeaponAbility({
                       isDark={weapon.weapon.is_ex_weapon}
                     />
                     <div className="ml-4 flex flex-col gap-y-2 flex-1">
-                      <p className="mb-1">
-                        {weapon.weapon.is_ex_weapon && (
-                          <span className="text-rarity-4">EX </span>
-                        )}
-                        {weapon.weapon.name}
-                      </p>
-                      <div className="flex flex-col md:flex-row justify-between flex-1 gap-y-8">
+                      <div className="flex flex-col sm:flex-row justify-between mb-1">
+                        <Link href={weaponSlug} passHref>
+                          <a className="mb-1 hover:underline">
+                            {weapon.weapon.is_ex_weapon && (
+                              <span className="text-rarity-4">EX </span>
+                            )}
+                            {weapon.weapon.name}
+                          </a>
+                        </Link>
+
+                        <ul className="flex gap-x-4 text-sm">
+                          <li className="flex items-center gap-x-1">
+                            <Image
+                              layout="intrinsic"
+                              src={statsIcons.largeHp}
+                              alt="HP"
+                              width={24}
+                              height={24}
+                            />
+                            {weapon.weapon.weapon_stat[0].hp}
+                          </li>
+                          <li className="flex items-center gap-x-1 text-red-300">
+                            <Image
+                              layout="intrinsic"
+                              src={statsIcons.largeAtk}
+                              alt="HP"
+                              width={24}
+                              height={24}
+                            />
+                            {weapon.weapon.weapon_stat[0].atk}
+                          </li>
+                          <li className="flex items-center gap-x-1 text-blue-300">
+                            <Image
+                              layout="intrinsic"
+                              src={statsIcons.largeDef}
+                              alt="HP"
+                              width={24}
+                              height={24}
+                            />
+                            {weapon.weapon.weapon_stat[0].vit}
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="flex flex-col lg:flex-row justify-between flex-1 gap-y-8">
                         <ul className="flex flex-col gap-4">
                           {weapon.weapon.weapon_skill_link.map(
                             (weaponSkill) => (
                               <li key={weaponSkill.weapon_skill.skill_id}>
                                 <p className="text-xs text-beige leading-3 max-w-[200px]">
-                                  {weaponSkill.weapon_skill.short_description}
+                                  ◈ {weaponSkill.weapon_skill.short_description}
                                 </p>
                               </li>
                             )

@@ -22,6 +22,9 @@ import slug from "slugg";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import RARITY from "@utils/rarity";
 import SVG from "react-inlinesvg";
+import Image from "next/image";
+import statsIcons from "@utils/statsIcons";
+import { Chip } from "@mui/material";
 
 interface WeaponAbilityProps {
   ability: costume_ability;
@@ -55,7 +58,7 @@ export default function CostumeAbility({
       />
 
       <nav className="mb-16">
-        <Link href="/database" passHref={true}>
+        <Link href="/database/abilities" passHref={true}>
           <a className="btn">
             <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Return to Abilities</span>
@@ -96,7 +99,12 @@ export default function CostumeAbility({
                 key={costume.costume.costume_id}
                 className="relative bordered flex items-center bg-grey-dark p-4"
               >
-                <div className="flex items-center flex-1">
+                <Chip
+                  className="absolute z-10 bg-beige text-black -right-2 -top-2"
+                  label={`Lv. ${costume.costume.costume_stat[0].level}`}
+                  size="small"
+                />
+                <div className="flex lg:items-center flex-1">
                   <CostumeThumbnail
                     href={`/characters/${costume.costume.character.slug}/${costume.costume.slug}`}
                     src={`${CDN_URL}${costume.costume.image_path_base}battle.png`}
@@ -105,19 +113,59 @@ export default function CostumeAbility({
                     weaponType={costume.costume.weapon_type}
                   />
                   <div className="ml-4 flex flex-col gap-y-2 flex-1">
-                    <p className="mb-1">
-                      {costume.costume.is_ex_costume && (
-                        <span className="text-rarity-4">EX </span>
-                      )}
-                      {costume.costume.title}
-                    </p>
-                    <div className="flex flex-col md:flex-row justify-between flex-1 gap-y-8">
+                    <div className="flex flex-col sm:flex-row justify-between mb-1">
+                      <Link
+                        href={`/characters/${costume.costume.character.slug}/${costume.costume.slug}`}
+                        passHref
+                      >
+                        <a className="mb-1 hover:underline">
+                          {costume.costume.is_ex_costume && (
+                            <span className="text-rarity-4">EX </span>
+                          )}
+                          {costume.costume.title}
+                        </a>
+                      </Link>
+                      <ul className="flex gap-x-4 text-sm">
+                        <li className="flex items-center gap-x-1">
+                          <Image
+                            layout="intrinsic"
+                            src={statsIcons.largeHp}
+                            alt="HP"
+                            width={24}
+                            height={24}
+                          />
+                          {costume.costume.costume_stat[0].hp}
+                        </li>
+                        <li className="flex items-center gap-x-1 text-red-300">
+                          <Image
+                            layout="intrinsic"
+                            src={statsIcons.largeAtk}
+                            alt="HP"
+                            width={24}
+                            height={24}
+                          />
+                          {costume.costume.costume_stat[0].atk}
+                        </li>
+                        <li className="flex items-center gap-x-1 text-blue-300">
+                          <Image
+                            layout="intrinsic"
+                            src={statsIcons.largeDef}
+                            alt="HP"
+                            width={24}
+                            height={24}
+                          />
+                          {costume.costume.costume_stat[0].vit}
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="flex flex-col lg:flex-row justify-between flex-1 gap-y-8">
                       <ul className="flex flex-col gap-4">
                         {costume.costume.costume_skill_link.map(
                           (costumeSkill) => (
                             <li key={costumeSkill.costume_skill.skill_id}>
                               <p className="text-xs text-beige leading-3 max-w-[200px]">
-                                {costumeSkill.costume_skill.short_description}
+                                ◈ {costumeSkill.costume_skill.short_description}
                               </p>
                             </li>
                           )
@@ -219,7 +267,12 @@ export async function getStaticProps({ params }) {
                   costume_skill: true,
                 },
               },
-              costume_stat: true,
+              costume_stat: {
+                take: 1,
+                orderBy: {
+                  level: "desc",
+                },
+              },
             },
           },
         },

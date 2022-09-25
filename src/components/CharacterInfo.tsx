@@ -175,6 +175,9 @@ function CostumeDetails({
                   <h2 className="text-2xl text-center">Awakening</h2>
                 </Lines>
                 <Ability
+                  href={`/ability/costume/${slug(
+                    awakeningAbility.costume_ability.name
+                  )}-${awakeningAbility.costume_ability.ability_id}`}
                   className={classNames("flex-1 transition-opacity")}
                   name={awakeningAbility.costume_ability.name}
                   description={awakeningAbility.costume_ability.description}

@@ -24,6 +24,7 @@ import {
   weapon_story,
   weapon_story_link,
 } from "@prisma/client";
+import slug from "slugg";
 
 interface WeaponInfoProps {
   weapons: (weapon & {
@@ -240,6 +241,9 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
             </Lines>
 
             <Ability
+              href={`/ability/weapon/${slug(
+                abilities[1]?.[14]?.weapon_ability.name
+              )}-${abilities[1]?.[14]?.weapon_ability.ability_id}`}
               name={abilities[1][skillAbilitiesLevel].weapon_ability.name}
               description={
                 abilities[1][skillAbilitiesLevel].weapon_ability.description
@@ -253,6 +257,9 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
 
             {abilities?.[2] ? (
               <Ability
+                href={`/ability/weapon/${slug(
+                  abilities[2]?.[14]?.weapon_ability.name
+                )}-${abilities[2]?.[14]?.weapon_ability.ability_id}`}
                 name={abilities[2][skillAbilitiesLevel].weapon_ability.name}
                 description={
                   abilities[2][skillAbilitiesLevel].weapon_ability.description
@@ -268,6 +275,9 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
 
             {abilities?.[3] ? (
               <Ability
+                href={`/ability/weapon/${slug(
+                  abilities[3]?.[14]?.weapon_ability.name
+                )}-${abilities[3]?.[14]?.weapon_ability.ability_id}`}
                 name={abilities[3][skillAbilitiesLevel].weapon_ability.name}
                 description={
                   abilities[3][skillAbilitiesLevel].weapon_ability.description
