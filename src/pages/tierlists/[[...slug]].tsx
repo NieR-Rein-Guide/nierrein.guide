@@ -42,10 +42,6 @@ export default function TierlistsPageProps({
   const [tabIndex] = useState(defaultTab);
   const [pvpTabIndex] = useState(defaultPvpTab);
 
-  useEffect(() => {
-    console.log(router);
-  }, []);
-
   const handleTabsChange = (index) => {
     router.push(`/tierlists/${TABS_MAPPING[index]}`);
   };

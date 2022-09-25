@@ -249,8 +249,6 @@ export async function getStaticPaths() {
     },
   });
 
-  console.log(abilities);
-
   const paths = abilities.map((ability) => ({
     params: {
       slug: `${slug(ability.name)}-${ability.ability_id.toString()}`,

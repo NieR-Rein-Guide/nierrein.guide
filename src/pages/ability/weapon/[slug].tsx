@@ -43,6 +43,26 @@ export default function WeaponAbility({
   const [showOnlyInventory, setShowOnlyInventory] = useState(false);
   const ownedWeapons = useInventoryStore((state) => state.weapons);
 
+  const MAX_EVOLUTION_ORDER_EX = abilityLinks
+    .filter((weap) => weap.weapon.is_ex_weapon)
+    .reduce(
+      (maxValue, value) =>
+        value.weapon.evolution_order > maxValue
+          ? value.weapon.evolution_order
+          : maxValue,
+      0
+    );
+
+  const MAX_EVOLUTION_ORDER = abilityLinks
+    .filter((weap) => !weap.weapon.is_ex_weapon)
+    .reduce(
+      (maxValue, value) =>
+        value.weapon.evolution_order > maxValue
+          ? value.weapon.evolution_order
+          : maxValue,
+      0
+    );
+
   return (
     <Layout>
       <Meta
@@ -84,9 +104,9 @@ export default function WeaponAbility({
           {abilityLinks
             .filter((link) => {
               if (link.weapon.is_ex_weapon) {
-                return link.weapon.evolution_order === 11;
+                return link.weapon.evolution_order === MAX_EVOLUTION_ORDER_EX;
               } else {
-                return link.weapon.evolution_order === 2;
+                return link.weapon.evolution_order === MAX_EVOLUTION_ORDER;
               }
             })
             .filter((weap) => {
@@ -95,82 +115,101 @@ export default function WeaponAbility({
               }
               return true;
             })
-            .map((weapon) => (
-              <div
-                key={weapon.weapon.weapon_id}
-                className="relative bordered flex items-center bg-grey-dark p-4"
-              >
-                <div className="flex items-center flex-1">
-                  <WeaponThumbnail
-                    href={`/weapons/${weapon.weapon.slug}`}
-                    type={weapon.weapon.weapon_type}
-                    element={weapon.weapon.attribute}
-                    rarity={weapon.weapon.rarity}
-                    image_path={weapon.weapon.image_path}
-                    isDark={weapon.weapon.is_ex_weapon}
-                  />
-                  <div className="ml-4 flex flex-col gap-y-2 flex-1">
-                    <p className="mb-1">
-                      {weapon.weapon.is_ex_weapon && (
-                        <span className="text-rarity-4">EX </span>
-                      )}
-                      {weapon.weapon.name}
-                    </p>
-                    <div className="flex flex-col md:flex-row justify-between flex-1 gap-y-8">
-                      <ul className="flex flex-col gap-4">
-                        {weapon.weapon.weapon_skill_link.map((weaponSkill) => (
-                          <li key={weaponSkill.weapon_skill.skill_id}>
-                            <p className="text-xs text-beige leading-3 max-w-[200px]">
-                              {weaponSkill.weapon_skill.short_description}
-                            </p>
-                          </li>
-                        ))}
-                      </ul>
-                      <ul className="flex gap-x-2">
-                        {weapon.weapon.weapon_ability_link.map(
-                          (weaponAbility) => (
-                            <li
-                              className="transform hover:scale-105 ease-out-cubic transition-transform relative"
-                              key={weaponAbility.weapon_ability.ability_id}
-                            >
-                              <AbilityThumbnail
-                                ability={weaponAbility.weapon_ability}
-                              >
-                                <span
-                                  className={classNames(
-                                    "truncate w-16 text-xxs text-center",
-                                    weaponAbility.weapon_ability.description ===
-                                      ability.description
-                                      ? "text-green-300"
-                                      : ""
-                                  )}
-                                >
-                                  {weaponAbility.weapon_ability.name}
-                                </span>
-                              </AbilityThumbnail>
-                              <Link
-                                href={`/ability/weapon/${slug(
-                                  weaponAbility.weapon_ability.name
-                                )}-${weaponAbility.weapon_ability.ability_id}`}
-                              >
-                                <a
-                                  title={weaponAbility.weapon_ability.name}
-                                  className="absolute inset-0"
-                                >
-                                  <span className="sr-only">
-                                    see {weaponAbility.weapon_ability.name}
-                                  </span>
-                                </a>
-                              </Link>
-                            </li>
-                          )
+            .map((weapon) => {
+              let weaponSlug = `/weapons/${weapon.weapon.slug}`;
+
+              if (
+                weapon.weapon.is_ex_weapon &&
+                weapon.weapon.evolution_order < 11
+              ) {
+                const fragments = weapon.weapon.slug.split("-");
+                fragments.pop();
+                fragments.push("iv");
+
+                weaponSlug = `/weapons/${fragments.join("-")}`;
+              }
+
+              return (
+                <div
+                  key={weapon.weapon.weapon_id}
+                  className="relative bordered flex items-center bg-grey-dark p-4"
+                >
+                  <div className="flex items-center flex-1">
+                    <WeaponThumbnail
+                      href={weaponSlug}
+                      type={weapon.weapon.weapon_type}
+                      element={weapon.weapon.attribute}
+                      rarity={weapon.weapon.rarity}
+                      image_path={weapon.weapon.image_path}
+                      isDark={weapon.weapon.is_ex_weapon}
+                    />
+                    <div className="ml-4 flex flex-col gap-y-2 flex-1">
+                      <p className="mb-1">
+                        {weapon.weapon.is_ex_weapon && (
+                          <span className="text-rarity-4">EX </span>
                         )}
-                      </ul>
+                        {weapon.weapon.name}
+                      </p>
+                      <div className="flex flex-col md:flex-row justify-between flex-1 gap-y-8">
+                        <ul className="flex flex-col gap-4">
+                          {weapon.weapon.weapon_skill_link.map(
+                            (weaponSkill) => (
+                              <li key={weaponSkill.weapon_skill.skill_id}>
+                                <p className="text-xs text-beige leading-3 max-w-[200px]">
+                                  {weaponSkill.weapon_skill.short_description}
+                                </p>
+                              </li>
+                            )
+                          )}
+                        </ul>
+                        <ul className="flex gap-x-2">
+                          {weapon.weapon.weapon_ability_link.map(
+                            (weaponAbility) => (
+                              <li
+                                className="transform hover:scale-105 ease-out-cubic transition-transform relative"
+                                key={weaponAbility.weapon_ability.ability_id}
+                              >
+                                <AbilityThumbnail
+                                  ability={weaponAbility.weapon_ability}
+                                >
+                                  <span
+                                    className={classNames(
+                                      "truncate w-16 text-xxs text-center",
+                                      weaponAbility.weapon_ability
+                                        .description === ability.description
+                                        ? "text-green-300"
+                                        : ""
+                                    )}
+                                  >
+                                    {weaponAbility.weapon_ability.name}
+                                  </span>
+                                </AbilityThumbnail>
+                                <Link
+                                  href={`/ability/weapon/${slug(
+                                    weaponAbility.weapon_ability.name
+                                  )}-${
+                                    weaponAbility.weapon_ability.ability_id
+                                  }`}
+                                >
+                                  <a
+                                    title={weaponAbility.weapon_ability.name}
+                                    className="absolute inset-0"
+                                  >
+                                    <span className="sr-only">
+                                      see {weaponAbility.weapon_ability.name}
+                                    </span>
+                                  </a>
+                                </Link>
+                              </li>
+                            )
+                          )}
+                        </ul>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
         </div>
       </section>
     </Layout>
