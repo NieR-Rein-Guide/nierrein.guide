@@ -65,7 +65,7 @@ export default function Header(): JSX.Element {
       <div className="absolute right-0 left-0 top-0 mx-auto z-50">
         <div className="relative flex justify-start md:justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50">
           <span className="text-xs md:text-base">
-            {release && (
+            {(release && (
               <Link
                 href="https://github.com/NieR-Rein-Guide/nierrein.guide/releases/"
                 passHref
@@ -80,7 +80,7 @@ export default function Header(): JSX.Element {
                   </span>
                 </a>
               </Link>
-            )}
+            )) || <span>Fetching latest release...</span>}
           </span>
 
           <div className="absolute top-1/2 transform -translate-y-1/2 right-4 z-50">

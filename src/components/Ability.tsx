@@ -14,6 +14,7 @@ interface AbilityProps {
   className?: string;
   imagePathBase?: string;
   href?: string;
+  fullLink?: boolean;
 }
 
 export default function Ability({
@@ -24,12 +25,14 @@ export default function Ability({
   maxLevel = 4,
   className = "",
   href,
+  fullLink,
 }: AbilityProps): JSX.Element {
   return (
     <div
       className={classNames(
         "flex gap-4 bg-grey-dark p-4 relative bordered",
-        className
+        className,
+        fullLink ? "transform ease-out-cubic transition hover:scale-105" : ""
       )}
     >
       <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
@@ -47,7 +50,7 @@ export default function Ability({
             <img alt="" src={`${CDN_URL}${imagePathBase}standard.png`} />
           </div>
 
-          {href && (
+          {href && !fullLink && (
             <Link href={href} passHref>
               <a className="absolute inset-0 z-10">
                 <span className="sr-only">See ability {name}</span>
@@ -62,6 +65,14 @@ export default function Ability({
           </p>
         </div>
       </div>
+
+      {href && fullLink && (
+        <Link href={href} passHref>
+          <a className="absolute inset-0 z-10">
+            <span className="sr-only">See ability {name}</span>
+          </a>
+        </Link>
+      )}
     </div>
   );
 }
