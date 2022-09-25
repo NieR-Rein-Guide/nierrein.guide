@@ -114,20 +114,20 @@ export default function CompanionsPage({
                       const MAX_EVOLUTION_ORDER_EX = ability.links
                         .filter((weap) => weap.weapon.is_ex_weapon)
                         .reduce(
-                          (acc, value) =>
-                            value.weapon.evolution_order > acc
+                          (maxValue, value) =>
+                            value.weapon.evolution_order > maxValue
                               ? value.weapon.evolution_order
-                              : acc,
+                              : maxValue,
                           0
                         );
 
                       const MAX_EVOLUTION_ORDER = ability.links
                         .filter((weap) => !weap.weapon.is_ex_weapon)
                         .reduce(
-                          (acc, value) =>
-                            value.weapon.evolution_order > acc
+                          (maxValue, value) =>
+                            value.weapon.evolution_order > maxValue
                               ? value.weapon.evolution_order
-                              : acc,
+                              : maxValue,
                           0
                         );
 
@@ -155,10 +155,23 @@ export default function CompanionsPage({
                         <>
                           <Autocomplete
                             className="w-96"
-                            onSelect={(e, weapon) => {
+                            onChange={(e, weapon) => {
                               if (!weapon) return;
-                              // @ts-expect-error location
-                              window.location = `/weapons/${weapon.slug}`;
+                              if (
+                                weapon.weapon.is_ex_weapon &&
+                                weapon.weapon.evolution_order < 11
+                              ) {
+                                const fragments = weapon.weapon.slug.split("-");
+                                fragments.pop();
+                                fragments.push("iv");
+                                const weaponSlug = fragments.join("-");
+
+                                // @ts-expect-error location
+                                window.location = `/weapons/${weaponSlug}`;
+                                return;
+                              }
+
+                              window.location = `/weapons/${weapon.weapon.slug}`;
                             }}
                             options={options}
                             autoHighlight
@@ -199,7 +212,6 @@ export default function CompanionsPage({
                 options={{
                   search: false,
                   actionsColumnIndex: -1,
-                  grouping: false,
                   searchFieldAlignment: "right",
                   filtering: true,
                   pageSize: 50,
@@ -280,10 +292,10 @@ export default function CompanionsPage({
                         <>
                           <Autocomplete
                             className="w-96"
-                            onSelect={(e, costume) => {
+                            onChange={(e, costume) => {
                               if (!costume) return;
                               // @ts-expect-error location
-                              window.location = `/characters/${costume.character.slug}/${costume.slug}`;
+                              window.location = `/characters/${costume.costume.character.slug}/${costume.costume.slug}`;
                             }}
                             options={options}
                             autoHighlight
@@ -326,7 +338,6 @@ export default function CompanionsPage({
                 options={{
                   search: false,
                   actionsColumnIndex: -1,
-                  grouping: true,
                   searchFieldAlignment: "right",
                   filtering: true,
                   pageSize: 50,
