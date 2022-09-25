@@ -67,11 +67,9 @@ export default function Ability({
       </div>
 
       {href && fullLink && (
-        <Link href={href} passHref>
-          <a className="absolute inset-0 z-10">
-            <span className="sr-only">See ability {name}</span>
-          </a>
-        </Link>
+        <a href={href} className="absolute inset-0 z-10">
+          <span className="sr-only">See ability {name}</span>
+        </a>
       )}
     </div>
   );
