@@ -111,12 +111,38 @@ export default function CompanionsPage({
                     title: "Used by",
                     filtering: false,
                     render: (ability) => {
+                      const MAX_EVOLUTION_ORDER_EX = ability.links
+                        .filter((weap) => weap.weapon.is_ex_weapon)
+                        .reduce(
+                          (acc, value) =>
+                            value.weapon.evolution_order > acc
+                              ? value.weapon.evolution_order
+                              : acc,
+                          0
+                        );
+
+                      const MAX_EVOLUTION_ORDER = ability.links
+                        .filter((weap) => !weap.weapon.is_ex_weapon)
+                        .reduce(
+                          (acc, value) =>
+                            value.weapon.evolution_order > acc
+                              ? value.weapon.evolution_order
+                              : acc,
+                          0
+                        );
+
                       const options = ability.links
                         .filter((link) => {
                           if (link.weapon.is_ex_weapon) {
-                            return link.weapon.evolution_order === 11;
+                            return (
+                              link.weapon.evolution_order ===
+                              MAX_EVOLUTION_ORDER_EX
+                            );
                           } else {
-                            return link.weapon.evolution_order === 2;
+                            return (
+                              link.weapon.evolution_order ===
+                              MAX_EVOLUTION_ORDER
+                            );
                           }
                         })
                         .sort(
@@ -173,7 +199,7 @@ export default function CompanionsPage({
                 options={{
                   search: false,
                   actionsColumnIndex: -1,
-                  grouping: true,
+                  grouping: false,
                   searchFieldAlignment: "right",
                   filtering: true,
                   pageSize: 50,
