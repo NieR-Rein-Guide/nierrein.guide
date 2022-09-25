@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 import { FormControlLabel, Switch } from "@mui/material";
 import { useSettingsStore } from "../../store/settings";
+import axios from "axios";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
@@ -16,6 +18,7 @@ export default function Header(): JSX.Element {
   const defaultAnimationPosition = 18;
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
+  const [release, setRelease] = useState(null);
   const settings = useSettingsStore((state) => state);
 
   function start() {
@@ -39,6 +42,17 @@ export default function Header(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  useEffect(() => {
+    getLatestRelease();
+  }, []);
+
+  async function getLatestRelease() {
+    const { data } = await axios.get(
+      "https://api.github.com/repos/NieR-Rein-Guide/nierrein.guide/releases?per_page=1?page=1"
+    );
+
+    setRelease(data[0]);
+  }
   function handleNavToggle() {
     setIsNavOpened(!isNavOpened);
   }
@@ -50,7 +64,24 @@ export default function Header(): JSX.Element {
     <>
       <div className="absolute right-0 left-0 top-0 mx-auto z-50">
         <div className="relative flex justify-start md:justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50">
-          <span className="text-xs md:text-base">Updated: 22 Sept, 2022</span>
+          <span className="text-xs md:text-base">
+            {release && (
+              <Link
+                href="https://github.com/NieR-Rein-Guide/nierrein.guide/releases/"
+                passHref
+              >
+                <a title="See releases" className="hover:underline">
+                  {release.tag_name} -{" "}
+                  <span className="text-sm">
+                    Published{" "}
+                    {formatDistanceToNow(new Date(release.published_at), {
+                      addSuffix: true,
+                    })}
+                  </span>
+                </a>
+              </Link>
+            )}
+          </span>
 
           <div className="absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
             <FormControlLabel
