@@ -82,6 +82,13 @@ export default function WeaponAbility({
         </div>
         <div className="flex flex-col gap-y-4 md:col-span-4">
           {abilityLinks
+            .filter((link) => {
+              if (link.weapon.is_ex_weapon) {
+                return link.weapon.evolution_order === 11;
+              } else {
+                return link.weapon.evolution_order === 2;
+              }
+            })
             .filter((weap) => {
               if (showOnlyInventory) {
                 return ownedWeapons.includes(weap.weapon.weapon_id);
