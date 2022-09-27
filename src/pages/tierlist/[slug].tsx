@@ -18,6 +18,9 @@ import { FiThumbsUp } from "react-icons/fi";
 import { useCreatedTierlists } from "@store/created-tierlists";
 import Link from "next/link";
 import { getTierlist } from "@models/tiers";
+import { useInventoryStore } from "@store/inventory";
+import Checkbox from "@components/form/Checkbox";
+import { useState } from "react";
 
 interface TierListProps {
   tierlist: tierlists & {
@@ -59,6 +62,10 @@ export function TierlistContent({ tierlist, items }) {
   const localVotes = useTierlistsVotes((state) => state.votes);
   const addVote = useTierlistsVotes((state) => state.addVote);
   const createdTierlist = useCreatedTierlists((state) => state.tierlists);
+  const ownedCostumes = useInventoryStore((state) => state.costumes);
+  const ownedWeapons = useInventoryStore((state) => state.weapons);
+
+  const [showOnlyInventory, setShowOnlyInventory] = useState(false);
 
   const isOwner = createdTierlist.find(
     (tier) => tier.tierlist_id === tierlist.tierlist_id
@@ -84,7 +91,7 @@ export function TierlistContent({ tierlist, items }) {
 
   return (
     <>
-      <div className="flex justify-between mb-12 md:mb-24">
+      <div className="flex items-center justify-between mb-12 md:mb-24">
         <Tooltip
           title={hasVoted ? "You already voted for this tierlist" : "Vote"}
         >
@@ -113,9 +120,147 @@ export function TierlistContent({ tierlist, items }) {
             addSuffix: true,
           })}
         </p>
+        <div className="flex justify-center mb-4 md:absolute md:top-4 md:right-4">
+          <Checkbox
+            label="Only inventory"
+            isChecked={showOnlyInventory}
+            setState={(e) => setShowOnlyInventory(e.target.checked)}
+          />
+        </div>
       </div>
 
-      <TiersListing tierlist={tierlist} items={items} />
+      <div className="flex flex-col gap-y-8 relative">
+        {tierlist.tiers.map((tier) => (
+          <div className="tierlist__row" key={tier.tier}>
+            {(RANK_THUMBNAILS[tier.tier] && (
+              <Image src={RANK_THUMBNAILS[tier.tier]} alt={tier.tier} />
+            )) || <h2 className="text-2xl">{tier.tier}</h2>}
+
+            <div className="flex flex-wrap justify-center md:justify-start gap-4">
+              {tierlist.type === "costumes" && (
+                <>
+                  {tier.tiers_items
+                    .filter((tierItem) => {
+                      if (!showOnlyInventory) return true;
+                      return ownedCostumes.includes(tierItem.item_id);
+                    })
+                    .map((tierItem) => {
+                      const costume = items.find(
+                        (item) => item.costume_id === tierItem.item_id
+                      );
+
+                      return (
+                        <div
+                          className="relative flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
+                          key={costume.costume_id}
+                        >
+                          {tierItem.tooltip && (
+                            <Tooltip
+                              className="cursor-help"
+                              title={
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: tierItem.tooltip,
+                                  }}
+                                ></div>
+                              }
+                            >
+                              <div className="absolute -top-2 right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-6 w-6 text-lg font-labor">
+                                ?
+                              </div>
+                            </Tooltip>
+                          )}
+                          <CostumeThumbnail
+                            href={`/characters/${costume.character.slug}/${costume.slug}`}
+                            src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                            alt={`${costume.title} thumbnail`}
+                            rarity={RARITY[costume.rarity]}
+                            weaponType={costume.weapon_type}
+                          />
+                          <p className="text-sm mb-0 leading-none">
+                            {costume.is_ex_costume && (
+                              <span className="text-rarity-4">EX </span>
+                            )}
+                            {costume.character.name}
+                          </p>
+                          <span className="text-xs text-center text-beige line-clamp-1 leading-none">
+                            {costume.title}
+                          </span>
+                        </div>
+                      );
+                    })}
+                </>
+              )}
+
+              {tierlist.type === "weapons" && (
+                <>
+                  {tier.tiers_items
+                    .filter((tierItem) => {
+                      if (!showOnlyInventory) return true;
+                      return ownedWeapons.includes(tierItem.item_id);
+                    })
+                    .map((tierItem, index) => {
+                      const weapon = items.find(
+                        (item) => item.weapon_id === tierItem.item_id
+                      );
+
+                      return (
+                        <div
+                          className="relative flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
+                          key={weapon.weapon_id}
+                        >
+                          {tierItem.tooltip && (
+                            <Tooltip
+                              className="cursor-help"
+                              title={
+                                <div
+                                  dangerouslySetInnerHTML={{
+                                    __html: tierItem.tooltip,
+                                  }}
+                                ></div>
+                              }
+                            >
+                              <div className="absolute -top-2 right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-6 w-6 text-lg font-labor">
+                                ?
+                              </div>
+                            </Tooltip>
+                          )}
+                          <WeaponThumbnail
+                            key={`${weapon.weapon_id}-${index}`}
+                            href={
+                              weapon?.slug
+                                ? `/weapons/${weapon?.slug}`
+                                : undefined
+                            }
+                            element={weapon?.attribute}
+                            rarity={weapon?.rarity}
+                            type={weapon?.weapon_type}
+                            isDark={weapon?.is_ex_weapon}
+                            alt={weapon?.name}
+                            image_path={weapon?.image_path}
+                          />
+                          <p className="text-sm mb-0 leading-none">
+                            {weapon.is_ex_weapon && (
+                              <span className="text-rarity-4">EX </span>
+                            )}
+                            <span className="text-xs text-center text-beige line-clamp-1 leading-none">
+                              {weapon.name}
+                            </span>
+                          </p>
+                        </div>
+                      );
+                    })}
+                </>
+              )}
+            </div>
+            <img
+              className="py-8 w-full col-span-full opacity-20"
+              src="/border.svg"
+              alt=""
+            />
+          </div>
+        ))}
+      </div>
 
       {tierlist.description && (
         <div
@@ -124,131 +269,6 @@ export function TierlistContent({ tierlist, items }) {
         ></div>
       )}
     </>
-  );
-}
-
-function TiersListing({ tierlist, items }) {
-  return (
-    <div className="flex flex-col gap-y-8 relative">
-      {tierlist.tiers.map((tier) => (
-        <div className="tierlist__row" key={tier.tier}>
-          {(RANK_THUMBNAILS[tier.tier] && (
-            <Image src={RANK_THUMBNAILS[tier.tier]} alt={tier.tier} />
-          )) || <h2 className="text-2xl">{tier.tier}</h2>}
-
-          <div className="flex flex-wrap justify-center md:justify-start gap-4">
-            {tierlist.type === "costumes" && (
-              <>
-                {tier.tiers_items.map((tierItem) => {
-                  const costume = items.find(
-                    (item) => item.costume_id === tierItem.item_id
-                  );
-
-                  return (
-                    <div
-                      className="relative flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
-                      key={costume.costume_id}
-                    >
-                      {tierItem.tooltip && (
-                        <Tooltip
-                          className="cursor-help"
-                          title={
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: tierItem.tooltip,
-                              }}
-                            ></div>
-                          }
-                        >
-                          <div className="absolute -top-2 right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-6 w-6 text-lg font-labor">
-                            ?
-                          </div>
-                        </Tooltip>
-                      )}
-                      <CostumeThumbnail
-                        href={`/characters/${costume.character.slug}/${costume.slug}`}
-                        src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                        alt={`${costume.title} thumbnail`}
-                        rarity={RARITY[costume.rarity]}
-                        weaponType={costume.weapon_type}
-                      />
-                      <p className="text-sm mb-0 leading-none">
-                        {costume.is_ex_costume && (
-                          <span className="text-rarity-4">EX </span>
-                        )}
-                        {costume.character.name}
-                      </p>
-                      <span className="text-xs text-center text-beige line-clamp-1 leading-none">
-                        {costume.title}
-                      </span>
-                    </div>
-                  );
-                })}
-              </>
-            )}
-
-            {tierlist.type === "weapons" && (
-              <>
-                {tier.tiers_items.map((tierItem, index) => {
-                  const weapon = items.find(
-                    (item) => item.weapon_id === tierItem.item_id
-                  );
-
-                  return (
-                    <div
-                      className="relative flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
-                      key={weapon.weapon_id}
-                    >
-                      {tierItem.tooltip && (
-                        <Tooltip
-                          className="cursor-help"
-                          title={
-                            <div
-                              dangerouslySetInnerHTML={{
-                                __html: tierItem.tooltip,
-                              }}
-                            ></div>
-                          }
-                        >
-                          <div className="absolute -top-2 right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-6 w-6 text-lg font-labor">
-                            ?
-                          </div>
-                        </Tooltip>
-                      )}
-                      <WeaponThumbnail
-                        key={`${weapon.weapon_id}-${index}`}
-                        href={
-                          weapon?.slug ? `/weapons/${weapon?.slug}` : undefined
-                        }
-                        element={weapon?.attribute}
-                        rarity={weapon?.rarity}
-                        type={weapon?.weapon_type}
-                        isDark={weapon?.is_ex_weapon}
-                        alt={weapon?.name}
-                        image_path={weapon?.image_path}
-                      />
-                      <p className="text-sm mb-0 leading-none">
-                        {weapon.is_ex_weapon && (
-                          <span className="text-rarity-4">EX </span>
-                        )}
-                        <span className="text-xs text-center text-beige line-clamp-1 leading-none">
-                          {weapon.name}
-                        </span>
-                      </p>
-                    </div>
-                  );
-                })}
-              </>
-            )}
-          </div>
-          <img
-            className="py-8 w-full col-span-full opacity-20"
-            src="/border.svg"
-            alt=""
-          />
-        </div>
-      ))}
-    </div>
   );
 }
 
