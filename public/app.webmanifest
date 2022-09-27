@@ -1,9 +1,8 @@
 {
-    "name": "NieR Re[in] Global Guide & Database",
+    "name": "NieR Re[in] Guide",
     "short_name": "NieR Re[in] Guide",
     "background_color": "#000",
-    "description": "Brings you free, high quality content : Guides, updated tierlists, complete databases, 3d model viewer and more!",
-    "start_url": ".",
+    "start_url": "/",
     "theme_color": "black",
     "categories": ["game", "education", "guide"],
     "icons": [
