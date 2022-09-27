@@ -462,6 +462,7 @@ export function CostumesTable({
 export function CostumesGrid({
   costumes,
   showUnreleasedContent = true,
+  isLibrary = false,
 }: {
   costumes: (costume & {
     costume_ability_link: (costume_ability_link & {
@@ -475,6 +476,7 @@ export function CostumesGrid({
     emblem: emblem;
   })[];
   showUnreleasedContent?: boolean;
+  isLibrary?: boolean;
   charactersLookup;
   abilitiesLookup;
   onRowClick?;
@@ -490,7 +492,15 @@ export function CostumesGrid({
           return new Date() > new Date(costume.release_time);
         })
         .map((cost) => (
-          <div className="relative" key={cost.costume_id}>
+          <div
+            className={classNames(
+              "relative",
+              isLibrary && !ownedCostumes.includes(cost.costume_id)
+                ? "opacity-50"
+                : ""
+            )}
+            key={cost.costume_id}
+          >
             <p className="text-sm text-center line-clamp-1 mb-1">
               {cost.is_ex_costume && <span className="text-rarity-4">EX </span>}
               {cost.title}

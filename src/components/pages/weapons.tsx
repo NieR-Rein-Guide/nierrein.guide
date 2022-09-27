@@ -539,6 +539,7 @@ export function WeaponsTable({
 export function WeaponsGrid({
   weapons,
   showUnreleasedContent,
+  isLibrary,
 }: {
   weapons: (weapon & {
     weapon_ability_link: (weapon_ability_link & {
@@ -550,6 +551,7 @@ export function WeaponsGrid({
     weapon_stat: weapon_stat[];
   })[];
   showUnreleasedContent: boolean;
+  isLibrary?: boolean;
 }) {
   const ownedWeapons = useInventoryStore((state) => state.weapons);
   const toggleFromInventory = useInventoryStore((state) => state.toggleWeapon);
@@ -563,7 +565,12 @@ export function WeaponsGrid({
         })
         .map((weap) => (
           <div
-            className="relative flex flex-col items-center"
+            className={classNames(
+              "relative flex flex-col items-center",
+              isLibrary && !ownedWeapons.includes(weap.weapon_id)
+                ? "opacity-50"
+                : ""
+            )}
             key={weap.weapon_id}
           >
             <p className="text-sm text-center line-clamp-1 mb-1">

@@ -25,6 +25,8 @@ import {
   weapon_story_link,
 } from "@prisma/client";
 import slug from "slugg";
+import Checkbox from "./form/Checkbox";
+import { useInventoryStore } from "@store/inventory";
 
 interface WeaponInfoProps {
   weapons: (weapon & {
@@ -49,6 +51,8 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
     selectedWeapon.weapon_ability_link,
     "slot_number"
   );
+  const ownedWeapons = useInventoryStore((state) => state.weapons);
+  const toggleFromInventory = useInventoryStore((state) => state.toggleWeapon);
 
   // 0 is Lv. 1 and 14 is Lv. 15
   const [skillAbilitiesLevel, setSkillAbilitiesLevel] = useState(14);
@@ -112,9 +116,20 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
       )}
 
       <div className="relative mb-16">
+        <div className="flex items-center justify-end">
+          <Checkbox
+            label={
+              ownedWeapons.includes(selectedWeapon.weapon_id)
+                ? "Owned"
+                : "Owned?"
+            }
+            isChecked={ownedWeapons.includes(selectedWeapon.weapon_id)}
+            setState={() => toggleFromInventory(selectedWeapon.weapon_id)}
+          />
+        </div>
         <div className="flex flex-col xl:flex-row justify-between">
           <div className="flex-1">
-            <div className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 h-[600px] md:h-full w-full">
+            <div className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 h-[600px] xl:h-full w-full">
               <div className="bordered-lg bg-grey-dark h-full w-full">
                 <div className="relative z-10 h-full w-full">
                   <img

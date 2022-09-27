@@ -29,6 +29,8 @@ import { Chip } from "@mui/material";
 import CostumeThumbnail from "./CostumeThumbnail";
 import getEmblemPath from "@utils/getEmblemPath";
 import slug from "slugg";
+import { useInventoryStore } from "@store/inventory";
+import Checkbox from "./form/Checkbox";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -69,6 +71,8 @@ function CostumeDetails({
       addSuffix: true,
     })
   );
+  const ownedCostumes = useInventoryStore((state) => state.costumes);
+  const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
 
   useEffect(() => {
     setDateRelative(
@@ -194,7 +198,16 @@ function CostumeDetails({
         {/* Second column */}
         <div className="order-1 xl:order-2">
           {/* Costume artwork */}
-          <div className="relative overflow-hidden max-w-xl mx-auto w-full h-[600px] md:h-full">
+          <div className="flex items-center justify-end">
+            <Checkbox
+              label={
+                ownedCostumes.includes(costume.costume_id) ? "Owned" : "Owned?"
+              }
+              isChecked={ownedCostumes.includes(costume.costume_id)}
+              setState={() => toggleFromInventory(costume.costume_id)}
+            />
+          </div>
+          <div className="relative overflow-hidden max-w-xl mx-auto w-full h-[600px] xl:h-full">
             <div className="bordered-lg bg-grey-dark h-full w-full">
               {costume.emblem && (
                 <img
