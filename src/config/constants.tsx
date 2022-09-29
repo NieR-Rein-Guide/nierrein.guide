@@ -8,8 +8,7 @@ import SVG from "react-inlinesvg";
 import { RiInstagramFill, RiRedditFill } from "react-icons/ri";
 import { FiGithub } from "react-icons/fi";
 
-export const CDN_URL =
-  "https://s3.eu-central-1.wasabisys.com/nierreincarnation/";
+export const CDN_URL = "https://assets.nierrein.guide/";
 
 export const NAVIGATION = [
   {

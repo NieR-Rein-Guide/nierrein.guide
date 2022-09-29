@@ -7,6 +7,7 @@ module.exports = withPWA({
     domains: [
       "reinguide-assets.s3.eu-central-1.wasabisys.com",
       "s3.eu-central-1.wasabisys.com",
+      "assets.nierrein.guide",
     ],
   },
   eslint: {
