@@ -12,7 +12,11 @@ import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import Ascend from "@components/decorations/Ascend";
 import dynamic from "next/dynamic";
-import { CDN_URL } from "@config/constants";
+import {
+  CDN_URL,
+  CURSED_GOD_MONUMENT_SLABS,
+  STONE_TOWER_MONUMENT_SLABS,
+} from "@config/constants";
 import { format, formatDistanceToNow } from "date-fns";
 import {
   character,
@@ -308,31 +312,53 @@ function CostumeDetails({
             <StatsOfLevel
               stats={stats[0]}
               label={`Level ${stats[0].level}`}
-              description={
-                statType === "displayed"
-                  ? `${abilities[0][3].name} is at level 1`
-                  : ""
-              }
+              description="Base stats"
             />
             <StatsOfLevel
               stats={stats[1]}
               label={`Level ${stats[1].level} (No ascension)`}
-              description={
-                statType === "displayed"
-                  ? `${abilities[0][3].name} is at level 1`
-                  : ""
-              }
+              description="Base stats"
             />
             <StatsOfLevel
               stats={stats[2]}
               label={`Level ${stats[2].level} (Max ascension)`}
-              description={
-                statType === "displayed"
-                  ? `${abilities[0][3].name} & ${abilities[1][3].name} are at level 4`
-                  : ""
-              }
+              description="Base stats"
             />
           </div>
+
+          <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
+            <StatsOfLevel
+              stats={{
+                hp: STONE_TOWER_MONUMENT_SLABS[100].hp + stats[2].hp,
+                atk: STONE_TOWER_MONUMENT_SLABS[100].atk + stats[2].atk,
+                vit: STONE_TOWER_MONUMENT_SLABS[100].vit + stats[2].vit,
+              }}
+              label="Stone Tower Monument (100%)"
+              description={`Costume Lv. ${stats[2].level} stats + 100% slabs`}
+            />
+            <StatsOfLevel
+              stats={{
+                hp:
+                  STONE_TOWER_MONUMENT_SLABS[100].hp +
+                  CURSED_GOD_MONUMENT_SLABS[100].hp +
+                  stats[2].hp,
+                atk:
+                  STONE_TOWER_MONUMENT_SLABS[100].atk +
+                  CURSED_GOD_MONUMENT_SLABS[100].atk +
+                  stats[2].atk,
+                vit:
+                  STONE_TOWER_MONUMENT_SLABS[100].vit +
+                  CURSED_GOD_MONUMENT_SLABS[100].vit +
+                  stats[2].vit,
+              }}
+              label="Cursed God Monument (100%)"
+              description="(+ Stone Tower Monument 100%)"
+            />
+          </div>
+
+          <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
+            Abilities and bonuses are not included in the stats.
+          </p>
 
           {rankBonus && (
             <div className="mt-1 flex flex-col">
@@ -350,10 +376,6 @@ function CostumeDetails({
               </div>
             </div>
           )}
-
-          <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
-            Timed or conditional passives are not included in the stats.
-          </p>
         </div>
       )}
 
@@ -458,26 +480,34 @@ function StatsOfLevel({
           name="Defense"
           value={stats.vit ?? "???"}
         />
-        <SingleStat
-          icon={statsIcons.agility}
-          name="Agility"
-          value={stats.agi ?? "???"}
-        />
-        <SingleStat
-          icon={statsIcons.cr}
-          name="Critical Rate"
-          value={`${stats.crit_rate / 10 ?? "???"}%`}
-        />
-        <SingleStat
-          icon={statsIcons.cd}
-          name="Critical Damage"
-          value={`${stats.crit_atk / 10 ?? "???"}%`}
-        />
-        <SingleStat
-          icon={statsIcons.eva_rate}
-          name="Evasion Rate"
-          value={`${stats.eva_rate / 10 ?? "???"}%`}
-        />
+        {stats.agi > 0 && (
+          <SingleStat
+            icon={statsIcons.agility}
+            name="Agility"
+            value={stats.agi ?? "???"}
+          />
+        )}
+        {stats.crit_rate > 0 && (
+          <SingleStat
+            icon={statsIcons.cr}
+            name="Critical Rate"
+            value={`${stats.crit_rate / 10 ?? "???"}%`}
+          />
+        )}
+        {stats.crit_atk > 0 && (
+          <SingleStat
+            icon={statsIcons.cd}
+            name="Critical Damage"
+            value={`${stats.crit_atk / 10 ?? "???"}%`}
+          />
+        )}
+        {stats.eva_rate > 0 && (
+          <SingleStat
+            icon={statsIcons.eva_rate}
+            name="Evasion Rate"
+            value={`${stats.eva_rate / 10 ?? "???"}%`}
+          />
+        )}
       </div>
     </div>
   );

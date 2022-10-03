@@ -8,8 +8,9 @@ import SVG from "react-inlinesvg";
 import { RiInstagramFill, RiRedditFill } from "react-icons/ri";
 import { FiGithub } from "react-icons/fi";
 
-export const CDN_URL = "https://assets.nierrein.guide/";
-
+/**
+ * NAVIGATION LINKS
+ */
 export const NAVIGATION = [
   {
     label: "Home",
@@ -111,34 +112,9 @@ export const FOOTER_NAVIGATION = [
   },
 ];
 
-interface Project {
-  name: string;
-  startedBy: string;
-  link: string;
-  progress: number;
-}
-
-export const CURRENT_PROJECTS: Project[] = [
-  {
-    name: "Data compilation",
-    startedBy: "Mayge and jonbttt",
-    link: "https://docs.google.com/spreadsheets/d/14-DZc4wyi1deE_-s1lgcMoEorCfAvQGY-3nseyAWOnY/edit#gid=385153085",
-    progress: 100,
-  },
-  {
-    name: "Materials compilation",
-    startedBy: "Senka",
-    link: "https://docs.google.com/spreadsheets/d/1dUs4ajYMQhDHYj8FtJ8hfqhInTrE29j8PJhVV_hbFn4/edit#gid=0",
-    progress: 100,
-  },
-  {
-    name: "Q/A Page",
-    startedBy: "Senka",
-    link: "https://docs.google.com/spreadsheets/d/1shgbaumBEGWPwj-1_1phakcln8fAn4KpVD9_SJK-z4Q/edit?usp=sharing",
-    progress: 100,
-  },
-].sort((a, b) => b.progress - a.progress);
-
+/**
+ * CREDITS PAGE
+ */
 export const CREDITS = [
   {
     name: "Senka",
@@ -255,6 +231,9 @@ export const CREDITS = [
 export const GITHUB_REPO_LINK =
   "https://github.com/NieR-Rein-Guide/nierrein.guide";
 
+/**
+ * SEO & META TAGS
+ */
 export const meta = {
   title: "NieR Re[in] Guide",
   description:
@@ -263,12 +242,23 @@ export const meta = {
   cover: "https://nierrein.guide/cover.jpg",
 };
 
+/**
+ * NieR Re[in]carnation Global Timezone
+ */
 export const GAME_TIMEZONE = "Pacific/Pitcairn";
+
+/**
+ * URLs
+ */
+export const CDN_URL = "https://assets.nierrein.guide/";
 export const SITE_URL = "https://nierrein.guide";
 export const DISCORD_URL = "https://discord.gg/swgHJJdt7f";
 export const TWITTER_URL = "https://twitter.com/NierReinGuide";
 export const INSTAGRAM_URL = "https://www.instagram.com/nierreinguide/";
 
+/**
+ * SOCIALS
+ */
 interface Social {
   label: string;
   href: string;
@@ -312,6 +302,9 @@ export const SOCIALS: Social[] = [
   },
 ];
 
+/**
+ * VALUED WEAPONS
+ */
 export const VALUED_TYPES = {
   ABILITY: "ABILITY",
   SKILL_COOLDOWN: "SKILL_COOLDOWN",
@@ -428,7 +421,188 @@ export const VALUED_WEAPONS = {
   ],
 };
 
+/**
+ * FEATURED TIERLISTS
+ */
 export const FEATURED_TIERLISTS = {
   pve: [],
   pvp: [],
+};
+
+/**
+ * SLABS
+ * ------------------
+ */
+
+// STONE TOWER MONUMENT SLABS
+export const STONE_TOWER_MONUMENT_SLABS = {
+  33: {
+    hp: 26800,
+    atk: 1890,
+    vit: 1800,
+    agi: 0,
+    crit_rate: 0,
+    crit_atk: 0,
+    abilities: [
+      {
+        name: "Discipline (x3)",
+        level: 2,
+        description:
+          "Grants a 2% greater chance that your normal attacks will be a 3-chain.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability300008/ability300008_standard.png",
+      },
+    ],
+  },
+  67: {
+    hp: 50000,
+    atk: 3900,
+    vit: 3750,
+    agi: 0,
+    crit_rate: 0,
+    crit_atk: 0,
+    abilities: [
+      {
+        name: "Discipline (x3)",
+        level: 2,
+        description:
+          "Grants a 2% greater chance that your normal attacks will be a 3-chain.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability300008/ability300008_standard.png",
+      },
+      {
+        name: "Discipline (x4)",
+        level: 2,
+        description:
+          "Grants a 2% greater chance that your normal attacks will be a 4-chain.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability300008/ability300008_standard.png",
+      },
+    ],
+  },
+  100: {
+    hp: 77600,
+    atk: 5820,
+    vit: 5400,
+    agi: 0,
+    crit_rate: 0,
+    crit_atk: 0,
+    abilities: [
+      {
+        name: "Discipline (x3)",
+        level: 5,
+        description:
+          "Grants a 5% greater chance that your normal attacks will be a 3-chain.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability300008/ability300008_standard.png",
+      },
+      {
+        name: "Discipline (x4)",
+        level: 5,
+        description:
+          "Grants a 5% greater chance that your normal attacks will be a 4-chain.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability300008/ability300008_standard.png",
+      },
+      {
+        name: "Discipline (x5)",
+        level: 4,
+        description:
+          "Grants a 4% greater chance that your normal attacks will be a 5-chain.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability300008/ability300008_standard.png",
+      },
+    ],
+  },
+};
+
+// CURSED GOD MONUMENT SLABS
+export const CURSED_GOD_MONUMENT_SLABS = {
+  33: {},
+  67: {},
+  100: {
+    hp: 24000,
+    atk: 1800,
+    vit: 1350,
+    agi: 0,
+    crit_rate: 0,
+    crit_atk: 0,
+    abilities: [
+      {
+        name: "Blaze Rush",
+        level: 9,
+        description:
+          "Increases the stats of equipped fire-affinity weapons by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100012/ability100012_standard.png",
+      },
+      {
+        name: "Icewater Rush",
+        level: 9,
+        description:
+          "Increases the stats of equipped water-affinity weapons by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100013/ability100013_standard.png",
+      },
+      {
+        name: "Whirldwind Rush",
+        level: 9,
+        description:
+          "Increases the stats of equipped wind-affinity weapons by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100014/ability100014_standard.png",
+      },
+      {
+        name: "Luminous Rush",
+        level: 9,
+        description:
+          "Increases the stats of equipped light-affinity weapons by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100015/ability100015_standard.png",
+      },
+      {
+        name: "Void Rush",
+        level: 9,
+        description:
+          "Increases the stats of equipped dark-affinity weapons by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100016/ability100016_standard.png",
+      },
+      {
+        name: "Blaze Boon",
+        level: 9,
+        description: "Fire damage dealt up by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200001/ability200001_standard.png",
+      },
+      {
+        name: "Liquid Boon",
+        level: 9,
+        description: "Water damage dealt up by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200002/ability200002_standard.png",
+      },
+      {
+        name: "Tempest Boon",
+        level: 9,
+        description: "Increase wind damage by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+      },
+      {
+        name: "Lucid Boon",
+        level: 9,
+        description: "Increase light damage by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+      },
+      {
+        name: "Void Boon",
+        level: 9,
+        description: "Dark damage dealt up by 9%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200005/ability200005_standard.png",
+      },
+    ],
+  },
 };
