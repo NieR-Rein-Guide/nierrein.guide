@@ -270,7 +270,7 @@ export default function TodolistPage(): JSX.Element {
           <StaminaCalculator />
         </div>
 
-        <p className="bg-grey-dark p-4 wysiwyg md:place-self-end order-1 md:order-2">
+        <div className="p-4 wysiwyg md:place-self-end order-1 md:order-2">
           <ul>
             <li>Your to-do is saved locally.</li>
             <li>
@@ -278,7 +278,7 @@ export default function TodolistPage(): JSX.Element {
               {resetTime.toLocaleTimeString()})
             </li>
           </ul>
-        </p>
+        </div>
       </div>
 
       <div className="h-12 bg-grey-dark border border-beige-inactive relative mb-16">

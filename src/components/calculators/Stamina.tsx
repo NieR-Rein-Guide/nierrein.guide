@@ -14,14 +14,9 @@ function capStamina(number) {
   return Math.abs(Math.min(Math.max(parseInt(number), 0), 999));
 }
 
-// function calculatePeakStamina(currentStamina: number, maxStamina: number) {
-//   // calculate time before for max stamina
-//   // const peakWaitTime = calculateStamina(currentStamina, 960);
-// }
-
 function StaminaCalculator(): JSX.Element {
   const [stamina, setStamina] = useState(0);
-  const [maxStamina, setMaxStamina] = useState(50);
+  const [maxStamina, setMaxStamina] = useState(150);
 
   useEffect(() => {
     getLocalStamina();
@@ -80,7 +75,7 @@ function StaminaCalculator(): JSX.Element {
       <div className="bg-grey-dark border border-beige-inactive p-2">
         <div className="flex my-2">
           <Image layout="fixed" src={staminaImg} alt="Stamina" />
-          <div className="flex flex-col">
+          <div className="flex flex-1 flex-col">
             <div className="mt-6 mb-4">
               <input
                 value={`${stamina}`.replace(/^0+/, "")}
@@ -107,7 +102,7 @@ function StaminaCalculator(): JSX.Element {
               </span>
             </div>
 
-            <p className="text-beige-inactive">
+            <p className="text-beige-inactive text-xs">
               {twoHours} in 2 hours{" "}
               <sup className="text-beige-dark">
                 {twoHours < maxStamina
@@ -115,7 +110,7 @@ function StaminaCalculator(): JSX.Element {
                   : `(wasting ${twoHours - maxStamina} stamina)`}
               </sup>
             </p>
-            <p className="text-beige-inactive">
+            <p className="text-beige-inactive text-xs">
               {fourHours} in 4 hours{" "}
               <sup className="text-beige-dark">
                 {fourHours < maxStamina
@@ -123,7 +118,7 @@ function StaminaCalculator(): JSX.Element {
                   : `(wasting ${fourHours - maxStamina} stamina)`}
               </sup>
             </p>
-            <p className="text-beige-inactive">
+            <p className="text-beige-inactive text-xs">
               {eightHours} in 8 hours{" "}
               <sup className="text-beige-dark">
                 {eightHours < maxStamina
@@ -131,7 +126,7 @@ function StaminaCalculator(): JSX.Element {
                   : `(wasting ${eightHours - maxStamina} stamina)`}
               </sup>
             </p>
-            <p className="text-beige-inactive">
+            <p className="text-beige-inactive text-xs">
               {twelveHours} in 12 hours
               <sup className="text-beige-dark">
                 {twelveHours < maxStamina
@@ -139,7 +134,7 @@ function StaminaCalculator(): JSX.Element {
                   : `(wasting ${twelveHours - maxStamina} stamina)`}
               </sup>
             </p>
-            <p className="text-beige-inactive">
+            <p className="text-beige-inactive text-xs">
               {sixteenHours} in 16 hours
               <sup className="text-beige-dark">
                 {sixteenHours < maxStamina

@@ -1,9 +1,5 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import { CDN_URL } from "@config/constants";
-import { CostumesTable } from "@components/pages/costumes";
-import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
-import TierListTab from "@components/tierlist/TierListTab";
 
 import {
   character,
@@ -24,14 +20,7 @@ import {
 import { getAllCostumes } from "@models/costume";
 import { getAllWeapons } from "@models/weapon";
 import DatabaseNavbar from "@components/DatabaseNavbar";
-import dynamic from "next/dynamic";
 import Inventory from "@components/pages/inventory";
-const DynamicInventory = dynamic(
-  () => import("../components/pages/inventory"),
-  {
-    loading: () => <p>Loading but Next.js</p>,
-  }
-);
 
 interface InventoryProps {
   costumes: (costume & {

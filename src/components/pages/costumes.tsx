@@ -176,6 +176,8 @@ export function CostumesTable({
                 src={`${CDN_URL}${costume.image_path_base}battle.png`}
                 alt={`${costume.title} thumbnail`}
                 rarity={RARITY[costume.rarity]}
+                weaponType={costume.weapon_type}
+                isDark={costume.is_ex_costume}
               />
               <span className="truncate">
                 {costume.is_ex_costume && (

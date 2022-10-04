@@ -13,6 +13,7 @@
     "plugin:@typescript-eslint/recommended",
     "next/core-web-vitals"
   ],
+  "plugins": ["validate-jsx-nesting"],
   "rules": {
     "@next/next/no-img-element": "off",
     "react/no-unescaped-entities": "off",
@@ -20,6 +21,7 @@
     "@typescript-eslint/explicit-module-boundary-types": "off",
     "react-hooks/exhaustive-deps": "off",
     "@typescript-eslint/no-explicit-any": "off",
-    "jsx-a11y/alt-text": "off"
+    "jsx-a11y/alt-text": "off",
+    "validate-jsx-nesting/no-invalid-jsx-nesting": "error"
   }
 }

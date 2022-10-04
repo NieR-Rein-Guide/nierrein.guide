@@ -81,21 +81,19 @@ export default function TierList({ tier }): JSX.Element {
               <span className="text-beige">Raon Miru#7516</span>
             </p>
           </div>
-          <p>
-            <div className="text-center mt-8 max-w-xl mx-auto">
-              <p>
-                Damage dealers are ranked from SSS tier to B tier, while
-                characters of other roles are not ranked in different tier but
-                only from left to right
-              </p>
-              <a
-                className="text-beige border-b border-dotted hover:border-transparent"
-                href="https://docs.google.com/document/d/1YNG8cR9lTYwNUFBOOeEAU3bNPP48MQIUGXCfpl1POwA/edit?usp=sharing"
-              >
-                More info on categorizing can be read here
-              </a>
-            </div>
-          </p>
+          <div className="text-center mt-8 max-w-xl mx-auto">
+            <p>
+              Damage dealers are ranked from SSS tier to B tier, while
+              characters of other roles are not ranked in different tier but
+              only from left to right
+            </p>
+            <a
+              className="text-beige border-b border-dotted hover:border-transparent"
+              href="https://docs.google.com/document/d/1YNG8cR9lTYwNUFBOOeEAU3bNPP48MQIUGXCfpl1POwA/edit?usp=sharing"
+            >
+              More info on categorizing can be read here
+            </a>
+          </div>
         </div>
 
         {/* {hasStats && (
