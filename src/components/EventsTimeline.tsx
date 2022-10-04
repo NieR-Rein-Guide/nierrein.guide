@@ -7,14 +7,20 @@ import Link from "next/link";
 import { BtnSecondary } from "./btn";
 
 const GROUPS = [
-  "Abyss Tower",
   "Record",
+  "Premium Summons",
+  "Abyss Tower",
   "Variation",
   "Anecdote",
-  "Premium Summons",
 ];
 
-export default function EventsTimeline({ items }: { items: Event[] }) {
+export default function EventsTimeline({
+  items,
+  hasBtn = true,
+}: {
+  items: Event[];
+  hasBtn?: boolean;
+}) {
   const visualization = useRef(null);
 
   const groups = GROUPS.map((group, id) => ({
@@ -73,11 +79,13 @@ export default function EventsTimeline({ items }: { items: Event[] }) {
   return (
     <div>
       <div className="min-h-[10rem]" ref={visualization}></div>
-      <div className="flex justify-center mt-8">
-        <Link href="/events" passHref>
-          <BtnSecondary>See all events</BtnSecondary>
-        </Link>
-      </div>
+      {hasBtn && (
+        <div className="flex justify-center mt-8">
+          <Link href="/events" passHref>
+            <BtnSecondary>See all events</BtnSecondary>
+          </Link>
+        </div>
+      )}
     </div>
   );
 }

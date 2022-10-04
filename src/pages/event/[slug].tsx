@@ -22,7 +22,7 @@ export default function SingleEvent({ event }: eventProps): JSX.Element {
     <Layout>
       {!router.isFallback && (
         <Meta
-          title={`${event.title} - event`}
+          title={`${event.title} - Event`}
           description={`Read this event to learn more about : ${event.title}`}
           cover={
             event?.image.formats.medium?.url ??
@@ -134,6 +134,7 @@ export async function getStaticProps(context) {
     props: {
       event,
     },
+    revalidate: 30, // Revalidate every 30s
   };
 }
 
@@ -146,6 +147,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: true,
+    fallback: "blocking",
   };
 }

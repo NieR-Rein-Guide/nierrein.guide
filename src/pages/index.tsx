@@ -1,18 +1,14 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import Image from "next/image";
 import Layout from "@components/Layout";
 import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
 import FeaturedGuides from "@components/FeaturedGuides";
-import EventsSlider from "@components/EventsSlider";
 import AnimatedBanner from "@components/AnimatedBanner";
-import ListingEvents from "@components/ListingEvents";
 import Meta from "@components/Meta";
 import { getFeaturedGuides } from "@models/guide";
 import { Guide, Event } from "@models/types";
-import { getCurrentEvents, getFutureEvents, getAllEvents } from "@models/event";
-import { formatDistanceToNow } from "date-fns";
+import { getAllEvents } from "@models/event";
 import { useMedia } from "react-use";
 import CostumeArtwork from "@components/CostumeArtwork";
 import slug from "slugg";
@@ -44,9 +40,7 @@ type Costume = costume & {
 
 interface HomeProps {
   featuredGuides: Guide[];
-  currentEvents: Event[];
-  futureEvents: Event[];
-  endingEvents: Event[];
+  events: Event[];
   recentCostumes: Costume[];
   recentWeapons: weapon[];
   notifications: notification[];
@@ -55,9 +49,7 @@ interface HomeProps {
 
 export default function Home({
   featuredGuides = [],
-  currentEvents = [],
-  futureEvents = [],
-  endingEvents = [],
+  events = [],
   recentCostumes = [],
   recentWeapons = [],
   notifications = [],
@@ -74,7 +66,7 @@ export default function Home({
 
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
         {!isMobile && <AnimatedBanner />}
-        <EventsTimeline items={currentEvents} />
+        <EventsTimeline items={events} />
 
         <section className="p-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -213,21 +205,17 @@ export default function Home({
 }
 
 export async function getStaticProps() {
-  console.log("Revalidating homepage data props.");
-
   try {
+    console.time("Homepage props");
     const [
       featuredGuides,
-      currentEvents,
-      futureEvents,
+      events,
       recentCostumes,
       notificationsData,
       loadouts,
     ] = await Promise.all([
       getFeaturedGuides(),
       getAllEvents(),
-      //getCurrentEvents({ currentDate: new Date().toISOString() }),
-      getFutureEvents({ currentDate: new Date().toISOString() }),
       prisma.dump.costume.findMany({
         orderBy: {
           release_time: "desc",
@@ -270,31 +258,24 @@ export async function getStaticProps() {
       ),
     }));
 
-    const endingEvents = [...currentEvents]
-      .sort(
-        (a, b) =>
-          new Date(a.end_date).getTime() - new Date(b.end_date).getTime()
-      )
-      .slice(0, 3);
-
     if (notifications.length === 0 || recentCostumes.length === 0) {
       throw new Error("Database is empty.");
     }
+
+    console.timeEnd("Homepage props");
 
     return {
       props: JSON.parse(
         JSON.stringify({
           featuredGuides,
-          currentEvents,
-          futureEvents,
-          endingEvents,
+          events,
           recentCostumes,
           notifications,
           recentWeapons,
           loadouts,
         })
       ),
-      revalidate: 43200, // 12 hours in seconds (2 updates per day)
+      revalidate: 30, // Revalidate every 30s
     };
   } catch (error) {
     console.log("Homepage: ", error.message);

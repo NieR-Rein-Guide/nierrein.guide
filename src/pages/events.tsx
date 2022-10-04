@@ -8,6 +8,10 @@ import { Event } from "@models/types";
 import { formatDistanceToNow } from "date-fns";
 import { useState } from "react";
 import TierlistTab from "@components/tierlist/TierListTab";
+import dynamic from "next/dynamic";
+const EventsTimeline = dynamic(() => import("../components/EventsTimeline"), {
+  ssr: false,
+});
 
 interface GuidesProps {
   events: Event[];
@@ -26,13 +30,18 @@ export default function Events({ events }: GuidesProps): JSX.Element {
   const currentEvents = allEvents.filter((event) => event.endDate > new Date());
 
   return (
-    <Layout>
+    <Layout hasContainer={false}>
       <Meta
         title="Events"
         description="A list of all past and current events."
         cover="https://nierrein.guide/cover-events.jpg"
       />
-      <Tabs defaultIndex={tabIndex}>
+
+      <div className="px-4 mb-8">
+        <EventsTimeline items={events} hasBtn={false} />
+      </div>
+
+      <Tabs className="container" defaultIndex={tabIndex}>
         <TabList className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
           <TierlistTab index={0}>Current Events</TierlistTab>
           <TierlistTab index={1}>Past Events</TierlistTab>
@@ -118,5 +127,6 @@ export async function getStaticProps() {
     props: {
       events,
     },
+    revalidate: 30, // Revalidate every 30s
   };
 }
