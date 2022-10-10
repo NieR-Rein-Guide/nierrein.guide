@@ -436,6 +436,15 @@ export const FEATURED_TIERLISTS = {
 
 // STONE TOWER MONUMENT SLABS
 export const STONE_TOWER_MONUMENT_SLABS = {
+  0: {
+    hp: 0,
+    atk: 0,
+    vit: 0,
+    agi: 0,
+    crit_rate: 0,
+    crit_atk: 0,
+    abilities: [],
+  },
   33: {
     hp: 26800,
     atk: 1890,
@@ -518,8 +527,185 @@ export const STONE_TOWER_MONUMENT_SLABS = {
 
 // CURSED GOD MONUMENT SLABS
 export const CURSED_GOD_MONUMENT_SLABS = {
-  33: {},
-  67: {},
+  0: {
+    hp: 0,
+    atk: 0,
+    vit: 0,
+    agi: 0,
+    crit_rate: 0,
+    crit_atk: 0,
+    abilities: [],
+  },
+  33: {
+    hp: 8000,
+    atk: 600,
+    vit: 450,
+    agi: 0,
+    crit_rate: 0,
+    crit_atk: 0,
+    abilities: [
+      {
+        name: "Blaze Rush",
+        level: 3,
+        description:
+          "Increases the stats of equipped fire-affinity weapons by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100012/ability100012_standard.png",
+      },
+      {
+        name: "Icewater Rush",
+        level: 3,
+        description:
+          "Increases the stats of equipped water-affinity weapons by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100013/ability100013_standard.png",
+      },
+      {
+        name: "Whirldwind Rush",
+        level: 3,
+        description:
+          "Increases the stats of equipped wind-affinity weapons by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100014/ability100014_standard.png",
+      },
+      {
+        name: "Luminous Rush",
+        level: 3,
+        description:
+          "Increases the stats of equipped light-affinity weapons by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100015/ability100015_standard.png",
+      },
+      {
+        name: "Void Rush",
+        level: 3,
+        description:
+          "Increases the stats of equipped dark-affinity weapons by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100016/ability100016_standard.png",
+      },
+      {
+        name: "Blaze Boon",
+        level: 3,
+        description: "Fire damage dealt up by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200001/ability200001_standard.png",
+      },
+      {
+        name: "Liquid Boon",
+        level: 3,
+        description: "Water damage dealt up by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200002/ability200002_standard.png",
+      },
+      {
+        name: "Tempest Boon",
+        level: 3,
+        description: "Increase wind damage by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+      },
+      {
+        name: "Lucid Boon",
+        level: 3,
+        description: "Increase light damage by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+      },
+      {
+        name: "Void Boon",
+        level: 3,
+        description: "Dark damage dealt up by 3%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200005/ability200005_standard.png",
+      },
+    ],
+  },
+  67: {
+    hp: 16000,
+    atk: 1200,
+    vit: 900,
+    agi: 0,
+    crit_rate: 0,
+    crit_atk: 0,
+    abilities: [
+      {
+        name: "Blaze Rush",
+        level: 6,
+        description:
+          "Increases the stats of equipped fire-affinity weapons by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100012/ability100012_standard.png",
+      },
+      {
+        name: "Icewater Rush",
+        level: 6,
+        description:
+          "Increases the stats of equipped water-affinity weapons by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100013/ability100013_standard.png",
+      },
+      {
+        name: "Whirldwind Rush",
+        level: 6,
+        description:
+          "Increases the stats of equipped wind-affinity weapons by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100014/ability100014_standard.png",
+      },
+      {
+        name: "Luminous Rush",
+        level: 6,
+        description:
+          "Increases the stats of equipped light-affinity weapons by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100015/ability100015_standard.png",
+      },
+      {
+        name: "Void Rush",
+        level: 6,
+        description:
+          "Increases the stats of equipped dark-affinity weapons by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability100016/ability100016_standard.png",
+      },
+      {
+        name: "Blaze Boon",
+        level: 6,
+        description: "Fire damage dealt up by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200001/ability200001_standard.png",
+      },
+      {
+        name: "Liquid Boon",
+        level: 6,
+        description: "Water damage dealt up by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200002/ability200002_standard.png",
+      },
+      {
+        name: "Tempest Boon",
+        level: 6,
+        description: "Increase wind damage by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+      },
+      {
+        name: "Lucid Boon",
+        level: 6,
+        description: "Increase light damage by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+      },
+      {
+        name: "Void Boon",
+        level: 6,
+        description: "Dark damage dealt up by 6%.",
+        icon_url:
+          "https://assets.nierrein.guide/ui/ability/ability200005/ability200005_standard.png",
+      },
+    ],
+  },
   100: {
     hp: 24000,
     atk: 1800,
@@ -605,4 +791,14 @@ export const CURSED_GOD_MONUMENT_SLABS = {
       },
     ],
   },
+};
+
+// AWAKENING
+export const AWAKENING_LEVEL = {
+  0: 0,
+  1: 0.05, // 5% bonus stats
+  2: 0.15, // 15% bonus stats
+  3: "Ability Unlocks",
+  4: 0.3, // 30% bonus stats
+  5: "Debris Unlocked",
 };

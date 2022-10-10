@@ -23,7 +23,8 @@ export default function CharacterCostumes({
   return (
     <div className="my-2 p-2 overflow-auto">
       <p className="text-beige">
-        {selectedCharacterCostumes.length} costumes found for{" "}
+        {selectedCharacterCostumes.length} costume
+        {selectedCharacterCostumes.length > 1 ? "s" : ""} found for{" "}
         {currentCharacter.name}
       </p>
 

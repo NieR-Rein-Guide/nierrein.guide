@@ -19,7 +19,12 @@ export default function Header(): JSX.Element {
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
   const [release, setRelease] = useState(null);
-  const settings = useSettingsStore((state) => state);
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
+  const setShowUnreleasedContent = useSettingsStore(
+    (state) => state.setShowUnreleasedContent
+  );
 
   function start() {
     setIsAnimating(true);
@@ -88,10 +93,8 @@ export default function Header(): JSX.Element {
               control={
                 <Switch
                   size="small"
-                  onChange={(e) =>
-                    settings.setShowUnreleasedContent(e.target.checked)
-                  }
-                  checked={settings.showUnreleasedContent}
+                  onChange={(e) => setShowUnreleasedContent(e.target.checked)}
+                  checked={showUnreleasedContent}
                 />
               }
               label="Show spoilers"

@@ -12,11 +12,7 @@ import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import Ascend from "@components/decorations/Ascend";
 import dynamic from "next/dynamic";
-import {
-  CDN_URL,
-  CURSED_GOD_MONUMENT_SLABS,
-  STONE_TOWER_MONUMENT_SLABS,
-} from "@config/constants";
+import { CDN_URL } from "@config/constants";
 import { format, formatDistanceToNow } from "date-fns";
 import {
   character,
@@ -35,6 +31,11 @@ import getEmblemPath from "@utils/getEmblemPath";
 import slug from "slugg";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "./form/Checkbox";
+import Stat from "./Stat";
+import StoneSlabsSelect from "./StoneSlabsSelect";
+import CursedGodSlabsSelect from "./CursedGodSlabsSelect";
+import AwakeningLevelSelect from "./AwakeningLevelSelect";
+import { useSettingsStore } from "@store/settings";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -77,6 +78,13 @@ function CostumeDetails({
   );
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
+  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+  const cursedGodSlabsPercent = useSettingsStore(
+    (state) => state.cursedGodSlabsPercent
+  );
+  const stoneTowerSlabsPercent = useSettingsStore(
+    (state) => state.stoneTowerSlabsPercent
+  );
 
   useEffect(() => {
     setDateRelative(
@@ -308,51 +316,23 @@ function CostumeDetails({
             <HR className="my-8" />
           </div>
 
-          <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
-            <StatsOfLevel
-              stats={stats[0]}
-              label={`Level ${stats[0].level}`}
-              description="Base stats"
-            />
-            <StatsOfLevel
-              stats={stats[1]}
-              label={`Level ${stats[1].level} (No ascension)`}
-              description="Base stats"
-            />
-            <StatsOfLevel
-              stats={stats[2]}
-              label={`Level ${stats[2].level} (Max ascension)`}
-              description="Base stats"
-            />
+          <div className="flex flex-row gap-4 justify-center mb-8">
+            <AwakeningLevelSelect />
+            <StoneSlabsSelect />
+            <CursedGodSlabsSelect />
           </div>
 
           <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
+            <StatsOfLevel stats={stats[0]} label={`Level ${stats[0].level}`} />
             <StatsOfLevel
-              stats={{
-                hp: STONE_TOWER_MONUMENT_SLABS[100].hp + stats[2].hp,
-                atk: STONE_TOWER_MONUMENT_SLABS[100].atk + stats[2].atk,
-                vit: STONE_TOWER_MONUMENT_SLABS[100].vit + stats[2].vit,
-              }}
-              label="Stone Tower Monument (100%)"
-              description={`Costume Lv. ${stats[2].level} stats + 100% slabs`}
+              stats={stats[1]}
+              label={`Level ${stats[1].level}`}
+              description="No ascension"
             />
             <StatsOfLevel
-              stats={{
-                hp:
-                  STONE_TOWER_MONUMENT_SLABS[100].hp +
-                  CURSED_GOD_MONUMENT_SLABS[100].hp +
-                  stats[2].hp,
-                atk:
-                  STONE_TOWER_MONUMENT_SLABS[100].atk +
-                  CURSED_GOD_MONUMENT_SLABS[100].atk +
-                  stats[2].atk,
-                vit:
-                  STONE_TOWER_MONUMENT_SLABS[100].vit +
-                  CURSED_GOD_MONUMENT_SLABS[100].vit +
-                  stats[2].vit,
-              }}
-              label="Cursed God Monument (100%)"
-              description="(+ Stone Tower Monument 100%)"
+              stats={stats[2]}
+              label={`Level ${stats[2].level}`}
+              description="Max ascension"
             />
           </div>
 
@@ -422,7 +402,7 @@ function CostumeDetails({
   );
 }
 
-function SingleStat({ name, value, icon }): JSX.Element {
+function SingleStat({ name, value, type, icon }): JSX.Element {
   const colors = {
     Attack: "text-red-300",
     Defense: "text-blue-300",
@@ -443,7 +423,9 @@ function SingleStat({ name, value, icon }): JSX.Element {
         />
         {name}
       </div>
-      <div className={classNames("font-light", colors[name])}>{value}</div>
+      <div className={classNames("font-light", colors[name])}>
+        <Stat type={type} value={value} />
+      </div>
     </div>
   );
 }
@@ -469,43 +451,54 @@ function StatsOfLevel({
       </div>
 
       <div className={classNames(rowsClasses ?? "flex flex-col")}>
-        <SingleStat icon={statsIcons.hp} name="HP" value={stats.hp ?? "???"} />
+        <SingleStat
+          icon={statsIcons.hp}
+          name="HP"
+          value={stats.hp ?? "???"}
+          type="hp"
+        />
         <SingleStat
           icon={statsIcons.atk}
           name="Attack"
           value={stats.atk ?? "???"}
+          type="atk"
         />
         <SingleStat
           icon={statsIcons.def}
           name="Defense"
           value={stats.vit ?? "???"}
+          type="vit"
         />
         {stats.agi > 0 && (
           <SingleStat
             icon={statsIcons.agility}
             name="Agility"
             value={stats.agi ?? "???"}
+            type="agi"
           />
         )}
         {stats.crit_rate > 0 && (
           <SingleStat
             icon={statsIcons.cr}
             name="Critical Rate"
-            value={`${stats.crit_rate / 10 ?? "???"}%`}
+            value={`${stats.crit_rate ?? "???"}`}
+            type="crit_rate"
           />
         )}
         {stats.crit_atk > 0 && (
           <SingleStat
             icon={statsIcons.cd}
             name="Critical Damage"
-            value={`${stats.crit_atk / 10 ?? "???"}%`}
+            value={`${stats.crit_atk ?? "???"}`}
+            type="crit_atk"
           />
         )}
         {stats.eva_rate > 0 && (
           <SingleStat
             icon={statsIcons.eva_rate}
             name="Evasion Rate"
-            value={`${stats.eva_rate / 10 ?? "???"}%`}
+            value={`${stats.eva_rate ?? "???"}`}
+            type="eva_rate"
           />
         )}
       </div>
