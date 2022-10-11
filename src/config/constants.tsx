@@ -610,7 +610,7 @@ export const CURSED_GOD_MONUMENT_SLABS = {
         level: 3,
         description: "Increase light damage by 3%.",
         icon_url:
-          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+          "https://assets.nierrein.guide/ui/ability/ability200004/ability200004_standard.png",
       },
       {
         name: "Void Boon",
@@ -695,7 +695,7 @@ export const CURSED_GOD_MONUMENT_SLABS = {
         level: 6,
         description: "Increase light damage by 6%.",
         icon_url:
-          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+          "https://assets.nierrein.guide/ui/ability/ability200004/ability200004_standard.png",
       },
       {
         name: "Void Boon",
@@ -780,7 +780,7 @@ export const CURSED_GOD_MONUMENT_SLABS = {
         level: 9,
         description: "Increase light damage by 9%.",
         icon_url:
-          "https://assets.nierrein.guide/ui/ability/ability200003/ability200003_standard.png",
+          "https://assets.nierrein.guide/ui/ability/ability200004/ability200004_standard.png",
       },
       {
         name: "Void Boon",

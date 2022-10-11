@@ -32,11 +32,6 @@ export default function Stat({ type, value }: StatProps) {
     awakening: 0,
   };
 
-  const isModified =
-    stoneTowerSlabsPercent > 0 ||
-    cursedGodSlabsPercent > 0 ||
-    awakeningLevel > 0;
-
   let finalStat = value;
 
   if (STATS_VALUES.includes(type)) {
@@ -71,6 +66,8 @@ export default function Stat({ type, value }: StatProps) {
     addedStats.awakening = bonus;
     finalStat = finalStat + bonus;
   }
+
+  const isModified = STATS_VALUES.includes(type) && value !== finalStat;
 
   return (
     <Tooltip

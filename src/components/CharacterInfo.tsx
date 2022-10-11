@@ -12,7 +12,11 @@ import Skill from "@components/Skill";
 import Ability from "@components/Ability";
 import Ascend from "@components/decorations/Ascend";
 import dynamic from "next/dynamic";
-import { CDN_URL } from "@config/constants";
+import {
+  CDN_URL,
+  CURSED_GOD_MONUMENT_SLABS,
+  STONE_TOWER_MONUMENT_SLABS,
+} from "@config/constants";
 import { format, formatDistanceToNow } from "date-fns";
 import {
   character,
@@ -78,7 +82,6 @@ function CostumeDetails({
   );
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
-  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
   const cursedGodSlabsPercent = useSettingsStore(
     (state) => state.cursedGodSlabsPercent
   );
@@ -335,6 +338,92 @@ function CostumeDetails({
               description="Max ascension"
             />
           </div>
+
+          {STONE_TOWER_MONUMENT_SLABS[stoneTowerSlabsPercent].abilities.length >
+            0 && (
+            <div
+              key={`stone-slabs-${costume.title}-${stoneTowerSlabsPercent}`}
+              className="px-4 mt-8"
+            >
+              <h4 className="text-2xl">Stone Tower Monument Abilities</h4>
+              <div className="flex gap-x-4 overflow-x-auto">
+                {STONE_TOWER_MONUMENT_SLABS[
+                  stoneTowerSlabsPercent
+                ].abilities.map((ability) => (
+                  <div
+                    key={ability.name}
+                    className="flex gap-4 bg-grey-dark p-4 relative bordered"
+                  >
+                    <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
+                      Lv. {ability.level}
+                    </span>
+                    <div className="flex items-center">
+                      <div className="relative mr-4">
+                        <SVG
+                          src="/decorations/frame-ability.svg"
+                          className="h-16 w-16"
+                        />
+                        <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+                          <img alt="" src={ability.icon_url} />
+                        </div>
+                      </div>
+                      <div className="flex flex-col items-start">
+                        <strong className="font-display text-2xl text-beige">
+                          {ability.name}
+                        </strong>
+                        <p className="text-beige-text">
+                          <span>{ability.description}</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {CURSED_GOD_MONUMENT_SLABS[cursedGodSlabsPercent].abilities.length >
+            0 && (
+            <div
+              key={`cursed-slabs-${costume.title}-${cursedGodSlabsPercent}`}
+              className="px-4 mt-8"
+            >
+              <h4 className="text-2xl">Cursed God Monument Abilities</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {CURSED_GOD_MONUMENT_SLABS[cursedGodSlabsPercent].abilities.map(
+                  (ability) => (
+                    <div
+                      key={ability.name}
+                      className="flex gap-4 bg-grey-dark p-4 relative bordered"
+                    >
+                      <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
+                        Lv. {ability.level}
+                      </span>
+                      <div className="flex items-center">
+                        <div className="relative mr-4">
+                          <SVG
+                            src="/decorations/frame-ability.svg"
+                            className="h-16 w-16"
+                          />
+                          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+                            <img alt="" src={ability.icon_url} />
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-start">
+                          <strong className="font-display text-2xl text-beige">
+                            {ability.name}
+                          </strong>
+                          <p className="text-beige-text">
+                            <span>{ability.description}</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                )}
+              </div>
+            </div>
+          )}
 
           <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
             Abilities and bonuses are not included in the stats.
