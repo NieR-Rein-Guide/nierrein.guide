@@ -5,6 +5,7 @@ import {
 } from "@config/constants";
 import { Tooltip } from "@mui/material";
 import { useSettingsStore } from "@store/settings";
+import classNames from "classnames";
 
 interface StatProps {
   type: "hp" | "atk" | "vit" | "agi" | "crit_rate" | "crit_atk" | "eva_rate";
@@ -20,10 +21,10 @@ export default function Stat({ type, value }: StatProps) {
   const stoneTowerSlabsPercent = useSettingsStore(
     (state) => state.stoneTowerSlabsPercent
   );
-
   const cursedGodSlabsPercent = useSettingsStore(
     (state) => state.cursedGodSlabsPercent
   );
+  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
 
   const addedStats = {
     stoneTowerSlabs: 0,
@@ -31,7 +32,10 @@ export default function Stat({ type, value }: StatProps) {
     awakening: 0,
   };
 
-  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+  const isModified =
+    stoneTowerSlabsPercent > 0 ||
+    cursedGodSlabsPercent > 0 ||
+    awakeningLevel > 0;
 
   let finalStat = value;
 
@@ -78,7 +82,7 @@ export default function Stat({ type, value }: StatProps) {
         </p>
       }
     >
-      <span>
+      <span className={classNames(isModified ? "underline" : "")}>
         {Math.round(finalStat)}
         {PERCENT_VALUES.includes(type) ? "%" : ""}
       </span>

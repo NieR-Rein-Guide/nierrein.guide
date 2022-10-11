@@ -11,6 +11,7 @@ import { FormControlLabel, Switch } from "@mui/material";
 import { useSettingsStore } from "../../store/settings";
 import axios from "axios";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import SettingsModal from "@components/SettingsModal";
 
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
@@ -89,16 +90,7 @@ export default function Header(): JSX.Element {
           </span>
 
           <div className="absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
-            <FormControlLabel
-              control={
-                <Switch
-                  size="small"
-                  onChange={(e) => setShowUnreleasedContent(e.target.checked)}
-                  checked={showUnreleasedContent}
-                />
-              }
-              label="Show spoilers"
-            />
+            <SettingsModal />
           </div>
         </div>
       </div>

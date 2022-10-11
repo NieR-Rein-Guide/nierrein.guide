@@ -30,6 +30,7 @@ import { MdOutlineLibraryAdd, MdLibraryAddCheck } from "react-icons/md";
 import classNames from "classnames";
 import { Tooltip } from "@mui/material";
 import AbilityThumbnail from "@components/AbilityThumbnail";
+import Stat from "@components/Stat";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -216,6 +217,9 @@ export function CostumesTable({
           filterPlaceholder: "> HP",
           customFilterAndSearch: (term, costume) =>
             costume.costume_stat[0].hp >= Number(term),
+          render: (costume) => (
+            <Stat type="hp" value={costume.costume_stat[0].hp} />
+          ),
         },
         {
           field: "costume_stat[0].atk",
@@ -229,6 +233,9 @@ export function CostumesTable({
           filterPlaceholder: "> ATK",
           customFilterAndSearch: (term, costume) =>
             costume.costume_stat[0].atk >= Number(term),
+          render: (costume) => (
+            <Stat type="atk" value={costume.costume_stat[0].atk} />
+          ),
         },
         {
           field: "costume_stat[0].vit",
@@ -242,6 +249,9 @@ export function CostumesTable({
           filterPlaceholder: "> DEF",
           customFilterAndSearch: (term, costume) =>
             costume.costume_stat[0].vit >= Number(term),
+          render: (costume) => (
+            <Stat type="vit" value={costume.costume_stat[0].vit} />
+          ),
         },
         {
           field: "costume_stat[0].agi",
@@ -255,6 +265,9 @@ export function CostumesTable({
           filterPlaceholder: "> AGI",
           customFilterAndSearch: (term, costume) =>
             costume.costume_stat[0].agi >= Number(term),
+          render: (costume) => (
+            <Stat type="agi" value={costume.costume_stat[0].agi} />
+          ),
         },
         {
           field: "costume_ability_link[0].costume_ability.name",
