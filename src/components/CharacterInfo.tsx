@@ -31,6 +31,11 @@ import getEmblemPath from "@utils/getEmblemPath";
 import slug from "slugg";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "./form/Checkbox";
+import Stat from "./Stat";
+import StoneSlabsSelect from "./StoneSlabsSelect";
+import CursedGodSlabsSelect from "./CursedGodSlabsSelect";
+import AwakeningLevelSelect from "./AwakeningLevelSelect";
+import { useSettingsStore } from "@store/settings";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -73,6 +78,13 @@ function CostumeDetails({
   );
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
+  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+  const cursedGodSlabsPercent = useSettingsStore(
+    (state) => state.cursedGodSlabsPercent
+  );
+  const stoneTowerSlabsPercent = useSettingsStore(
+    (state) => state.stoneTowerSlabsPercent
+  );
 
   useEffect(() => {
     setDateRelative(
@@ -304,35 +316,29 @@ function CostumeDetails({
             <HR className="my-8" />
           </div>
 
+          <div className="flex flex-row gap-4 justify-center mb-8">
+            <AwakeningLevelSelect />
+            <StoneSlabsSelect />
+            <CursedGodSlabsSelect />
+          </div>
+
           <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
-            <StatsOfLevel
-              stats={stats[0]}
-              label={`Level ${stats[0].level}`}
-              description={
-                statType === "displayed"
-                  ? `${abilities[0][3].name} is at level 1`
-                  : ""
-              }
-            />
+            <StatsOfLevel stats={stats[0]} label={`Level ${stats[0].level}`} />
             <StatsOfLevel
               stats={stats[1]}
-              label={`Level ${stats[1].level} (No ascension)`}
-              description={
-                statType === "displayed"
-                  ? `${abilities[0][3].name} is at level 1`
-                  : ""
-              }
+              label={`Level ${stats[1].level}`}
+              description="No ascension"
             />
             <StatsOfLevel
               stats={stats[2]}
-              label={`Level ${stats[2].level} (Max ascension)`}
-              description={
-                statType === "displayed"
-                  ? `${abilities[0][3].name} & ${abilities[1][3].name} are at level 4`
-                  : ""
-              }
+              label={`Level ${stats[2].level}`}
+              description="Max ascension"
             />
           </div>
+
+          <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
+            Abilities and bonuses are not included in the stats.
+          </p>
 
           {rankBonus && (
             <div className="mt-1 flex flex-col">
@@ -350,10 +356,6 @@ function CostumeDetails({
               </div>
             </div>
           )}
-
-          <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
-            Timed or conditional passives are not included in the stats.
-          </p>
         </div>
       )}
 
@@ -400,7 +402,7 @@ function CostumeDetails({
   );
 }
 
-function SingleStat({ name, value, icon }): JSX.Element {
+function SingleStat({ name, value, type, icon }): JSX.Element {
   const colors = {
     Attack: "text-red-300",
     Defense: "text-blue-300",
@@ -421,7 +423,9 @@ function SingleStat({ name, value, icon }): JSX.Element {
         />
         {name}
       </div>
-      <div className={classNames("font-light", colors[name])}>{value}</div>
+      <div className={classNames("font-light", colors[name])}>
+        <Stat type={type} value={value} />
+      </div>
     </div>
   );
 }
@@ -447,37 +451,56 @@ function StatsOfLevel({
       </div>
 
       <div className={classNames(rowsClasses ?? "flex flex-col")}>
-        <SingleStat icon={statsIcons.hp} name="HP" value={stats.hp ?? "???"} />
+        <SingleStat
+          icon={statsIcons.hp}
+          name="HP"
+          value={stats.hp ?? "???"}
+          type="hp"
+        />
         <SingleStat
           icon={statsIcons.atk}
           name="Attack"
           value={stats.atk ?? "???"}
+          type="atk"
         />
         <SingleStat
           icon={statsIcons.def}
           name="Defense"
           value={stats.vit ?? "???"}
+          type="vit"
         />
-        <SingleStat
-          icon={statsIcons.agility}
-          name="Agility"
-          value={stats.agi ?? "???"}
-        />
-        <SingleStat
-          icon={statsIcons.cr}
-          name="Critical Rate"
-          value={`${stats.crit_rate / 10 ?? "???"}%`}
-        />
-        <SingleStat
-          icon={statsIcons.cd}
-          name="Critical Damage"
-          value={`${stats.crit_atk / 10 ?? "???"}%`}
-        />
-        <SingleStat
-          icon={statsIcons.eva_rate}
-          name="Evasion Rate"
-          value={`${stats.eva_rate / 10 ?? "???"}%`}
-        />
+        {stats.agi > 0 && (
+          <SingleStat
+            icon={statsIcons.agility}
+            name="Agility"
+            value={stats.agi ?? "???"}
+            type="agi"
+          />
+        )}
+        {stats.crit_rate > 0 && (
+          <SingleStat
+            icon={statsIcons.cr}
+            name="Critical Rate"
+            value={`${stats.crit_rate ?? "???"}`}
+            type="crit_rate"
+          />
+        )}
+        {stats.crit_atk > 0 && (
+          <SingleStat
+            icon={statsIcons.cd}
+            name="Critical Damage"
+            value={`${stats.crit_atk ?? "???"}`}
+            type="crit_atk"
+          />
+        )}
+        {stats.eva_rate > 0 && (
+          <SingleStat
+            icon={statsIcons.eva_rate}
+            name="Evasion Rate"
+            value={`${stats.eva_rate ?? "???"}`}
+            type="eva_rate"
+          />
+        )}
       </div>
     </div>
   );
