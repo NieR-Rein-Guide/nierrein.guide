@@ -21,6 +21,7 @@ import { getTierlist } from "@models/tiers";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "@components/form/Checkbox";
 import { useState } from "react";
+import getBaseRarity from "@utils/getBaseRarity";
 
 interface TierListProps {
   tierlist: tierlists & {
@@ -233,7 +234,11 @@ export function TierlistContent({ tierlist, items }) {
                                 : undefined
                             }
                             element={weapon?.attribute}
-                            rarity={weapon?.rarity}
+                            rarity={getBaseRarity({
+                              rarity: weapon?.rarity,
+                              is_ex_weapon: weapon?.is_ex_weapon,
+                              evolution_order: weapon?.evolution_order,
+                            })}
                             type={weapon?.weapon_type}
                             isDark={weapon?.is_ex_weapon}
                             alt={weapon?.name}

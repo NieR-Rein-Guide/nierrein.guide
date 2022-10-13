@@ -34,6 +34,7 @@ import {
 import Radio from "@components/form/Radio";
 import classNames from "classnames";
 import AbilityThumbnail from "@components/AbilityThumbnail";
+import getBaseRarity from "@utils/getBaseRarity";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -66,9 +67,9 @@ export const weaponTypesLookup = {
 };
 
 export const rarityLookup = {
+  RARE: "2*",
   S_RARE: "3*",
   SS_RARE: "4*",
-  LEGEND: "5*",
 };
 
 export default function WeaponsPage({
@@ -182,10 +183,19 @@ export function WeaponsTable({
   return (
     <MaterialTable
       title={title ?? `${weapons.length} weapons in the database.`}
-      data={weapons.filter((weapon) => {
-        if (showUnreleasedContent) return true;
-        return new Date() > new Date(weapon.release_time);
-      })}
+      data={weapons
+        .filter((weapon) => {
+          if (showUnreleasedContent) return true;
+          return new Date() > new Date(weapon.release_time);
+        })
+        .map((weap) => ({
+          ...weap,
+          base_rarity: getBaseRarity({
+            rarity: weap.rarity,
+            is_ex_weapon: weap.is_ex_weapon,
+            evolution_order: weap.evolution_order,
+          }),
+        }))}
       columns={[
         {
           field: "name",
@@ -196,7 +206,7 @@ export function WeaponsTable({
             <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
               <WeaponThumbnail
                 element={weapon.attribute}
-                rarity={weapon.rarity}
+                rarity={weapon.base_rarity}
                 type={weapon.weapon_type}
                 isDark={weapon.is_ex_weapon}
                 alt={weapon.name}
@@ -481,16 +491,16 @@ export function WeaponsTable({
           ),
         },
         {
-          field: "rarity",
-          title: "Rarity",
+          field: "base_rarity",
+          title: "Base Rarity",
           lookup: rarityLookup,
-          customFilterAndSearch: (term, costume) => {
+          customFilterAndSearch: (term, weapon) => {
             if (term.length === 0) return true;
-            return term.includes(costume.rarity);
+            return term.includes(weapon.base_rarity);
           },
-          render: (costume) => (
+          render: (weapon) => (
             <div className="w-8 h-8 mx-auto">
-              <Star rarity={RARITY[costume.rarity]} />
+              <Star rarity={RARITY[weapon.base_rarity]} />
             </div>
           ),
         },
@@ -563,6 +573,14 @@ export function WeaponsGrid({
           if (showUnreleasedContent) return true;
           return new Date() > new Date(weapon.release_time);
         })
+        .map((weap) => ({
+          ...weap,
+          base_rarity: getBaseRarity({
+            rarity: weap.rarity,
+            is_ex_weapon: weap.is_ex_weapon,
+            evolution_order: weap.evolution_order,
+          }),
+        }))
         .map((weap) => (
           <div
             className={classNames(
@@ -584,7 +602,7 @@ export function WeaponsGrid({
                   alt={weap.name}
                   type={weap.weapon_type}
                   element={weap.attribute}
-                  rarity={weap.rarity}
+                  rarity={weap.base_rarity}
                   isLarge
                   isDark={weap.is_ex_weapon}
                   imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"

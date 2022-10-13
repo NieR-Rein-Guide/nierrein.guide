@@ -46,6 +46,7 @@ import WeaponThumbnail from "@components/WeaponThumbnail";
 import ATTRIBUTES from "@utils/attributes";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 import { useCreatedTierlists } from "@store/created-tierlists";
+import getBaseRarity from "@utils/getBaseRarity";
 
 const DEFAULT_DESCRIPTION = "<p>My awesome (and objective) tierlist.</p>";
 
@@ -548,7 +549,11 @@ export default function TierlistBuilder({
                                       <WeaponThumbnail
                                         key={`${item.weapon_id}-${index}`}
                                         element={item.attribute}
-                                        rarity={item.rarity}
+                                        rarity={getBaseRarity({
+                                          rarity: item.rarity,
+                                          is_ex_weapon: item.is_ex_weapon,
+                                          evolution_order: item.evolution_order,
+                                        })}
                                         type={item.weapon_type}
                                         isDark={item.is_ex_weapon}
                                         alt={item.name}
