@@ -1,13 +1,21 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { A11y, Pagination, Navigation } from "swiper";
 import Link from "next/link";
+import useBreakpoint from "@hooks/useBreakpoint";
 
 export default function NewNotices({ notifications }) {
+  const breakpoint = useBreakpoint();
+
+  console.log(breakpoint);
   return (
     <div className="swiper--notices overflow-hidden relative pb-16">
       <Swiper
         modules={[A11y, Pagination, Navigation]}
-        slidesPerView={5}
+        slidesPerView={
+          (breakpoint === "sm" && 2) ||
+          (breakpoint === "md" && 3) ||
+          (breakpoint === "lg" && 5)
+        }
         pagination={{ clickable: true }}
         navigation
         className="cursor-move"

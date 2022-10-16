@@ -49,6 +49,7 @@
 
 .swiper--notices {
   .swiper-pagination {
+    @apply hidden md:block;
     bottom: -3rem !important;
   }
 
