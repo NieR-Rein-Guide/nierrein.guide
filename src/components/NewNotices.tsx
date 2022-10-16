@@ -14,7 +14,9 @@ export default function NewNotices({ notifications }) {
         slidesPerView={
           (breakpoint === "sm" && 2) ||
           (breakpoint === "md" && 3) ||
-          (breakpoint === "lg" && 5)
+          (breakpoint === "lg" && 5) ||
+          (breakpoint === "xl" && 5) ||
+          (breakpoint === "2xl" && 5)
         }
         pagination={{ clickable: true }}
         navigation
