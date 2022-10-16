@@ -4,7 +4,7 @@ import Image from "next/image";
 function JoinUs(): JSX.Element {
   return (
     <section className="relative bg-grey-dark border-opacity-50 p-8 md:max-w-5xl md:mx-auto">
-      <div className="flex flex-col items-center md:pr-12">
+      <div className="flex flex-col items-center">
         <p className="mb-4 leading-loose text-center">
           We are building this website in the open
           <br />

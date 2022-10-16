@@ -35,7 +35,7 @@ export default function Footer(): JSX.Element {
           ))}
         </div>
 
-        <div className="font-display text-xl md:text-2xl text-center my-16 md:mt-12">
+        <div className="font-display text-xl text-center my-16 md:mt-12">
           <p>
             NieR Re[in] Guide is not affiliated with or endorsed by SQUARE ENIX
             CO. LTD.

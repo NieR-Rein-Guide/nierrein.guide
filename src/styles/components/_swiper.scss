@@ -16,12 +16,10 @@
 
 .swiper-button-next,
 .swiper-button-prev {
-  @apply absolute z-50 h-8 w-12;
-
-  top: 62%;
+  @apply absolute z-50 h-8 -bottom-2 w-60;
 
    @screen sm {
-     @apply h-12 w-16 top-1/2 transform -translate-y-1/2;
+     @apply h-12 top-1/2 transform -translate-y-1/2;
    }
 
   background-size: 32px;

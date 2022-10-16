@@ -9,18 +9,13 @@ import Meta from "@components/Meta";
 import { getFeaturedGuides } from "@models/guide";
 import { Guide, Event } from "@models/types";
 import { getAllEvents } from "@models/event";
-import { useMedia } from "react-use";
-import CostumeArtwork from "@components/CostumeArtwork";
-import slug from "slugg";
 import prisma from "@libs/prisma";
-import WeaponThumbnail from "@components/WeaponThumbnail";
 import { BtnSecondary } from "@components/btn";
-import Tools from "@components/pages/tools";
 import { character, costume, notification, weapon } from "@prisma/client";
 import { loadouts } from "@prisma/client-nrg";
 import LoadoutListingItem from "@components/LoadoutListingItem";
-import { useSettingsStore } from "../store/settings";
-import classNames from "classnames";
+import NewCostumes from "@components/NewCostumes";
+import NewWeapons from "@components/NewWeapons";
 const EventsTimeline = dynamic(() => import("../components/EventsTimeline"), {
   ssr: false,
 });
@@ -55,115 +50,29 @@ export default function Home({
   notifications = [],
   loadouts = [],
 }: HomeProps): JSX.Element {
-  const isMobile = useMedia("(max-width: 1279px)");
-  const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
-  );
-
   return (
-    <Layout>
+    <Layout hasContainer={false}>
       <Meta />
 
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
-        {!isMobile && <AnimatedBanner />}
-        <EventsTimeline items={events} />
-
-        <section className="p-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Tools />
-          </div>
-        </section>
-
-        <NotificationsWithNoSSR notifications={notifications} />
-
-        {/* NEW COSTUMES */}
-        <div>
-          <section>
-            <h2 className="overlap">New costumes</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {recentCostumes.map((costume) => (
-                <div className="relative" key={costume.costume_id}>
-                  <h3 className="text-2xl text-beige text-center">
-                    {costume.character.name} - {costume.title}
-                  </h3>
-                  <CostumeArtwork costume={costume} />
-                  <Link
-                    href={`/characters/${slug(costume.character.name)}/${slug(
-                      costume.title
-                    )}`}
-                    passHref
-                  >
-                    <a className="btn absolute z-50 -bottom-2 transform -translate-x-1/2 left-1/2">
-                      See costume
-                    </a>
-                  </Link>
-
-                  {!showUnreleasedContent &&
-                    new Date() < new Date(costume.release_time) && (
-                      <div className="absolute inset-0 z-50 bg-grey-lighter bordered flex items-center justify-center">
-                        <span className="text-beige text-3xl">
-                          Hidden costume
-                        </span>
-                      </div>
-                    )}
-                </div>
-              ))}
-            </div>
-          </section>
-          <div className="flex justify-center mt-8">
-            <Link href="/characters" passHref>
-              <BtnSecondary>See all costumes</BtnSecondary>
-            </Link>
-          </div>
+        <div className="container">
+          <EventsTimeline items={events} />
+        </div>
+        <div className="container">
+          <NotificationsWithNoSSR notifications={notifications} />
         </div>
 
-        {/* NEW WEAPONS */}
         <div>
-          <section>
-            <h2 className="overlap">New weapons</h2>
-            <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {recentWeapons
-                .filter((weapon) => {
-                  if (showUnreleasedContent) return true;
-                  return new Date() > new Date(weapon.release_time);
-                })
-                .map((weapon, index) => (
-                  <div
-                    key={weapon.weapon_id}
-                    className={classNames(
-                      "flex items-center gap-x-4 w-80 bg-grey-dark bordered relative p-8 transition hover:bg-grey-lighter",
-                      index > 2 ? "hidden md:flex" : ""
-                    )}
-                  >
-                    <WeaponThumbnail
-                      element={weapon.attribute}
-                      rarity={weapon.rarity}
-                      type={weapon.weapon_type}
-                      isDark={weapon.is_ex_weapon}
-                      alt={weapon.name}
-                      image_path={weapon.image_path}
-                    />
-                    <span>{weapon.name}</span>
-                    <Link href={`/weapons/${weapon.slug}`} passHref>
-                      <a className="absolute inset-0 z-10">
-                        <span className="sr-only">
-                          See more about {weapon.name}
-                        </span>
-                      </a>
-                    </Link>
-                  </div>
-                ))}
-            </div>
-          </section>
-          <div className="flex justify-center mt-8">
-            <Link href="/weapons" passHref>
-              <BtnSecondary>See all weapons</BtnSecondary>
-            </Link>
+          <div className="bg-grey-dark border-y border-beige border-opacity-50">
+            <NewCostumes costumes={recentCostumes} />
+          </div>
+          <div className="bg-grey-dark border-y border-beige border-opacity-50">
+            <NewWeapons weapons={recentWeapons} />
           </div>
         </div>
 
         {/* NEW LOADOUTS */}
-        <div>
+        <div className="container">
           <section>
             <h2 className="overlap">New community loadouts</h2>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -195,10 +104,15 @@ export default function Home({
           </div>
         </div>
 
-        <FeaturedGuides guides={featuredGuides} />
-        <DailyInfoWithNoSSR />
-        <Socials />
-        <JoinUs />
+        <div className="container">
+          <FeaturedGuides guides={featuredGuides} />
+        </div>
+        <div className="container">
+          <DailyInfoWithNoSSR />
+        </div>
+        <div className="container">
+          <JoinUs />
+        </div>
       </div>
     </Layout>
   );
@@ -223,7 +137,7 @@ export async function getStaticProps() {
         include: {
           character: true,
         },
-        take: 4,
+        take: 6,
       }),
       prisma.dump.notification.findMany({
         take: 10,

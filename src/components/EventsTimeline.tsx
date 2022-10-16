@@ -9,10 +9,16 @@ import { BtnSecondary } from "./btn";
 const GROUPS = [
   "Record",
   "Premium Summons",
+  "Weekly Summons",
   "Abyss Tower",
   "Variation",
   "Anecdote",
 ];
+
+const groups = GROUPS.map((group, id) => ({
+  id,
+  content: group,
+}));
 
 export default function EventsTimeline({
   items,
@@ -22,11 +28,6 @@ export default function EventsTimeline({
   hasBtn?: boolean;
 }) {
   const visualization = useRef(null);
-
-  const groups = GROUPS.map((group, id) => ({
-    id,
-    content: group,
-  }));
 
   const visItems = items.map((item, id) => {
     const associatedGroup = groups.find((group) =>
@@ -42,8 +43,6 @@ export default function EventsTimeline({
       selectable: false,
       className: "bg-beige",
       limitSize: false,
-      style:
-        'background-image: url("https://reinguide-assets.s3.eu-central-1.wasabisys.com/large_Fc_LR_4_G9a_UAI_Vql8_ad961b7d96.jpg")',
       slug: item.slug,
       image:
         item.image.formats.large?.url ??

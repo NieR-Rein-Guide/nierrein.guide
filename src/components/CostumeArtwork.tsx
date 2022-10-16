@@ -28,10 +28,7 @@ export default function CostumeArtwork({
   const [isShowingModel] = useState(false);
 
   return (
-    <div
-      className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 w-full"
-      style={{ height: "700px" }}
-    >
+    <div className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 w-full h-[700px] select-none">
       <div className="bordered-lg bg-grey-dark h-full w-full">
         <div className="relative z-10 h-full w-full">
           {(isShowingModel && (
