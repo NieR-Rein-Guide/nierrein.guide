@@ -4,11 +4,13 @@ interface getBaseRarityArgs {
   is_ex_weapon: boolean;
 }
 
+type Rarity = 'S_RARE' | 'SS_RARE' | 'S_RARE' | 'RARE'
+
 export default function getBaseRarity({
   rarity,
   evolution_order,
   is_ex_weapon
-}: getBaseRarityArgs) {
+}: getBaseRarityArgs): Rarity {
   if (is_ex_weapon) {
     return 'S_RARE';
   }

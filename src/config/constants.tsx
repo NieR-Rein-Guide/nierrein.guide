@@ -5,7 +5,8 @@ import tierlistIcon from "../../public/icons/tierlist.png";
 import charactersIcon from "../../public/icons/characters.png";
 import databaseIcon from "../../public/icons/database.png";
 import SVG from "react-inlinesvg";
-import { RiInstagramFill, RiRedditFill } from "react-icons/ri";
+import { RiRedditFill, RiGithubFill, RiTwitterFill } from "react-icons/ri";
+import { FaDiscord } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
 
 /**
@@ -102,6 +103,10 @@ export const TOOLS = [
 ];
 
 export const FOOTER_NAVIGATION = [
+  {
+    label: "Give feedback",
+    href: "https://github.com/NieR-Rein-Guide/nierrein.guide/issues/new",
+  },
   {
     label: "About & Contributors",
     href: "/about",
@@ -269,17 +274,17 @@ export const OUR_SOCIALS: Social[] = [
   {
     label: "Discord",
     href: DISCORD_URL,
-    icon: <SVG src="/logos/discord.svg" height="26" />,
+    icon: <FaDiscord size="32" />,
   },
   {
     label: "Twitter",
     href: TWITTER_URL,
-    icon: <SVG src="/logos/twitter.svg" height="26" />,
+    icon: <RiTwitterFill size="32" />,
   },
   {
-    label: "Instagram",
-    href: INSTAGRAM_URL,
-    icon: <RiInstagramFill size="32" />,
+    label: "GitHub",
+    href: GITHUB_REPO_LINK,
+    icon: <RiGithubFill size="32" />,
   },
 ];
 
@@ -288,7 +293,7 @@ export const SOCIALS: Social[] = [
   {
     label: "Official Discord",
     href: "https://discord.gg/4QTuC6xR82",
-    icon: <SVG src="/logos/discord.svg" height="26" />,
+    icon: <FaDiscord size="32" />,
   },
   {
     label: "Subreddit",
@@ -298,7 +303,7 @@ export const SOCIALS: Social[] = [
   {
     label: "Official Subreddit Discord",
     href: "https://www.discord.gg/nier",
-    icon: <SVG src="/logos/discord.svg" height="26" />,
+    icon: <FaDiscord size="32" />,
   },
 ];
 
