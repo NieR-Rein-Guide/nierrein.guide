@@ -1,10 +1,8 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import Layout from "@components/Layout";
-import Socials from "@components/Socials";
 import JoinUs from "@components/JoinUs";
 import FeaturedGuides from "@components/FeaturedGuides";
-import AnimatedBanner from "@components/AnimatedBanner";
 import Meta from "@components/Meta";
 import { getFeaturedGuides } from "@models/guide";
 import { Guide, Event } from "@models/types";
@@ -16,6 +14,7 @@ import { loadouts } from "@prisma/client-nrg";
 import LoadoutListingItem from "@components/LoadoutListingItem";
 import NewCostumes from "@components/NewCostumes";
 import NewWeapons from "@components/NewWeapons";
+import NewNotices from "@components/NewNotices";
 const EventsTimeline = dynamic(() => import("../components/EventsTimeline"), {
   ssr: false,
 });
@@ -56,10 +55,11 @@ export default function Home({
 
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
         <div className="container">
-          <EventsTimeline items={events} />
+          <NewNotices notifications={notifications} />
         </div>
+
         <div className="container">
-          <NotificationsWithNoSSR notifications={notifications} />
+          <EventsTimeline items={events} />
         </div>
 
         <div>
@@ -140,7 +140,7 @@ export async function getStaticProps() {
         take: 6,
       }),
       prisma.dump.notification.findMany({
-        take: 10,
+        take: 20,
         orderBy: {
           release_time: "desc",
         },

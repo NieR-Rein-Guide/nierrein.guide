@@ -6,6 +6,7 @@ import Link from "next/link";
 import { notification } from "@prisma/client";
 import classNames from "classnames";
 import prisma from "@libs/prisma";
+import { formatDistanceToNow } from "date-fns";
 
 interface SingleNoticeProps {
   notification: notification;
@@ -53,7 +54,9 @@ export default function SingleNotice({
                 {notification.title}
               </h3>
               <time className="text-sm text-beige">
-                {notification.release_time}
+                {formatDistanceToNow(new Date(notification.release_time), {
+                  addSuffix: true,
+                })}
               </time>
             </div>
           </div>

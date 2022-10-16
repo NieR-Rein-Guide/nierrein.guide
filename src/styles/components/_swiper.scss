@@ -46,3 +46,13 @@
 
   background-image: url(/decorations/arrow-left-beige.svg);
 }
+
+.swiper--notices {
+  .swiper-pagination {
+    bottom: -3rem !important;
+  }
+
+  .swiper-button-prev, .swiper-button-next {
+    top: 9rem !important;
+  }
+}
