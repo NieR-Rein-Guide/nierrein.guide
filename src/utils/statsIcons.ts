@@ -12,6 +12,7 @@ import largeCdIcon from "../../public/icons/stats/cd.png";
 import largeCrIcon from "../../public/icons/stats/cr.png";
 import largeDefIcon from "../../public/icons/stats/def.png";
 import largeHpIcon from "../../public/icons/stats/hp.png";
+import largeEvaRateIcon from "../../public/icons/stats/eva_rate.png";
 
 const statsIcons = {
   atk: atkIcon,
@@ -36,6 +37,7 @@ const statsIcons = {
   largeCr: largeCrIcon,
   largeDef: largeDefIcon,
   largeHp: largeHpIcon,
+  largeEvaRate: largeEvaRateIcon,
 };
 
 export default statsIcons;

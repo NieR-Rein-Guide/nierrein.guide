@@ -4,7 +4,6 @@ import loadoutsIcon from "../../public/icons/loadout.png";
 import tierlistIcon from "../../public/icons/tierlist.png";
 import charactersIcon from "../../public/icons/characters.png";
 import databaseIcon from "../../public/icons/database.png";
-import SVG from "react-inlinesvg";
 import { RiRedditFill, RiGithubFill, RiTwitterFill } from "react-icons/ri";
 import { FaDiscord } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
@@ -72,6 +71,12 @@ export const TOOLS = [
     href: "/tools/tierlist-builder",
     label: "Tierlist builder",
     src: "/tools/tierlist.jpg",
+    class: "md:col-span-2",
+  },
+  {
+    href: "/tools/compare",
+    label: "Compare",
+    src: "/tools/compare.jpg",
     class: "md:col-span-2",
   },
   {

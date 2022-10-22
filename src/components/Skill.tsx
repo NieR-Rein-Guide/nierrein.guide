@@ -17,6 +17,7 @@ interface SkillProps {
   isWeapon?: boolean;
   className?: string;
   imagePathBase?: string;
+  containerClass?: string | string[];
 }
 
 export default function Skill({
@@ -29,6 +30,7 @@ export default function Skill({
   isWeapon = false,
   className,
   imagePathBase = "",
+  containerClass,
 }: SkillProps): JSX.Element {
   return (
     <div
@@ -40,7 +42,12 @@ export default function Skill({
       <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
         Lv. {level}/{maxLevel}
       </span>
-      <div className="flex flex-col md:flex-row items-center">
+      <div
+        className={classNames(
+          "flex flex-col md:flex-row items-center",
+          containerClass
+        )}
+      >
         <div className="relative mr-4">
           <SVG src="/decorations/frame.svg" className="h-24 w-24" />
           <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">

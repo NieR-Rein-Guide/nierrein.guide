@@ -10,6 +10,7 @@ import classNames from "classnames";
 interface StatProps {
   type: "hp" | "atk" | "vit" | "agi" | "crit_rate" | "crit_atk" | "eva_rate";
   value: number;
+  className?: string | string[];
 }
 
 const STATS_VALUES = ["hp", "atk", "vit", "agi"];
@@ -17,7 +18,7 @@ const PERCENT_VALUES = ["crit_rate", "crit_atk", "eva_rate"];
 const AWAKENING_VALUES = ["hp", "atk", "vit"];
 const AWAKENING_LEVELS_STATS = [1, 2, 4];
 
-export default function Stat({ type, value }: StatProps) {
+export default function Stat({ type, value, className }: StatProps) {
   const stoneTowerSlabsPercent = useSettingsStore(
     (state) => state.stoneTowerSlabsPercent
   );
@@ -79,7 +80,7 @@ export default function Stat({ type, value }: StatProps) {
         </p>
       }
     >
-      <span className={classNames(isModified ? "underline" : "")}>
+      <span className={classNames(isModified ? "underline" : "", className)}>
         {Math.round(finalStat)}
         {PERCENT_VALUES.includes(type) ? "%" : ""}
       </span>

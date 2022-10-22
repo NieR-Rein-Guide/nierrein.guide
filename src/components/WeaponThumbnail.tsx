@@ -10,8 +10,8 @@ import Link from "next/link";
 
 interface WeaponThumbnailProps {
   alt?: string;
-  rarity: number | string;
-  type: WeaponType | string;
+  rarity?: number | string;
+  type?: WeaponType | string;
   isDark?: boolean;
   element: ElementTypes | string;
   imgClasses?: string;
