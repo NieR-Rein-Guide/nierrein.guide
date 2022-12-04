@@ -22,20 +22,10 @@ export const defaultFromDate = sub(new Date(), {
 export default function ListingLoadout({
   tierlists = [],
 }: LoadoutProps): JSX.Element {
-  const router = useRouter();
-
   const [sortBy, setSortBy] = useState("votes");
   const [fromDate, setFromDate] = useState<Date | null>(defaultFromDate);
   const [attribute, setAttribute] = useState("all");
   const [type, setType] = useState("all");
-
-  useEffect(() => {
-    if (router.asPath === "/tierlists") return;
-
-    router.push(
-      `/tierlists/community?attribute=${attribute}&type=${type}&from=${fromDate.toISOString()}&sortBy=${sortBy}`
-    );
-  }, [attribute, type, fromDate, sortBy]);
 
   useEffect(() => {
     if (type === "costumes") {
