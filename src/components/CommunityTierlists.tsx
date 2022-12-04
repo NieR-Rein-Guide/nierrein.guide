@@ -30,8 +30,6 @@ export default function ListingLoadout({
   const [type, setType] = useState("all");
 
   useEffect(() => {
-    if (router.asPath === "/tierlists") return;
-
     router.push(
       `/tierlists/community?attribute=${attribute}&type=${type}&from=${fromDate.toISOString()}&sortBy=${sortBy}`
     );

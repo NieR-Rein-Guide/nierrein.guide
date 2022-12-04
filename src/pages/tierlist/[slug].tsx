@@ -189,7 +189,7 @@ export function TierlistContent({ tierlist, items }) {
                             rarity={RARITY[costume.rarity]}
                             weaponType={costume.weapon_type}
                           />
-                          <p className="text-sm mb-0 leading-none">
+                          <p className="text-center text-sm mb-0 leading-none">
                             {costume.is_ex_costume && (
                               <span className="text-rarity-4">EX </span>
                             )}
@@ -255,7 +255,7 @@ export function TierlistContent({ tierlist, items }) {
                             alt={weapon?.name}
                             image_path={weapon?.image_path}
                           />
-                          <p className="text-sm mb-0 leading-none">
+                          <p className="text-center text-sm mb-0 leading-none">
                             {weapon.is_ex_weapon && (
                               <span className="text-rarity-4">EX </span>
                             )}
