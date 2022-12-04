@@ -483,114 +483,123 @@ export default function TierlistBuilder({
                             </button>
                           </div>
                         )}
-                        <div
-                          className={classNames(
-                            "gap-4",
-                            ind === state.length - 1
-                              ? "grid grid-cols-2 sm:grid-cols-4 md:grid-cols-10 place-items-center"
-                              : "flex overflow-x-auto"
-                          )}
-                        >
+
+                        {ind !== state.length - 1 && (
+                          <button
+                            onClick={() => editTitle(ind)}
+                            className="absolute -left-3 top-1 transform -translate-y-1/2 bg-beige rounded-full h-10 w-10 flex items-center justify-center transition ease-out-cubic text-beige-darker hover:bg-beige-darker hover:text-white"
+                          >
+                            <FiEdit size="24" />
+                          </button>
+                        )}
+
+                        {ind === state.length - 1 && (
+                          <div className="col-span-10 flex justify-between w-full mb-4">
+                            <p>Drag & Drop weapons into the tiers.</p>
+                            <Checkbox
+                              label="Only inventory"
+                              isChecked={showOnlyInventory}
+                              setState={(e) =>
+                                setShowOnlyInventory(e.target.checked)
+                              }
+                            />
+                          </div>
+                        )}
+
+                        <div className="flex">
                           {ind !== state.length - 1 && (
-                            <button
-                              onClick={() => editTitle(ind)}
-                              className="absolute -left-3 top-1 transform -translate-y-1/2 bg-beige rounded-full h-10 w-10 flex items-center justify-center transition ease-out-cubic text-beige-darker hover:bg-beige-darker hover:text-white"
-                            >
-                              <FiEdit size="24" />
-                            </button>
-                          )}
-                          {(ind === state.length - 1 && (
-                            <div className="col-span-10 flex justify-between w-full">
-                              <p className="">
-                                Drag & Drop weapons into the tiers.
-                              </p>
-                              <Checkbox
-                                label="Only inventory"
-                                isChecked={showOnlyInventory}
-                                setState={(e) =>
-                                  setShowOnlyInventory(e.target.checked)
-                                }
-                              />
-                            </div>
-                          )) || (
-                            <div className="flex justify-center items-center w-28">
-                              {(RANK_THUMBNAILS[el.tier] && (
-                                <Image
-                                  src={RANK_THUMBNAILS[el.tier]}
-                                  alt={el.tier}
-                                />
-                              )) || <h2 className="text-2xl">{el.tier}</h2>}
+                            <div className="w-28 inline-flex">
+                              {ind !== state.length - 1 && (
+                                <div className="flex justify-center items-center w-28">
+                                  {(RANK_THUMBNAILS[el.tier] && (
+                                    <Image
+                                      src={RANK_THUMBNAILS[el.tier]}
+                                      alt={el.tier}
+                                    />
+                                  )) || <h2 className="text-2xl">{el.tier}</h2>}
+                                </div>
+                              )}
                             </div>
                           )}
-                          {el.items?.map((item, index) => {
-                            return (
-                              <Draggable
-                                key={item.id}
-                                draggableId={item.id}
-                                index={index}
-                              >
-                                {(provided, snapshot) => (
-                                  <div
-                                    className="relative flex"
-                                    ref={provided.innerRef}
-                                    {...provided.draggableProps}
-                                    {...provided.dragHandleProps}
-                                    style={getItemStyle(
-                                      snapshot.isDragging,
-                                      provided.draggableProps.style
-                                    )}
-                                  >
-                                    <div className="flex flex-col justify-around">
-                                      {item.tooltip && (
-                                        <div className="bg-beige absolute top-0 right-0 w-6 h-6 flex justify-center items-center z-20 rounded-full text-black">
-                                          <FiMessageCircle />
-                                        </div>
+                          <div
+                            className={classNames(
+                              "gap-4",
+                              ind === state.length - 1
+                                ? "grid grid-cols-2 sm:grid-cols-4 md:grid-cols-10 place-items-center"
+                                : "flex overflow-x-auto"
+                            )}
+                          >
+                            {el.items?.map((item, index) => {
+                              return (
+                                <Draggable
+                                  key={item.id}
+                                  draggableId={item.id}
+                                  index={index}
+                                >
+                                  {(provided, snapshot) => (
+                                    <div
+                                      className="relative flex"
+                                      ref={provided.innerRef}
+                                      {...provided.draggableProps}
+                                      {...provided.dragHandleProps}
+                                      style={getItemStyle(
+                                        snapshot.isDragging,
+                                        provided.draggableProps.style
                                       )}
-                                      <WeaponThumbnail
-                                        key={`${item.weapon_id}-${index}`}
-                                        element={item.attribute}
-                                        rarity={getBaseRarity({
-                                          rarity: item.rarity,
-                                          is_ex_weapon: item.is_ex_weapon,
-                                          evolution_order: item.evolution_order,
-                                        })}
-                                        type={item.weapon_type}
-                                        isDark={item.is_ex_weapon}
-                                        alt={item.name}
-                                        image_path={item.image_path}
-                                      />
-                                      {ind === state.length - 1 && (
-                                        <div className="text-xxs text-center mt-1">
-                                          <span className="text-center text-beige line-clamp-1 leading-none">
-                                            {item.is_ex_weapon && (
-                                              <span className="text-rarity-4">
-                                                EX{" "}
-                                              </span>
-                                            )}
-                                            {item.name}
-                                          </span>
-                                        </div>
-                                      )}
-                                      {ind !== state.length - 1 && (
-                                        <Tooltip title="Add a comment on this item">
-                                          <button
-                                            onClick={() => {
-                                              setCurrentIndex(ind);
-                                              setCurrentItemIndex(index);
-                                              setTooltipModal(true);
-                                            }}
-                                            className="mt-1 bg-beige py-1 w-full flex justify-center items-center z-20 rounded-full text-black"
-                                          >
+                                    >
+                                      <div className="flex flex-col justify-around">
+                                        {item.tooltip && (
+                                          <div className="bg-beige absolute top-0 right-0 w-6 h-6 flex justify-center items-center z-20 rounded-full text-black">
                                             <FiMessageCircle />
-                                          </button>
-                                        </Tooltip>
-                                      )}
+                                          </div>
+                                        )}
+                                        <WeaponThumbnail
+                                          key={`${item.weapon_id}-${index}`}
+                                          element={item.attribute}
+                                          rarity={getBaseRarity({
+                                            rarity: item.rarity,
+                                            is_ex_weapon: item.is_ex_weapon,
+                                            evolution_order:
+                                              item.evolution_order,
+                                          })}
+                                          type={item.weapon_type}
+                                          isDark={item.is_ex_weapon}
+                                          alt={item.name}
+                                          image_path={item.image_path}
+                                        />
+                                        {ind === state.length - 1 && (
+                                          <div className="text-xxs text-center mt-1">
+                                            <span className="text-center text-beige line-clamp-1 leading-none">
+                                              {item.is_ex_weapon && (
+                                                <span className="text-rarity-4">
+                                                  EX{" "}
+                                                </span>
+                                              )}
+                                              {item.name}
+                                            </span>
+                                          </div>
+                                        )}
+                                        {ind !== state.length - 1 && (
+                                          <Tooltip title="Add a note on this item">
+                                            <button
+                                              onClick={() => {
+                                                setCurrentIndex(ind);
+                                                setCurrentItemIndex(index);
+                                                setTooltipModal(true);
+                                              }}
+                                              className="mt-1 bg-beige py-1 w-full flex justify-center items-center z-20 rounded-full text-black"
+                                            >
+                                              <FiMessageCircle />
+                                            </button>
+                                          </Tooltip>
+                                        )}
+                                      </div>
                                     </div>
-                                  </div>
-                                )}
-                              </Draggable>
-                            );
-                          })}
+                                  )}
+                                </Draggable>
+                              );
+                            })}
+                          </div>
                         </div>
 
                         {ind === state.length - 1 && (
