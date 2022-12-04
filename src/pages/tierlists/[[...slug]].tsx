@@ -80,13 +80,7 @@ export default function TierlistsPageProps({
           <TabList className="relative bordered bg-grey-dark p-4  grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-8">
             <TierListTab index={0}>PvE</TierListTab>
 
-            <Tooltip title="Work in progress...">
-              <div className="w-full cursor-not-allowed opacity-50">
-                <TierListTab className="pointer-events-none w-full" index={1}>
-                  PvP
-                </TierListTab>
-              </div>
-            </Tooltip>
+            <TierListTab index={1}>PvP</TierListTab>
 
             <TierListTab index={2}>Community</TierListTab>
             {/* <Link href="/tierlists/community">

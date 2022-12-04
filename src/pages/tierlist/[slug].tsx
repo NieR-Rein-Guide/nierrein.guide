@@ -22,6 +22,7 @@ import { useInventoryStore } from "@store/inventory";
 import Checkbox from "@components/form/Checkbox";
 import { useState } from "react";
 import getBaseRarity from "@utils/getBaseRarity";
+import SVG from "react-inlinesvg";
 
 interface TierListProps {
   tierlist: tierlists & {
@@ -49,6 +50,15 @@ export default function TierList({
             : "https://nierrein.guide/tools/tierlist-weapons.jpg"
         }
       />
+
+      <nav className="mb-16">
+        <Link href="/tierlists/community" passHref={true}>
+          <a className="btn">
+            <SVG src="/decorations/arrow-left.svg" className="h-6" />
+            <span>Go back to tierlists</span>
+          </a>
+        </Link>
+      </nav>
 
       <section>
         <h2 className="overlap">{tierlist.title}</h2>
@@ -92,7 +102,7 @@ export function TierlistContent({ tierlist, items }) {
 
   return (
     <>
-      <div className="relative flex items-center justify-between mb-12 md:mb-24">
+      <div className="relative flex flex-col md:flex-row items-center justify-between mb-12 md:mb-24">
         <div className="md:absolute md:top-4 md:right-4 flex items-center gap-x-4 mb-4">
           <p className="text-beige text-sm">
             Last updated:{" "}
