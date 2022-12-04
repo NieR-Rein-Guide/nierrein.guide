@@ -14,6 +14,7 @@ import CommunityTierlists, {
 } from "@components/CommunityTierlists";
 import prisma from "@libs/prisma";
 import Link from "next/link";
+import { FEATURED_TIERLISTS } from "@config/constants";
 
 interface TierlistsPageProps {
   defaultTab: number;
@@ -35,7 +36,6 @@ export default function TierlistsPageProps({
   defaultPvpTab = 0,
   pve,
   pvp,
-  tier,
   tierlists,
 }: TierlistsPageProps): JSX.Element {
   const router = useRouter();
@@ -110,18 +110,13 @@ export default function TierlistsPageProps({
           </TabList>
 
           <TabPanels>
-            {/* PvE Legacy to delete */}
-            <TabPanel className="mt-8">
-              <TierList tier={tier} />
-            </TabPanel>
-
             {/* PvE */}
-            {/* <TabPanel className="mt-8">
+            <TabPanel className="mt-8">
               <TierlistContent
                 tierlist={pve[0].tierlist}
                 items={pve[0].items}
               />
-            </TabPanel> */}
+            </TabPanel>
 
             {/* PvP */}
             <TabPanel>
@@ -161,12 +156,11 @@ export default function TierlistsPageProps({
 }
 
 export async function getServerSideProps(context: NextPageContext) {
-  const { tier, pve, pvp } = await getTiers();
+  const { pve, pvp } = await getTiers();
 
   const props = {
     defaultTab: 0,
     defaultPvpTab: 0,
-    tier,
     pve,
     pvp,
     tierlists: [],
@@ -198,6 +192,11 @@ export async function getServerSideProps(context: NextPageContext) {
   if (context.query.from) {
     where.updated_at.gte = context.query.from;
   }
+
+  // Exclude pinned tierlists
+  where.tierlist_id = {
+    notIn: [...FEATURED_TIERLISTS.pve, ...FEATURED_TIERLISTS.pvp],
+  };
 
   /**
    * Order by

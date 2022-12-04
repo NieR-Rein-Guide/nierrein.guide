@@ -92,7 +92,31 @@ export function TierlistContent({ tierlist, items }) {
 
   return (
     <>
-      <div className="flex items-center justify-between mb-12 md:mb-24">
+      <div className="relative flex items-center justify-between mb-12 md:mb-24">
+        <div className="md:absolute md:top-4 md:right-4 flex items-center gap-x-4 mb-4">
+          <p className="text-beige text-sm">
+            Last updated:{" "}
+            {formatDistanceToNow(new Date(tierlist.updated_at), {
+              addSuffix: true,
+            })}
+          </p>
+
+          {isOwner && (
+            <Link
+              href={`/tools/tierlist-builder/${isOwner.type}?edit_key=${isOwner.edit_key}`}
+              passHref
+            >
+              <a className="btn">Edit</a>
+            </Link>
+          )}
+
+          <Checkbox
+            label="Only inventory"
+            isChecked={showOnlyInventory}
+            setState={(e) => setShowOnlyInventory(e.target.checked)}
+          />
+        </div>
+
         <Tooltip
           title={hasVoted ? "You already voted for this tierlist" : "Vote"}
         >
@@ -105,29 +129,6 @@ export function TierlistContent({ tierlist, items }) {
             icon={<FiThumbsUp />}
           />
         </Tooltip>
-
-        {isOwner && (
-          <Link
-            href={`/tools/tierlist-builder/${isOwner.type}?edit_key=${isOwner.edit_key}`}
-            passHref
-          >
-            <a className="absolute top-4 right-4 btn">Edit</a>
-          </Link>
-        )}
-
-        <p className="text-beige text-sm">
-          Last updated:{" "}
-          {formatDistanceToNow(new Date(tierlist.updated_at), {
-            addSuffix: true,
-          })}
-        </p>
-        <div className="flex justify-center mb-4 md:absolute md:top-4 md:right-4">
-          <Checkbox
-            label="Only inventory"
-            isChecked={showOnlyInventory}
-            setState={(e) => setShowOnlyInventory(e.target.checked)}
-          />
-        </div>
       </div>
 
       <div className="flex flex-col gap-y-8 relative">

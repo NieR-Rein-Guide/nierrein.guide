@@ -430,7 +430,7 @@ export const VALUED_WEAPONS = {
  * FEATURED TIERLISTS
  */
 export const FEATURED_TIERLISTS = {
-  pve: [],
+  pve: [52],
   pvp: [],
 };
 
