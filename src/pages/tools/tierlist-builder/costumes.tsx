@@ -276,6 +276,9 @@ export default function TierlistBuilder({
 
   function handleTooltipModalClose() {
     const newState = produce(state, (draft) => {
+      if (!currentTooltip) {
+        return;
+      }
       // Update content
       if (currentTooltip === "<p></p>") {
         draft[currentIndex].items[currentItemIndex].tooltip = "";
