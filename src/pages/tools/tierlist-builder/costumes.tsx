@@ -1,4 +1,4 @@
-import Layout from "@components/Layout";
+import Layout from "components/Layout";
 import Meta from "@components/Meta";
 import SVG from "react-inlinesvg";
 import produce from "immer";
@@ -145,6 +145,7 @@ export default function TierlistBuilder({
   const [title, setTitle] = useState("My tierlist");
   const [description, setDescription] = useState(DEFAULT_DESCRIPTION);
   const [currentTooltip, setCurrentTooltip] = useState("");
+  const [isTooltipImportant, setIsTooltipImportant] = useState(false);
   const [loading, setLoading] = useState(false);
 
   /**
@@ -275,17 +276,24 @@ export default function TierlistBuilder({
     }
 
     const newState = produce(state, (draft) => {
+      // Update important field
+      draft[currentIndex].items[currentItemIndex].tooltip_is_important =
+        isTooltipImportant;
+
+      // Update content
       if (currentTooltip === "<p></p>") {
         draft[currentIndex].items[currentItemIndex].tooltip = "";
         return;
       }
       draft[currentIndex].items[currentItemIndex].tooltip = currentTooltip;
     });
+
     setState(newState);
     setTooltipModal(false);
     setCurrentIndex(0);
     setCurrentItemIndex(0);
     setCurrentTooltip("");
+    setIsTooltipImportant(false);
   }
 
   function getCostumesSelection() {
@@ -302,6 +310,7 @@ export default function TierlistBuilder({
         ...costume,
         id: `${costume.character.character_id}-${costume.costume_id}`,
         tooltip: "",
+        tooltip_is_important: false,
       }));
 
     return filteredCostumes;
@@ -598,6 +607,7 @@ export default function TierlistBuilder({
                                       ...costume,
                                       id: new Date().toISOString(),
                                       tooltip: "",
+                                      tooltip_is_important: false,
                                     });
                                   })
                                 );
@@ -657,6 +667,13 @@ export default function TierlistBuilder({
               "Add new tooltip..."
             }
           />
+          <div className="flex items-center mt-4">
+            <Checkbox
+              label="Is tooltip important/critical for this costume?"
+              isChecked={isTooltipImportant}
+              setState={() => setIsTooltipImportant(!isTooltipImportant)}
+            />
+          </div>
           <div className="flex justify-center mt-4">
             <button onClick={handleTooltipModalClose} className="btn">
               Save

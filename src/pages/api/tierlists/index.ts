@@ -46,6 +46,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             position: index,
             tier_id: tierResult.id,
             tooltip: item.tooltip ?? undefined,
+            tooltip_is_important: item.tooltip_is_important ?? false
           }))
         })
       }
@@ -121,6 +122,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             position: index,
             tier_id: tierResult.id,
             tooltip: item.tooltip ?? undefined,
+            tooltip_is_important: item.tooltip_is_important ?? false,
           }))
         })
       }
