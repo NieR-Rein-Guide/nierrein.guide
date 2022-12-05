@@ -35,6 +35,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const tierResult = await prisma.nrg.tiers.create({
           data: {
             tier: tier.tier,
+            description: tier.description,
             position: index,
             tierlist_id: result.tierlist_id,
           }
@@ -111,6 +112,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         const tierResult = await prisma.nrg.tiers.create({
           data: {
             tier: tier.tier,
+            description: tier.description,
             position: index,
             tierlist_id: result.tierlist_id,
           }
@@ -145,6 +147,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const tiers = tierlist.tiers.map((tier) => {
       return {
         tier: tier.tier,
+        description: tier.description,
         items: tier.tiers_items.map((tierItem) => {
           const item = items.find((itm) => {
             if (tierlist.type === 'costumes') {

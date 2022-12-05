@@ -269,6 +269,16 @@ export function TierlistContent({ tierlist, items }) {
                 </>
               )}
             </div>
+
+            {tier.description && (
+              <div
+                className="mt-4"
+                dangerouslySetInnerHTML={{
+                  __html: tier.description,
+                }}
+              ></div>
+            )}
+
             <img
               className="py-8 w-full col-span-full opacity-20"
               src="/border.svg"

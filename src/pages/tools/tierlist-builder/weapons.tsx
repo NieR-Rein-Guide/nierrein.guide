@@ -119,26 +119,32 @@ export default function TierlistBuilder({
   const [state, setState] = useState([
     {
       tier: "SSS",
+      description: "",
       items: [],
     },
     {
       tier: "SS",
+      description: "",
       items: [],
     },
     {
       tier: "S",
+      description: "",
       items: [],
     },
     {
       tier: "A",
+      description: "",
       items: [],
     },
     {
       tier: "B",
+      description: "",
       items: [],
     },
     {
       tier: "ALL",
+      description: "",
       items: [],
     },
   ]);
@@ -152,6 +158,7 @@ export default function TierlistBuilder({
   const [attribute, setAttribute] = useState("all");
   const [currentTooltip, setCurrentTooltip] = useState("");
   const [isTooltipImportant, setIsTooltipImportant] = useState(false);
+  const [tierDescription, setTierDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
   /**
@@ -257,18 +264,16 @@ export default function TierlistBuilder({
 
   function handleTitleModalClose(event) {
     event.preventDefault();
-    const value = event.target.elements[0].value;
-
-    if (!value) {
-      return;
-    }
+    const value = event.target.elements[0].value || state[currentIndex].tier;
 
     const newState = produce(state, (draft) => {
       draft[currentIndex].tier = value;
+      draft[currentIndex].description = tierDescription;
     });
     setState(newState);
     setTitleModal(false);
     setCurrentIndex(0);
+    setTierDescription("");
   }
 
   function handleTooltipModalClose() {
@@ -339,7 +344,10 @@ export default function TierlistBuilder({
       setTitle(tierlist.title);
       setDescription(tierlist.description);
       setAttribute(tierlist.attribute);
-      setState([...tiers, { tier: "ALL", items: newSelection }]);
+      setState([
+        ...tiers,
+        { tier: "ALL", description: "", items: newSelection },
+      ]);
     } catch (error) {
       console.error(error);
     } finally {
@@ -456,6 +464,7 @@ export default function TierlistBuilder({
                             ...tiers,
                             {
                               tier: "N/A",
+                              description: "",
                               items: [],
                             },
                             costumesList,
@@ -610,6 +619,15 @@ export default function TierlistBuilder({
                           </div>
                         </div>
 
+                        {el.description && (
+                          <div
+                            className="mt-4"
+                            dangerouslySetInnerHTML={{
+                              __html: el.description,
+                            }}
+                          ></div>
+                        )}
+
                         {ind === state.length - 1 && (
                           <div className="flex justify-center mt-8">
                             <WeaponSelect
@@ -656,7 +674,10 @@ export default function TierlistBuilder({
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <form className="flex" onSubmit={handleTitleModalClose}>
+        <form
+          className="flex flex-col gap-y-4 bg-grey-dark relative bordered p-4"
+          onSubmit={handleTitleModalClose}
+        >
           <Autocomplete
             className="w-96"
             freeSolo
@@ -667,6 +688,10 @@ export default function TierlistBuilder({
                 label={`New tier label (${state[currentIndex].tier})`}
               />
             )}
+          />
+          <Wysiwyg
+            onBlur={(content) => setTierDescription(content)}
+            content={state[currentIndex]?.description ?? ""}
           />
           <button type="submit" className="btn">
             Save
