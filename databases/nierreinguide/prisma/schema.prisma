@@ -40,13 +40,13 @@ model tierlists {
   tierlist_id Int       @id @default(autoincrement())
   title       String
   description String?
-  edit_key    String
   type        String    @default(dbgenerated("'costumes'::bpchar"))
-  updated_at  DateTime? @db.Timestamptz(6)
   created_at  DateTime? @db.Timestamptz(6)
   slug        String
   attribute   String
   votes       Int?      @default(0)
+  updated_at  DateTime? @db.Timestamptz(6)
+  edit_key    String
   tiers       tiers[]
 }
 
@@ -55,15 +55,31 @@ model tiers {
   tierlist_id Int
   tier        String
   position    Int
+  description String?
   tierslists  tierlists     @relation(fields: [tierlist_id], references: [tierlist_id], onDelete: Cascade)
   tiers_items tiers_items[]
 }
 
 model tiers_items {
-  id       Int     @id @default(autoincrement())
-  tier_id  Int
-  item_id  Int
-  position Int
-  tooltip  String?
-  tiers    tiers   @relation(fields: [tier_id], references: [id], onDelete: Cascade)
+  id                   Int      @id @default(autoincrement())
+  tier_id              Int
+  item_id              Int
+  position             Int
+  tooltip              String?
+  tooltip_is_important Boolean?
+  tiers                tiers    @relation(fields: [tier_id], references: [id], onDelete: Cascade)
+}
+
+model inventories {
+  id        Int  @id @default(autoincrement())
+  inventory Json
+}
+
+model notification {
+  notification_id  Int       @id(map: "pk_notification") @default(autoincrement())
+  information_type String?
+  title            String?
+  body             String?
+  release_time     DateTime? @db.Timestamptz(6)
+  thumbnail_path   String?
 }
