@@ -9,7 +9,7 @@ interface CheckboxProps {
 }
 
 export default function Checkbox({
-  isChecked,
+  isChecked = false,
   setState = undefined,
   label,
 }: CheckboxProps): JSX.Element {

@@ -157,7 +157,6 @@ export default function TierlistBuilder({
   const [description, setDescription] = useState(DEFAULT_DESCRIPTION);
   const [attribute, setAttribute] = useState("all");
   const [currentTooltip, setCurrentTooltip] = useState("");
-  const [isTooltipImportant, setIsTooltipImportant] = useState(false);
   const [tierDescription, setTierDescription] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -277,20 +276,12 @@ export default function TierlistBuilder({
   }
 
   function handleTooltipModalClose() {
-    if (!currentTooltip) {
-      return;
-    }
-
     const newState = produce(state, (draft) => {
+      // Update content
       if (currentTooltip === "<p></p>") {
         draft[currentIndex].items[currentItemIndex].tooltip = "";
         return;
       }
-      // Update important field
-      draft[currentIndex].items[currentItemIndex].tooltip_is_important =
-        isTooltipImportant;
-
-      // Update content
 
       draft[currentIndex].items[currentItemIndex].tooltip = currentTooltip;
     });
@@ -299,7 +290,6 @@ export default function TierlistBuilder({
     setCurrentIndex(0);
     setCurrentItemIndex(0);
     setCurrentTooltip("");
-    setIsTooltipImportant(false);
   }
 
   function getWeaponsSelection() {
@@ -717,8 +707,21 @@ export default function TierlistBuilder({
           <div className="flex items-center mt-4">
             <Checkbox
               label="Is tooltip important/critical for this weapon?"
-              isChecked={isTooltipImportant}
-              setState={() => setIsTooltipImportant(!isTooltipImportant)}
+              isChecked={
+                state[currentIndex]?.items[currentItemIndex]
+                  ?.tooltip_is_important
+              }
+              setState={() => {
+                const newState = produce(state, (draft) => {
+                  draft[currentIndex].items[
+                    currentItemIndex
+                  ].tooltip_is_important =
+                    !state[currentIndex]?.items[currentItemIndex]
+                      ?.tooltip_is_important;
+                });
+
+                setState(newState);
+              }}
             />
           </div>
           <div className="flex justify-center mt-4">
