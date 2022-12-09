@@ -38,8 +38,8 @@ const defaultLoginTodos: Todo[] = [
   },
   {
     checked: false,
-    label: "Daily challenge",
-    icon: "/ui/costume_emblem/costume_emblem009_standard.png",
+    label: "Subjugation",
+    icon: `${CDN_URL}ui/material/material402051/material402051_standard.png`,
   },
   {
     checked: false,
@@ -71,7 +71,7 @@ const defaultSecondLoginTodos: Todo[] = [
   },
   {
     checked: false,
-    label: "Second/Third Arena",
+    label: "Arena",
     icon: "/ui/costume_emblem/costume_emblem010_full.png",
   },
   {
@@ -84,8 +84,8 @@ const defaultSecondLoginTodos: Todo[] = [
 const defaultOptionalTodos: Todo[] = [
   {
     checked: false,
-    label: "Subjugation",
-    icon: `${CDN_URL}ui/material/material402051/material402051_standard.png`,
+    label: "Daily challenge",
+    icon: "/ui/costume_emblem/costume_emblem009_standard.png",
   },
   {
     checked: false,
