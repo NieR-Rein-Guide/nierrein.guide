@@ -1,14 +1,12 @@
 import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Layout from "@components/Layout";
 import TierListTab from "@components/tierlist/TierListTab";
-import TierList from "@components/tierlist/TierList";
 import { getTiers, Tierlist } from "@models/tiers";
 import Meta from "@components/Meta";
 import { useRouter } from "next/router";
 import { TierlistContent } from "pages/tierlist/[slug]";
 import { NextPageContext } from "next";
-import { Tooltip } from "@mui/material";
 import CommunityTierlists, {
   defaultFromDate,
 } from "@components/CommunityTierlists";

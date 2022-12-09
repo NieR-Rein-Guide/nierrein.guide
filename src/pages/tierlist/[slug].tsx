@@ -23,6 +23,33 @@ import Checkbox from "@components/form/Checkbox";
 import { useState } from "react";
 import getBaseRarity from "@utils/getBaseRarity";
 import SVG from "react-inlinesvg";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  ResponsiveContainer,
+  LabelList,
+} from "recharts";
+import { statsColors } from "@utils/statsColors";
+import classNames from "classnames";
+
+/* const COSTUME_STAT_PROPERTIES = [
+  "atk",
+  "vit",
+  "agi",
+  "hp",
+  "crit_atk",
+  "crit_rate",
+  "eva_rate",
+  "level",
+];
+
+const WEAPON_STAT_PROPERTIES = ["atk", "vit", "hp", "level"]; */
+
+const DEFAULT_COSTUME_STAT_PROPERTIES = ["atk", "vit", "agi", "hp"];
+
+const DEFAULT_WEAPON_STAT_PROPERTIES = ["atk", "vit", "hp"];
 
 interface TierListProps {
   tierlist: tierlists & {
@@ -77,6 +104,19 @@ export function TierlistContent({ tierlist, items }) {
   const ownedWeapons = useInventoryStore((state) => state.weapons);
 
   const [showOnlyInventory, setShowOnlyInventory] = useState(false);
+  const [isStatsEnabled, setIsStatsEnabled] = useState(false);
+  const [shownStats] = useState(
+    tierlist.type === "weapons"
+      ? DEFAULT_WEAPON_STAT_PROPERTIES
+      : DEFAULT_COSTUME_STAT_PROPERTIES
+  );
+
+  const maxStats = {
+    atk: findMaxStat(items, "atk"),
+    vit: findMaxStat(items, "vit"),
+    agi: findMaxStat(items, "agi"),
+    hp: findMaxStat(items, "hp"),
+  };
 
   const isOwner = createdTierlist.find(
     (tier) => tier.tierlist_id === tierlist.tierlist_id
@@ -125,6 +165,12 @@ export function TierlistContent({ tierlist, items }) {
             isChecked={showOnlyInventory}
             setState={(e) => setShowOnlyInventory(e.target.checked)}
           />
+
+          <Checkbox
+            label="Show stats"
+            isChecked={isStatsEnabled}
+            setState={() => setIsStatsEnabled(!isStatsEnabled)}
+          />
         </div>
 
         <Tooltip
@@ -163,7 +209,7 @@ export function TierlistContent({ tierlist, items }) {
 
                       return (
                         <div
-                          className="relative flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
+                          className="relative flex flex-col items-center gap-y-2 w-28 font-mono "
                           key={costume.costume_id}
                         >
                           {tierItem.tooltip && (
@@ -188,6 +234,7 @@ export function TierlistContent({ tierlist, items }) {
                             alt={`${costume.title} thumbnail`}
                             rarity={RARITY[costume.rarity]}
                             weaponType={costume.weapon_type}
+                            className="transform transition-transform ease-out-cubic hover:-translate-y-1"
                           />
                           <p className="text-center text-sm mb-0 leading-none">
                             {costume.is_ex_costume && (
@@ -198,6 +245,50 @@ export function TierlistContent({ tierlist, items }) {
                           <span className="text-xs text-center text-beige line-clamp-1 leading-none">
                             {costume.title}
                           </span>
+
+                          {isStatsEnabled && (
+                            <div className="w-28 my-2 text-center bg-grey-dark rounded-xl px-2 py-4">
+                              {shownStats.map((stat) => (
+                                <div key={stat} className="h-6">
+                                  <ResponsiveContainer
+                                    width="100%"
+                                    height="100%"
+                                  >
+                                    <BarChart
+                                      layout="vertical"
+                                      data={[costume.costume_stat[0]]}
+                                    >
+                                      <XAxis
+                                        type="number"
+                                        hide
+                                        domain={[0, maxStats[stat]]}
+                                      />
+                                      <YAxis
+                                        type="category"
+                                        width={1}
+                                        dataKey="name"
+                                      />
+                                      <Bar
+                                        dataKey={stat}
+                                        fill={statsColors[stat]}
+                                      >
+                                        <LabelList
+                                          dataKey={stat}
+                                          position="center"
+                                          className={classNames(
+                                            ["atk", "vit", "agi"].includes(stat)
+                                              ? "fill-white text-shadow"
+                                              : "fill-black",
+                                            "text-xs"
+                                          )}
+                                        />
+                                      </Bar>
+                                    </BarChart>
+                                  </ResponsiveContainer>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       );
                     })}
@@ -218,7 +309,7 @@ export function TierlistContent({ tierlist, items }) {
 
                       return (
                         <div
-                          className="relative flex flex-col items-center gap-y-2 w-28 transform transition-transform ease-out-cubic hover:-translate-y-1 font-mono "
+                          className="relative flex flex-col items-center gap-y-2 w-28 font-mono "
                           key={weapon.weapon_id}
                         >
                           {tierItem.tooltip && (
@@ -254,6 +345,7 @@ export function TierlistContent({ tierlist, items }) {
                             isDark={weapon?.is_ex_weapon}
                             alt={weapon?.name}
                             image_path={weapon?.image_path}
+                            className="transform transition-transform ease-out-cubic hover:-translate-y-1"
                           />
                           <p className="text-center text-sm mb-0 leading-none">
                             {weapon.is_ex_weapon && (
@@ -263,6 +355,50 @@ export function TierlistContent({ tierlist, items }) {
                               {weapon.name}
                             </span>
                           </p>
+
+                          {isStatsEnabled && (
+                            <div className="w-28 my-2 text-center bg-grey-dark rounded-xl px-2 py-4">
+                              {shownStats.map((stat) => (
+                                <div key={stat} className="h-6">
+                                  <ResponsiveContainer
+                                    width="100%"
+                                    height="100%"
+                                  >
+                                    <BarChart
+                                      layout="vertical"
+                                      data={[weapon.weapon_stat[0]]}
+                                    >
+                                      <XAxis
+                                        type="number"
+                                        hide
+                                        domain={[0, maxStats[stat]]}
+                                      />
+                                      <YAxis
+                                        type="category"
+                                        width={1}
+                                        dataKey="name"
+                                      />
+                                      <Bar
+                                        dataKey={stat}
+                                        fill={statsColors[stat]}
+                                      >
+                                        <LabelList
+                                          dataKey={stat}
+                                          position="center"
+                                          className={classNames(
+                                            ["atk", "vit", "agi"].includes(stat)
+                                              ? "fill-white text-shadow"
+                                              : "fill-black",
+                                            "text-xs"
+                                          )}
+                                        />
+                                      </Bar>
+                                    </BarChart>
+                                  </ResponsiveContainer>
+                                </div>
+                              ))}
+                            </div>
+                          )}
                         </div>
                       );
                     })}
@@ -313,4 +449,21 @@ export async function getServerSideProps(context: NextPageContext) {
       })
     ),
   };
+}
+
+function findMaxStat(items, property: "agi" | "atk" | "hp" | "vit") {
+  return items.reduce((acc, item) => {
+    const itemStatProperty = item.costume_stat ?? item.weapon_stat;
+    const stat = itemStatProperty[0][property];
+
+    if (!stat) {
+      return 0;
+    }
+
+    if (acc >= stat) {
+      return acc;
+    }
+
+    return stat;
+  }, 0);
 }

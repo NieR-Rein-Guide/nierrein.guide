@@ -69,7 +69,7 @@
     "react-spring": "^9.5.2",
     "react-tooltip": "^4.2.21",
     "react-use": "^17.3.1",
-    "recharts": "^2.1.2",
+    "recharts": "^2.2.0",
     "sharp": "^0.29.0",
     "slugg": "^1.2.1",
     "slugify": "^1.6.0",

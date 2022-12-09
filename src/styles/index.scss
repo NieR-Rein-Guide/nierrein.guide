@@ -392,3 +392,11 @@ canvas {
   }
  }
 }
+
+.recharts-tooltip-wrapper {
+  @apply z-50;
+
+  .recharts-default-tooltip {
+    background: theme('colors.black.DEFAULT') !important;
+  }
+}

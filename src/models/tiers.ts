@@ -34,6 +34,12 @@ export async function getTierlist(where) {
     items = await prisma.dump.costume.findMany({
       include: {
         character: true,
+        costume_stat: {
+          take: 1,
+          orderBy: {
+            level: "desc",
+          },
+        },
       },
       where: {
         costume_id: {
@@ -50,6 +56,14 @@ export async function getTierlist(where) {
           in: ids,
         },
       },
+      include: {
+        weapon_stat: {
+				orderBy: {
+					level: "desc",
+				},
+				take: 1,
+			},
+      }
     });
   }
 
