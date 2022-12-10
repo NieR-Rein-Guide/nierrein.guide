@@ -14,13 +14,13 @@ import { useTierlistsVotes } from "@store/tierlist-votes";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { Button, Chip, Tooltip } from "@mui/material";
-import { FiEdit, FiThumbsUp } from "react-icons/fi";
+import { FiArrowDown, FiEdit, FiThumbsUp } from "react-icons/fi";
 import { useCreatedTierlists } from "@store/created-tierlists";
 import Link from "next/link";
 import { getTierlist } from "@models/tiers";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "@components/form/Checkbox";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import getBaseRarity from "@utils/getBaseRarity";
 import SVG from "react-inlinesvg";
 import {
@@ -102,6 +102,7 @@ export function TierlistContent({ tierlist, items }) {
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const ownedWeapons = useInventoryStore((state) => state.weapons);
 
+  const [hasReadMore, setHasReadMore] = useState(false);
   const [showNotesInline, setShowNotesInline] = useState(false);
   const [showOnlyInventory, setShowOnlyInventory] = useState(false);
   const [isStatsEnabled, setIsStatsEnabled] = useState(false);
@@ -110,6 +111,8 @@ export function TierlistContent({ tierlist, items }) {
       ? DEFAULT_WEAPON_STAT_PROPERTIES
       : DEFAULT_COSTUME_STAT_PROPERTIES
   );
+
+  const wysiwyg = useRef<HTMLDivElement>(null);
 
   const maxStats = {
     atk: findMaxStat(items, "atk"),
@@ -140,6 +143,24 @@ export function TierlistContent({ tierlist, items }) {
     });
   }
 
+  function toggleContent() {
+    wysiwyg.current.classList.toggle("max-h-36");
+  }
+
+  /**
+   * Read more
+   */
+  useEffect(() => {
+    if (!wysiwyg.current) {
+      return;
+    }
+
+    // Content is overflowing
+    if (wysiwyg.current.scrollHeight > wysiwyg.current.clientHeight) {
+      setHasReadMore(true);
+    }
+  }, [wysiwyg]);
+
   return (
     <>
       <div className="grid lg:grid-cols-12 bg-grey-dark p-8 rounded-xl mb-12">
@@ -155,10 +176,22 @@ export function TierlistContent({ tierlist, items }) {
               })}
             </p>
             {tierlist.description && (
-              <div
-                className="wysiwyg my-4"
-                dangerouslySetInnerHTML={{ __html: tierlist.description }}
-              ></div>
+              <>
+                <div
+                  ref={wysiwyg}
+                  className="wysiwyg max-h-36 my-4"
+                  dangerouslySetInnerHTML={{ __html: tierlist.description }}
+                ></div>
+                {hasReadMore && (
+                  <Button
+                    onClick={toggleContent}
+                    variant="outlined"
+                    endIcon={<FiArrowDown />}
+                  >
+                    Read more
+                  </Button>
+                )}
+              </>
             )}
           </div>
 
