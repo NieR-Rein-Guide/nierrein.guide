@@ -13,8 +13,8 @@ import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 import { useTierlistsVotes } from "@store/tierlist-votes";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Chip, Tooltip } from "@mui/material";
-import { FiThumbsUp } from "react-icons/fi";
+import { Button, Chip, Tooltip } from "@mui/material";
+import { FiEdit, FiThumbsUp } from "react-icons/fi";
 import { useCreatedTierlists } from "@store/created-tierlists";
 import Link from "next/link";
 import { getTierlist } from "@models/tiers";
@@ -87,8 +87,7 @@ export default function TierList({
         </Link>
       </nav>
 
-      <section>
-        <h2 className="overlap">{tierlist.title}</h2>
+      <section className="pt-8">
         <TierlistContent tierlist={tierlist} items={items} />
       </section>
     </Layout>
@@ -103,6 +102,7 @@ export function TierlistContent({ tierlist, items }) {
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const ownedWeapons = useInventoryStore((state) => state.weapons);
 
+  const [showNotesInline, setShowNotesInline] = useState(false);
   const [showOnlyInventory, setShowOnlyInventory] = useState(false);
   const [isStatsEnabled, setIsStatsEnabled] = useState(false);
   const [shownStats] = useState(
@@ -142,28 +142,65 @@ export function TierlistContent({ tierlist, items }) {
 
   return (
     <>
-      <div className="relative flex flex-col md:flex-row items-center justify-between mb-12 md:mb-24">
-        <div className="md:absolute md:top-4 md:right-4 flex items-center gap-x-4 mb-4">
-          <p className="text-beige text-sm">
-            Last updated:{" "}
-            {formatDistanceToNow(new Date(tierlist.updated_at), {
-              addSuffix: true,
-            })}
-          </p>
+      <div className="grid lg:grid-cols-12 bg-grey-dark p-8 rounded-xl mb-12">
+        <div className="flex flex-col items-start justify-between lg:col-span-8">
+          <div>
+            {!router.asPath.startsWith("/tierlists") && (
+              <h2 className="text-4xl mb-2">{tierlist.title}</h2>
+            )}
+            <p className=" text-beige text-xs mb-2">
+              Last updated:{" "}
+              {formatDistanceToNow(new Date(tierlist.updated_at), {
+                addSuffix: true,
+              })}
+            </p>
+            {tierlist.description && (
+              <div
+                className="wysiwyg my-4"
+                dangerouslySetInnerHTML={{ __html: tierlist.description }}
+              ></div>
+            )}
+          </div>
 
+          <Button
+            onClick={hasVoted ? undefined : vote}
+            variant={hasVoted ? "text" : "outlined"}
+            color={hasVoted ? "success" : "primary"}
+            startIcon={<FiThumbsUp className="pl-1" />}
+            className={classNames(
+              hasVoted ? "pointer-events-none" : "",
+              "hidden lg:flex mt-2"
+            )}
+          >
+            {hasVoted ? "Liked" : "Like"} ({tierlist.votes})
+          </Button>
+        </div>
+
+        <div className="flex flex-col mt-6 gap-y-8 lg:mt-0 lg:items-end lg:gap-y-4 lg:col-span-4">
           {isOwner && (
-            <Link
-              href={`/tools/tierlist-builder/${isOwner.type}?edit_key=${isOwner.edit_key}`}
-              passHref
-            >
-              <a className="btn">Edit</a>
-            </Link>
+            <div className="hidden lg:block">
+              <Button
+                variant="contained"
+                component="a"
+                LinkComponent={Link}
+                href={`/tools/tierlist-builder/${isOwner.type}?edit_key=${isOwner.edit_key}`}
+                startIcon={<FiEdit className="pl-1" />}
+              >
+                Edit
+              </Button>
+            </div>
           )}
 
           <Checkbox
-            label="Only inventory"
+            label="Highlight owned"
             isChecked={showOnlyInventory}
             setState={(e) => setShowOnlyInventory(e.target.checked)}
+          />
+
+          <Checkbox
+            label="Show notes inline"
+            isChecked={showNotesInline}
+            setState={(e) => setShowNotesInline(e.target.checked)}
           />
 
           <Checkbox
@@ -173,18 +210,17 @@ export function TierlistContent({ tierlist, items }) {
           />
         </div>
 
-        <Tooltip
-          title={hasVoted ? "You already voted for this tierlist" : "Vote"}
-        >
-          <Chip
-            className="pl-2"
+        <div className="flex justify-center mt-6 lg:hidden">
+          <Button
             onClick={hasVoted ? undefined : vote}
-            color={hasVoted ? "success" : "default"}
-            variant={hasVoted ? "outlined" : "filled"}
-            label={tierlist.votes}
-            icon={<FiThumbsUp />}
-          />
-        </Tooltip>
+            variant={hasVoted ? "text" : "outlined"}
+            color={hasVoted ? "success" : "primary"}
+            startIcon={<FiThumbsUp className="pl-1" />}
+            className={classNames(hasVoted ? "pointer-events-none" : "")}
+          >
+            {hasVoted ? "Liked" : "Like"} ({tierlist.votes})
+          </Button>
+        </div>
       </div>
 
       <div className="flex flex-col gap-y-8 relative">
@@ -197,22 +233,26 @@ export function TierlistContent({ tierlist, items }) {
             <div className="flex flex-wrap justify-center md:justify-start gap-4">
               {tierlist.type === "costumes" && (
                 <>
-                  {tier.tiers_items
-                    .filter((tierItem) => {
-                      if (!showOnlyInventory) return true;
-                      return ownedCostumes.includes(tierItem.item_id);
-                    })
-                    .map((tierItem) => {
-                      const costume = items.find(
-                        (item) => item.costume_id === tierItem.item_id
-                      );
+                  {tier.tiers_items.map((tierItem) => {
+                    const costume = items.find(
+                      (item) => item.costume_id === tierItem.item_id
+                    );
 
-                      return (
+                    return (
+                      <div
+                        className={showNotesInline ? "flex w-full" : ""}
+                        key={costume.costume_id}
+                      >
                         <div
-                          className="relative flex flex-col items-center gap-y-2 w-28 font-mono "
-                          key={costume.costume_id}
+                          className={classNames(
+                            "relative flex flex-col items-center gap-y-2 w-28 font-mono filter transition ease-out-cubic",
+                            showOnlyInventory &&
+                              !ownedCostumes.includes(tierItem.item_id)
+                              ? "brightness-50"
+                              : ""
+                          )}
                         >
-                          {tierItem.tooltip && (
+                          {tierItem.tooltip && !showNotesInline && (
                             <Tooltip
                               className="cursor-help"
                               title={
@@ -245,7 +285,6 @@ export function TierlistContent({ tierlist, items }) {
                           <span className="text-xs text-center text-beige line-clamp-1 leading-none">
                             {costume.title}
                           </span>
-
                           {isStatsEnabled && (
                             <div className="w-28 my-2 text-center bg-grey-dark rounded-xl px-2 py-4">
                               {shownStats.map((stat) => (
@@ -290,27 +329,41 @@ export function TierlistContent({ tierlist, items }) {
                             </div>
                           )}
                         </div>
-                      );
-                    })}
+
+                        {showNotesInline && (
+                          <div
+                            className="flex-1 ml-4 max-w-xl"
+                            dangerouslySetInnerHTML={{
+                              __html: tierItem.tooltip,
+                            }}
+                          ></div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </>
               )}
 
               {tierlist.type === "weapons" && (
                 <>
-                  {tier.tiers_items
-                    .filter((tierItem) => {
-                      if (!showOnlyInventory) return true;
-                      return ownedWeapons.includes(tierItem.item_id);
-                    })
-                    .map((tierItem, index) => {
-                      const weapon = items.find(
-                        (item) => item.weapon_id === tierItem.item_id
-                      );
+                  {tier.tiers_items.map((tierItem, index) => {
+                    const weapon = items.find(
+                      (item) => item.weapon_id === tierItem.item_id
+                    );
 
-                      return (
+                    return (
+                      <div
+                        className={showNotesInline ? "flex w-full" : ""}
+                        key={weapon.weapon_id}
+                      >
                         <div
-                          className="relative flex flex-col items-center gap-y-2 w-28 font-mono "
-                          key={weapon.weapon_id}
+                          className={classNames(
+                            "relative flex flex-col items-center gap-y-2 w-28 font-mono filter transition ease-out-cubic",
+                            showOnlyInventory &&
+                              !ownedWeapons.includes(tierItem.item_id)
+                              ? "brightness-50"
+                              : ""
+                          )}
                         >
                           {tierItem.tooltip && (
                             <Tooltip
@@ -355,7 +408,6 @@ export function TierlistContent({ tierlist, items }) {
                               {weapon.name}
                             </span>
                           </p>
-
                           {isStatsEnabled && (
                             <div className="w-28 my-2 text-center bg-grey-dark rounded-xl px-2 py-4">
                               {shownStats.map((stat) => (
@@ -400,8 +452,18 @@ export function TierlistContent({ tierlist, items }) {
                             </div>
                           )}
                         </div>
-                      );
-                    })}
+
+                        {showNotesInline && (
+                          <div
+                            className="flex-1 ml-4 max-w-xl"
+                            dangerouslySetInnerHTML={{
+                              __html: tierItem.tooltip,
+                            }}
+                          ></div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </>
               )}
             </div>
@@ -423,13 +485,6 @@ export function TierlistContent({ tierlist, items }) {
           </div>
         ))}
       </div>
-
-      {tierlist.description && (
-        <div
-          className="wysiwyg"
-          dangerouslySetInnerHTML={{ __html: tierlist.description }}
-        ></div>
-      )}
     </>
   );
 }

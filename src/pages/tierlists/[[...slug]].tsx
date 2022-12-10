@@ -66,7 +66,7 @@ export default function TierlistsPageProps({
       <section>
         <h2 className="overlap">Tierlists</h2>
 
-        <div className="text-right">
+        <div className="text-right hidden lg:block">
           <Link href="/tools/tierlist-builder" passHref>
             <a className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
               Create a tierlist
@@ -75,30 +75,14 @@ export default function TierlistsPageProps({
         </div>
 
         <Tabs defaultIndex={tabIndex} onChange={handleTabsChange}>
-          <TabList className="relative bordered bg-grey-dark p-4  grid grid-cols-1 md:grid-cols-3 gap-y-2 gap-x-8">
+          <TabList className="relative bordered bg-grey-dark p-4 grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-8">
             <TierListTab index={0}>PvE</TierListTab>
 
             <TierListTab index={1}>PvP</TierListTab>
 
-            <TierListTab index={2}>Community</TierListTab>
-            {/* <Link href="/tierlists/community">
-              <a
-                className={classNames(
-                  "p-4 transition-colors ease-out-cubic relative bordered flex justify-center items-center gap-x-2",
-                  router.asPath === "/tierlists/community"
-                    ? "active bg-beige active"
-                    : "bg-grey-dark",
-                  router.asPath === "/tierlists/community"
-                    ? "text-grey-lighter"
-                    : "text-beige"
-                )}
-              >
-                <span className="font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic">
-                  Community
-                </span>
-                <FiExternalLink size="18" />
-              </a>
-            </Link> */}
+            <TierListTab className="col-span-2 md:col-span-1" index={2}>
+              Community
+            </TierListTab>
           </TabList>
 
           <TabPanels>
@@ -112,8 +96,12 @@ export default function TierlistsPageProps({
 
             {/* PvP */}
             <TabPanel>
-              <Tabs defaultIndex={pvpTabIndex} onChange={handlePvpTabsChange}>
-                <TabList className="grid grid-cols-1 md:grid-cols-3 gap-y-4 mb-8">
+              <Tabs
+                className="mt-4 md:mt-0"
+                defaultIndex={pvpTabIndex}
+                onChange={handlePvpTabsChange}
+              >
+                <TabList className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
                   {pvp.map((tierlist, index) => (
                     <TierListTab
                       index={index}
