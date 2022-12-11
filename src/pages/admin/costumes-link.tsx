@@ -35,6 +35,7 @@ import WeaponSelect from "@components/weapons/WeaponSelect";
 import { useState } from "react";
 import axios from "axios";
 import produce from "immer";
+import getBaseRarity from "@utils/getBaseRarity";
 
 interface LoadoutBuilderProps {
   costumes: (costume & {
@@ -168,7 +169,7 @@ export default function LoadoutBuilder({
                 <WeaponThumbnail
                   image_path={weaponLinked?.image_path}
                   alt={`${weaponLinked?.name} thumbnail`}
-                  rarity={RARITY[weaponLinked?.rarity]}
+                  rarity={getBaseRarity(weaponLinked)}
                   type={weaponLinked?.weapon_type}
                   isDark={weaponLinked?.is_ex_weapon}
                   element={weaponLinked?.attribute}
@@ -198,7 +199,7 @@ export default function LoadoutBuilder({
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const [costumesData, weaponsData, debris, links] = await Promise.all([
     getAllCostumes({
       orderBy: {
