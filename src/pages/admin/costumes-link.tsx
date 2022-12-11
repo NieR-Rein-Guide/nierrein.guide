@@ -169,7 +169,9 @@ export default function LoadoutBuilder({
                 <WeaponThumbnail
                   image_path={weaponLinked?.image_path}
                   alt={`${weaponLinked?.name} thumbnail`}
-                  rarity={getBaseRarity(weaponLinked)}
+                  rarity={
+                    weaponLinked?.rarity ? getBaseRarity(weaponLinked) : "RARE"
+                  }
                   type={weaponLinked?.weapon_type}
                   isDark={weaponLinked?.is_ex_weapon}
                   element={weaponLinked?.attribute}

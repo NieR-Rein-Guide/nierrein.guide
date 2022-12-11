@@ -173,7 +173,7 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
               </span>
 
               {selectedWeapon.costume && (
-                <div className="absolute top-6 right-6">
+                <div className="absolute top-6 right-6 z-10">
                   <CostumeThumbnail
                     href={`/characters/${selectedWeapon.costume.character.slug}/${selectedWeapon.costume.slug}`}
                     src={`${CDN_URL}${selectedWeapon.costume.image_path_base}battle.png`}
