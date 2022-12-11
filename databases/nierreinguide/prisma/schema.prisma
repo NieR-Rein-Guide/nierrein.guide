@@ -83,3 +83,9 @@ model notification {
   release_time     DateTime? @db.Timestamptz(6)
   thumbnail_path   String?
 }
+
+model costumes_link {
+  costume_id Int  @id @default(autoincrement())
+  weapon_id  Int?
+  debris_id  Int?
+}

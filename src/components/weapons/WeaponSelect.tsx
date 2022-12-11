@@ -1,6 +1,13 @@
 import { CDN_URL } from "@config/constants";
 import { Autocomplete, Box, TextField } from "@mui/material";
-import { weapon } from "@prisma/client";
+import {
+  weapon,
+  weapon_ability,
+  weapon_ability_link,
+  weapon_skill,
+  weapon_skill_link,
+  weapon_stat,
+} from "@prisma/client";
 import { useSettingsStore } from "@store/settings";
 import classNames from "classnames";
 
@@ -25,11 +32,13 @@ export default function WeaponSelect({
   onSelect = defaultOnSelect,
   label = "Search weapons...",
   classes = "w-full md:w-72",
+  defaultValue = null,
 }: {
   weapons: WeaponSelectRow[];
   onSelect?: (e, weapon: WeaponSelectRow) => void;
   label?: string;
   classes?: string | string[];
+  defaultValue?: WeaponSelectRow;
 }): JSX.Element {
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
@@ -37,6 +46,7 @@ export default function WeaponSelect({
 
   return (
     <Autocomplete
+      value={defaultValue}
       onChange={onSelect}
       className={classNames(classes)}
       options={weapons.filter((weapon) => {
