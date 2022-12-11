@@ -35,6 +35,7 @@ import Radio from "@components/form/Radio";
 import classNames from "classnames";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
+import CostumeThumbnail from "@components/CostumeThumbnail";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -212,7 +213,7 @@ export function WeaponsTable({
                 alt={weapon.name}
                 image_path={weapon.image_path}
               />
-              <span className="truncate">
+              <span className="flex-1 inline-block pr-12 line-clamp-2">
                 {weapon.is_ex_weapon && (
                   <span className="text-rarity-4">EX </span>
                 )}
@@ -227,6 +228,18 @@ export function WeaponsTable({
                     </span>
                   </a>
                 </Link>
+              )}
+
+              {weapon.costume && (
+                <div className="absolute top-1/2 transform -translate-y-1/2 right-2 z-10">
+                  <CostumeThumbnail
+                    href={`/characters/${weapon.costume.character.slug}/${weapon.costume.slug}`}
+                    src={`${CDN_URL}${weapon.costume.image_path_base}battle.png`}
+                    alt={`${weapon.costume.title} thumbnail`}
+                    rarity={RARITY[weapon.costume.rarity]}
+                    sizeClasses="min-h-10 min-w-10 h-10 w-10"
+                  />
+                </div>
               )}
             </div>
           ),

@@ -14,6 +14,7 @@ import {
   weapon_story_link,
 } from "@prisma/client";
 import { getAllWeapons } from "@models/weapon";
+import alterWeaponToAddCostume from "@utils/alterWeaponToAddCostume";
 
 interface WeaponsPageProps {
   isIndex: boolean;
@@ -119,6 +120,8 @@ export async function getStaticProps(context) {
       },
     },
   });
+
+  await alterWeaponToAddCostume(selectedWeapon[selectedWeapon.length - 1]);
 
   return {
     props: JSON.parse(

@@ -31,6 +31,8 @@ import classNames from "classnames";
 import { Tooltip } from "@mui/material";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import Stat from "@components/Stat";
+import WeaponThumbnail from "@components/WeaponThumbnail";
+import getBaseRarity from "@utils/getBaseRarity";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -180,7 +182,7 @@ export function CostumesTable({
                 weaponType={costume.weapon_type}
                 isDark={costume.is_ex_costume}
               />
-              <span className="truncate">
+              <span className="inline-block pr-12 line-clamp-2">
                 {costume.is_ex_costume && (
                   <span className="text-rarity-4">EX </span>
                 )}
@@ -198,6 +200,17 @@ export function CostumesTable({
                     </span>
                   </a>
                 </Link>
+              )}
+              {costume.weapon && (
+                <div className="absolute top-1/2 transform -translate-y-1/2 right-2 z-10">
+                  <WeaponThumbnail
+                    href={`/weapons/${costume?.weapon.slug}`}
+                    rarity={getBaseRarity(costume?.weapon)}
+                    alt={costume?.weapon.name}
+                    image_path={costume?.weapon.image_path}
+                    sizeClasses="w-10 h-10"
+                  />
+                </div>
               )}
             </div>
           ),

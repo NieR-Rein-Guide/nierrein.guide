@@ -16,6 +16,7 @@ import {
   emblem,
 } from "@prisma/client";
 import { getAllCostumes } from "@models/costume";
+import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
 
 interface CharactersPageProps {
   isIndex: boolean;
@@ -206,6 +207,7 @@ export async function getStaticProps(context) {
     );
     skills[costume.costume_id] = allSkills;
     stats[costume.costume_id] = allStats.sort((a, b) => a.level - b.level);
+    alterCostumeToAddWeapon(costume);
   }
 
   return {

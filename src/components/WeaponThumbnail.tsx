@@ -21,6 +21,7 @@ interface WeaponThumbnailProps {
   onClick?: () => void | undefined;
   children?: JSX.Element;
   href?: string;
+  sizeClasses?: string;
 }
 
 export default function WeaponThumbnail({
@@ -36,6 +37,7 @@ export default function WeaponThumbnail({
   onClick = undefined,
   children,
   href,
+  sizeClasses = "h-20 w-20",
 }: WeaponThumbnailProps): JSX.Element {
   let weaponRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   if (rarity === "LEGEND") {
@@ -106,7 +108,8 @@ export default function WeaponThumbnail({
     <div
       onClick={onClick}
       className={classNames(
-        "h-20 w-20 relative",
+        "relative",
+        sizeClasses,
         onClick || href
           ? "cursor-pointer hover:scale-105 transition transform"
           : "",

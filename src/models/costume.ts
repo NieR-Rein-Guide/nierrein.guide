@@ -1,4 +1,5 @@
 import prisma from "@libs/prisma";
+import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
 
 export async function getAllCostumes({
   orderBy = {
@@ -55,6 +56,10 @@ export async function getAllCostumes({
       },
     },
   });
+
+  for (const costume of costumes) {
+    await alterCostumeToAddWeapon(costume)
+  }
 
   const abilitiesLookupData = await prisma.dump.costume_ability.findMany({
     orderBy: {

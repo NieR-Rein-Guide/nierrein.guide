@@ -19,6 +19,7 @@ interface CostumeThumbnailProps {
   onClick?: () => void | undefined;
   children?: JSX.Element;
   href?: string;
+  sizeClasses?: string;
 }
 
 export default function CostumeThumbnail({
@@ -33,6 +34,7 @@ export default function CostumeThumbnail({
   isDark,
   children,
   href,
+  sizeClasses = "min-h-20 min-w-20 h-20 w-20",
 }: CostumeThumbnailProps): JSX.Element {
   const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   const emptyBackground = isLarge
@@ -99,7 +101,8 @@ export default function CostumeThumbnail({
     <div
       onClick={onClick}
       className={classNames(
-        "min-h-20 min-w-20 h-20 w-20 relative",
+        "relative",
+        sizeClasses,
         onClick || href
           ? "cursor-pointer hover:scale-105 transition transform"
           : "",

@@ -27,6 +27,7 @@ import {
 import slug from "slugg";
 import Checkbox from "./form/Checkbox";
 import { useInventoryStore } from "@store/inventory";
+import CostumeThumbnail from "./CostumeThumbnail";
 
 interface WeaponInfoProps {
   weapons: (weapon & {
@@ -170,6 +171,19 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
                   </div>
                 ))}
               </span>
+
+              {selectedWeapon.costume && (
+                <div className="absolute top-6 right-6">
+                  <CostumeThumbnail
+                    href={`/characters/${selectedWeapon.costume.character.slug}/${selectedWeapon.costume.slug}`}
+                    src={`${CDN_URL}${selectedWeapon.costume.image_path_base}battle.png`}
+                    alt={`${selectedWeapon.costume.title} thumbnail`}
+                    rarity={RARITY[selectedWeapon.costume.rarity]}
+                    weaponType={selectedWeapon.costume.weapon_type}
+                    isDark={selectedWeapon.costume.is_ex_costume}
+                  />
+                </div>
+              )}
 
               <div className="absolute left-6 bottom-6 text-xl z-50">
                 {selectedWeapon.name}

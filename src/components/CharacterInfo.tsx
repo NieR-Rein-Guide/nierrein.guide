@@ -40,6 +40,9 @@ import StoneSlabsSelect from "./StoneSlabsSelect";
 import CursedGodSlabsSelect from "./CursedGodSlabsSelect";
 import AwakeningLevelSelect from "./AwakeningLevelSelect";
 import { useSettingsStore } from "@store/settings";
+import Link from "next/link";
+import WeaponThumbnail from "./WeaponThumbnail";
+import getBaseRarity from "@utils/getBaseRarity";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -268,7 +271,7 @@ function CostumeDetails({
                 />
               </div>
             </div>
-            <span className="flex absolute bottom-6 right-6">
+            <span className="flex absolute bottom-0 right-6">
               {Array.from({ length: RARITY[costume.rarity] }).map(
                 (_, index) => (
                   <div className="w-8 h-8" key={index}>
@@ -277,24 +280,19 @@ function CostumeDetails({
                 )
               )}
             </span>
-            {/* {costume?.weapon && (
-              <Link
-                href={`/weapons/${urlSlug(
-                  costume.costume?.weapon?.name?.en ?? "unnamed"
-                )}/${costume.costume.weapon.ids.base}`}
-                passHref
-              >
-                <a className="absolute left-6 bottom-6 transform transition-transform ease-out-cubic hover:scale-105 z-50">
-                  <WeaponThumbnail
-                    type={costume.costume.weapon.type}
-                    element={costume.costume.weapon.attribute}
-                    id={costume.costume.weapon.ids.asset}
-                    rarity={costume.costume.weapon.rarity}
-                    isDark={costume.costume.weapon.isDark}
-                  />
-                </a>
-              </Link>
-            )} */}
+            {costume?.weapon && (
+              <div className="absolute left-6 bottom-6 transform transition-transform ease-out-cubic hover:scale-105 z-50">
+                <WeaponThumbnail
+                  href={`/weapons/${costume?.weapon.slug}`}
+                  rarity={getBaseRarity(costume?.weapon)}
+                  type={costume.weapon.weapon_type}
+                  element={costume.weapon.attribute}
+                  isDark={costume.weapon.is_dark_weapon}
+                  alt={costume?.weapon.name}
+                  image_path={costume?.weapon.image_path}
+                />
+              </div>
+            )}
             {/* <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
               <button
                 className="btn opacity-50"
