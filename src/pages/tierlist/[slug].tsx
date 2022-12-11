@@ -111,6 +111,7 @@ export function TierlistContent({ tierlist, items }) {
       ? DEFAULT_WEAPON_STAT_PROPERTIES
       : DEFAULT_COSTUME_STAT_PROPERTIES
   );
+  const [isContentExpanded, setIsContentExpanded] = useState(false);
 
   const wysiwyg = useRef<HTMLDivElement>(null);
 
@@ -145,6 +146,7 @@ export function TierlistContent({ tierlist, items }) {
 
   function toggleContent() {
     wysiwyg.current.classList.toggle("max-h-36");
+    setIsContentExpanded(!isContentExpanded);
   }
 
   /**
@@ -183,13 +185,20 @@ export function TierlistContent({ tierlist, items }) {
                   dangerouslySetInnerHTML={{ __html: tierlist.description }}
                 ></div>
                 {hasReadMore && (
-                  <Button
-                    onClick={toggleContent}
-                    variant="outlined"
-                    endIcon={<FiArrowDown />}
-                  >
-                    Read more
-                  </Button>
+                  <div className="text-center">
+                    <button
+                      className="btn flex gap-x-4"
+                      onClick={toggleContent}
+                    >
+                      <span>{isContentExpanded ? "Hide" : "Read more"}</span>
+                      <FiArrowDown
+                        className={classNames(
+                          "transform transition",
+                          isContentExpanded ? "rotate-180" : ""
+                        )}
+                      />
+                    </button>
+                  </div>
                 )}
               </>
             )}
@@ -202,7 +211,7 @@ export function TierlistContent({ tierlist, items }) {
             startIcon={<FiThumbsUp className="pl-1" />}
             className={classNames(
               hasVoted ? "pointer-events-none" : "",
-              "hidden lg:flex mt-2"
+              "hidden lg:flex mt-4"
             )}
           >
             {hasVoted ? "Liked" : "Like"} ({tierlist.votes})
