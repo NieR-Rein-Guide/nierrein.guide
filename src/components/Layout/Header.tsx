@@ -68,8 +68,8 @@ export default function Header(): JSX.Element {
 
   return (
     <>
-      <div className="absolute right-0 left-0 top-0 mx-auto z-50">
-        <div className="relative flex justify-start md:justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50">
+      <div className="absolute xl:fixed right-0 left-0 top-0 mx-auto z-menu">
+        <div className="relative flex justify-start md:justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50">
           <span className="text-xs md:text-base">
             {(release && (
               <Link

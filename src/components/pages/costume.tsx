@@ -24,6 +24,7 @@ import {
 } from "@prisma/client";
 import { useSettingsStore } from "store/settings";
 import Slider from "rc-slider";
+import CharacterRows from "@components/characters/CharacterRows";
 
 type Costume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -64,6 +65,7 @@ export default function CostumePage({
   stats,
   rankBonus,
   selectCostumes,
+  characters,
 }: CharactersPageProps): JSX.Element {
   const router = useRouter();
 
@@ -161,6 +163,11 @@ export default function CostumePage({
           <CostumeSelect costumes={selectCostumes} />
         </div>
       </nav>
+
+      <CharacterRows
+        characters={characters}
+        currentCharacter={currentCharacter}
+      />
 
       <div className="hidden md:block">
         <CharacterCostumes

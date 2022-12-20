@@ -30,6 +30,13 @@ export default function SettingsModal() {
     (state) => state.setDatabaseDisplayType
   );
 
+  const showCharactersSelection = useSettingsStore(
+    (state) => state.showCharactersSelection
+  );
+  const setShowCharactersSelection = useSettingsStore(
+    (state) => state.setShowCharactersSelection
+  );
+
   return (
     <div>
       <Button
@@ -64,6 +71,17 @@ export default function SettingsModal() {
               size="small"
               onChange={(e) => setShowUnreleasedContent(e.target.checked)}
               checked={showUnreleasedContent}
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between">
+            <label htmlFor="spoilers" className="text-beige cursor-pointer">
+              Show old characters selection on costume page
+            </label>
+            <Switch
+              id="spoilers"
+              size="small"
+              onChange={(e) => setShowCharactersSelection(e.target.checked)}
+              checked={showCharactersSelection}
             />
           </div>
           <div className="flex flex-col sm:flex-row justify-between">
