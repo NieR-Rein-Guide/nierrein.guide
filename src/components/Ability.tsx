@@ -1,6 +1,5 @@
 import { CDN_URL } from "@config/constants";
 import classNames from "classnames";
-import Image from "next/image";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
 
@@ -35,9 +34,11 @@ export default function Ability({
         fullLink ? "transform ease-out-cubic transition hover:scale-105" : ""
       )}
     >
-      <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
-        Lv. {level}/{maxLevel}
-      </span>
+      {level && (
+        <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
+          Lv. {level}/{maxLevel}
+        </span>
+      )}
       <div className="flex items-center">
         <div
           className={classNames(

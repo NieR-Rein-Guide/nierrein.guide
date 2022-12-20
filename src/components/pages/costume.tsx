@@ -133,7 +133,7 @@ export default function CostumePage({
             <Slider
               value={ascendLevel}
               className="mt-2 xl:mt-0 max-w-lg"
-              min={1}
+              min={0}
               max={4}
               onChange={(value) => setAscendLevel(value)}
             />

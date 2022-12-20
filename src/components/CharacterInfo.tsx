@@ -43,6 +43,7 @@ import { useSettingsStore } from "@store/settings";
 import Link from "next/link";
 import WeaponThumbnail from "./WeaponThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
+import clamp from "@utils/clamp";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -100,7 +101,7 @@ function CostumeDetails({
     );
   }, [costume]);
 
-  const abilityLevel = ascendLevel - 1;
+  const abilityLevel = clamp(ascendLevel - 1, 1, 3);
   const costumeAbilities = abilities.slice(0, 2);
   const awakeningAbility = abilities?.[2]?.[0];
 
@@ -149,6 +150,9 @@ function CostumeDetails({
                   SkillCooltimeValue={
                     skill[skillLevel].costume_skill.cooldown_time
                   }
+                  gaugeRiseSpeed={
+                    skill[skillLevel].costume_skill.gauge_rise_speed
+                  }
                   level={skillLevel + 1}
                   isMaxAscended={ascendLevel === 4}
                   imagePathBase={skill[skillLevel].costume_skill.image_path}
@@ -165,26 +169,28 @@ function CostumeDetails({
                 <h2 className="text-2xl">Abilities</h2>
               </Lines>
               {costumeAbilities &&
-                costumeAbilities.map((ability, index) => (
-                  <Ability
-                    href={`/ability/costume/${slug(
-                      ability?.[3]?.costume_ability.name
-                    )}-${ability?.[3]?.costume_ability.ability_id}`}
-                    className={classNames(
-                      "flex-1 transition-opacity",
-                      ascendLevel === 1 && index > 0 ? "opacity-50" : ""
-                    )}
-                    key={`${costume.costume_id}ability${index}`}
-                    name={ability?.[abilityLevel]?.costume_ability.name}
-                    description={
-                      ability?.[abilityLevel]?.costume_ability.description
-                    }
-                    imagePathBase={
-                      ability?.[abilityLevel]?.costume_ability.image_path_base
-                    }
-                    level={abilityLevel + 1}
-                  />
-                ))}
+                costumeAbilities.map((ability, index) => {
+                  return (
+                    <Ability
+                      href={`/ability/costume/${slug(
+                        ability?.[3]?.costume_ability.name
+                      )}-${ability?.[3]?.costume_ability.ability_id}`}
+                      className={classNames(
+                        "flex-1 transition-opacity",
+                        ascendLevel === 0 && index > 0 ? "opacity-50" : ""
+                      )}
+                      key={`${costume.costume_id}ability${index}`}
+                      name={ability?.[abilityLevel]?.costume_ability.name}
+                      description={
+                        ability?.[abilityLevel]?.costume_ability.description
+                      }
+                      imagePathBase={
+                        ability?.[abilityLevel]?.costume_ability.image_path_base
+                      }
+                      level={abilityLevel + 1}
+                    />
+                  );
+                })}
             </div>
 
             {awakeningAbility && (
@@ -206,7 +212,7 @@ function CostumeDetails({
                   imagePathBase={
                     awakeningAbility.costume_ability.image_path_base
                   }
-                  level={4}
+                  level={null}
                 />
               </div>
             )}
@@ -424,7 +430,7 @@ function CostumeDetails({
           )}
 
           <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
-            Abilities and bonuses are not included in the stats.
+            Temp abilities and rank bonuses are not included in the stats.
           </p>
 
           {rankBonus && (

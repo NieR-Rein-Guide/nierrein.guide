@@ -33,6 +33,7 @@ import AbilityThumbnail from "@components/AbilityThumbnail";
 import Stat from "@components/Stat";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
+import skillGaugeColors from "@utils/skillGaugeColors";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -367,17 +368,11 @@ export function CostumesTable({
           render: (costume) => (
             <Tooltip title="Lower number means skill charge faster.">
               <div
-                className={classNames({
-                  "text-red-400":
-                    costume.costume_skill_link[0].costume_skill
-                      .gauge_rise_speed === "A",
-                  "text-yellow-400":
-                    costume.costume_skill_link[0].costume_skill
-                      .gauge_rise_speed === "B",
-                  "text-green-400":
-                    costume.costume_skill_link[0].costume_skill
-                      .gauge_rise_speed === "C",
-                })}
+                className={classNames(
+                  skillGaugeColors[
+                    costume.costume_skill_link[0].costume_skill.gauge_rise_speed
+                  ]
+                )}
               >
                 <span className="block">
                   {costume.costume_skill_link[0].costume_skill.gauge_rise_speed}

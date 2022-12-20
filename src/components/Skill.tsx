@@ -1,6 +1,9 @@
 import { CDN_URL } from "@config/constants";
 import { Tooltip } from "@mui/material";
 import getGaugeLevel from "@utils/getGaugeLevel";
+import skillGaugeColors, {
+  skillGaugeBorderColors,
+} from "@utils/skillGaugeColors";
 import classNames from "classnames";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
@@ -17,12 +20,14 @@ interface SkillProps {
   isWeapon?: boolean;
   className?: string;
   imagePathBase?: string;
+  gaugeRiseSpeed?: string;
 }
 
 export default function Skill({
   name,
   description,
   SkillCooltimeValue,
+  gaugeRiseSpeed,
   isMaxAscended,
   level = 1,
   maxLevel = 15,
@@ -73,26 +78,41 @@ export default function Skill({
           </p>
           {SkillCooltimeValue && (
             <p className="flex  items-end text-xs mt-2">
-              <span className="bg-brown px-2 py-1 mr-2">
+              <span
+                className={classNames(
+                  "px-2 py-1 mr-2",
+                  isWeapon ? "bg-brown" : "relative bg-grey-dark border",
+                  !isWeapon && skillGaugeColors[gaugeRiseSpeed],
+                  !isWeapon && skillGaugeBorderColors[gaugeRiseSpeed]
+                )}
+              >
                 {!isWeapon &&
                   `Gauge Level: ${getGaugeLevel(SkillCooltimeValue)}`}
                 {isWeapon && `Cooldown: ${SkillCooltimeValue / 30}s`}
-              </span>
-              {!isWeapon && (
-                <Tooltip title="A lower number means that it charges faster">
-                  <span
-                    className={classNames(
-                      "text-xs",
-                      isMaxAscended ? "inline-flex flex-col" : ""
-                    )}
+
+                {!isWeapon && (
+                  <Tooltip
+                    className="cursor-help"
+                    title={
+                      <ul>
+                        <li>A lower number means that it charges faster</li>
+                        <li>
+                          <span>Default: {SkillCooltimeValue}</span>
+                        </li>
+                        <li>
+                          {isMaxAscended && (
+                            <span>Max asc: {SkillCooltimeValue * 0.8}</span>
+                          )}
+                        </li>
+                      </ul>
+                    }
                   >
-                    <span>{SkillCooltimeValue}</span>
-                    {isMaxAscended && (
-                      <span>Max asc: {SkillCooltimeValue * 0.8}</span>
-                    )}
-                  </span>
-                </Tooltip>
-              )}
+                    <div className="absolute -top-2 -right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-4 w-4 text-xs font-labor">
+                      ?
+                    </div>
+                  </Tooltip>
+                )}
+              </span>
             </p>
           )}
         </div>
