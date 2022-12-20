@@ -2,7 +2,7 @@ import { tierlists } from "@prisma/client-nrg";
 import TierlistListingItem from "@components/TierlistListingItem";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import ATTRIBUTES from "@utils/attributes";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TextField from "@mui/material/TextField";
 import { useRouter } from "next/router";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
@@ -23,6 +23,7 @@ export default function ListingLoadout({
   tierlists = [],
 }: LoadoutProps): JSX.Element {
   const router = useRouter();
+  const isFirstMount = useRef(true);
 
   const [sortBy, setSortBy] = useState("votes");
   const [fromDate, setFromDate] = useState<Date | null>(defaultFromDate);
@@ -30,6 +31,11 @@ export default function ListingLoadout({
   const [type, setType] = useState("all");
 
   useEffect(() => {
+    if (isFirstMount.current) {
+      console.log("skipping");
+      return;
+    }
+
     router.push(
       `/tierlists/community?attribute=${attribute}&type=${type}&from=${fromDate.toISOString()}&sortBy=${sortBy}`
     );
@@ -40,6 +46,10 @@ export default function ListingLoadout({
       setAttribute("all");
     }
   }, [type]);
+
+  useEffect(() => {
+    isFirstMount.current = false;
+  }, []);
 
   return (
     <>
