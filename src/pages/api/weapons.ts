@@ -42,6 +42,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             include: {
               weapon_skill: true,
             }
+          },
+          weapon_story_link: {
+            include: {
+              weapon_story: true,
+            }
           }
         }
       });
