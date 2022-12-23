@@ -53,7 +53,7 @@ export default function DebrisThumbnail({
         className={classNames("z-0", imgClasses)}
         src={
           image_path_base
-            ? `${CDN_URL}${image_path_base}standard.png`
+            ? `${CDN_URL}${image_path_base}`
             : "/decorations/thought_empty_standard.png"
         }
         alt={name}
