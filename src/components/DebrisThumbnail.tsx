@@ -6,6 +6,7 @@ import { debris } from "@prisma/client";
 interface DebrisThumbnailProps extends debris {
   className?: string | string[];
   imgClasses?: string | string[];
+  sizeClasses?: string;
   onClick?: () => void | undefined;
 }
 
@@ -21,6 +22,7 @@ export default function DebrisThumbnail({
   rarity = 20,
   className,
   imgClasses,
+  sizeClasses = "h-20 w-20",
   onClick = undefined,
 }: DebrisThumbnailProps): JSX.Element {
   const debrisRarity = DEBRIS_RARITY[rarity];
@@ -29,7 +31,8 @@ export default function DebrisThumbnail({
     <div
       onClick={onClick}
       className={classNames(
-        "h-20 w-20 relative",
+        "relative",
+        sizeClasses,
         onClick ? "cursor-pointer hover:scale-105 transition transform" : "",
         className
       )}

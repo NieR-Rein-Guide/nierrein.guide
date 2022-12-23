@@ -36,6 +36,7 @@ import { useState } from "react";
 import axios from "axios";
 import produce from "immer";
 import getBaseRarity from "@utils/getBaseRarity";
+import DebrisSelect from "@components/DebrisSelect";
 
 interface LoadoutBuilderProps {
   costumes: (costume & {
@@ -138,6 +139,43 @@ export default function LoadoutBuilder({
     console.log(newLinks);
   }
 
+  function updateDebris(
+    costume: costume & {
+      costume_ability_link: (costume_ability_link & {
+        costume_ability: costume_ability;
+      })[];
+      costume_skill_link: (costume_skill_link & {
+        costume_skill: costume_skill;
+      })[];
+      costume_stat: costume_stat[];
+      character: character;
+      emblem: emblem;
+    },
+    thought: debris
+  ) {
+    setNewLinks(
+      produce(newLinks, (draft) => {
+        const linkedCostume = draft.find(
+          (link) => link.costume_id === costume.costume_id
+        );
+
+        if (!linkedCostume) {
+          draft.push({
+            costume_id: costume.costume_id,
+            weapon_id: linkedCostume.weapon_id,
+            debris_id: thought?.debris_id,
+          });
+
+          return;
+        }
+
+        linkedCostume.debris_id = thought?.debris_id;
+      })
+    );
+
+    console.log(newLinks);
+  }
+
   return (
     <Layout>
       <Meta
@@ -152,6 +190,9 @@ export default function LoadoutBuilder({
           );
           const weaponLinked = weapons.find(
             (weapon) => weapon.weapon_id === link?.weapon_id
+          );
+          const debrisLinked = debris.find(
+            (thought) => thought.debris_id === link?.debris_id
           );
 
           return (
@@ -176,6 +217,7 @@ export default function LoadoutBuilder({
                   isDark={weaponLinked?.is_ex_weapon}
                   element={weaponLinked?.attribute}
                 />
+                <DebrisThumbnail {...debrisLinked} />
                 <WeaponSelect
                   defaultValue={weaponLinked}
                   classes="flex-1"
@@ -185,6 +227,14 @@ export default function LoadoutBuilder({
                     updateWeapon(costume, value);
                   }}
                   label="Add a weapon..."
+                />
+                <DebrisSelect
+                  defaultValue={debrisLinked}
+                  debris={debris}
+                  onSelect={(e, value) => {
+                    updateDebris(costume, value);
+                  }}
+                  label="Add a debris..."
                 />
               </div>
             </div>
@@ -202,13 +252,13 @@ export default function LoadoutBuilder({
 }
 
 export async function getServerSideProps() {
-  const [costumesData, weaponsData, debris, links] = await Promise.all([
+  const [costumesData, weapons, debris, links] = await Promise.all([
     getAllCostumes({
       orderBy: {
         release_time: "desc",
       },
     }),
-    getAllWeapons(),
+    prisma.dump.weapon.findMany({}),
     prisma.dump.debris.findMany({
       orderBy: {
         release_time: "asc",
@@ -217,7 +267,7 @@ export async function getServerSideProps() {
     prisma.nrg.costumes_link.findMany({}),
   ]);
 
-  const selectWeapons = [...weaponsData.weapons].sort(
+  const selectWeapons = [...weapons].sort(
     (a, b) => -b.weapon_type.localeCompare(a.weapon_type)
   );
 

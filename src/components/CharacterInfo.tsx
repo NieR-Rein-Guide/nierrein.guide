@@ -27,6 +27,7 @@ import {
   costume_skill,
   costume_skill_link,
   costume_stat,
+  debris,
   emblem,
 } from "@prisma/client";
 import { Chip } from "@mui/material";
@@ -44,6 +45,7 @@ import Link from "next/link";
 import WeaponThumbnail from "./WeaponThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
 import clamp from "@utils/clamp";
+import DebrisThumbnail from "./DebrisThumbnail";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -68,6 +70,7 @@ function CostumeDetails({
     costume_stat: costume_stat[];
     character: character;
     emblem: emblem;
+    debris: debris | null;
   };
   abilities;
   skill;
@@ -216,6 +219,25 @@ function CostumeDetails({
                 />
               </div>
             )}
+
+            <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
+              <div className="flex items-center">
+                <div className="relative mr-4">
+                  <DebrisThumbnail
+                    sizeClasses="h-16 w-16"
+                    {...costume.debris}
+                  />
+                </div>
+                <div className="flex flex-col items-start">
+                  <strong className="font-display text-2xl text-beige">
+                    {costume.debris?.name ?? "WIP"}
+                  </strong>
+                  <p className="text-beige-text">
+                    <span>{costume.debris?.description_long ?? "WIP"}</span>
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -455,7 +477,7 @@ function CostumeDetails({
       <div className="relative">
         <div className="mt-12">
           <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
-            Character story
+            Costume story
           </h2>
           <HR className="my-8" />
         </div>
@@ -475,19 +497,6 @@ function CostumeDetails({
                 __html: `${costume.description.replaceAll("\\n", "<br>")}`,
               }}
             ></p>
-          </div>
-
-          <div className="md:col-start-1 md:col-span-3 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4 opacity-50">
-            Story 1 (WIP)
-          </div>
-          <div className="md:col-start-3 md:col-span-3 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4 opacity-50">
-            Story 2 (WIP)
-          </div>
-          <div className="md:col-start-1 md:col-span-3 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4 opacity-50">
-            Story 3 (WIP)
-          </div>
-          <div className="md:col-start-3 md:col-span-3 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4 opacity-50">
-            Story 4 (WIP)
           </div>
         </div>
       </div>

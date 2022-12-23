@@ -1,17 +1,40 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import Link from "next/link";
-import SVG from "react-inlinesvg";
 import prisma from "@libs/prisma";
 import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import DebrisThumbnail from "@components/DebrisThumbnail";
 import Star from "@components/decorations/Star";
-import { debris } from "@prisma/client";
+import {
+  character,
+  costume,
+  costume_ability,
+  costume_ability_link,
+  costume_skill,
+  costume_skill_link,
+  costume_stat,
+  debris,
+} from "@prisma/client";
 import DatabaseNavbar from "@components/DatabaseNavbar";
+import CostumeThumbnail from "@components/CostumeThumbnail";
+import { CDN_URL } from "@config/constants";
+import RARITY from "@utils/rarity";
+import { costumes_link } from "@prisma/client-nrg";
+import { getAllCostumes } from "@models/costume";
 
 interface DebrisPageProps {
   debris: debris[];
+  links: costumes_link[];
+  costumes: (costume & {
+    costume_ability_link: (costume_ability_link & {
+      costume_ability: costume_ability;
+    })[];
+    character: character;
+    costume_skill_link: (costume_skill_link & {
+      costume_skill: costume_skill;
+    })[];
+    costume_stat: costume_stat[];
+  })[];
 }
 
 export const DEBRIS_RARITY = {
@@ -26,7 +49,11 @@ export const rarityLookup = {
   40: "4*",
 };
 
-export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
+export default function DebrisPage({
+  debris,
+  links,
+  costumes,
+}: DebrisPageProps): JSX.Element {
   return (
     <Layout hasContainer={false} className="overflow-x-auto">
       <Meta
@@ -44,40 +71,62 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
             {
               field: "name",
               title: "Name",
-              render: (debris) => (
+              render: (thought) => (
                 <div className="flex items-center gap-x-4 w-80">
-                  <DebrisThumbnail {...debris} />
-                  <span>{debris.name.split("Debris:")[1]}</span>
+                  <DebrisThumbnail {...thought} />
+                  <span>{thought.name.split("Debris:")[1]}</span>
                 </div>
               ),
             },
             {
-              field: "ability",
-              title: "Ability",
-              lookup: { 0: "WIP" },
-              render: () => <span>WIP</span>,
+              field: "description_long",
+              title: "Description",
+            },
+            {
+              field: "costume",
+              title: "Costume",
+              render: (thought) => {
+                const linkedCostume = links.find(
+                  (costume) => costume.debris_id === thought.debris_id
+                );
+
+                const costume = costumes.find(
+                  (item) => item.costume_id === linkedCostume?.costume_id
+                );
+
+                return (
+                  <div className="flex items-center gap-x-4 w-80">
+                    <CostumeThumbnail
+                      href={`/characters/${costume?.character.slug}/${costume?.slug}`}
+                      src={`${CDN_URL}${costume?.image_path_base}battle.png`}
+                      alt={`${costume?.title} thumbnail`}
+                      rarity={RARITY[costume?.rarity]}
+                      weaponType={costume?.weapon_type}
+                      isDark={costume?.is_ex_costume}
+                    />
+                    <span className="inline-block pr-12 line-clamp-2">
+                      {costume?.is_ex_costume && (
+                        <span className="text-rarity-4">EX </span>
+                      )}
+                      {costume?.title ?? "WIP"}
+                    </span>
+                  </div>
+                );
+              },
             },
             {
               field: "rarity",
               title: "Rarity",
               lookup: rarityLookup,
-              customFilterAndSearch: (term, debris) => {
+              customFilterAndSearch: (term, thought) => {
                 if (term.length === 0) return true;
-                return term.includes(debris.rarity.toString());
+                return term.includes(thought.rarity.toString());
               },
-              render: (debris) => (
+              render: (thought) => (
                 <div className="w-8 h-8 mx-auto">
-                  <Star rarity={DEBRIS_RARITY[debris.rarity]} />
+                  <Star rarity={DEBRIS_RARITY[thought.rarity]} />
                 </div>
               ),
-            },
-            {
-              field: "release_time",
-              title: "Released date",
-              type: "datetime",
-              customFilterAndSearch: (term, debris) => {
-                return term < new Date(debris.release_time);
-              },
             },
           ]}
           options={{
@@ -113,25 +162,26 @@ export async function getStaticProps() {
     },
   });
 
-  /* const skillsLookupData = await prisma.companion_skill.findMany({
+  const { costumes } = await getAllCostumes({
     orderBy: {
-      name: "asc",
+      release_time: "desc",
     },
-    select: {
-      name: true,
-    },
-    distinct: ["name"],
   });
 
-  const skillsLookup = skillsLookupData.reduce((acc, current) => {
-    acc[current.name] = current.name;
-    return acc;
-  }, {}); */
+  const links = await prisma.nrg.costumes_link.findMany({
+    where: {
+      debris_id: {
+        not: null,
+      },
+    },
+  });
 
   return {
     props: JSON.parse(
       JSON.stringify({
         debris,
+        links,
+        costumes,
       })
     ),
   };
