@@ -9,7 +9,6 @@ const SLIDER_BREAKPOINTS = ["lg", "xl", "2xl"];
 export default function NewNotices({ notifications }) {
   const breakpoint = useBreakpoint();
 
-  console.log(breakpoint);
   return (
     <>
       <div className="swiper--notices overflow-hidden relative pb-16">

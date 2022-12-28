@@ -8,6 +8,7 @@ import {
   DEBRIS_RARITY,
   rarityLookup as debrisRarityLookup,
 } from "pages/database/debris";
+import { FixedSizeList as List } from "react-window";
 import toast from "react-hot-toast";
 import {
   character,
@@ -28,7 +29,6 @@ import {
 } from "@prisma/client";
 import { costumes_link } from "@prisma/client-nrg";
 import { getAllCostumes } from "@models/costume";
-import { getAllWeapons } from "@models/weapon";
 import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import WeaponSelect from "@components/weapons/WeaponSelect";
@@ -63,7 +63,7 @@ interface LoadoutBuilderProps {
   links: costumes_link[];
 }
 
-export default function LoadoutBuilder({
+export default function AdminCostumesLink({
   costumes,
   weapons,
   debris,
@@ -184,62 +184,75 @@ export default function LoadoutBuilder({
       />
 
       <section className="flex flex-col gap-y-4 p-4 md:p-8">
-        {costumes.map((costume) => {
-          const link = newLinks.find(
-            (link) => link.costume_id === costume.costume_id
-          );
-          const weaponLinked = weapons.find(
-            (weapon) => weapon.weapon_id === link?.weapon_id
-          );
-          const debrisLinked = debris.find(
-            (thought) => thought.debris_id === link?.debris_id
-          );
+        <List
+          height={1000}
+          itemSize={80}
+          width={1050}
+          itemData={costumes}
+          itemCount={costumes.length}
+        >
+          {({ data, index, style }) => {
+            const costume = data[index];
+            const link = newLinks.find(
+              (link) => link.costume_id === costume.costume_id
+            );
+            const weaponLinked = weapons.find(
+              (weapon) => weapon.weapon_id === link?.weapon_id
+            );
+            const debrisLinked = debris.find(
+              (thought) => thought.debris_id === link?.debris_id
+            );
 
-          return (
-            <div className="flex flex-col gap-y-2" key={costume.costume_id}>
-              <h2>
-                {costume.character.name} - {costume.title}
-              </h2>
-              <div className="flex gap-x-4">
-                <CostumeThumbnail
-                  src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                  alt={`${costume.title} thumbnail`}
-                  rarity={RARITY[costume.rarity]}
-                  weaponType={costume.weapon_type}
-                />
-                <WeaponThumbnail
-                  image_path={weaponLinked?.image_path}
-                  alt={`${weaponLinked?.name} thumbnail`}
-                  rarity={
-                    weaponLinked?.rarity ? getBaseRarity(weaponLinked) : "RARE"
-                  }
-                  type={weaponLinked?.weapon_type}
-                  isDark={weaponLinked?.is_ex_weapon}
-                  element={weaponLinked?.attribute}
-                />
-                <DebrisThumbnail {...debrisLinked} />
-                <WeaponSelect
-                  defaultValue={weaponLinked}
-                  classes="flex-1"
-                  weapons={weapons}
-                  onSelect={(e, value) => {
-                    if (!value) return;
-                    updateWeapon(costume, value);
-                  }}
-                  label="Add a weapon..."
-                />
-                <DebrisSelect
-                  defaultValue={debrisLinked}
-                  debris={debris}
-                  onSelect={(e, value) => {
-                    updateDebris(costume, value);
-                  }}
-                  label="Add a debris..."
-                />
-              </div>
-            </div>
-          );
-        })}
+            return (
+              <li style={style}>
+                <div className="flex flex-col gap-y-2" key={costume.costume_id}>
+                  <h2>
+                    {costume.character.name} - {costume.title}
+                  </h2>
+                  <div className="flex gap-x-4">
+                    <CostumeThumbnail
+                      src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                      alt={`${costume.title} thumbnail`}
+                      rarity={RARITY[costume.rarity]}
+                      weaponType={costume.weapon_type}
+                    />
+                    <WeaponThumbnail
+                      image_path={weaponLinked?.image_path}
+                      alt={`${weaponLinked?.name} thumbnail`}
+                      rarity={
+                        weaponLinked?.rarity
+                          ? getBaseRarity(weaponLinked)
+                          : "RARE"
+                      }
+                      type={weaponLinked?.weapon_type}
+                      isDark={weaponLinked?.is_ex_weapon}
+                      element={weaponLinked?.attribute}
+                    />
+                    <DebrisThumbnail {...debrisLinked} />
+                    <WeaponSelect
+                      defaultValue={weaponLinked}
+                      classes="flex-1"
+                      weapons={weapons}
+                      onSelect={(e, value) => {
+                        if (!value) return;
+                        updateWeapon(costume, value);
+                      }}
+                      label="Add a weapon..."
+                    />
+                    <DebrisSelect
+                      defaultValue={debrisLinked}
+                      debris={debris}
+                      onSelect={(e, value) => {
+                        updateDebris(costume, value);
+                      }}
+                      label="Add a debris..."
+                    />
+                  </div>
+                </div>
+              </li>
+            );
+          }}
+        </List>
       </section>
 
       <div className="flex justify-center mt-4">

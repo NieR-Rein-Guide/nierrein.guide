@@ -27,7 +27,9 @@ export default function DebrisSelect({
       onChange={onSelect}
       className={classNames(classes)}
       options={debris
-        .sort((a, b) => -b.description_short.localeCompare(a.description_short))
+        .sort(
+          (a, b) => -b.description_short?.localeCompare(a?.description_short)
+        )
         .filter((thought) => {
           if (showUnreleasedContent) return true;
           return new Date() > new Date(thought.release_time);

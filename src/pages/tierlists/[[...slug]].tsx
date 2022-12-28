@@ -7,9 +7,7 @@ import Meta from "@components/Meta";
 import { useRouter } from "next/router";
 import { TierlistContent } from "pages/tierlist/[slug]";
 import { NextPageContext } from "next";
-import CommunityTierlists, {
-  defaultFromDate,
-} from "@components/CommunityTierlists";
+import CommunityTierlists from "@components/CommunityTierlists";
 import prisma from "@libs/prisma";
 import Link from "next/link";
 import { FEATURED_TIERLISTS } from "@config/constants";
@@ -54,6 +52,38 @@ export default function TierlistsPageProps({
       `/tierlists/pvp/${pvp[index].tierlist.slug}`
     );
   };
+
+  // Database is empty.
+  if (pve?.[0].items?.length === 0) {
+    return (
+      <Layout>
+        <Meta
+          title="Tier Lists"
+          cover={
+            defaultTab === 0
+              ? "https://nierrein.guide/tierlists/cover-pve.jpg"
+              : "https://nierrein.guide/tierlists/cover-pvp.jpg"
+          }
+        />
+
+        <section>
+          <h2 className="overlap">Tierlists</h2>
+
+          <div className="text-right hidden lg:block">
+            <Link href="/tools/tierlist-builder" passHref>
+              <a className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
+                Create a tierlist
+              </a>
+            </Link>
+          </div>
+
+          <h2 className="text-center text-2xl">
+            Database is being updated... Try again in 10 minutes.
+          </h2>
+        </section>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -154,7 +184,7 @@ export async function getServerSideProps(context: NextPageContext) {
    */
   const where = {
     updated_at: {
-      gte: defaultFromDate.toISOString(),
+      gte: undefined,
     },
   };
   let orderBy = {};

@@ -16,7 +16,7 @@ interface LoadoutProps {
 }
 
 export const defaultFromDate = sub(new Date(), {
-  months: 3,
+  months: 12,
 });
 
 export default function ListingLoadout({
@@ -32,7 +32,6 @@ export default function ListingLoadout({
 
   useEffect(() => {
     if (isFirstMount.current) {
-      console.log("skipping");
       return;
     }
 
