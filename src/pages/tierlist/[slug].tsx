@@ -33,6 +33,7 @@ import {
 } from "recharts";
 import { statsColors } from "@utils/statsColors";
 import classNames from "classnames";
+import Lines from "@components/decorations/Lines";
 
 /* const COSTUME_STAT_PROPERTIES = [
   "atk",
@@ -94,7 +95,7 @@ export default function TierList({
   );
 }
 
-export function TierlistContent({ tierlist, items }) {
+export function TierlistContent({ tierlist, items }: TierListProps) {
   const router = useRouter();
   const localVotes = useTierlistsVotes((state) => state.votes);
   const addVote = useTierlistsVotes((state) => state.addVote);
@@ -527,7 +528,48 @@ export function TierlistContent({ tierlist, items }) {
           </div>
         ))}
       </div>
+
+      <div className="p-4">
+        <Lines
+          className="mb-8"
+          containerClass="justify-center"
+          svgClass="w-96 xl:w-42"
+        >
+          <h2 className="text-2xl">Comments</h2>
+        </Lines>
+
+        <CusdisComments
+          pageId={tierlist.tierlist_id}
+          pageTitle={tierlist.title}
+        />
+      </div>
     </>
+  );
+}
+
+function CusdisComments({ pageId, pageTitle }) {
+  const threadEl = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (threadEl.current) {
+      const iframe = window.CUSDIS?.renderTo(threadEl.current);
+
+      if (iframe) {
+        threadEl.current.append(iframe);
+        console.log(iframe);
+      }
+    }
+  }, [threadEl]);
+
+  return (
+    <div
+      ref={threadEl}
+      data-host="https://cusdis.com"
+      data-app-id="0a1806c7-9423-4b59-b034-071c617018ce"
+      data-page-id={pageId}
+      data-page-url="{{ PAGE_URL }}"
+      data-page-title={pageTitle}
+    />
   );
 }
 

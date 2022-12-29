@@ -31,6 +31,8 @@ class MyDocument extends Document {
               src="https://analytics.nierrein.guide/umami.js"
             ></script>
           )}
+          {/* Comment system */}
+          <script async src="/scripts/cusdis.js"></script>
         </Head>
         <body>
           <Main />
