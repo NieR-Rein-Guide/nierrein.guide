@@ -1,10 +1,4 @@
-import {
-  Button,
-  FormControlLabel,
-  IconButton,
-  Modal,
-  Switch,
-} from "@mui/material";
+import { Button, Modal, Switch } from "@mui/material";
 import { useSettingsStore } from "@store/settings";
 import { useState } from "react";
 import { FiSettings } from "react-icons/fi";
@@ -53,14 +47,19 @@ export default function SettingsModal() {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div className="bg-grey-dark p-8 absolute bordered top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-xl space-y-8">
-          <div className="mb-4">
-            <h3 className="flex items-center gap-x-2 text-3xl">
-              <FiSettings /> Settings
-            </h3>
-            <p className="text-grey-detail text-xs">
-              Settings are saved locally.
-            </p>
+        <div className="bg-grey-dark p-8 absolute bordered top-0 left-0 md:top-1/2 md:left-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 w-full md:max-w-xl space-y-8 overflow-y-auto pt-12 md:pt-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h3 className="flex items-center gap-x-2 text-3xl">
+                <FiSettings /> Settings
+              </h3>
+              <p className="text-grey-detail text-xs">
+                Settings are saved locally.
+              </p>
+            </div>
+            <button className="btn" onClick={() => setIsOpen(false)}>
+              Close
+            </button>
           </div>
           <div className="flex flex-col sm:flex-row justify-between">
             <label htmlFor="spoilers" className="text-beige cursor-pointer">

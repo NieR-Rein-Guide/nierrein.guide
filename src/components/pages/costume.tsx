@@ -72,6 +72,7 @@ export default function CostumePage({
   const [currentCostume, setCurrentCostume] = useState<
     Costume | costume | null
   >(selectedCostume || costumes[0]);
+  console.log(selectedCostume, currentCostume);
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
@@ -138,36 +139,16 @@ export default function CostumePage({
               onChange={(value) => setAscendLevel(value)}
             />
           </div>
-          {/* <div className="hidden md:flex flex-col justify-between">
-            <p className="text-beige">Ascend Lv. {ascendLevel}</p>
-            <Rating
-              name="ascend-levels"
-              max={4}
-              value={ascendLevel}
-              defaultValue={4}
-              onChange={(e, newValue) => {
-                if (typeof newValue !== "number") {
-                  console.log(newValue);
-                  console.log(ascendLevel);
-                  setAscendLevel(1);
-                  console.log(ascendLevel);
-                }
-                setAscendLevel(newValue);
-              }}
-              getLabelText={(value: number) => `Ascend level ${value}`}
-              precision={1}
-              icon={<AscendFull />}
-              emptyIcon={<AscendEmpty />}
-            />
-          </div> */}
           <CostumeSelect costumes={selectCostumes} />
         </div>
       </nav>
 
-      <CharacterRows
-        characters={characters}
-        currentCharacter={currentCharacter}
-      />
+      <div>
+        <CharacterRows
+          characters={characters}
+          currentCharacter={currentCharacter}
+        />
+      </div>
 
       <div className="hidden md:block">
         <CharacterCostumes
@@ -182,31 +163,21 @@ export default function CostumePage({
       </div>
 
       {costumes.length > 0 && (
-        <div>
-          {(!showUnreleasedContent &&
-            new Date() < new Date(currentCostume.release_time) && (
-              <div
-                key="hidden"
-                className="bg-grey-lighter text-beige hover:bg-opacity-90 transition-colors w-full border-b border-beige-inactive border-opacity-50 p-0 md:p-8 text-center"
-              >
-                Costume hidden.
-              </div>
-            )) || (
-            <CostumeDetails
-              key="details"
-              character={currentCharacter}
-              costume={currentCostume}
-              abilities={abilities[currentCostume.costume_id].sort(
-                (a, b) => a[0].ability_slot - b[0].ability_slot
-              )}
-              skill={skills[currentCostume.costume_id]}
-              stats={stats[currentCostume.costume_id]}
-              rankBonus={rankBonus}
-              ascendLevel={ascendLevel}
-              skillLevel={skillLevel}
-            />
-          )}
-        </div>
+        <CostumeDetails
+          key="details"
+          character={currentCharacter}
+          costume={currentCostume}
+          abilities={
+            abilities?.[currentCostume.costume_id]?.sort(
+              (a, b) => a[0].ability_slot - b[0].ability_slot
+            ) || []
+          }
+          skill={skills[currentCostume.costume_id]}
+          stats={stats[currentCostume.costume_id]}
+          rankBonus={rankBonus}
+          ascendLevel={ascendLevel}
+          skillLevel={skillLevel}
+        />
       )}
     </Layout>
   );

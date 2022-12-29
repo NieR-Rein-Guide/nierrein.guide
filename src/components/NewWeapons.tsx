@@ -37,7 +37,7 @@ export default function NewWeapons({ weapons }: { weapons: weapon[] }) {
             .map((weapon) => (
               <SwiperSlide key={weapon.weapon_id}>
                 <div className="relative">
-                  <div className="flex items-center justify-between gap-x-2 text-xl mb-2">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-x-2 text-xl mb-2">
                     <div className="flex gap-x-2 flex-1">
                       <div className="flex items-center gap-x-2">
                         <div className="w-8">

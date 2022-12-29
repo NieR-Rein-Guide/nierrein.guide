@@ -7,8 +7,6 @@ import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
-import { FormControlLabel, Switch } from "@mui/material";
-import { useSettingsStore } from "../../store/settings";
 import axios from "axios";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import SettingsModal from "@components/SettingsModal";
@@ -20,12 +18,6 @@ export default function Header(): JSX.Element {
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
   const [release, setRelease] = useState(null);
-  const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
-  );
-  const setShowUnreleasedContent = useSettingsStore(
-    (state) => state.setShowUnreleasedContent
-  );
 
   function start() {
     setIsAnimating(true);
@@ -77,9 +69,9 @@ export default function Header(): JSX.Element {
                 passHref
               >
                 <a title="See releases" className="hover:underline">
-                  {release.tag_name} -{" "}
-                  <span className="md:text-sm">
-                    Published{" "}
+                  {release.tag_name}
+                  <span className="hidden sm:inline md:text-sm">
+                    - Published{" "}
                     {formatDistanceToNow(new Date(release.published_at), {
                       addSuffix: true,
                     })}

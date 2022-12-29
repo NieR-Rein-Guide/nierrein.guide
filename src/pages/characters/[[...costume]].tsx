@@ -164,9 +164,13 @@ export async function getStaticProps(context) {
     (a, b) => -b.character.name.localeCompare(a.character.name)
   );
 
-  const selectedCostume = selectedCostumes.find((ch) => {
+  let selectedCostume = selectedCostumes.find((ch) => {
     return ch.slug === slug(costume);
   });
+
+  if (!selectedCostume) {
+    selectedCostume = selectedCostumes[0];
+  }
 
   const stats = {};
   const abilities = {};

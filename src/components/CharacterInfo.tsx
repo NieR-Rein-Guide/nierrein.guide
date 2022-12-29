@@ -30,7 +30,7 @@ import {
   debris,
   emblem,
 } from "@prisma/client";
-import { Chip } from "@mui/material";
+import { Chip, Switch } from "@mui/material";
 import CostumeThumbnail from "./CostumeThumbnail";
 import getEmblemPath from "@utils/getEmblemPath";
 import slug from "slugg";
@@ -80,7 +80,6 @@ function CostumeDetails({
   ascendLevel: number;
   skillLevel: number;
 }): JSX.Element {
-  const [statType] = useState("base"); // can be 'base' or 'displayed'
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [dateRelative, setDateRelative] = useState(
     formatDistanceToNow(new Date(costume.release_time), {
@@ -91,6 +90,12 @@ function CostumeDetails({
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
   const cursedGodSlabsPercent = useSettingsStore(
     (state) => state.cursedGodSlabsPercent
+  );
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
+  const setShowUnreleasedContent = useSettingsStore(
+    (state) => state.setShowUnreleasedContent
   );
   const stoneTowerSlabsPercent = useSettingsStore(
     (state) => state.stoneTowerSlabsPercent
@@ -108,220 +113,246 @@ function CostumeDetails({
   const costumeAbilities = abilities.slice(0, 2);
   const awakeningAbility = abilities?.[2]?.[0];
 
+  const isSpoiler =
+    !showUnreleasedContent && new Date() < new Date(costume.release_time);
+
   return (
-    <div>
-      <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
-        {/* Costume info */}
-        <div className="flex flex-col mt-4 mx-4 xl:mt-0 order-2 xl:order-1">
-          <div className="flex flex-col items-center xl:items-start mb-12 xl:mb-0">
-            <div className="flex flex-col md:flex-row items-center gap-x-2 text-xl">
-              <div className="flex items-center gap-x-2">
-                <div className="w-8">
-                  <Image
-                    layout="responsive"
-                    src={weaponsIcons[costume.weapon_type]}
-                    alt={costume.weapon_type}
-                  />
-                </div>
-                <span className="uppercase px-2 text-black bg-beige">
-                  {character.name}
-                </span>
-              </div>
-              <span className="uppercase text-beige">{costume.title}</span>
-            </div>
-            <p className="text-white text-opacity-60 mt-1 text-sm">
-              Added {format(new Date(costume.release_time), "MM/dd/yyyy")} (
-              {dateRelative})
-            </p>
-          </div>
+    <>
+      {isSpoiler && (
+        <div className="p-8 bg-grey-dark border border-red-300 border-opacity-50 flex flex-col sm:flex-row mb-8">
+          <label htmlFor="spoilers" className="text-beige cursor-pointer pr-4">
+            Show spoilers/unreleased items
+          </label>
+          <Switch
+            id="spoilers"
+            size="small"
+            onChange={(e) => setShowUnreleasedContent(e.target.checked)}
+            checked={showUnreleasedContent}
+          />
+        </div>
+      )}
 
-          {/* Costume skills & abilities */}
-          <div className="flex flex-col gap-y-8 md:mt-4">
-            <div>
-              <Lines
-                className="mb-2"
-                containerClass="justify-center"
-                svgClass="w-96 xl:w-42"
-              >
-                <h2 className="text-2xl">Skill</h2>
-              </Lines>
-              {skill && (
-                <Skill
-                  className="flex-1"
-                  name={skill[skillLevel].costume_skill.name}
-                  description={skill[skillLevel].costume_skill.description}
-                  SkillCooltimeValue={
-                    skill[skillLevel].costume_skill.cooldown_time
-                  }
-                  gaugeRiseSpeed={
-                    skill[skillLevel].costume_skill.gauge_rise_speed
-                  }
-                  level={skillLevel + 1}
-                  isMaxAscended={ascendLevel === 4}
-                  imagePathBase={skill[skillLevel].costume_skill.image_path}
-                />
-              )}
-            </div>
-
-            <div>
-              <Lines
-                className="mb-2"
-                containerClass="justify-center"
-                svgClass="w-96 xl:w-42"
-              >
-                <h2 className="text-2xl">Abilities</h2>
-              </Lines>
-              {costumeAbilities &&
-                costumeAbilities.map((ability, index) => {
-                  return (
-                    <Ability
-                      href={`/ability/costume/${slug(
-                        ability?.[3]?.costume_ability.name
-                      )}-${ability?.[3]?.costume_ability.ability_id}`}
-                      className={classNames(
-                        "flex-1 transition-opacity",
-                        ascendLevel === 0 && index > 0 ? "opacity-50" : ""
-                      )}
-                      key={`${costume.costume_id}ability${index}`}
-                      name={ability?.[abilityLevel]?.costume_ability.name}
-                      description={
-                        ability?.[abilityLevel]?.costume_ability.description
-                      }
-                      imagePathBase={
-                        ability?.[abilityLevel]?.costume_ability.image_path_base
-                      }
-                      level={abilityLevel + 1}
+      <div
+        className={classNames({
+          "filter blur-xl": isSpoiler,
+        })}
+      >
+        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+          {/* Costume info */}
+          <div className="flex flex-col mt-4 mx-4 xl:mt-0 order-2 xl:order-1">
+            <div className="flex flex-col items-center xl:items-start mb-12 xl:mb-0">
+              <div className="flex flex-col md:flex-row items-center gap-x-2 text-xl">
+                <div className="flex items-center gap-x-2">
+                  <div className="w-8">
+                    <Image
+                      layout="responsive"
+                      src={weaponsIcons[costume.weapon_type]}
+                      alt={costume.weapon_type}
                     />
-                  );
-                })}
+                  </div>
+                  <span className="uppercase px-2 text-black bg-beige">
+                    {character.name}
+                  </span>
+                </div>
+                <span className="uppercase text-beige">{costume.title}</span>
+              </div>
+              <p className="text-white text-opacity-60 mt-1 text-sm">
+                Added {format(new Date(costume.release_time), "MM/dd/yyyy")} (
+                {dateRelative})
+              </p>
             </div>
 
-            {awakeningAbility && (
-              <div key={costume.costume_id}>
+            {/* Costume skills & abilities */}
+            <div className="flex flex-col gap-y-8 md:mt-4">
+              <div>
                 <Lines
                   className="mb-2"
                   containerClass="justify-center"
                   svgClass="w-96 xl:w-42"
                 >
-                  <h2 className="text-2xl text-center">Awakening</h2>
+                  <h2 className="text-2xl">Skill</h2>
                 </Lines>
-                <Ability
-                  href={`/ability/costume/${slug(
-                    awakeningAbility.costume_ability.name
-                  )}-${awakeningAbility.costume_ability.ability_id}`}
-                  className={classNames("flex-1 transition-opacity")}
-                  name={awakeningAbility.costume_ability.name}
-                  description={awakeningAbility.costume_ability.description}
-                  imagePathBase={
-                    awakeningAbility.costume_ability.image_path_base
-                  }
-                  level={null}
-                />
-              </div>
-            )}
-
-            <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
-              <div className="flex items-center">
-                <div className="relative mr-4">
-                  <DebrisThumbnail
-                    sizeClasses="h-16 w-16"
-                    {...costume.debris}
-                  />
-                </div>
-                <div className="flex flex-col items-start">
-                  <strong className="font-display text-2xl text-beige">
-                    {costume.debris?.name ?? "WIP"}
-                  </strong>
-                  <p className="text-beige-text">
-                    <span>{costume.debris?.description_long ?? "WIP"}</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Second column */}
-        <div className="order-1 xl:order-2">
-          {/* Costume artwork */}
-          <div className="flex items-center justify-end">
-            <Checkbox
-              label={
-                ownedCostumes.includes(costume.costume_id) ? "Owned" : "Owned?"
-              }
-              isChecked={ownedCostumes.includes(costume.costume_id)}
-              setState={() => toggleFromInventory(costume.costume_id)}
-            />
-          </div>
-          <div className="relative overflow-hidden max-w-xl mx-auto w-full h-[600px] xl:h-full">
-            <div className="bordered-lg bg-grey-dark h-full w-full">
-              {costume.emblem && (
-                <img
-                  loading="lazy"
-                  className="opacity-30 absolute inset-0 h-full object-cover"
-                  src={`${getEmblemPath(
-                    costume.emblem.emblem_id.toString(),
-                    "background"
-                  )}`}
-                  alt=""
-                />
-              )}
-              <div className="relative z-10 h-full w-full">
-                {isShowingModel && <ModelWithNoSSR path={null} />}
-                {!isShowingModel && (
-                  <Image
-                    key={`${CDN_URL}${costume.image_path_base}full.png`}
-                    layout="fill"
-                    objectFit="contain"
-                    src={`${CDN_URL}${costume.image_path_base}full.png`}
-                    alt={`${costume.title} (${costume.title}) illustration`}
+                {skill && (
+                  <Skill
+                    className="flex-1"
+                    name={skill[skillLevel].costume_skill.name}
+                    description={skill[skillLevel].costume_skill.description}
+                    SkillCooltimeValue={
+                      skill[skillLevel].costume_skill.cooldown_time
+                    }
+                    gaugeRiseSpeed={
+                      skill[skillLevel].costume_skill.gauge_rise_speed
+                    }
+                    level={skillLevel + 1}
+                    isMaxAscended={ascendLevel === 4}
+                    imagePathBase={skill[skillLevel].costume_skill.image_path}
                   />
                 )}
               </div>
-              <div className="absolute inset-0 z-0">
-                <div className="absolute -left-24 top-24 transform -scale-1">
+
+              <div>
+                <Lines
+                  className="mb-2"
+                  containerClass="justify-center"
+                  svgClass="w-96 xl:w-42"
+                >
+                  <h2 className="text-2xl">Abilities</h2>
+                </Lines>
+                {costumeAbilities &&
+                  costumeAbilities.map((ability, index) => {
+                    return (
+                      <Ability
+                        href={`/ability/costume/${slug(
+                          ability?.[3]?.costume_ability.name
+                        )}-${ability?.[3]?.costume_ability.ability_id}`}
+                        className={classNames(
+                          "flex-1 transition-opacity",
+                          ascendLevel === 0 && index > 0 ? "opacity-50" : ""
+                        )}
+                        key={`${costume.costume_id}ability${index}`}
+                        name={ability?.[abilityLevel]?.costume_ability.name}
+                        description={
+                          ability?.[abilityLevel]?.costume_ability.description
+                        }
+                        imagePathBase={
+                          ability?.[abilityLevel]?.costume_ability
+                            .image_path_base
+                        }
+                        level={abilityLevel + 1}
+                      />
+                    );
+                  })}
+              </div>
+
+              {awakeningAbility && (
+                <div key={costume.costume_id}>
+                  <Lines
+                    className="mb-2"
+                    containerClass="justify-center"
+                    svgClass="w-96 xl:w-42"
+                  >
+                    <h2 className="text-2xl text-center">Awakening</h2>
+                  </Lines>
+                  <Ability
+                    href={`/ability/costume/${slug(
+                      awakeningAbility.costume_ability.name
+                    )}-${awakeningAbility.costume_ability.ability_id}`}
+                    className={classNames("flex-1 transition-opacity")}
+                    name={awakeningAbility.costume_ability.name}
+                    description={awakeningAbility.costume_ability.description}
+                    imagePathBase={
+                      awakeningAbility.costume_ability.image_path_base
+                    }
+                    level={null}
+                  />
+                  <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
+                    <div className="flex items-center">
+                      <div className="relative mr-4">
+                        <DebrisThumbnail
+                          sizeClasses="h-16 w-16"
+                          {...costume.debris}
+                        />
+                      </div>
+                      <div className="flex flex-col items-start">
+                        <strong className="font-display text-2xl text-beige">
+                          {costume.debris?.name ?? "WIP"}
+                        </strong>
+                        <p className="text-beige-text">
+                          <span>
+                            {costume.debris?.description_long ?? "WIP"}
+                          </span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Second column */}
+          <div className="order-1 xl:order-2">
+            {/* Costume artwork */}
+            <div className="flex items-center justify-end">
+              <Checkbox
+                label={
+                  ownedCostumes.includes(costume.costume_id)
+                    ? "Owned"
+                    : "Owned?"
+                }
+                isChecked={ownedCostumes.includes(costume.costume_id)}
+                setState={() => toggleFromInventory(costume.costume_id)}
+              />
+            </div>
+            <div className="relative overflow-hidden max-w-xl mx-auto w-full h-[600px] xl:h-full">
+              <div className="bordered-lg bg-grey-dark h-full w-full">
+                {costume.emblem && (
+                  <img
+                    loading="lazy"
+                    className="opacity-30 absolute inset-0 h-full object-cover"
+                    src={`${getEmblemPath(
+                      costume.emblem.emblem_id.toString(),
+                      "background"
+                    )}`}
+                    alt=""
+                  />
+                )}
+                <div className="relative z-10 h-full w-full">
+                  {isShowingModel && <ModelWithNoSSR path={null} />}
+                  {!isShowingModel && (
+                    <Image
+                      key={`${CDN_URL}${costume.image_path_base}full.png`}
+                      layout="fill"
+                      objectFit="contain"
+                      src={`${CDN_URL}${costume.image_path_base}full.png`}
+                      alt={`${costume.title} (${costume.title}) illustration`}
+                    />
+                  )}
+                </div>
+                <div className="absolute inset-0 z-0">
+                  <div className="absolute -left-24 top-24 transform -scale-1">
+                    <SVG
+                      src="/decorations/square-right.svg"
+                      className="h-48 filter brightness-30 floating"
+                    />
+                  </div>
                   <SVG
                     src="/decorations/square-right.svg"
-                    className="h-48 filter brightness-30 floating"
+                    className="h-48 absolute -right-20 -top-16 filter brightness-30 floating"
+                  />
+                  <SVG
+                    src="/decorations/c_rect_inside.svg"
+                    className="absolute -left-64 floating"
+                  />
+                  <SVG
+                    src="/decorations/c_rect_outside.svg"
+                    className="absolute -left-64 floating"
                   />
                 </div>
-                <SVG
-                  src="/decorations/square-right.svg"
-                  className="h-48 absolute -right-20 -top-16 filter brightness-30 floating"
-                />
-                <SVG
-                  src="/decorations/c_rect_inside.svg"
-                  className="absolute -left-64 floating"
-                />
-                <SVG
-                  src="/decorations/c_rect_outside.svg"
-                  className="absolute -left-64 floating"
-                />
               </div>
-            </div>
-            <span className="flex absolute bottom-0 right-6">
-              {Array.from({ length: RARITY[costume.rarity] }).map(
-                (_, index) => (
-                  <div className="w-8 h-8" key={index}>
-                    <Star rarity={RARITY[costume.rarity]} />
-                  </div>
-                )
+              <span className="flex absolute bottom-0 right-6">
+                {Array.from({ length: RARITY[costume.rarity] }).map(
+                  (_, index) => (
+                    <div className="w-8 h-8" key={index}>
+                      <Star rarity={RARITY[costume.rarity]} />
+                    </div>
+                  )
+                )}
+              </span>
+              {costume?.weapon && (
+                <div className="absolute left-6 bottom-6 transform transition-transform ease-out-cubic hover:scale-105 z-50">
+                  <WeaponThumbnail
+                    href={`/weapons/${costume?.weapon.slug}`}
+                    rarity={getBaseRarity(costume?.weapon)}
+                    type={costume.weapon.weapon_type}
+                    element={costume.weapon.attribute}
+                    isDark={costume.weapon.is_dark_weapon}
+                    alt={costume?.weapon.name}
+                    image_path={costume?.weapon.image_path}
+                  />
+                </div>
               )}
-            </span>
-            {costume?.weapon && (
-              <div className="absolute left-6 bottom-6 transform transition-transform ease-out-cubic hover:scale-105 z-50">
-                <WeaponThumbnail
-                  href={`/weapons/${costume?.weapon.slug}`}
-                  rarity={getBaseRarity(costume?.weapon)}
-                  type={costume.weapon.weapon_type}
-                  element={costume.weapon.attribute}
-                  isDark={costume.weapon.is_dark_weapon}
-                  alt={costume?.weapon.name}
-                  image_path={costume?.weapon.image_path}
-                />
-              </div>
-            )}
-            {/* <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
+              {/* <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
               <button
                 className="btn opacity-50"
                 onClick={() => setIsShowingModel(!isShowingModel)}
@@ -329,95 +360,56 @@ function CostumeDetails({
                 {(isShowingModel && "View Artwork") || "View 3D Model"}
               </button>
             </div> */}
-            <div className="absolute top-6 right-8">
-              <Ascend level={ascendLevel} />
+              <div className="absolute top-6 right-8">
+                <Ascend level={ascendLevel} />
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {stats && (
-        <div className="relative mb-8">
-          <div className="mt-12">
-            <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
-              Statistics
-            </h2>
-            <HR className="my-8" />
-          </div>
-
-          <div className="flex flex-row gap-4 justify-center mb-8">
-            <AwakeningLevelSelect />
-            <StoneSlabsSelect />
-            <CursedGodSlabsSelect />
-          </div>
-
-          <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
-            <StatsOfLevel stats={stats[0]} label={`Level ${stats[0].level}`} />
-            <StatsOfLevel
-              stats={stats[1]}
-              label={`Level ${stats[1].level}`}
-              description="No ascension"
-            />
-            <StatsOfLevel
-              stats={stats[2]}
-              label={`Level ${stats[2].level}`}
-              description="Max ascension"
-            />
-          </div>
-
-          {STONE_TOWER_MONUMENT_SLABS[stoneTowerSlabsPercent].abilities.length >
-            0 && (
-            <div
-              key={`stone-slabs-${costume.title}-${stoneTowerSlabsPercent}`}
-              className="px-4 mt-8"
-            >
-              <h4 className="text-2xl">Stone Tower Monument Abilities</h4>
-              <div className="flex gap-x-4 overflow-x-auto">
-                {STONE_TOWER_MONUMENT_SLABS[
-                  stoneTowerSlabsPercent
-                ].abilities.map((ability) => (
-                  <div
-                    key={ability.name}
-                    className="flex gap-4 bg-grey-dark p-4 relative bordered"
-                  >
-                    <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
-                      Lv. {ability.level}
-                    </span>
-                    <div className="flex items-center">
-                      <div className="relative mr-4">
-                        <SVG
-                          src="/decorations/frame-ability.svg"
-                          className="h-16 w-16"
-                        />
-                        <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-                          <img alt="" src={ability.icon_url} />
-                        </div>
-                      </div>
-                      <div className="flex flex-col items-start">
-                        <strong className="font-display text-2xl text-beige">
-                          {ability.name}
-                        </strong>
-                        <p className="text-beige-text">
-                          <span>{ability.description}</span>
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+        {stats && (
+          <div className="relative mb-8">
+            <div className="mt-12">
+              <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+                Statistics
+              </h2>
+              <HR className="my-8" />
             </div>
-          )}
 
-          {CURSED_GOD_MONUMENT_SLABS[cursedGodSlabsPercent].abilities.length >
-            0 && (
-            <div
-              key={`cursed-slabs-${costume.title}-${cursedGodSlabsPercent}`}
-              className="px-4 mt-8"
-            >
-              <h4 className="text-2xl">Cursed God Monument Abilities</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {CURSED_GOD_MONUMENT_SLABS[cursedGodSlabsPercent].abilities.map(
-                  (ability) => (
+            <div className="flex flex-row gap-4 justify-center mb-8">
+              <AwakeningLevelSelect />
+              <StoneSlabsSelect />
+              <CursedGodSlabsSelect />
+            </div>
+
+            <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
+              <StatsOfLevel
+                stats={stats[0]}
+                label={`Level ${stats[0].level}`}
+              />
+              <StatsOfLevel
+                stats={stats[1]}
+                label={`Level ${stats[1].level}`}
+                description="No ascension"
+              />
+              <StatsOfLevel
+                stats={stats[2]}
+                label={`Level ${stats[2].level}`}
+                description="Max ascension"
+              />
+            </div>
+
+            {STONE_TOWER_MONUMENT_SLABS[stoneTowerSlabsPercent].abilities
+              .length > 0 && (
+              <div
+                key={`stone-slabs-${costume.title}-${stoneTowerSlabsPercent}`}
+                className="px-4 mt-8"
+              >
+                <h4 className="text-2xl">Stone Tower Monument Abilities</h4>
+                <div className="flex gap-x-4 overflow-x-auto">
+                  {STONE_TOWER_MONUMENT_SLABS[
+                    stoneTowerSlabsPercent
+                  ].abilities.map((ability) => (
                     <div
                       key={ability.name}
                       className="flex gap-4 bg-grey-dark p-4 relative bordered"
@@ -445,62 +437,105 @@ function CostumeDetails({
                         </div>
                       </div>
                     </div>
-                  )
-                )}
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
-            Temp abilities and rank bonuses are not included in the stats.
-          </p>
-
-          {rankBonus && (
-            <div className="mt-1 flex flex-col">
-              <h3 className="text-2xl text-beige text-center my-4">
-                Rank bonuses
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                {rankBonus.map((rank, index) => (
-                  <Chip
-                    key={`${rank.character_id}-${index}`}
-                    label={`${rank.description}`}
-                    variant="outlined"
-                  />
-                ))}
+            {CURSED_GOD_MONUMENT_SLABS[cursedGodSlabsPercent].abilities.length >
+              0 && (
+              <div
+                key={`cursed-slabs-${costume.title}-${cursedGodSlabsPercent}`}
+                className="px-4 mt-8"
+              >
+                <h4 className="text-2xl">Cursed God Monument Abilities</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {CURSED_GOD_MONUMENT_SLABS[
+                    cursedGodSlabsPercent
+                  ].abilities.map((ability) => (
+                    <div
+                      key={ability.name}
+                      className="flex gap-4 bg-grey-dark p-4 relative bordered"
+                    >
+                      <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
+                        Lv. {ability.level}
+                      </span>
+                      <div className="flex items-center">
+                        <div className="relative mr-4">
+                          <SVG
+                            src="/decorations/frame-ability.svg"
+                            className="h-16 w-16"
+                          />
+                          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+                            <img alt="" src={ability.icon_url} />
+                          </div>
+                        </div>
+                        <div className="flex flex-col items-start">
+                          <strong className="font-display text-2xl text-beige">
+                            {ability.name}
+                          </strong>
+                          <p className="text-beige-text">
+                            <span>{ability.description}</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
-      )}
+            )}
 
-      <div className="relative">
-        <div className="mt-12">
-          <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
-            Costume story
-          </h2>
-          <HR className="my-8" />
-        </div>
+            <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
+              Temp abilities and rank bonuses are not included in the stats.
+            </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-y-8">
-          <div className="md:col-start-2 md:col-span-3 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4">
-            <div className="ml-auto mr-auto mb-4 md:mb-0 md:ml-0 md:mr-0">
-              <CostumeThumbnail
-                src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                alt={`${costume.title} thumbnail`}
-                rarity={RARITY[costume.rarity]}
-              />
+            {rankBonus && (
+              <div className="mt-1 flex flex-col">
+                <h3 className="text-2xl text-beige text-center my-4">
+                  Rank bonuses
+                </h3>
+                <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+                  {rankBonus.map((rank, index) => (
+                    <Chip
+                      key={`${rank.character_id}-${index}`}
+                      label={`${rank.description}`}
+                      variant="outlined"
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="relative">
+          <div className="mt-12">
+            <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+              Costume story
+            </h2>
+            <HR className="my-8" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-y-8">
+            <div className="md:col-start-2 md:col-span-3 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4">
+              <div className="ml-auto mr-auto mb-4 md:mb-0 md:ml-0 md:mr-0">
+                <CostumeThumbnail
+                  src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                  alt={`${costume.title} thumbnail`}
+                  rarity={RARITY[costume.rarity]}
+                />
+              </div>
+              <p
+                className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
+                dangerouslySetInnerHTML={{
+                  __html: `${costume.description.replaceAll("\\n", "<br>")}`,
+                }}
+              ></p>
             </div>
-            <p
-              className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
-              dangerouslySetInnerHTML={{
-                __html: `${costume.description.replaceAll("\\n", "<br>")}`,
-              }}
-            ></p>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 

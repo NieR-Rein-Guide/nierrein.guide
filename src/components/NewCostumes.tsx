@@ -43,7 +43,7 @@ export default function NewCostumes({ costumes }) {
                     costumes.length - 1 === index ? "col-span-2" : ""
                   )}
                 >
-                  <div className="flex items-center justify-between gap-x-2 text-xl mb-2">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-x-2 text-xl mb-2">
                     <div className="flex gap-x-2 flex-1">
                       <div className="flex items-center gap-x-2">
                         <div className="w-8">

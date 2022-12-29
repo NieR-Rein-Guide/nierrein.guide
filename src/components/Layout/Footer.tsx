@@ -28,7 +28,7 @@ export default function Footer(): JSX.Element {
         <div className="flex gap-x-8 justify-center mt-8 max-w-xl mx-auto">
           {FOOTER_NAVIGATION.map((social) => (
             <Link href={social.href} key={social.label} passHref>
-              <a className="flex text-beige hover:text-beige-accent transition-colors no-underline">
+              <a className="flex text-beige text-center hover:text-beige-accent transition-colors no-underline">
                 {social.label}
               </a>
             </Link>
