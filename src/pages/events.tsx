@@ -37,10 +37,6 @@ export default function Events({ events }: GuidesProps): JSX.Element {
         cover="https://nierrein.guide/cover-events.jpg"
       />
 
-      <div className="px-4 mb-8">
-        <EventsTimeline items={events} hasBtn={false} />
-      </div>
-
       <Tabs className="container" defaultIndex={tabIndex}>
         <TabList className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-24">
           <TierlistTab index={0}>Current Events</TierlistTab>
