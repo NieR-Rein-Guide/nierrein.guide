@@ -512,7 +512,7 @@ export function TierlistContent({ tierlist, items }) {
 
             {tier.description && (
               <div
-                className="mt-4"
+                className="border-l-4 border-l-grey-detail pl-4 mt-4 md:col-start-2"
                 dangerouslySetInnerHTML={{
                   __html: tier.description,
                 }}
