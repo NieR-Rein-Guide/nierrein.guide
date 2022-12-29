@@ -3,9 +3,14 @@ import RARITY from "@utils/rarity";
 import Star from "./decorations/Star";
 import SVG from "react-inlinesvg";
 import getBaseRarity from "@utils/getBaseRarity";
-import { weapon } from "@prisma/client";
+import { costume, weapon } from "@prisma/client";
+import CostumeThumbnail from "./CostumeThumbnail";
 
-export default function WeaponArtwork({ weapon }: { weapon: weapon }) {
+type Weapon = weapon & {
+  costume: costume;
+};
+
+export default function WeaponArtwork({ weapon }: { weapon: Weapon }) {
   const baseRarity = getBaseRarity(weapon);
 
   return (
@@ -41,6 +46,18 @@ export default function WeaponArtwork({ weapon }: { weapon: weapon }) {
           />
         </div>
       </div>
+
+      {weapon.costume && (
+        <div className="absolute left-6 bottom-6 z-50">
+          <CostumeThumbnail
+            href={`/characters/${weapon.costume.character.slug}/${weapon.costume.slug}`}
+            src={`${CDN_URL}${weapon.costume.image_path_base}battle.png`}
+            alt={`${weapon.costume.title} thumbnail`}
+            rarity={RARITY[weapon.costume.rarity]}
+          />
+        </div>
+      )}
+
       <span className="flex absolute bottom-6 right-6">
         {Array.from({
           length: RARITY[baseRarity],

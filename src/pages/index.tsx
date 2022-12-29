@@ -15,28 +15,29 @@ import LoadoutListingItem from "@components/LoadoutListingItem";
 import NewCostumes from "@components/NewCostumes";
 import NewWeapons from "@components/NewWeapons";
 import NewNotices from "@components/NewNotices";
+import alterWeaponToAddCostume from "@utils/alterWeaponToAddCostume";
+import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
 const EventsTimeline = dynamic(() => import("../components/EventsTimeline"), {
   ssr: false,
 });
 const DailyInfoWithNoSSR = dynamic(() => import("../components/DailyQuests"), {
   ssr: false,
 });
-const NotificationsWithNoSSR = dynamic(
-  () => import("../components/Notifications"),
-  {
-    ssr: false,
-  }
-);
 
 type Costume = costume & {
   character: character;
+  weapon: weapon;
+};
+
+type Weapon = weapon & {
+  costume: costume;
 };
 
 interface HomeProps {
   featuredGuides: Guide[];
   events: Event[];
   recentCostumes: Costume[];
-  recentWeapons: weapon[];
+  recentWeapons: Weapon[];
   notifications: notification[];
   loadouts: loadouts[];
 }
@@ -136,6 +137,7 @@ export async function getStaticProps() {
         },
         include: {
           character: true,
+          emblem: true,
         },
         take: 6,
       }),
@@ -163,6 +165,14 @@ export async function getStaticProps() {
       },
       distinct: "evolution_group_id",
     });
+
+    for (const costume of recentCostumes) {
+      await alterCostumeToAddWeapon(costume);
+    }
+
+    for (const weapon of recentWeapons) {
+      await alterWeaponToAddCostume(weapon);
+    }
 
     const notifications = notificationsData.map((notification) => ({
       ...notification,

@@ -7,13 +7,17 @@ import RARITY from "@utils/rarity";
 import dynamic from "next/dynamic";
 import { useState } from "react";
 import { CDN_URL } from "@config/constants";
-import { character, costume } from "@prisma/client";
+import { character, costume, weapon } from "@prisma/client";
+import WeaponThumbnail from "./WeaponThumbnail";
+import getBaseRarity from "@utils/getBaseRarity";
+import getEmblemPath from "@utils/getEmblemPath";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
 type Costume = costume & {
   character: character;
+  weapon: weapon;
 };
 
 interface CostumeArtworkProps {
@@ -75,24 +79,28 @@ export default function CostumeArtwork({
         ))}
       </span>
 
-      {/* {costume.costume.weapon && (
-        <Link
-          href={`/weapons/${urlSlug(
-            costume.costume?.weapon?.name?.en ?? "unnamed"
-          )}/${costume.costume.weapon.ids.base}`}
-          passHref
-        >
-          <a className="absolute left-6 bottom-6 transform transition-transform ease-out-cubic hover:scale-105 z-50">
-            <WeaponThumbnail
-              type={costume.costume.weapon.type}
-              element={costume.costume.weapon.attribute}
-              id={costume.costume.weapon.ids.asset}
-              rarity={costume.costume.weapon.rarity}
-              isDark={costume.costume.weapon.isDark}
-            />
-          </a>
-        </Link>
-      )} */}
+      {costume.weapon && (
+        <div className="absolute left-6 bottom-6 z-50">
+          <WeaponThumbnail
+            href={`/weapons/${costume?.weapon.slug}`}
+            rarity={getBaseRarity(costume?.weapon)}
+            alt={costume?.weapon.name}
+            image_path={costume?.weapon.image_path}
+          />
+        </div>
+      )}
+
+      {costume.emblem && (
+        <img
+          loading="lazy"
+          className="opacity-30 absolute inset-0 h-full object-cover"
+          src={`${getEmblemPath(
+            costume.emblem.emblem_id.toString(),
+            "background"
+          )}`}
+          alt=""
+        />
+      )}
 
       {/* <div className="absolute top-4 left-4 w-42 h-24 p-1 z-50">
         <button
