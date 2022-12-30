@@ -259,6 +259,8 @@ export const SITE_URL = "https://nierrein.guide";
 export const DISCORD_URL = "https://discord.gg/swgHJJdt7f";
 export const TWITTER_URL = "https://twitter.com/NierReinGuide";
 export const INSTAGRAM_URL = "https://www.instagram.com/nierreinguide/";
+export const MAMA_INVITE_URL =
+  "https://discord.com/oauth2/authorize?client_id=892519460638965811&permissions=379968&scope=bot%20applications.commands";
 
 /**
  * SOCIALS

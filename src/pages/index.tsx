@@ -17,6 +17,7 @@ import NewWeapons from "@components/NewWeapons";
 import NewNotices from "@components/NewNotices";
 import alterWeaponToAddCostume from "@utils/alterWeaponToAddCostume";
 import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
+import { MAMA_INVITE_URL } from "@config/constants";
 const EventsTimeline = dynamic(() => import("../components/EventsTimeline"), {
   ssr: false,
 });
@@ -110,6 +111,45 @@ export default function Home({
         </div>
         <div className="container">
           <DailyInfoWithNoSSR />
+        </div>
+        <div className="container">
+          <div className="bg-grey-lighter rounded-lg pt-8 px-4 pb-64 border border-beige border-opacity-50"></div>
+
+          <div className="grid grid-cols-1 gap-y-4 md:grid-cols-2 md:px-24 -mt-64">
+            <div className="text-center md:max-w-md">
+              <div className="p-4 pb-6 bg-grey-dark max-w-xs mx-auto rounded-xl">
+                <div className="flex items-center justify-center mb-6">
+                  <img
+                    className="h-10 w-10"
+                    src="/images/mama-direct.png"
+                    alt="Mama"
+                  />
+                  <h4 className="text-xl ml-2">
+                    Mama
+                    <span className="inline-block p-1 bg-[#5865F2] rounded-md text-xs font-labor ml-2">
+                      BOT
+                    </span>
+                  </h4>
+                </div>
+                <a
+                  href={MAMA_INVITE_URL}
+                  className="rounded-sm bg-[#5865F2] hover:bg-opacity-80 focus:bg-opacity-60 transition ease-out-cubic text-sm py-2 px-8 text-center -mt-12"
+                >
+                  Add to Server
+                </a>
+              </div>
+              <img
+                className="w-full px-8 md:px-0 mt-8 rounded-lg transition-transform transform hover:-translate-y-2"
+                src="/images/mama-costume.jpg"
+                alt="Mama Costume Embed"
+              />
+            </div>
+            <img
+              className="w-full px-8 md:px-0 rounded-lg transition-transform transform hover:-translate-y-2 "
+              src="/images/mama-weapon.jpg"
+              alt="Mama Weapon Embed"
+            />
+          </div>
         </div>
         <div className="container">
           <JoinUs />
