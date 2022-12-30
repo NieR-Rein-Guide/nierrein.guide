@@ -19,14 +19,6 @@ export default function Credits(): JSX.Element {
             <Contributor key={credit.name} credit={credit} />
           ))}
         </ul>
-
-        <p className="mt-8">
-          If you are missing please let us know on our{" "}
-          <a className="text-beige" href={DISCORD_URL}>
-            Discord
-          </a>{" "}
-          !
-        </p>
       </div>
     </section>
   );

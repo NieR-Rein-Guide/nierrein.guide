@@ -36,11 +36,14 @@ export default function Footer(): JSX.Element {
         </div>
 
         <div className="font-display text-xl text-center my-16 md:mt-12">
-          <p>
+          <p className="max-w-md mx-auto">
             NieR Re[in] Guide is not affiliated with or endorsed by SQUARE ENIX
-            CO. LTD.
+            CO. LTD. neither by Applibot,Inc.
           </p>
-          <p>All game assets used belongs to © SQUARE ENIX CO. LTD.</p>
+          <p>
+            All game assets used belongs to © SQUARE ENIX CO. LTD. and Applibot,
+            Inc.
+          </p>
         </div>
       </div>
     </footer>

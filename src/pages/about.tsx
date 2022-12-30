@@ -62,6 +62,17 @@ export default function AboutPage(): JSX.Element {
             <li>
               <p>(August 2021) Tark#0857 provided us a static .json</p>
             </li>
+            <li>
+              <p>
+                (18 August 2021) The project was started by{" "}
+                <a
+                  href="https://twitter.com/KeziahMoselle"
+                  rel="noreferrer noopener"
+                >
+                  Keziah
+                </a>
+              </p>
+            </li>
           </ul>
         </div>
       </section>
