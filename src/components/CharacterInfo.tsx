@@ -261,9 +261,16 @@ function CostumeDetails({
                     imagePathBase={
                       awakeningAbility.costume_ability.image_path_base
                     }
+                    awakeningLevel={3}
                     level={null}
                   />
                   <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
+                    <span className="absolute top-2 right-4 text-xs mt-2">
+                      <img src="/icons/costumes/awaken_rank_icon_rainbow.png" />
+                      <span className="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 font-semibold">
+                        5
+                      </span>
+                    </span>
                     <div className="flex items-center">
                       <div className="relative mr-4">
                         <DebrisThumbnail

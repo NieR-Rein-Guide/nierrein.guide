@@ -14,6 +14,7 @@ interface AbilityProps {
   imagePathBase?: string;
   href?: string;
   fullLink?: boolean;
+  awakeningLevel?: number;
 }
 
 export default function Ability({
@@ -25,6 +26,7 @@ export default function Ability({
   className = "",
   href,
   fullLink,
+  awakeningLevel,
 }: AbilityProps): JSX.Element {
   return (
     <div
@@ -34,6 +36,20 @@ export default function Ability({
         fullLink ? "transform ease-out-cubic transition hover:scale-105" : ""
       )}
     >
+      {awakeningLevel && (
+        <span className="absolute top-2 right-4 text-xs mt-2">
+          <img
+            src={
+              awakeningLevel === 5
+                ? "/icons/costumes/awaken_rank_icon_rainbow.png"
+                : "/icons/costumes/awaken_rank_icon_default.png"
+            }
+          />
+          <span className="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 font-semibold">
+            {awakeningLevel}
+          </span>
+        </span>
+      )}
       {level && (
         <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
           Lv. {level}/{maxLevel}
