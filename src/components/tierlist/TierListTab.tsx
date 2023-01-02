@@ -5,12 +5,14 @@ interface TierlistTabProps {
   children;
   index: number;
   className?: string | string[];
+  style?: React.CSSProperties;
 }
 
 export default function TierlistTab({
   children,
   index,
   className,
+  style,
 }: TierlistTabProps): JSX.Element {
   const { selectedIndex } = useTabsContext();
 
@@ -21,6 +23,7 @@ export default function TierlistTab({
         selectedIndex === index ? "active bg-beige" : "bg-grey-foreground",
         className
       )}
+      style={style}
     >
       <span
         className={classNames(

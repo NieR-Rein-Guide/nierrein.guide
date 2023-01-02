@@ -23,7 +23,32 @@ async function getAllEvents(): Promise<Event[]> {
 
   const { events } = await client.request(GET_EVENTS)
 
-  return events
+  const GET_EVENTS_2 = gql`
+    {
+      events(sort: "start_date:desc", start: 100) {
+        title
+        slug
+        image {
+          formats
+        }
+        start_date
+        end_date
+        poll {
+          title
+          embed
+        }
+      }
+    }
+  `
+
+  const { events: events2 } = await client.request(GET_EVENTS_2)
+
+  const allEvents = [
+    ...events,
+    ...events2,
+  ]
+
+  return allEvents
 }
 
 async function getCurrentEvents({ currentDate }: { currentDate: string}): Promise<Event[]> {
