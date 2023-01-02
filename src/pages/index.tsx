@@ -18,6 +18,9 @@ import NewNotices from "@components/NewNotices";
 import alterWeaponToAddCostume from "@utils/alterWeaponToAddCostume";
 import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
 import { MAMA_INVITE_URL } from "@config/constants";
+import Radio from "@components/form/Radio";
+import { useSettingsStore } from "@store/settings";
+import classNames from "classnames";
 const EventsTimeline = dynamic(() => import("../components/EventsTimeline"), {
   ssr: false,
 });
@@ -51,16 +54,68 @@ export default function Home({
   notifications = [],
   loadouts = [],
 }: HomeProps): JSX.Element {
+  const eventsDisplayType = useSettingsStore(
+    (state) => state.eventsDisplayType
+  );
+  const setEventsDisplayType = useSettingsStore(
+    (state) => state.setEventsDisplayType
+  );
+
   return (
     <Layout hasContainer={false}>
       <Meta />
 
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
-        <div className="container">
-          <NewNotices notifications={notifications} />
+        <div className="relative bg-grey-dark border-y border-beige border-opacity-50 lg:pt-16 pb-8">
+          <div className="container">
+            <div className="absolute -top-4">
+              <div className="absolute">
+                <h3 className="relative mb-4">
+                  <span className="absolute left-12 inline-block text-2xl -top-5">
+                    Notices
+                  </span>
+                  <img
+                    className="max-w-none"
+                    src="/decorations/parts_decoration_head.png"
+                    alt=""
+                  />
+                </h3>
+              </div>
+            </div>
+          </div>
+          <div className="container">
+            <NewNotices notifications={notifications} />
+          </div>
         </div>
 
         <div className="container">
+          <div
+            className={classNames(
+              "hidden lg:flex justify-between",
+              eventsDisplayType === "timeline" ? "mb-4" : ""
+            )}
+          >
+            <Link href="/events" passHref>
+              <a className="btn">See all events</a>
+            </Link>
+
+            <div className="flex gap-x-4 mb-6">
+              <Radio
+                name="Listing"
+                value="listing"
+                isChecked={eventsDisplayType === "listing"}
+                setState={setEventsDisplayType}
+                labelClassname="inline-block text-center md:w-24"
+              />
+              <Radio
+                name="Timeline"
+                value="timeline"
+                isChecked={eventsDisplayType === "timeline"}
+                setState={setEventsDisplayType}
+                labelClassname="inline-block text-center md:w-24"
+              />
+            </div>
+          </div>
           <EventsTimeline items={events} />
         </div>
 

@@ -5,6 +5,9 @@ import { Timeline } from "vis-timeline/standalone";
 import sub from "date-fns/sub";
 import Link from "next/link";
 import { BtnSecondary } from "./btn";
+import { useMedia } from "react-use";
+import { EventsListing } from "pages/events";
+import { useSettingsStore } from "@store/settings";
 
 const GROUPS = [
   "Record",
@@ -22,13 +25,35 @@ const groups = GROUPS.map((group, id) => ({
 
 export default function EventsTimeline({
   items,
-  hasBtn = true,
+  hasBtn = false,
 }: {
   items: Event[];
   hasBtn?: boolean;
 }) {
+  const isMobile = useMedia("(max-width: 1279px)");
+  const eventsDisplayType = useSettingsStore(
+    (state) => state.eventsDisplayType
+  );
   const visualization = useRef(null);
 
+  /**
+   * Events listing
+   */
+  const eventsGroups = GROUPS.reduce((acc, group) => {
+    const list = items.filter((item) => {
+      return (
+        item.title.includes(group) &&
+        new Date(item.end_date).getTime() > Date.now()
+      );
+    });
+
+    acc[group] = list;
+    return acc;
+  }, {});
+
+  /**
+   * Timeline
+   */
   const visItems = items.map((item, id) => {
     const associatedGroup = groups.find((group) =>
       item.title.includes(group.content)
@@ -55,7 +80,7 @@ export default function EventsTimeline({
   });
 
   useEffect(() => {
-    if (!visualization.current) {
+    if (!visualization.current || eventsDisplayType === "listing" || isMobile) {
       return;
     }
 
@@ -73,7 +98,27 @@ export default function EventsTimeline({
       },
     });
     timeline.setGroups(groups);
-  }, [visualization]);
+  }, [visualization, eventsDisplayType, isMobile]);
+
+  if (isMobile || eventsDisplayType === "listing") {
+    return (
+      <div className="px-4 md:px-0">
+        {GROUPS.map((group) => {
+          const events = eventsGroups[group];
+          if (events.length === 0) return null;
+          return (
+            <EventsListing
+              key={group}
+              label={group}
+              events={events}
+              cardClasses="grid grid-cols-1"
+              cardContainerClasses="grid lg:grid-cols-2 gap-16"
+            />
+          );
+        })}
+      </div>
+    );
+  }
 
   return (
     <div>

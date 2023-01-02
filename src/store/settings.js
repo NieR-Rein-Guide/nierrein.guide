@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 export const useSettingsStore = create(
   persist(
     (set) => ({
+      eventsDisplayType: 'listing', // 'timeline' | 'listing'
       databaseDisplayType: "table", // 'table' | 'grid'
       showCharactersSelection: false,
       showUnreleasedContent: false,
@@ -16,6 +17,8 @@ export const useSettingsStore = create(
         set({ showCharactersSelection }),
       setDatabaseDisplayType: (databaseDisplayType) =>
         set({ databaseDisplayType }),
+      setEventsDisplayType: (eventsDisplayType) =>
+        set({ eventsDisplayType }),
       setStoneTowerSlabsPercent: (stoneTowerSlabsPercent) =>
         set({ stoneTowerSlabsPercent }),
       setCursedGodSlabsPercent: (cursedGodSlabsPercent) =>

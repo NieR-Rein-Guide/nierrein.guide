@@ -9,7 +9,7 @@ import { differenceInDays, formatDistanceToNow } from "date-fns";
 import { useState } from "react";
 import TierlistTab from "@components/tierlist/TierListTab";
 import classNames from "classnames";
-import { FiClock } from "react-icons/fi";
+import { FiBook, FiClock } from "react-icons/fi";
 import { MdHourglassTop } from "react-icons/md";
 import { FaCalendarCheck } from "react-icons/fa";
 
@@ -18,13 +18,26 @@ interface GuidesProps {
 }
 
 const GROUPS = [
-  "Record",
   "Premium Summons",
-  "Weekly Summons",
+  "Record",
   "Abyss Tower",
   "Variation",
   "Anecdote",
+  "Weekly Summons",
 ];
+
+const GROUPS_ICONS = {
+  Record: <FiBook />,
+  "Premium Summons": <img src="/icons/gem.png" alt="gem" />,
+  "Weekly Summons": <img src="/icons/gem.png" alt="gem" />,
+  "Abyss Tower": (
+    <img src="/icons/tower.png" height="48" className="h-12" alt="tower" />
+  ),
+  Variation: <img src="/icons/variation-ticket.png" alt="tower" />,
+  Anecdote: (
+    <img src="/icons/panel.jpg" height="32" className="h-8" alt="panel" />
+  ),
+};
 
 export default function Events({ events }: GuidesProps): JSX.Element {
   const [tabIndex] = useState(0);
@@ -93,18 +106,33 @@ export default function Events({ events }: GuidesProps): JSX.Element {
   );
 }
 
-function EventsListing({ label, events }: { label: string; events: Event[] }) {
+export function EventsListing({
+  label,
+  events,
+  cardContainerClasses = "flex flex-col gap-y-12 max-w-3xl mx-auto",
+  cardClasses = "grid grid-cols-1 md:grid-cols-2",
+}: {
+  label: string;
+  events: Event[];
+  cardContainerClasses?: string | string[];
+  cardClasses?: string | string[];
+}) {
   return (
     <div className="mt-12">
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-3xl">{label}</h2>
+        <h2 className="flex gap-x-2 items-center text-3xl">
+          {GROUPS_ICONS[label]}
+          {label}
+        </h2>
 
         {events.length > 0 && (
-          <p className="bg-brown px-2 py-1">{events.length} events</p>
+          <p className="bg-brown px-2 py-1">
+            {events.length} event{events.length > 1 ? "s" : ""}
+          </p>
         )}
       </div>
 
-      <div className="flex flex-col gap-y-12 max-w-3xl mx-auto">
+      <div className={classNames(cardContainerClasses)}>
         {events.map((event) => {
           const endDate = new Date(event.end_date);
           const startDate = new Date(event.start_date);
@@ -115,7 +143,8 @@ function EventsListing({ label, events }: { label: string; events: Event[] }) {
             <div
               key={event.slug}
               className={classNames(
-                "grid grid-cols-1 md:grid-cols-2 relative bg-grey-dark border transition-transform ease-out-cubic transform hover:-translate-y-1",
+                cardClasses,
+                "relative bg-grey-dark border transition-transform ease-out-cubic transform hover:-translate-y-1",
                 {
                   "border-beige border-opacity-20": isEnded,
                   "border-green-300 border-opacity-60":
