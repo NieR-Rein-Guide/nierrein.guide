@@ -72,7 +72,6 @@ export default function CostumePage({
   const [currentCostume, setCurrentCostume] = useState<
     Costume | costume | null
   >(selectedCostume || costumes[0]);
-  console.log(selectedCostume, currentCostume);
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );

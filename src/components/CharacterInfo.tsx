@@ -15,6 +15,7 @@ import dynamic from "next/dynamic";
 import {
   CDN_URL,
   CURSED_GOD_MONUMENT_SLABS,
+  FEATURED_TIERLISTS,
   STONE_TOWER_MONUMENT_SLABS,
 } from "@config/constants";
 import { format, formatDistanceToNow } from "date-fns";
@@ -29,6 +30,7 @@ import {
   costume_stat,
   debris,
   emblem,
+  weapon,
 } from "@prisma/client";
 import { Chip, Switch } from "@mui/material";
 import CostumeThumbnail from "./CostumeThumbnail";
@@ -41,11 +43,13 @@ import StoneSlabsSelect from "./StoneSlabsSelect";
 import CursedGodSlabsSelect from "./CursedGodSlabsSelect";
 import AwakeningLevelSelect from "./AwakeningLevelSelect";
 import { useSettingsStore } from "@store/settings";
-import Link from "next/link";
+import { tiers_items, tiers, tierlists } from "@prisma/client-nrg";
 import WeaponThumbnail from "./WeaponThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
 import clamp from "@utils/clamp";
 import DebrisThumbnail from "./DebrisThumbnail";
+import TierLogo from "./tierlist/TierLogo";
+import Link from "next/link";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -71,6 +75,12 @@ function CostumeDetails({
     character: character;
     emblem: emblem;
     debris: debris | null;
+    weapon: weapon;
+    tierlistsItems: (tiers_items & {
+      tiers: tiers & {
+        tierslists: tierlists;
+      };
+    })[];
   };
   abilities;
   skill;
@@ -116,6 +126,14 @@ function CostumeDetails({
   const isSpoiler =
     !showUnreleasedContent && new Date() < new Date(costume.release_time);
 
+  const officialTiers = costume.tierlistsItems.filter((tierlistItem) => {
+    const tierlistId = tierlistItem.tiers.tierslists.tierlist_id;
+    const isPve = FEATURED_TIERLISTS.pve.includes(tierlistId);
+    const isPvp = FEATURED_TIERLISTS.pvp.includes(tierlistId);
+
+    return isPve || isPvp;
+  });
+
   return (
     <>
       {isSpoiler && (
@@ -137,7 +155,7 @@ function CostumeDetails({
           "filter blur-xl": isSpoiler,
         })}
       >
-        <div className="relative grid grid-cols-1 md:grid-cols-2 gap-4 py-4">
+        <div className="relative grid grid-cols-1 md:grid-cols-2 py-4">
           {/* Costume info */}
           <div className="flex flex-col mt-4 mx-4 xl:mt-0 order-2 xl:order-1">
             <div className="flex flex-col items-center xl:items-start mb-12 xl:mb-0">
@@ -330,7 +348,7 @@ function CostumeDetails({
                   />
                 </div>
               </div>
-              <span className="flex absolute bottom-0 right-6">
+              <span className="flex absolute bottom-6 right-6">
                 {Array.from({ length: RARITY[costume.rarity] }).map(
                   (_, index) => (
                     <div className="w-8 h-8" key={index}>
@@ -366,6 +384,39 @@ function CostumeDetails({
             </div>
           </div>
         </div>
+
+        {/* Tier lists */}
+        {officialTiers?.length > 0 && (
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 my-12">
+            {officialTiers.map((item) => {
+              const isPvp = FEATURED_TIERLISTS.pvp.includes(
+                item.tiers.tierslists.tierlist_id
+              );
+
+              return (
+                <li
+                  key={item.id}
+                  className="relative flex flex-col bg-grey-dark bordered px-2 py-4 transform transition-transform hover:scale-95 ease-out-cubic"
+                >
+                  <h4 className="text-2xl text-beige text-center mb-2">
+                    {isPvp ? "PvP" : ""} {item.tiers.tierslists.title}
+                  </h4>
+                  <div className="flex flex-1 items-center justify-center text-center">
+                    <TierLogo tier={item.tiers.tier} />
+                  </div>
+                  <Link
+                    href={`/tierlist/${item.tiers.tierslists.tierlist_id}`}
+                    passHref
+                  >
+                    <a title="View tierlist" className="absolute inset-0">
+                      <span className="sr-only">View tierlist</span>
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        )}
 
         {stats && (
           <div className="relative mb-8">

@@ -212,8 +212,24 @@ export async function getStaticProps(context) {
     );
     skills[costume.costume_id] = allSkills;
     stats[costume.costume_id] = allStats.sort((a, b) => a.level - b.level);
+
     await alterCostumeToAddWeapon(costume);
     await alterCostumeToAddDebris(costume);
+
+    const tierlistsItems = await prisma.nrg.tiers_items.findMany({
+      where: {
+        item_id: costume.costume_id,
+      },
+      include: {
+        tiers: {
+          include: {
+            tierslists: true,
+          },
+        },
+      },
+    });
+
+    costume.tierlistsItems = tierlistsItems;
   }
 
   return {

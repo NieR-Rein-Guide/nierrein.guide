@@ -73,7 +73,7 @@ export default function Skill({
         </div>
         <div className="flex flex-col items-start">
           <strong className="font-display text-2xl text-beige">{name}</strong>
-          <p className="text-beige-text">
+          <p className="text-beige-text text-left mb-1 md:pr-16">
             <span>{description}</span>
           </p>
           {SkillCooltimeValue && (
