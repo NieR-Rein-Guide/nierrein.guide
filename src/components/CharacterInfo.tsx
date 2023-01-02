@@ -412,7 +412,7 @@ function CostumeDetails({
                     <TierLogo tier={item.tiers.tier} />
                   </div>
                   <Link
-                    href={`/tierlist/${item.tiers.tierslists.tierlist_id}`}
+                    href={`/tierlist/${item.tiers.tierslists.slug}`}
                     passHref
                   >
                     <a title="View tierlist" className="absolute inset-0">
