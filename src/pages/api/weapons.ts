@@ -9,9 +9,16 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           weapon_id: 'asc',
         },
         where: {
-          evolution_order: {
-            gt: 1,
-          }
+          OR: [
+            {
+            evolution_order: 2,
+            is_ex_weapon: false,
+            },
+            {
+              evolution_order: 11,
+              is_ex_weapon: true,
+            }
+          ]
         },
         distinct: 'evolution_group_id',
         include: {
