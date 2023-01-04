@@ -241,6 +241,7 @@ model notification {
 
 model weapon {
   weapon_id           Int                   @id(map: "pk_weapon") @default(autoincrement())
+  asset_id            String?
   evolution_group_id  Int
   evolution_order     Int
   weapon_type         String?

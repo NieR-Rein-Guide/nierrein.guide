@@ -28,6 +28,10 @@ import slug from "slugg";
 import Checkbox from "./form/Checkbox";
 import { useInventoryStore } from "@store/inventory";
 import CostumeThumbnail from "./CostumeThumbnail";
+import dynamic from "next/dynamic";
+const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
+  ssr: false,
+});
 
 interface WeaponInfoProps {
   weapons: (weapon & {
@@ -45,6 +49,7 @@ interface WeaponInfoProps {
 }
 
 export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
+  const [isShowingModel, setIsShowingModel] = useState(false);
   const [evolutionStage, setEvolutionStage] = useState(weapons.length - 1);
   const [selectedWeapon, setSelectedWeapon] = useState(weapons[evolutionStage]);
   const skills = groupByKey(selectedWeapon.weapon_skill_link, "slot_number");
@@ -132,15 +137,36 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
           <div className="flex-1">
             <div className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 h-[600px] xl:h-full w-full">
               <div className="bordered-lg bg-grey-dark h-full w-full">
-                <div className="relative z-10 h-full w-full">
+                <div
+                  className={classNames(
+                    "absolute z-10 inset-3 transition-opacity",
+                    {
+                      "opacity-0 pointer-events-none": !isShowingModel,
+                    }
+                  )}
+                >
+                  {isShowingModel && (
+                    <ModelWithNoSSR
+                      path={`${CDN_URL}3d/actor/${selectedWeapon.asset_id}/mesh/dc_${selectedWeapon.asset_id}/dc_${selectedWeapon.asset_id}.fbx`}
+                    />
+                  )}
+                </div>
+
+                <div
+                  className={classNames(
+                    "relative z-10 h-full w-full transition-opacity",
+                    {
+                      "opacity-0 pointer-events-none": isShowingModel,
+                    }
+                  )}
+                >
                   <img
                     className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
                     src={`${CDN_URL}${selectedWeapon.image_path}full.png`}
                     alt={`${selectedWeapon.name} thumbnail`}
                   />
                 </div>
-
-                <div className="absolute inset-0 z-0">
+                <div className="absolute inset-0 z-0 pointer-events-none">
                   <div className="absolute -left-24 top-24 transform -scale-1">
                     <SVG
                       src="/decorations/square-right.svg"
@@ -162,6 +188,16 @@ export default function WeaponInfo({ weapons }: WeaponInfoProps): JSX.Element {
                   />
                 </div>
               </div>
+
+              <div className="hidden md:block absolute top-4 left-24 w-42 h-24 p-1 z-50">
+                <button
+                  className="btn"
+                  onClick={() => setIsShowingModel(!isShowingModel)}
+                >
+                  {(isShowingModel && "View Artwork") || "View 3D Model"}
+                </button>
+              </div>
+
               <span className="flex absolute bottom-6 right-6">
                 {Array.from({
                   length: RARITY[selectedWeapon.rarity],
