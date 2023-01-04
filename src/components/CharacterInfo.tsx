@@ -323,8 +323,25 @@ function CostumeDetails({
                   />
                 )}
                 <div className="relative z-10 h-full w-full">
-                  {isShowingModel && <ModelWithNoSSR path={null} />}
-                  {!isShowingModel && (
+                  <div
+                    className={classNames(
+                      "absolute inset-3 transition-opacity",
+                      {
+                        "opacity-0 pointer-events-none": !isShowingModel,
+                      }
+                    )}
+                  >
+                    {isShowingModel && (
+                      <ModelWithNoSSR
+                        path={`${CDN_URL}3d/actor/${costume.asset_id}/mesh/dc_${costume.asset_id}/dc_${costume.asset_id}.fbx`}
+                      />
+                    )}
+                  </div>
+                  <div
+                    className={classNames("transition-opacity", {
+                      "opacity-0 pointer-events-none": isShowingModel,
+                    })}
+                  >
                     <Image
                       key={`${CDN_URL}${costume.image_path_base}full.png`}
                       layout="fill"
@@ -332,7 +349,7 @@ function CostumeDetails({
                       src={`${CDN_URL}${costume.image_path_base}full.png`}
                       alt={`${costume.title} (${costume.title}) illustration`}
                     />
-                  )}
+                  </div>
                 </div>
                 <div className="absolute inset-0 z-0">
                   <div className="absolute -left-24 top-24 transform -scale-1">
@@ -371,20 +388,20 @@ function CostumeDetails({
                     rarity={getBaseRarity(costume?.weapon)}
                     type={costume.weapon.weapon_type}
                     element={costume.weapon.attribute}
-                    isDark={costume.weapon.is_dark_weapon}
+                    isDark={costume.weapon.is_ex_weapon}
                     alt={costume?.weapon.name}
                     image_path={costume?.weapon.image_path}
                   />
                 </div>
               )}
-              {/* <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
-              <button
-                className="btn opacity-50"
-                onClick={() => setIsShowingModel(!isShowingModel)}
-              >
-                {(isShowingModel && "View Artwork") || "View 3D Model"}
-              </button>
-            </div> */}
+              <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
+                <button
+                  className="btn"
+                  onClick={() => setIsShowingModel(!isShowingModel)}
+                >
+                  {(isShowingModel && "View Artwork") || "View 3D Model"}
+                </button>
+              </div>
               <div className="absolute top-6 right-8">
                 <Ascend level={ascendLevel} />
               </div>

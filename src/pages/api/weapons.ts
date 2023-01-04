@@ -11,8 +11,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         where: {
           OR: [
             {
-            evolution_order: 2,
-            is_ex_weapon: false,
+              evolution_order: 2,
+              is_ex_weapon: false,
             },
             {
               evolution_order: 11,

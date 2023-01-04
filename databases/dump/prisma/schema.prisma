@@ -105,6 +105,7 @@ model companion_stat {
 model costume {
   costume_id           Int                    @id(map: "pk_costume") @default(autoincrement())
   character_id         Int
+  asset_id             String?
   emblem_id            Int?
   weapon_type          String?
   rarity               String?
