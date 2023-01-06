@@ -77,7 +77,7 @@ export default function MemoirsPage({
                 <div className="wysiwyg" key={dungeon.name}>
                   <div className="flex flex-col justify-center items-center">
                     <Image
-                      src={`${CDN_URL}${dungeon.image_path}`}
+                      src={dungeon.image_path}
                       layout="intrinsic"
                       height={424}
                       width={348}
@@ -127,31 +127,33 @@ export default function MemoirsPage({
                 </div>
               ))}
             </TabPanel>
-            <TabPanel className="grid grid-cols-1 md:grid-cols-2 place-items-center text-center gap-8">
-              {memoirs.map((memoir) => (
-                <div key={memoir.memoir_series_id}>
-                  <h3 className="text-beige text-3xl">{memoir.name}</h3>
-                  <p className="text-sm text-beige-text">
-                    {memoir.large_set_description}
-                  </p>
-                  <p className="text-xs text-beige-text">
-                    2 pieces: {memoir.small_set_description}
-                  </p>
+            <TabPanel>
+              <div className="grid grid-cols-1 md:grid-cols-2 place-items-center text-center gap-8">
+                {memoirs.map((memoir) => (
+                  <div key={memoir.memoir_series_id}>
+                    <h3 className="text-beige text-3xl">{memoir.name}</h3>
+                    <p className="text-sm text-beige-text">
+                      {memoir.large_set_description}
+                    </p>
+                    <p className="text-xs text-beige-text">
+                      2 pieces: {memoir.small_set_description}
+                    </p>
 
-                  <div className="flex justify-center gap-2 mt-4">
-                    {memoir.memoir.map((memoir) => (
-                      <div className="relative" key={memoir.memoir_id}>
-                        <Image
-                          width={96}
-                          height={96}
-                          src={`${CDN_URL}${memoir.image_path_base}full.png`}
-                          alt=""
-                        />
-                      </div>
-                    ))}
+                    <div className="flex justify-center gap-2 mt-4">
+                      {memoir.memoir.map((memoir) => (
+                        <div className="relative" key={memoir.memoir_id}>
+                          <Image
+                            width={96}
+                            height={96}
+                            src={`${CDN_URL}${memoir.image_path_base}full.png`}
+                            alt=""
+                          />
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </TabPanel>
           </TabPanels>
         </Tabs>
@@ -179,32 +181,37 @@ export async function getStaticProps() {
     {
       name: "The Dynast's Memories",
       series: [1, 2, 3, 4],
-      image_path: "ui/quest/en/banner/event_banner_100.png",
+      image_path: `${CDN_URL}ui/quest/en/banner/event_banner_100.png`,
     },
     {
       name: "The Officer's Memories",
       series: [5, 6, 7, 8],
-      image_path: "ui/quest/en/banner/event_banner_102.png",
+      image_path: `${CDN_URL}ui/quest/en/banner/event_banner_102.png`,
     },
     {
       name: "The Witch's Memories",
       series: [3, 4, 5, 6],
-      image_path: "ui/quest/en/banner/event_banner_101.png",
+      image_path: `${CDN_URL}ui/quest/en/banner/event_banner_101.png`,
     },
     {
       name: "Aberrant Memories",
       series: [9, 10, 11, 12],
-      image_path: "ui/quest/en/banner/event_banner_103.png",
+      image_path: `${CDN_URL}ui/quest/en/banner/event_banner_103.png`,
     },
     {
       name: "Magick Memories",
       series: [13, 14],
-      image_path: "ui/quest/en/banner/event_banner_104.png",
+      image_path: `${CDN_URL}ui/quest/en/banner/event_banner_104.png`,
     },
     {
       name: "Cyber Memories",
       series: [15, 16],
-      image_path: "ui/quest/en/banner/event_banner_105.png",
+      image_path: `${CDN_URL}ui/quest/en/banner/event_banner_105.png`,
+    },
+    {
+      name: "TBA",
+      series: [17],
+      image_path: "/images/tba-dungeon.jpg",
     },
   ].map((dungeon) => {
     const matchedMemoirs = dungeon.series.map(
