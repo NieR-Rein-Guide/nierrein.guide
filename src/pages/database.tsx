@@ -5,7 +5,7 @@ import Link from "next/link";
 
 import storiesImg from "../../public/database/stories.jpg";
 import assetsImg from "../../public/database/assets.jpg";
-import artworksImg from "../../public/database/artworks.jpg";
+import emblemsImg from "../../public/database/emblems.jpg";
 import memoirsImg from "../../public/database/memoirs.jpg";
 import companionsImg from "../../public/database/companions.jpg";
 import debrisImg from "../../public/database/debris.jpg";
@@ -159,7 +159,7 @@ export default function Database(): JSX.Element {
           </a>
         </Link>
 
-        <Link href="/database/artworks">
+        <Link href="/database/emblems">
           <a className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
             <Image
               height={350}
@@ -167,11 +167,11 @@ export default function Database(): JSX.Element {
               layout="fill"
               objectFit="cover"
               className="-z-1 filter brightness-50"
-              src={artworksImg}
-              alt="Artworks thumbnail"
+              src={emblemsImg}
+              alt="Emblems thumbnail"
             />
             <h3 className="text-4xl md:text-5xl font-bold tracking-wider text-beige text-shadow">
-              Artworks
+              Emblems
             </h3>
           </a>
         </Link>
