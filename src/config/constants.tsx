@@ -225,6 +225,9 @@ export const CREDITS = [
   {
     name: "Astonishing#0795",
   },
+  {
+    name: "emulsifier",
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const GITHUB_REPO_LINK =
