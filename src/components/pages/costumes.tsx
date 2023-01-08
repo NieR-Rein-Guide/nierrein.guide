@@ -194,6 +194,7 @@ export function CostumesTable({
                 <Link
                   href={`/characters/${costume.character.slug}/${costume.slug}`}
                   passHref
+                  scroll={true}
                 >
                   <a className="absolute inset-0 z-10">
                     <span className="sr-only">

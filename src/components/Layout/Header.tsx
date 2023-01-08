@@ -12,15 +12,26 @@ import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import SettingsModal from "@components/SettingsModal";
 import { Modal } from "@mui/material";
 import { BiDonateHeart } from "react-icons/bi";
+import { ITEMS } from "@components/DatabaseNavbar";
+import { useMedia } from "react-use";
 
 export default function Header(): JSX.Element {
+  const isMobile = useMedia("(max-width: 1279px)");
   const [isWhySupportModalOpen, setIsWhySupportModalOpen] = useState(false);
-  const [isNavOpened, setIsNavOpened] = useState(false);
+  const [isNavOpened, setIsNavOpened] = useState(isMobile ? false : true);
   const router = useRouter();
   const defaultAnimationPosition = 18;
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
   const [release, setRelease] = useState(null);
+
+  useEffect(() => {
+    if (isMobile) {
+      setIsNavOpened(false);
+    } else {
+      setIsNavOpened(true);
+    }
+  }, [isMobile]);
 
   function start() {
     setIsAnimating(true);
@@ -58,12 +69,9 @@ export default function Header(): JSX.Element {
     setIsNavOpened(!isNavOpened);
   }
 
-  const firstNavRow = NAVIGATION.slice(0, 5);
-  const secondNavRow = NAVIGATION.slice(5, NAVIGATION.length);
-
   return (
     <>
-      <div className="absolute xl:fixed right-0 left-0 top-0 mx-auto z-menu">
+      <div className="absolute xl:fixed right-0 left-0 top-0 mx-auto z-50">
         <div className="relative flex justify-start md:justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50">
           <div className="hidden absolute left-4 md:flex items-center">
             <a
@@ -163,7 +171,7 @@ export default function Header(): JSX.Element {
       </div>
 
       <header className="container relative">
-        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-16 xl:mb-24 xl:mt-24">
+        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 xl:mt-20 mb-6">
           <Link href="/" passHref={true}>
             <a
               className="flex items-center relative group"
@@ -176,7 +184,7 @@ export default function Header(): JSX.Element {
                   play={isAnimating}
                   goTo={animationPosition}
                   speed={0.7}
-                  className="h-16 w-16 xl:w-42 xl:h-42"
+                  className="h-16 w-16"
                 />
               </span>
               <h1 className="text-3xl z-10 drop-shadow-xl mt-4">
@@ -200,36 +208,8 @@ export default function Header(): JSX.Element {
                   <SVG src="/decorations/menu-close.svg" />
                 </button>
               </div>
-              <ul className="grid gap-y-8 grid-cols-5 mx-0 mb-6">
-                {firstNavRow.map((nav) => (
-                  <li key={nav.label} className="nav-item flex justify-center">
-                    <Link href={nav.href} passHref={true}>
-                      <a
-                        className={classNames(
-                          "flex flex-col items-center justify-center",
-                          router.asPath === nav.href ? "active" : null,
-                          router.asPath !== nav.href ? "inactive" : null
-                        )}
-                      >
-                        <div className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-16 xl:w-16">
-                          <Image
-                            height={94}
-                            width={94}
-                            placeholder="blur"
-                            src={nav.icon}
-                            alt={`${nav.label} icon`}
-                          />
-                        </div>
-                        <span className="text-lg mt-2 text-center font-display xl:text-xl xl:w-28">
-                          {nav.label}
-                        </span>
-                      </a>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-              <ul className="grid gap-y-8 grid-cols-4 ml-12 mx-12">
-                {secondNavRow.map((nav) => (
+              <ul className="grid gap-y-8 grid-cols-5 mx-0">
+                {NAVIGATION.map((nav) => (
                   <li key={nav.label} className="nav-item flex justify-center">
                     <Link href={nav.href} passHref={true}>
                       <a
@@ -259,58 +239,74 @@ export default function Header(): JSX.Element {
             </div>
           </nav>
         </div>
-
-        <nav
-          className={classNames(
-            "nav flex justify-center items-center w-full nav-is-closed xl:w-auto fixed inset-0 z-menu bg-pattern xl:relative xl:block transform",
-            isNavOpened ? "translate-y-0" : "-translate-y-screen"
-          )}
-        >
-          <div
-            className={classNames(
-              "bg-grey-lighter h-9/10 w-4/5 overflow-y-auto border border-beige-inactive xl:border-none xl:bg-transparent xl:hidden pointer-events-auto",
-              isNavOpened ? "scale-100" : "scale-75"
-            )}
-          >
-            <div className="flex justify-end mb-11 xl:hidden">
-              <button onClick={handleNavToggle} className="mt-4 mr-4 xl:hidden">
-                <SVG src="/decorations/menu-close.svg" />
-              </button>
-            </div>
-            <ul className="grid grid-cols-2 gap-y-8 mx-12 xl:grid-cols-7 xl:mx-0">
-              {NAVIGATION.map((nav) => (
-                <li
-                  key={nav.label}
-                  className="nav-item xl:flex xl:justify-center"
-                >
-                  <Link href={nav.href} passHref={true}>
-                    <a
-                      className={classNames(
-                        "flex flex-col items-center justify-center",
-                        router.asPath === nav.href ? "active" : null,
-                        router.asPath !== nav.href ? "inactive" : null
-                      )}
-                    >
-                      <div className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-16 xl:w-16">
-                        <Image
-                          height={94}
-                          width={94}
-                          placeholder="blur"
-                          src={nav.icon}
-                          alt={`${nav.label} icon`}
-                        />
-                      </div>
-                      <span className="text-lg mt-2 text-center font-display xl:text-xl xl:w-28">
-                        {nav.label}
-                      </span>
-                    </a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </nav>
       </header>
+
+      <nav
+        className={classNames(
+          "flex flex-col gap-y-2 xl:flex-row justify-center gap-x-6 w-full relative bg-grey-dark border-y py-4 border-beige border-opacity-50 mt-4 xl:mt-0 mb-16 transition ease-out-cubic transform origin-top xl:scale-y-100 xl:max-h-full px-4 xl:px-0",
+          isNavOpened ? "" : "hidden"
+        )}
+      >
+        <div className="grid grid-cols-3 gap-4 xl:hidden">
+          {NAVIGATION.map((item) => (
+            <Link key={item.href} href={item.href}>
+              <a
+                className={classNames(
+                  "group flex gap-x-2 items-center transition ease-out-cubic hover:text-white",
+                  router.asPath === item.href
+                    ? "text-white pointer-events-none"
+                    : "text-beige"
+                )}
+              >
+                <Image
+                  className={classNames(
+                    "transition ease-out-cubic group-hover:opacity-100",
+                    router.asPath === item.href ? "opacity-100" : "opacity-50"
+                  )}
+                  height={28}
+                  width={28}
+                  placeholder="blur"
+                  src={item.icon}
+                  alt={`${item.label} icon`}
+                />
+                <span className="text-lg text-center font-display xl:text-xl">
+                  {item.label}
+                </span>
+              </a>
+            </Link>
+          ))}
+        </div>
+        <div className="xl:hidden mt-4 pt-2 border-t border-beige border-opacity-50">
+          <h3 className="text-beige text-xl text-center">Database</h3>
+        </div>
+        {ITEMS.map((item) => (
+          <Link key={item.href} href={item.href}>
+            <a
+              className={classNames(
+                "group flex gap-x-2 items-center transition ease-out-cubic hover:text-white",
+                router.asPath === item.href
+                  ? "text-white pointer-events-none"
+                  : "text-beige"
+              )}
+            >
+              <Image
+                className={classNames(
+                  "transition ease-out-cubic group-hover:opacity-100",
+                  router.asPath === item.href ? "opacity-100" : "opacity-50"
+                )}
+                height={28}
+                width={28}
+                placeholder="blur"
+                src={item.icon}
+                alt={`${item.label} icon`}
+              />
+              <span className="text-lg text-center font-display xl:text-xl">
+                {item.label}
+              </span>
+            </a>
+          </Link>
+        ))}
+      </nav>
     </>
   );
 }

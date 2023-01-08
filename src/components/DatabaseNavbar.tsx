@@ -4,33 +4,73 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Radio from "./form/Radio";
 import { MdOutlineInventory } from "react-icons/md";
+import { toast } from "react-hot-toast";
+
+import loadoutsIcon from "../../public/icons/loadout.png";
+import charactersIcon from "../../public/icons/characters.png";
+import abilitiesIcon from "../../public/icons/abilities.png";
+import debrisIcon from "../../public/icons/debris.png";
+import companionsIcon from "../../public/icons/companions.png";
+import memoirsIcon from "../../public/icons/memoirs.png";
+import emblemsIcon from "../../public/icons/emblems.png";
+import storiesIcon from "../../public/icons/stories.png";
+import noticesIcon from "../../public/icons/notices.png";
+import eventsIcon from "../../public/icons/events.png";
+import { useMedia } from "react-use";
+import { useEffect } from "react";
 
 const SUPPORTED_MULTIPLE_DISPLAY = ["/characters", "/weapons"];
 
-const ITEMS = [
+export const ITEMS = [
   {
     label: "Costumes",
     href: "/characters",
+    icon: charactersIcon,
   },
   {
     label: "Weapons",
     href: "/weapons",
-  },
-  {
-    label: "Companions",
-    href: "/database/companions",
-  },
-  {
-    label: "Memoirs",
-    href: "/database/memoirs",
+    icon: loadoutsIcon,
   },
   {
     label: "Abilities",
     href: "/database/abilities",
+    icon: abilitiesIcon,
   },
   {
     label: "Debris",
     href: "/database/debris",
+    icon: debrisIcon,
+  },
+  {
+    label: "Companions",
+    href: "/database/companions",
+    icon: companionsIcon,
+  },
+  {
+    label: "Memoirs",
+    href: "/database/memoirs",
+    icon: memoirsIcon,
+  },
+  {
+    label: "Emblems",
+    href: "/database/emblems",
+    icon: emblemsIcon,
+  },
+  {
+    label: "Stories",
+    href: "/database/stories",
+    icon: storiesIcon,
+  },
+  {
+    label: "Notices",
+    href: "/database/notices",
+    icon: noticesIcon,
+  },
+  {
+    label: "Events",
+    href: "/events",
+    icon: eventsIcon,
   },
 ];
 
@@ -43,64 +83,45 @@ export default function DatabaseNavbar() {
     (state) => state.setDatabaseDisplayType
   );
 
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-9 lg:grid-cols-12 p-4 bg-grey-foreground border border-beige border-opacity-30">
-      <Link href="/inventory">
-        <a
-          className={classNames(
-            "order-2 mt-4 md:col-span-3 lg:mt-0 lg:order-first lg:col-span-2 p-4 transition-colors ease-out-cubic relative bordered text-center",
-            router.asPath === "/inventory"
-              ? "active bg-beige active"
-              : "bg-grey-lighter",
-            SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath) ? "w-64" : ""
-          )}
-        >
-          <span
+  const isMobile = useMedia("(max-width: 1023px)");
+
+  useEffect(() => {
+    if (databaseDisplayType === "table" && !isMobile) {
+      return;
+    }
+
+    setDatabaseDisplayType("grid");
+    toast.success('Automatically switched to "grid" view on mobile.');
+  }, [isMobile]);
+
+  if (SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath)) {
+    return (
+      <div className="flex flex-col xl:flex-row justify-between p-4 bg-grey-foreground border border-beige border-opacity-30">
+        <Link href="/inventory">
+          <a
             className={classNames(
-              "inline-flex items-center gap-x-2 font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
+              "mt-4 lg:mt-0 p-4 transition-colors ease-out-cubic relative bordered text-center",
               router.asPath === "/inventory"
-                ? "text-grey-lighter"
-                : "text-beige"
+                ? "active bg-beige active"
+                : "bg-grey-lighter",
+              SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath) ? "w-64" : ""
             )}
           >
-            <MdOutlineInventory size={24} />
-            Inventory
-          </span>
-        </a>
-      </Link>
-
-      <nav
-        className={classNames(
-          "overflow-x-auto flex xl:justify-center gap-x-1 gap-y-2 md:col-span-9 lg:col-start-4 xl:col-start-3 xl:col-span-8"
-        )}
-      >
-        {ITEMS.map((item) => (
-          <Link key={item.label} href={item.href}>
-            <a
+            <span
               className={classNames(
-                "p-4 transition-colors ease-out-cubic relative bordered",
-                router.asPath === item.href
-                  ? "active bg-beige active"
-                  : "bg-grey-lighter"
+                "inline-flex items-center gap-x-2 font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
+                router.asPath === "/inventory"
+                  ? "text-grey-lighter"
+                  : "text-beige"
               )}
             >
-              <span
-                className={classNames(
-                  "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
-                  router.asPath === item.href
-                    ? "text-grey-lighter"
-                    : "text-beige"
-                )}
-              >
-                {item.label}
-              </span>
-            </a>
-          </Link>
-        ))}
-      </nav>
+              <MdOutlineInventory size={24} />
+              Inventory
+            </span>
+          </a>
+        </Link>
 
-      {SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath) && (
-        <div className="flex gap-x-4 mt-6 xl:mt-0 xl:flex-col md:items-end gap-y-3 md:col-span-3 xl:col-span-2">
+        <div className="flex gap-x-4 mt-6 xl:mt-0 xl:flex-col md:items-end gap-y-3">
           <Radio
             name="Table"
             value="table"
@@ -116,7 +137,9 @@ export default function DatabaseNavbar() {
             labelClassname="inline-block text-center md:w-24"
           />
         </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
+
+  return null;
 }

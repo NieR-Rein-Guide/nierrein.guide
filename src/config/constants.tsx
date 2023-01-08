@@ -4,7 +4,6 @@ import loadoutsIcon from "../../public/icons/loadout.png";
 import tierlistIcon from "../../public/icons/tierlist.png";
 import charactersIcon from "../../public/icons/characters.png";
 import databaseIcon from "../../public/icons/database.png";
-import SVG from "react-inlinesvg";
 import { RiRedditFill, RiGithubFill, RiTwitterFill } from "react-icons/ri";
 import { FaDiscord } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
@@ -31,33 +30,13 @@ export const NAVIGATION = [
   {
     label: "Tools",
     href: "/tools",
-    icon: loadoutsIcon,
+    icon: databaseIcon,
   },
   {
     label: "Loadouts",
     href: "/loadouts",
     icon: loadoutsIcon,
     disabled: true,
-  },
-  {
-    label: "Characters",
-    href: "/characters",
-    icon: charactersIcon,
-  },
-  {
-    label: "Weapons",
-    href: "/weapons",
-    icon: loadoutsIcon,
-  },
-  {
-    label: "Database",
-    href: "/database",
-    icon: databaseIcon,
-  },
-  {
-    label: "To-do list",
-    href: "/todolist",
-    icon: homeIcon,
   },
 ];
 

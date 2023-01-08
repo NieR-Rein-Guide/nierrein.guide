@@ -63,9 +63,7 @@ export default function InventoryPage({
         cover="https://nierrein.guide/cover-inventory.jpg"
       />
 
-      <section className="p-4 md:p-8">
-        <DatabaseNavbar />
-
+      <section className="mx-auto p-4 md:p-8">
         <Inventory
           costumes={costumes}
           weapons={weapons}
