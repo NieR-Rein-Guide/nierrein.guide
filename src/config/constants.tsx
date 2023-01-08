@@ -210,6 +210,21 @@ export const CREDITS = [
   {
     name: "Hastur",
   },
+  {
+    name: "H34VEN",
+    link: "https://discord.gg/Marie123",
+  },
+  {
+    name: "Kapater",
+    link: "https://youtube.com/@kapater1398",
+  },
+  {
+    name: "nimbus#8500",
+    link: "https://www.twitch.tv/nimbusEXP",
+  },
+  {
+    name: "Astonishing#0795",
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const GITHUB_REPO_LINK =

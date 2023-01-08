@@ -3,6 +3,7 @@ import Lines from "@components/decorations/Lines";
 import Image from "next/image";
 import mamaImg from "../../public/mama.png";
 import slugify from "slugify";
+import classNames from "classnames";
 
 export default function Credits(): JSX.Element {
   return (
@@ -36,8 +37,15 @@ function Contributor({ credit, children }): JSX.Element {
           alt={`NieR Avatar of ${credit.name}`}
           loading="lazy"
         />
-        <div>
-          <span className="serif text-2xl w-44 lg:w-auto">{credit.name}</span>
+        <div className="flex-1">
+          <span
+            className={classNames(
+              "serif w-44 lg:w-auto",
+              credit.name.length >= 15 ? "text-xl" : "text-2xl"
+            )}
+          >
+            {credit.name}
+          </span>
           {children}
         </div>
       </li>
