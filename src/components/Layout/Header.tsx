@@ -187,9 +187,9 @@ export default function Header(): JSX.Element {
                   className="h-16 w-16"
                 />
               </span>
-              <h1 className="text-3xl z-10 drop-shadow-xl mt-4">
+              <h1 className="text-3xl z-10 drop-shadow-xl mt-2 lg:mt-4">
                 NieR Re[in]
-                <p>Guide</p>
+                <p className="inline lg:block">Guide</p>
               </h1>
             </a>
           </Link>

@@ -86,6 +86,14 @@ export default function DatabaseNavbar() {
   const isMobile = useMedia("(max-width: 1023px)");
 
   useEffect(() => {
+    if (!SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath)) {
+      return;
+    }
+
+    if (databaseDisplayType === "grid") {
+      return;
+    }
+
     if (databaseDisplayType === "table" && !isMobile) {
       return;
     }
