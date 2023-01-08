@@ -50,13 +50,15 @@ export default function NewNotices({ notifications }) {
         )}
       </div>
 
-      <div className="flex flex-wrap gap-x-2 justify-center lg:hidden">
+      <div className="grid grid-cols-2 gap-x-2 lg:hidden">
         {[...notifications].splice(0, 8).map((notification) => (
           <div
             key={notification.notification_id}
             className={classNames(
-              "relative flex items-center justify-center h-28 w-52 bg-grey-dark border border-beige border-opacity-50",
-              notification.thumbnail_path ? "" : "p-4"
+              "relative flex items-center justify-center bg-grey-dark",
+              notification.thumbnail_path
+                ? ""
+                : "border border-beige border-opacity-50"
             )}
           >
             {(notification.thumbnail_path && (
@@ -67,9 +69,7 @@ export default function NewNotices({ notifications }) {
                 alt={notification.title}
               />
             )) || (
-              <h3 className="text-xl text-center line-clamp-3">
-                {notification.title}
-              </h3>
+              <h3 className="text-center line-clamp-3">{notification.title}</h3>
             )}
             <Link href={`/notice/${notification.notification_id}`} passHref>
               <a className="absolute inset-0 z-10">
