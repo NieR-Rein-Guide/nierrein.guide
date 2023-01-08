@@ -59,12 +59,12 @@ export const ITEMS = [
   },
   {
     label: "Stories",
-    href: "/database/stories",
+    href: "/database/stories/costumes",
     icon: storiesIcon,
   },
   {
     label: "Notices",
-    href: "/database/notices",
+    href: "/notices",
     icon: noticesIcon,
   },
   {
