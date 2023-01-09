@@ -1,9 +1,13 @@
 import { useSettingsStore } from "@store/settings";
 import classNames from "classnames";
-import Link from "next/link";
 import { useRouter } from "next/router";
-import Radio from "./form/Radio";
-import { MdOutlineInventory } from "react-icons/md";
+import {
+  MdFilter,
+  MdFilterAlt,
+  MdOutlineInventory,
+  MdViewComfy,
+  MdViewCompact,
+} from "react-icons/md";
 import { toast } from "react-hot-toast";
 
 import loadoutsIcon from "../../public/icons/loadout.png";
@@ -18,6 +22,13 @@ import noticesIcon from "../../public/icons/notices.png";
 import eventsIcon from "../../public/icons/events.png";
 import { useMedia } from "react-use";
 import { useEffect } from "react";
+import {
+  FormControlLabel,
+  FormGroup,
+  Switch,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
 
 const SUPPORTED_MULTIPLE_DISPLAY = ["/characters", "/weapons"];
 
@@ -82,6 +93,10 @@ export default function DatabaseNavbar() {
   const setDatabaseDisplayType = useSettingsStore(
     (state) => state.setDatabaseDisplayType
   );
+  const showInventory = useSettingsStore((state) => state.showInventory);
+  const setShowInventory = useSettingsStore((state) => state.setShowInventory);
+  const order = useSettingsStore((state) => state.order);
+  const setOrder = useSettingsStore((state) => state.setOrder);
 
   const isMobile = useMedia("(max-width: 1023px)");
 
@@ -104,47 +119,47 @@ export default function DatabaseNavbar() {
 
   if (SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath)) {
     return (
-      <div className="flex flex-col xl:flex-row justify-between p-4 bg-grey-foreground border border-beige border-opacity-30">
-        <Link href="/inventory">
-          <a
-            className={classNames(
-              "mt-4 lg:mt-0 p-4 transition-colors ease-out-cubic relative bordered text-center",
-              router.asPath === "/inventory"
-                ? "active bg-beige active"
-                : "bg-grey-lighter",
-              SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath) ? "w-64" : ""
-            )}
-          >
-            <span
-              className={classNames(
-                "inline-flex items-center gap-x-2 font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
-                router.asPath === "/inventory"
-                  ? "text-grey-lighter"
-                  : "text-beige"
-              )}
-            >
-              <MdOutlineInventory size={24} />
-              Inventory
-            </span>
-          </a>
-        </Link>
+      <div className="flex items-center flex-col xl:flex-row justify-between mb-2">
+        <div className="flex gap-x-4">
+          <FormGroup>
+            <FormControlLabel
+              control={<Switch value={showInventory} />}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                setShowInventory(e.target.checked)
+              }
+              label="Show only inventory"
+            />
+          </FormGroup>
 
-        <div className="flex gap-x-4 mt-6 xl:mt-0 xl:flex-col md:items-end gap-y-3">
-          <Radio
-            name="Table"
-            value="table"
-            isChecked={databaseDisplayType === "table"}
-            setState={setDatabaseDisplayType}
-            labelClassname="inline-block text-center md:w-24"
-          />
-          <Radio
-            name="Grid"
-            value="grid"
-            isChecked={databaseDisplayType === "grid"}
-            setState={setDatabaseDisplayType}
-            labelClassname="inline-block text-center md:w-24"
-          />
+          {databaseDisplayType !== "table" && (
+            <FormGroup>
+              <FormControlLabel
+                control={<Switch value={order} />}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setOrder(e.target.checked ? "library" : "desc")
+                }
+                label="Library view"
+              />
+            </FormGroup>
+          )}
         </div>
+
+        <ToggleButtonGroup
+          value={databaseDisplayType}
+          exclusive
+          onChange={(e, newValue) => setDatabaseDisplayType(newValue)}
+          aria-label="View"
+        >
+          <ToggleButton value="table" aria-label="table">
+            <MdFilterAlt /> <p className="ml-2">Table</p>
+          </ToggleButton>
+          <ToggleButton value="grid" aria-label="grid">
+            <MdViewComfy /> <p className="ml-2">Comfy</p>
+          </ToggleButton>
+          <ToggleButton value="compact" aria-label="compact">
+            <MdViewCompact /> <p className="ml-2">Compact</p>
+          </ToggleButton>
+        </ToggleButtonGroup>
       </div>
     );
   }

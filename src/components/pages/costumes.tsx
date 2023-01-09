@@ -80,6 +80,13 @@ export default function CharactersPage({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
+  const showInventory = useSettingsStore((state) => state.showInventory);
+  const order = useSettingsStore((state) => state.order);
+  const ownedCostumes = useInventoryStore((state) => state.costumes);
+
+  const inventoryCostumes = costumes.filter((cost) => {
+    return ownedCostumes.includes(cost.costume_id);
+  });
 
   /**
    * Using a state and useEffect here because Next.js is
@@ -96,7 +103,12 @@ export default function CharactersPage({
   }, [databaseDisplayType]);
 
   return (
-    <Layout hasContainer={false} className="overflow-x-auto">
+    <Layout
+      hasContainer={databaseDisplayType === "table" ? false : true}
+      className={classNames(
+        databaseDisplayType === "table" ? "overflow-x-auto" : ""
+      )}
+    >
       <Meta
         title="Costumes"
         description={`${costumes.length} costumes in the database.`}
@@ -108,19 +120,21 @@ export default function CharactersPage({
 
         {displayType === "table" && (
           <CostumesTable
-            costumes={costumes}
+            costumes={showInventory ? inventoryCostumes : costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
           />
         )}
 
-        {displayType === "grid" && (
+        {displayType !== "table" && (
           <CostumesGrid
-            costumes={costumes}
+            costumes={showInventory ? inventoryCostumes : costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
+            isSmall={displayType === "compact"}
+            isLibrary={order === "library"}
           />
         )}
       </section>
@@ -464,19 +478,6 @@ export function CostumesTable({
         filtering: true,
         pageSize: 25,
         pageSizeOptions: [25, 50, 100, 200, 500],
-        exportMenu: [
-          {
-            label: "Export PDF",
-            exportFunc: (cols, datas) =>
-              ExportPdf(cols, datas, "myPdfFileName"),
-          },
-          {
-            label: "Export CSV",
-            exportFunc: (cols, datas) =>
-              ExportCsv(cols, datas, "myCsvFileName"),
-          },
-        ],
-        exportAllData: true,
       }}
       onRowClick={onRowClick}
     />
@@ -487,6 +488,7 @@ export function CostumesGrid({
   costumes,
   showUnreleasedContent = true,
   isLibrary = false,
+  isSmall = false,
 }: {
   costumes: (costume & {
     costume_ability_link: (costume_ability_link & {
@@ -504,61 +506,113 @@ export function CostumesGrid({
   charactersLookup;
   abilitiesLookup;
   onRowClick?;
+  isSmall?: boolean;
 }) {
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
 
   return (
-    <div className="grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
+    <div
+      className={classNames(
+        "grid mt-8",
+        isSmall
+          ? "grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4"
+          : "grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8"
+      )}
+    >
       {costumes
         .filter((costume) => {
           if (showUnreleasedContent) return true;
           return new Date() > new Date(costume.release_time);
         })
-        .map((cost) => (
-          <div
-            className={classNames(
-              "relative",
-              isLibrary && !ownedCostumes.includes(cost.costume_id)
-                ? "opacity-50"
-                : ""
-            )}
-            key={cost.costume_id}
-          >
-            <p className="text-sm text-center line-clamp-1 mb-1">
-              {cost.is_ex_costume && <span className="text-rarity-4">EX </span>}
-              {cost.title}
-            </p>
-            <CostumeThumbnail
-              src={`${CDN_URL}${cost.image_path_base}portrait.png`}
-              alt={cost.title}
-              weaponType={cost.weapon_type}
-              rarity={cost.rarity}
-              isLarge
-              isDark={cost.is_ex_costume}
-              className="group"
-              imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
-            >
-              <Link
-                href={`/characters/${cost.character.slug}/${cost.slug}`}
-                passHref
+        .sort((a, b) => {
+          if (isLibrary) {
+            return a.character_id - b.character_id;
+          }
+
+          return;
+        })
+        .map((cost) => {
+          if (!isSmall) {
+            return (
+              <div
+                className={classNames(
+                  "relative",
+                  isLibrary && !ownedCostumes.includes(cost.costume_id)
+                    ? "opacity-50"
+                    : ""
+                )}
+                key={cost.costume_id}
               >
-                <a className="absolute inset-0 z-10">
-                  <span className="sr-only">See more about {cost.title}</span>
-                </a>
-              </Link>
-            </CostumeThumbnail>
-            <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
-              <Checkbox
-                label={
-                  ownedCostumes.includes(cost.costume_id) ? "Owned" : "Owned?"
-                }
-                isChecked={ownedCostumes.includes(cost.costume_id)}
-                setState={() => toggleFromInventory(cost.costume_id)}
+                <p className="text-sm text-center line-clamp-1 mb-1">
+                  {cost.is_ex_costume && (
+                    <span className="text-rarity-4">EX </span>
+                  )}
+                  {cost.title}
+                </p>
+                <CostumeThumbnail
+                  src={`${CDN_URL}${cost.image_path_base}portrait.png`}
+                  alt={cost.title}
+                  weaponType={cost.weapon_type}
+                  rarity={cost.rarity}
+                  isLarge
+                  isDark={cost.is_ex_costume}
+                  className="group"
+                  imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
+                >
+                  <Link
+                    href={`/characters/${cost.character.slug}/${cost.slug}`}
+                    passHref
+                  >
+                    <a className="absolute inset-0 z-10">
+                      <span className="sr-only">
+                        See more about {cost.title}
+                      </span>
+                    </a>
+                  </Link>
+                </CostumeThumbnail>
+                <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
+                  <Checkbox
+                    label={
+                      ownedCostumes.includes(cost.costume_id)
+                        ? "Owned"
+                        : "Owned?"
+                    }
+                    isChecked={ownedCostumes.includes(cost.costume_id)}
+                    setState={() => toggleFromInventory(cost.costume_id)}
+                  />
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <div
+              className={classNames(
+                "flex flex-col justify-center items-center relative",
+                isLibrary && !ownedCostumes.includes(cost.costume_id)
+                  ? "opacity-50"
+                  : ""
+              )}
+              key={cost.costume_id}
+            >
+              <p className="text-xs text-center line-clamp-1 mb-1">
+                {cost.is_ex_costume && (
+                  <span className="text-rarity-4">EX </span>
+                )}
+                {cost.title}
+              </p>
+              <CostumeThumbnail
+                href={`/characters/${cost?.character.slug}/${cost?.slug}`}
+                src={`${CDN_URL}${cost?.image_path_base}battle.png`}
+                alt={`${cost?.title} thumbnail`}
+                rarity={cost.rarity}
+                weaponType={cost?.weapon_type}
+                isDark={cost?.is_ex_costume}
               />
             </div>
-          </div>
-        ))}
+          );
+        })}
     </div>
   );
 }
