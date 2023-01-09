@@ -285,7 +285,9 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
 
                     return (
                       <div
-                        className={showNotesInline ? "flex w-full" : ""}
+                        className={
+                          showNotesInline ? "col-span-3 flex w-full" : ""
+                        }
                         key={costume.costume_id}
                       >
                         <div
