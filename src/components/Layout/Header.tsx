@@ -13,25 +13,15 @@ import SettingsModal from "@components/SettingsModal";
 import { Modal } from "@mui/material";
 import { BiDonateHeart } from "react-icons/bi";
 import { ITEMS } from "@components/DatabaseNavbar";
-import { useMedia } from "react-use";
 
 export default function Header(): JSX.Element {
-  const isMobile = useMedia("(max-width: 1279px)");
   const [isWhySupportModalOpen, setIsWhySupportModalOpen] = useState(false);
-  const [isNavOpened, setIsNavOpened] = useState(isMobile ? false : true);
+  const [isNavOpened, setIsNavOpened] = useState(false);
   const router = useRouter();
   const defaultAnimationPosition = 18;
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
   const [release, setRelease] = useState(null);
-
-  useEffect(() => {
-    if (isMobile) {
-      setIsNavOpened(false);
-    } else {
-      setIsNavOpened(true);
-    }
-  }, [isMobile]);
 
   function start() {
     setIsAnimating(true);
@@ -198,7 +188,7 @@ export default function Header(): JSX.Element {
             <SVG src="/decorations/menu.svg" />
           </button>
 
-          <nav className="hidden xl:block nav justify-center items-center w-full nav-is-closed xl:w-auto inset-0 z-50 bg-pattern relative transform">
+          <nav className="hidden xl:block nav justify-center items-center w-full nav-is-closed xl:w-auto inset-0 bg-pattern relative transform">
             <div className="overflow-hidden h-full w-full pointer-events-auto">
               <div className="flex justify-end mb-11 xl:hidden">
                 <button
@@ -243,7 +233,7 @@ export default function Header(): JSX.Element {
 
       <nav
         className={classNames(
-          "flex flex-col gap-y-2 xl:flex-row justify-center gap-x-6 w-full relative bg-grey-dark border-y py-4 border-beige border-opacity-50 -mt-8 xl:mt-0 mb-16 transition ease-out-cubic transform origin-top xl:scale-y-100 xl:max-h-full px-4 xl:px-0",
+          "xl:flex flex-col gap-y-2 xl:flex-row justify-center gap-x-6 w-full relative bg-grey-dark border-y py-4 border-beige border-opacity-50 -mt-8 xl:mt-0 mb-16 transition ease-out-cubic transform origin-top xl:scale-y-100 xl:max-h-full px-4 xl:px-0",
           isNavOpened ? "" : "hidden"
         )}
       >
