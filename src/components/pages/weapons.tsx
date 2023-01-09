@@ -81,6 +81,14 @@ export default function WeaponsPage({
     (state) => state.showUnreleasedContent
   );
 
+  const showInventory = useSettingsStore((state) => state.showInventory);
+  const order = useSettingsStore((state) => state.order);
+  const ownedWeapons = useInventoryStore((state) => state.weapons);
+
+  const inventoryWeapons = weapons.filter((weap) => {
+    return ownedWeapons.includes(weap.weapon_id);
+  });
+
   /**
    * Using a state and useEffect here because Next.js is
    * complaining about differences between Server/Client
@@ -131,18 +139,20 @@ export default function WeaponsPage({
         {displayType === "table" && (
           <WeaponsTable
             key="table"
-            weapons={weapons}
+            weapons={showInventory ? inventoryWeapons : weapons}
             showUnreleasedContent={showUnreleasedContent}
             abilitiesLookup={abilitiesLookup}
             valuedWeaponType={valuedWeaponType}
           />
         )}
 
-        {displayType === "grid" && (
+        {displayType !== "table" && (
           <WeaponsGrid
             key="grid"
-            weapons={weapons}
+            weapons={showInventory ? inventoryWeapons : weapons}
             showUnreleasedContent={showUnreleasedContent}
+            isSmall={displayType === "compact"}
+            isLibrary={order === "library"}
           />
         )}
       </section>
@@ -550,6 +560,7 @@ export function WeaponsGrid({
   weapons,
   showUnreleasedContent,
   isLibrary,
+  isSmall = false,
 }: {
   weapons: (weapon & {
     weapon_ability_link: (weapon_ability_link & {
@@ -562,16 +573,31 @@ export function WeaponsGrid({
   })[];
   showUnreleasedContent: boolean;
   isLibrary?: boolean;
+  isSmall?: boolean;
 }) {
   const ownedWeapons = useInventoryStore((state) => state.weapons);
   const toggleFromInventory = useInventoryStore((state) => state.toggleWeapon);
 
   return (
-    <div className="relative grid grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 mt-8">
+    <div
+      className={classNames(
+        "relative grid mt-8",
+        isSmall
+          ? "grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4"
+          : "grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8"
+      )}
+    >
       {weapons
         .filter((weapon) => {
           if (showUnreleasedContent) return true;
           return new Date() > new Date(weapon.release_time);
+        })
+        .sort((a, b) => {
+          if (isLibrary) {
+            return a.weapon_id - b.weapon_id;
+          }
+
+          return;
         })
         .map((weap) => ({
           ...weap,
@@ -581,50 +607,88 @@ export function WeaponsGrid({
             evolution_order: weap.evolution_order,
           }),
         }))
-        .map((weap) => (
-          <div
-            className={classNames(
-              "relative flex flex-col items-center",
-              isLibrary && !ownedWeapons.includes(weap.weapon_id)
-                ? "opacity-50"
-                : ""
-            )}
-            key={weap.weapon_id}
-          >
-            <p className="text-sm text-center line-clamp-1 mb-1">
-              {weap.is_ex_weapon && <span className="text-rarity-4">EX </span>}
-              {weap.name}
-            </p>
-            <div>
-              <div className="group relative">
-                <WeaponThumbnail
-                  image_path={weap.image_path}
-                  alt={weap.name}
-                  type={weap.weapon_type}
-                  element={weap.attribute}
-                  rarity={weap.base_rarity}
-                  isLarge
-                  isDark={weap.is_ex_weapon}
-                  imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
-                />
-                <Link href={`/weapons/${weap.slug}`} passHref>
-                  <a className="absolute inset-0 z-10">
-                    <span className="sr-only">See more about {weap.name}</span>
-                  </a>
-                </Link>
+        .map((weap) => {
+          if (!isSmall) {
+            return (
+              <div
+                className={classNames(
+                  "relative flex flex-col items-center",
+                  isLibrary && !ownedWeapons.includes(weap.weapon_id)
+                    ? "opacity-50"
+                    : ""
+                )}
+                key={weap.weapon_id}
+              >
+                <p className="text-sm text-center line-clamp-1 mb-1">
+                  {weap.is_ex_weapon && (
+                    <span className="text-rarity-4">EX </span>
+                  )}
+                  {weap.name}
+                </p>
+                <div>
+                  <div className="group relative">
+                    <WeaponThumbnail
+                      image_path={weap.image_path}
+                      alt={weap.name}
+                      type={weap.weapon_type}
+                      element={weap.attribute}
+                      rarity={weap.base_rarity}
+                      isLarge
+                      isDark={weap.is_ex_weapon}
+                      imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
+                    />
+                    <Link href={`/weapons/${weap.slug}`} passHref>
+                      <a className="absolute inset-0 z-10">
+                        <span className="sr-only">
+                          See more about {weap.name}
+                        </span>
+                      </a>
+                    </Link>
+                  </div>
+                  <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
+                    <Checkbox
+                      label={
+                        ownedWeapons.includes(weap.weapon_id)
+                          ? "Owned"
+                          : "Owned?"
+                      }
+                      isChecked={ownedWeapons.includes(weap.weapon_id)}
+                      setState={() => toggleFromInventory(weap.weapon_id)}
+                    />
+                  </div>
+                </div>
               </div>
-              <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
-                <Checkbox
-                  label={
-                    ownedWeapons.includes(weap.weapon_id) ? "Owned" : "Owned?"
-                  }
-                  isChecked={ownedWeapons.includes(weap.weapon_id)}
-                  setState={() => toggleFromInventory(weap.weapon_id)}
-                />
-              </div>
+            );
+          }
+
+          return (
+            <div
+              className={classNames(
+                "relative flex flex-col items-center",
+                isLibrary && !ownedWeapons.includes(weap.weapon_id)
+                  ? "opacity-50"
+                  : ""
+              )}
+              key={weap.weapon_id}
+            >
+              <p className="text-xs text-center line-clamp-1 mb-1">
+                {weap.is_ex_weapon && (
+                  <span className="text-rarity-4">EX </span>
+                )}
+                {weap.name}
+              </p>
+              <WeaponThumbnail
+                href={`/weapons/${weap.slug}`}
+                rarity={getBaseRarity(weap)}
+                type={weap.weapon_type}
+                element={weap.attribute}
+                isDark={weap.is_ex_weapon}
+                alt={weap.name}
+                image_path={weap.image_path}
+              />
             </div>
-          </div>
-        ))}
+          );
+        })}
     </div>
   );
 }
