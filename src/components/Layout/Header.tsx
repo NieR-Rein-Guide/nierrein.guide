@@ -171,7 +171,7 @@ export default function Header(): JSX.Element {
       </div>
 
       <header className="container relative">
-        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 xl:mt-20 mb-6">
+        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 xl:mt-20 mb-12">
           <Link href="/" passHref={true}>
             <a
               className="flex items-center relative group"
@@ -243,7 +243,7 @@ export default function Header(): JSX.Element {
 
       <nav
         className={classNames(
-          "flex flex-col gap-y-2 xl:flex-row justify-center gap-x-6 w-full relative bg-grey-dark border-y py-4 border-beige border-opacity-50 mt-4 xl:mt-0 mb-16 transition ease-out-cubic transform origin-top xl:scale-y-100 xl:max-h-full px-4 xl:px-0",
+          "flex flex-col gap-y-2 xl:flex-row justify-center gap-x-6 w-full relative bg-grey-dark border-y py-4 border-beige border-opacity-50 -mt-8 xl:mt-0 mb-16 transition ease-out-cubic transform origin-top xl:scale-y-100 xl:max-h-full px-4 xl:px-0",
           isNavOpened ? "" : "hidden"
         )}
       >

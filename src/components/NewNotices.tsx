@@ -11,7 +11,7 @@ export default function NewNotices({ notifications }) {
 
   return (
     <>
-      <div className="swiper--notices overflow-hidden relative pb-16">
+      <div className="pb-0 swiper--notices overflow-hidden relative lg:pb-16">
         {SLIDER_BREAKPOINTS.includes(breakpoint) && (
           <Swiper
             modules={[A11y, Pagination, Navigation]}
@@ -50,7 +50,7 @@ export default function NewNotices({ notifications }) {
         )}
       </div>
 
-      <div className="grid grid-cols-2 gap-x-2 lg:hidden">
+      <div className="grid grid-cols-2 gap-x-2 pt-4 lg:hidden">
         {[...notifications].splice(0, 8).map((notification) => (
           <div
             key={notification.notification_id}

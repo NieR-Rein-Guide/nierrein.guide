@@ -269,11 +269,13 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
       <div className="flex flex-col gap-y-8 relative">
         {tierlist.tiers.map((tier) => (
           <div className="tierlist__row" key={tier.tier}>
-            {(RANK_THUMBNAILS[tier.tier] && (
-              <Image src={RANK_THUMBNAILS[tier.tier]} alt={tier.tier} />
-            )) || <h2 className="text-2xl">{tier.tier}</h2>}
+            <div className="mb-4 md:mb-0">
+              {(RANK_THUMBNAILS[tier.tier] && (
+                <Image src={RANK_THUMBNAILS[tier.tier]} alt={tier.tier} />
+              )) || <h2 className="text-2xl">{tier.tier}</h2>}
+            </div>
 
-            <div className="flex flex-wrap justify-center md:justify-start gap-4">
+            <div className="grid grid-cols-3 md:flex md:flex-wrap place-items-center md:justify-start gap-4">
               {tierlist.type === "costumes" && (
                 <>
                   {tier.tiers_items.map((tierItem) => {
@@ -521,7 +523,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
             )}
 
             <img
-              className="py-8 w-full col-span-full opacity-20"
+              className="pt-8 md:py-8 w-full col-span-full opacity-20"
               src="/border.svg"
               alt=""
             />
