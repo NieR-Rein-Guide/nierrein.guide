@@ -50,6 +50,9 @@ import clamp from "@utils/clamp";
 import DebrisThumbnail from "./DebrisThumbnail";
 import TierLogo from "./tierlist/TierLogo";
 import Link from "next/link";
+import { Event } from "../models/types/index";
+import { EventItem } from "pages/events";
+
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -81,6 +84,7 @@ function CostumeDetails({
         tierslists: tierlists;
       };
     })[];
+    sources: Event[];
   };
   abilities;
   skill;
@@ -582,6 +586,21 @@ function CostumeDetails({
             )}
           </div>
         )}
+
+        <div className="relative">
+          <div className="mt-12">
+            <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+              Costume source{costume.sources.length > 1 ? "s" : ""}
+            </h2>
+            <HR className="my-8" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {costume.sources.map((event) => (
+              <EventItem key={event.id} {...event} />
+            ))}
+          </div>
+        </div>
 
         <div className="relative">
           <div className="mt-12">

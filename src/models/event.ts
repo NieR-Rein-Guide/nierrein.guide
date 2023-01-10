@@ -131,9 +131,33 @@ async function getEvent(slug: string): Promise<Event> {
   return events[0]
 }
 
+async function getEventById(id: number): Promise<Event> {
+  const GET_EVENT = gql`
+    query getSingleEvent($id: Int!) {
+      events (where: {id: $id}) {
+        id
+        title
+        slug
+        content
+        image {
+          formats
+        }
+        start_date
+        end_date
+      }
+    }
+  `
+
+  const { events } = await client.request(GET_EVENT, {
+    id,
+  })
+  return events[0]
+}
+
 export {
   getAllEvents,
   getCurrentEvents,
   getFutureEvents,
-  getEvent
+  getEvent,
+  getEventById
 }

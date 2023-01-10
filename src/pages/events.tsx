@@ -133,105 +133,113 @@ export function EventsListing({
       </div>
 
       <div className={classNames(cardContainerClasses)}>
-        {events.map((event) => {
-          const endDate = new Date(event.end_date);
-          const startDate = new Date(event.start_date);
-          const isEnded = endDate.getTime() <= Date.now();
-          const isNearlyEnded = differenceInDays(endDate, new Date()) <= 7;
-
-          return (
-            <div
-              key={event.slug}
-              className={classNames(
-                cardClasses,
-                "relative bg-grey-dark border transition-transform ease-out-cubic transform hover:-translate-y-1",
-                {
-                  "border-beige border-opacity-20": isEnded,
-                  "border-green-300 border-opacity-60":
-                    !isEnded && !isNearlyEnded,
-                  "border-orange-300 border-opacity-60":
-                    isNearlyEnded && !isEnded,
-                }
-              )}
-            >
-              <div className="flex flex-col justify-between p-6">
-                <h3 className="flex items-baseline gap-x-2 text-2xl text-beige mb-2 md:mb-0">
-                  <span
-                    className={classNames("inline-block rounded-full h-3 w-3", {
-                      "bg-red-300": isEnded,
-                      "bg-green-300": !isEnded && !isNearlyEnded,
-                      "bg-orange-300": isNearlyEnded && !isEnded,
-                    })}
-                  ></span>
-                  <span className="flex-1">{event.title}</span>
-                </h3>
-                <div>
-                  <p className="text-sm flex gap-x-1 items-center">
-                    {!isEnded && (
-                      <>
-                        <MdHourglassTop />{" "}
-                        <span>Ends in {formatDistanceToNow(endDate)}</span>
-                      </>
-                    )}
-                    {isEnded && (
-                      <>
-                        <FaCalendarCheck />
-                        <span>
-                          Ended{" "}
-                          {formatDistanceToNow(endDate, {
-                            addSuffix: true,
-                          })}{" "}
-                        </span>
-                      </>
-                    )}
-                  </p>
-                  <p className="flex gap-x-1 items-center text-sm">
-                    <FiClock /> {differenceInDays(endDate, startDate)} days
-                  </p>
-                  <p className="text-xs">
-                    {startDate.toLocaleDateString()} -{" "}
-                    {endDate.toLocaleDateString()}
-                  </p>
-                </div>
-              </div>
-
-              <Image
-                layout="responsive"
-                src={
-                  event.image?.formats?.large?.url ??
-                  event.image?.formats?.medium?.url ??
-                  event.image?.formats?.small?.url
-                }
-                alt={`${event.title} thumbnail`}
-                height={
-                  event.image?.formats?.large?.height ??
-                  event.image?.formats?.medium?.height ??
-                  event.image?.formats?.small?.height
-                }
-                width={
-                  event.image?.formats?.large?.width ??
-                  event.image?.formats?.medium?.width ??
-                  event.image?.formats?.small?.width
-                }
-              />
-
-              <Link href={`/event/${event.slug}`} passHref={true}>
-                <a title="View event" className="absolute inset-0">
-                  <span className="sr-only">View event</span>
-                </a>
-              </Link>
-
-              {isNearlyEnded && !isEnded && (
-                <span className="inline-block py-1 px-2 bg-orange-300 text-black absolute -top-4 md:-right-4 text-sm">
-                  Ends in {formatDistanceToNow(endDate)}!
-                </span>
-              )}
-            </div>
-          );
-        })}
+        {events.map((event) => (
+          <EventItem {...event} cardClasses={cardClasses} />
+        ))}
 
         {events.length === 0 && <h2 className="text-2xl">No events</h2>}
       </div>
+    </div>
+  );
+}
+
+export function EventItem({
+  title,
+  image,
+  slug,
+  end_date,
+  start_date,
+  cardClasses,
+}: Event & { cardClasses?: string[] }) {
+  const endDate = new Date(end_date);
+  const startDate = new Date(start_date);
+  const isEnded = endDate.getTime() <= Date.now();
+  const isNearlyEnded = differenceInDays(endDate, new Date()) <= 7;
+
+  return (
+    <div
+      key={slug}
+      className={classNames(
+        cardClasses,
+        "relative bg-grey-dark border transition-transform ease-out-cubic transform hover:-translate-y-1",
+        {
+          "border-beige border-opacity-20": isEnded,
+          "border-green-300 border-opacity-60": !isEnded && !isNearlyEnded,
+          "border-orange-300 border-opacity-60": isNearlyEnded && !isEnded,
+        }
+      )}
+    >
+      <div className="flex flex-col justify-between p-6">
+        <h3 className="flex items-baseline gap-x-2 text-2xl text-beige mb-2 md:mb-0">
+          <span
+            className={classNames("inline-block rounded-full h-3 w-3", {
+              "bg-red-300": isEnded,
+              "bg-green-300": !isEnded && !isNearlyEnded,
+              "bg-orange-300": isNearlyEnded && !isEnded,
+            })}
+          ></span>
+          <span className="flex-1">{title}</span>
+        </h3>
+        <div>
+          <p className="text-sm flex gap-x-1 items-center">
+            {!isEnded && (
+              <>
+                <MdHourglassTop />{" "}
+                <span>Ends in {formatDistanceToNow(endDate)}</span>
+              </>
+            )}
+            {isEnded && (
+              <>
+                <FaCalendarCheck />
+                <span>
+                  Ended{" "}
+                  {formatDistanceToNow(endDate, {
+                    addSuffix: true,
+                  })}{" "}
+                </span>
+              </>
+            )}
+          </p>
+          <p className="flex gap-x-1 items-center text-sm">
+            <FiClock /> {differenceInDays(endDate, startDate)} days
+          </p>
+          <p className="text-xs">
+            {startDate.toLocaleDateString()} - {endDate.toLocaleDateString()}
+          </p>
+        </div>
+      </div>
+
+      <Image
+        layout="responsive"
+        src={
+          image?.formats?.large?.url ??
+          image?.formats?.medium?.url ??
+          image?.formats?.small?.url
+        }
+        alt={`${title} thumbnail`}
+        height={
+          image?.formats?.large?.height ??
+          image?.formats?.medium?.height ??
+          image?.formats?.small?.height
+        }
+        width={
+          image?.formats?.large?.width ??
+          image?.formats?.medium?.width ??
+          image?.formats?.small?.width
+        }
+      />
+
+      <Link href={`/event/${slug}`} passHref={true}>
+        <a title="View event" className="absolute inset-0">
+          <span className="sr-only">View event</span>
+        </a>
+      </Link>
+
+      {isNearlyEnded && !isEnded && (
+        <span className="inline-block py-1 px-2 bg-orange-300 text-black absolute -top-4 md:-right-4 text-sm">
+          Ends in {formatDistanceToNow(endDate)}!
+        </span>
+      )}
     </div>
   );
 }
