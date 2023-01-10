@@ -1,13 +1,6 @@
 import { useSettingsStore } from "@store/settings";
-import classNames from "classnames";
 import { useRouter } from "next/router";
-import {
-  MdFilter,
-  MdFilterAlt,
-  MdOutlineInventory,
-  MdViewComfy,
-  MdViewCompact,
-} from "react-icons/md";
+import { MdFilterAlt, MdViewColumn, MdViewComfy } from "react-icons/md";
 import { toast } from "react-hot-toast";
 
 import loadoutsIcon from "../../public/icons/loadout.png";
@@ -105,7 +98,7 @@ export default function DatabaseNavbar() {
       return;
     }
 
-    if (databaseDisplayType === "grid") {
+    if (databaseDisplayType !== "table") {
       return;
     }
 
@@ -119,7 +112,7 @@ export default function DatabaseNavbar() {
 
   if (SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath)) {
     return (
-      <div className="flex items-center flex-col xl:flex-row justify-between mb-2">
+      <div className="flex items-center flex-col-reverse gap-y-4 sm:flex-row justify-between mb-2">
         <div className="flex gap-x-4">
           <FormGroup>
             <FormControlLabel
@@ -154,10 +147,10 @@ export default function DatabaseNavbar() {
             <MdFilterAlt /> <p className="ml-2">Table</p>
           </ToggleButton>
           <ToggleButton value="grid" aria-label="grid">
-            <MdViewComfy /> <p className="ml-2">Comfy</p>
+            <MdViewColumn /> <p className="ml-2">Comfy</p>
           </ToggleButton>
           <ToggleButton value="compact" aria-label="compact">
-            <MdViewCompact /> <p className="ml-2">Compact</p>
+            <MdViewComfy /> <p className="ml-2">Compact</p>
           </ToggleButton>
         </ToggleButtonGroup>
       </div>

@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
   darkMode: 'media',
@@ -89,6 +91,10 @@ module.exports = {
       fontSize: {
         xxs: '10px',
       }
+    },
+    screens: {
+      'xs': '475px',
+      ...defaultTheme.screens,
     },
   },
   variants: {

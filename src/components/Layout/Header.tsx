@@ -233,8 +233,8 @@ export default function Header(): JSX.Element {
 
       <nav
         className={classNames(
-          "xl:flex flex-col gap-y-2 xl:flex-row justify-center gap-x-6 w-full relative bg-grey-dark border-y py-4 border-beige border-opacity-50 -mt-8 xl:mt-0 mb-16 transition ease-out-cubic transform origin-top xl:scale-y-100 xl:max-h-full px-4 xl:px-0",
-          isNavOpened ? "" : "hidden"
+          "xl:flex flex-col gap-y-3 xl:flex-row justify-center gap-x-6 w-full relative bg-grey-dark border-y py-4 border-beige border-opacity-50 -mt-8 xl:mt-0 mb-16 transition ease-out-cubic transform origin-top xl:scale-y-100 xl:max-h-full px-4 xl:px-0",
+          isNavOpened ? "flex" : "hidden"
         )}
       >
         <div className="grid grid-cols-3 gap-4 xl:hidden">
@@ -253,8 +253,8 @@ export default function Header(): JSX.Element {
                     "transition ease-out-cubic group-hover:opacity-100",
                     router.asPath === item.href ? "opacity-100" : "opacity-50"
                   )}
-                  height={28}
-                  width={28}
+                  height={32}
+                  width={32}
                   placeholder="blur"
                   src={item.icon}
                   alt={`${item.label} icon`}

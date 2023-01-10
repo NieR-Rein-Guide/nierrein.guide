@@ -155,6 +155,19 @@ export default function WeaponsPage({
             isLibrary={order === "library"}
           />
         )}
+
+        {showInventory && ownedWeapons.length === 0 && (
+          <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
+            <img
+              className="inline-block"
+              src="/decorations/fio-confused.png"
+              alt="Fio confused"
+            />
+            <p className="mt-4">
+              Sorry, you have not yet added weapons to your inventory.
+            </p>
+          </div>
+        )}
       </section>
     </Layout>
   );
@@ -583,8 +596,8 @@ export function WeaponsGrid({
       className={classNames(
         "relative grid mt-8",
         isSmall
-          ? "grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4"
-          : "grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8"
+          ? "grid-cols-3 xs:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4"
+          : "grid-cols-2 xs:grid-cols-3 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8"
       )}
     >
       {weapons

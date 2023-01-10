@@ -18,9 +18,11 @@ import NewNotices from "@components/NewNotices";
 import alterWeaponToAddCostume from "@utils/alterWeaponToAddCostume";
 import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
 import { MAMA_INVITE_URL } from "@config/constants";
-import Radio from "@components/form/Radio";
 import { useSettingsStore } from "@store/settings";
 import classNames from "classnames";
+import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { MdViewList } from "react-icons/md";
+import { CiViewTimeline } from "react-icons/ci";
 const EventsTimeline = dynamic(() => import("../components/EventsTimeline"), {
   ssr: false,
 });
@@ -91,7 +93,7 @@ export default function Home({
         <div className="container">
           <div
             className={classNames(
-              "hidden lg:flex justify-between",
+              "hidden lg:flex items-center justify-between",
               eventsDisplayType === "timeline" ? "mb-4" : ""
             )}
           >
@@ -99,22 +101,20 @@ export default function Home({
               <a className="btn">See all events</a>
             </Link>
 
-            <div className="flex gap-x-4 mb-6">
-              <Radio
-                name="Listing"
-                value="listing"
-                isChecked={eventsDisplayType === "listing"}
-                setState={setEventsDisplayType}
-                labelClassname="inline-block text-center md:w-24"
-              />
-              <Radio
-                name="Timeline"
-                value="timeline"
-                isChecked={eventsDisplayType === "timeline"}
-                setState={setEventsDisplayType}
-                labelClassname="inline-block text-center md:w-24"
-              />
-            </div>
+            <ToggleButtonGroup
+              className="mb-6"
+              value={eventsDisplayType}
+              exclusive
+              onChange={(e, newValue) => setEventsDisplayType(newValue)}
+              aria-label="View"
+            >
+              <ToggleButton value="listing" aria-label="listing">
+                <MdViewList /> <p className="ml-2">Listing</p>
+              </ToggleButton>
+              <ToggleButton value="timeline" aria-label="timeline">
+                <CiViewTimeline /> <p className="ml-2">Timeline</p>
+              </ToggleButton>
+            </ToggleButtonGroup>
           </div>
           <EventsTimeline items={events} />
         </div>

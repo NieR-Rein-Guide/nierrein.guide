@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   character,
   costume,
@@ -18,7 +18,6 @@ import RARITY from "@utils/rarity";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
 import MaterialTable from "@material-table/core";
-import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
 import { useSettingsStore } from "../../store/settings";
@@ -81,6 +80,7 @@ export default function CharactersPage({
     (state) => state.showUnreleasedContent
   );
   const showInventory = useSettingsStore((state) => state.showInventory);
+  const setShowInventory = useSettingsStore((state) => state.setShowInventory);
   const order = useSettingsStore((state) => state.order);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
 
@@ -115,7 +115,12 @@ export default function CharactersPage({
         cover="https://nierrein.guide/cover-characters.jpg"
       />
 
-      <section className="mx-auto p-6">
+      <section
+        className={classNames(
+          "mx-auto p-6",
+          displayType !== "table" ? "w-full" : ""
+        )}
+      >
         <DatabaseNavbar />
 
         {displayType === "table" && (
@@ -136,6 +141,19 @@ export default function CharactersPage({
             isSmall={displayType === "compact"}
             isLibrary={order === "library"}
           />
+        )}
+
+        {showInventory && ownedCostumes.length === 0 && (
+          <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
+            <img
+              className="inline-block"
+              src="/decorations/fio-confused.png"
+              alt="Fio confused"
+            />
+            <p className="mt-4">
+              Sorry, you have not yet added costumes to your inventory.
+            </p>
+          </div>
         )}
       </section>
     </Layout>
@@ -516,8 +534,8 @@ export function CostumesGrid({
       className={classNames(
         "grid mt-8",
         isSmall
-          ? "grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4"
-          : "grid-cols-2 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8"
+          ? "grid-cols-3 xs:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4"
+          : "grid-cols-2 xs:grid-cols-3 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8"
       )}
     >
       {costumes
