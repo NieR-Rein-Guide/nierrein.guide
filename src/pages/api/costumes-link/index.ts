@@ -5,6 +5,7 @@ export interface CostumeLink {
   costume_id?: number;
   weapon_id?: number;
   debris_id?: number;
+  events?: string[];
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -27,10 +28,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             costume_id: costume.costume_id,
             weapon_id: costume.weapon_id,
             debris_id: costume.debris_id,
+            events: costume.events.map((id) => Number(id))
           },
           update: {
             weapon_id: costume.weapon_id,
             debris_id: costume.debris_id,
+            events: costume.events.map((id) => Number(id))
           }
         })
       }

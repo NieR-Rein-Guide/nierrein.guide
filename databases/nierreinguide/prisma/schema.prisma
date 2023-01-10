@@ -85,7 +85,8 @@ model notification {
 }
 
 model costumes_link {
-  costume_id Int  @id @default(autoincrement())
+  costume_id Int   @id @default(autoincrement())
   weapon_id  Int?
   debris_id  Int?
+  events     Json?
 }

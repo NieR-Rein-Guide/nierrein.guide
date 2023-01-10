@@ -6,6 +6,7 @@ async function getAllEvents(): Promise<Event[]> {
   const GET_EVENTS = gql`
     {
       events(sort: "start_date:desc") {
+        id
         title
         slug
         image {
@@ -26,6 +27,7 @@ async function getAllEvents(): Promise<Event[]> {
   const GET_EVENTS_2 = gql`
     {
       events(sort: "start_date:desc", start: 100) {
+        id
         title
         slug
         image {

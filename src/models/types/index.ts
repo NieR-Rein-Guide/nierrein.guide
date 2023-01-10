@@ -47,6 +47,7 @@ export type FAQ = {
 }
 
 export type Event = {
+  id: number;
   title: string;
   slug: string;
   content?: string;

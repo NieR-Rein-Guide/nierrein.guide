@@ -4,10 +4,6 @@ import WeaponThumbnail from "@components/WeaponThumbnail";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import DebrisThumbnail from "@components/DebrisThumbnail";
 import prisma from "@libs/prisma";
-import {
-  DEBRIS_RARITY,
-  rarityLookup as debrisRarityLookup,
-} from "pages/database/debris";
 import { FixedSizeList as List } from "react-window";
 import toast from "react-hot-toast";
 import {
@@ -37,6 +33,18 @@ import axios from "axios";
 import produce from "immer";
 import getBaseRarity from "@utils/getBaseRarity";
 import DebrisSelect from "@components/DebrisSelect";
+import { getAllEvents } from "@models/event";
+import {
+  Checkbox,
+  FormControl,
+  InputLabel,
+  ListItemText,
+  MenuItem,
+  OutlinedInput,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
+import { Event } from "@models/types";
 
 interface LoadoutBuilderProps {
   costumes: (costume & {
@@ -61,13 +69,25 @@ interface LoadoutBuilderProps {
   })[];
   debris: debris[];
   links: costumes_link[];
+  events: Event[];
 }
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};
 
 export default function AdminCostumesLink({
   costumes,
   weapons,
   debris,
   links,
+  events,
 }: LoadoutBuilderProps): JSX.Element {
   const [newLinks, setNewLinks] = useState(links);
   const [loading, setLoading] = useState(false);
@@ -176,6 +196,42 @@ export default function AdminCostumesLink({
     console.log(newLinks);
   }
 
+  function updateEvents(
+    costume: costume & {
+      costume_ability_link: (costume_ability_link & {
+        costume_ability: costume_ability;
+      })[];
+      costume_skill_link: (costume_skill_link & {
+        costume_skill: costume_skill;
+      })[];
+      costume_stat: costume_stat[];
+      character: character;
+      emblem: emblem;
+    },
+    events
+  ) {
+    setNewLinks(
+      produce(newLinks, (draft) => {
+        const linkedCostume = draft.find(
+          (link) => link.costume_id === costume.costume_id
+        );
+
+        if (!linkedCostume) {
+          draft.push({
+            costume_id: costume.costume_id,
+            weapon_id: linkedCostume?.weapon_id,
+            debris_id: linkedCostume?.debris_id,
+            events,
+          });
+
+          return;
+        }
+
+        linkedCostume.events = events;
+      })
+    );
+  }
+
   return (
     <Layout>
       <Meta
@@ -203,6 +259,8 @@ export default function AdminCostumesLink({
               (thought) => thought.debris_id === link?.debris_id
             );
 
+            const selectedEvents = link.events;
+
             return (
               <li style={style}>
                 <div className="flex flex-col gap-y-2" key={costume.costume_id}>
@@ -229,7 +287,7 @@ export default function AdminCostumesLink({
                       element={weaponLinked?.attribute}
                     />
                     <DebrisThumbnail {...debrisLinked} />
-                    <WeaponSelect
+                    {/*                     <WeaponSelect
                       defaultValue={weaponLinked}
                       classes="flex-1"
                       weapons={weapons}
@@ -246,7 +304,33 @@ export default function AdminCostumesLink({
                         updateDebris(costume, value);
                       }}
                       label="Add a debris..."
-                    />
+                    /> */}
+                    <FormControl sx={{ m: 1, width: 300 }}>
+                      <InputLabel>Events</InputLabel>
+                      <Select
+                        multiple
+                        value={selectedEvents}
+                        onChange={(e) => {
+                          updateEvents(costume, e.target.value);
+                        }}
+                        input={<OutlinedInput label="Tag" />}
+                        renderValue={(selected) => selected.join(", ")}
+                        MenuProps={MenuProps}
+                      >
+                        {events.map((event) => (
+                          <MenuItem
+                            key={event.id}
+                            title={event.title}
+                            value={event.id}
+                          >
+                            <Checkbox
+                              checked={selectedEvents.includes(event.id)}
+                            />
+                            <ListItemText primary={event.title} />
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
                   </div>
                 </div>
               </li>
@@ -284,6 +368,8 @@ export async function getServerSideProps() {
     (a, b) => -b.weapon_type.localeCompare(a.weapon_type)
   );
 
+  const events = await getAllEvents();
+
   return {
     props: JSON.parse(
       JSON.stringify({
@@ -291,6 +377,7 @@ export async function getServerSideProps() {
         weapons: selectWeapons,
         debris,
         links,
+        events,
       })
     ),
   };
