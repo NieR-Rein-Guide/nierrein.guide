@@ -22,6 +22,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
+import Checkbox from "./form/Checkbox";
 
 const SUPPORTED_MULTIPLE_DISPLAY = ["/characters", "/weapons"];
 
@@ -114,42 +115,43 @@ export default function DatabaseNavbar() {
     return (
       <div className="flex items-center flex-col-reverse gap-y-4 sm:flex-row justify-between mb-2">
         <div className="flex gap-x-4">
-          <FormGroup>
-            <FormControlLabel
-              control={<Switch value={showInventory} />}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                setShowInventory(e.target.checked)
-              }
-              label="Show only inventory"
-            />
-          </FormGroup>
+          <Checkbox
+            label="Only inventory"
+            isChecked={showInventory}
+            setState={(e) => setShowInventory(e.target.checked)}
+          />
 
           {databaseDisplayType !== "table" && (
-            <FormGroup>
-              <FormControlLabel
-                control={<Switch value={order} />}
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  setOrder(e.target.checked ? "library" : "desc")
-                }
-                label="Library view"
-              />
-            </FormGroup>
+            <Checkbox
+              label="Library view"
+              isChecked={order}
+              setState={(e) => setOrder(e.target.checked ? "library" : "desc")}
+            />
           )}
         </div>
 
         <ToggleButtonGroup
+          defaultValue={databaseDisplayType}
           value={databaseDisplayType}
           exclusive
           onChange={(e, newValue) => setDatabaseDisplayType(newValue)}
           aria-label="View"
         >
-          <ToggleButton value="table" aria-label="table">
+          <ToggleButton
+            defaultChecked={databaseDisplayType === "table"}
+            value="table"
+            aria-label="table"
+          >
             <MdFilterAlt /> <p className="ml-2">Table</p>
           </ToggleButton>
           <ToggleButton value="grid" aria-label="grid">
             <MdViewColumn /> <p className="ml-2">Comfy</p>
           </ToggleButton>
-          <ToggleButton value="compact" aria-label="compact">
+          <ToggleButton
+            defaultChecked={databaseDisplayType === "compact"}
+            value="compact"
+            aria-label="compact"
+          >
             <MdViewComfy /> <p className="ml-2">Compact</p>
           </ToggleButton>
         </ToggleButtonGroup>

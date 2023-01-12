@@ -80,7 +80,6 @@ export default function CharactersPage({
     (state) => state.showUnreleasedContent
   );
   const showInventory = useSettingsStore((state) => state.showInventory);
-  const setShowInventory = useSettingsStore((state) => state.setShowInventory);
   const order = useSettingsStore((state) => state.order);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
 
