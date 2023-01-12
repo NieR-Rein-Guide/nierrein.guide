@@ -134,7 +134,7 @@ export function EventsListing({
 
       <div className={classNames(cardContainerClasses)}>
         {events.map((event) => (
-          <EventItem {...event} cardClasses={cardClasses} />
+          <EventItem key={event.id} {...event} cardClasses={cardClasses} />
         ))}
 
         {events.length === 0 && <h2 className="text-2xl">No events</h2>}

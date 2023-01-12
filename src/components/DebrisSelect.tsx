@@ -6,7 +6,7 @@ import DebrisThumbnail from "./DebrisThumbnail";
 
 export default function DebrisSelect({
   debris,
-  onSelect = () => {},
+  onSelect = () => undefined,
   label = "Search debris...",
   classes = "w-full md:w-72",
   defaultValue = null,
