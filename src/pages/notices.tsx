@@ -32,7 +32,7 @@ export default function Events({ notifications }: NoticesProps): JSX.Element {
 export async function getStaticProps() {
   console.log("Revalidating notices data props.");
 
-  const notificationsData = await prisma.dump.notification.findMany({
+  const notificationsData = await prisma.nrg.notification.findMany({
     orderBy: {
       release_time: "desc",
     },
@@ -52,6 +52,6 @@ export async function getStaticProps() {
         notifications,
       })
     ),
-    revalidate: 43200, // 12 hours in seconds (2 updates per day)
+    revalidate: 30, // 12 hours in seconds (2 updates per day)
   };
 }
