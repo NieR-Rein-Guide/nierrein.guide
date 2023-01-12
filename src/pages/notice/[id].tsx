@@ -77,7 +77,7 @@ export default function SingleNotice({
 }
 
 export async function getStaticProps(context) {
-  const notification = await prisma.dump.notification.findFirst({
+  const notification = await prisma.nrg.notification.findFirst({
     where: {
       notification_id: Number(context.params.id),
     },
@@ -93,7 +93,7 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const notifications = await prisma.dump.notification.findMany({
+  const notifications = await prisma.nrg.notification.findMany({
     select: {
       notification_id: true,
     },
