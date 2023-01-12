@@ -20,6 +20,10 @@ const ITEMS = [
     href: "/database/stories/companions",
   },
   {
+    label: "Memoirs",
+    href: "/database/stories/memoirs",
+  },
+  {
     label: "Events/EX (CMS data)",
     href: "/database/stories/content",
   },
