@@ -16,6 +16,10 @@ const ITEMS = [
     href: "/database/stories/weapons",
   },
   {
+    label: "Companions",
+    href: "/database/stories/companions",
+  },
+  {
     label: "Events/EX (CMS data)",
     href: "/database/stories/content",
   },
@@ -68,7 +72,7 @@ export function StoriesNavbar() {
   const router = useRouter();
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 p-4 bg-grey-foreground border border-beige border-opacity-30">
+    <div className="grid grid-cols-1 md:grid-cols-4 p-4 bg-grey-foreground border border-beige border-opacity-30">
       {ITEMS.map((item) => (
         <Link key={item.label} href={item.href}>
           <a
