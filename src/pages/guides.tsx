@@ -5,6 +5,7 @@ import { getAllGuides } from "@models/guide";
 import { Guide } from "@models/types";
 import Link from "next/link";
 import Image from "next/image";
+import { RECOMMENDED_YOUTUBE_CHANNELS } from "@config/constants";
 
 interface GuidesProps {
   guides: Guide[];
@@ -30,6 +31,43 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
         </a>
       </Link>
 
+      <section className="mb-24">
+        <h2 className="overlap">Recommended YouTube channels</h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          {RECOMMENDED_YOUTUBE_CHANNELS.map((channel) => (
+            <div
+              className="relative p-4 bg-grey-dark border border-beige border-opacity-30 transition hover:border-opacity-80"
+              key={channel.name}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <img
+                  className="h-16 w-16 rounded-full"
+                  src={channel.avatarUrl}
+                  alt={channel.name}
+                />
+                <h3 className="text-2xl">{channel.name}</h3>
+              </div>
+              <div className="flex gap-2">
+                {channel.tags.map((tag, index) => (
+                  <span
+                    key={index}
+                    className="text-xs bg-brown rounded-2xl py-1 px-2"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <a
+                className="absolute inset-0"
+                title={`Visit ${channel.name} channel`}
+                href={channel.url}
+              ></a>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <section>
         <h2 className="overlap">Guides</h2>
 
@@ -45,12 +83,6 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
               image={guide?.thumbnail?.formats}
             />
           ))}
-        </div>
-
-        <div className="flex justify-center mt-6">
-          <Link href="/guides" passHref={true}>
-            <a className="btn">Show More</a>
-          </Link>
         </div>
       </section>
     </Layout>

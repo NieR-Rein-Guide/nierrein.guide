@@ -2,7 +2,6 @@ import homeIcon from "../../public/icons/home.png";
 import guidesIcon from "../../public/icons/guides.png";
 import loadoutsIcon from "../../public/icons/loadout.png";
 import tierlistIcon from "../../public/icons/tierlist.png";
-import charactersIcon from "../../public/icons/characters.png";
 import databaseIcon from "../../public/icons/database.png";
 import { RiRedditFill, RiGithubFill, RiTwitterFill } from "react-icons/ri";
 import { FaDiscord } from "react-icons/fa";
@@ -302,6 +301,45 @@ export const SOCIALS: Social[] = [
     label: "Official Subreddit Discord",
     href: "https://www.discord.gg/nier",
     icon: <FaDiscord size="32" />,
+  },
+];
+
+/**
+ * Recommended YouTube channels
+ */
+
+interface YouTubeChannel {
+  name: string;
+  url: string;
+  tags: string[];
+  avatarUrl: string;
+  note?: string;
+}
+
+export const RECOMMENDED_YOUTUBE_CHANNELS: YouTubeChannel[] = [
+  {
+    name: "gottem11111",
+    url: "https://www.youtube.com/@MrGottem11111",
+    tags: ["Subjugation", "Reviews", "Recap"],
+    avatarUrl: "/images/channels/gottem1111.jpg",
+  },
+  {
+    name: "Yung Geesus",
+    url: "https://www.youtube.com/@YungGeesus",
+    tags: ["Subjugation", "Reviews"],
+    avatarUrl: "/images/channels/yunggeesus.jpg",
+  },
+  {
+    name: "Farplane",
+    url: "https://www.youtube.com/@farplanegaming",
+    tags: ["Arena", "Reviews"],
+    avatarUrl: "/images/channels/farplane.jpg",
+  },
+  {
+    name: "JpBear",
+    url: "https://www.youtube.com/@jpbearjpbear4510",
+    tags: ["Subjugation", "Not updated"],
+    avatarUrl: "/images/channels/jpbear.jpg",
   },
 ];
 
