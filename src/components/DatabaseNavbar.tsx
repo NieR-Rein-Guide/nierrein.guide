@@ -124,8 +124,8 @@ export default function DatabaseNavbar() {
           {databaseDisplayType !== "table" && (
             <Checkbox
               label="Library view"
-              isChecked={order}
-              setState={(e) => setOrder(e.target.checked ? "library" : "desc")}
+              isChecked={order === "library"}
+              setState={(e) => setOrder(order === "desc" ? "library" : "desc")}
             />
           )}
         </div>
