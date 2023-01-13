@@ -320,7 +320,7 @@ export const RECOMMENDED_YOUTUBE_CHANNELS: YouTubeChannel[] = [
   {
     name: "gottem11111",
     url: "https://www.youtube.com/@MrGottem11111",
-    tags: ["Subjugation", "Reviews", "Recap"],
+    tags: ["Subjugation", "Reviews", "Recap", "Guides"],
     avatarUrl: "/images/channels/gottem1111.jpg",
   },
   {
@@ -332,7 +332,7 @@ export const RECOMMENDED_YOUTUBE_CHANNELS: YouTubeChannel[] = [
   {
     name: "Farplane",
     url: "https://www.youtube.com/@farplanegaming",
-    tags: ["Arena", "Reviews"],
+    tags: ["Arena", "Reviews", "Stream"],
     avatarUrl: "/images/channels/farplane.jpg",
   },
   {
