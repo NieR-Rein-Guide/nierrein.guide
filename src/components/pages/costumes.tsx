@@ -22,6 +22,7 @@ import weaponsIcons from "@utils/weaponsIcons";
 import Star from "@components/decorations/Star";
 import { useSettingsStore } from "../../store/settings";
 import { useInventoryStore } from "../../store/inventory";
+import { usePanelStore } from "../../store/panels";
 import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
 import Checkbox from "@components/form/Checkbox";
@@ -33,6 +34,8 @@ import Stat from "@components/Stat";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
 import skillGaugeColors from "@utils/skillGaugeColors";
+import { FiPlusCircle } from "react-icons/fi";
+import { AiOutlinePushpin } from "react-icons/ai";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -122,6 +125,19 @@ export default function CharactersPage({
       >
         <DatabaseNavbar />
 
+        {showInventory && ownedCostumes.length === 0 && (
+          <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
+            <img
+              className="inline-block"
+              src="/decorations/fio-confused.png"
+              alt="Fio confused"
+            />
+            <p className="mt-4">
+              Sorry, you have not yet added costumes to your inventory.
+            </p>
+          </div>
+        )}
+
         {displayType === "table" && (
           <CostumesTable
             costumes={showInventory ? inventoryCostumes : costumes}
@@ -140,19 +156,6 @@ export default function CharactersPage({
             isSmall={displayType === "compact"}
             isLibrary={order === "library"}
           />
-        )}
-
-        {showInventory && ownedCostumes.length === 0 && (
-          <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
-            <img
-              className="inline-block"
-              src="/decorations/fio-confused.png"
-              alt="Fio confused"
-            />
-            <p className="mt-4">
-              Sorry, you have not yet added costumes to your inventory.
-            </p>
-          </div>
         )}
       </section>
     </Layout>
@@ -185,6 +188,7 @@ export function CostumesTable({
   title?: string;
 }) {
   const [ownedCostumes, setOwnedCostumes] = useState<number[]>([]);
+  const addCostumePanel = usePanelStore((state) => state.addCostume);
   const localCostumes = useInventoryStore((state) => state.costumes);
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
 
@@ -206,45 +210,55 @@ export function CostumesTable({
           type: "string",
           filterPlaceholder: "Search title or character...",
           render: (costume) => (
-            <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
-              <CostumeThumbnail
-                src={`${CDN_URL}${costume.image_path_base}battle.png`}
-                alt={`${costume.title} thumbnail`}
-                rarity={RARITY[costume.rarity]}
-                weaponType={costume.weapon_type}
-                isDark={costume.is_ex_costume}
-              />
-              <span className="inline-block pr-12 line-clamp-2">
-                {costume.is_ex_costume && (
-                  <span className="text-rarity-4">EX </span>
-                )}
-                {costume.title}
-              </span>
+            <div className="flex items-center gap-x-2">
+              <button
+                onClick={() => addCostumePanel(costume.costume_id)}
+                className="flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 z-40"
+              >
+                <span className="text-xs">PIN</span>
+                <AiOutlinePushpin />
+              </button>
 
-              {!onRowClick && (
-                <Link
-                  href={`/characters/${costume.character.slug}/${costume.slug}`}
-                  passHref
-                  scroll={true}
-                >
-                  <a className="absolute inset-0 z-10">
-                    <span className="sr-only">
-                      See more about {costume.title}
-                    </span>
-                  </a>
-                </Link>
-              )}
-              {costume.weapon && (
-                <div className="absolute top-1/2 transform -translate-y-1/2 right-2 z-10">
-                  <WeaponThumbnail
-                    href={`/weapons/${costume?.weapon.slug}`}
-                    rarity={getBaseRarity(costume?.weapon)}
-                    alt={costume?.weapon.name}
-                    image_path={costume?.weapon.image_path}
-                    sizeClasses="w-10 h-10"
-                  />
-                </div>
-              )}
+              <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
+                <CostumeThumbnail
+                  src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                  alt={`${costume.title} thumbnail`}
+                  rarity={RARITY[costume.rarity]}
+                  weaponType={costume.weapon_type}
+                  isDark={costume.is_ex_costume}
+                />
+                <span className="inline-block pr-12 line-clamp-2">
+                  {costume.is_ex_costume && (
+                    <span className="text-rarity-4">EX </span>
+                  )}
+                  {costume.title}
+                </span>
+
+                {!onRowClick && (
+                  <Link
+                    href={`/characters/${costume.character.slug}/${costume.slug}`}
+                    passHref
+                    scroll={true}
+                  >
+                    <a className="absolute inset-0 z-10">
+                      <span className="sr-only">
+                        See more about {costume.title}
+                      </span>
+                    </a>
+                  </Link>
+                )}
+                {costume.weapon && (
+                  <div className="absolute top-1/2 transform -translate-y-1/2 right-2 z-10">
+                    <WeaponThumbnail
+                      href={`/weapons/${costume?.weapon.slug}`}
+                      rarity={getBaseRarity(costume?.weapon)}
+                      alt={costume?.weapon.name}
+                      image_path={costume?.weapon.image_path}
+                      sizeClasses="w-10 h-10"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           ),
           customFilterAndSearch: (term, costume) => {
@@ -525,6 +539,7 @@ export function CostumesGrid({
   onRowClick?;
   isSmall?: boolean;
 }) {
+  const addCostumePanel = usePanelStore((state) => state.addCostume);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
 
@@ -554,19 +569,31 @@ export function CostumesGrid({
             return (
               <div
                 className={classNames(
-                  "relative",
+                  "group relative",
                   isLibrary && !ownedCostumes.includes(cost.costume_id)
                     ? "opacity-50"
                     : ""
                 )}
                 key={cost.costume_id}
               >
-                <p className="text-sm text-center line-clamp-1 mb-1">
-                  {cost.is_ex_costume && (
-                    <span className="text-rarity-4">EX </span>
-                  )}
-                  {cost.title}
-                </p>
+                <div className="relative flex flex-col items-center justify-center gap-y-2 font-mono mb-2">
+                  <p className="text-center text-sm mb-0 leading-none">
+                    {cost.is_ex_costume && (
+                      <span className="text-rarity-4">EX </span>
+                    )}
+                    {cost.character.name}
+                  </p>
+                  <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0">
+                    {cost.title}
+                  </span>
+                  <button
+                    onClick={() => addCostumePanel(cost.costume_id)}
+                    className="absolute bottom-0 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2"
+                  >
+                    <AiOutlinePushpin />
+                    <span className="text-xs">PIN</span>
+                  </button>
+                </div>
                 <CostumeThumbnail
                   src={`${CDN_URL}${cost.image_path_base}portrait.png`}
                   alt={cost.title}
@@ -606,19 +633,13 @@ export function CostumesGrid({
           return (
             <div
               className={classNames(
-                "flex flex-col justify-center items-center relative",
+                "group flex flex-col items-center gap-y-2 relative font-mono",
                 isLibrary && !ownedCostumes.includes(cost.costume_id)
                   ? "opacity-50"
                   : ""
               )}
               key={cost.costume_id}
             >
-              <p className="text-xs text-center line-clamp-1 mb-1">
-                {cost.is_ex_costume && (
-                  <span className="text-rarity-4">EX </span>
-                )}
-                {cost.title}
-              </p>
               <CostumeThumbnail
                 href={`/characters/${cost?.character.slug}/${cost?.slug}`}
                 src={`${CDN_URL}${cost?.image_path_base}battle.png`}
@@ -627,6 +648,22 @@ export function CostumesGrid({
                 weaponType={cost?.weapon_type}
                 isDark={cost?.is_ex_costume}
               />
+              <p className="text-center text-sm mb-0 leading-none">
+                {cost.is_ex_costume && (
+                  <span className="text-rarity-4">EX </span>
+                )}
+                {cost.character.name}
+              </p>
+              <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0">
+                {cost.title}
+              </span>
+              <button
+                onClick={() => addCostumePanel(cost.costume_id)}
+                className="absolute bottom-0 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2"
+              >
+                <AiOutlinePushpin />
+                <span className="text-xs">PIN</span>
+              </button>
             </div>
           );
         })}

@@ -15,6 +15,7 @@ interface AbilityProps {
   href?: string;
   fullLink?: boolean;
   awakeningLevel?: number;
+  isSmall?: boolean;
 }
 
 export default function Ability({
@@ -27,13 +28,15 @@ export default function Ability({
   href,
   fullLink,
   awakeningLevel,
+  isSmall,
 }: AbilityProps): JSX.Element {
   return (
     <div
       className={classNames(
-        "flex gap-4 bg-grey-dark p-4 relative bordered",
+        "flex gap-4 bg-grey-dark relative",
         className,
-        fullLink ? "transform ease-out-cubic transition hover:scale-105" : ""
+        fullLink ? "transform ease-out-cubic transition hover:scale-105" : "",
+        isSmall ? "" : "p-4 bordered"
       )}
     >
       {awakeningLevel && (
@@ -51,7 +54,12 @@ export default function Ability({
         </span>
       )}
       {level && (
-        <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
+        <span
+          className={classNames(
+            "absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1",
+            isSmall ? "hidden" : ""
+          )}
+        >
           Lv. {level}/{maxLevel}
         </span>
       )}
@@ -62,8 +70,16 @@ export default function Ability({
             href ? "cursor-pointer hover:scale-105 transition transform" : ""
           )}
         >
-          <SVG src="/decorations/frame-ability.svg" className="h-16 w-16" />
-          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+          <SVG
+            src="/decorations/frame-ability.svg"
+            className={classNames(isSmall ? "h-12 w-12" : "h-16 w-16")}
+          />
+          <div
+            className={classNames(
+              "absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center",
+              isSmall ? "h-12 w-12 p-2" : "h-16 w-16"
+            )}
+          >
             <img alt="" src={`${CDN_URL}${imagePathBase}standard.png`} />
           </div>
 
@@ -76,8 +92,20 @@ export default function Ability({
           )}
         </div>
         <div className="flex flex-col items-start">
-          <strong className="font-display text-2xl text-beige">{name}</strong>
-          <p className="text-beige-text text-left">
+          <strong
+            className={classNames(
+              "font-display text-beige",
+              isSmall ? "text-xl leading-none" : "text-2xl"
+            )}
+          >
+            {name}
+          </strong>
+          <p
+            className={classNames(
+              "text-beige-text text-left",
+              isSmall ? "text-xs" : ""
+            )}
+          >
             <span>{description}</span>
           </p>
         </div>

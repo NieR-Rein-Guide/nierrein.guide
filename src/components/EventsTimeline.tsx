@@ -30,7 +30,7 @@ export default function EventsTimeline({
   items: Event[];
   hasBtn?: boolean;
 }) {
-  const isMobile = useMedia("(max-width: 1279px)");
+  const isMobile = useMedia("(max-width: 1279px)", true);
   const eventsDisplayType = useSettingsStore(
     (state) => state.eventsDisplayType
   );

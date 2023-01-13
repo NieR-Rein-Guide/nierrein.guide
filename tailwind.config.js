@@ -35,6 +35,7 @@ module.exports = {
       },
       zIndex: {
         menu: "9999",
+        panels: "999",
         "-1": "-1",
       },
       gridTemplateColumns: {

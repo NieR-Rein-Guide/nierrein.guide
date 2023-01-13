@@ -400,3 +400,8 @@ canvas {
     background: theme('colors.black.DEFAULT') !important;
   }
 }
+
+.costume-panel {
+  scrollbar-color: theme('colors.beige.DEFAULT') theme('colors.grey.dark');
+  scrollbar-width: thin;
+}

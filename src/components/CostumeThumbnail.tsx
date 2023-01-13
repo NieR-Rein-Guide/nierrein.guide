@@ -4,6 +4,8 @@ import classNames from "classnames";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
 import Link from "next/link";
+import { usePanelStore } from "@store/panels";
+import { AiOutlinePushpin } from "react-icons/ai";
 
 type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
 

@@ -15,7 +15,7 @@ export default function NewWeapons({ weapons }: { weapons: weapon[] }) {
     (state) => state.showUnreleasedContent
   );
 
-  const isMobile = useMedia("(max-width: 1279px)");
+  const isMobile = useMedia("(max-width: 1279px)", true);
 
   return (
     <div className="container py-16">

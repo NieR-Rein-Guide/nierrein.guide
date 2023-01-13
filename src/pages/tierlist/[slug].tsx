@@ -34,6 +34,8 @@ import {
 import { statsColors } from "@utils/statsColors";
 import classNames from "classnames";
 import Lines from "@components/decorations/Lines";
+import { AiOutlinePushpin } from "react-icons/ai";
+import { usePanelStore } from "@store/panels";
 
 /* const COSTUME_STAT_PROPERTIES = [
   "atk",
@@ -102,6 +104,8 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
   const createdTierlist = useCreatedTierlists((state) => state.tierlists);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const ownedWeapons = useInventoryStore((state) => state.weapons);
+
+  const addCostumePanel = usePanelStore((state) => state.addCostume);
 
   const [hasReadMore, setHasReadMore] = useState(false);
   const [showNotesInline, setShowNotesInline] = useState(false);
@@ -292,7 +296,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                       >
                         <div
                           className={classNames(
-                            "relative flex flex-col items-center gap-y-2 w-28 font-mono filter transition ease-out-cubic",
+                            "group relative flex flex-col items-center gap-y-2 w-28 font-mono filter transition ease-out-cubic",
                             showOnlyInventory &&
                               !ownedCostumes.includes(tierItem.item_id)
                               ? "brightness-50"
@@ -329,9 +333,16 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                             )}
                             {costume.character.name}
                           </p>
-                          <span className="text-xs text-center text-beige line-clamp-1 leading-none">
+                          <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0">
                             {costume.title}
                           </span>
+                          <button
+                            onClick={() => addCostumePanel(costume.costume_id)}
+                            className="absolute bottom-0 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2"
+                          >
+                            <AiOutlinePushpin />
+                            <span className="text-xs">PIN</span>
+                          </button>
                           {isStatsEnabled && (
                             <div className="w-28 my-2 text-center bg-grey-dark rounded-xl px-2 py-4">
                               {shownStats.map((stat) => (

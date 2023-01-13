@@ -92,7 +92,7 @@ export default function DatabaseNavbar() {
   const order = useSettingsStore((state) => state.order);
   const setOrder = useSettingsStore((state) => state.setOrder);
 
-  const isMobile = useMedia("(max-width: 1023px)");
+  const isMobile = useMedia("(max-width: 1023px)", true);
 
   useEffect(() => {
     if (!SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath)) {

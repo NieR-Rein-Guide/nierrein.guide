@@ -1,5 +1,8 @@
 import prisma from "@libs/prisma";
+import alterCostumeToAddDebris from "@utils/alterCostumeToAddDebris";
+import alterCostumeToAddSources from "@utils/alterCostumeToAddSources";
 import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
+import { env } from "env";
 
 export async function getAllCostumes({
   orderBy = {
@@ -55,6 +58,7 @@ export async function getAllCostumes({
         },
       },
     },
+    take: env.NODE_ENV === 'development' ? 5 : undefined,
   });
 
   for (const costume of costumes) {
@@ -94,4 +98,61 @@ export async function getAllCostumes({
     abilitiesLookup,
     charactersLookup,
   };
+}
+
+export async function getCostume(costumeId: number) {
+  const costume = await prisma.dump.costume.findUnique({
+    where: {
+      costume_id: costumeId
+    },
+    include: {
+      character: true,
+      costume_ability_link: {
+        where: {
+          OR: [
+            {
+              ability_level: 4,
+              AND: {
+                ability_slot: {
+                  lte: 2
+                }
+              }
+            },
+            {
+              ability_level: 1,
+              AND: {
+                ability_slot: {
+                  equals: 3,
+                }
+              }
+            }
+          ]
+        },
+        orderBy: {
+          ability_slot: "asc",
+        },
+        include: {
+          costume_ability: true,
+        },
+      },
+      costume_skill_link: {
+        where: {
+          skill_level: 15,
+        },
+        include: {
+          costume_skill: true,
+        },
+      },
+      costume_stat: {
+        take: 1,
+        orderBy: {
+          level: "desc",
+        },
+      },
+    },
+  });
+
+  return {
+    costume,
+  }
 }
