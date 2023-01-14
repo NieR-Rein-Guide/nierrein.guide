@@ -338,7 +338,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                           </span>
                           <button
                             onClick={() => addCostumePanel(costume.costume_id)}
-                            className="absolute bottom-0 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2"
+                            className="absolute bottom-0 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 umami--click--pin-costume-button"
                           >
                             <AiOutlinePushpin />
                             <span className="text-xs">PIN</span>
