@@ -32,7 +32,7 @@ class MyDocument extends Document {
             ></script>
           )}
           {/* Comment system */}
-          <script async src="/scripts/cusdis.js"></script>
+          <script defer src="https://commento.keziahmoselle.fr/js/commento.js"></script>
         </Head>
         <body>
           <Main />

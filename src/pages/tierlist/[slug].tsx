@@ -553,38 +553,9 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
           <h2 className="text-2xl">Comments</h2>
         </Lines>
 
-        <CusdisComments
-          pageId={tierlist.tierlist_id}
-          pageTitle={tierlist.title}
-        />
+        <div id="commento"></div>
       </div>
     </>
-  );
-}
-
-function CusdisComments({ pageId, pageTitle }) {
-  const threadEl = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (threadEl.current) {
-      const iframe = window.CUSDIS?.renderTo(threadEl.current);
-
-      if (iframe) {
-        threadEl.current.append(iframe);
-        console.log(iframe);
-      }
-    }
-  }, [threadEl]);
-
-  return (
-    <div
-      ref={threadEl}
-      data-host="https://cusdis.com"
-      data-app-id="0a1806c7-9423-4b59-b034-071c617018ce"
-      data-page-id={pageId}
-      data-page-url="{{ PAGE_URL }}"
-      data-page-title={pageTitle}
-    />
   );
 }
 
