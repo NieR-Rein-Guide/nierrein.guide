@@ -4,8 +4,9 @@ import classNames from "classnames";
 import Image from "next/image";
 import SVG from "react-inlinesvg";
 import Link from "next/link";
-import { usePanelStore } from "@store/panels";
-import { AiOutlinePushpin } from "react-icons/ai";
+import WeaponThumbnail from "./WeaponThumbnail";
+import getBaseRarity from "@utils/getBaseRarity";
+import { weapon } from "@prisma/client";
 
 type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
 
@@ -22,6 +23,7 @@ interface CostumeThumbnailProps {
   children?: JSX.Element;
   href?: string;
   sizeClasses?: string;
+  weapon?: weapon;
 }
 
 export default function CostumeThumbnail({
@@ -37,6 +39,7 @@ export default function CostumeThumbnail({
   children,
   href,
   sizeClasses = "min-h-20 min-w-20 h-20 w-20",
+  weapon,
 }: CostumeThumbnailProps): JSX.Element {
   const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   const emptyBackground = isLarge
@@ -78,6 +81,21 @@ export default function CostumeThumbnail({
             )}
           </div>
         </div>
+
+        {weapon && (
+          <div className="absolute bottom-2 right-2 z-20">
+            <WeaponThumbnail
+              href={`/weapons/${weapon.slug}`}
+              rarity={getBaseRarity(weapon)}
+              alt={weapon.name}
+              image_path={weapon.image_path}
+              element={weapon.attribute}
+              isDark={weapon.is_ex_weapon}
+              type={weapon.weapon_type}
+              sizeClasses="h-16 w-16"
+            />
+          </div>
+        )}
 
         <div
           className={classNames("absolute inset-0 transform")}

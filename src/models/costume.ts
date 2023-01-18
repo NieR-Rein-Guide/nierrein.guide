@@ -58,7 +58,6 @@ export async function getAllCostumes({
         },
       },
     },
-    take: env.NODE_ENV === 'development' ? 5 : undefined,
   });
 
   for (const costume of costumes) {

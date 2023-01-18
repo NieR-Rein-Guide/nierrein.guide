@@ -106,7 +106,12 @@ export default function WeaponsPage({
   }, [databaseDisplayType]);
 
   return (
-    <Layout hasContainer={false} className="overflow-x-auto">
+    <Layout
+      hasContainer={databaseDisplayType === "table" ? false : true}
+      className={classNames(
+        databaseDisplayType === "table" ? "overflow-x-auto" : ""
+      )}
+    >
       <Meta
         title="Weapons"
         description="All the weapons of NieR Re[in]carnation"
@@ -632,12 +637,14 @@ export function WeaponsGrid({
                 )}
                 key={weap.weapon_id}
               >
-                <p className="text-sm text-center line-clamp-1 mb-1">
-                  {weap.is_ex_weapon && (
-                    <span className="text-rarity-4">EX </span>
-                  )}
-                  {weap.name}
-                </p>
+                <div className="relative flex flex-col items-center justify-center gap-y-2 font-mono mb-2">
+                  <p className="text-center text-sm mb-0 leading-none">
+                    {weap.is_ex_weapon && (
+                      <span className="text-rarity-4">EX </span>
+                    )}
+                    {weap.name}
+                  </p>
+                </div>
                 <div>
                   <div className="group relative">
                     <WeaponThumbnail
@@ -649,6 +656,7 @@ export function WeaponsGrid({
                       isLarge
                       isDark={weap.is_ex_weapon}
                       imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
+                      costume={weap.costume}
                     />
                     <Link href={`/weapons/${weap.slug}`} passHref>
                       <a className="absolute inset-0 z-10">
@@ -677,19 +685,21 @@ export function WeaponsGrid({
           return (
             <div
               className={classNames(
-                "relative flex flex-col items-center",
+                "relative flex flex-col justify-between items-center",
                 isLibrary && !ownedWeapons.includes(weap.weapon_id)
                   ? "opacity-50"
                   : ""
               )}
               key={weap.weapon_id}
             >
-              <p className="text-xs text-center line-clamp-1 mb-1">
-                {weap.is_ex_weapon && (
-                  <span className="text-rarity-4">EX </span>
-                )}
-                {weap.name}
-              </p>
+              <div className="relative flex flex-col items-center justify-center gap-y-2 font-mono mb-2">
+                <p className="text-center text-xs mb-0 leading-none line-clamp-2">
+                  {weap.is_ex_weapon && (
+                    <span className="text-rarity-4">EX </span>
+                  )}
+                  {weap.name}
+                </p>
+              </div>
               <WeaponThumbnail
                 href={`/weapons/${weap.slug}`}
                 rarity={getBaseRarity(weap)}

@@ -54,6 +54,8 @@ export default function WeaponArtwork({ weapon }: { weapon: Weapon }) {
             src={`${CDN_URL}${weapon.costume.image_path_base}battle.png`}
             alt={`${weapon.costume.title} thumbnail`}
             rarity={RARITY[weapon.costume.rarity]}
+            isDark={weapon.costume.is_ex_costume}
+            weaponType={weapon.costume.weapon_type}
           />
         </div>
       )}

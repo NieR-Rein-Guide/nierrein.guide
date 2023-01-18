@@ -86,6 +86,9 @@ export default function CostumeArtwork({
             rarity={getBaseRarity(costume?.weapon)}
             alt={costume?.weapon.name}
             image_path={costume?.weapon.image_path}
+            element={costume?.weapon?.attribute}
+            isDark={costume?.weapon?.is_ex_weapon}
+            type={costume?.weapon?.weapon_type}
           />
         </div>
       )}

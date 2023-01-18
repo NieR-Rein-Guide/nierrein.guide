@@ -67,7 +67,7 @@ export default function Home({
     <Layout hasContainer={false}>
       <Meta />
 
-      <div className="grid md:grid-cols-2 mb-16 md:mb-0 px-8 gap-8">
+      <div className="grid md:grid-cols-2 mb-16 md:mb-8 px-8 gap-8">
         <div
           className="strawpoll-embed flex flex-col max-w-xl w-full h-96 place-self-end"
           id="strawpoll_NoZr3q46Gy3"

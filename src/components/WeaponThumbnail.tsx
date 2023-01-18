@@ -7,6 +7,8 @@ import weaponsIcons from "@utils/weaponsIcons";
 import SVG from "react-inlinesvg";
 import { CDN_URL } from "@config/constants";
 import Link from "next/link";
+import { costume } from "@prisma/client";
+import CostumeThumbnail from "./CostumeThumbnail";
 
 interface WeaponThumbnailProps {
   alt?: string;
@@ -22,6 +24,7 @@ interface WeaponThumbnailProps {
   children?: JSX.Element;
   href?: string;
   sizeClasses?: string;
+  costume?: costume;
 }
 
 export default function WeaponThumbnail({
@@ -38,6 +41,7 @@ export default function WeaponThumbnail({
   children,
   href,
   sizeClasses = "h-20 w-20",
+  costume,
 }: WeaponThumbnailProps): JSX.Element {
   let weaponRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   if (rarity === "LEGEND") {
@@ -80,6 +84,20 @@ export default function WeaponThumbnail({
             )}
           </div>
         </div>
+
+        {costume && (
+          <div className="absolute bottom-2 right-2 z-50">
+            <CostumeThumbnail
+              href={`/characters/${costume.character.slug}/${costume.slug}`}
+              src={`${CDN_URL}${costume.image_path_base}battle.png`}
+              alt={`${costume.title} thumbnail`}
+              rarity={RARITY[costume.rarity]}
+              weaponType={costume.weapon_type}
+              isDark={costume.is_ex_costume}
+              sizeClasses="h-16 w-16"
+            />
+          </div>
+        )}
 
         <div
           className="absolute inset-0 transform"

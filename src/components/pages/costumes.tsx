@@ -36,6 +36,7 @@ import getBaseRarity from "@utils/getBaseRarity";
 import skillGaugeColors from "@utils/skillGaugeColors";
 import { FiPlusCircle } from "react-icons/fi";
 import { AiOutlinePushpin } from "react-icons/ai";
+import SkillThumbnail from "@components/SkillThumbnail";
 
 interface CharactersPageProps {
   costumes: (costume & {
@@ -123,7 +124,9 @@ export default function CharactersPage({
           displayType !== "table" ? "w-full" : ""
         )}
       >
-        <DatabaseNavbar />
+        <DatabaseNavbar>
+          <div></div>
+        </DatabaseNavbar>
 
         {showInventory && ownedCostumes.length === 0 && (
           <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
@@ -187,14 +190,7 @@ export function CostumesTable({
   onRowClick?;
   title?: string;
 }) {
-  const [ownedCostumes, setOwnedCostumes] = useState<number[]>([]);
   const addCostumePanel = usePanelStore((state) => state.addCostume);
-  const localCostumes = useInventoryStore((state) => state.costumes);
-  const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
-
-  useEffect(() => {
-    setOwnedCostumes(localCostumes as number[]);
-  }, [localCostumes]);
 
   return (
     <MaterialTable
@@ -329,6 +325,24 @@ export function CostumesTable({
             costume.costume_stat[0].agi >= Number(term),
           render: (costume) => (
             <Stat type="agi" value={costume.costume_stat[0].agi} />
+          ),
+        },
+        {
+          field: "costume_skill_link[0].costume_skill.name",
+          title: "Character Skill",
+          customFilterAndSearch: (term, costume) => {
+            if (term.length === 0) return true;
+            return term.includes(
+              costume.costume_skill_link[0].costume_skill.description
+            );
+          },
+          cellStyle: {
+            textAlign: "center",
+          },
+          render: (costume) => (
+            <SkillThumbnail
+              skill={costume.costume_skill_link[0].costume_skill}
+            />
           ),
         },
         {
@@ -486,21 +500,6 @@ export function CostumesTable({
           ),
         },
       ]}
-      actions={[
-        (costume) => ({
-          _icon: ownedCostumes.includes(costume.costume_id)
-            ? MdLibraryAddCheck
-            : MdOutlineLibraryAdd,
-          get icon() {
-            return this._icon;
-          },
-          set icon(value) {
-            this._icon = value;
-          },
-          tooltip: "Add/Remove to your inventory",
-          onClick: () => toggleFromInventory(costume.costume_id),
-        }),
-      ]}
       options={{
         search: false,
         actionsColumnIndex: -1,
@@ -583,12 +582,12 @@ export function CostumesGrid({
                     )}
                     {cost.character.name}
                   </p>
-                  <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0">
+                  <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0 -mt-1 pb-2">
                     {cost.title}
                   </span>
                   <button
                     onClick={() => addCostumePanel(cost.costume_id)}
-                    className="absolute bottom-0 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 umami--click--pin-costume-button"
+                    className="absolute bottom-1 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 umami--click--pin-costume-button"
                   >
                     <AiOutlinePushpin />
                     <span className="text-xs">PIN</span>
@@ -603,6 +602,7 @@ export function CostumesGrid({
                   isDark={cost.is_ex_costume}
                   className="group"
                   imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
+                  weapon={cost.weapon}
                 >
                   <Link
                     href={`/characters/${cost.character.slug}/${cost.slug}`}
@@ -654,7 +654,7 @@ export function CostumesGrid({
                 )}
                 {cost.character.name}
               </p>
-              <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0">
+              <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0 -mt-1">
                 {cost.title}
               </span>
               <button
