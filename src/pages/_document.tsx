@@ -33,6 +33,12 @@ class MyDocument extends Document {
           )}
           {/* Comment system */}
           <script async src="/scripts/cusdis.js"></script>
+
+          <script
+            async
+            src="https://cdn.strawpoll.com/dist/widgets.js"
+            charSet="utf-8"
+          ></script>
         </Head>
         <body>
           <Main />

@@ -67,6 +67,42 @@ export default function Home({
     <Layout hasContainer={false}>
       <Meta />
 
+      <div className="grid md:grid-cols-2 mb-16 md:mb-0 px-8 gap-8">
+        <div
+          className="strawpoll-embed flex flex-col max-w-xl w-full h-96 place-self-end"
+          id="strawpoll_NoZr3q46Gy3"
+        >
+          <iframe
+            title="StrawPoll Embed"
+            id="strawpoll_iframe_NoZr3q46Gy3"
+            src="https://strawpoll.com/embed/polls/NoZr3q46Gy3"
+            className="static visible block w-full flex-1"
+            frameBorder="0"
+            allowFullScreen
+            allowTransparency
+          >
+            Loading...
+          </iframe>
+        </div>
+
+        <div
+          className="strawpoll-embed flex flex-col max-w-xl w-full h-96 place-self-start"
+          id="strawpoll_PKgl3675anp"
+        >
+          <iframe
+            title="StrawPoll Embed"
+            id="strawpoll_iframe_PKgl3675anp"
+            src="https://strawpoll.com/embed/polls/PKgl3675anp"
+            className="static visible block w-full flex-1"
+            frameBorder="0"
+            allowFullScreen
+            allowTransparency
+          >
+            Loading...
+          </iframe>
+        </div>
+      </div>
+
       <div className="flex flex-col gap-x-12 gap-y-16 md:gap-y-32">
         <div className="relative bg-grey-dark border-y border-beige border-opacity-50 lg:pt-16 pb-8">
           <div className="container">
