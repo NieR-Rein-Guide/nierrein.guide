@@ -210,7 +210,7 @@ export async function getStaticProps() {
     },
     {
       name: "TBA",
-      series: [17],
+      series: [17, 18],
       image_path: "/images/tba-dungeon.jpg",
     },
   ].map((dungeon) => {
