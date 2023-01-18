@@ -153,7 +153,8 @@ export default function CostumePage({
         <CharacterCostumes
           currentCharacter={currentCharacter}
           costumes={costumes.filter((costume) => {
-            if (showUnreleasedContent) return true;
+            if (showUnreleasedContent || typeof window === "undefined")
+              return true;
             return new Date() > new Date(costume.release_time);
           })}
           setCostume={setCurrentCostume}
