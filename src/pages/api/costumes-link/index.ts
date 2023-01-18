@@ -28,12 +28,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             costume_id: costume.costume_id,
             weapon_id: costume.weapon_id,
             debris_id: costume.debris_id,
-            events: costume.events.map((id) => Number(id))
+            events: costume?.events?.map((id) => Number(id)) ?? []
           },
           update: {
             weapon_id: costume.weapon_id,
             debris_id: costume.debris_id,
-            events: costume.events.map((id) => Number(id))
+            events: costume?.events?.map((id) => Number(id)) ?? []
           }
         })
       }
