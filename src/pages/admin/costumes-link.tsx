@@ -182,7 +182,7 @@ export default function AdminCostumesLink({
         if (!linkedCostume) {
           draft.push({
             costume_id: costume.costume_id,
-            weapon_id: linkedCostume.weapon_id,
+            weapon_id: linkedCostume?.weapon_id,
             debris_id: thought?.debris_id,
           });
 
@@ -259,7 +259,7 @@ export default function AdminCostumesLink({
               (thought) => thought.debris_id === link?.debris_id
             );
 
-            const selectedEvents = link.events;
+            const selectedEvents = link?.events;
 
             return (
               <li style={style}>
@@ -287,7 +287,7 @@ export default function AdminCostumesLink({
                       element={weaponLinked?.attribute}
                     />
                     <DebrisThumbnail {...debrisLinked} />
-                    {/*                     <WeaponSelect
+                    <WeaponSelect
                       defaultValue={weaponLinked}
                       classes="flex-1"
                       weapons={weapons}
@@ -304,33 +304,7 @@ export default function AdminCostumesLink({
                         updateDebris(costume, value);
                       }}
                       label="Add a debris..."
-                    /> */}
-                    <FormControl sx={{ m: 1, width: 300 }}>
-                      <InputLabel>Events</InputLabel>
-                      <Select
-                        multiple
-                        value={selectedEvents}
-                        onChange={(e) => {
-                          updateEvents(costume, e.target.value);
-                        }}
-                        input={<OutlinedInput label="Tag" />}
-                        renderValue={(selected) => selected.join(", ")}
-                        MenuProps={MenuProps}
-                      >
-                        {events.map((event) => (
-                          <MenuItem
-                            key={event.id}
-                            title={event.title}
-                            value={event.id}
-                          >
-                            <Checkbox
-                              checked={selectedEvents.includes(event.id)}
-                            />
-                            <ListItemText primary={event.title} />
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
+                    />{" "}
                   </div>
                 </div>
               </li>
