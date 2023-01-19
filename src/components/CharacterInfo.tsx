@@ -31,6 +31,11 @@ import {
   debris,
   emblem,
   weapon,
+  weapon_ability,
+  weapon_ability_link,
+  weapon_skill,
+  weapon_skill_link,
+  weapon_stat,
 } from "@prisma/client";
 import { Chip, Switch } from "@mui/material";
 import CostumeThumbnail from "./CostumeThumbnail";
@@ -53,6 +58,8 @@ import Link from "next/link";
 import { Event } from "../models/types/index";
 import { EventItem } from "pages/events";
 import StatDisplay from "./StatDisplay";
+import WeaponArtwork from "./WeaponArtwork";
+import Element from "./Element";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -79,7 +86,15 @@ function CostumeDetails({
     character: character;
     emblem: emblem;
     debris: debris | null;
-    weapon: weapon;
+    weapon: weapon & {
+      weapon_stat: weapon_stat[];
+      weapon_ability_link: (weapon_ability_link & {
+        weapon_ability: weapon_ability;
+      })[];
+      weapon_skill_link: (weapon_skill_link & {
+        weapon_skill: weapon_skill;
+      })[];
+    };
     tierlistsItems: (tiers_items & {
       tiers: tiers & {
         tierslists: tierlists;
@@ -448,6 +463,186 @@ function CostumeDetails({
               );
             })}
           </ul>
+        )}
+
+        {/* Costume's weapon */}
+        {costume.weapon && (
+          <div className="grid md:grid-cols-2 gap-x-4">
+            <div className="flex-1">
+              <div className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 h-[600px] xl:h-full w-full">
+                <div className="bordered-lg bg-grey-dark h-full w-full">
+                  <div
+                    className={classNames(
+                      "absolute z-10 inset-3 transition-opacity",
+                      {
+                        "opacity-0 pointer-events-none": !isShowingModel,
+                      }
+                    )}
+                  >
+                    {isShowingModel && (
+                      <ModelWithNoSSR
+                        path={`${CDN_URL}3d/actor/${costume.weapon.asset_id}/mesh/dc_${costume.weapon.asset_id}/dc_${costume.weapon.asset_id}.fbx`}
+                      />
+                    )}
+                  </div>
+
+                  <div
+                    className={classNames(
+                      "relative z-10 h-full w-full transition-opacity",
+                      {
+                        "opacity-0 pointer-events-none": isShowingModel,
+                      }
+                    )}
+                  >
+                    <img
+                      className="absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2"
+                      src={`${CDN_URL}${costume.weapon.image_path}full.png`}
+                      alt={`${costume.weapon.name} thumbnail`}
+                    />
+                  </div>
+                  <div className="absolute inset-0 z-0 pointer-events-none">
+                    <div className="absolute -left-24 top-24 transform -scale-1">
+                      <SVG
+                        src="/decorations/square-right.svg"
+                        className="h-48 filter brightness-30 floating"
+                      />
+                    </div>
+
+                    <SVG
+                      src="/decorations/square-right.svg"
+                      className="h-48 absolute -right-20 -top-16 filter brightness-30 floating"
+                    />
+                    <SVG
+                      src="/decorations/c_rect_inside.svg"
+                      className="absolute -left-64 floating"
+                    />
+                    <SVG
+                      src="/decorations/c_rect_outside.svg"
+                      className="absolute -left-64 floating"
+                    />
+                  </div>
+                </div>
+
+                <div className="hidden md:block absolute top-4 left-24 w-42 h-24 p-1 z-50">
+                  <button
+                    className="btn"
+                    onClick={() => setIsShowingModel(!isShowingModel)}
+                  >
+                    {(isShowingModel && "View Artwork") || "View 3D Model"}
+                  </button>
+                </div>
+
+                <span className="flex absolute bottom-6 right-6">
+                  {Array.from({
+                    length: RARITY[costume.weapon.rarity],
+                  }).map((_, index) => (
+                    <div className="w-8 h-8" key={index}>
+                      <Star rarity={RARITY[costume.weapon.rarity]} />
+                    </div>
+                  ))}
+                </span>
+
+                <div className="absolute left-6 bottom-6 text-xl z-50">
+                  {costume.weapon.name}
+                </div>
+
+                <div className="absolute flex flex-col gap-y-4 top-4 left-4 p-1">
+                  <div className="w-16 h-16">
+                    <Element type={costume.weapon.attribute} />
+                  </div>
+                  <div className="w-16 h-16">
+                    <Image
+                      src={weaponsIcons[costume.weapon.weapon_type]}
+                      alt={costume.weapon.weapon_type}
+                    />
+                  </div>
+
+                  {costume.weapon.is_ex_weapon && (
+                    <SVG src="/icons/weapons/dark.svg" className="h-16 w-16" />
+                  )}
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-x-2 text-xl my-4 md:my-0">
+                <div className="flex gap-x-2 flex-1">
+                  <div className="flex items-center gap-x-2">
+                    <div className="w-8">
+                      <Element type={costume.weapon.attribute} />
+                    </div>
+                    <span className="uppercase px-2 text-black bg-beige">
+                      {costume.weapon.name}
+                    </span>
+                  </div>
+                </div>
+                <span className="text-sm text-beige-text">
+                  Added{" "}
+                  {formatDistanceToNow(new Date(costume.weapon.release_time), {
+                    addSuffix: true,
+                  })}
+                </span>
+              </div>
+
+              <div className="flex justify-center md:justify-start gap-y-2 gap-x-4">
+                <StatDisplay
+                  type="hp"
+                  value={costume.weapon.weapon_stat[0].hp}
+                />
+                <StatDisplay
+                  type="atk"
+                  value={costume.weapon.weapon_stat[0].atk}
+                />
+                <StatDisplay
+                  type="vit"
+                  value={costume.weapon.weapon_stat[0].vit}
+                />
+              </div>
+
+              <Lines
+                className="mb-2 mt-8"
+                containerClass="justify-center"
+                svgClass="w-96 xl:w-42"
+              >
+                <h2 className="text-2xl">Skills</h2>
+              </Lines>
+
+              {costume.weapon.weapon_skill_link.map((skill) => (
+                <Skill
+                  key={skill.weapon_skill.skill_id}
+                  name={skill.weapon_skill.name}
+                  description={skill.weapon_skill.description}
+                  SkillCooltimeValue={skill.weapon_skill.cooldown_time}
+                  imagePathBase={skill.weapon_skill.image_path}
+                  level={skill.skill_level}
+                  isWeapon={true}
+                  isMaxAscended={true}
+                />
+              ))}
+
+              <Lines
+                className="mb-2 mt-8"
+                containerClass="justify-center"
+                svgClass="w-96 xl:w-42"
+              >
+                <h2 className="text-2xl">Abilities</h2>
+              </Lines>
+
+              {costume.weapon.weapon_ability_link.map((ability) => (
+                <Ability
+                  key={ability.ability_id}
+                  href={`/ability/weapon/${slug(ability.weapon_ability.name)}-${
+                    ability.weapon_ability.ability_id
+                  }`}
+                  name={ability.weapon_ability.name}
+                  description={ability.weapon_ability.description}
+                  imagePathBase={ability.weapon_ability.image_path_base}
+                  level={ability.ability_level}
+                  maxLevel={15}
+                />
+              ))}
+            </div>
+          </div>
         )}
 
         {/* Detailed Stats */}

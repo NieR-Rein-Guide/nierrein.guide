@@ -26,7 +26,6 @@ import { usePanelStore } from "../../store/panels";
 import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
 import Checkbox from "@components/form/Checkbox";
-import { MdOutlineLibraryAdd, MdLibraryAddCheck } from "react-icons/md";
 import classNames from "classnames";
 import { Tooltip } from "@mui/material";
 import AbilityThumbnail from "@components/AbilityThumbnail";
@@ -34,7 +33,6 @@ import Stat from "@components/Stat";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
 import skillGaugeColors from "@utils/skillGaugeColors";
-import { FiPlusCircle } from "react-icons/fi";
 import { AiOutlinePushpin } from "react-icons/ai";
 import SkillThumbnail from "@components/SkillThumbnail";
 
