@@ -390,7 +390,20 @@ function CostumeDetails({
                 />
               </div>
             )}
-            <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
+
+            <div className="absolute top-6 left-6 z-10">
+              <Checkbox
+                label={
+                  ownedCostumes.includes(costume.costume_id)
+                    ? "Owned"
+                    : "Owned?"
+                }
+                isChecked={ownedCostumes.includes(costume.costume_id)}
+                setState={() => toggleFromInventory(costume.costume_id)}
+              />
+            </div>
+
+            <div className="hidden md:block absolute bottom-0 left-1/2 transform -translate-x-1/2 z-50">
               <button
                 className="btn"
                 onClick={() => setIsShowingModel(!isShowingModel)}

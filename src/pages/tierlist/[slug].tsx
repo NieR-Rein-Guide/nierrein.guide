@@ -13,7 +13,7 @@ import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 import { useTierlistsVotes } from "@store/tierlist-votes";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Button, Chip, Tooltip } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import { FiArrowDown, FiEdit, FiThumbsUp } from "react-icons/fi";
 import { useCreatedTierlists } from "@store/created-tierlists";
 import Link from "next/link";
