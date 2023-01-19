@@ -4,6 +4,8 @@ import classNames from "classnames";
 import RARITY from "@utils/rarity";
 import { CDN_URL } from "@config/constants";
 import { character, costume } from "@prisma/client";
+import { AiOutlinePushpin } from "react-icons/ai";
+import { usePanelStore } from "@store/panels";
 
 export default function CharacterCostumes({
   currentCharacter,
@@ -16,6 +18,7 @@ export default function CharacterCostumes({
   setCostume: Dispatch<SetStateAction<costume>>;
   costumes: costume[];
 }): JSX.Element {
+  const addCostumePanel = usePanelStore((state) => state.addCostume);
   const selectedCharacterCostumes = costumes.sort(
     (a, b) => RARITY[a.rarity] - RARITY[b.rarity]
   );
@@ -49,6 +52,13 @@ export default function CharacterCostumes({
             <span className="text-xs text-center text-beige leading-none mt-2 font-mono">
               {costume.title ? costume.title : "No translation yet."}
             </span>
+            <button
+              onClick={() => addCostumePanel(costume.costume_id)}
+              className="absolute bottom-4 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 umami--click--pin-costume-button"
+            >
+              <AiOutlinePushpin />
+              <span className="text-xs">PIN</span>
+            </button>
           </div>
         ))}
       </div>

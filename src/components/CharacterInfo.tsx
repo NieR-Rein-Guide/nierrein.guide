@@ -111,6 +111,7 @@ function CostumeDetails({
   skillLevel: number;
 }): JSX.Element {
   const [isShowingModel, setIsShowingModel] = useState(false);
+  const [isShowingWeaponModel, setIsShowingWeaponModel] = useState(false);
   const [dateRelative, setDateRelative] = useState(
     formatDistanceToNow(new Date(costume.release_time), {
       addSuffix: true,
@@ -465,6 +466,13 @@ function CostumeDetails({
           </ul>
         )}
 
+        <div className="relative mt-12">
+          <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+            Costume's weapon
+          </h2>
+          <HR className="my-8" />
+        </div>
+
         {/* Costume's weapon */}
         {costume.weapon && (
           <div className="grid md:grid-cols-2 gap-x-4">
@@ -475,11 +483,11 @@ function CostumeDetails({
                     className={classNames(
                       "absolute z-10 inset-3 transition-opacity",
                       {
-                        "opacity-0 pointer-events-none": !isShowingModel,
+                        "opacity-0 pointer-events-none": !isShowingWeaponModel,
                       }
                     )}
                   >
-                    {isShowingModel && (
+                    {isShowingWeaponModel && (
                       <ModelWithNoSSR
                         path={`${CDN_URL}3d/actor/${costume.weapon.asset_id}/mesh/dc_${costume.weapon.asset_id}/dc_${costume.weapon.asset_id}.fbx`}
                       />
@@ -490,7 +498,7 @@ function CostumeDetails({
                     className={classNames(
                       "relative z-10 h-full w-full transition-opacity",
                       {
-                        "opacity-0 pointer-events-none": isShowingModel,
+                        "opacity-0 pointer-events-none": isShowingWeaponModel,
                       }
                     )}
                   >
@@ -526,9 +534,12 @@ function CostumeDetails({
                 <div className="hidden md:block absolute top-4 left-24 w-42 h-24 p-1 z-50">
                   <button
                     className="btn"
-                    onClick={() => setIsShowingModel(!isShowingModel)}
+                    onClick={() =>
+                      setIsShowingWeaponModel(!isShowingWeaponModel)
+                    }
                   >
-                    {(isShowingModel && "View Artwork") || "View 3D Model"}
+                    {(isShowingWeaponModel && "View Artwork") ||
+                      "View 3D Model"}
                   </button>
                 </div>
 
@@ -565,23 +576,15 @@ function CostumeDetails({
             </div>
 
             <div className="flex flex-col">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-x-2 text-xl my-4 md:my-0">
-                <div className="flex gap-x-2 flex-1">
-                  <div className="flex items-center gap-x-2">
-                    <div className="w-8">
-                      <Element type={costume.weapon.attribute} />
-                    </div>
-                    <span className="uppercase px-2 text-black bg-beige">
-                      {costume.weapon.name}
-                    </span>
+              <div className="flex flex-col md:flex-row items-center justify-between gap-x-2 text-xl my-4 md:my-0 md:mb-4">
+                <div className="flex items-center gap-x-2">
+                  <div className="w-8">
+                    <Element type={costume.weapon.attribute} />
                   </div>
+                  <span className="uppercase px-2 text-black bg-beige">
+                    {costume.weapon.name}
+                  </span>
                 </div>
-                <span className="text-sm text-beige-text">
-                  Added{" "}
-                  {formatDistanceToNow(new Date(costume.weapon.release_time), {
-                    addSuffix: true,
-                  })}
-                </span>
               </div>
 
               <div className="flex justify-center md:justify-start gap-y-2 gap-x-4">
@@ -800,6 +803,8 @@ function CostumeDetails({
             {costume.sources.map((event) => (
               <EventItem key={event.id} {...event} />
             ))}
+
+            {costume.sources.length === 0 && <p>Work in Progress...</p>}
           </div>
         </div>
 
