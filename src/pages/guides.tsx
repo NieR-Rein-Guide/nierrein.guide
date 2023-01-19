@@ -48,7 +48,7 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
                 />
                 <h3 className="text-2xl">{channel.name}</h3>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 {channel.tags.map((tag, index) => (
                   <span
                     key={index}
