@@ -168,6 +168,19 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
     }
   }, [wysiwyg]);
 
+  /**
+   * Highlight
+   */
+  useEffect(() => {
+    if (!router.query.highlight) {
+      return;
+    }
+
+    document
+      .querySelector(`[id*="${router.query.highlight}"]`)
+      ?.scrollIntoView({ behavior: "smooth" });
+  }, [router.query]);
+
   return (
     <>
       <div className="grid lg:grid-cols-12 bg-grey-dark p-8 rounded-xl mb-12">
@@ -295,6 +308,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                         key={costume.costume_id}
                       >
                         <div
+                          id={`${tierItem.id}-${costume.costume_id}`}
                           className={classNames(
                             "group relative flex flex-col items-center gap-y-2 w-28 font-mono filter transition ease-out-cubic",
                             showOnlyInventory &&
@@ -325,7 +339,13 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                             alt={`${costume.title} thumbnail`}
                             rarity={RARITY[costume.rarity]}
                             weaponType={costume.weapon_type}
-                            className="transform transition-transform ease-out-cubic hover:-translate-y-1"
+                            className={classNames(
+                              "transform transition-transform ease-out-cubic hover:-translate-y-1",
+                              router.query.highlight ===
+                                costume.costume_id.toString()
+                                ? "border-2 border-green-300"
+                                : ""
+                            )}
                           />
                           <p className="text-center text-sm mb-0 leading-none">
                             {costume.is_ex_costume && (

@@ -66,7 +66,7 @@ export default function CharacterRows({
 
   return (
     <div className="overflow-auto sm:self-center hidden xl:inline">
-      <div className="relative h-28 mt-8 mx-20 transform -translate-x-14">
+      <div className="relative h-28 mt-8 mx-20 transform -translate-x-24">
         <div className="flex gap-6 pointer-events-none">
           {firstRow.map((character) => (
             <React.Fragment key={character.character_id}>

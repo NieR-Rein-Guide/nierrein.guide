@@ -109,7 +109,7 @@ export default function CostumePage({
         description={currentCostume.description}
       />
 
-      <nav className="flex flex-col items-center gap-y-4 md:flex-row justify-between">
+      <nav className="flex flex-col items-start md:items-center gap-y-4 md:flex-row justify-between">
         <Link href="/characters" passHref={true}>
           <a className="btn">
             <SVG src="/decorations/arrow-left.svg" className="h-6" />
