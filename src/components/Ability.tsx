@@ -102,7 +102,7 @@ export default function Ability({
           </strong>
           <p
             className={classNames(
-              "text-beige-text text-left",
+              "text-beige-text text-left md:pr-16",
               isSmall ? "text-xs" : ""
             )}
           >

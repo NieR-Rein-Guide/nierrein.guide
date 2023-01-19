@@ -28,7 +28,7 @@ export default function CharacterCostumes({
         {currentCharacter.name}
       </p>
 
-      <div className="grid md:grid-cols-6 lg:grid-cols-8 gap-2">
+      <div className="grid md:grid-cols-6 lg:grid-cols-8">
         {selectedCharacterCostumes.map((costume) => (
           <div
             key={costume.costume_id}
@@ -46,8 +46,8 @@ export default function CharacterCostumes({
                   : "brightness-50"
               )}
             />
-            <span className="text-xs truncate mt-1">
-              {costume.title ? costume.title : "No translation"}
+            <span className="text-xs text-center text-beige leading-none mt-2 font-mono">
+              {costume.title ? costume.title : "No translation yet."}
             </span>
           </div>
         ))}

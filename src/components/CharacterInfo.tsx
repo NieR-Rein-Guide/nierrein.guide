@@ -52,6 +52,7 @@ import TierLogo from "./tierlist/TierLogo";
 import Link from "next/link";
 import { Event } from "../models/types/index";
 import { EventItem } from "pages/events";
+import StatDisplay from "./StatDisplay";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -139,7 +140,7 @@ function CostumeDetails({
   });
 
   return (
-    <>
+    <div>
       {isSpoiler && (
         <div className="p-8 bg-grey-dark border border-red-300 border-opacity-50 flex flex-col sm:flex-row mb-8">
           <label htmlFor="spoilers" className="text-beige cursor-pointer pr-4">
@@ -156,34 +157,44 @@ function CostumeDetails({
 
       <div
         className={classNames({
-          "filter blur-xl": isSpoiler,
+          "filter blur-xl opacity-50": isSpoiler,
         })}
       >
-        <div className="relative grid grid-cols-1 md:grid-cols-2 py-4">
-          {/* Costume info */}
-          <div className="flex flex-col mt-4 mx-4 xl:mt-0 order-2 xl:order-1">
-            <div className="flex flex-col items-center xl:items-start mb-12 xl:mb-0">
-              <div className="flex flex-col md:flex-row items-center gap-x-2 text-xl">
-                <div className="flex items-center gap-x-2">
-                  <div className="w-8">
-                    <Image
-                      layout="responsive"
-                      src={weaponsIcons[costume.weapon_type]}
-                      alt={costume.weapon_type}
-                    />
-                  </div>
-                  <span className="uppercase px-2 text-black bg-beige">
-                    {character.name}
-                  </span>
+        <div className="flex flex-col md:flex-row justify-between gap-y-6">
+          <div>
+            <div className="flex items-center gap-x-2 text-xl mt-4">
+              <div className="flex items-center gap-x-2">
+                <div className="w-8">
+                  <Image
+                    layout="responsive"
+                    src={weaponsIcons[costume.weapon_type]}
+                    alt={costume.weapon_type}
+                  />
                 </div>
-                <span className="uppercase text-beige">{costume.title}</span>
+                <span className="uppercase px-2 text-black bg-beige">
+                  {character.name}
+                </span>
               </div>
-              <p className="text-white text-opacity-60 mt-1 text-sm">
-                Added {format(new Date(costume.release_time), "MM/dd/yyyy")} (
-                {dateRelative})
-              </p>
+              <span className="uppercase text-beige">{costume.title}</span>
             </div>
+            <p className="text-white text-opacity-60 mt-1 text-sm">
+              Added {format(new Date(costume.release_time), "MM/dd/yyyy")} (
+              {dateRelative})
+            </p>
+          </div>
 
+          <div className="grid grid-cols-2 xs:flex gap-x-4 gap-y-2">
+            <StatDisplay type="hp" value={stats[2]?.hp} />
+            <StatDisplay type="atk" value={stats[2]?.atk} />
+            <StatDisplay type="vit" value={stats[2]?.vit} />
+            <StatDisplay type="agi" value={stats[2]?.agi} />
+          </div>
+        </div>
+
+        {/* Costume Artwork & Skills/Abilities */}
+        <div className="relative flex flex-col-reverse md:grid md:grid-cols-2 py-4 gap-x-4">
+          {/* Costume info */}
+          <div className="flex flex-col">
             {/* Costume skills & abilities */}
             <div className="flex flex-col gap-y-8 md:mt-4">
               <div>
@@ -256,9 +267,6 @@ function CostumeDetails({
                     <h2 className="text-2xl text-center">Awakening</h2>
                   </Lines>
                   <Ability
-                    href={`/ability/costume/${slug(
-                      awakeningAbility.costume_ability.name
-                    )}-${awakeningAbility.costume_ability.ability_id}`}
                     className={classNames("flex-1 transition-opacity")}
                     name={awakeningAbility.costume_ability.name}
                     description={awakeningAbility.costume_ability.description}
@@ -300,122 +308,105 @@ function CostumeDetails({
           </div>
 
           {/* Second column */}
-          <div className="order-1 xl:order-2">
-            {/* Costume artwork */}
-            <div className="flex items-center justify-end">
-              <Checkbox
-                label={
-                  ownedCostumes.includes(costume.costume_id)
-                    ? "Owned"
-                    : "Owned?"
-                }
-                isChecked={ownedCostumes.includes(costume.costume_id)}
-                setState={() => toggleFromInventory(costume.costume_id)}
-              />
-            </div>
-            <div className="relative overflow-hidden max-w-xl mx-auto w-full h-[600px] xl:h-full">
-              <div className="bordered-lg bg-grey-dark h-full w-full">
-                {costume.emblem && (
-                  <img
-                    loading="lazy"
-                    className="opacity-30 absolute inset-0 h-full object-cover"
-                    src={`${getEmblemPath(
-                      costume.emblem.emblem_id.toString(),
-                      "background"
-                    )}`}
-                    alt=""
-                  />
-                )}
-                <div className="relative z-10 h-full w-full">
-                  <div
-                    className={classNames(
-                      "absolute inset-3 transition-opacity",
-                      {
-                        "opacity-0 pointer-events-none": !isShowingModel,
-                      }
-                    )}
-                  >
-                    {isShowingModel && (
-                      <ModelWithNoSSR
-                        path={`${CDN_URL}3d/actor/${costume.asset_id}/mesh/dc_${costume.asset_id}/dc_${costume.asset_id}.fbx`}
-                      />
-                    )}
-                  </div>
-                  <div
-                    className={classNames("transition-opacity", {
-                      "opacity-0 pointer-events-none": isShowingModel,
-                    })}
-                  >
-                    <Image
-                      key={`${CDN_URL}${costume.image_path_base}full.png`}
-                      layout="fill"
-                      objectFit="contain"
-                      src={`${CDN_URL}${costume.image_path_base}full.png`}
-                      alt={`${costume.title} (${costume.title}) illustration`}
+          <div className="relative overflow-hidden max-w-xl mx-auto w-full h-[600px] lg:h-full">
+            <div className="bordered-lg bg-grey-dark h-full w-full">
+              {costume.emblem && (
+                <img
+                  loading="lazy"
+                  className="opacity-30 absolute inset-0 h-full object-cover"
+                  src={`${getEmblemPath(
+                    costume.emblem.emblem_id.toString(),
+                    "background"
+                  )}`}
+                  alt=""
+                />
+              )}
+              <div className="relative z-10 h-full w-full">
+                <div
+                  className={classNames("absolute inset-3 transition-opacity", {
+                    "opacity-0 pointer-events-none": !isShowingModel,
+                  })}
+                >
+                  {isShowingModel && (
+                    <ModelWithNoSSR
+                      path={`${CDN_URL}3d/actor/${costume.asset_id}/mesh/dc_${costume.asset_id}/dc_${costume.asset_id}.fbx`}
                     />
-                  </div>
+                  )}
                 </div>
-                <div className="absolute inset-0 z-0">
-                  <div className="absolute -left-24 top-24 transform -scale-1">
-                    <SVG
-                      src="/decorations/square-right.svg"
-                      className="h-48 filter brightness-30 floating"
-                    />
-                  </div>
+                <div
+                  className={classNames("transition-opacity", {
+                    "opacity-0 pointer-events-none": isShowingModel,
+                  })}
+                >
+                  <Image
+                    key={`${CDN_URL}${costume.image_path_base}full.png`}
+                    layout="fill"
+                    objectFit="contain"
+                    src={`${CDN_URL}${costume.image_path_base}full.png`}
+                    alt={`${costume.title} (${costume.title}) illustration`}
+                  />
+                </div>
+              </div>
+              <div className="absolute inset-0 z-0">
+                <div className="absolute -left-24 top-24 transform -scale-1">
                   <SVG
                     src="/decorations/square-right.svg"
-                    className="h-48 absolute -right-20 -top-16 filter brightness-30 floating"
-                  />
-                  <SVG
-                    src="/decorations/c_rect_inside.svg"
-                    className="absolute -left-64 floating"
-                  />
-                  <SVG
-                    src="/decorations/c_rect_outside.svg"
-                    className="absolute -left-64 floating"
+                    className="h-48 filter brightness-30 floating"
                   />
                 </div>
+                <SVG
+                  src="/decorations/square-right.svg"
+                  className="h-48 absolute -right-20 -top-16 filter brightness-30 floating"
+                />
+                <SVG
+                  src="/decorations/c_rect_inside.svg"
+                  className="absolute -left-64 floating"
+                />
+                <SVG
+                  src="/decorations/c_rect_outside.svg"
+                  className="absolute -left-64 floating"
+                />
               </div>
-              <span className="flex absolute bottom-6 right-6">
-                {Array.from({ length: RARITY[costume.rarity] }).map(
-                  (_, index) => (
-                    <div className="w-8 h-8" key={index}>
-                      <Star rarity={RARITY[costume.rarity]} />
-                    </div>
-                  )
-                )}
-              </span>
-              {costume?.weapon && (
-                <div className="absolute left-6 bottom-6 transform transition-transform ease-out-cubic hover:scale-105 z-50">
-                  <WeaponThumbnail
-                    href={`/weapons/${costume?.weapon.slug}`}
-                    rarity={getBaseRarity(costume?.weapon)}
-                    type={costume.weapon.weapon_type}
-                    element={costume.weapon.attribute}
-                    isDark={costume.weapon.is_ex_weapon}
-                    alt={costume?.weapon.name}
-                    image_path={costume?.weapon.image_path}
-                  />
-                </div>
+            </div>
+            <span className="flex absolute bottom-6 right-6">
+              {Array.from({ length: RARITY[costume.rarity] }).map(
+                (_, index) => (
+                  <div className="w-8 h-8" key={index}>
+                    <Star rarity={RARITY[costume.rarity]} />
+                  </div>
+                )
               )}
-              <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
-                <button
-                  className="btn"
-                  onClick={() => setIsShowingModel(!isShowingModel)}
-                >
-                  {(isShowingModel && "View Artwork") || "View 3D Model"}
-                </button>
+            </span>
+            {costume?.weapon && (
+              <div className="absolute left-6 bottom-6 transform transition-transform ease-out-cubic hover:scale-105 z-50">
+                <WeaponThumbnail
+                  href={`/weapons/${costume?.weapon.slug}`}
+                  rarity={getBaseRarity(costume?.weapon)}
+                  type={costume.weapon.weapon_type}
+                  element={costume.weapon.attribute}
+                  isDark={costume.weapon.is_ex_weapon}
+                  alt={costume?.weapon.name}
+                  image_path={costume?.weapon.image_path}
+                />
               </div>
-              <div className="absolute top-6 right-8">
-                <Ascend level={ascendLevel} />
-              </div>
+            )}
+            <div className="hidden md:block absolute top-4 left-4 w-42 h-24 p-1 z-50">
+              <button
+                className="btn"
+                onClick={() => setIsShowingModel(!isShowingModel)}
+              >
+                {(isShowingModel && "View Artwork") || "View 3D Model"}
+              </button>
+            </div>
+            <div className="absolute top-6 right-8">
+              <Ascend level={ascendLevel} />
             </div>
           </div>
         </div>
 
         {/* Tier lists */}
         {officialTiers?.length > 0 && (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 my-12">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-4 mb-8">
             {officialTiers.map((item) => {
               const isPvp = FEATURED_TIERLISTS.pvp.includes(
                 item.tiers.tierslists.tierlist_id
@@ -433,7 +424,7 @@ function CostumeDetails({
                     <TierLogo tier={item.tiers.tier} />
                   </div>
                   <Link
-                    href={`/tierlist/${item.tiers.tierslists.slug}`}
+                    href={`/tierlist/${item.tiers.tierslists.slug}?highlight=${costume.costume_id}`}
                     passHref
                   >
                     <a title="View tierlist" className="absolute inset-0">
@@ -446,6 +437,7 @@ function CostumeDetails({
           </ul>
         )}
 
+        {/* Detailed Stats */}
         {stats && (
           <div className="relative mb-8">
             <div className="mt-12">
@@ -587,6 +579,7 @@ function CostumeDetails({
           </div>
         )}
 
+        {/* Source */}
         <div className="relative">
           <div className="mt-12">
             <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
@@ -602,6 +595,7 @@ function CostumeDetails({
           </div>
         </div>
 
+        {/* Story/Lore */}
         <div className="relative">
           <div className="mt-12">
             <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
@@ -629,7 +623,7 @@ function CostumeDetails({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }
 
