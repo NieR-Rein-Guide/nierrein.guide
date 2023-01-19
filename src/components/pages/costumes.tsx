@@ -332,8 +332,8 @@ export function CostumesTable({
           title: "Character Skill",
           customFilterAndSearch: (term, costume) => {
             if (term.length === 0) return true;
-            return term.includes(
-              costume.costume_skill_link[0].costume_skill.description
+            return costume.costume_skill_link[0].costume_skill.description.includes(
+              term
             );
           },
           cellStyle: {
