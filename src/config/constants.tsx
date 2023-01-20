@@ -924,7 +924,7 @@ export const SKILLS_TYPES = [
   },
   {
     label: "Reduce defense",
-    options: ["reduce def", "decrease their def"],
+    options: ["reduce def", "decrease their def", "reduce enemy defense"],
   },
   {
     label: "Cooldown",
