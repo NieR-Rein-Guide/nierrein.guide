@@ -12,7 +12,7 @@ import {
   costume_stat,
   emblem,
 } from "@prisma/client";
-import { CDN_URL } from "@config/constants";
+import { CDN_URL, SKILLS_TYPES } from "@config/constants";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import RARITY from "@utils/rarity";
 import Image from "next/image";
@@ -27,7 +27,7 @@ import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
 import Checkbox from "@components/form/Checkbox";
 import classNames from "classnames";
-import { Tooltip } from "@mui/material";
+import { Button, Modal, Tooltip } from "@mui/material";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import Stat from "@components/Stat";
 import WeaponThumbnail from "@components/WeaponThumbnail";
@@ -35,19 +35,23 @@ import getBaseRarity from "@utils/getBaseRarity";
 import skillGaugeColors from "@utils/skillGaugeColors";
 import { AiOutlinePushpin } from "react-icons/ai";
 import SkillThumbnail from "@components/SkillThumbnail";
+import { MdFilterAlt } from "react-icons/md";
+import { useCostumesFilters } from "@store/costumes-filters";
+
+type ICostume = costume & {
+  costume_ability_link: (costume_ability_link & {
+    costume_ability: costume_ability;
+  })[];
+  costume_skill_link: (costume_skill_link & {
+    costume_skill: costume_skill;
+  })[];
+  costume_stat: costume_stat[];
+  character: character;
+  emblem: emblem;
+};
 
 interface CharactersPageProps {
-  costumes: (costume & {
-    costume_ability_link: (costume_ability_link & {
-      costume_ability: costume_ability;
-    })[];
-    costume_skill_link: (costume_skill_link & {
-      costume_skill: costume_skill;
-    })[];
-    costume_stat: costume_stat[];
-    character: character;
-    emblem: emblem;
-  })[];
+  costumes: ICostume[];
   abilitiesLookup;
   charactersLookup;
 }
@@ -73,6 +77,22 @@ export const gaugeLookup = {
   C: "C",
 };
 
+function filterCostumesBySkill(costumes: ICostume[], filters) {
+  let filteredCostumes: ICostume[] = costumes;
+
+  for (const filter of filters) {
+    filteredCostumes = filteredCostumes.filter((cost) => {
+      return filter.options.some((option) =>
+        cost.costume_skill_link[0].costume_skill.description
+          .toLowerCase()
+          .includes(option)
+      );
+    });
+  }
+
+  return filteredCostumes;
+}
+
 export default function CharactersPage({
   costumes,
   abilitiesLookup,
@@ -88,6 +108,7 @@ export default function CharactersPage({
   const inventoryCostumes = costumes.filter((cost) => {
     return ownedCostumes.includes(cost.costume_id);
   });
+  const skills = useCostumesFilters((state) => state.skills);
 
   /**
    * Using a state and useEffect here because Next.js is
@@ -123,7 +144,7 @@ export default function CharactersPage({
         )}
       >
         <DatabaseNavbar>
-          <div></div>
+          <CostumesFilters />
         </DatabaseNavbar>
 
         {showInventory && ownedCostumes.length === 0 && (
@@ -141,7 +162,11 @@ export default function CharactersPage({
 
         {displayType === "table" && (
           <CostumesTable
-            costumes={showInventory ? inventoryCostumes : costumes}
+            costumes={
+              showInventory
+                ? filterCostumesBySkill(inventoryCostumes, skills)
+                : filterCostumesBySkill(costumes, skills)
+            }
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
@@ -150,7 +175,11 @@ export default function CharactersPage({
 
         {displayType !== "table" && (
           <CostumesGrid
-            costumes={showInventory ? inventoryCostumes : costumes}
+            costumes={
+              showInventory
+                ? filterCostumesBySkill(inventoryCostumes, skills)
+                : filterCostumesBySkill(costumes, skills)
+            }
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
@@ -665,6 +694,59 @@ export function CostumesGrid({
             </div>
           );
         })}
+    </div>
+  );
+}
+
+export function CostumesFilters() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const skills = useCostumesFilters((state) => state.skills);
+  const toggleSkill = useCostumesFilters((state) => state.toggleSkill);
+
+  return (
+    <div>
+      <Button
+        variant={skills.length > 0 ? "contained" : "outlined"}
+        onClick={() => setIsOpen(true)}
+        component="label"
+        startIcon={<MdFilterAlt size={20} />}
+      >
+        {(skills.length > 0 && (
+          <span>
+            CS Filtered: {skills.map((skill) => skill.label).join(", ")}
+          </span>
+        )) || <span>Filter by Character Skill</span>}
+      </Button>
+      <Modal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="bg-grey-dark p-8 absolute bordered top-0 left-0 md:top-1/2 md:left-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 w-full md:max-w-xl space-y-8 overflow-y-auto pt-12 md:pt-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h3 className="flex items-center gap-x-2 text-2xl">
+                <MdFilterAlt /> Filter costumes by Character Skill
+              </h3>
+            </div>
+            <button className="btn" onClick={() => setIsOpen(false)}>
+              Close
+            </button>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            {SKILLS_TYPES.map((skill) => (
+              <Checkbox
+                key={skill.label}
+                label={skill.label}
+                isChecked={skills.some((sk) => sk.label === skill.label)}
+                setState={() => toggleSkill(skill)}
+              />
+            ))}
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }

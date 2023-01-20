@@ -107,6 +107,8 @@ export default function DatabaseNavbar({
             )}
           </div>
 
+          {children}
+
           <ToggleButtonGroup
             value={databaseDisplayType}
             exclusive
@@ -132,8 +134,6 @@ export default function DatabaseNavbar({
             </ToggleButton>
           </ToggleButtonGroup>
         </div>
-
-        {children}
       </div>
     );
   }

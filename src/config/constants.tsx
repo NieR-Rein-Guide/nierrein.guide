@@ -843,3 +843,90 @@ export const AWAKENING_LEVEL = {
   4: 0.3, // 30% bonus stats
   5: "Debris Unlocked",
 };
+
+/**
+ * SKILLS TYPES
+ */
+export const SKILLS_TYPES = [
+  // Attributes
+  {
+    label: "Light",
+    options: ["light"],
+  },
+  {
+    label: "Dark",
+    options: ["dark"],
+  },
+  {
+    label: "Wind",
+    options: ["wind"],
+  },
+  {
+    label: "Water",
+    options: ["water"],
+  },
+  {
+    label: "Fire",
+    options: ["fire"],
+  },
+  {
+    label: "Own affinity",
+    options: ["own affinity"],
+  },
+  {
+    label: "Stun",
+    options: ["stun"],
+  },
+  {
+    label: "Burn",
+    options: ["burn"],
+  },
+  {
+    label: "Poison",
+    options: ["poison"],
+  },
+  {
+    label: "Blind",
+    options: ["blind"],
+  },
+  {
+    label: "Pursuit",
+    options: ["chains"],
+  },
+  {
+    label: "Compromised",
+    options: ["compromised"],
+  },
+  {
+    label: "Sacrifice HP",
+    options: ["consume"],
+  },
+  {
+    label: "Heal",
+    options: ["recover"],
+  },
+  {
+    label: "Reduce defense",
+    options: ["reduce def", "decrease their def"],
+  },
+  {
+    label: "Cooldown",
+    options: ["cooldown"],
+  },
+  {
+    label: "Buff allies",
+    options: ["allies"],
+  },
+  {
+    label: "Usable from start",
+    options: [
+      "usable from start",
+      "usable from the start",
+      "gauge up at battle start",
+    ],
+  },
+  {
+    label: "Gauge increase from start",
+    options: ["gauge increase"],
+  },
+];
