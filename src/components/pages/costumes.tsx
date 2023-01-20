@@ -355,14 +355,8 @@ export function CostumesTable({
           ),
         },
         {
-          field: "costume_skill_link[0].costume_skill.name",
+          field: "costume_skill_link[0].costume_skill.description",
           title: "Character Skill",
-          customFilterAndSearch: (term, costume) => {
-            if (term.length === 0) return true;
-            return costume.costume_skill_link[0].costume_skill.description.includes(
-              term
-            );
-          },
           cellStyle: {
             textAlign: "center",
           },

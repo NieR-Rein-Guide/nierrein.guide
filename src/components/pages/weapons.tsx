@@ -36,6 +36,7 @@ import classNames from "classnames";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
 import CostumeThumbnail from "@components/CostumeThumbnail";
+import SkillThumbnail from "@components/SkillThumbnail";
 
 interface CharactersPageProps {
   weapons: (weapon & {
@@ -311,6 +312,34 @@ export function WeaponsTable({
             weapon.weapon_stat[0].vit >= Number(term),
         },
         {
+          field: "weapon_skill_link[0].weapon_skill.description",
+          title: "Skill 1",
+          cellStyle: {
+            textAlign: "center",
+          },
+          render: (weapon) => (
+            <SkillThumbnail skill={weapon.weapon_skill_link[0].weapon_skill}>
+              <span className="text-xs line-clamp-2 z-10 text-shadow">
+                {weapon.weapon_skill_link[0].weapon_skill.name}
+              </span>
+            </SkillThumbnail>
+          ),
+        },
+        {
+          field: "weapon_skill_link[1].weapon_skill.description",
+          title: "Skill 2",
+          cellStyle: {
+            textAlign: "center",
+          },
+          render: (weapon) => (
+            <SkillThumbnail skill={weapon.weapon_skill_link[1].weapon_skill}>
+              <span className="text-xs line-clamp-2 z-10 text-shadow">
+                {weapon.weapon_skill_link[1].weapon_skill.name}
+              </span>
+            </SkillThumbnail>
+          ),
+        },
+        {
           field: "weapon_ability_link[0].weapon_ability.name",
           title: "Ability 1",
           cellStyle: {
@@ -545,21 +574,6 @@ export function WeaponsTable({
             </div>
           ),
         },
-      ]}
-      actions={[
-        (weapon) => ({
-          _icon: ownedWeapons.includes(weapon.weapon_id)
-            ? MdLibraryAddCheck
-            : MdOutlineLibraryAdd,
-          get icon() {
-            return this._icon;
-          },
-          set icon(value) {
-            this._icon = value;
-          },
-          tooltip: "Add/Remove to your inventory",
-          onClick: () => toggleFromInventory(weapon.weapon_id),
-        }),
       ]}
       options={{
         actionsColumnIndex: -1,
