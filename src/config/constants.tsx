@@ -906,6 +906,10 @@ export const SKILLS_TYPES = [
     options: ["recover"],
   },
   {
+    label: "Cure",
+    options: ["cure"],
+  },
+  {
     label: "Reduce defense",
     options: ["reduce def", "decrease their def"],
   },
