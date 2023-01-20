@@ -13,7 +13,7 @@ function CharacterDiamond({
   active: boolean;
 }): JSX.Element {
   return (
-    <Tooltip title={character.name}>
+    <Tooltip enterTouchDelay={0} title={character.name}>
       <a href={`/characters/${slug(character.name)}`} className="relative">
         <div
           className={`pointer-events-auto overflow-hidden iso-bg ${

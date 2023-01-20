@@ -566,7 +566,10 @@ export default function TierlistBuilder({
                                           </div>
                                         )}
                                         {ind !== state.length - 1 && (
-                                          <Tooltip title="Add a note on this item">
+                                          <Tooltip
+                                            enterTouchDelay={0}
+                                            title="Add a note on this item"
+                                          >
                                             <button
                                               onClick={() => {
                                                 setCurrentIndex(ind);

@@ -120,6 +120,7 @@ function LoadoutInfo({ loadout }: LoadoutInfoProps) {
           <h2 className="text-3xl">{loadout.title}</h2>
           <p className="text-beige">Created {createdAt}</p>
           <Tooltip
+            enterTouchDelay={0}
             title={hasVoted ? "You already voted for this loadout" : "Vote"}
           >
             <Chip

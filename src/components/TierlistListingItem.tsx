@@ -50,6 +50,7 @@ export default function TierlistListingItem({
     >
       <div className="absolute top-4 right-4 z-40">
         <Tooltip
+          enterTouchDelay={0}
           title={hasVoted ? "You already voted for this tierlist" : "Vote"}
         >
           <Chip

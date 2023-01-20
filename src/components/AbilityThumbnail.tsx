@@ -16,6 +16,7 @@ export default function AbilityThumbnail({
     <div className="relative flex flex-col justify-center items-center">
       <div className="relative transform">
         <Tooltip
+          enterTouchDelay={0}
           className="cursor-help"
           title={
             <div

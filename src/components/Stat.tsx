@@ -71,6 +71,7 @@ export default function Stat({ type, value }: StatProps) {
 
   return (
     <Tooltip
+      enterTouchDelay={0}
       title={
         <p className="whitespace-pre">
           {Object.entries(addedStats)

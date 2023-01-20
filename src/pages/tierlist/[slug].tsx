@@ -327,6 +327,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                         >
                           {tierItem.tooltip && !showNotesInline && (
                             <Tooltip
+                              enterTouchDelay={0}
                               className="cursor-help"
                               title={
                                 <div
@@ -453,6 +454,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                         >
                           {tierItem.tooltip && (
                             <Tooltip
+                              enterTouchDelay={0}
                               className="cursor-help"
                               title={
                                 <div

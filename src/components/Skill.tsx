@@ -92,6 +92,7 @@ export default function Skill({
 
                 {!isWeapon && (
                   <Tooltip
+                    enterTouchDelay={0}
                     className="cursor-help"
                     title={
                       <ul>

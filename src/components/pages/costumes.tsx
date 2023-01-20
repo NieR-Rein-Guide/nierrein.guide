@@ -484,7 +484,10 @@ export function CostumesTable({
             textAlign: "center",
           },
           render: (costume) => (
-            <Tooltip title="Lower number means skill charge faster.">
+            <Tooltip
+              enterTouchDelay={0}
+              title="Lower number means skill charge faster."
+            >
               <div
                 className={classNames(
                   skillGaugeColors[
