@@ -349,6 +349,7 @@ export const RECOMMENDED_YOUTUBE_CHANNELS: YouTubeChannel[] = [
 export const VALUED_TYPES = {
   ABILITY: "ABILITY",
   SKILL_COOLDOWN: "SKILL_COOLDOWN",
+  SKILL: "SKILL",
 };
 
 export const VALUED_TYPES_LABEL = {
@@ -366,6 +367,10 @@ export const VALUED_TYPES_LABEL = {
   },
   pvp: {
     label: "PvP",
+    description: "",
+  },
+  supportMainhand: {
+    label: "Support skills",
     description: "",
   },
   supportOffhand: {
@@ -431,20 +436,28 @@ export const VALUED_WEAPONS = {
       value: "Boon",
     },
   ],
-  /* supportMainhand: [
+  supportMainhand: [
     {
-      type: VALUED_TYPES.ABILITY,
+      type: VALUED_TYPES.SKILL,
       value: "Valiance",
     },
     {
-      type: VALUED_TYPES.ABILITY,
+      type: VALUED_TYPES.SKILL,
       value: "Ire",
     },
     {
-      type: VALUED_TYPES.ABILITY,
+      type: VALUED_TYPES.SKILL,
       value: "Crush",
     },
-  ], */
+    {
+      type: VALUED_TYPES.SKILL,
+      value: "Recovery",
+    },
+    {
+      type: VALUED_TYPES.SKILL,
+      value: "Render",
+    },
+  ],
   supportOffhand: [
     // Tanky passives
     {

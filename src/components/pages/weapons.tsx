@@ -317,13 +317,30 @@ export function WeaponsTable({
           cellStyle: {
             textAlign: "center",
           },
-          render: (weapon) => (
-            <SkillThumbnail skill={weapon.weapon_skill_link[0].weapon_skill}>
-              <span className="text-xs line-clamp-2 z-10 text-shadow">
-                {weapon.weapon_skill_link[0].weapon_skill.name}
-              </span>
-            </SkillThumbnail>
-          ),
+          render: (weapon) => {
+            const isValued = VALUED_WEAPONS[valuedWeaponType]
+              .filter(
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.SKILL
+              )
+              .find((valuedAbility) =>
+                weapon.weapon_skill_link[0].weapon_skill.name
+                  .toLowerCase()
+                  .includes(valuedAbility.value.toLowerCase())
+              );
+
+            return (
+              <SkillThumbnail skill={weapon.weapon_skill_link[0].weapon_skill}>
+                <span
+                  className={classNames(
+                    "text-xs line-clamp-2 z-10 text-shadow",
+                    isValued ? "text-green-300" : ""
+                  )}
+                >
+                  {weapon.weapon_skill_link[0].weapon_skill.name}
+                </span>
+              </SkillThumbnail>
+            );
+          },
         },
         {
           field: "weapon_skill_link[1].weapon_skill.description",
@@ -331,13 +348,30 @@ export function WeaponsTable({
           cellStyle: {
             textAlign: "center",
           },
-          render: (weapon) => (
-            <SkillThumbnail skill={weapon.weapon_skill_link[1].weapon_skill}>
-              <span className="text-xs line-clamp-2 z-10 text-shadow">
-                {weapon.weapon_skill_link[1].weapon_skill.name}
-              </span>
-            </SkillThumbnail>
-          ),
+          render: (weapon) => {
+            const isValued = VALUED_WEAPONS[valuedWeaponType]
+              .filter(
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.SKILL
+              )
+              .find((valuedAbility) =>
+                weapon.weapon_skill_link[1].weapon_skill.name
+                  .toLowerCase()
+                  .includes(valuedAbility.value.toLowerCase())
+              );
+
+            return (
+              <SkillThumbnail skill={weapon.weapon_skill_link[1].weapon_skill}>
+                <span
+                  className={classNames(
+                    "text-xs line-clamp-2 z-10 text-shadow",
+                    isValued ? "text-green-300" : ""
+                  )}
+                >
+                  {weapon.weapon_skill_link[1].weapon_skill.name}
+                </span>
+              </SkillThumbnail>
+            );
+          },
         },
         {
           field: "weapon_ability_link[0].weapon_ability.name",

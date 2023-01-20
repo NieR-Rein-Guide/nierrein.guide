@@ -361,9 +361,11 @@ export function CostumesTable({
             textAlign: "center",
           },
           render: (costume) => (
-            <SkillThumbnail
-              skill={costume.costume_skill_link[0].costume_skill}
-            />
+            <SkillThumbnail skill={costume.costume_skill_link[0].costume_skill}>
+              <span className="text-xs line-clamp-2 z-10 text-shadow">
+                {costume.costume_skill_link[0].costume_skill.name}
+              </span>
+            </SkillThumbnail>
           ),
         },
         {
