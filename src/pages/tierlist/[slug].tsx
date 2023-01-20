@@ -36,6 +36,7 @@ import classNames from "classnames";
 import Lines from "@components/decorations/Lines";
 import { AiOutlinePushpin } from "react-icons/ai";
 import { usePanelStore } from "@store/panels";
+import { useSettingsStore } from "@store/settings";
 
 /* const COSTUME_STAT_PROPERTIES = [
   "atk",
@@ -104,6 +105,9 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
   const createdTierlist = useCreatedTierlists((state) => state.tierlists);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const ownedWeapons = useInventoryStore((state) => state.weapons);
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
 
   const addCostumePanel = usePanelStore((state) => state.addCostume);
 
@@ -299,12 +303,16 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                     const costume = items.find(
                       (item) => item.costume_id === tierItem.item_id
                     );
+                    const isSpoiler =
+                      !showUnreleasedContent &&
+                      new Date() < new Date(costume.release_time);
 
                     return (
                       <div
-                        className={
-                          showNotesInline ? "col-span-3 flex w-full" : ""
-                        }
+                        className={classNames(
+                          showNotesInline ? "col-span-3 flex w-full" : "",
+                          isSpoiler ? "hidden" : ""
+                        )}
                         key={costume.costume_id}
                       >
                         <div
