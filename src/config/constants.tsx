@@ -923,6 +923,6 @@ export const SKILLS_TYPES = [
   },
   {
     label: "Gauge increase from start",
-    options: ["gauge increase"],
+    options: ["gauge increase", "gauge up at battle start"],
   },
 ];
