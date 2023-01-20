@@ -54,6 +54,7 @@ interface CharactersPageProps {
   costumes: ICostume[];
   abilitiesLookup;
   charactersLookup;
+  characters: character[];
 }
 
 export const weaponTypesLookup = {
@@ -93,10 +94,21 @@ function filterCostumesBySkill(costumes: ICostume[], filters) {
   return filteredCostumes;
 }
 
+function filterCostumesByCharacter(costumes: ICostume[], filters: character[]) {
+  if (filters.length === 0) return costumes;
+
+  const charactersIds = filters.map((character) => character.character_id);
+
+  return costumes.filter((costume) =>
+    charactersIds.includes(costume.character_id)
+  );
+}
+
 export default function CharactersPage({
   costumes,
   abilitiesLookup,
   charactersLookup,
+  characters,
 }: CharactersPageProps): JSX.Element {
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
@@ -109,6 +121,7 @@ export default function CharactersPage({
     return ownedCostumes.includes(cost.costume_id);
   });
   const skills = useCostumesFilters((state) => state.skills);
+  const filteredCharacters = useCostumesFilters((state) => state.characters);
 
   /**
    * Using a state and useEffect here because Next.js is
@@ -144,7 +157,10 @@ export default function CharactersPage({
         )}
       >
         <DatabaseNavbar>
-          <CostumesFilters />
+          <div className="flex flex-col items-center md:flex-row gap-2">
+            <CostumesCharactersFilters characters={characters} />
+            <CostumesSkillsFilters />
+          </div>
         </DatabaseNavbar>
 
         {showInventory && ownedCostumes.length === 0 && (
@@ -164,8 +180,17 @@ export default function CharactersPage({
           <CostumesTable
             costumes={
               showInventory
-                ? filterCostumesBySkill(inventoryCostumes, skills)
-                : filterCostumesBySkill(costumes, skills)
+                ? filterCostumesBySkill(
+                    filterCostumesByCharacter(
+                      inventoryCostumes,
+                      filteredCharacters
+                    ),
+                    skills
+                  )
+                : filterCostumesBySkill(
+                    filterCostumesByCharacter(costumes, filteredCharacters),
+                    skills
+                  )
             }
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
@@ -177,8 +202,17 @@ export default function CharactersPage({
           <CostumesGrid
             costumes={
               showInventory
-                ? filterCostumesBySkill(inventoryCostumes, skills)
-                : filterCostumesBySkill(costumes, skills)
+                ? filterCostumesBySkill(
+                    filterCostumesByCharacter(
+                      inventoryCostumes,
+                      filteredCharacters
+                    ),
+                    skills
+                  )
+                : filterCostumesBySkill(
+                    filterCostumesByCharacter(costumes, filteredCharacters),
+                    skills
+                  )
             }
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
@@ -695,7 +729,7 @@ export function CostumesGrid({
   );
 }
 
-export function CostumesFilters() {
+export function CostumesSkillsFilters() {
   const [isOpen, setIsOpen] = useState(false);
 
   const skills = useCostumesFilters((state) => state.skills);
@@ -707,7 +741,12 @@ export function CostumesFilters() {
         variant={skills.length > 0 ? "contained" : "outlined"}
         onClick={() => setIsOpen(true)}
         component="label"
-        startIcon={<MdFilterAlt size={20} />}
+        startIcon={
+          <SVG
+            src="/decorations/frame-ability.svg"
+            className="h-4 w-auto transform rotate-45"
+          />
+        }
       >
         {(skills.length > 0 && (
           <span>
@@ -740,6 +779,83 @@ export function CostumesFilters() {
                 isChecked={skills.some((sk) => sk.label === skill.label)}
                 setState={() => toggleSkill(skill)}
               />
+            ))}
+          </div>
+        </div>
+      </Modal>
+    </div>
+  );
+}
+
+export function CostumesCharactersFilters({
+  characters,
+}: {
+  characters: character[];
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const filteredCharacters = useCostumesFilters((state) => state.characters);
+  const toggleCharacter = useCostumesFilters((state) => state.toggleCharacter);
+
+  return (
+    <div>
+      <Button
+        variant={filteredCharacters.length > 0 ? "contained" : "outlined"}
+        onClick={() => setIsOpen(true)}
+        component="label"
+        startIcon={
+          <img
+            className="h-5 w-auto"
+            height="20"
+            src="https://assets.nierrein.guide/ui/actor/ch019001/ch019001_01_actor_icon.png"
+            alt="Filter by Character"
+          />
+        }
+      >
+        {(filteredCharacters.length > 0 && (
+          <span>
+            Characters: {filteredCharacters.map((ch) => ch.name).join(", ")}
+          </span>
+        )) || <span>Filter by Characters</span>}
+      </Button>
+      <Modal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="bg-grey-dark p-8 absolute bordered top-0 left-0 md:top-1/2 md:left-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 w-full md:max-w-3xl space-y-8 overflow-y-auto pt-12 md:pt-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h3 className="flex items-center gap-x-2 text-2xl">
+                <MdFilterAlt /> Filter costumes by Character
+              </h3>
+            </div>
+            <button className="btn" onClick={() => setIsOpen(false)}>
+              Close
+            </button>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {characters.map((character) => (
+              <div
+                key={character.character_id}
+                className="flex gap-x-2 items-center"
+              >
+                <img
+                  height="36"
+                  width="32"
+                  className="h-auto w-8"
+                  src={`${CDN_URL}${character.image_path}`}
+                  alt={character.name}
+                />
+                <Checkbox
+                  label={character.name}
+                  isChecked={filteredCharacters.some(
+                    (ch) => ch.name === character.name
+                  )}
+                  setState={() => toggleCharacter(character)}
+                />
+              </div>
             ))}
           </div>
         </div>

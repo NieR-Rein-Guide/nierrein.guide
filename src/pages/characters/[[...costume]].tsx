@@ -86,6 +86,7 @@ export default function CharactersPage({
       costumes={costumes}
       abilitiesLookup={abilitiesLookup}
       charactersLookup={charactersLookup}
+      characters={characters}
     />
   );
 }
@@ -100,6 +101,12 @@ export async function getStaticProps(context) {
         },
       });
 
+    const characters = await prisma.dump.character.findMany({
+      orderBy: {
+        character_id: "asc",
+      },
+    });
+
     return {
       props: JSON.parse(
         JSON.stringify({
@@ -109,6 +116,7 @@ export async function getStaticProps(context) {
           costumes,
           abilitiesLookup,
           charactersLookup,
+          characters,
         })
       ),
     };

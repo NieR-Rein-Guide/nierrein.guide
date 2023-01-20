@@ -2,6 +2,7 @@ import produce from 'immer';
 import create from 'zustand';
 
 export const useCostumesFilters = create((set) => ({
+  characters: [],
   skills: [],
   toggleSkill: (skill) =>
     set((state) => {
@@ -16,6 +17,21 @@ export const useCostumesFilters = create((set) => ({
 
       return {
         skills: newSkills
+      };
+    }),
+  toggleCharacter: (character) =>
+    set((state) => {
+      const newCharacters = produce(state.characters, (draft) => {
+        const index = draft.findIndex((ch) => ch.name === character.name)
+        if (index > -1) {
+          draft.splice(index, 1);
+        } else {
+          draft.push(character);
+        }
+      });
+
+      return {
+        characters: newCharacters
       };
     }),
 }));
