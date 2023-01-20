@@ -24,7 +24,6 @@ import { useSettingsStore } from "@store/settings";
 import Link from "next/link";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "@components/form/Checkbox";
-import { MdLibraryAddCheck, MdOutlineLibraryAdd } from "react-icons/md";
 import {
   CDN_URL,
   VALUED_TYPES,
@@ -202,14 +201,6 @@ export function WeaponsTable({
   showUnreleasedContent: boolean;
   valuedWeaponType?: string;
 }) {
-  const [ownedWeapons, setOwnedWeapons] = useState<number[]>([]);
-  const localWeapons = useInventoryStore((state) => state.weapons);
-  const toggleFromInventory = useInventoryStore((state) => state.toggleWeapon);
-
-  useEffect(() => {
-    setOwnedWeapons(localWeapons as number[]);
-  }, [localWeapons]);
-
   return (
     <MaterialTable
       title={title ?? `${weapons.length} weapons in the database.`}
@@ -314,6 +305,7 @@ export function WeaponsTable({
         {
           field: "weapon_skill_link[0].weapon_skill.description",
           title: "Skill 1",
+          filterPlaceholder: "Description...",
           cellStyle: {
             textAlign: "center",
           },
@@ -345,6 +337,7 @@ export function WeaponsTable({
         {
           field: "weapon_skill_link[1].weapon_skill.description",
           title: "Skill 2",
+          filterPlaceholder: "Description...",
           cellStyle: {
             textAlign: "center",
           },

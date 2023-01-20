@@ -357,6 +357,7 @@ export function CostumesTable({
         {
           field: "costume_skill_link[0].costume_skill.description",
           title: "Character Skill",
+          filterPlaceholder: "Description...",
           cellStyle: {
             textAlign: "center",
           },
