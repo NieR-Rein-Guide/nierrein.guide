@@ -919,11 +919,7 @@ export const SKILLS_TYPES = [
   },
   {
     label: "Usable from start",
-    options: [
-      "usable from start",
-      "usable from the start",
-      "gauge up at battle start",
-    ],
+    options: ["usable from start", "usable from the start"],
   },
   {
     label: "Gauge increase from start",
