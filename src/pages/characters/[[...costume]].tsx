@@ -145,6 +145,7 @@ export async function getStaticProps(context) {
       },
       include: {
         emblem: true,
+        debris: true,
       },
     }),
     prisma.dump.character_rank_bonus.findMany({
@@ -224,7 +225,6 @@ export async function getStaticProps(context) {
 
     await Promise.all([
       alterCostumeToAddWeapon(costume), // Add costume's weapon
-      alterCostumeToAddDebris(costume), // Add costume's debris
       alterCostumeToAddSources(costume), // Add costume's sources
     ]);
 

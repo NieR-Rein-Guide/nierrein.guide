@@ -85,7 +85,7 @@ function CostumeDetails({
     costume_stat: costume_stat[];
     character: character;
     emblem: emblem;
-    debris: debris | null;
+    debris: debris;
     weapon: weapon & {
       weapon_stat: weapon_stat[];
       weapon_ability_link: (weapon_ability_link & {

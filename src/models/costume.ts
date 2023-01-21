@@ -53,6 +53,7 @@ export async function getAllCostumes({
           awakening_step: 'asc',
         },
       },
+      debris: true,
     },
   });
 

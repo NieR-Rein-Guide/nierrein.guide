@@ -18,12 +18,17 @@ import {
 import DatabaseNavbar from "@components/DatabaseNavbar";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import { CDN_URL } from "@config/constants";
-import RARITY from "@utils/rarity";
 import { costumes_link } from "@prisma/client-nrg";
-import { getAllCostumes } from "@models/costume";
+import { AiOutlinePushpin } from "react-icons/ai";
+import { usePanelStore } from "@store/panels";
+import classNames from "classnames";
 
 interface DebrisPageProps {
-  debris: debris[];
+  debris: (debris & {
+    costume: (costume & {
+      character: character;
+    })[];
+  })[];
   links: costumes_link[];
   costumes: (costume & {
     costume_ability_link: (costume_ability_link & {
@@ -49,11 +54,9 @@ export const rarityLookup = {
   40: "4*",
 };
 
-export default function DebrisPage({
-  debris,
-  links,
-  costumes,
-}: DebrisPageProps): JSX.Element {
+export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
+  const addCostumePanel = usePanelStore((state) => state.addCostume);
+
   return (
     <Layout hasContainer={false} className="overflow-x-auto">
       <Meta
@@ -86,30 +89,42 @@ export default function DebrisPage({
               field: "costume",
               title: "Costume",
               render: (thought) => {
-                const linkedCostume = links.find(
-                  (costume) => costume.debris_id === thought.debris_id
-                );
-
-                const costume = costumes.find(
-                  (item) => item.costume_id === linkedCostume?.costume_id
-                );
-
+                console.log(thought);
                 return (
                   <div className="flex items-center gap-x-4 w-80">
-                    <CostumeThumbnail
-                      href={`/characters/${costume?.character.slug}/${costume?.slug}`}
-                      src={`${CDN_URL}${costume?.image_path_base}battle.png`}
-                      alt={`${costume?.title} thumbnail`}
-                      rarity={RARITY[costume?.rarity]}
-                      weaponType={costume?.weapon_type}
-                      isDark={costume?.is_ex_costume}
-                    />
-                    <span className="inline-block pr-12 line-clamp-2">
-                      {costume?.is_ex_costume && (
-                        <span className="text-rarity-4">EX </span>
-                      )}
-                      {costume?.title ?? "WIP"}
-                    </span>
+                    {thought.costume.map((costume) => (
+                      <div
+                        className={classNames(
+                          "group flex flex-col items-center gap-y-2 relative font-mono w-32"
+                        )}
+                        key={costume.costume_id}
+                      >
+                        <CostumeThumbnail
+                          href={`/characters/${costume.character.slug}/${costume.slug}`}
+                          src={`${CDN_URL}${costume.image_path_base}battle.png`}
+                          alt={`${costume.title} thumbnail`}
+                          rarity={costume.rarity}
+                          weaponType={costume.weapon_type}
+                          isDark={costume.is_ex_costume}
+                        />
+                        <p className="text-center text-sm mb-0 leading-none">
+                          {costume.is_ex_costume && (
+                            <span className="text-rarity-4">EX </span>
+                          )}
+                          {costume.character.name}
+                        </p>
+                        <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0 -mt-1">
+                          {costume.title}
+                        </span>
+                        <button
+                          onClick={() => addCostumePanel(costume.costume_id)}
+                          className="absolute bottom-0 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 umami--click--pin-costume-button"
+                        >
+                          <AiOutlinePushpin />
+                          <span className="text-xs">PIN</span>
+                        </button>
+                      </div>
+                    ))}
                   </div>
                 );
               },
@@ -160,18 +175,11 @@ export async function getStaticProps() {
     orderBy: {
       release_time: "desc",
     },
-  });
-
-  const { costumes } = await getAllCostumes({
-    orderBy: {
-      release_time: "desc",
-    },
-  });
-
-  const links = await prisma.nrg.costumes_link.findMany({
-    where: {
-      debris_id: {
-        not: null,
+    include: {
+      costume: {
+        include: {
+          character: true,
+        },
       },
     },
   });
@@ -180,8 +188,6 @@ export async function getStaticProps() {
     props: JSON.parse(
       JSON.stringify({
         debris,
-        links,
-        costumes,
       })
     ),
   };
