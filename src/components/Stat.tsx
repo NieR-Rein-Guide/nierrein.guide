@@ -1,5 +1,4 @@
 import {
-  AWAKENING_LEVEL,
   CURSED_GOD_MONUMENT_SLABS,
   STONE_TOWER_MONUMENT_SLABS,
 } from "@config/constants";
@@ -14,8 +13,6 @@ interface StatProps {
 
 const STATS_VALUES = ["hp", "atk", "vit", "agi"];
 const PERCENT_VALUES = ["crit_rate", "crit_atk", "eva_rate"];
-const AWAKENING_VALUES = ["hp", "atk", "vit"];
-const AWAKENING_LEVELS_STATS = [1, 2, 4];
 
 export default function Stat({ type, value }: StatProps) {
   const stoneTowerSlabsPercent = useSettingsStore(
@@ -29,7 +26,6 @@ export default function Stat({ type, value }: StatProps) {
   const addedStats = {
     stoneTowerSlabs: 0,
     cursedGodSlabs: 0,
-    awakening: 0,
   };
 
   let finalStat = value;
@@ -52,22 +48,8 @@ export default function Stat({ type, value }: StatProps) {
     finalStat = finalStat / 10;
   }
 
-  /**
-   * Add awakening stat bonus
-   * Only 1, 2 and 4 influence stats
-   */
-  if (AWAKENING_VALUES.includes(type) && awakeningLevel > 0) {
-    const needle = awakeningLevel;
-    const closest = AWAKENING_LEVELS_STATS.reduce((a, b) => {
-      return Math.abs(b - needle) < Math.abs(a - needle) ? b : a;
-    });
-
-    const bonus = value * AWAKENING_LEVEL[closest];
-    addedStats.awakening = bonus;
-    finalStat = finalStat + bonus;
-  }
-
-  const isModified = STATS_VALUES.includes(type) && value !== finalStat;
+  const isModified =
+    (STATS_VALUES.includes(type) && value !== finalStat) || awakeningLevel > 0;
 
   return (
     <Tooltip
@@ -80,7 +62,14 @@ export default function Stat({ type, value }: StatProps) {
         </p>
       }
     >
-      <span className={classNames(isModified ? "underline" : "")}>
+      <span
+        className={classNames(
+          isModified ? "underline" : "",
+          type === "atk" ? "text-red-300" : "",
+          type === "vit" ? "text-blue-300" : "",
+          type === "agi" ? "text-green-300" : ""
+        )}
+      >
         {Math.round(finalStat)}
         {PERCENT_VALUES.includes(type) ? "%" : ""}
       </span>

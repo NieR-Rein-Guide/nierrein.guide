@@ -107,6 +107,7 @@ model costume {
   character_id         Int
   asset_id             String?
   emblem_id            Int?
+  debris_id            Int
   weapon_type          String?
   rarity               String?
   release_time         DateTime               @db.Timestamptz(6)
@@ -116,6 +117,7 @@ model costume {
   description          String?
   image_path_base      String?
   character            character              @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_character_character_id")
+  debris               debris                 @relation(fields: [debris_id], references: [debris_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_debris_debris_id")
   emblem               emblem?                @relation(fields: [emblem_id], references: [emblem_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_costume_emblem_emblem_id")
   costume_ability_link costume_ability_link[]
   costume_skill_link   costume_skill_link[]
@@ -123,6 +125,7 @@ model costume {
 
   @@index([character_id], map: "ix_costume_character_id")
   @@index([emblem_id], map: "ix_costume_emblem_id")
+  @@index([debris_id], map: "ix_costume_debris_id")
 }
 
 model costume_ability {
@@ -174,28 +177,30 @@ model costume_skill_link {
 }
 
 model costume_stat {
-  costume_id Int
-  level      Int
-  agi        Int
-  atk        Int
-  crit_atk   Int
-  crit_rate  Int
-  eva_rate   Int
-  hp         Int
-  vit        Int
-  costume    costume @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_stat_costume_costume_id")
+  costume_id     Int
+  level          Int
+  awakening_step Int
+  agi            Int
+  atk            Int
+  crit_atk       Int
+  crit_rate      Int
+  eva_rate       Int
+  hp             Int
+  vit            Int
+  costume        costume @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_stat_costume_costume_id")
 
-  @@id([costume_id, level], map: "pk_costume_stat")
+  @@id([costume_id, level, awakening_step], map: "pk_costume_stat")
 }
 
 model debris {
-  debris_id         Int      @id(map: "pk_debris") @default(autoincrement())
+  debris_id         Int       @id(map: "pk_debris") @default(autoincrement())
   rarity            Int
-  release_time      DateTime @db.Timestamptz(6)
+  release_time      DateTime  @db.Timestamptz(6)
   name              String?
   description_short String?
   description_long  String?
   image_path_base   String?
+  costume           costume[]
 }
 
 model emblem {

@@ -37,6 +37,7 @@ import { AiOutlinePushpin } from "react-icons/ai";
 import SkillThumbnail from "@components/SkillThumbnail";
 import { MdFilterAlt } from "react-icons/md";
 import { useCostumesFilters } from "@store/costumes-filters";
+import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 
 type ICostume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -229,7 +230,7 @@ export default function CharactersPage({
 export function CostumesTable({
   title,
   costumes,
-  showUnreleasedContent = true,
+  showUnreleasedContent,
   charactersLookup = {},
   abilitiesLookup = {},
   onRowClick = undefined,
@@ -251,16 +252,23 @@ export function CostumesTable({
   onRowClick?;
   title?: string;
 }) {
+  const [filteredCostumes, setFilteredCostumes] = useState(costumes);
   const addCostumePanel = usePanelStore((state) => state.addCostume);
+  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+
+  useEffect(() => {
+    setFilteredCostumes(
+      costumes.filter((costume) => {
+        if (showUnreleasedContent) return true;
+        return new Date() > new Date(costume.release_time);
+      })
+    );
+  }, [showUnreleasedContent]);
 
   return (
     <MaterialTable
       title={title ?? `${costumes.length} costumes in the database.`}
-      data={costumes.filter((costume) => {
-        if (typeof window === "undefined") return true;
-        if (showUnreleasedContent) return true;
-        return new Date() > new Date(costume.release_time);
-      })}
+      data={filteredCostumes}
       columns={[
         {
           field: "title",
@@ -335,11 +343,22 @@ export function CostumesTable({
           },
           hideFilterIcon: true,
           filterPlaceholder: "> HP",
-          customFilterAndSearch: (term, costume) =>
-            costume.costume_stat[0].hp >= Number(term),
-          render: (costume) => (
-            <Stat type="hp" value={costume.costume_stat[0].hp} />
-          ),
+          customFilterAndSearch: (term, costume) => {
+            const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const stats = costume.costume_stat
+              .filter((stat) => stat.level === maxWithAsc)
+              .sort((a, b) => a.awakening_step - b.awakening_step);
+
+            return stats[awakeningLevel].hp >= Number(term);
+          },
+          render: (costume) => {
+            const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const stats = costume.costume_stat
+              .filter((stat) => stat.level === maxWithAsc)
+              .sort((a, b) => a.awakening_step - b.awakening_step);
+
+            return <Stat type="hp" value={stats[awakeningLevel].hp} />;
+          },
         },
         {
           field: "costume_stat[0].atk",
@@ -347,15 +366,25 @@ export function CostumesTable({
           type: "numeric",
           cellStyle: {
             textAlign: "center",
-            color: "rgba(252,165,165,var(--tw-text-opacity))",
           },
           hideFilterIcon: true,
           filterPlaceholder: "> ATK",
-          customFilterAndSearch: (term, costume) =>
-            costume.costume_stat[0].atk >= Number(term),
-          render: (costume) => (
-            <Stat type="atk" value={costume.costume_stat[0].atk} />
-          ),
+          customFilterAndSearch: (term, costume) => {
+            const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const stats = costume.costume_stat
+              .filter((stat) => stat.level === maxWithAsc)
+              .sort((a, b) => a.awakening_step - b.awakening_step);
+
+            return stats[awakeningLevel].atk >= Number(term);
+          },
+          render: (costume) => {
+            const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const stats = costume.costume_stat
+              .filter((stat) => stat.level === maxWithAsc)
+              .sort((a, b) => a.awakening_step - b.awakening_step);
+
+            return <Stat type="atk" value={stats[awakeningLevel].atk} />;
+          },
         },
         {
           field: "costume_stat[0].vit",
@@ -363,31 +392,51 @@ export function CostumesTable({
           type: "numeric",
           cellStyle: {
             textAlign: "center",
-            color: "rgba(147,197,253,var(--tw-text-opacity))",
           },
           hideFilterIcon: true,
           filterPlaceholder: "> DEF",
-          customFilterAndSearch: (term, costume) =>
-            costume.costume_stat[0].vit >= Number(term),
-          render: (costume) => (
-            <Stat type="vit" value={costume.costume_stat[0].vit} />
-          ),
+          customFilterAndSearch: (term, costume) => {
+            const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const stats = costume.costume_stat
+              .filter((stat) => stat.level === maxWithAsc)
+              .sort((a, b) => a.awakening_step - b.awakening_step);
+
+            return stats[awakeningLevel].vit >= Number(term);
+          },
+          render: (costume) => {
+            const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const stats = costume.costume_stat
+              .filter((stat) => stat.level === maxWithAsc)
+              .sort((a, b) => a.awakening_step - b.awakening_step);
+
+            return <Stat type="vit" value={stats[awakeningLevel].vit} />;
+          },
         },
         {
           field: "costume_stat[0].agi",
           title: "AGI",
           type: "numeric",
-          hideFilterIcon: true,
           cellStyle: {
             textAlign: "center",
-            color: "rgba(110,231,183,var(--tw-text-opacity))",
           },
+          hideFilterIcon: true,
           filterPlaceholder: "> AGI",
-          customFilterAndSearch: (term, costume) =>
-            costume.costume_stat[0].agi >= Number(term),
-          render: (costume) => (
-            <Stat type="agi" value={costume.costume_stat[0].agi} />
-          ),
+          customFilterAndSearch: (term, costume) => {
+            const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const stats = costume.costume_stat
+              .filter((stat) => stat.level === maxWithAsc)
+              .sort((a, b) => a.awakening_step - b.awakening_step);
+
+            return stats[awakeningLevel].agi >= Number(term);
+          },
+          render: (costume) => {
+            const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const stats = costume.costume_stat
+              .filter((stat) => stat.level === maxWithAsc)
+              .sort((a, b) => a.awakening_step - b.awakening_step);
+
+            return <Stat type="agi" value={stats[awakeningLevel].agi} />;
+          },
         },
         {
           field: "costume_skill_link[0].costume_skill.description",
@@ -565,10 +614,10 @@ export function CostumesTable({
       options={{
         search: false,
         actionsColumnIndex: -1,
-        grouping: true,
         searchFieldAlignment: "right",
         filtering: true,
         pageSize: 25,
+        draggable: false,
         pageSizeOptions: [25, 50, 100, 200, 500],
       }}
       onRowClick={onRowClick}

@@ -59,6 +59,7 @@ import { Event } from "../models/types/index";
 import { EventItem } from "pages/events";
 import StatDisplay from "./StatDisplay";
 import Element from "./Element";
+import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -119,6 +120,8 @@ function CostumeDetails({
       addSuffix: true,
     })
   );
+  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
   const cursedGodSlabsPercent = useSettingsStore(
@@ -159,6 +162,20 @@ function CostumeDetails({
 
     return isPve || isPvp;
   });
+
+  const { base, maxNoAsc, maxWithAsc } = getCostumeLevelsByRarity(
+    costume.rarity
+  );
+
+  const stats1 = [...stats]
+    .filter((stat) => stat.level === base)
+    .sort((a, b) => a.awakening_step - b.awakening_step);
+  const stats70 = [...stats]
+    .filter((stat) => stat.level === maxNoAsc)
+    .sort((a, b) => a.awakening_step - b.awakening_step);
+  const stats90 = [...stats]
+    .filter((stat) => stat.level === maxWithAsc)
+    .sort((a, b) => a.awakening_step - b.awakening_step);
 
   return (
     <div>
@@ -205,10 +222,10 @@ function CostumeDetails({
           </div>
 
           <div className="grid grid-cols-2 xs:flex gap-x-4 gap-y-2">
-            <StatDisplay type="hp" value={stats[2]?.hp} />
-            <StatDisplay type="atk" value={stats[2]?.atk} />
-            <StatDisplay type="vit" value={stats[2]?.vit} />
-            <StatDisplay type="agi" value={stats[2]?.agi} />
+            <StatDisplay type="hp" value={stats90[awakeningLevel]?.hp} />
+            <StatDisplay type="atk" value={stats90[awakeningLevel]?.atk} />
+            <StatDisplay type="vit" value={stats90[awakeningLevel]?.vit} />
+            <StatDisplay type="agi" value={stats90[awakeningLevel]?.agi} />
           </div>
         </div>
 
@@ -670,18 +687,15 @@ function CostumeDetails({
             </div>
 
             <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
+              <StatsOfLevel stats={stats1} label="Level 1" />
               <StatsOfLevel
-                stats={stats[0]}
-                label={`Level ${stats[0].level}`}
-              />
-              <StatsOfLevel
-                stats={stats[1]}
-                label={`Level ${stats[1].level}`}
+                stats={stats70}
+                label="Level 70"
                 description="No ascension"
               />
               <StatsOfLevel
-                stats={stats[2]}
-                label={`Level ${stats[2].level}`}
+                stats={stats90}
+                label="Level 90"
                 description="Max ascension"
               />
             </div>
@@ -880,10 +894,12 @@ function StatsOfLevel({
   rowsClasses,
 }: {
   label: string;
-  stats: costume_stat;
+  stats: costume_stat[];
   description?: string;
   rowsClasses?: string | string[];
 }): JSX.Element {
+  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+
   return (
     <div className="flex-1 border border-beige-inactive bg-grey-lighter pb-2">
       <div className="flex flex-col justify-center bg-grey-foreground py-4 text-center mb-2 h-24">
@@ -897,50 +913,50 @@ function StatsOfLevel({
         <SingleStat
           icon={statsIcons.hp}
           name="HP"
-          value={stats.hp ?? "???"}
+          value={stats[awakeningLevel].hp ?? "???"}
           type="hp"
         />
         <SingleStat
           icon={statsIcons.atk}
           name="Attack"
-          value={stats.atk ?? "???"}
+          value={stats[awakeningLevel].atk ?? "???"}
           type="atk"
         />
         <SingleStat
           icon={statsIcons.def}
           name="Defense"
-          value={stats.vit ?? "???"}
+          value={stats[awakeningLevel].vit ?? "???"}
           type="vit"
         />
-        {stats.agi > 0 && (
+        {stats[awakeningLevel].agi > 0 && (
           <SingleStat
             icon={statsIcons.agility}
             name="Agility"
-            value={stats.agi ?? "???"}
+            value={stats[awakeningLevel].agi ?? "???"}
             type="agi"
           />
         )}
-        {stats.crit_rate > 0 && (
+        {stats[awakeningLevel].crit_rate > 0 && (
           <SingleStat
             icon={statsIcons.cr}
             name="Critical Rate"
-            value={`${stats.crit_rate ?? "???"}`}
+            value={`${stats[awakeningLevel].crit_rate ?? "???"}`}
             type="crit_rate"
           />
         )}
-        {stats.crit_atk > 0 && (
+        {stats[awakeningLevel].crit_atk > 0 && (
           <SingleStat
             icon={statsIcons.cd}
             name="Critical Damage"
-            value={`${stats.crit_atk ?? "???"}`}
+            value={`${stats[awakeningLevel].crit_atk ?? "???"}`}
             type="crit_atk"
           />
         )}
-        {stats.eva_rate > 0 && (
+        {stats[awakeningLevel].eva_rate > 0 && (
           <SingleStat
             icon={statsIcons.eva_rate}
             name="Evasion Rate"
-            value={`${stats.eva_rate ?? "???"}`}
+            value={`${stats[awakeningLevel].eva_rate ?? "???"}`}
             type="eva_rate"
           />
         )}

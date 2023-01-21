@@ -49,9 +49,8 @@ export async function getAllCostumes({
         },
       },
       costume_stat: {
-        take: 1,
         orderBy: {
-          level: "desc",
+          awakening_step: 'asc',
         },
       },
     },
