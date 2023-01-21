@@ -32,6 +32,7 @@ export default function NewCostumes({ costumes }) {
         >
           {costumes
             .filter((costume) => {
+              if (typeof window === "undefined") return true;
               if (showUnreleasedContent) return true;
               return new Date() > new Date(costume.release_time);
             })

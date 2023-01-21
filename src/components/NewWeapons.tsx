@@ -31,6 +31,7 @@ export default function NewWeapons({ weapons }: { weapons: weapon[] }) {
         >
           {weapons
             .filter((weapon) => {
+              if (typeof window === "undefined") return true;
               if (showUnreleasedContent) return true;
               return new Date() > new Date(weapon.release_time);
             })

@@ -206,6 +206,7 @@ export function WeaponsTable({
       title={title ?? `${weapons.length} weapons in the database.`}
       data={weapons
         .filter((weapon) => {
+          if (typeof window === "undefined") return true;
           if (showUnreleasedContent) return true;
           return new Date() > new Date(weapon.release_time);
         })
@@ -648,6 +649,7 @@ export function WeaponsGrid({
     >
       {weapons
         .filter((weapon) => {
+          if (typeof window === "undefined") return true;
           if (showUnreleasedContent) return true;
           return new Date() > new Date(weapon.release_time);
         })

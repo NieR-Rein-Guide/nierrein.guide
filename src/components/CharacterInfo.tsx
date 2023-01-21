@@ -58,7 +58,6 @@ import Link from "next/link";
 import { Event } from "../models/types/index";
 import { EventItem } from "pages/events";
 import StatDisplay from "./StatDisplay";
-import WeaponArtwork from "./WeaponArtwork";
 import Element from "./Element";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
@@ -110,6 +109,9 @@ function CostumeDetails({
   ascendLevel: number;
   skillLevel: number;
 }): JSX.Element {
+  const [isSpoiler, setIsSpoiler] = useState(
+    new Date() < new Date(costume.release_time)
+  );
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [isShowingWeaponModel, setIsShowingWeaponModel] = useState(false);
   const [dateRelative, setDateRelative] = useState(
@@ -140,12 +142,15 @@ function CostumeDetails({
     );
   }, [costume]);
 
+  useEffect(() => {
+    setIsSpoiler(
+      !showUnreleasedContent && new Date() < new Date(costume.release_time)
+    );
+  }, [showUnreleasedContent]);
+
   const abilityLevel = clamp(ascendLevel - 1, 1, 3);
   const costumeAbilities = abilities.slice(0, 2);
   const awakeningAbility = abilities?.[2]?.[0];
-
-  const isSpoiler =
-    !showUnreleasedContent && new Date() < new Date(costume.release_time);
 
   const officialTiers = costume.tierlistsItems.filter((tierlistItem) => {
     const tierlistId = tierlistItem.tiers.tierslists.tierlist_id;

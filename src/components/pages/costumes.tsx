@@ -257,6 +257,7 @@ export function CostumesTable({
     <MaterialTable
       title={title ?? `${costumes.length} costumes in the database.`}
       data={costumes.filter((costume) => {
+        if (typeof window === "undefined") return true;
         if (showUnreleasedContent) return true;
         return new Date() > new Date(costume.release_time);
       })}
@@ -614,6 +615,7 @@ export function CostumesGrid({
     >
       {costumes
         .filter((costume) => {
+          if (typeof window === "undefined") return true;
           if (showUnreleasedContent) return true;
           return new Date() > new Date(costume.release_time);
         })
