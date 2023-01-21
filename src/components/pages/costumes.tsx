@@ -279,7 +279,7 @@ export function CostumesTable({
   return (
     <MaterialTable
       title={title ?? `${costumes.length} costumes in the database.`}
-      data={filteredCostumes}
+      data={costumes}
       columns={[
         {
           field: "title",
