@@ -111,6 +111,13 @@ export default function CharactersPage({
   charactersLookup,
   characters,
 }: CharactersPageProps): JSX.Element {
+  const [filteredCostumes, setFilteredCostumes] = useState(
+    costumes.filter((costume) => {
+      if (showUnreleasedContent) return true;
+      return new Date() > new Date(costume.release_time);
+    })
+  );
+
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
@@ -137,6 +144,15 @@ export default function CharactersPage({
   useEffect(() => {
     setDisplayType(databaseDisplayType);
   }, [databaseDisplayType]);
+
+  useEffect(() => {
+    setFilteredCostumes(
+      costumes.filter((costume) => {
+        if (showUnreleasedContent) return true;
+        return new Date() > new Date(costume.release_time);
+      })
+    );
+  }, [showUnreleasedContent]);
 
   return (
     <Layout
@@ -189,7 +205,10 @@ export default function CharactersPage({
                     skills
                   )
                 : filterCostumesBySkill(
-                    filterCostumesByCharacter(costumes, filteredCharacters),
+                    filterCostumesByCharacter(
+                      filteredCostumes,
+                      filteredCharacters
+                    ),
                     skills
                   )
             }
@@ -211,7 +230,10 @@ export default function CharactersPage({
                     skills
                   )
                 : filterCostumesBySkill(
-                    filterCostumesByCharacter(costumes, filteredCharacters),
+                    filterCostumesByCharacter(
+                      filteredCostumes,
+                      filteredCharacters
+                    ),
                     skills
                   )
             }
@@ -252,18 +274,8 @@ export function CostumesTable({
   onRowClick?;
   title?: string;
 }) {
-  const [filteredCostumes, setFilteredCostumes] = useState(costumes);
   const addCostumePanel = usePanelStore((state) => state.addCostume);
   const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
-
-  useEffect(() => {
-    setFilteredCostumes(
-      costumes.filter((costume) => {
-        if (showUnreleasedContent) return true;
-        return new Date() > new Date(costume.release_time);
-      })
-    );
-  }, [showUnreleasedContent]);
 
   return (
     <MaterialTable
