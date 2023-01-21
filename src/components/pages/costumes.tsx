@@ -113,7 +113,6 @@ export default function CharactersPage({
 }: CharactersPageProps): JSX.Element {
   const [filteredCostumes, setFilteredCostumes] = useState(
     costumes.filter((costume) => {
-      if (showUnreleasedContent) return true;
       return new Date() > new Date(costume.release_time);
     })
   );
