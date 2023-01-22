@@ -16,6 +16,7 @@ import {
   CDN_URL,
   CURSED_GOD_MONUMENT_SLABS,
   FEATURED_TIERLISTS,
+  REPLACE_COSTUME_IDS,
   STONE_TOWER_MONUMENT_SLABS,
 } from "@config/constants";
 import { format, formatDistanceToNow } from "date-fns";
@@ -60,6 +61,7 @@ import { EventItem } from "pages/events";
 import StatDisplay from "./StatDisplay";
 import Element from "./Element";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
+import switchImg from "../../public/icons/switch.png";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -110,9 +112,12 @@ function CostumeDetails({
   ascendLevel: number;
   skillLevel: number;
 }): JSX.Element {
+  const hasReplace = REPLACE_COSTUME_IDS.includes(costume.costume_id);
+
   const [isSpoiler, setIsSpoiler] = useState(
     new Date() < new Date(costume.release_time)
   );
+  const [isReplaced, setIsReplaced] = useState(false);
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [isShowingWeaponModel, setIsShowingWeaponModel] = useState(false);
   const [dateRelative, setDateRelative] = useState(
@@ -377,10 +382,14 @@ function CostumeDetails({
                   })}
                 >
                   <Image
-                    key={`${CDN_URL}${costume.image_path_base}full.png`}
+                    key={`${CDN_URL}${costume.image_path_base}full${
+                      isReplaced ? "_replace" : ""
+                    }.png`}
                     layout="fill"
                     objectFit="contain"
-                    src={`${CDN_URL}${costume.image_path_base}full.png`}
+                    src={`${CDN_URL}${costume.image_path_base}full${
+                      isReplaced ? "_replace" : ""
+                    }.png`}
                     alt={`${costume.title} (${costume.title}) illustration`}
                   />
                 </div>
@@ -439,6 +448,20 @@ function CostumeDetails({
                 isChecked={ownedCostumes.includes(costume.costume_id)}
                 setState={() => toggleFromInventory(costume.costume_id)}
               />
+            </div>
+
+            <div className="absolute top-16 left-6 z-10">
+              <button
+                className="w-12"
+                title="Switch costume artwork"
+                onClick={() => setIsReplaced(!isReplaced)}
+              >
+                <Image
+                  objectFit="contain"
+                  src={switchImg}
+                  alt="Switch costume design"
+                />
+              </button>
             </div>
 
             <div className="hidden md:block absolute bottom-0 left-1/2 transform -translate-x-1/2 z-50">

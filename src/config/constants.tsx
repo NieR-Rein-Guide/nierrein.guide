@@ -943,3 +943,9 @@ export const SKILLS_TYPES = [
     options: ["gauge increase", "gauge up at battle start"],
   },
 ];
+
+/**
+ * REPLACES COSTUMES
+ * (alternative costume asset_id ending in "_replace")
+ */
+export const REPLACE_COSTUME_IDS = [10113, 10114];
