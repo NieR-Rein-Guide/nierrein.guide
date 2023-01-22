@@ -109,6 +109,7 @@ async function getEvent(slug: string): Promise<Event> {
   const GET_EVENT = gql`
     query getSingleEvent($slug: String!) {
       events (where: {slug: $slug}) {
+        id
         title
         slug
         content

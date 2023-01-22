@@ -10,13 +10,31 @@ import { Event } from "@models/types";
 import { getAllEvents, getEvent } from "@models/event";
 import Lines from "@components/decorations/Lines";
 import { differenceInDays, formatDistanceToNow } from "date-fns";
+import prisma from "@libs/prisma";
+import { character, costume } from "@prisma/client";
+import CostumeThumbnail from "@components/CostumeThumbnail";
+import { AiOutlinePushpin } from "react-icons/ai";
+import classNames from "classnames";
+import { CDN_URL } from "@config/constants";
+import Checkbox from "@components/form/Checkbox";
+import { usePanelStore } from "@store/panels";
+import { useInventoryStore } from "@store/inventory";
 
 interface eventProps {
   event: Event;
+  costumes: (costume & {
+    character: character;
+  })[];
 }
 
-export default function SingleEvent({ event }: eventProps): JSX.Element {
+export default function SingleEvent({
+  event,
+  costumes,
+}: eventProps): JSX.Element {
   const router = useRouter();
+  const addCostumePanel = usePanelStore((state) => state.addCostume);
+  const ownedCostumes = useInventoryStore((state) => state.costumes);
+  const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
 
   return (
     <Layout>
@@ -112,6 +130,72 @@ export default function SingleEvent({ event }: eventProps): JSX.Element {
             </Lines>
           </div>
 
+          {costumes.length > 0 && (
+            <div className="mb-12">
+              <h2 className="text-3xl font-display">Costumes</h2>
+
+              <div className="grid grid-cols-2 xs:grid-cols-3 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 pt-8">
+                {costumes.map((cost) => (
+                  <div
+                    className={classNames("group relative")}
+                    key={cost.costume_id}
+                  >
+                    <div className="relative flex flex-col items-center justify-center gap-y-2 font-mono mb-2">
+                      <p className="text-center text-sm mb-0 leading-none">
+                        {cost.is_ex_costume && (
+                          <span className="text-rarity-4">EX </span>
+                        )}
+                        {cost.character.name}
+                      </p>
+                      <span className="text-xs text-center text-beige line-clamp-1 leading-none transition-opacity ease-out-cubic group-hover:opacity-0 -mt-1 pb-2">
+                        {cost.title}
+                      </span>
+                      <button
+                        onClick={() => addCostumePanel(cost.costume_id)}
+                        className="absolute bottom-1 flex gap-x-1 rounded-full bg-brown px-2 py-1 transition hover:bg-opacity-80 ease-out-cubic translate-y-3 opacity-0 group-hover:opacity-100 group-hover:translate-y-2 umami--click--pin-costume-button"
+                      >
+                        <AiOutlinePushpin />
+                        <span className="text-xs">PIN</span>
+                      </button>
+                    </div>
+                    <CostumeThumbnail
+                      src={`${CDN_URL}${cost.image_path_base}portrait.png`}
+                      alt={cost.title}
+                      weaponType={cost.weapon_type}
+                      rarity={cost.rarity}
+                      isLarge
+                      isDark={cost.is_ex_costume}
+                      className="group"
+                      imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
+                    >
+                      <Link
+                        href={`/characters/${cost.character.slug}/${cost.slug}`}
+                        passHref
+                      >
+                        <a className="absolute inset-0 z-10">
+                          <span className="sr-only">
+                            See more about {cost.title}
+                          </span>
+                        </a>
+                      </Link>
+                    </CostumeThumbnail>
+                    <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
+                      <Checkbox
+                        label={
+                          ownedCostumes.includes(cost.costume_id)
+                            ? "Owned"
+                            : "Owned?"
+                        }
+                        isChecked={ownedCostumes.includes(cost.costume_id)}
+                        setState={() => toggleFromInventory(cost.costume_id)}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <article className="relative py-8 px-4 lg:p-8 border border-opacity-40">
             <Corners />
 
@@ -133,10 +217,32 @@ export default function SingleEvent({ event }: eventProps): JSX.Element {
 export async function getStaticProps(context) {
   const event = await getEvent(context.params.slug);
 
-  return {
-    props: {
-      event,
+  const linked = await prisma.nrg.costumes_link.findMany({
+    where: {
+      events: {
+        array_contains: [Number(event.id)],
+      },
     },
+  });
+
+  const costumes = await prisma.dump.costume.findMany({
+    where: {
+      costume_id: {
+        in: linked.map((link) => link.costume_id),
+      },
+    },
+    include: {
+      character: true,
+    },
+  });
+
+  return {
+    props: JSON.parse(
+      JSON.stringify({
+        event,
+        costumes,
+      })
+    ),
     revalidate: 30, // Revalidate every 30s
   };
 }
