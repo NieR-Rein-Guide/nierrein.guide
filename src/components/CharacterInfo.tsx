@@ -156,6 +156,12 @@ function CostumeDetails({
     );
   }, [showUnreleasedContent]);
 
+  useEffect(() => {
+    if (isReplaced && !hasReplace) {
+      setIsReplaced(false);
+    }
+  }, [costume]);
+
   const abilityLevel = clamp(ascendLevel - 1, 1, 3);
   const costumeAbilities = abilities.slice(0, 2);
   const awakeningAbility = abilities?.[2]?.[0];
@@ -450,19 +456,21 @@ function CostumeDetails({
               />
             </div>
 
-            <div className="absolute top-16 left-6 z-10">
-              <button
-                className="w-12"
-                title="Switch costume artwork"
-                onClick={() => setIsReplaced(!isReplaced)}
-              >
-                <Image
-                  objectFit="contain"
-                  src={switchImg}
-                  alt="Switch costume design"
-                />
-              </button>
-            </div>
+            {hasReplace && (
+              <div className="absolute top-16 left-6 z-10">
+                <button
+                  className="w-12"
+                  title="Switch costume artwork"
+                  onClick={() => setIsReplaced(!isReplaced)}
+                >
+                  <Image
+                    objectFit="contain"
+                    src={switchImg}
+                    alt="Switch costume design"
+                  />
+                </button>
+              </div>
+            )}
 
             <div className="hidden md:block absolute bottom-0 left-1/2 transform -translate-x-1/2 z-50">
               <button
