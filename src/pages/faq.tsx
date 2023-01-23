@@ -9,7 +9,7 @@ interface FAQProps {
 }
 
 export default function FAQPage({ FAQ }: FAQProps): JSX.Element {
-  const items = FAQ.qa.map((item) => ({
+  const items = FAQ.attributes.qa.map((item) => ({
     title: item.question,
     content: (
       <div
