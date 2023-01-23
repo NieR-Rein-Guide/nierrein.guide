@@ -30,6 +30,7 @@ export default function EventsTimeline({
   items: Event[];
   hasBtn?: boolean;
 }) {
+  console.log(items.length);
   const isMobile = useMedia("(max-width: 1279px)", true);
   const eventsDisplayType = useSettingsStore(
     (state) => state.eventsDisplayType
@@ -42,8 +43,8 @@ export default function EventsTimeline({
   const eventsGroups = GROUPS.reduce((acc, group) => {
     const list = items.filter((item) => {
       return (
-        item.title.includes(group) &&
-        new Date(item.end_date).getTime() > Date.now()
+        item.attributes.title.includes(group) &&
+        new Date(item.attributes.end_date).getTime() > Date.now()
       );
     });
 
@@ -56,24 +57,24 @@ export default function EventsTimeline({
    */
   const visItems = items.map((item, id) => {
     const associatedGroup = groups.find((group) =>
-      item.title.includes(group.content)
+      item.attributes.title.includes(group.content)
     );
 
     const visItem = {
       id,
-      content: item.title,
-      start: item.start_date,
-      end: item.end_date,
+      content: item.attributes.title,
+      start: item.attributes.start_date,
+      end: item.attributes.end_date,
       group: associatedGroup?.id,
       selectable: false,
       className: "bg-beige",
       limitSize: false,
-      slug: item.slug,
+      slug: item.attributes.slug,
       image:
-        item.image.formats.large?.url ??
-        item.image.formats.medium?.url ??
-        item.image.formats.small?.url ??
-        item.image.formats.thumbnail.url,
+        item.attributes.image.data.attributes.formats.large?.url ??
+        item.attributes.image.data.attributes.formats.medium?.url ??
+        item.attributes.image.data.attributes.formats.small?.url ??
+        item.attributes.image.data.attributes.formats.thumbnail.url,
     };
 
     return visItem;
@@ -105,6 +106,7 @@ export default function EventsTimeline({
       <div className="px-4 md:px-0">
         {GROUPS.map((group) => {
           const events = eventsGroups[group];
+          console.log(group, events);
           if (events.length === 0) return null;
           return (
             <EventsListing

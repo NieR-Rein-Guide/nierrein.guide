@@ -198,9 +198,6 @@ export default function Home({
         </div>
 
         <div className="container">
-          <FeaturedGuides guides={featuredGuides} />
-        </div>
-        <div className="container">
           <DailyInfoWithNoSSR />
         </div>
         <div className="container">
@@ -253,38 +250,32 @@ export default function Home({
 export async function getStaticProps() {
   try {
     console.time("Homepage props");
-    const [
-      featuredGuides,
-      events,
-      recentCostumes,
-      notificationsData,
-      loadouts,
-    ] = await Promise.all([
-      getFeaturedGuides(),
-      getAllEvents(),
-      prisma.dump.costume.findMany({
-        orderBy: {
-          release_time: "desc",
-        },
-        include: {
-          character: true,
-          emblem: true,
-        },
-        take: 6,
-      }),
-      prisma.dump.notification.findMany({
-        take: 20,
-        orderBy: {
-          release_time: "desc",
-        },
-      }),
-      prisma.nrg.loadouts.findMany({
-        take: 6,
-        orderBy: {
-          votes: "desc",
-        },
-      }),
-    ]);
+    const [events, recentCostumes, notificationsData, loadouts] =
+      await Promise.all([
+        getAllEvents(),
+        prisma.dump.costume.findMany({
+          orderBy: {
+            release_time: "desc",
+          },
+          include: {
+            character: true,
+            emblem: true,
+          },
+          take: 6,
+        }),
+        prisma.dump.notification.findMany({
+          take: 20,
+          orderBy: {
+            release_time: "desc",
+          },
+        }),
+        prisma.nrg.loadouts.findMany({
+          take: 6,
+          orderBy: {
+            votes: "desc",
+          },
+        }),
+      ]);
 
     const recentWeapons = await prisma.dump.weapon.findMany({
       take: 6,
@@ -322,7 +313,6 @@ export async function getStaticProps() {
     return {
       props: JSON.parse(
         JSON.stringify({
-          featuredGuides,
           events,
           recentCostumes,
           notifications,

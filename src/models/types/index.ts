@@ -46,17 +46,76 @@ export type FAQ = {
   }[]
 }
 
-export type Event = {
-  id: number;
-  title: string;
-  slug: string;
-  content?: string;
-  image?: {
-    formats: StrapiImageFormats;
-  };
-  start_date: string;
-  end_date?: string;
-  poll?: Poll;
+export interface Event {
+    id:         number;
+    attributes: EventAttributes;
+}
+
+export interface EventAttributes {
+    title:         string;
+    createdAt:     Date;
+    updatedAt:     Date;
+    publishedAt:   Date;
+    content:       string;
+    start_date:    Date;
+    end_date:      Date;
+    slug:          string;
+    Type:          null;
+    gems:          null;
+    locale:        string;
+    image:         Image;
+    localizations: Localizations;
+}
+
+export interface Image {
+    data: ImageData;
+}
+
+export interface ImageData {
+    id:         number;
+    attributes: StrapiImageAttributes;
+}
+
+export interface StrapiImageAttributes {
+    name:              string;
+    alternativeText:   string;
+    caption:           string;
+    width:             number;
+    height:            number;
+    formats:           Formats;
+    hash:              string;
+    ext:               string;
+    mime:              string;
+    size:              number;
+    url:               string;
+    previewUrl:        null;
+    provider:          string;
+    provider_metadata: null;
+    createdAt:         Date;
+    updatedAt:         Date;
+}
+
+export interface Formats {
+    large:     Large;
+    small:     Large;
+    medium:    Large;
+    thumbnail: Large;
+}
+
+export interface Large {
+    ext:    string;
+    url:    string;
+    hash:   string;
+    mime:   string;
+    name:   string;
+    path:   null;
+    size:   number;
+    width:  number;
+    height: number;
+}
+
+export interface Localizations {
+    data: any[];
 }
 
 export type Guide = {

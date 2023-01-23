@@ -44,7 +44,7 @@ export default function Events({ events }: GuidesProps): JSX.Element {
 
   const eventsGroups = GROUPS.reduce((acc, group) => {
     const items = events.filter((item) => {
-      return item.title.includes(group);
+      return item.attributes.title.includes(group);
     });
 
     acc[group] = items;
@@ -62,7 +62,7 @@ export default function Events({ events }: GuidesProps): JSX.Element {
       <Tabs className="container" defaultIndex={tabIndex}>
         <TabList className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
           {GROUPS.map((group, index) => {
-            const activeEvents = eventsGroups[group].filter(
+            const activeEvents: Event[] = eventsGroups[group].filter(
               (item) => new Date(item.end_date).getTime() > Date.now()
             );
             return (
@@ -72,9 +72,12 @@ export default function Events({ events }: GuidesProps): JSX.Element {
                 style={{
                   background: activeEvents[0]
                     ? `url(${
-                        activeEvents[0].image?.formats?.large?.url ??
-                        activeEvents[0].image?.formats?.medium?.url ??
-                        activeEvents[0].image?.formats?.small?.url
+                        activeEvents[0].attributes.image.data.attributes.formats
+                          .large?.url ??
+                        activeEvents[0].attributes.image.data.attributes.formats
+                          .medium?.url ??
+                        activeEvents[0].attributes.image.data.attributes.formats
+                          .small?.url
                       })`
                     : undefined,
                   backgroundPosition: "top",
@@ -144,21 +147,18 @@ export function EventsListing({
 }
 
 export function EventItem({
-  title,
-  image,
-  slug,
-  end_date,
-  start_date,
+  id,
+  attributes,
   cardClasses,
 }: Event & { cardClasses?: string[] }) {
-  const endDate = new Date(end_date);
-  const startDate = new Date(start_date);
+  const endDate = new Date(attributes.end_date);
+  const startDate = new Date(attributes.start_date);
   const isEnded = endDate.getTime() <= Date.now();
   const isNearlyEnded = differenceInDays(endDate, new Date()) <= 7;
 
   return (
     <div
-      key={slug}
+      key={attributes.slug}
       className={classNames(
         cardClasses,
         "relative bg-grey-dark border transition-transform ease-out-cubic transform hover:-translate-y-1",
@@ -178,7 +178,7 @@ export function EventItem({
               "bg-orange-300": isNearlyEnded && !isEnded,
             })}
           ></span>
-          <span className="flex-1">{title}</span>
+          <span className="flex-1">{attributes.title}</span>
         </h3>
         <div>
           <p className="text-sm flex gap-x-1 items-center">
@@ -212,24 +212,24 @@ export function EventItem({
       <Image
         layout="responsive"
         src={
-          image?.formats?.large?.url ??
-          image?.formats?.medium?.url ??
-          image?.formats?.small?.url
+          attributes.image?.data.attributes.formats?.large?.url ??
+          attributes.image?.data.attributes.formats?.medium?.url ??
+          attributes.image?.data.attributes.formats?.small?.url
         }
-        alt={`${title} thumbnail`}
+        alt={`${attributes.title} thumbnail`}
         height={
-          image?.formats?.large?.height ??
-          image?.formats?.medium?.height ??
-          image?.formats?.small?.height
+          attributes.image?.data.attributes.formats?.large?.height ??
+          attributes.image?.data.attributes.formats?.medium?.height ??
+          attributes.image?.data.attributes.formats?.small?.height
         }
         width={
-          image?.formats?.large?.width ??
-          image?.formats?.medium?.width ??
-          image?.formats?.small?.width
+          attributes.image?.data.attributes.formats?.large?.width ??
+          attributes.image?.data.attributes.formats?.medium?.width ??
+          attributes.image?.data.attributes.formats?.small?.width
         }
       />
 
-      <Link href={`/event/${slug}`} passHref={true}>
+      <Link href={`/event/${attributes.slug}`} passHref={true}>
         <a title="View event" className="absolute inset-0">
           <span className="sr-only">View event</span>
         </a>

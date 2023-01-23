@@ -1,4 +1,4 @@
-import { envsafe, str } from "envsafe";
+import { envsafe, str, url } from "envsafe";
 
 export const env = envsafe({
   NODE_ENV: str({
@@ -14,12 +14,13 @@ export const env = envsafe({
   S3_ENDPOINT: str({
     default: 's3.eu-central-1.wasabisys.com'
   }),
-  NEXT_PUBLIC_API_ENDPOINT: str({
+  NEXT_PUBLIC_API_ENDPOINT: url({
     default: 'https://strapi.nierrein.guide/',
   }),
-  NEXT_PUBLIC_GRAPHQL_API_ENDPOINT: str({
+  NEXT_PUBLIC_GRAPHQL_API_ENDPOINT: url({
     default: 'https://strapi.nierrein.guide/graphql',
   }),
+  NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT: url({}),
   DATABASE_URL: str({
     desc: 'Dump database (weapons, costumes...)',
   }),
