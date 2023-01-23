@@ -60,6 +60,7 @@ export default function WeaponSelect({
       }
       renderOption={(props, option) => (
         <Box
+          key={option.weapon_id}
           component="li"
           sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
           {...props}

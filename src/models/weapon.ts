@@ -42,7 +42,6 @@ export async function getAllWeapons() {
 				},
 			},
 		},
-		take: env.NODE_ENV === 'development' ? 5 : undefined,
 	});
 
 	const exWeapons = await prisma.dump.weapon.findMany({

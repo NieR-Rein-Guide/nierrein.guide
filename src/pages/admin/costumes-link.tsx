@@ -16,6 +16,7 @@ import {
   costume_stat,
   debris,
   emblem,
+  Prisma,
   weapon,
   weapon_ability,
   weapon_ability_link,
@@ -32,19 +33,12 @@ import { useState } from "react";
 import axios from "axios";
 import produce from "immer";
 import getBaseRarity from "@utils/getBaseRarity";
-import DebrisSelect from "@components/DebrisSelect";
 import { getAllEvents } from "@models/event";
-import {
-  Checkbox,
-  FormControl,
-  InputLabel,
-  ListItemText,
-  MenuItem,
-  OutlinedInput,
-  Select,
-  SelectChangeEvent,
-} from "@mui/material";
+import { Autocomplete, TextField } from "@mui/material";
 import { Event } from "@models/types";
+import MaterialTable from "@material-table/core";
+import { getAllWeapons } from "@models/weapon";
+import { Box } from "@mui/system";
 
 interface LoadoutBuilderProps {
   costumes: (costume & {
@@ -71,21 +65,10 @@ interface LoadoutBuilderProps {
   links: costumes_link[];
   events: Event[];
 }
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
 
 export default function AdminCostumesLink({
   costumes,
   weapons,
-  debris,
   links,
   events,
 }: LoadoutBuilderProps): JSX.Element {
@@ -144,52 +127,15 @@ export default function AdminCostumesLink({
 
         if (!linkedCostume) {
           draft.push({
-            costume_id: costume.costume_id,
-            weapon_id: weapon.weapon_id,
-            debris_id: null,
+            costume_id: costume?.costume_id,
+            weapon_id: weapon?.weapon_id,
+            events: linkedCostume.events ?? [],
           });
 
           return;
         }
 
         linkedCostume.weapon_id = weapon.weapon_id;
-      })
-    );
-
-    console.log(newLinks);
-  }
-
-  function updateDebris(
-    costume: costume & {
-      costume_ability_link: (costume_ability_link & {
-        costume_ability: costume_ability;
-      })[];
-      costume_skill_link: (costume_skill_link & {
-        costume_skill: costume_skill;
-      })[];
-      costume_stat: costume_stat[];
-      character: character;
-      emblem: emblem;
-    },
-    thought: debris
-  ) {
-    setNewLinks(
-      produce(newLinks, (draft) => {
-        const linkedCostume = draft.find(
-          (link) => link.costume_id === costume.costume_id
-        );
-
-        if (!linkedCostume) {
-          draft.push({
-            costume_id: costume.costume_id,
-            weapon_id: linkedCostume.weapon_id,
-            debris_id: thought?.debris_id,
-          });
-
-          return;
-        }
-
-        linkedCostume.debris_id = thought?.debris_id;
       })
     );
 
@@ -220,7 +166,6 @@ export default function AdminCostumesLink({
           draft.push({
             costume_id: costume.costume_id,
             weapon_id: linkedCostume?.weapon_id,
-            debris_id: linkedCostume?.debris_id,
             events,
           });
 
@@ -230,6 +175,8 @@ export default function AdminCostumesLink({
         linkedCostume.events = events;
       })
     );
+
+    console.log(newLinks);
   }
 
   return (
@@ -240,103 +187,193 @@ export default function AdminCostumesLink({
       />
 
       <section className="flex flex-col gap-y-4 p-4 md:p-8">
-        <List
-          height={1000}
-          itemSize={80}
-          width={1050}
-          itemData={costumes}
-          itemCount={costumes.length}
-        >
-          {({ data, index, style }) => {
-            const costume = data[index];
-            const link = newLinks.find(
-              (link) => link.costume_id === costume.costume_id
-            );
-            const weaponLinked = weapons.find(
-              (weapon) => weapon.weapon_id === link?.weapon_id
-            );
-            const debrisLinked = debris.find(
-              (thought) => thought.debris_id === link?.debris_id
-            );
-
-            const selectedEvents = link.events;
-
-            return (
-              <li style={style}>
-                <div className="flex flex-col gap-y-2" key={costume.costume_id}>
-                  <h2>
-                    {costume.character.name} - {costume.title}
-                  </h2>
-                  <div className="flex gap-x-4">
+        <MaterialTable
+          title={`${costumes.length} costumes in the database.`}
+          data={costumes}
+          columns={[
+            {
+              field: "title",
+              title: "Title",
+              type: "string",
+              filterPlaceholder: "Search title or character...",
+              render: (costume) => (
+                <div className="flex items-center gap-x-2">
+                  <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
                     <CostumeThumbnail
+                      href={`/characters/${costume.character.slug}/${costume.slug}`}
                       src={`${CDN_URL}${costume.image_path_base}battle.png`}
                       alt={`${costume.title} thumbnail`}
                       rarity={RARITY[costume.rarity]}
                       weaponType={costume.weapon_type}
+                      isDark={costume.is_ex_costume}
                     />
-                    <WeaponThumbnail
-                      image_path={weaponLinked?.image_path}
-                      alt={`${weaponLinked?.name} thumbnail`}
-                      rarity={
-                        weaponLinked?.rarity
-                          ? getBaseRarity(weaponLinked)
-                          : "RARE"
-                      }
-                      type={weaponLinked?.weapon_type}
-                      isDark={weaponLinked?.is_ex_weapon}
-                      element={weaponLinked?.attribute}
-                    />
-                    <DebrisThumbnail {...debrisLinked} />
-                    {/*                     <WeaponSelect
-                      defaultValue={weaponLinked}
-                      classes="flex-1"
-                      weapons={weapons}
-                      onSelect={(e, value) => {
-                        if (!value) return;
-                        updateWeapon(costume, value);
-                      }}
-                      label="Add a weapon..."
-                    />
-                    <DebrisSelect
-                      defaultValue={debrisLinked}
-                      debris={debris}
-                      onSelect={(e, value) => {
-                        updateDebris(costume, value);
-                      }}
-                      label="Add a debris..."
-                    /> */}
-                    <FormControl sx={{ m: 1, width: 300 }}>
-                      <InputLabel>Events</InputLabel>
-                      <Select
-                        multiple
-                        value={selectedEvents}
-                        onChange={(e) => {
-                          updateEvents(costume, e.target.value);
-                        }}
-                        input={<OutlinedInput label="Tag" />}
-                        renderValue={(selected) => selected.join(", ")}
-                        MenuProps={MenuProps}
-                      >
-                        {events.map((event) => (
-                          <MenuItem
-                            key={event.id}
-                            title={event.title}
-                            value={event.id}
-                          >
-                            <Checkbox
-                              checked={selectedEvents.includes(event.id)}
-                            />
-                            <ListItemText primary={event.title} />
-                          </MenuItem>
-                        ))}
-                      </Select>
-                    </FormControl>
+                    <span className="inline-block pr-12 line-clamp-2">
+                      {costume.is_ex_costume && (
+                        <span className="text-rarity-4">EX </span>
+                      )}
+                      {costume.title}
+                    </span>
                   </div>
                 </div>
-              </li>
+              ),
+              customFilterAndSearch: (term, costume) => {
+                if (term.length === 0) return true;
+                return `${costume.character.name.toLowerCase()} ${costume.title.toLowerCase()}`.includes(
+                  term.toLowerCase()
+                );
+              },
+            },
+            {
+              field: "weapon",
+              title: "Associated Weapon",
+              type: "string",
+              render: (costume) => {
+                const link = newLinks.find(
+                  (link) => link.costume_id === costume.costume_id
+                );
+
+                const weaponLinked = weapons.find(
+                  (weapon) => weapon.weapon_id === link?.weapon_id
+                );
+
+                return (
+                  <WeaponThumbnail
+                    href={`/weapons/${
+                      costume?.weapon?.slug ?? weaponLinked.slug
+                    }`}
+                    image_path={weaponLinked?.image_path}
+                    alt={`${weaponLinked?.name} thumbnail`}
+                    rarity={
+                      weaponLinked?.rarity
+                        ? getBaseRarity(weaponLinked)
+                        : "RARE"
+                    }
+                    type={weaponLinked?.weapon_type}
+                    isDark={weaponLinked?.is_ex_weapon}
+                    element={weaponLinked?.attribute}
+                  />
+                );
+              },
+            },
+            {
+              field: "events",
+              title: "Costume sources",
+              type: "string",
+              render: (costume) => {
+                const link = newLinks.find(
+                  (link) => link.costume_id === costume.costume_id
+                );
+
+                const linkedEvents = link.events as Prisma.JsonArray;
+
+                const costumeEvents = events.filter((event) =>
+                  linkedEvents.includes(event.id)
+                );
+
+                return (
+                  <div className="flex flex-col gap-y-4">
+                    {costumeEvents.map((event) => (
+                      <div key={event.id}>
+                        <h2>{event.attributes.title}</h2>
+                        <img
+                          className="w-80 h-auto object-contain"
+                          src={event.attributes.image.data.attributes?.url}
+                          alt="event"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                );
+              },
+            },
+          ]}
+          detailPanel={({ rowData: costume }) => {
+            const link = newLinks.find(
+              (link) => link.costume_id === costume.costume_id
+            );
+
+            const weaponLinked = weapons.find(
+              (weapon) => weapon.weapon_id === link?.weapon_id
+            );
+
+            const linkedEvents = link.events as Prisma.JsonArray;
+
+            const costumeEvents = events.filter((event) =>
+              linkedEvents.includes(event.id)
+            );
+
+            return (
+              <section className="p-4">
+                <div className="flex flex-col bg-grey-dark gap-y-4">
+                  <WeaponSelect
+                    defaultValue={weaponLinked}
+                    classes="flex-1"
+                    weapons={weapons}
+                    onSelect={(e, value) => {
+                      if (!value) return;
+                      updateWeapon(costume, value);
+                    }}
+                    label="Add a weapon..."
+                  />
+
+                  <Autocomplete
+                    value={costumeEvents ?? []}
+                    multiple
+                    onChange={(e, selectedEvents) =>
+                      updateEvents(
+                        costume,
+                        selectedEvents.map(
+                          (ev) => typeof ev === "object" && ev.id
+                        )
+                      )
+                    }
+                    options={events}
+                    autoHighlight
+                    getOptionLabel={(option) =>
+                      typeof option === "object" &&
+                      `${option?.attributes?.title}`
+                    }
+                    renderOption={(props, option) => (
+                      <Box
+                        key={option.id}
+                        component="li"
+                        sx={{ "& > img": { mr: 2, flexShrink: 0 } }}
+                        {...props}
+                      >
+                        <img
+                          className="object-contain"
+                          loading="lazy"
+                          width="200"
+                          src={option.attributes.image.data.attributes.url}
+                        />
+                        {option.attributes.title}
+                      </Box>
+                    )}
+                    renderInput={(params) => (
+                      <TextField
+                        {...params}
+                        label="Add event..."
+                        inputProps={{
+                          ...params.inputProps,
+                          autoComplete: "new-password", // disable autocomplete and autofill
+                        }}
+                      />
+                    )}
+                  />
+                </div>
+              </section>
             );
           }}
-        </List>
+          options={{
+            search: false,
+            actionsColumnIndex: -1,
+            searchFieldAlignment: "right",
+            filtering: true,
+            pageSize: 25,
+            draggable: false,
+            pageSizeOptions: [25, 50, 100, 200, 500],
+          }}
+        />
       </section>
 
       <div className="flex justify-center mt-4">
@@ -349,22 +386,17 @@ export default function AdminCostumesLink({
 }
 
 export async function getServerSideProps() {
-  const [costumesData, weapons, debris, links] = await Promise.all([
+  const [costumesData, weaponsData, links] = await Promise.all([
     getAllCostumes({
       orderBy: {
         release_time: "desc",
       },
     }),
-    prisma.dump.weapon.findMany({}),
-    prisma.dump.debris.findMany({
-      orderBy: {
-        release_time: "asc",
-      },
-    }),
+    getAllWeapons(),
     prisma.nrg.costumes_link.findMany({}),
   ]);
 
-  const selectWeapons = [...weapons].sort(
+  const selectWeapons = [...weaponsData.weapons].sort(
     (a, b) => -b.weapon_type.localeCompare(a.weapon_type)
   );
 
@@ -375,7 +407,6 @@ export async function getServerSideProps() {
       JSON.stringify({
         costumes: costumesData.costumes,
         weapons: selectWeapons,
-        debris,
         links,
         events,
       })
