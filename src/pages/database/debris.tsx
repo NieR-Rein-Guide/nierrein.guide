@@ -89,7 +89,6 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
               field: "costume",
               title: "Costume",
               render: (thought) => {
-                console.log(thought);
                 return (
                   <div className="flex items-center gap-x-4 w-80">
                     {thought.costume.map((costume) => (
@@ -126,6 +125,14 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
                       </div>
                     ))}
                   </div>
+                );
+              },
+              customFilterAndSearch: (term, thought) => {
+                if (term.length === 0) return true;
+                return thought.costume.some((costume) =>
+                  `${costume.character.name.toLowerCase()} ${costume.title.toLowerCase()}`.includes(
+                    term.toLowerCase()
+                  )
                 );
               },
             },
