@@ -246,15 +246,20 @@ export interface FluffyFormats {
 }
 
 export type Story = {
-  type: string;
-  slug: string;
-  cover: {
-    formats: StrapiImageFormats;
+  id:         number;
+  attributes: {
+    type:          string;
+    title:         string;
+    content:       string;
+    released_date: Date | null;
+    character_id:  null;
+    slug:          string;
+    createdAt:     Date;
+    updatedAt:     Date;
+    locale:        Locale;
+    cover:         Cover;
+    localizations: Localizations;
   };
-  title: string;
-  content: string;
-  released_date: string;
-  character_id: number;
 }
 
 export type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";

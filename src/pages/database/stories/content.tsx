@@ -29,15 +29,21 @@ export default function DatabaseStories({
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-8 lg:gap-20">
           {stories.map((story) => (
-            <Link href={`/database/story/${story.slug}`} key={story.slug}>
+            <Link
+              href={`/database/story/${story.attributes.slug}`}
+              key={story.attributes.slug}
+            >
               <a className="transform transition-transform ease-out-cubic hover:scale-105">
                 <Image
                   objectFit="cover"
                   objectPosition="center"
                   src={
-                    story.cover?.formats?.medium?.url ??
-                    story.cover?.formats?.small?.url ??
-                    story.cover?.formats?.thumbnail?.url ??
+                    story.attributes.cover?.data.attributes.formats?.medium
+                      ?.url ??
+                    story.attributes.cover?.data.attributes.formats?.small
+                      ?.url ??
+                    story.attributes.cover?.data.attributes.formats?.thumbnail
+                      ?.url ??
                     coverStory
                   }
                   alt="Cover"
@@ -45,7 +51,7 @@ export default function DatabaseStories({
                   width={600}
                 />
                 <h3 className="text-2xl lg:text-3xl mt-2 text-beige">
-                  {story.title}
+                  {story.attributes.title}
                 </h3>
               </a>
             </Link>

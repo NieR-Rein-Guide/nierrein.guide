@@ -1,47 +1,23 @@
-import client from "@libs/api"
 import { Story } from "@models/types"
-import { gql } from "graphql-request"
+import axios from "axios";
+import { env } from '../env'
 
 async function getAllStories(): Promise<Story[]> {
-  const GET_STORIES = gql`
-    {
-      lores {
-        title
-        slug
-        cover {
-          formats
-        }
-        released_date
-        character_id
-        type
-      }
-    }
-  `
+  const { data } = await axios.get(
+    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/lores?sort[0]=updatedAt:desc&populate=*`);
 
-  const { lores } = await client.request(GET_STORIES)
-  return lores
+  const stories: Story[] = data.data;
+
+  return stories;
 }
 
 async function getStory(slug: string): Promise<Story> {
-  const GET_STORY = gql`
-    query GetSingleGuide($slug: String!) {
-      lores (where: {slug: $slug}) {
-        title
-        content
-        cover {
-          formats
-        }
-        released_date
-        character_id
-        type
-      }
-    }
-  `
+  const { data } = await axios.get(
+    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/lores?filters[slug][$eqi]=${slug}&populate=*`);
 
-  const { lores } = await client.request(GET_STORY, {
-    slug,
-  })
-  return lores[0]
+  const story: Story = data.data;
+
+  return story;
 }
 
 export {

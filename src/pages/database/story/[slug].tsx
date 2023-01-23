@@ -19,11 +19,11 @@ export default function SingleGuide({ story }: StoryProps): JSX.Element {
     <Layout>
       {!router.isFallback && (
         <Meta
-          title={`${story.title} - story`}
-          description={`Read this story to learn more about : ${story.title}`}
+          title={`${story.attributes.title} - story`}
+          description={`Read this story to learn more about : ${story.attributes.title}`}
           cover={
-            story?.cover?.formats?.medium?.url
-              ? story?.cover?.formats?.medium?.url
+            story?.attributes.cover?.data.attributes?.formats.medium?.url
+              ? story?.attributes.cover?.data.attributes.formats?.medium?.url
               : "https://nierrein.guide/cover-story.jpg"
           }
         />
@@ -41,7 +41,9 @@ export default function SingleGuide({ story }: StoryProps): JSX.Element {
       {(router.isFallback && <p>Loading...</p>) || (
         <>
           <div className="grid grid-cols-1 items-center mb-8">
-            <h2 className="text-5xl md:text-7xl text-beige">{story.title}</h2>
+            <h2 className="text-5xl md:text-7xl text-beige">
+              {story.attributes.title}
+            </h2>
           </div>
 
           <article className="relative p-4 py-8 md:p-8 bg-grey-lighter border border-opacity-40">
@@ -50,7 +52,7 @@ export default function SingleGuide({ story }: StoryProps): JSX.Element {
             <div
               className="wysiwyg"
               dangerouslySetInnerHTML={{
-                __html: marked(story.content ?? "## No content"),
+                __html: marked(story.attributes.content ?? "## No content"),
               }}
             ></div>
           </article>
@@ -75,7 +77,7 @@ export async function getStaticPaths() {
   const stories = await getAllStories();
 
   const paths = stories.map((story) => ({
-    params: { slug: story.slug },
+    params: { slug: story.attributes.slug },
   }));
 
   return {
