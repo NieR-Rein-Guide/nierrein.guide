@@ -11,15 +11,22 @@ export type Poll = {
 }
 
 export type StrapiImage = {
-  ext?: string
-  url?: string
-  hash?: string
-  mime?: string
-  name?: string
-  path?: string
-  size?: number
-  width?: number
-  height?: number
+  name:              string;
+  alternativeText:   string;
+  caption:           string;
+  width:             number;
+  height:            number;
+  formats:           FluffyFormats;
+  hash:              string;
+  ext:               EXT;
+  mime:              MIME;
+  size:              number;
+  url:               string;
+  previewUrl:        null;
+  provider:          string;
+  provider_metadata: null;
+  createdAt:         Date;
+  updatedAt:         Date;
 }
 
 export type FanContent = {
@@ -33,59 +40,136 @@ export type FanContent = {
   published_at?: string;
 }
 
-export type FAQ = {
-  created_at: string;
-  updated_at: string;
-  id: number;
-  locale: string;
-  localizations: [];
-  qa: {
-    id: number;
-    question: string;
-    answer: string;
-  }[]
-}
-
-export interface Event {
+export interface FAQ {
     id:         number;
-    attributes: EventAttributes;
+    attributes: FAQAttributes;
 }
 
-export interface EventAttributes {
-    title:         string;
+export interface FAQAttributes {
     createdAt:     Date;
     updatedAt:     Date;
-    publishedAt:   Date;
-    content:       string;
-    start_date:    Date;
-    end_date:      Date;
-    slug:          string;
-    Type:          null;
-    gems:          null;
     locale:        string;
-    image:         Image;
+    qa:            QA[];
     localizations: Localizations;
 }
 
+export interface QA {
+    id:       number;
+    question: string;
+    answer:   string;
+}
+
+export interface Event {
+  id:         number;
+  attributes: EventAttributes;
+}
+
+export interface EventAttributes {
+  title:         string;
+  createdAt:     Date;
+  updatedAt:     Date;
+  publishedAt:   Date;
+  content:       string;
+  start_date:    Date;
+  end_date:      Date;
+  slug:          string;
+  Type:          null;
+  gems:          null;
+  locale:        string;
+  image:         Image;
+  localizations: Localizations;
+}
+
 export interface Image {
-    data: ImageData;
+  data: ImageData;
 }
 
 export interface ImageData {
-    id:         number;
-    attributes: StrapiImageAttributes;
+  id:         number;
+  attributes: StrapiImageAttributes;
 }
 
 export interface StrapiImageAttributes {
+  name:              string;
+  alternativeText:   string;
+  caption:           string;
+  width:             number;
+  height:            number;
+  formats:           Formats;
+  hash:              string;
+  ext:               string;
+  mime:              string;
+  size:              number;
+  url:               string;
+  previewUrl:        null;
+  provider:          string;
+  provider_metadata: null;
+  createdAt:         Date;
+  updatedAt:         Date;
+}
+
+export interface Formats {
+  large:     Large;
+  small:     Large;
+  medium:    Large;
+  thumbnail: Large;
+}
+
+export interface Large {
+  ext:    string;
+  url:    string;
+  hash:   string;
+  mime:   string;
+  name:   string;
+  path:   null;
+  size:   number;
+  width:  number;
+  height: number;
+}
+
+export interface Localizations {
+  data: any[];
+}
+
+export interface Guide {
+    id:         number;
+    attributes: DatumAttributes;
+}
+
+export interface DatumAttributes {
+    content:       string;
+    title:         string;
+    slug:          string;
+    author:        string;
+    description:   null | string;
+    createdAt:     Date;
+    updatedAt:     Date;
+    publishedAt:   Date;
+    locale:        string;
+    cover:         Cover;
+    thumbnail:     Thumbnail;
+    localizations: Localizations;
+}
+
+export interface Cover {
+    data: CoverData;
+}
+
+export interface CoverData {
+    id:         number;
+    attributes: PurpleAttributes;
+}
+
+export interface PurpleAttributes {
     name:              string;
     alternativeText:   string;
     caption:           string;
     width:             number;
     height:            number;
-    formats:           Formats;
+    formats:           PurpleFormats;
     hash:              string;
-    ext:               string;
-    mime:              string;
+    ext:               EXT;
+    mime:              MIME;
     size:              number;
     url:               string;
     previewUrl:        null;
@@ -95,7 +179,12 @@ export interface StrapiImageAttributes {
     updatedAt:         Date;
 }
 
-export interface Formats {
+export enum EXT {
+    Jpg = ".jpg",
+    PNG = ".png",
+}
+
+export interface PurpleFormats {
     large:     Large;
     small:     Large;
     medium:    Large;
@@ -103,10 +192,10 @@ export interface Formats {
 }
 
 export interface Large {
-    ext:    string;
+    ext:    EXT;
     url:    string;
     hash:   string;
-    mime:   string;
+    mime:   MIME;
     name:   string;
     path:   null;
     size:   number;
@@ -114,27 +203,46 @@ export interface Large {
     height: number;
 }
 
+export enum MIME {
+    ImageJPEG = "image/jpeg",
+    ImagePNG = "image/png",
+}
+
 export interface Localizations {
     data: any[];
 }
 
-export type Guide = {
-  slug: string;
-  title: string;
-  description: string;
-  author: string;
-  content: string;
-  cover?: {
-    width?: number;
-    height?: number;
-    url?: string;
-    formats?: StrapiImageFormats;
-  };
-  thumbnail?: {
-    formats?: StrapiImageFormats;
-  };
-  published_at: string;
-  updated_at?: string;
+export interface Thumbnail {
+    data: ThumbnailData;
+}
+
+export interface ThumbnailData {
+    id:         number;
+    attributes: FluffyAttributes;
+}
+
+export interface FluffyAttributes {
+    name:              string;
+    alternativeText:   string;
+    caption:           string;
+    width:             number;
+    height:            number;
+    formats:           FluffyFormats;
+    hash:              string;
+    ext:               EXT;
+    mime:              MIME;
+    size:              number;
+    url:               string;
+    previewUrl:        null;
+    provider:          string;
+    provider_metadata: null;
+    createdAt:         Date;
+    updatedAt:         Date;
+}
+
+export interface FluffyFormats {
+    small?:    Large;
+    thumbnail: Large;
 }
 
 export type Story = {

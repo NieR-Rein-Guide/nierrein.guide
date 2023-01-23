@@ -4,7 +4,7 @@ import Meta from "@components/Meta";
 import Corners from "@components/decorations/Corners";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
-import { getAllGuides, getGuide } from "@models/guide";
+import { getAllGuides, getGuideBySlug } from "@models/guide";
 import { Guide } from "@models/types";
 import marked from "marked";
 import { useRouter } from "next/router";
@@ -20,9 +20,12 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
     <Layout>
       {!router.isFallback && (
         <Meta
-          title={`${guide.title} - Guide`}
-          description={guide.description}
-          cover={guide?.cover?.url ?? "https://nierrein.guide/cover-guides.jpg"}
+          title={`${guide.attributes.title} - Guide`}
+          description={guide.attributes.description}
+          cover={
+            guide?.attributes.cover.data.attributes?.url ??
+            "https://nierrein.guide/cover-guides.jpg"
+          }
         />
       )}
 
@@ -38,7 +41,9 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
       {(router.isFallback && <p>Loading...</p>) || (
         <>
           <div className="grid grid-cols-1 items-center mb-8">
-            <h2 className="text-5xl md:text-7xl text-beige">{guide.title}</h2>
+            <h2 className="text-5xl md:text-7xl text-beige">
+              {guide.attributes.title}
+            </h2>
 
             <div className="flex flex-wrap justify-between gap-y-4 mt-4">
               <div className="flex items-center gap-x-4">
@@ -52,20 +57,22 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
                 <p>
                   Written by{" "}
                   <span className="text-beige font-semibold">
-                    {guide.author}
+                    {guide.attributes.author}
                   </span>
                 </p>
               </div>
 
               <div className="md:text-right">
-                {guide.updated_at && (
+                {guide.attributes.updatedAt && (
                   <p>
-                    Updated {formatDistanceToNow(new Date(guide.updated_at))}{" "}
+                    Updated{" "}
+                    {formatDistanceToNow(new Date(guide.attributes.updatedAt))}{" "}
                     ago
                   </p>
                 )}
                 <p>
-                  Published {new Date(guide.published_at).toLocaleDateString()}
+                  Published{" "}
+                  {new Date(guide.attributes.publishedAt).toLocaleDateString()}
                 </p>
               </div>
             </div>
@@ -76,7 +83,9 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
 
             <div
               className="wysiwyg"
-              dangerouslySetInnerHTML={{ __html: marked(guide.content) }}
+              dangerouslySetInnerHTML={{
+                __html: marked(guide.attributes.content),
+              }}
             ></div>
           </article>
         </>
@@ -86,7 +95,7 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
 }
 
 export async function getStaticProps(context) {
-  const guide = await getGuide(context.params.slug);
+  const guide = await getGuideBySlug(context.params.slug);
 
   return {
     props: {
@@ -100,7 +109,7 @@ export async function getStaticPaths() {
   const guides = await getAllGuides();
 
   const paths = guides.map((guide) => ({
-    params: { slug: guide.slug },
+    params: { slug: guide.attributes.slug },
   }));
 
   return {

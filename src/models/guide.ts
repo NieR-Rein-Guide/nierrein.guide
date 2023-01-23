@@ -1,98 +1,33 @@
-import client from "@libs/api"
-import { gql } from "graphql-request"
+import axios from "axios";
+import { env } from "../env";
 import { Guide } from "./types"
 
-async function getFeaturedGuides(): Promise<Guide[]> {
-  const GET_GUIDES = gql`
-    {
-      featuredGuide {
-        guides {
-          title
-          description
-          author
-          slug
-          content
-          cover {
-            width
-            height
-            url
-            formats
-          }
-          thumbnail {
-            formats
-          }
-          published_at
-          updated_at
-        }
-      }
-    }
-  `
-
-  const { featuredGuide } = await client.request(GET_GUIDES)
-
-  featuredGuide.guides.sort(
-    (a, b) =>
-      new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
-  )
-  return featuredGuide.guides
-}
-
 async function getAllGuides(): Promise<Guide[]> {
-  const GET_GUIDES = gql`
-    {
-      guides(sort: "published_at:desc") {
-        title
-        description
-        slug
-        author
-        content
-        cover {
-          width
-          height
-          url
-          formats
-        }
-        thumbnail {
-          formats
-        }
-        published_at
-        updated_at
-      }
-    }
-  `
+  const { data } = await axios.get(
+    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/guides?sort[0]=updatedAt:desc&populate=*`,);
 
-  const { guides } = await client.request(GET_GUIDES)
-  return guides
+  const guides: Guide[] = data.data;
+
+  return guides;
 }
 
-async function getGuide(slug: string): Promise<Guide> {
-  const GET_GUIDE = gql`
-    query GetSingleGuide($slug: String!) {
-      guides (where: {slug: $slug}) {
-        title
-        description
-        slug
-        author
-        content
-        cover {
-          width
-          height
-          url
-        }
-        published_at
-        updated_at
-      }
-    }
-  `
+async function getGuideBySlug(slug: string): Promise<Guide> {
+  const { data } = await axios.get(
+    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/guides?filters[slug][$eqi]=${slug}&populate=*`
+  );
 
-  const { guides } = await client.request(GET_GUIDE, {
-    slug,
-  })
-  return guides[0]
+  return data.data?.[0];
+}
+
+async function getGuideById(id: number): Promise<Guide> {
+  const { data } = await axios.get(
+    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/guides/${id}?populate=*`);
+
+  return data.data;
 }
 
 export {
   getAllGuides,
-  getGuide,
-  getFeaturedGuides
+  getGuideBySlug,
+  getGuideById,
 }

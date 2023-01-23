@@ -74,13 +74,13 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
         <div className="flex flex-col gap-y-14 xl:gap-y-24 mt-4 ml-16 sm:ml-16 lg:ml-36">
           {guides.map((guide) => (
             <Article
-              key={guide.slug}
-              title={guide.title}
-              author={guide.author}
-              date={guide.updated_at}
-              excerpt={guide.description}
-              slug={guide.slug}
-              image={guide?.thumbnail?.formats}
+              key={guide.attributes.slug}
+              title={guide.attributes.title}
+              author={guide.attributes.author}
+              date={guide.attributes.updatedAt}
+              excerpt={guide.attributes.description}
+              slug={guide.attributes.slug}
+              image={guide.attributes?.thumbnail.data.attributes?.formats}
             />
           ))}
         </div>
