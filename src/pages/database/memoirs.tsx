@@ -209,9 +209,9 @@ export async function getStaticProps() {
       image_path: `${CDN_URL}ui/quest/en/banner/event_banner_105.png`,
     },
     {
-      name: "TBA",
+      name: "Desert Memories",
       series: [17, 18],
-      image_path: "/images/tba-dungeon.jpg",
+      image_path: `${CDN_URL}ui/quest/en/banner/event_banner_106.png`,
     },
   ].map((dungeon) => {
     const matchedMemoirs = dungeon.series.map(
