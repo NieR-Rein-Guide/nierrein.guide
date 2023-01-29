@@ -22,6 +22,8 @@ import { costumes_link } from "@prisma/client-nrg";
 import { AiOutlinePushpin } from "react-icons/ai";
 import { usePanelStore } from "@store/panels";
 import classNames from "classnames";
+import { useSettingsStore } from "@store/settings";
+import { useEffect, useState } from "react";
 
 interface DebrisPageProps {
   debris: (debris & {
@@ -56,6 +58,24 @@ export const rarityLookup = {
 
 export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
   const addCostumePanel = usePanelStore((state) => state.addCostume);
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
+  const [filteredDebris, setFilteredDebris] = useState(
+    debris.filter((thought) => {
+      if (showUnreleasedContent) return true;
+      return new Date() > new Date(thought.release_time);
+    })
+  );
+
+  useEffect(() => {
+    setFilteredDebris(
+      debris.filter((thought) => {
+        if (showUnreleasedContent) return true;
+        return new Date() > new Date(thought.release_time);
+      })
+    );
+  }, [showUnreleasedContent]);
 
   return (
     <Layout hasContainer={false} className="overflow-x-auto">
@@ -68,8 +88,8 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
       <section className="mx-auto p-6">
         <DatabaseNavbar />
         <MaterialTable
-          title={`${debris.length} debris in the database.`}
-          data={debris}
+          title={`${filteredDebris.length} debris in the database.`}
+          data={filteredDebris}
           columns={[
             {
               field: "name",
