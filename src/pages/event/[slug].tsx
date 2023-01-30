@@ -65,31 +65,30 @@ export default function SingleEvent({
               <h2 className="text-5xl md:text-7xl text-beige mb-8">
                 {event.attributes.title}
               </h2>
-              <Image
-                layout="responsive"
-                src={
-                  event.attributes.image.data.attributes?.formats?.large?.url ??
-                  event.attributes.image.data.attributes?.formats?.medium
-                    ?.url ??
-                  event.attributes.image.data.attributes?.formats?.small?.url
-                }
-                alt={`${event.attributes.title} thumbnail`}
-                height={
-                  event.attributes.image.data.attributes?.formats?.large
-                    ?.height ??
-                  event.attributes.image.data.attributes?.formats?.medium
-                    ?.height ??
-                  event.attributes.image.data.attributes?.formats?.small?.height
-                }
-                width={
-                  event.attributes.image.data.attributes?.formats?.large
-                    ?.width ??
-                  event.attributes.image.data.attributes?.formats?.medium
-                    ?.width ??
-                  event.attributes.image.data.attributes?.formats?.small?.width
-                }
-              />
             </div>
+
+            <Image
+              layout="responsive"
+              src={
+                event.attributes.image.data.attributes?.formats?.large?.url ??
+                event.attributes.image.data.attributes?.formats?.medium?.url ??
+                event.attributes.image.data.attributes?.formats?.small?.url
+              }
+              alt={`${event.attributes.title} thumbnail`}
+              height={
+                event.attributes.image.data.attributes?.formats?.large
+                  ?.height ??
+                event.attributes.image.data.attributes?.formats?.medium
+                  ?.height ??
+                event.attributes.image.data.attributes?.formats?.small?.height
+              }
+              width={
+                event.attributes.image.data.attributes?.formats?.large?.width ??
+                event.attributes.image.data.attributes?.formats?.medium
+                  ?.width ??
+                event.attributes.image.data.attributes?.formats?.small?.width
+              }
+            />
           </div>
 
           <div className="my-8">
@@ -131,7 +130,7 @@ export default function SingleEvent({
 
           {costumes.length > 0 && (
             <div className="mb-12">
-              <h2 className="text-3xl font-display">Costumes</h2>
+              <h2 className="text-3xl font-display">Obtainable costumes</h2>
 
               <div className="grid grid-cols-2 xs:grid-cols-3 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8 pt-8">
                 {costumes.map((cost) => (

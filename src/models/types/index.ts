@@ -1,3 +1,5 @@
+import { character, costume } from "@prisma/client";
+
 export interface StrapiImageFormats {
   large?: StrapiImage;
   small?: StrapiImage;
@@ -62,6 +64,9 @@ export interface QA {
 export interface Event {
   id:         number;
   attributes: EventAttributes;
+  costumes: (costume & {
+    character: character;
+  })[]
 }
 
 export interface EventAttributes {
