@@ -7,12 +7,11 @@ import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
-import axios from "axios";
-import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import SettingsModal from "@components/SettingsModal";
 import { Modal } from "@mui/material";
 import { BiDonateHeart } from "react-icons/bi";
 import { ITEMS } from "@components/DatabaseNavbar";
+import { CurrentRelease } from "@components/Header/CurrentVersion";
 
 export default function Header(): JSX.Element {
   const [isWhySupportModalOpen, setIsWhySupportModalOpen] = useState(false);
@@ -21,7 +20,6 @@ export default function Header(): JSX.Element {
   const defaultAnimationPosition = 18;
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationPosition] = useState(defaultAnimationPosition);
-  const [release, setRelease] = useState(null);
 
   function start() {
     setIsAnimating(true);
@@ -44,17 +42,6 @@ export default function Header(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    getLatestRelease();
-  }, []);
-
-  async function getLatestRelease() {
-    const { data } = await axios.get(
-      "https://api.github.com/repos/NieR-Rein-Guide/nierrein.guide/releases?per_page=1?page=1"
-    );
-
-    setRelease(data[0]);
-  }
   function handleNavToggle() {
     setIsNavOpened(!isNavOpened);
   }
@@ -136,22 +123,7 @@ export default function Header(): JSX.Element {
           </div>
 
           <span className="text-xs md:text-base">
-            {(release && (
-              <Link
-                href="https://github.com/NieR-Rein-Guide/nierrein.guide/releases/"
-                passHref
-              >
-                <a title="See releases" className="hover:underline">
-                  {release.tag_name}
-                  <span className="hidden sm:inline md:text-sm">
-                    - Published{" "}
-                    {formatDistanceToNow(new Date(release.published_at), {
-                      addSuffix: true,
-                    })}
-                  </span>
-                </a>
-              </Link>
-            )) || <span>Fetching latest release...</span>}
+            <CurrentRelease />
           </span>
 
           <div className="absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
