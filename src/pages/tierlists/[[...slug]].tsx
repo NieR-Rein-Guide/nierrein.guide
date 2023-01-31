@@ -211,6 +211,9 @@ export async function getServerSideProps(context: NextPageContext) {
     notIn: [...FEATURED_TIERLISTS.pve, ...FEATURED_TIERLISTS.pvp],
   };
 
+  // Exclude unlisted tierlists
+  where.is_unlisted = false;
+
   /**
    * Order by
    */

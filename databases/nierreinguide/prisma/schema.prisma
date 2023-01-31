@@ -47,6 +47,7 @@ model tierlists {
   votes       Int?      @default(0)
   updated_at  DateTime? @db.Timestamptz(6)
   edit_key    String
+  is_unlisted Boolean?  @default(false)
   tiers       tiers[]
 }
 
