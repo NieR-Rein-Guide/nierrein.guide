@@ -64,6 +64,7 @@
     "react-hot-toast": "^2.3.0",
     "react-icons": "^4.7.1",
     "react-inlinesvg": "^2.3.0",
+    "react-intersection-observer-hook": "^2.0.6",
     "react-lottie-player": "^1.4.0",
     "react-player": "^2.9.0",
     "react-resizable-panels": "^0.0.33",

@@ -1,4 +1,3 @@
-import alterEventToAddCostumes from "@utils/alterEventToAddCostumes";
 import axios from "axios";
 import { env } from "../env";
 import { Event } from "./types";
@@ -9,10 +8,6 @@ async function getAllEvents(): Promise<Event[]> {
 
   const events: Event[] = data.data;
 
-  for (const event of events) {
-    await alterEventToAddCostumes(event)
-  }
-
   return events;
 }
 
@@ -22,7 +17,6 @@ async function getEventBySlug(slug: string): Promise<Event> {
   );
 
   const event = data.data?.[0];
-  alterEventToAddCostumes(event);
 
   return event;
 }
@@ -32,7 +26,6 @@ async function getEventById(id: number): Promise<Event> {
     `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/events/${id}?populate=*`);
 
   const event = data.data;
-  alterEventToAddCostumes(event);
 
   return event;
 }

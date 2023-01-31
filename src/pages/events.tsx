@@ -13,7 +13,9 @@ import { FiBook, FiClock } from "react-icons/fi";
 import { MdHourglassTop } from "react-icons/md";
 import { FaCalendarCheck } from "react-icons/fa";
 import { CostumeThumbnailPin } from "@components/characters/CostumeThumbnailPin";
-import Lines from "@components/decorations/Lines";
+import useSWR from "swr";
+import { fetcher } from "@utils/fetcher";
+import { useIntersectionObserver } from "react-intersection-observer-hook";
 
 interface GuidesProps {
   events: Event[];
@@ -155,15 +157,16 @@ export function EventItem({
   id,
   attributes,
   cardClasses,
-  costumes,
 }: Event & { cardClasses?: string[] }) {
   const endDate = new Date(attributes.end_date);
   const startDate = new Date(attributes.start_date);
   const isEnded = endDate.getTime() <= Date.now();
   const isNearlyEnded = differenceInDays(endDate, new Date()) <= 7;
+  const [ref, { entry }] = useIntersectionObserver();
+  const isVisible = entry && entry.isIntersecting;
 
   return (
-    <div key={attributes.slug}>
+    <div ref={ref}>
       <div
         className={classNames(
           cardClasses,
@@ -263,7 +266,25 @@ export function EventItem({
         )}
       </div>
 
-      {costumes.length > 0 && (
+      {isVisible && <EventCostumes id={id} />}
+    </div>
+  );
+}
+
+function EventCostumes({ id }: { id: number }) {
+  const { data: costumes, isLoading } = useSWR(
+    `/api/event/costumes/${id}`,
+    fetcher,
+    {
+      revalidateOnFocus: false,
+      revalidateIfStale: false,
+      revalidateOnReconnect: false,
+    }
+  );
+
+  return (
+    <>
+      {!isLoading && costumes?.length > 0 && (
         <div className="grid grid-cols-3 md:grid-cols-5 gap-x-4 bg-grey-dark border border-beige border-opacity-30 border-t-0 p-4 transition-transform ease-out-cubic transform group-hover:-translate-y-1">
           <div className="col-span-5">
             <h3 className="text-xl text-beige mb-2">Obtainable costumes</h3>
@@ -274,7 +295,7 @@ export function EventItem({
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 }
 
