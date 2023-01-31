@@ -27,4 +27,5 @@ export const env = envsafe({
   NIERREINGUIDE_DATABASE_URL: str({
     desc: 'Main database (loadouts...)'
   }),
+  DISCORD_EVENTS_WEBHOOK_URL: url({}),
 })
