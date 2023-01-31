@@ -59,6 +59,14 @@ export async function getAllCostumes({
 
   for (const costume of costumes) {
     await alterCostumeToAddWeapon(costume)
+
+    const link = await prisma.nrg.costumes_link.findUnique({
+      where: {
+        costume_id: costume.costume_id,
+      },
+    });
+
+    costume.link = link;
   }
 
   const abilitiesLookupData = await prisma.dump.costume_ability.findMany({

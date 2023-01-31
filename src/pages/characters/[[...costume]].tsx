@@ -17,7 +17,6 @@ import {
 } from "@prisma/client";
 import { getAllCostumes } from "@models/costume";
 import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
-import alterCostumeToAddDebris from "@utils/alterCostumeToAddDebris";
 import alterCostumeToAddSources from "@utils/alterCostumeToAddSources";
 
 interface CharactersPageProps {
@@ -222,6 +221,14 @@ export async function getStaticProps(context) {
     );
     skills[costume.costume_id] = allSkills;
     stats[costume.costume_id] = allStats.sort((a, b) => a.level - b.level);
+
+    const link = await prisma.nrg.costumes_link.findUnique({
+      where: {
+        costume_id: costume.costume_id,
+      },
+    });
+
+    costume.link = link;
 
     await Promise.all([
       alterCostumeToAddWeapon(costume), // Add costume's weapon

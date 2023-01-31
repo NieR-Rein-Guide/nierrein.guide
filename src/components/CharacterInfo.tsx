@@ -38,7 +38,8 @@ import {
   weapon_skill_link,
   weapon_stat,
 } from "@prisma/client";
-import { Chip, Switch } from "@mui/material";
+import { costumes_link } from "@prisma/client-nrg";
+import { Chip, Switch, Tooltip } from "@mui/material";
 import CostumeThumbnail from "./CostumeThumbnail";
 import getEmblemPath from "@utils/getEmblemPath";
 import slug from "slugg";
@@ -62,6 +63,7 @@ import StatDisplay from "./StatDisplay";
 import Element from "./Element";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import switchImg from "../../public/icons/switch.png";
+import { chaptersIcons } from "@utils/chaptersIcons";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -103,6 +105,7 @@ function CostumeDetails({
       };
     })[];
     sources: Event[];
+    link: costumes_link;
   };
   abilities;
   skill;
@@ -220,11 +223,49 @@ function CostumeDetails({
                     alt={costume.weapon_type}
                   />
                 </div>
+                {costume.is_ex_costume && (
+                  <span className="text-rarity-4">EX</span>
+                )}
                 <span className="uppercase px-2 text-black bg-beige">
                   {character.name}
                 </span>
               </div>
               <span className="uppercase text-beige">{costume.title}</span>
+              {costume.link.is_limited && (
+                <Tooltip
+                  title={
+                    <div className="flex flex-col text-center">
+                      <a
+                        href="#sources"
+                        className="text-blue-300 underline-dotted"
+                      >
+                        Obtainable from {costume.sources.length} source
+                        {costume.sources.length > 1 ? "s" : ""}
+                      </a>
+
+                      <img
+                        loading="lazy"
+                        className="h-16 object-contain"
+                        src="/images/yudilbroke.webp"
+                        alt="Yudil broke"
+                      />
+                    </div>
+                  }
+                >
+                  <div className="inline-flex rounded-full bg-white bg-opacity-10 px-2 py-1 cursor-help">
+                    <p className="font-display text-lg font-semibold text-rarity-4 leading-none">
+                      Limited costume
+                    </p>
+                  </div>
+                </Tooltip>
+              )}
+              {costume.link.is_collab && (
+                <div className="inline-flex rounded-full bg-white bg-opacity-10 px-2 py-1">
+                  <p className="font-display text-lg font-semibold text-rarity-collab leading-none">
+                    Collab
+                  </p>
+                </div>
+              )}
             </div>
             <p className="text-white text-opacity-60 mt-1 text-sm">
               Added {format(new Date(costume.release_time), "MM/dd/yyyy")} (
@@ -854,12 +895,28 @@ function CostumeDetails({
               <EventItem key={event.id} {...event} />
             ))}
 
-            {costume.sources.length === 0 && <p>Work in Progress...</p>}
+            {costume.sources.length === 0 && !costume.link.is_story && (
+              <h3 className="md:col-span-2 font-display text-2xl text-center">
+                Work in Progress...
+              </h3>
+            )}
+
+            {costume.link.is_story && (
+              <div className="md:col-span-2 flex flex-col gap-y-4 items-center justify-center p-8">
+                <img
+                  src={chaptersIcons[costume.link.chapter]}
+                  alt="chapter icon"
+                />
+                <h3 className="font-display text-2xl">
+                  Chapter n°{costume.link.chapter}
+                </h3>
+              </div>
+            )}
           </div>
         </div>
 
         {/* Story/Lore */}
-        <div className="relative">
+        <div id="sources" className="relative">
           <div className="mt-12">
             <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
               Costume story

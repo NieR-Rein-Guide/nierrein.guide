@@ -211,6 +211,12 @@ section {
   color: transparent;
 }
 
+.text-rarity-collab {
+  background: linear-gradient(#e2a426, #ff9b30);
+  background-clip: text;
+  color: transparent;
+}
+
 .tierlist-tooltip {
   @apply bg-grey-foreground;
   font-size: 14px !important;
