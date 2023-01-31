@@ -28,7 +28,7 @@ model loadouts {
   loadout_id    Int             @id @default(autoincrement())
   title         String
   description   String?
-  type          String          @default(dbgenerated("'quests'::bpchar"))
+  type          String          @default("quests")
   created_at    DateTime?       @db.Timestamptz(6)
   slug          String
   attribute     String
@@ -40,7 +40,7 @@ model tierlists {
   tierlist_id Int       @id @default(autoincrement())
   title       String
   description String?
-  type        String    @default(dbgenerated("'costumes'::bpchar"))
+  type        String    @default("costumes")
   created_at  DateTime? @db.Timestamptz(6)
   slug        String
   attribute   String
@@ -85,8 +85,11 @@ model notification {
 }
 
 model costumes_link {
-  costume_id Int   @id @default(autoincrement())
+  costume_id Int      @id @default(autoincrement())
   weapon_id  Int?
-  debris_id  Int?
-  events     Json?
+  events     Json     @default("[]")
+  is_limited Boolean? @default(false)
+  is_collab  Boolean? @default(false)
+  is_story   Boolean? @default(false)
+  chapter    Int?
 }

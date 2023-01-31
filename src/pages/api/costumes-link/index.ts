@@ -4,8 +4,12 @@ import prisma from "@libs/prisma";
 export interface CostumeLink {
   costume_id?: number;
   weapon_id?: number;
-  debris_id?: number;
   events?: string[];
+  is_limited?: boolean;
+  is_collab?: boolean;
+  is_story?: boolean;
+  is_ex?: boolean;
+  chapter?: number;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -27,13 +31,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           create: {
             costume_id: costume.costume_id,
             weapon_id: costume.weapon_id,
-            debris_id: costume.debris_id,
-            events: costume.events.map((id) => Number(id))
+            events: costume.events.map((id) => Number(id)),
+            is_limited: costume.is_limited,
+            is_collab: costume.is_collab,
+            is_story: costume.is_story,
+            is_ex: costume.is_ex,
+            chapter: costume.chapter,
           },
           update: {
             weapon_id: costume.weapon_id,
-            debris_id: costume.debris_id,
-            events: costume.events.map((id) => Number(id))
+            events: costume.events.map((id) => Number(id)),
+            is_limited: costume.is_limited,
+            is_collab: costume.is_collab,
+            is_story: costume.is_story,
+            is_ex: costume.is_ex,
+            chapter: costume.chapter,
           }
         })
       }

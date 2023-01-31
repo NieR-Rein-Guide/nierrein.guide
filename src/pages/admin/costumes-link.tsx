@@ -34,11 +34,18 @@ import axios from "axios";
 import produce from "immer";
 import getBaseRarity from "@utils/getBaseRarity";
 import { getAllEvents } from "@models/event";
-import { Autocomplete, TextField } from "@mui/material";
+import {
+  Autocomplete,
+  FormControl,
+  InputBase,
+  InputLabel,
+  TextField,
+} from "@mui/material";
 import { Event } from "@models/types";
 import MaterialTable from "@material-table/core";
 import { getAllWeapons } from "@models/weapon";
 import { Box } from "@mui/system";
+import Checkbox from "@components/form/Checkbox";
 
 interface LoadoutBuilderProps {
   costumes: (costume & {
@@ -61,7 +68,6 @@ interface LoadoutBuilderProps {
     })[];
     weapon_stat: weapon_stat[];
   })[];
-  debris: debris[];
   links: costumes_link[];
   events: Event[];
 }
@@ -97,7 +103,7 @@ export default function AdminCostumesLink({
     }
   }
 
-  function updateWeapon(
+  function updateField(
     costume: costume & {
       costume_ability_link: (costume_ability_link & {
         costume_ability: costume_ability;
@@ -109,15 +115,8 @@ export default function AdminCostumesLink({
       character: character;
       emblem: emblem;
     },
-    weapon: weapon & {
-      weapon_ability_link: (weapon_ability_link & {
-        weapon_ability: weapon_ability;
-      })[];
-      weapon_skill_link: (weapon_skill_link & {
-        weapon_skill: weapon_skill;
-      })[];
-      weapon_stat: weapon_stat[];
-    }
+    property: string,
+    value: any
   ) {
     setNewLinks(
       produce(newLinks, (draft) => {
@@ -127,56 +126,29 @@ export default function AdminCostumesLink({
 
         if (!linkedCostume) {
           draft.push({
+            // Set default values
             costume_id: costume?.costume_id,
             weapon_id: weapon?.weapon_id,
             events: linkedCostume.events ?? [],
+            is_limited: costume?.is_limited ?? false,
+            is_collab: costume?.is_collab ?? false,
+            is_story: costume?.is_story ?? false,
+            is_ex: costume?.is_ex ?? false,
+            chapter: costume?.chapter ?? null,
+            // Override the new value
+            [property]: value,
           });
 
           return;
         }
 
-        linkedCostume.weapon_id = weapon.weapon_id;
+        linkedCostume[property] = value;
+
+        console.log({ linkedCostume });
       })
     );
 
-    console.log(newLinks);
-  }
-
-  function updateEvents(
-    costume: costume & {
-      costume_ability_link: (costume_ability_link & {
-        costume_ability: costume_ability;
-      })[];
-      costume_skill_link: (costume_skill_link & {
-        costume_skill: costume_skill;
-      })[];
-      costume_stat: costume_stat[];
-      character: character;
-      emblem: emblem;
-    },
-    events
-  ) {
-    setNewLinks(
-      produce(newLinks, (draft) => {
-        const linkedCostume = draft.find(
-          (link) => link.costume_id === costume.costume_id
-        );
-
-        if (!linkedCostume) {
-          draft.push({
-            costume_id: costume.costume_id,
-            weapon_id: linkedCostume?.weapon_id,
-            events,
-          });
-
-          return;
-        }
-
-        linkedCostume.events = events;
-      })
-    );
-
-    console.log(newLinks);
+    console.log({ newLinks });
   }
 
   return (
@@ -198,9 +170,8 @@ export default function AdminCostumesLink({
               filterPlaceholder: "Search title or character...",
               render: (costume) => (
                 <div className="flex items-center gap-x-2">
-                  <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg hover:bg-opacity-20 focus-within:bg-opacity-20 transition">
+                  <div className="flex items-center gap-x-4 w-80 relative bg-white bg-opacity-5 rounded-lg">
                     <CostumeThumbnail
-                      href={`/characters/${costume.character.slug}/${costume.slug}`}
                       src={`${CDN_URL}${costume.image_path_base}battle.png`}
                       alt={`${costume.title} thumbnail`}
                       rarity={RARITY[costume.rarity]}
@@ -238,9 +209,6 @@ export default function AdminCostumesLink({
 
                 return (
                   <WeaponThumbnail
-                    href={`/weapons/${
-                      costume?.weapon?.slug ?? weaponLinked.slug
-                    }`}
                     image_path={weaponLinked?.image_path}
                     alt={`${weaponLinked?.name} thumbnail`}
                     rarity={
@@ -276,7 +244,7 @@ export default function AdminCostumesLink({
                       <div key={event.id}>
                         <h2>{event.attributes.title}</h2>
                         <img
-                          className="w-80 h-auto object-contain"
+                          className="w-40 h-auto object-contain"
                           src={event.attributes.image.data.attributes?.url}
                           alt="event"
                         />
@@ -311,7 +279,7 @@ export default function AdminCostumesLink({
                     weapons={weapons}
                     onSelect={(e, value) => {
                       if (!value) return;
-                      updateWeapon(costume, value);
+                      updateField(costume, "weapon_id", value.weapon_id);
                     }}
                     label="Add a weapon..."
                   />
@@ -320,8 +288,9 @@ export default function AdminCostumesLink({
                     value={costumeEvents ?? []}
                     multiple
                     onChange={(e, selectedEvents) =>
-                      updateEvents(
+                      updateField(
                         costume,
+                        "events",
                         selectedEvents.map(
                           (ev) => typeof ev === "object" && ev.id
                         )
@@ -360,6 +329,54 @@ export default function AdminCostumesLink({
                       />
                     )}
                   />
+
+                  <div className="ml-4 mb-2">
+                    <Checkbox
+                      isChecked={link.is_limited}
+                      setState={(e) =>
+                        updateField(costume, "is_limited", e.target.checked)
+                      }
+                      label="Is limited?"
+                    />
+                  </div>
+
+                  <div className="ml-4 mb-2">
+                    <Checkbox
+                      isChecked={link.is_collab}
+                      setState={(e) =>
+                        updateField(costume, "is_collab", e.target.checked)
+                      }
+                      label="Is collab?"
+                    />
+                  </div>
+
+                  <div className="ml-4 mb-2">
+                    <Checkbox
+                      isChecked={link.is_story}
+                      setState={(e) =>
+                        updateField(costume, "is_story", e.target.checked)
+                      }
+                      label="Is story?"
+                    />
+                  </div>
+
+                  <div className="ml-4 mb-2">
+                    <FormControl className="mt-8 md:mt-0">
+                      <InputLabel id="sort-select-label">Chapter</InputLabel>
+                      <InputBase
+                        defaultValue={link.chapter}
+                        disabled={!link.is_story}
+                        onBlur={(e) =>
+                          updateField(
+                            costume,
+                            "chapter",
+                            Number(e.target.value)
+                          )
+                        }
+                        type="number"
+                      />
+                    </FormControl>
+                  </div>
                 </div>
               </section>
             );

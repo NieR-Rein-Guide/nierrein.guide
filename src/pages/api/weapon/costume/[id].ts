@@ -4,7 +4,6 @@ import prisma from "@libs/prisma";
 export interface CostumeLink {
   costume_id?: number;
   weapon_id?: number;
-  debris_id?: number;
 }
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
