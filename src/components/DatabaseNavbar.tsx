@@ -1,6 +1,7 @@
 import { useSettingsStore } from "@store/settings";
 import { useRouter } from "next/router";
 import { MdFilterAlt, MdViewColumn, MdViewComfy } from "react-icons/md";
+import * as Popover from "@radix-ui/react-popover";
 
 import loadoutsIcon from "../../public/icons/loadout.png";
 import charactersIcon from "../../public/icons/characters.png";
@@ -12,8 +13,10 @@ import emblemsIcon from "../../public/icons/emblems.png";
 import storiesIcon from "../../public/icons/stories.png";
 import noticesIcon from "../../public/icons/notices.png";
 import eventsIcon from "../../public/icons/events.png";
-import { ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import Checkbox from "./form/Checkbox";
+import { FiFilter } from "react-icons/fi";
+import { useCostumesFilters } from "@store/costumes-filters";
 
 const SUPPORTED_MULTIPLE_DISPLAY = ["/characters", "/weapons"];
 
@@ -72,8 +75,10 @@ export const ITEMS = [
 
 export default function DatabaseNavbar({
   children,
+  middleChildren,
 }: {
-  children?: JSX.Element;
+  children?: JSX.Element[] | JSX.Element;
+  middleChildren?: JSX.Element[] | JSX.Element;
 }) {
   const router = useRouter();
   const databaseDisplayType = useSettingsStore(
@@ -86,6 +91,8 @@ export default function DatabaseNavbar({
   const setShowInventory = useSettingsStore((state) => state.setShowInventory);
   const order = useSettingsStore((state) => state.order);
   const setOrder = useSettingsStore((state) => state.setOrder);
+  const hasFilters = useCostumesFilters((state) => state.computed.hasFilters);
+  const activeCount = useCostumesFilters((state) => state.computed.activeCount);
 
   if (SUPPORTED_MULTIPLE_DISPLAY.includes(router.asPath)) {
     return (
@@ -98,6 +105,34 @@ export default function DatabaseNavbar({
               setState={(e) => setShowInventory(e.target.checked)}
             />
 
+            {children && (
+              <Popover.Root>
+                <Popover.Trigger asChild>
+                  <Button
+                    color={hasFilters ? "secondary" : "primary"}
+                    variant="outlined"
+                    component="label"
+                    startIcon={<FiFilter />}
+                  >
+                    <span>
+                      {hasFilters ? `${activeCount} filters applied` : "Filter"}
+                    </span>
+                  </Button>
+                </Popover.Trigger>
+                <Popover.Portal>
+                  <Popover.Content
+                    className="PopoverContent bg-grey-dark border border-beige border-opacity-50 p-4"
+                    sideOffset={5}
+                  >
+                    <div className="grid md:grid-cols-2 gap-2 max-w-xl">
+                      {children}
+                    </div>
+                    <Popover.Arrow className="PopoverArrow" />
+                  </Popover.Content>
+                </Popover.Portal>
+              </Popover.Root>
+            )}
+
             {databaseDisplayType !== "table" && (
               <Checkbox
                 label="Library view"
@@ -107,7 +142,7 @@ export default function DatabaseNavbar({
             )}
           </div>
 
-          {children}
+          {middleChildren}
 
           <ToggleButtonGroup
             value={databaseDisplayType}

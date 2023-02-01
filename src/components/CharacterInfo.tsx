@@ -64,6 +64,7 @@ import Element from "./Element";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import switchImg from "../../public/icons/switch.png";
 import { chaptersIcons } from "@utils/chaptersIcons";
+import { LimitedCostume } from "./LimitedCostume";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -232,32 +233,7 @@ function CostumeDetails({
               </div>
               <span className="uppercase text-beige">{costume.title}</span>
               {costume.link.is_limited && (
-                <Tooltip
-                  title={
-                    <div className="flex flex-col text-center">
-                      <a
-                        href="#sources"
-                        className="text-blue-300 underline-dotted"
-                      >
-                        Obtainable from {costume.sources.length} source
-                        {costume.sources.length > 1 ? "s" : ""}
-                      </a>
-
-                      <img
-                        loading="lazy"
-                        className="h-16 object-contain"
-                        src="/images/yudilbroke.webp"
-                        alt="Yudil broke"
-                      />
-                    </div>
-                  }
-                >
-                  <div className="inline-flex rounded-full bg-white bg-opacity-10 px-2 py-1 cursor-help">
-                    <p className="font-display text-lg font-semibold text-rarity-4 leading-none">
-                      Limited costume
-                    </p>
-                  </div>
-                </Tooltip>
+                <LimitedCostume isLogoOnly events={costume.link.events} />
               )}
               {costume.link.is_collab && (
                 <div className="inline-flex rounded-full bg-white bg-opacity-10 px-2 py-1">

@@ -12,6 +12,7 @@ import {
   costume_stat,
   emblem,
 } from "@prisma/client";
+import { costumes_link } from "@prisma/client-nrg";
 import { CDN_URL, SKILLS_TYPES } from "@config/constants";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import RARITY from "@utils/rarity";
@@ -27,7 +28,7 @@ import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
 import Checkbox from "@components/form/Checkbox";
 import classNames from "classnames";
-import { Button, Modal, Tooltip } from "@mui/material";
+import { Button, Chip, Modal, Tooltip } from "@mui/material";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import Stat from "@components/Stat";
 import WeaponThumbnail from "@components/WeaponThumbnail";
@@ -38,8 +39,9 @@ import SkillThumbnail from "@components/SkillThumbnail";
 import { MdFilterAlt } from "react-icons/md";
 import { useCostumesFilters } from "@store/costumes-filters";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
+import { LimitedCostume } from "@components/LimitedCostume";
 
-type ICostume = costume & {
+export type ICostume = costume & {
   costume_ability_link: (costume_ability_link & {
     costume_ability: costume_ability;
   })[];
@@ -49,6 +51,7 @@ type ICostume = costume & {
   costume_stat: costume_stat[];
   character: character;
   emblem: emblem;
+  link: costumes_link;
 };
 
 interface CharactersPageProps {
@@ -105,6 +108,70 @@ function filterCostumesByCharacter(costumes: ICostume[], filters: character[]) {
   );
 }
 
+function filterCostumes(
+  costumes: ICostume[],
+  {
+    limited,
+    collab,
+    story,
+    characters = [],
+    skills = [],
+    ownedCostumes = [],
+    showInventory,
+    showUnreleasedContent,
+  }
+) {
+  const allowLinks = [];
+  if (limited) {
+    allowLinks.push("is_limited");
+  }
+  if (collab) {
+    allowLinks.push("is_collab");
+  }
+  if (story) {
+    allowLinks.push("is_story");
+  }
+
+  let filteredCostumes: ICostume[] = costumes;
+
+  if (!showUnreleasedContent) {
+    filteredCostumes = filteredCostumes.filter((costume) => {
+      return new Date() >= new Date(costume.release_time);
+    });
+  }
+
+  if (showInventory) {
+    filteredCostumes = filteredCostumes.filter((cost) => {
+      return ownedCostumes.includes(cost.costume_id);
+    });
+  }
+
+  if (characters.length > 0) {
+    filteredCostumes = filterCostumesByCharacter(filteredCostumes, characters);
+  }
+
+  if (skills.length > 0) {
+    filteredCostumes = filterCostumesBySkill(filteredCostumes, skills);
+  }
+
+  if (allowLinks.length > 0) {
+    filteredCostumes = filteredCostumes.filter((costume) => {
+      if (limited && collab && story) {
+        return true;
+      }
+
+      const hasLinks = [
+        costume.link.is_collab ? "is_collab" : undefined,
+        costume.link.is_limited ? "is_limited" : undefined,
+        costume.link.is_story ? "is_story" : undefined,
+      ];
+      return allowLinks.some((link) => hasLinks.includes(link));
+    });
+  }
+
+  return filteredCostumes;
+}
+
 export default function CharactersPage({
   costumes,
   abilitiesLookup,
@@ -113,7 +180,7 @@ export default function CharactersPage({
 }: CharactersPageProps): JSX.Element {
   const [filteredCostumes, setFilteredCostumes] = useState(
     costumes.filter((costume) => {
-      return new Date() > new Date(costume.release_time);
+      return new Date() >= new Date(costume.release_time);
     })
   );
 
@@ -123,12 +190,15 @@ export default function CharactersPage({
   const showInventory = useSettingsStore((state) => state.showInventory);
   const order = useSettingsStore((state) => state.order);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
-
-  const inventoryCostumes = costumes.filter((cost) => {
-    return ownedCostumes.includes(cost.costume_id);
-  });
   const skills = useCostumesFilters((state) => state.skills);
   const filteredCharacters = useCostumesFilters((state) => state.characters);
+  const limited = useCostumesFilters((state) => state.limited);
+  const setLimited = useCostumesFilters((state) => state.setLimited);
+  const collab = useCostumesFilters((state) => state.collab);
+  const setCollab = useCostumesFilters((state) => state.setCollab);
+  const story = useCostumesFilters((state) => state.story);
+  const setStory = useCostumesFilters((state) => state.setStory);
+  const hasFilters = useCostumesFilters((state) => state.computed.hasFilters);
 
   /**
    * Using a state and useEffect here because Next.js is
@@ -146,19 +216,32 @@ export default function CharactersPage({
 
   useEffect(() => {
     setFilteredCostumes(
-      costumes.filter((costume) => {
-        if (showUnreleasedContent) return true;
-        return new Date() > new Date(costume.release_time);
+      filterCostumes(costumes, {
+        limited,
+        collab,
+        story,
+        characters: filteredCharacters,
+        skills,
+        ownedCostumes,
+        showInventory,
+        showUnreleasedContent,
       })
     );
-  }, [showUnreleasedContent]);
+  }, [
+    limited,
+    collab,
+    story,
+    filteredCharacters,
+    skills,
+    ownedCostumes,
+    showInventory,
+    showUnreleasedContent,
+  ]);
 
   return (
     <Layout
-      hasContainer={databaseDisplayType === "table" ? false : true}
-      className={classNames(
-        databaseDisplayType === "table" ? "overflow-x-auto" : ""
-      )}
+      hasContainer={displayType === "table" ? false : true}
+      className={classNames(displayType === "table" ? "overflow-x-auto" : "")}
     >
       <Meta
         title="Costumes"
@@ -172,11 +255,58 @@ export default function CharactersPage({
           displayType !== "table" ? "w-full" : ""
         )}
       >
-        <DatabaseNavbar>
-          <div className="flex flex-col items-center md:flex-row gap-2">
-            <CostumesCharactersFilters characters={characters} />
-            <CostumesSkillsFilters />
-          </div>
+        <DatabaseNavbar
+          middleChildren={
+            hasFilters ? (
+              <div className="relative bg-grey-dark rounded-lg px-4 pt-4 pb-2 flex gap-x-2 min-w-[280px] max-w-2xl">
+                <h3 className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-shadow text-xl line-clamp-1">
+                  Filters applied
+                </h3>
+                {limited && <Chip label="Limited" color="info" />}
+                {collab && <Chip label="Collab" color="warning" />}
+                {story && <Chip label="Story" color="error" />}
+                {filteredCharacters.map((character) => (
+                  <Tooltip key={character.name} title={character.name}>
+                    <div className="flex justify-center items-center rounded-full h-8 w-8 bg-white bg-opacity-20">
+                      <img
+                        className="h-6 object-contain"
+                        src={`${CDN_URL}${character.image_path}`}
+                        alt={character.name}
+                      />
+                    </div>
+                  </Tooltip>
+                ))}
+                {skills.map((skill) => (
+                  <Chip
+                    key={skill.label}
+                    color="success"
+                    label={`CS: ${skill.label}`}
+                  />
+                ))}
+              </div>
+            ) : null
+          }
+        >
+          <Checkbox
+            isChecked={limited}
+            setState={(e) => setLimited(e.target.checked)}
+            label="Limited costumes"
+          />
+
+          <Checkbox
+            isChecked={collab}
+            setState={(e) => setCollab(e.target.checked)}
+            label="Collab costumes"
+          />
+
+          <Checkbox
+            isChecked={story}
+            setState={(e) => setStory(e.target.checked)}
+            label="Story/EX costumes"
+          />
+
+          <CostumesCharactersFilters characters={characters} />
+          <CostumesSkillsFilters />
         </DatabaseNavbar>
 
         {showInventory && ownedCostumes.length === 0 && (
@@ -194,23 +324,7 @@ export default function CharactersPage({
 
         {displayType === "table" && (
           <CostumesTable
-            costumes={
-              showInventory
-                ? filterCostumesBySkill(
-                    filterCostumesByCharacter(
-                      inventoryCostumes,
-                      filteredCharacters
-                    ),
-                    skills
-                  )
-                : filterCostumesBySkill(
-                    filterCostumesByCharacter(
-                      filteredCostumes,
-                      filteredCharacters
-                    ),
-                    skills
-                  )
-            }
+            costumes={filteredCostumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
@@ -219,23 +333,7 @@ export default function CharactersPage({
 
         {displayType !== "table" && (
           <CostumesGrid
-            costumes={
-              showInventory
-                ? filterCostumesBySkill(
-                    filterCostumesByCharacter(
-                      inventoryCostumes,
-                      filteredCharacters
-                    ),
-                    skills
-                  )
-                : filterCostumesBySkill(
-                    filterCostumesByCharacter(
-                      filteredCostumes,
-                      filteredCharacters
-                    ),
-                    skills
-                  )
-            }
+            costumes={filteredCostumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
@@ -251,22 +349,10 @@ export default function CharactersPage({
 export function CostumesTable({
   title,
   costumes,
-  showUnreleasedContent,
-  charactersLookup = {},
   abilitiesLookup = {},
   onRowClick = undefined,
 }: {
-  costumes: (costume & {
-    costume_ability_link: (costume_ability_link & {
-      costume_ability: costume_ability;
-    })[];
-    costume_skill_link: (costume_skill_link & {
-      costume_skill: costume_skill;
-    })[];
-    costume_stat: costume_stat[];
-    character: character;
-    emblem: emblem;
-  })[];
+  costumes: ICostume[];
   showUnreleasedContent?: boolean;
   charactersLookup;
   abilitiesLookup;
@@ -304,12 +390,17 @@ export function CostumesTable({
                   weaponType={costume.weapon_type}
                   isDark={costume.is_ex_costume}
                 />
-                <span className="inline-block pr-12 line-clamp-2">
-                  {costume.is_ex_costume && (
-                    <span className="text-rarity-4">EX </span>
-                  )}
-                  {costume.title}
-                </span>
+                <p>
+                  <span className="flex gap-x-1 text-xs">
+                    {costume.is_ex_costume && (
+                      <span className="text-rarity-4">EX</span>
+                    )}
+                    {costume.character.name}
+                  </span>
+                  <span className="text-sm inline-block pr-12 line-clamp-2">
+                    {costume.title}
+                  </span>
+                </p>
 
                 {!onRowClick && (
                   <Link
@@ -801,8 +892,9 @@ export function CostumesSkillsFilters() {
   const toggleSkill = useCostumesFilters((state) => state.toggleSkill);
 
   return (
-    <div>
+    <div className="md:col-span-2">
       <Button
+        className="w-full"
         variant={skills.length > 0 ? "contained" : "outlined"}
         onClick={() => setIsOpen(true)}
         component="label"
@@ -863,8 +955,9 @@ export function CostumesCharactersFilters({
   const toggleCharacter = useCostumesFilters((state) => state.toggleCharacter);
 
   return (
-    <div>
+    <div className="md:col-span-2">
       <Button
+        className="w-full"
         variant={filteredCharacters.length > 0 ? "contained" : "outlined"}
         onClick={() => setIsOpen(true)}
         component="label"
