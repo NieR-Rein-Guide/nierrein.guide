@@ -155,7 +155,7 @@ export default function Home({
           <EventsTimeline items={events} />
         </div>
 
-        <div>
+        <div className="overflow-x-hidden">
           <div className="bg-grey-dark border-y border-beige border-opacity-50">
             <NewCostumes costumes={recentCostumes} />
           </div>
