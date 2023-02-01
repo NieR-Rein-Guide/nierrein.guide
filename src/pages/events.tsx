@@ -9,129 +9,119 @@ import { differenceInDays, formatDistanceToNow } from "date-fns";
 import { useState } from "react";
 import TierlistTab from "@components/tierlist/TierListTab";
 import classNames from "classnames";
-import { FiBook, FiClock } from "react-icons/fi";
+import { FiClock } from "react-icons/fi";
 import { MdHourglassTop } from "react-icons/md";
 import { FaCalendarCheck } from "react-icons/fa";
 import { CostumeThumbnailPin } from "@components/characters/CostumeThumbnailPin";
 import useSWR from "swr";
 import { fetcher } from "@utils/fetcher";
 import { useIntersectionObserver } from "react-intersection-observer-hook";
+import { eventsTypes } from "@utils/eventsTypes";
 
 interface GuidesProps {
   events: Event[];
+  groups: any;
 }
 
-const GROUPS = [
-  "Premium Summons",
-  "Record",
-  "Abyss Tower",
-  "Variation",
-  "Anecdote",
-  "Weekly Summons",
-];
-
-const GROUPS_ICONS = {
-  Record: <FiBook />,
-  "Premium Summons": <img src="/icons/gem.png" alt="gem" />,
-  "Weekly Summons": <img src="/icons/gem.png" alt="gem" />,
-  "Abyss Tower": (
-    <img src="/icons/tower.png" height="48" className="h-12" alt="tower" />
-  ),
-  Variation: <img src="/icons/variation-ticket.png" alt="tower" />,
-  Anecdote: (
-    <img src="/icons/panel.jpg" height="32" className="h-8" alt="panel" />
-  ),
-};
-
-export default function Events({ events }: GuidesProps): JSX.Element {
+export default function Events({ events, groups }: GuidesProps): JSX.Element {
   const [tabIndex] = useState(0);
 
-  const eventsGroups = GROUPS.reduce((acc, group) => {
-    const items = events.filter((item) => {
-      return item.attributes.title.includes(group);
-    });
-
-    acc[group] = items;
-    return acc;
-  }, {});
+  const GROUPS = Object.entries(groups);
 
   return (
-    <Layout hasContainer={false}>
+    <Layout>
       <Meta
         title="Events"
         description="A list of all past and current events."
         cover="https://nierrein.guide/cover-events.jpg"
       />
 
-      <Tabs className="container" defaultIndex={tabIndex}>
-        <TabList className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
-          <TierlistTab index={0} className="md:col-span-3">
-            <span className="text-shadow text-white">All</span>
-          </TierlistTab>
+      <section>
+        <h2 className="overlap">Events</h2>
+        <Tabs
+          className="grid items-start md:grid-cols-12"
+          defaultIndex={tabIndex}
+        >
+          <TabList className="md:col-span-2 md:sticky md:top-16">
+            <TierlistTab className="w-full" index={0}>
+              <span className="text-base text-shadow text-white">All</span>
+            </TierlistTab>
 
-          {GROUPS.map((group, index) => {
-            const activeEvents: Event[] = eventsGroups[group].filter(
-              (item: Event) =>
-                new Date(item.attributes.end_date).getTime() > Date.now()
-            );
+            {GROUPS.map(([, value], index) => {
+              const activeEvents: Event[] = value.events.filter(
+                (item: Event) =>
+                  new Date(item.attributes.end_date).getTime() > Date.now()
+              );
 
-            return (
-              <TierlistTab
-                key={index + 1}
-                index={index + 1}
-                style={{
-                  background: activeEvents[0]
-                    ? `url(${activeEvents[0].attributes.image.data.attributes.formats.small?.url})`
-                    : undefined,
-                  backgroundPosition: "center",
-                }}
-              >
-                <span className="text-shadow text-white">{group}</span>
-                {activeEvents?.length > 0 && (
-                  <span className="absolute top-0 right-4 md:-top-4 md:-right-4 text-xs mt-2">
-                    <img src="/icons/costumes/awaken_rank_icon_default.png" />
-                    <span className="font-labor absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 font-semibold text-white">
-                      {activeEvents.length}
-                    </span>
+              return (
+                <TierlistTab
+                  key={index + 1}
+                  index={index + 1}
+                  className="w-full"
+                >
+                  <span className="text-base text-shadow text-white">
+                    {value.label}
                   </span>
-                )}
-              </TierlistTab>
-            );
-          })}
-        </TabList>
+                  {activeEvents?.length > 0 && (
+                    <span className="absolute top-0 right-4 md:-top-4 md:-right-4 text-xs mt-2">
+                      <img src="/icons/costumes/awaken_rank_icon_default.png" />
+                      <span className="font-labor absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 font-semibold text-white">
+                        {activeEvents.length}
+                      </span>
+                    </span>
+                  )}
+                </TierlistTab>
+              );
+            })}
+          </TabList>
 
-        <TabPanels>
-          <TabPanel>
-            <EventsListing label="All events" events={events} />
-          </TabPanel>
-
-          {GROUPS.map((group, index) => (
-            <TabPanel key={index}>
-              <EventsListing label={group} events={eventsGroups[group]} />
+          <TabPanels className="mt-12 md:mt-0 md:col-span-10">
+            <TabPanel>
+              <EventsListing
+                type="all"
+                containerClasses="md:px-12"
+                label="All events"
+                events={events}
+              />
             </TabPanel>
-          ))}
-        </TabPanels>
-      </Tabs>
+
+            {GROUPS.map(([type, value], index) => (
+              <TabPanel key={index}>
+                <EventsListing
+                  type={type}
+                  containerClasses="md:px-12"
+                  label={value.label}
+                  events={value.events}
+                />
+              </TabPanel>
+            ))}
+          </TabPanels>
+        </Tabs>
+      </section>
     </Layout>
   );
 }
 
 export function EventsListing({
+  type = "",
   label,
   events,
-  cardContainerClasses = "flex flex-col gap-y-12 max-w-3xl mx-auto",
+  containerClasses = "",
+  cardContainerClasses = "flex flex-col gap-y-12 mx-auto",
   cardClasses = "grid grid-cols-1 md:grid-cols-2",
 }: {
+  type: string;
   label: string;
   events: Event[];
+  containerClasses?: string | string[];
   cardContainerClasses?: string | string[];
   cardClasses?: string | string[];
 }) {
   return (
-    <div className="mt-12">
+    <div className={classNames(containerClasses)}>
       <div className="flex items-center justify-between mb-8">
         <h2 className="flex gap-x-2 items-center text-3xl">
-          {GROUPS_ICONS[label]}
+          {eventsTypes[type]?.icon}
           {label}
         </h2>
 
@@ -287,7 +277,9 @@ function EventCostumes({ id }: { id: number }) {
       {!isLoading && costumes?.length > 0 && (
         <div className="grid grid-cols-3 md:grid-cols-5 gap-x-4 bg-grey-dark border border-beige border-opacity-30 border-t-0 p-4 transition-transform ease-out-cubic transform group-hover:-translate-y-1">
           <div className="col-span-5">
-            <h3 className="text-xl text-beige mb-2">Obtainable costumes</h3>
+            <h3 className="text-xl text-beige mb-2">
+              Obtainable costume{costumes.length > 1 ? "s" : ""}
+            </h3>
           </div>
 
           {costumes.map((costume) => (
@@ -302,10 +294,20 @@ function EventCostumes({ id }: { id: number }) {
 export async function getStaticProps() {
   const events = await getAllEvents();
 
+  const groups = {};
+
+  for (const [type, value] of Object.entries(eventsTypes)) {
+    groups[type] = {
+      events: events.filter((event) => event.attributes.type === type),
+      label: value.label,
+    };
+  }
+
   return {
     props: JSON.parse(
       JSON.stringify({
         events,
+        groups,
       })
     ),
     revalidate: 30, // Revalidate every 30s
