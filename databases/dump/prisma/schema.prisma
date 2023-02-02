@@ -213,15 +213,16 @@ model emblem {
 }
 
 model memoir {
-  memoir_id        Int
-  lottery_id       Int
-  rarity           String?
-  release_time     DateTime       @db.Timestamptz(6)
-  name             String?
-  story            String?
-  image_path_base  String?
-  memoir_series_id Int?
-  memoir_series    memoir_series? @relation(fields: [memoir_series_id], references: [memoir_series_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_memoir_memoir_series_memoir_series_id")
+  memoir_id           Int
+  lottery_id          Int
+  rarity              String?
+  release_time        DateTime       @db.Timestamptz(6)
+  name                String?
+  story               String?
+  image_path_base     String?
+  is_variation_memoir Boolean
+  memoir_series_id    Int?
+  memoir_series       memoir_series? @relation(fields: [memoir_series_id], references: [memoir_series_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_memoir_memoir_series_memoir_series_id")
 
   @@id([memoir_id, lottery_id], map: "pk_memoir")
   @@index([memoir_series_id], map: "ix_memoir_memoir_series_id")
