@@ -45,7 +45,7 @@ interface WeaponsPageProps {
 
 export default function WeaponsPage({
   isIndex,
-  weapons,
+  weapons = [],
   selectedWeapon,
   abilitiesLookup,
 }: WeaponsPageProps): JSX.Element {
