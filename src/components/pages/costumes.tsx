@@ -13,7 +13,7 @@ import {
   emblem,
 } from "@prisma/client";
 import { costumes_link } from "@prisma/client-nrg";
-import { CDN_URL, SKILLS_TYPES } from "@config/constants";
+import { CDN_URL, SEA_DATE_DIFFERENCE, SKILLS_TYPES } from "@config/constants";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import RARITY from "@utils/rarity";
 import Image from "next/image";
@@ -108,7 +108,14 @@ function filterCostumesByCharacter(costumes: ICostume[], filters: character[]) {
   );
 }
 
-function filterCostumes(
+export function hideSEASpoiler(release_time: string | Date) {
+  return (
+    new Date().getTime() - new Date(release_time).getTime() >=
+    SEA_DATE_DIFFERENCE
+  );
+}
+
+export function filterCostumes(
   costumes: ICostume[],
   {
     limited,
@@ -119,6 +126,7 @@ function filterCostumes(
     ownedCostumes = [],
     showInventory,
     showUnreleasedContent,
+    region = "GLOBAL",
   }
 ) {
   const allowLinks = [];
@@ -138,6 +146,16 @@ function filterCostumes(
     filteredCostumes = filteredCostumes.filter((costume) => {
       return new Date() >= new Date(costume.release_time);
     });
+  }
+
+  /**
+   * SEA REGION
+   * Hide GLOBAL/JP costumes
+   */
+  if (!showUnreleasedContent && region === "SEA") {
+    filteredCostumes = filteredCostumes.filter((costume) =>
+      hideSEASpoiler(costume.release_time)
+    );
   }
 
   if (showInventory) {
@@ -178,15 +196,19 @@ export default function CharactersPage({
   charactersLookup,
   characters,
 }: CharactersPageProps): JSX.Element {
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
+  const region = useSettingsStore((state) => state.region);
   const [filteredCostumes, setFilteredCostumes] = useState(
     costumes.filter((costume) => {
+      if (region === "SEA") {
+        return hideSEASpoiler(costume.release_time);
+      }
       return new Date() >= new Date(costume.release_time);
     })
   );
 
-  const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
-  );
   const showInventory = useSettingsStore((state) => state.showInventory);
   const order = useSettingsStore((state) => state.order);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
@@ -225,6 +247,7 @@ export default function CharactersPage({
         ownedCostumes,
         showInventory,
         showUnreleasedContent,
+        region,
       })
     );
   }, [
@@ -236,6 +259,7 @@ export default function CharactersPage({
     ownedCostumes,
     showInventory,
     showUnreleasedContent,
+    region,
   ]);
 
   return (

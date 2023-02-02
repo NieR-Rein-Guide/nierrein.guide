@@ -4,6 +4,7 @@ import { persist } from "zustand/middleware";
 export const useSettingsStore = create(
   persist(
     (set) => ({
+      region: 'GLOBAL', // 'GLOBAL' | 'SEA' | 'JP'
       eventsDisplayType: 'listing', // 'timeline' | 'listing'
       databaseDisplayType: "table", // 'table' | 'grid'
       showCharactersSelection: false,
@@ -31,6 +32,8 @@ export const useSettingsStore = create(
         set({ showInventory }),
       setOrder: (order) =>
         set({ order }),
+      setRegion: (region) =>
+        set({ region }),
     }),
     {
       name: "settings",

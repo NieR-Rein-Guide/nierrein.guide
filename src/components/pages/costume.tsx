@@ -3,7 +3,6 @@ import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import CostumeDetails from "@components/CharacterInfo";
 import { useEffect, useState } from "react";
-import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
 import CostumeSelect from "@components/characters/CostumeSelect";
 import slug from "slugg";

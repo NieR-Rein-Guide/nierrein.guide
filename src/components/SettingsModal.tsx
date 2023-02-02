@@ -1,4 +1,12 @@
-import { Button, Modal, Switch } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Select,
+  Switch,
+} from "@mui/material";
 import { useSettingsStore } from "@store/settings";
 import { useState } from "react";
 import { FiSettings } from "react-icons/fi";
@@ -16,6 +24,9 @@ export default function SettingsModal() {
   const setShowUnreleasedContent = useSettingsStore(
     (state) => state.setShowUnreleasedContent
   );
+
+  const region = useSettingsStore((state) => state.region);
+  const setRegion = useSettingsStore((state) => state.setRegion);
 
   const databaseDisplayType = useSettingsStore(
     (state) => state.databaseDisplayType
@@ -60,6 +71,28 @@ export default function SettingsModal() {
             <button className="btn" onClick={() => setIsOpen(false)}>
               Close
             </button>
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between">
+            <label
+              htmlFor="select-region"
+              className="text-beige cursor-pointer"
+            >
+              Region
+            </label>
+            <FormControl className="w-32">
+              <InputLabel id="select-region">Age</InputLabel>
+              <Select
+                labelId="select-region"
+                id="select-region"
+                value={region}
+                label="Region"
+                onChange={(e) => setRegion(e.target.value)}
+              >
+                <MenuItem value="GLOBAL">GLOBAL</MenuItem>
+                <MenuItem value="SEA">SEA</MenuItem>
+                <MenuItem value="JP">JP</MenuItem>
+              </Select>
+            </FormControl>
           </div>
           <div className="flex flex-col sm:flex-row justify-between">
             <label htmlFor="spoilers" className="text-beige cursor-pointer">
