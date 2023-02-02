@@ -13,7 +13,7 @@ import {
   emblem,
 } from "@prisma/client";
 import { costumes_link } from "@prisma/client-nrg";
-import { CDN_URL, SEA_DATE_DIFFERENCE, SKILLS_TYPES } from "@config/constants";
+import { CDN_URL, SKILLS_TYPES } from "@config/constants";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import RARITY from "@utils/rarity";
 import Image from "next/image";
@@ -40,6 +40,7 @@ import { MdFilterAlt } from "react-icons/md";
 import { useCostumesFilters } from "@store/costumes-filters";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import { LimitedCostume } from "@components/LimitedCostume";
+import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 
 export type ICostume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -105,13 +106,6 @@ function filterCostumesByCharacter(costumes: ICostume[], filters: character[]) {
 
   return costumes.filter((costume) =>
     charactersIds.includes(costume.character_id)
-  );
-}
-
-export function hideSEASpoiler(release_time: string | Date) {
-  return (
-    new Date().getTime() - new Date(release_time).getTime() >=
-    SEA_DATE_DIFFERENCE
   );
 }
 
@@ -199,16 +193,6 @@ export default function CharactersPage({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
-  const region = useSettingsStore((state) => state.region);
-  const [filteredCostumes, setFilteredCostumes] = useState(
-    costumes.filter((costume) => {
-      if (region === "SEA") {
-        return hideSEASpoiler(costume.release_time);
-      }
-      return new Date() >= new Date(costume.release_time);
-    })
-  );
-
   const showInventory = useSettingsStore((state) => state.showInventory);
   const order = useSettingsStore((state) => state.order);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
@@ -235,32 +219,6 @@ export default function CharactersPage({
   useEffect(() => {
     setDisplayType(databaseDisplayType);
   }, [databaseDisplayType]);
-
-  useEffect(() => {
-    setFilteredCostumes(
-      filterCostumes(costumes, {
-        limited,
-        collab,
-        story,
-        characters: filteredCharacters,
-        skills,
-        ownedCostumes,
-        showInventory,
-        showUnreleasedContent,
-        region,
-      })
-    );
-  }, [
-    limited,
-    collab,
-    story,
-    filteredCharacters,
-    skills,
-    ownedCostumes,
-    showInventory,
-    showUnreleasedContent,
-    region,
-  ]);
 
   return (
     <Layout
@@ -348,7 +306,7 @@ export default function CharactersPage({
 
         {displayType === "table" && (
           <CostumesTable
-            costumes={filteredCostumes}
+            costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
@@ -357,7 +315,7 @@ export default function CharactersPage({
 
         {displayType !== "table" && (
           <CostumesGrid
-            costumes={filteredCostumes}
+            costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}

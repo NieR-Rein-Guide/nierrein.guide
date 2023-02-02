@@ -1,8 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import slug from "slugg";
 import Costume from "../../components/pages/costume";
-import Index from "../../components/pages/costumes";
+import Index, { filterCostumes } from "../../components/pages/costumes";
 import prisma from "@libs/prisma";
 import {
   character,
@@ -18,12 +18,13 @@ import {
 import { getAllCostumes } from "@models/costume";
 import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
 import alterCostumeToAddSources from "@utils/alterCostumeToAddSources";
+import { useFilteredCostumes } from "@hooks/useFilteredCostumes";
 
 interface CharactersPageProps {
   isIndex: boolean;
   currentCharacter: character;
   selectedCostume: costume;
-  characters;
+  characters: character[];
   costumes: (costume & {
     costume_ability_link: (costume_ability_link & {
       costume_ability: costume_ability;
@@ -64,13 +65,18 @@ export default function CharactersPage({
   charactersLookup,
   selectCostumes,
 }: CharactersPageProps): JSX.Element {
+  const { filteredCharacters, filteredCostumes } = useFilteredCostumes({
+    costumes,
+    characters,
+  });
+
   if (!isIndex) {
     return (
       <Costume
         currentCharacter={currentCharacter}
         selectedCostume={selectedCostume}
-        characters={characters}
-        costumes={costumes}
+        characters={filteredCharacters}
+        costumes={filteredCostumes}
         abilities={abilities}
         skills={skills}
         stats={stats}
@@ -82,10 +88,10 @@ export default function CharactersPage({
 
   return (
     <Index
-      costumes={costumes}
+      costumes={filteredCostumes}
       abilitiesLookup={abilitiesLookup}
       charactersLookup={charactersLookup}
-      characters={characters}
+      characters={filteredCharacters}
     />
   );
 }

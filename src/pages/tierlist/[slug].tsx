@@ -37,6 +37,7 @@ import Lines from "@components/decorations/Lines";
 import { AiOutlinePushpin } from "react-icons/ai";
 import { usePanelStore } from "@store/panels";
 import { useSettingsStore } from "@store/settings";
+import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 
 /* const COSTUME_STAT_PROPERTIES = [
   "atk",
@@ -100,6 +101,7 @@ export default function TierList({
 
 export function TierlistContent({ tierlist, items }: TierListProps) {
   const router = useRouter();
+  const region = useSettingsStore((state) => state.region);
   const localVotes = useTierlistsVotes((state) => state.votes);
   const addVote = useTierlistsVotes((state) => state.addVote);
   const createdTierlist = useCreatedTierlists((state) => state.tierlists);
@@ -303,9 +305,14 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                     const costume = items.find(
                       (item) => item.costume_id === tierItem.item_id
                     );
-                    const isSpoiler =
+
+                    let isSpoiler =
                       !showUnreleasedContent &&
                       new Date() < new Date(costume.release_time);
+
+                    if (region === "SEA" && !showUnreleasedContent) {
+                      isSpoiler = !hideSEASpoiler(costume.release_time);
+                    }
 
                     return (
                       <div

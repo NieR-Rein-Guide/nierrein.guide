@@ -71,6 +71,7 @@ export default function CostumePage({
   const [currentCostume, setCurrentCostume] = useState<
     Costume | costume | null
   >(selectedCostume || costumes[0]);
+  const region = useSettingsStore((state) => state.region);
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
@@ -141,12 +142,14 @@ export default function CostumePage({
         </div>
       </nav>
 
-      <div>
-        <CharacterRows
-          characters={characters}
-          currentCharacter={currentCharacter}
-        />
-      </div>
+      {region !== "SEA" && (
+        <div>
+          <CharacterRows
+            characters={characters}
+            currentCharacter={currentCharacter}
+          />
+        </div>
+      )}
 
       <div className="hidden md:block">
         <CharacterCostumes

@@ -485,6 +485,11 @@ export const FEATURED_TIERLISTS = {
   pvp: [49, 59, 58],
 };
 
+export const SEA_FEATURED_TIERLISTS = {
+  pve: [71, 70],
+  pvp: [],
+};
+
 /**
  * SLABS
  * ------------------

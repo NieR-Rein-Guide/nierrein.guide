@@ -13,6 +13,7 @@ import { FiSettings } from "react-icons/fi";
 import AwakeningLevelSelect from "./AwakeningLevelSelect";
 import CursedGodSlabsSelect from "./CursedGodSlabsSelect";
 import Radio from "./form/Radio";
+import { RegionSelect } from "./RegionSelect";
 import StoneSlabsSelect from "./StoneSlabsSelect";
 
 export default function SettingsModal() {
@@ -24,9 +25,6 @@ export default function SettingsModal() {
   const setShowUnreleasedContent = useSettingsStore(
     (state) => state.setShowUnreleasedContent
   );
-
-  const region = useSettingsStore((state) => state.region);
-  const setRegion = useSettingsStore((state) => state.setRegion);
 
   const databaseDisplayType = useSettingsStore(
     (state) => state.databaseDisplayType
@@ -73,26 +71,14 @@ export default function SettingsModal() {
             </button>
           </div>
           <div className="flex flex-col sm:flex-row justify-between">
-            <label
-              htmlFor="select-region"
-              className="text-beige cursor-pointer"
-            >
-              Region
-            </label>
-            <FormControl className="w-32">
-              <InputLabel id="select-region">Age</InputLabel>
-              <Select
-                labelId="select-region"
-                id="select-region"
-                value={region}
-                label="Region"
-                onChange={(e) => setRegion(e.target.value)}
-              >
-                <MenuItem value="GLOBAL">GLOBAL</MenuItem>
-                <MenuItem value="SEA">SEA</MenuItem>
-                <MenuItem value="JP">JP</MenuItem>
-              </Select>
-            </FormControl>
+            <div className="pr-12">
+              <p className="text-beige">Region (experimental)</p>
+              <p className="text-grey-detail text-xs">
+                This setting will hide global costumes and weapons in databases
+                if set to "SEA".
+              </p>
+            </div>
+            <RegionSelect />
           </div>
           <div className="flex flex-col sm:flex-row justify-between">
             <label htmlFor="spoilers" className="text-beige cursor-pointer">

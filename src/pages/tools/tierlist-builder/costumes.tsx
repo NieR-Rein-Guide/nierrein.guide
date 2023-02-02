@@ -40,6 +40,7 @@ import { useRouter } from "next/router";
 import CostumeSelect from "@components/characters/CostumeSelect";
 import Checkbox from "@components/form/Checkbox";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
+import { useFilteredCostumes } from "@hooks/useFilteredCostumes";
 
 const DEFAULT_DESCRIPTION = "<p>My awesome (and objective) tierlist.</p>";
 
@@ -95,6 +96,7 @@ export default function TierlistBuilder({
   costumes,
 }: TierlistBuilderProps): JSX.Element {
   const router = useRouter();
+  const { filteredCostumes } = useFilteredCostumes({ costumes });
 
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
@@ -180,7 +182,7 @@ export default function TierlistBuilder({
         draft[draft.length - 1].items = filteredSelection;
       })
     );
-  }, [showOnlyInventory, showUnreleasedContent]);
+  }, [filteredCostumes]);
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -295,7 +297,7 @@ export default function TierlistBuilder({
   }
 
   function getCostumesSelection() {
-    const filteredCostumes = costumes
+    const filtered = filteredCostumes
       .filter((costume) => {
         if (showUnreleasedContent) return true;
         return new Date() > new Date(costume.release_time);
@@ -304,6 +306,7 @@ export default function TierlistBuilder({
         if (!showOnlyInventory) return true;
         return ownedCostumes.includes(cost.costume_id);
       })
+      .sort((a, b) => -b.character.name.localeCompare(a.character.name))
       .map((costume) => ({
         ...costume,
         id: `${costume.character.character_id}-${costume.costume_id}`,
@@ -311,7 +314,7 @@ export default function TierlistBuilder({
         tooltip_is_important: false,
       }));
 
-    return filteredCostumes;
+    return filtered;
   }
 
   async function getExistingTierlist() {
@@ -604,7 +607,7 @@ export default function TierlistBuilder({
                           <div className="flex justify-center mt-8">
                             <CostumeSelect
                               label="Add a costume..."
-                              costumes={[...costumes].sort(
+                              costumes={[...filteredCostumes].sort(
                                 (a, b) =>
                                   -b.character.name.localeCompare(
                                     a.character.name
