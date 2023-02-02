@@ -113,6 +113,7 @@ export default function EventsTimeline({
               key={group}
               label={group}
               events={events}
+              containerClasses="my-8"
               cardClasses="grid grid-cols-1"
               cardContainerClasses="grid lg:grid-cols-2 gap-16"
             />

@@ -885,6 +885,14 @@ function CostumeDetails({
                 />
                 <h3 className="font-display text-2xl">
                   Chapter n°{costume.link.chapter}
+                  {costume.is_ex_costume ? (
+                    <p>
+                      EX Character Quests {">"} Dark Memory Quests {">"} $
+                      {costume.character.name} {">"} Dark Trial: Hard
+                    </p>
+                  ) : (
+                    ""
+                  )}
                 </h3>
               </div>
             )}
