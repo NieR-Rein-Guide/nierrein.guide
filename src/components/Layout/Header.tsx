@@ -12,6 +12,7 @@ import { Modal } from "@mui/material";
 import { BiDonateHeart } from "react-icons/bi";
 import { ITEMS } from "@components/DatabaseNavbar";
 import { CurrentRelease } from "@components/Header/CurrentVersion";
+import { RegionSelect } from "@components/RegionSelect";
 
 export default function Header(): JSX.Element {
   const [isWhySupportModalOpen, setIsWhySupportModalOpen] = useState(false);
@@ -126,7 +127,8 @@ export default function Header(): JSX.Element {
             <CurrentRelease />
           </span>
 
-          <div className="absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
+          <div className="flex items-center gap-x-4 absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
+            <RegionSelect size="small" className="transform scale-75" />
             <SettingsModal />
           </div>
         </div>

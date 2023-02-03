@@ -1,7 +1,7 @@
-import prisma from '@libs/prisma';
-import tierlistSubjugation from '../data/tierlist_subjugation.json'
-import { FEATURED_TIERLISTS } from '@config/constants'
-import { tiers, tiers_items } from '@prisma/client-nrg'
+import prisma from "@libs/prisma";
+import tierlistSubjugation from "../data/tierlist_subjugation.json";
+import { FEATURED_TIERLISTS, SEA_FEATURED_TIERLISTS } from "@config/constants";
+import { tiers, tiers_items } from "@prisma/client-nrg";
 
 export async function getTierlist(where) {
   const tierlist = await prisma.nrg.tierlists.findFirst({
@@ -19,8 +19,8 @@ export async function getTierlist(where) {
       tiers: {
         include: {
           tiers_items: true,
-        }
-      }
+        },
+      },
     },
   });
 
@@ -58,12 +58,12 @@ export async function getTierlist(where) {
       },
       include: {
         weapon_stat: {
-				orderBy: {
-					level: "desc",
-				},
-				take: 1,
-			},
-      }
+          orderBy: {
+            level: "desc",
+          },
+          take: 1,
+        },
+      },
     });
   }
 
@@ -71,12 +71,34 @@ export async function getTierlist(where) {
 }
 
 async function getTiers() {
-  const pveTierlists = await Promise.all(FEATURED_TIERLISTS.pve.map((tierlist_id) => getTierlist({
-    tierlist_id
-  })))
-  const pvpTierlists = await Promise.all(FEATURED_TIERLISTS.pvp.map((tierlist_id) => getTierlist({
-    tierlist_id
-  })))
+  const pveTierlists = await Promise.all(
+    FEATURED_TIERLISTS.pve.map((tierlist_id) =>
+      getTierlist({
+        tierlist_id,
+      })
+    )
+  );
+  const pvpTierlists = await Promise.all(
+    FEATURED_TIERLISTS.pvp.map((tierlist_id) =>
+      getTierlist({
+        tierlist_id,
+      })
+    )
+  );
+  const seaPveTierlists = await Promise.all(
+    SEA_FEATURED_TIERLISTS.pve.map((tierlist_id) =>
+      getTierlist({
+        tierlist_id,
+      })
+    )
+  );
+  const seaPvpTierlists = await Promise.all(
+    SEA_FEATURED_TIERLISTS.pvp.map((tierlist_id) =>
+      getTierlist({
+        tierlist_id,
+      })
+    )
+  );
 
   /**
    * Legacy tierlist
@@ -84,23 +106,24 @@ async function getTiers() {
    */
   const subjugationTier = {
     tierlist: {
-      version: 'legacy',
+      version: "legacy",
       title: "Subjugation & Abyss",
-      type: 'costumes',
+      type: "costumes",
       updated_at: tierlistSubjugation.updatedAt,
     },
-    version: 'legacy',
+    version: "legacy",
     title: "Subjugation & Abyss",
-    type: 'costumes',
+    type: "costumes",
     updated_at: tierlistSubjugation.updatedAt,
     tiers: tierlistSubjugation.tiers,
-  }
-
+  };
 
   return {
     tier: subjugationTier,
     pve: pveTierlists,
-    pvp: pvpTierlists
+    pvp: pvpTierlists,
+    seaPveTierlists,
+    seaPvpTierlists,
   };
 }
 
@@ -120,9 +143,6 @@ export type Tierlist = {
     })[];
   };
   items: any[];
-}
+};
 
-
-export {
-  getTiers,
-}
+export { getTiers };

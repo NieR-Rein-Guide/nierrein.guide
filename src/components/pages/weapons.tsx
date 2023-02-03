@@ -36,17 +36,21 @@ import AbilityThumbnail from "@components/AbilityThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import SkillThumbnail from "@components/SkillThumbnail";
+import { hideSEASpoiler } from "@utils/hideSEASpoiler";
+import { useFilteredWeapons } from "@hooks/useFilteredWeapons";
+
+type Weapon = weapon & {
+  weapon_ability_link: (weapon_ability_link & {
+    weapon_ability: weapon_ability;
+  })[];
+  weapon_skill_link: (weapon_skill_link & {
+    weapon_skill: weapon_skill;
+  })[];
+  weapon_stat: weapon_stat[];
+};
 
 interface CharactersPageProps {
-  weapons: (weapon & {
-    weapon_ability_link: (weapon_ability_link & {
-      weapon_ability: weapon_ability;
-    })[];
-    weapon_skill_link: (weapon_skill_link & {
-      weapon_skill: weapon_skill;
-    })[];
-    weapon_stat: weapon_stat[];
-  })[];
+  weapons: Weapon[];
   abilitiesLookup: { [key: string]: string };
 }
 
@@ -73,22 +77,44 @@ export const rarityLookup = {
   SS_RARE: "4*",
 };
 
+export function filterWeapons(
+  weapons: Weapon[],
+  { ownedWeapons = [], showInventory, showUnreleasedContent, region = "GLOBAL" }
+) {
+  let filteredWeapons: Weapon[] = weapons;
+
+  if (!showUnreleasedContent) {
+    filteredWeapons = filteredWeapons.filter((costume) => {
+      return new Date() >= new Date(costume.release_time);
+    });
+  }
+
+  /**
+   * SEA REGION
+   * Hide GLOBAL/JP costumes
+   */
+  if (!showUnreleasedContent && region === "SEA") {
+    filteredWeapons = filteredWeapons.filter((costume) =>
+      hideSEASpoiler(costume.release_time)
+    );
+  }
+
+  if (showInventory) {
+    filteredWeapons = filteredWeapons.filter((weapon) => {
+      return ownedWeapons.includes(weapon.weapon_id);
+    });
+  }
+
+  return filteredWeapons;
+}
+
 export default function WeaponsPage({
   weapons,
   abilitiesLookup,
 }: CharactersPageProps): JSX.Element {
-  const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
-  );
-
   const showInventory = useSettingsStore((state) => state.showInventory);
-  const order = useSettingsStore((state) => state.order);
   const ownedWeapons = useInventoryStore((state) => state.weapons);
-
-  const inventoryWeapons = weapons.filter((weap) => {
-    return ownedWeapons.includes(weap.weapon_id);
-  });
-
+  const order = useSettingsStore((state) => state.order);
   /**
    * Using a state and useEffect here because Next.js is
    * complaining about differences between Server/Client
@@ -144,8 +170,7 @@ export default function WeaponsPage({
         {displayType === "table" && (
           <WeaponsTable
             key="table"
-            weapons={showInventory ? inventoryWeapons : weapons}
-            showUnreleasedContent={showUnreleasedContent}
+            weapons={weapons}
             abilitiesLookup={abilitiesLookup}
             valuedWeaponType={valuedWeaponType}
           />
@@ -154,8 +179,7 @@ export default function WeaponsPage({
         {displayType !== "table" && (
           <WeaponsGrid
             key="grid"
-            weapons={showInventory ? inventoryWeapons : weapons}
-            showUnreleasedContent={showUnreleasedContent}
+            weapons={weapons}
             isSmall={displayType === "compact"}
             isLibrary={order === "library"}
           />

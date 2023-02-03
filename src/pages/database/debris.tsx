@@ -24,6 +24,7 @@ import { usePanelStore } from "@store/panels";
 import classNames from "classnames";
 import { useSettingsStore } from "@store/settings";
 import { useEffect, useState } from "react";
+import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 
 interface DebrisPageProps {
   debris: (debris & {
@@ -57,6 +58,7 @@ export const rarityLookup = {
 };
 
 export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
+  const region = useSettingsStore((state) => state.region);
   const addCostumePanel = usePanelStore((state) => state.addCostume);
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
@@ -72,10 +74,13 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
     setFilteredDebris(
       debris.filter((thought) => {
         if (showUnreleasedContent) return true;
+        if (region === "SEA") {
+          return hideSEASpoiler(thought.release_time);
+        }
         return new Date() > new Date(thought.release_time);
       })
     );
-  }, [showUnreleasedContent]);
+  }, [showUnreleasedContent, region]);
 
   return (
     <Layout hasContainer={false} className="overflow-x-auto">

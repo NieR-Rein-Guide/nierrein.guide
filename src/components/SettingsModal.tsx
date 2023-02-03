@@ -1,10 +1,19 @@
-import { Button, Modal, Switch } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Select,
+  Switch,
+} from "@mui/material";
 import { useSettingsStore } from "@store/settings";
 import { useState } from "react";
 import { FiSettings } from "react-icons/fi";
 import AwakeningLevelSelect from "./AwakeningLevelSelect";
 import CursedGodSlabsSelect from "./CursedGodSlabsSelect";
 import Radio from "./form/Radio";
+import { RegionSelect } from "./RegionSelect";
 import StoneSlabsSelect from "./StoneSlabsSelect";
 
 export default function SettingsModal() {
@@ -60,6 +69,16 @@ export default function SettingsModal() {
             <button className="btn" onClick={() => setIsOpen(false)}>
               Close
             </button>
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between">
+            <div className="pr-12">
+              <p className="text-beige">Region (experimental)</p>
+              <p className="text-grey-detail text-xs">
+                This setting will hide global costumes and weapons in databases
+                if set to "SEA".
+              </p>
+            </div>
+            <RegionSelect />
           </div>
           <div className="flex flex-col sm:flex-row justify-between">
             <label htmlFor="spoilers" className="text-beige cursor-pointer">

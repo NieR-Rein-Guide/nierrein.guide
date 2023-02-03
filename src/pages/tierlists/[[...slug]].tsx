@@ -10,13 +10,16 @@ import { NextPageContext } from "next";
 import CommunityTierlists from "@components/CommunityTierlists";
 import prisma from "@libs/prisma";
 import Link from "next/link";
-import { FEATURED_TIERLISTS } from "@config/constants";
+import { FEATURED_TIERLISTS, SEA_FEATURED_TIERLISTS } from "@config/constants";
+import { useSettingsStore } from "@store/settings";
 
 interface TierlistsPageProps {
   defaultTab: number;
   defaultPvpTab: number;
   pve: Tierlist[];
   pvp: Tierlist[];
+  seaPveTierlists: Tierlist[];
+  seaPvpTierlists: Tierlist[];
   tier;
   tierlists;
 }
@@ -32,9 +35,12 @@ export default function TierlistsPageProps({
   defaultPvpTab = 0,
   pve,
   pvp,
+  seaPveTierlists,
+  seaPvpTierlists,
   tierlists,
 }: TierlistsPageProps): JSX.Element {
   const router = useRouter();
+  const region = useSettingsStore((state) => state.region);
   const [tabIndex] = useState(defaultTab);
   const [pvpTabIndex] = useState(defaultPvpTab);
 
@@ -109,9 +115,13 @@ export default function TierlistsPageProps({
 
         <Tabs defaultIndex={tabIndex} onChange={handleTabsChange}>
           <TabList className="relative bordered bg-grey-dark p-4 grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-8">
-            <TierListTab index={0}>PvE</TierListTab>
+            <TierListTab index={0}>
+              {region === "SEA" ? "(SEA) " : ""} PvE
+            </TierListTab>
 
-            <TierListTab index={1}>PvP</TierListTab>
+            <TierListTab index={1}>
+              {region === "SEA" ? "(SEA) " : ""} PvP
+            </TierListTab>
 
             <TierListTab className="col-span-2 md:col-span-1" index={2}>
               Community
@@ -119,44 +129,97 @@ export default function TierlistsPageProps({
           </TabList>
 
           <TabPanels>
-            {/* PvE */}
-            <TabPanel className="mt-8">
-              <TierlistContent
-                tierlist={pve[0].tierlist}
-                items={pve[0].items}
-              />
-            </TabPanel>
+            {region === "SEA" && (
+              <>
+                {/* PvE */}
+                <TabPanel className="mt-8">
+                  <TierlistContent
+                    tierlist={seaPveTierlists[0].tierlist}
+                    items={seaPveTierlists[0].items}
+                  />
+                </TabPanel>
 
-            {/* PvP */}
-            <TabPanel>
-              <Tabs
-                className="mt-4 md:mt-0"
-                defaultIndex={pvpTabIndex}
-                onChange={handlePvpTabsChange}
-              >
-                <TabList className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
-                  {pvp.map((tierlist, index) => (
-                    <TierListTab
-                      index={index}
-                      key={tierlist.tierlist.tierlist_id}
-                    >
-                      {tierlist.tierlist.title}
-                    </TierListTab>
-                  ))}
-                </TabList>
+                {/* PvP */}
+                <TabPanel>
+                  <Tabs
+                    className="mt-4 md:mt-0"
+                    defaultIndex={pvpTabIndex}
+                    onChange={handlePvpTabsChange}
+                  >
+                    <TabList className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
+                      {seaPvpTierlists.map((tierlist, index) => (
+                        <TierListTab
+                          index={index}
+                          key={tierlist.tierlist.tierlist_id}
+                        >
+                          {tierlist.tierlist.title}
+                        </TierListTab>
+                      ))}
+                    </TabList>
 
-                <TabPanels>
-                  {pvp.map((tierlist, index) => (
-                    <TabPanel index={index} key={tierlist.tierlist.tierlist_id}>
-                      <TierlistContent
-                        tierlist={tierlist.tierlist}
-                        items={tierlist.items}
-                      />
-                    </TabPanel>
-                  ))}
-                </TabPanels>
-              </Tabs>
-            </TabPanel>
+                    <TabPanels>
+                      {seaPvpTierlists.map((tierlist, index) => (
+                        <TabPanel
+                          index={index}
+                          key={tierlist.tierlist.tierlist_id}
+                        >
+                          <TierlistContent
+                            tierlist={tierlist.tierlist}
+                            items={tierlist.items}
+                          />
+                        </TabPanel>
+                      ))}
+                    </TabPanels>
+                  </Tabs>
+                </TabPanel>
+              </>
+            )}
+
+            {region !== "SEA" && (
+              <>
+                {/* PvE */}
+                <TabPanel className="mt-8">
+                  <TierlistContent
+                    tierlist={pve[0].tierlist}
+                    items={pve[0].items}
+                  />
+                </TabPanel>
+
+                {/* PvP */}
+                <TabPanel>
+                  <Tabs
+                    className="mt-4 md:mt-0"
+                    defaultIndex={pvpTabIndex}
+                    onChange={handlePvpTabsChange}
+                  >
+                    <TabList className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
+                      {pvp.map((tierlist, index) => (
+                        <TierListTab
+                          index={index}
+                          key={tierlist.tierlist.tierlist_id}
+                        >
+                          {tierlist.tierlist.title}
+                        </TierListTab>
+                      ))}
+                    </TabList>
+
+                    <TabPanels>
+                      {pvp.map((tierlist, index) => (
+                        <TabPanel
+                          index={index}
+                          key={tierlist.tierlist.tierlist_id}
+                        >
+                          <TierlistContent
+                            tierlist={tierlist.tierlist}
+                            items={tierlist.items}
+                          />
+                        </TabPanel>
+                      ))}
+                    </TabPanels>
+                  </Tabs>
+                </TabPanel>
+              </>
+            )}
 
             <TabPanel>
               <CommunityTierlists tierlists={tierlists} />
@@ -169,7 +232,7 @@ export default function TierlistsPageProps({
 }
 
 export async function getServerSideProps(context: NextPageContext) {
-  const { pve, pvp } = await getTiers();
+  const { pve, pvp, seaPveTierlists, seaPvpTierlists } = await getTiers();
 
   const props = {
     defaultTab: 0,
@@ -177,6 +240,8 @@ export async function getServerSideProps(context: NextPageContext) {
     pve,
     pvp,
     tierlists: [],
+    seaPveTierlists,
+    seaPvpTierlists,
   };
 
   /**
@@ -208,7 +273,12 @@ export async function getServerSideProps(context: NextPageContext) {
 
   // Exclude pinned tierlists
   where.tierlist_id = {
-    notIn: [...FEATURED_TIERLISTS.pve, ...FEATURED_TIERLISTS.pvp],
+    notIn: [
+      ...FEATURED_TIERLISTS.pve,
+      ...FEATURED_TIERLISTS.pvp,
+      ...SEA_FEATURED_TIERLISTS.pve,
+      ...SEA_FEATURED_TIERLISTS.pvp,
+    ],
   };
 
   // Exclude unlisted tierlists

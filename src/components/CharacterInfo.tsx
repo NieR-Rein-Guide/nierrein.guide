@@ -65,6 +65,7 @@ import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import switchImg from "../../public/icons/switch.png";
 import { chaptersIcons } from "@utils/chaptersIcons";
 import { LimitedCostume } from "./LimitedCostume";
+import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -129,6 +130,7 @@ function CostumeDetails({
       addSuffix: true,
     })
   );
+  const region = useSettingsStore((state) => state.region);
   const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
 
   const ownedCostumes = useInventoryStore((state) => state.costumes);
@@ -158,7 +160,7 @@ function CostumeDetails({
     setIsSpoiler(
       !showUnreleasedContent && new Date() < new Date(costume.release_time)
     );
-  }, [showUnreleasedContent]);
+  }, [showUnreleasedContent, region, costume]);
 
   useEffect(() => {
     if (isReplaced && !hasReplace) {

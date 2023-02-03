@@ -47,6 +47,7 @@ import ATTRIBUTES from "@utils/attributes";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 import { useCreatedTierlists } from "@store/created-tierlists";
 import getBaseRarity from "@utils/getBaseRarity";
+import { useFilteredWeapons } from "@hooks/useFilteredWeapons";
 
 const DEFAULT_DESCRIPTION = "<p>My awesome (and objective) tierlist.</p>";
 
@@ -100,6 +101,7 @@ export default function TierlistBuilder({
   weapons,
 }: TierlistBuilderProps): JSX.Element {
   const router = useRouter();
+  const { filteredWeapons } = useFilteredWeapons({ weapons });
 
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
@@ -181,7 +183,7 @@ export default function TierlistBuilder({
         draft[draft.length - 1].items = filteredSelection;
       })
     );
-  }, [showOnlyInventory, showUnreleasedContent]);
+  }, [filteredWeapons]);
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -296,7 +298,7 @@ export default function TierlistBuilder({
   }
 
   function getWeaponsSelection() {
-    const filteredWeapons = weapons
+    const filtered = filteredWeapons
       .filter((costume) => {
         if (showUnreleasedContent) return true;
         return new Date() > new Date(costume.release_time);
@@ -312,7 +314,7 @@ export default function TierlistBuilder({
         tooltip_is_important: false,
       }));
 
-    return filteredWeapons;
+    return filtered;
   }
 
   async function getExistingTierlist() {

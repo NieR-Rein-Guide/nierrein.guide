@@ -15,6 +15,7 @@ import {
 } from "@prisma/client";
 import { getAllWeapons } from "@models/weapon";
 import alterWeaponToAddCostume from "@utils/alterWeaponToAddCostume";
+import { useFilteredWeapons } from "@hooks/useFilteredWeapons";
 
 interface WeaponsPageProps {
   isIndex: boolean;
@@ -44,15 +45,19 @@ interface WeaponsPageProps {
 
 export default function WeaponsPage({
   isIndex,
-  weapons,
+  weapons = [],
   selectedWeapon,
   abilitiesLookup,
 }: WeaponsPageProps): JSX.Element {
+  const { filteredWeapons } = useFilteredWeapons({ weapons });
+
   if (!isIndex) {
     return <Weapon weapon={selectedWeapon} />;
   }
 
-  return <Weapons weapons={weapons} abilitiesLookup={abilitiesLookup} />;
+  return (
+    <Weapons weapons={filteredWeapons} abilitiesLookup={abilitiesLookup} />
+  );
 }
 
 export async function getStaticProps(context) {

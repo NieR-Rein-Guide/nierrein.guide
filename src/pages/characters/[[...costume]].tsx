@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React from "react";
 import slug from "slugg";
 import Costume from "../../components/pages/costume";
-import Index from "../../components/pages/costumes";
 import prisma from "@libs/prisma";
+import Index from "../../components/pages/costumes";
 import {
   character,
   character_rank_bonus,
@@ -18,12 +17,13 @@ import {
 import { getAllCostumes } from "@models/costume";
 import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
 import alterCostumeToAddSources from "@utils/alterCostumeToAddSources";
+import { useFilteredCostumes } from "@hooks/useFilteredCostumes";
 
 interface CharactersPageProps {
   isIndex: boolean;
   currentCharacter: character;
   selectedCostume: costume;
-  characters;
+  characters: character[];
   costumes: (costume & {
     costume_ability_link: (costume_ability_link & {
       costume_ability: costume_ability;
@@ -62,30 +62,35 @@ export default function CharactersPage({
   rankBonus,
   abilitiesLookup,
   charactersLookup,
-  selectCostumes,
 }: CharactersPageProps): JSX.Element {
+  // console.log({ costumes, characters });
+  const { filteredCharacters, filteredCostumes } = useFilteredCostumes({
+    costumes,
+    characters,
+  });
+  // console.log({ filteredCharacters, filteredCostumes });
+
   if (!isIndex) {
     return (
       <Costume
         currentCharacter={currentCharacter}
         selectedCostume={selectedCostume}
-        characters={characters}
-        costumes={costumes}
+        characters={filteredCharacters}
+        costumes={filteredCostumes}
         abilities={abilities}
         skills={skills}
         stats={stats}
         rankBonus={rankBonus}
-        selectCostumes={selectCostumes}
       />
     );
   }
 
   return (
     <Index
-      costumes={costumes}
+      costumes={filteredCostumes}
       abilitiesLookup={abilitiesLookup}
       charactersLookup={charactersLookup}
-      characters={characters}
+      characters={filteredCharacters}
     />
   );
 }
@@ -134,7 +139,7 @@ export async function getStaticProps(context) {
     return ch.slug === slug(character);
   });
 
-  const [selectedCostumes, rankBonus, selectCostumes] = await Promise.all([
+  const [selectedCostumes, rankBonus] = await Promise.all([
     prisma.dump.costume.findMany({
       orderBy: {
         costume_id: "asc",
@@ -143,6 +148,7 @@ export async function getStaticProps(context) {
         character_id: currentCharacter.character_id,
       },
       include: {
+        character: true,
         emblem: true,
         debris: true,
       },
@@ -155,23 +161,7 @@ export async function getStaticProps(context) {
         rank_bonus_level: "asc",
       },
     }),
-    prisma.dump.costume.findMany({
-      orderBy: {
-        costume_id: "asc",
-      },
-      select: {
-        character,
-        title: true,
-        slug: true,
-        image_path_base: true,
-        release_time: true,
-      },
-    }),
   ]);
-
-  selectCostumes.sort(
-    (a, b) => -b.character.name.localeCompare(a.character.name)
-  );
 
   let selectedCostume = selectedCostumes.find((ch) => {
     return ch.slug === slug(costume);
@@ -262,7 +252,6 @@ export async function getStaticProps(context) {
         skills,
         stats,
         rankBonus,
-        selectCostumes,
       })
     ),
   };

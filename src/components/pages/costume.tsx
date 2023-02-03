@@ -3,7 +3,6 @@ import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import CostumeDetails from "@components/CharacterInfo";
 import { useEffect, useState } from "react";
-import React from "react";
 import CharacterCostumes from "@components/characters/CharacterCostumes";
 import CostumeSelect from "@components/characters/CostumeSelect";
 import slug from "slugg";
@@ -25,6 +24,7 @@ import {
 import { useSettingsStore } from "store/settings";
 import Slider from "rc-slider";
 import CharacterRows from "@components/characters/CharacterRows";
+import classNames from "classnames";
 
 type Costume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -47,13 +47,6 @@ interface CharactersPageProps {
   skills;
   stats;
   rankBonus: character_rank_bonus[];
-  selectCostumes: {
-    title: string;
-    character: character;
-    slug: string;
-    image_path_base: string;
-    release_time: Date;
-  }[];
 }
 
 export default function CostumePage({
@@ -64,7 +57,6 @@ export default function CostumePage({
   skills,
   stats,
   rankBonus,
-  selectCostumes,
   characters,
 }: CharactersPageProps): JSX.Element {
   const router = useRouter();
@@ -72,9 +64,7 @@ export default function CostumePage({
   const [currentCostume, setCurrentCostume] = useState<
     Costume | costume | null
   >(selectedCostume || costumes[0]);
-  const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
-  );
+  const region = useSettingsStore((state) => state.region);
   const [skillLevel, setSkillLevel] = useState(14);
   const [ascendLevel, setAscendLevel] = useState(4);
 
@@ -138,11 +128,15 @@ export default function CostumePage({
               onChange={(value) => setAscendLevel(value)}
             />
           </div>
-          <CostumeSelect costumes={selectCostumes} />
+          <CostumeSelect
+            costumes={costumes.sort(
+              (a, b) => -b.character.name.localeCompare(a.character.name)
+            )}
+          />
         </div>
       </nav>
 
-      <div>
+      <div className={classNames(region === "SEA" ? "hidden" : "")}>
         <CharacterRows
           characters={characters}
           currentCharacter={currentCharacter}
@@ -152,11 +146,9 @@ export default function CostumePage({
       <div className="hidden md:block">
         <CharacterCostumes
           currentCharacter={currentCharacter}
-          costumes={costumes.filter((costume) => {
-            if (showUnreleasedContent || typeof window === "undefined")
-              return true;
-            return new Date() > new Date(costume.release_time);
-          })}
+          costumes={costumes.filter(
+            (costume) => costume.character_id === currentCharacter.character_id
+          )}
           setCostume={setCurrentCostume}
           currentCostume={currentCostume}
         />

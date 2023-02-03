@@ -40,6 +40,7 @@ import { MdFilterAlt } from "react-icons/md";
 import { useCostumesFilters } from "@store/costumes-filters";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import { LimitedCostume } from "@components/LimitedCostume";
+import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 
 export type ICostume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -108,7 +109,7 @@ function filterCostumesByCharacter(costumes: ICostume[], filters: character[]) {
   );
 }
 
-function filterCostumes(
+export function filterCostumes(
   costumes: ICostume[],
   {
     limited,
@@ -119,6 +120,7 @@ function filterCostumes(
     ownedCostumes = [],
     showInventory,
     showUnreleasedContent,
+    region = "GLOBAL",
   }
 ) {
   const allowLinks = [];
@@ -138,6 +140,16 @@ function filterCostumes(
     filteredCostumes = filteredCostumes.filter((costume) => {
       return new Date() >= new Date(costume.release_time);
     });
+  }
+
+  /**
+   * SEA REGION
+   * Hide GLOBAL/JP costumes
+   */
+  if (!showUnreleasedContent && region === "SEA") {
+    filteredCostumes = filteredCostumes.filter((costume) =>
+      hideSEASpoiler(costume.release_time)
+    );
   }
 
   if (showInventory) {
@@ -178,12 +190,6 @@ export default function CharactersPage({
   charactersLookup,
   characters,
 }: CharactersPageProps): JSX.Element {
-  const [filteredCostumes, setFilteredCostumes] = useState(
-    costumes.filter((costume) => {
-      return new Date() >= new Date(costume.release_time);
-    })
-  );
-
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
@@ -213,30 +219,6 @@ export default function CharactersPage({
   useEffect(() => {
     setDisplayType(databaseDisplayType);
   }, [databaseDisplayType]);
-
-  useEffect(() => {
-    setFilteredCostumes(
-      filterCostumes(costumes, {
-        limited,
-        collab,
-        story,
-        characters: filteredCharacters,
-        skills,
-        ownedCostumes,
-        showInventory,
-        showUnreleasedContent,
-      })
-    );
-  }, [
-    limited,
-    collab,
-    story,
-    filteredCharacters,
-    skills,
-    ownedCostumes,
-    showInventory,
-    showUnreleasedContent,
-  ]);
 
   return (
     <Layout
@@ -324,7 +306,7 @@ export default function CharactersPage({
 
         {displayType === "table" && (
           <CostumesTable
-            costumes={filteredCostumes}
+            costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
@@ -333,7 +315,7 @@ export default function CharactersPage({
 
         {displayType !== "table" && (
           <CostumesGrid
-            costumes={filteredCostumes}
+            costumes={costumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
