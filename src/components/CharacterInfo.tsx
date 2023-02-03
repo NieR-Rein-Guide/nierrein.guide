@@ -883,12 +883,12 @@ function CostumeDetails({
                   src={chaptersIcons[costume.link.chapter]}
                   alt="chapter icon"
                 />
-                <h3 className="font-display text-2xl">
+                <h3 className="font-display text-2xl text-center">
                   Chapter n°{costume.link.chapter}
                   {costume.is_ex_costume ? (
                     <p>
-                      EX Character Quests {">"} Dark Memory Quests {">"} $
-                      {costume.character.name} {">"} Dark Trial: Hard
+                      EX Character Quests {">"} Dark Memory Quests {">"}
+                      {character.name} {">"} Dark Trial: Hard
                     </p>
                   ) : (
                     ""
