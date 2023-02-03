@@ -154,11 +154,9 @@ export default function CostumePage({
       <div className="hidden md:block">
         <CharacterCostumes
           currentCharacter={currentCharacter}
-          costumes={costumes.filter((costume) => {
-            if (showUnreleasedContent || typeof window === "undefined")
-              return true;
-            return new Date() > new Date(costume.release_time);
-          })}
+          costumes={costumes.filter(
+            (costume) => costume.character_id === currentCharacter.character_id
+          )}
           setCostume={setCurrentCostume}
           currentCostume={currentCostume}
         />
