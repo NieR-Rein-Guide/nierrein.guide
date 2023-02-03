@@ -63,12 +63,12 @@ export default function CharactersPage({
   abilitiesLookup,
   charactersLookup,
 }: CharactersPageProps): JSX.Element {
-  console.log({ costumes, characters });
+  // console.log({ costumes, characters });
   const { filteredCharacters, filteredCostumes } = useFilteredCostumes({
     costumes,
     characters,
   });
-  console.log({ filteredCharacters, filteredCostumes });
+  // console.log({ filteredCharacters, filteredCostumes });
 
   if (!isIndex) {
     return (

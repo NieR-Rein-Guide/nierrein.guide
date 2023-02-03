@@ -24,6 +24,7 @@ import {
 import { useSettingsStore } from "store/settings";
 import Slider from "rc-slider";
 import CharacterRows from "@components/characters/CharacterRows";
+import classNames from "classnames";
 
 type Costume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -135,14 +136,12 @@ export default function CostumePage({
         </div>
       </nav>
 
-      {region !== "SEA" && (
-        <div>
-          <CharacterRows
-            characters={characters}
-            currentCharacter={currentCharacter}
-          />
-        </div>
-      )}
+      <div className={classNames(region === "SEA" ? "hidden" : "")}>
+        <CharacterRows
+          characters={characters}
+          currentCharacter={currentCharacter}
+        />
+      </div>
 
       <div className="hidden md:block">
         <CharacterCostumes
