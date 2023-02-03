@@ -251,7 +251,6 @@ export async function getStaticProps(context) {
         skills,
         stats,
         rankBonus,
-        selectCostumes,
       })
     ),
   };
