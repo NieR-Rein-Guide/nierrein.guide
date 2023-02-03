@@ -1,9 +1,8 @@
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect, useState } from "react";
 import slug from "slugg";
 import Costume from "../../components/pages/costume";
-import Index, { filterCostumes } from "../../components/pages/costumes";
 import prisma from "@libs/prisma";
+import Index from "../../components/pages/costumes";
 import {
   character,
   character_rank_bonus,
@@ -63,12 +62,13 @@ export default function CharactersPage({
   rankBonus,
   abilitiesLookup,
   charactersLookup,
-  selectCostumes,
 }: CharactersPageProps): JSX.Element {
+  console.log({ costumes, characters });
   const { filteredCharacters, filteredCostumes } = useFilteredCostumes({
     costumes,
     characters,
   });
+  console.log({ filteredCharacters, filteredCostumes });
 
   if (!isIndex) {
     return (
@@ -81,7 +81,6 @@ export default function CharactersPage({
         skills={skills}
         stats={stats}
         rankBonus={rankBonus}
-        selectCostumes={selectCostumes}
       />
     );
   }
@@ -140,7 +139,7 @@ export async function getStaticProps(context) {
     return ch.slug === slug(character);
   });
 
-  const [selectedCostumes, rankBonus, selectCostumes] = await Promise.all([
+  const [selectedCostumes, rankBonus] = await Promise.all([
     prisma.dump.costume.findMany({
       orderBy: {
         costume_id: "asc",
@@ -161,23 +160,7 @@ export async function getStaticProps(context) {
         rank_bonus_level: "asc",
       },
     }),
-    prisma.dump.costume.findMany({
-      orderBy: {
-        costume_id: "asc",
-      },
-      select: {
-        character,
-        title: true,
-        slug: true,
-        image_path_base: true,
-        release_time: true,
-      },
-    }),
   ]);
-
-  selectCostumes.sort(
-    (a, b) => -b.character.name.localeCompare(a.character.name)
-  );
 
   let selectedCostume = selectedCostumes.find((ch) => {
     return ch.slug === slug(costume);

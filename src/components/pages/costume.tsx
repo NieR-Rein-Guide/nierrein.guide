@@ -46,13 +46,6 @@ interface CharactersPageProps {
   skills;
   stats;
   rankBonus: character_rank_bonus[];
-  selectCostumes: {
-    title: string;
-    character: character;
-    slug: string;
-    image_path_base: string;
-    release_time: Date;
-  }[];
 }
 
 export default function CostumePage({
@@ -63,7 +56,6 @@ export default function CostumePage({
   skills,
   stats,
   rankBonus,
-  selectCostumes,
   characters,
 }: CharactersPageProps): JSX.Element {
   const router = useRouter();
@@ -72,9 +64,6 @@ export default function CostumePage({
     Costume | costume | null
   >(selectedCostume || costumes[0]);
   const region = useSettingsStore((state) => state.region);
-  const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
-  );
   const [skillLevel, setSkillLevel] = useState(14);
   const [ascendLevel, setAscendLevel] = useState(4);
 
@@ -138,7 +127,11 @@ export default function CostumePage({
               onChange={(value) => setAscendLevel(value)}
             />
           </div>
-          <CostumeSelect costumes={selectCostumes} />
+          <CostumeSelect
+            costumes={costumes.sort(
+              (a, b) => -b.character.name.localeCompare(a.character.name)
+            )}
+          />
         </div>
       </nav>
 
