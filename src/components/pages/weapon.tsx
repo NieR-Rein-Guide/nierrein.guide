@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
-import React from "react";
+import React, { useState } from "react";
 import { CDN_URL } from "@config/constants";
 import WeaponInfo from "@components/WeaponInfo";
 import Link from "next/link";
@@ -16,6 +16,8 @@ import {
   weapon_story,
   weapon_story_link,
 } from "@prisma/client";
+import Radio from "@components/form/Radio";
+import Slider from "rc-slider";
 
 interface CharactersPageProps {
   weapon: (weapon & {
@@ -36,6 +38,8 @@ export default function WeaponPage({
   weapon,
 }: CharactersPageProps): JSX.Element {
   const lastStageWeapon = weapon[weapon.length - 1];
+  const [skillLevel, setSkillLevel] = useState(15);
+  const [evolutionStage, setEvolutionStage] = useState(weapon.length - 1);
 
   return (
     <Layout>
@@ -45,16 +49,82 @@ export default function WeaponPage({
         cover={`${CDN_URL}${lastStageWeapon.image_path}full.png`}
       />
 
-      <nav className="mb-4">
+      <nav className="flex flex-col md:flex-row items-center justify-between gap-2 mb-4">
         <Link href="/weapons" passHref={true}>
           <a className="btn">
             <SVG src="/decorations/arrow-left.svg" className="h-6" />
             <span>Return to Weapons</span>
           </a>
         </Link>
+
+        <div className="flex items-center flex-wrap justify-around gap-4 bg-grey-dark px-4 py-6 mb-6 bordered relative">
+          <div className="hidden md:block mr-4 w-32">
+            <p className="text-beige">Skill Lv. {skillLevel}</p>
+            <Slider
+              value={skillLevel}
+              className="mt-2 xl:mt-0 max-w-lg"
+              min={1}
+              max={15}
+              onChange={(value) => setSkillLevel(value)}
+            />
+          </div>
+
+          {(weapon[0].is_ex_weapon && (
+            <>
+              <Radio
+                name="Stage 1"
+                value={0}
+                isChecked={evolutionStage === 0}
+                setState={setEvolutionStage}
+              />
+
+              <Radio
+                name="Stage 5"
+                value={4}
+                isChecked={evolutionStage === 4}
+                setState={setEvolutionStage}
+              />
+
+              <Radio
+                name="Stage 8"
+                value={7}
+                isChecked={evolutionStage === 7}
+                setState={setEvolutionStage}
+              />
+
+              <Radio
+                name="Final Stage"
+                value={10}
+                isChecked={evolutionStage === 10}
+                setState={setEvolutionStage}
+              />
+            </>
+          )) || (
+            <>
+              <Radio
+                name="First Stage"
+                value={0}
+                isChecked={evolutionStage === 0}
+                setState={setEvolutionStage}
+              />
+
+              <Radio
+                name="Final Stage"
+                value={1}
+                isChecked={evolutionStage === 1}
+                setState={setEvolutionStage}
+              />
+            </>
+          )}
+        </div>
       </nav>
 
-      <WeaponInfo weapons={weapon} />
+      <WeaponInfo
+        weapons={weapon}
+        evolutionStage={evolutionStage}
+        abilityLevel={skillLevel}
+        skillLevel={skillLevel}
+      />
     </Layout>
   );
 }
