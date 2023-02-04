@@ -4,7 +4,7 @@ import Meta from "@components/Meta";
 import Corners from "@components/decorations/Corners";
 import Link from "next/link";
 import { Story } from "@models/types";
-import marked from "marked";
+import { marked } from "marked";
 import { useRouter } from "next/router";
 import { getAllStories, getStory } from "@models/stories";
 

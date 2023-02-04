@@ -33,6 +33,7 @@
     "@react-three/fiber": "^8.10.4",
     "@studiometa/js-toolkit": "^2.9.0",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tiptap/pm": "^2.0.0-beta.212",
     "@tiptap/react": "^2.0.0-beta.212",
     "@tiptap/starter-kit": "^2.0.0-beta.212",
     "@types/three": "^0.149.0",
@@ -81,6 +82,7 @@
   },
   "devDependencies": {
     "@tailwindcss/line-clamp": "^0.4.2",
+    "@types/marked": "^4.0.8",
     "@types/node": "^18.11.18",
     "@types/react": "^18.0.27",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
@@ -97,5 +99,10 @@
     "tailwindcss-easing": "^0.2.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.9.5"
+  },
+  "overrides": {
+    "@tiptap/react": {
+      "@tiptap/extension-bubble-menu": "2.0.0-beta.209"
+    }
   }
 }

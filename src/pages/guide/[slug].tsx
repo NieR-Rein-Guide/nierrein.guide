@@ -6,7 +6,7 @@ import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
 import { getAllGuides, getGuideBySlug } from "@models/guide";
 import { Guide } from "@models/types";
-import marked from "marked";
+import { marked } from "marked";
 import { useRouter } from "next/router";
 
 interface GuideProps {
@@ -31,10 +31,8 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
 
       <nav className="mb-8">
         <Link href="/guides" passHref={true} className="btn">
-
           <SVG src="/decorations/arrow-left.svg" className="h-6" />
           <span>Go back to all Guides</span>
-
         </Link>
       </nav>
 
