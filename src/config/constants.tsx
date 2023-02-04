@@ -259,6 +259,7 @@ export const MAMA_INVITE_URL =
   "https://discord.com/oauth2/authorize?client_id=892519460638965811&permissions=379968&scope=bot%20applications.commands";
 
 export const SEA_DATE_DIFFERENCE = 39477600000;
+export const GLOBAL_RELEASE_DATE = new Date("2021-07-28T22:00:00.000Z");
 
 /**
  * SOCIALS

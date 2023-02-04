@@ -21,6 +21,7 @@ import axios from "axios";
 import { add, sub } from "date-fns";
 import { objectToURLSearchParams } from "@studiometa/js-toolkit/utils";
 import { Event } from "../../models/types";
+import { GLOBAL_RELEASE_DATE } from "@config/constants";
 
 interface WeaponsPageProps {
   isIndex: boolean;
@@ -135,33 +136,43 @@ export async function getStaticProps(context) {
 
   await alterWeaponToAddCostume(selectedWeapon[selectedWeapon.length - 1]);
 
-  const releaseTimeGte = sub(
-    selectedWeapon[selectedWeapon.length - 1].release_time,
-    { hours: 8 }
-  );
-  const releaseTimeLte = add(releaseTimeGte, { days: 1 });
+  /**
+   * Potential weapon sources
+   */
+  let events = [];
 
-  const filters = {
-    populate: "*",
-    filters: {
-      start_date: {
-        $gte: releaseTimeGte.toISOString(),
-        $lte: releaseTimeLte.toISOString(),
+  if (
+    selectedWeapon[selectedWeapon.length - 1].release_time > GLOBAL_RELEASE_DATE
+  ) {
+    const releaseTimeGte = sub(
+      selectedWeapon[selectedWeapon.length - 1].release_time,
+      { hours: 8 }
+    );
+    const releaseTimeLte = add(releaseTimeGte, { days: 1 });
+
+    const filters = {
+      populate: "*",
+      filters: {
+        start_date: {
+          $gte: releaseTimeGte.toISOString(),
+          $lte: releaseTimeLte.toISOString(),
+        },
       },
-    },
-  };
-  const qs = objectToURLSearchParams(filters);
+    };
+    const qs = objectToURLSearchParams(filters);
 
-  const { data } = await axios.get(
-    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/events?${qs}`
-  );
+    const { data } = await axios.get(
+      `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/events?${qs}`
+    );
+    events = data.data;
+  }
 
   return {
     props: JSON.parse(
       JSON.stringify({
         selectedWeapon,
         isIndex: false,
-        events: data.data,
+        events,
       })
     ),
   };

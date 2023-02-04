@@ -124,8 +124,15 @@ export default function WeaponInfo({
           </div>
 
           <div className="bg-grey-dark bordered relative p-4 text-sm max-w-xl mx-auto text-center mb-8">
-            {events.length === 0 && (
+            {events.length === 0 && !selectedWeapon.is_ex_weapon && (
               <span>Sorry, no potential event source found.</span>
+            )}
+
+            {selectedWeapon.is_ex_weapon && (
+              <span>
+                This weapon can be obtained while clearing the story. (hard
+                mode)
+              </span>
             )}
 
             {events.length > 0 && (
@@ -198,7 +205,7 @@ export function SingleWeapon({
   return (
     <div className="grid md:grid-cols-2 gap-x-4">
       <div className="flex-1">
-        <div className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 h-[600px] xl:h-full w-full">
+        <div className="relative overflow-hidden max-w-xl mx-auto order-1 xl:order-2 h-[600px] md:h-full w-full">
           <div className="bordered-lg bg-grey-dark h-full w-full">
             <div
               className={classNames(
