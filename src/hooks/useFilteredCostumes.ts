@@ -38,7 +38,14 @@ export function useFilteredCostumes({
         region,
       })
     );
-  }, [ownedCostumes, showInventory, showUnreleasedContent, region]);
+  }, [
+    ownedCostumes,
+    showInventory,
+    showUnreleasedContent,
+    region,
+    costumes,
+    characters,
+  ]);
 
   useEffect(() => {
     setFilteredCharacters(

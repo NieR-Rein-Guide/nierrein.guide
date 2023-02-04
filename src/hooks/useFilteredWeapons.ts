@@ -35,7 +35,7 @@ export function useFilteredWeapons({ weapons }: FilteredWeapons) {
         region,
       })
     );
-  }, [ownedWeapons, showUnreleasedContent, showInventory, region]);
+  }, [ownedWeapons, showUnreleasedContent, showInventory, region, weapons]);
 
   return {
     filteredWeapons,
