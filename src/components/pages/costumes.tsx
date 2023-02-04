@@ -401,17 +401,14 @@ export function CostumesTable({
                 </p>
 
                 {!onRowClick && (
-                  <Link
+                  <a
                     href={`/characters/${costume.character.slug}/${costume.slug}`}
-                    passHref
-                    scroll={true}
+                    className="absolute inset-0 z-10"
                   >
-                    <a className="absolute inset-0 z-10">
-                      <span className="sr-only">
-                        See more about {costume.title}
-                      </span>
-                    </a>
-                  </Link>
+                    <span className="sr-only">
+                      See more about {costume.title}
+                    </span>
+                  </a>
                 )}
                 {costume.weapon && (
                   <div className="absolute top-1/2 transform -translate-y-1/2 right-2 z-10">
