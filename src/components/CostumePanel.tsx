@@ -15,7 +15,7 @@ import {
   weapon,
 } from "@prisma/client";
 import { Event } from "@models/types";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import weaponsIcons from "@utils/weaponsIcons";
 import { format } from "date-fns";
 import Skill from "./Skill";

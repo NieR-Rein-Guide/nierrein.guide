@@ -30,7 +30,7 @@ import CostumeThumbnail from "@components/CostumeThumbnail";
 import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Autocomplete, Modal, TextField, Tooltip } from "@mui/material";
 import { BtnSecondary } from "@components/btn";
 import axios from "axios";

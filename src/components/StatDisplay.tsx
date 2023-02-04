@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import SVG from "react-inlinesvg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import statsIcons from "@utils/statsIcons";
 import Stat from "./Stat";
 import { statsColors } from "@utils/statsColors";

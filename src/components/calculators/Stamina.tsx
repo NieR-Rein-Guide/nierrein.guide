@@ -1,5 +1,5 @@
 import localforage from "localforage";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { memo, useEffect, useState } from "react";
 import staminaImg from "../../../public/ui/consumable_item/consumable300003_standard.png";
 

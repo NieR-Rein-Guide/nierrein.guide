@@ -1,7 +1,7 @@
 import { GAME_TIMEZONE } from "@config/constants";
 import { utcToZonedTime } from "date-fns-tz";
 import React from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Disclosure from "@components/Disclosure";
 
 // used for listing all daily types

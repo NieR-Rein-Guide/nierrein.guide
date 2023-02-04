@@ -1,6 +1,6 @@
 import { CREDITS, DISCORD_URL } from "config/constants";
 import Lines from "@components/decorations/Lines";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import mamaImg from "../../public/mama.png";
 import slugify from "slugify";
 import classNames from "classnames";

@@ -23,7 +23,7 @@ import {
   FiXCircle,
 } from "react-icons/fi";
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import {
   Autocomplete,
   FormControl,

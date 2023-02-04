@@ -6,7 +6,7 @@ import MaterialTable from "@material-table/core";
 import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import Element from "@components/Element";
 import WeaponThumbnail from "@components/WeaponThumbnail";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import weaponsIcons from "@utils/weaponsIcons";
 import SVG from "react-inlinesvg";
 import Star from "@components/decorations/Star";

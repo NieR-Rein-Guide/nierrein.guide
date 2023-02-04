@@ -1,6 +1,6 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import prisma from "@libs/prisma";
 import { CDN_URL } from "@config/constants";
 import * as Tabs from "@radix-ui/react-tabs";

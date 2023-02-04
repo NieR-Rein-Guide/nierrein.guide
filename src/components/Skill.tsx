@@ -5,7 +5,7 @@ import skillGaugeColors, {
   skillGaugeBorderColors,
 } from "@utils/skillGaugeColors";
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import SVG from "react-inlinesvg";
 
 interface SkillProps {

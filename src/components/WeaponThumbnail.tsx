@@ -1,6 +1,6 @@
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Element from "@components/Element";
 import { ElementTypes, WeaponType } from "@models/types";
 import weaponsIcons from "@utils/weaponsIcons";

@@ -1,5 +1,5 @@
 import { DISCORD_URL } from "@config/constants";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 function JoinUs(): JSX.Element {
   return (

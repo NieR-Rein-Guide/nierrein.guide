@@ -4,7 +4,7 @@ import rankB from "../../../public/ui/search/search_rank_3.png";
 import rankC from "../../../public/ui/search/search_rank_4.png";
 import rankD from "../../../public/ui/search/search_rank_5.png";
 import rankE from "../../../public/ui/search/search_rank_6.png";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 type ranks = "S" | "A" | "B" | "C" | "D" | "E";
 

@@ -4,7 +4,7 @@ import Article from "@components/Article";
 import { getAllGuides } from "@models/guide";
 import { Guide } from "@models/types";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { RECOMMENDED_YOUTUBE_CHANNELS } from "@config/constants";
 
 interface GuidesProps {

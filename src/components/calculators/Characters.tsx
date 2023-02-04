@@ -1,6 +1,6 @@
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import { memo, useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 class Material {
   name: string;

@@ -16,7 +16,7 @@ import { costumes_link } from "@prisma/client-nrg";
 import { CDN_URL, SKILLS_TYPES } from "@config/constants";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import RARITY from "@utils/rarity";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import SVG from "react-inlinesvg";
 import MaterialTable from "@material-table/core";
 import weaponsIcons from "@utils/weaponsIcons";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import HR from "./decorations/HR";
 import Star from "./decorations/Star";
 import SVG from "react-inlinesvg";

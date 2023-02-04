@@ -1,5 +1,5 @@
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 export default function TierLogo({ tier }: { tier: string }) {
   if (RANK_THUMBNAILS[tier]) {

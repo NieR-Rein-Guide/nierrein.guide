@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, A11y } from "swiper";
 import { Event } from "@models/types";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import SVG from "react-inlinesvg";
 import { useState } from "react";

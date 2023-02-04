@@ -1,6 +1,6 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 
 import storiesImg from "../../public/database/stories.jpg";

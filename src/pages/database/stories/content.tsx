@@ -3,7 +3,7 @@ import Meta from "@components/Meta";
 import { getAllStories } from "@models/stories";
 import { Story } from "@models/types";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import coverStory from "../../../../public/cover-story.jpg";
 import { StoriesNavbar } from "./index";
 

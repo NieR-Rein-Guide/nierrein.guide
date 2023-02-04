@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { NAVIGATION } from "config/constants";
 import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";

@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { formatDistanceToNow } from "date-fns";
 import { tiers, tiers_items, tierlists } from "@prisma/client-nrg";
 import { NextPageContext } from "next";

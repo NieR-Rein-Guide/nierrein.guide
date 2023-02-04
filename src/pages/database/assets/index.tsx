@@ -4,7 +4,7 @@ import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 interface DatabaseStoriesProps {
   uiFolders: string[];

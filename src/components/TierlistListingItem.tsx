@@ -8,7 +8,7 @@ import { FiThumbsUp } from "react-icons/fi";
 import Tooltip from "@mui/material/Tooltip";
 import { useTierlistsVotes } from "@store/tierlist-votes";
 import { formatDistanceToNow } from "date-fns";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { CDN_URL } from "@config/constants";
 
 export default function TierlistListingItem({
