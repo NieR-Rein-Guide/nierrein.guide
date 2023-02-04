@@ -1,5 +1,5 @@
 import { formatDistanceToNow } from "date-fns";
-import { closestTo } from "date-fns/esm";
+import { closestTo } from "date-fns";
 import { useEffect, useState } from "react";
 
 interface Guerilla {

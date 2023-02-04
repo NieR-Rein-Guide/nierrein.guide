@@ -2,30 +2,27 @@ import { envsafe, str, url } from "envsafe";
 
 export const env = envsafe({
   NODE_ENV: str({
-    devDefault: 'development',
-    choices: ['development', 'production']
+    devDefault: "development",
+    choices: ["development", "production"],
   }),
   S3_ACCESS_KEY: str({
-    docs: 'https://discord.com/channels/877257901146775603/877323861123809300/879707546372440104',
+    docs: "https://discord.com/channels/877257901146775603/877323861123809300/879707546372440104",
   }),
   S3_SECRET_KEY: str({
-    docs: 'https://discord.com/channels/877257901146775603/877323861123809300/879707546372440104',
+    docs: "https://discord.com/channels/877257901146775603/877323861123809300/879707546372440104",
   }),
   S3_ENDPOINT: str({
-    default: 's3.eu-central-1.wasabisys.com'
+    default: "s3.eu-central-1.wasabisys.com",
   }),
   NEXT_PUBLIC_API_ENDPOINT: url({
-    default: 'https://strapi.nierrein.guide/',
-  }),
-  NEXT_PUBLIC_GRAPHQL_API_ENDPOINT: url({
-    default: 'https://strapi.nierrein.guide/graphql',
+    default: "https://strapi.nierrein.guide/",
   }),
   NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT: url({}),
   DATABASE_URL: str({
-    desc: 'Dump database (weapons, costumes...)',
+    desc: "Dump database (weapons, costumes...)",
   }),
   NIERREINGUIDE_DATABASE_URL: str({
-    desc: 'Main database (loadouts...)'
+    desc: "Main database (loadouts...)",
   }),
   DISCORD_EVENTS_WEBHOOK_URL: url({}),
-})
+});

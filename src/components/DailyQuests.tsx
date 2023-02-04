@@ -1,5 +1,5 @@
 import { GAME_TIMEZONE } from "@config/constants";
-import { utcToZonedTime } from "date-fns-tz/esm";
+import { utcToZonedTime } from "date-fns-tz";
 import React from "react";
 import Image from "next/image";
 import Disclosure from "@components/Disclosure";
@@ -107,7 +107,7 @@ import spearIcon from "../../public/ui/material/material321003_standard.png";
 import fistIcon from "../../public/ui/material/material321004_standard.png";
 import staffIcon from "../../public/ui/material/material321005_standard.png";
 import gunIcon from "../../public/ui/material/material321006_standard.png";
-import { format } from "date-fns/esm";
+import { format } from "date-fns";
 
 const weaponToIcon = (weapon: string): StaticImageData => {
   switch (weapon) {
