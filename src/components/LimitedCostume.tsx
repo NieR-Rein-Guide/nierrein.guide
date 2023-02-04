@@ -41,7 +41,7 @@ export function LimitedCostume({
             "h-5 object-contain z-20 rounded-full",
             imgClasses
           )}
-          src="/icons/lunar-tear.png"
+          src="/icons/lunar-tear-icon.png"
           alt="Limited"
         />
       )) || (
@@ -50,7 +50,7 @@ export function LimitedCostume({
             <img
               loading="lazy"
               className={classNames("h-4 object-contain", imgClasses)}
-              src="/icons/lunar-tear.png"
+              src="/icons/lunar-tear-icon.png"
               alt="Limited"
             />
             <p className={classNames(textClasses)}>Limited costume</p>
