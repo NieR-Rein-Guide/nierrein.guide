@@ -31,6 +31,7 @@ import dynamic from "next/dynamic";
 import StatDisplay from "./StatDisplay";
 import { Event } from "../models/types";
 import { EventItem } from "pages/events";
+import CostumeThumbnail from "./CostumeThumbnail";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -303,6 +304,19 @@ export function SingleWeapon({
               setState={() => toggleFromInventory(weapon.weapon_id)}
             />
           </div>
+
+          {weapon.costume && (
+            <div className="absolute left-6 bottom-6 z-50">
+              <CostumeThumbnail
+                href={`/characters/${weapon.costume.character.slug}/${weapon.costume.slug}`}
+                src={`${CDN_URL}${weapon.costume.image_path_base}battle.png`}
+                alt={`${weapon.costume.title} thumbnail`}
+                rarity={RARITY[weapon.costume.rarity]}
+                isDark={weapon.costume.is_ex_costume}
+                weaponType={weapon.costume.weapon_type}
+              />
+            </div>
+          )}
         </div>
       </div>
 

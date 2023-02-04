@@ -105,14 +105,14 @@ export default function WeaponPage({
           )) || (
             <>
               <Radio
-                name="First Stage"
+                name="Non evolved"
                 value={0}
                 isChecked={evolutionStage === 0}
                 setState={setEvolutionStage}
               />
 
               <Radio
-                name="Final Stage"
+                name="Evolved"
                 value={1}
                 isChecked={evolutionStage === 1}
                 setState={setEvolutionStage}
