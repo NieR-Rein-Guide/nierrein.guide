@@ -123,7 +123,7 @@ export default function WeaponInfo({
             <HR className="my-8" />
           </div>
 
-          <p className="bg-grey-dark bordered relative p-4 text-sm max-w-xl mx-auto text-center mb-8">
+          <div className="bg-grey-dark bordered relative p-4 text-sm max-w-xl mx-auto text-center mb-8">
             {events.length === 0 && (
               <span>Sorry, no potential event source found.</span>
             )}
@@ -140,7 +140,7 @@ export default function WeaponInfo({
                 <p className="text-xs">(experimental)</p>
               </div>
             )}
-          </p>
+          </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {events.map((event) => (
