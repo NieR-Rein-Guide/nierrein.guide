@@ -1,5 +1,5 @@
 import produce from 'immer';
-import create from 'zustand';
+import { create } from 'zustand';
 
 export const useCostumesFilters = create((set, get) => ({
   characters: [],
