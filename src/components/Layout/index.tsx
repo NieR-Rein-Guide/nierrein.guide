@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import { Panel, PanelGroup } from "react-resizable-panels";
 import { usePanelStore } from "@store/panels";
 import { CostumePanel } from "@components/CostumePanel";
+import ErrorBoundary from "@components/Error";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -29,7 +30,9 @@ function Layout({
           className
         )}
       >
-        <div>{children}</div>
+        <ErrorBoundary>
+          <div>{children}</div>
+        </ErrorBoundary>
       </main>
 
       <div className="fixed bottom-0 right-0 z-panels">
