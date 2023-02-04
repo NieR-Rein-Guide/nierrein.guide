@@ -100,12 +100,10 @@ export default function CostumePage({
       />
 
       <nav className="flex flex-col items-start md:items-center gap-y-4 md:flex-row justify-between">
-        <Link href="/characters" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Characters</span>
-          </a>
-        </Link>
+        <a href="/characters" className="btn">
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Return to Characters</span>
+        </a>
 
         <div className="flex items-center gap-x-4 w-full md:w-auto">
           <div className="hidden md:block mr-4 w-32">
