@@ -151,6 +151,47 @@ export async function getStaticProps(context) {
         character: true,
         emblem: true,
         debris: true,
+        costume_ability_link: {
+          where: {
+            OR: [
+              {
+                ability_level: 4,
+                AND: {
+                  ability_slot: {
+                    lte: 2,
+                  },
+                },
+              },
+              {
+                ability_level: 1,
+                AND: {
+                  ability_slot: {
+                    equals: 3,
+                  },
+                },
+              },
+            ],
+          },
+          orderBy: {
+            ability_slot: "asc",
+          },
+          include: {
+            costume_ability: true,
+          },
+        },
+        costume_skill_link: {
+          where: {
+            skill_level: 15,
+          },
+          include: {
+            costume_skill: true,
+          },
+        },
+        costume_stat: {
+          orderBy: {
+            awakening_step: "asc",
+          },
+        },
       },
     }),
     prisma.dump.character_rank_bonus.findMany({
