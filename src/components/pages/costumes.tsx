@@ -119,8 +119,6 @@ export function filterCostumes(
     skills = [],
     ownedCostumes = [],
     showInventory,
-    showUnreleasedContent,
-    region = "GLOBAL",
   }
 ) {
   const allowLinks = [];
@@ -135,22 +133,6 @@ export function filterCostumes(
   }
 
   let filteredCostumes: ICostume[] = costumes;
-
-  if (!showUnreleasedContent) {
-    filteredCostumes = filteredCostumes.filter((costume) => {
-      return new Date() >= new Date(costume.release_time);
-    });
-  }
-
-  /**
-   * SEA REGION
-   * Hide GLOBAL/JP costumes
-   */
-  if (!showUnreleasedContent && region === "SEA") {
-    filteredCostumes = filteredCostumes.filter((costume) =>
-      hideSEASpoiler(costume.release_time)
-    );
-  }
 
   if (showInventory) {
     filteredCostumes = filteredCostumes.filter((cost) => {
@@ -205,6 +187,16 @@ export default function CharactersPage({
   const story = useCostumesFilters((state) => state.story);
   const setStory = useCostumesFilters((state) => state.setStory);
   const hasFilters = useCostumesFilters((state) => state.computed.hasFilters);
+
+  const filteredCostumes = filterCostumes(costumes, {
+    limited,
+    collab,
+    story,
+    characters: filteredCharacters,
+    skills,
+    ownedCostumes,
+    showInventory,
+  });
 
   /**
    * Using a state and useEffect here because Next.js is
@@ -306,7 +298,7 @@ export default function CharactersPage({
 
         {displayType === "table" && (
           <CostumesTable
-            costumes={costumes}
+            costumes={filteredCostumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}
@@ -315,7 +307,7 @@ export default function CharactersPage({
 
         {displayType !== "table" && (
           <CostumesGrid
-            costumes={costumes}
+            costumes={filteredCostumes}
             abilitiesLookup={abilitiesLookup}
             charactersLookup={charactersLookup}
             showUnreleasedContent={showUnreleasedContent}

@@ -30,7 +30,6 @@ export default function EventsTimeline({
   items: Event[];
   hasBtn?: boolean;
 }) {
-  console.log(items.length);
   const isMobile = useMedia("(max-width: 1279px)", true);
   const eventsDisplayType = useSettingsStore(
     (state) => state.eventsDisplayType
@@ -106,7 +105,6 @@ export default function EventsTimeline({
       <div className="px-4 md:px-0">
         {GROUPS.map((group) => {
           const events = eventsGroups[group];
-          console.log(group, events);
           if (events.length === 0) return null;
           return (
             <EventsListing

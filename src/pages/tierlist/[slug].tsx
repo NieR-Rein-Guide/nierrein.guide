@@ -608,7 +608,6 @@ function CusdisComments({ pageId, pageTitle }) {
 
       if (iframe) {
         threadEl.current.append(iframe);
-        console.log(iframe);
       }
     }
   }, [threadEl]);
