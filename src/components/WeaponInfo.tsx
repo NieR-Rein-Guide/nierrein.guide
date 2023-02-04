@@ -29,6 +29,8 @@ import Checkbox from "./form/Checkbox";
 import { useInventoryStore } from "@store/inventory";
 import dynamic from "next/dynamic";
 import StatDisplay from "./StatDisplay";
+import { Event } from "../models/types";
+import { EventItem } from "pages/events";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -52,6 +54,7 @@ interface WeaponInfoProps {
   evolutionStage: number;
   skillLevel: number;
   abilityLevel: number;
+  events: Event[];
 }
 
 export default function WeaponInfo({
@@ -59,6 +62,7 @@ export default function WeaponInfo({
   evolutionStage,
   skillLevel = 15,
   abilityLevel = 15,
+  events,
 }: WeaponInfoProps): JSX.Element {
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [selectedWeapon, setSelectedWeapon] = useState(weapons[evolutionStage]);
@@ -107,6 +111,41 @@ export default function WeaponInfo({
             <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
               Timed or conditional passives are not included in the stats.
             </p>
+          </div>
+        </div>
+
+        {/* Source */}
+        <div className="relative">
+          <div className="mt-12">
+            <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+              Weapon source{events.length > 1 ? "s" : ""}
+            </h2>
+            <HR className="my-8" />
+          </div>
+
+          <p className="bg-grey-dark bordered relative p-4 text-sm max-w-xl mx-auto text-center mb-8">
+            {events.length === 0 && (
+              <span>Sorry, no potential event source found.</span>
+            )}
+
+            {events.length > 0 && (
+              <div>
+                <p>
+                  We found {events.length} events corresponding to the release
+                  date of the weapon.
+                </p>
+                <p>
+                  <u>These may be incorrect</u>, please check each of them
+                </p>
+                <p className="text-xs">(experimental)</p>
+              </div>
+            )}
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {events.map((event) => (
+              <EventItem key={event.id} {...event} />
+            ))}
           </div>
         </div>
 

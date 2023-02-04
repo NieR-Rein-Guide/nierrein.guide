@@ -18,6 +18,7 @@ import {
 } from "@prisma/client";
 import Radio from "@components/form/Radio";
 import Slider from "rc-slider";
+import { Event } from "../../models/types";
 
 interface CharactersPageProps {
   weapon: (weapon & {
@@ -32,10 +33,12 @@ interface CharactersPageProps {
       weapon_story: weapon_story;
     })[];
   })[];
+  events: Event[];
 }
 
 export default function WeaponPage({
   weapon,
+  events,
 }: CharactersPageProps): JSX.Element {
   const lastStageWeapon = weapon[weapon.length - 1];
   const [skillLevel, setSkillLevel] = useState(15);
@@ -124,6 +127,7 @@ export default function WeaponPage({
         evolutionStage={evolutionStage}
         abilityLevel={skillLevel}
         skillLevel={skillLevel}
+        events={events}
       />
     </Layout>
   );

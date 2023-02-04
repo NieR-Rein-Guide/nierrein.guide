@@ -16,6 +16,11 @@ import {
 import { getAllWeapons } from "@models/weapon";
 import alterWeaponToAddCostume from "@utils/alterWeaponToAddCostume";
 import { useFilteredWeapons } from "@hooks/useFilteredWeapons";
+import { env } from "../../env";
+import axios from "axios";
+import { add, sub } from "date-fns";
+import { objectToURLSearchParams } from "@studiometa/js-toolkit/utils";
+import { Event } from "../../models/types";
 
 interface WeaponsPageProps {
   isIndex: boolean;
@@ -41,18 +46,20 @@ interface WeaponsPageProps {
     weapon_stat: weapon_stat[];
   })[];
   abilitiesLookup: { [key: string]: string };
+  events: Event[];
 }
 
 export default function WeaponsPage({
   isIndex,
   weapons = [],
+  events,
   selectedWeapon,
   abilitiesLookup,
 }: WeaponsPageProps): JSX.Element {
   const { filteredWeapons } = useFilteredWeapons({ weapons });
 
   if (!isIndex) {
-    return <Weapon weapon={selectedWeapon} />;
+    return <Weapon weapon={selectedWeapon} events={events} />;
   }
 
   return (
@@ -77,7 +84,7 @@ export async function getStaticProps(context) {
     };
   }
 
-  // Show costume page
+  // Show weapon page
   const [weaponSlug] = context.params.weapon;
 
   const tempWeapon = await prisma.dump.weapon.findFirst({
@@ -128,11 +135,33 @@ export async function getStaticProps(context) {
 
   await alterWeaponToAddCostume(selectedWeapon[selectedWeapon.length - 1]);
 
+  const releaseTimeGte = sub(
+    selectedWeapon[selectedWeapon.length - 1].release_time,
+    { hours: 8 }
+  );
+  const releaseTimeLte = add(releaseTimeGte, { days: 1 });
+
+  const filters = {
+    populate: "*",
+    filters: {
+      start_date: {
+        $gte: releaseTimeGte.toISOString(),
+        $lte: releaseTimeLte.toISOString(),
+      },
+    },
+  };
+  const qs = objectToURLSearchParams(filters);
+
+  const { data } = await axios.get(
+    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/events?${qs}`
+  );
+
   return {
     props: JSON.parse(
       JSON.stringify({
         selectedWeapon,
         isIndex: false,
+        events: data.data,
       })
     ),
   };
