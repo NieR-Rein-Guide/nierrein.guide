@@ -243,10 +243,14 @@ export function EventItem({
           }
         />
 
-        <Link href={`/event/${attributes.slug}`} passHref={true}>
-          <a title="View event" className="absolute inset-0">
-            <span className="sr-only">View event</span>
-          </a>
+        <Link
+          href={`/event/${attributes.slug}`}
+          passHref={true}
+          title="View event"
+          className="absolute inset-0">
+
+          <span className="sr-only">View event</span>
+
         </Link>
 
         {isNearlyEnded && !isEnded && (

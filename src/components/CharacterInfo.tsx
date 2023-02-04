@@ -525,10 +525,11 @@ function CostumeDetails({
                   <Link
                     href={`/tierlist/${item.tiers.tierslists.slug}?highlight=${costume.costume_id}`}
                     passHref
-                  >
-                    <a title="View tierlist" className="absolute inset-0">
-                      <span className="sr-only">View tierlist</span>
-                    </a>
+                    title="View tierlist"
+                    className="absolute inset-0">
+
+                    <span className="sr-only">View tierlist</span>
+
                   </Link>
                 </li>
               );

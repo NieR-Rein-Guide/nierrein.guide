@@ -75,10 +75,13 @@ export default function Notice({
         </div>
       </div>
 
-      <Link href={`/notice/${notification_id}`} passHref>
-        <a className="absolute inset-0 z-10">
-          <span className="sr-only">See notice</span>
-        </a>
+      <Link
+        href={`/notice/${notification_id}`}
+        passHref
+        className="absolute inset-0 z-10">
+
+        <span className="sr-only">See notice</span>
+
       </Link>
     </div>
   );

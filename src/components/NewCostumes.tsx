@@ -75,10 +75,10 @@ export default function NewCostumes({ costumes }) {
                       costume.title
                     )}`}
                     passHref
-                  >
-                    <a className="btn absolute z-50 -bottom-2 transform -translate-x-1/2 left-1/2">
+                    className="btn absolute z-50 -bottom-2 transform -translate-x-1/2 left-1/2">
+                    
                       See costume
-                    </a>
+                    
                   </Link>
                 </div>
               </SwiperSlide>
@@ -86,11 +86,11 @@ export default function NewCostumes({ costumes }) {
         </Swiper>
       </div>
       <div className="absolute left-1/2 transform -translate-x-1/2 md:left-auto md:translate-x-0 mt-11">
-        <Link href="/characters" passHref>
-          <a className="btn">
-            <span>See all costumes</span>
-            <SVG src="/decorations/arrow-right.svg" className="h-6" />
-          </a>
+        <Link href="/characters" passHref className="btn">
+
+          <span>See all costumes</span>
+          <SVG src="/decorations/arrow-right.svg" className="h-6" />
+
         </Link>
       </div>
     </div>

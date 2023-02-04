@@ -17,21 +17,29 @@ export default function Footer(): JSX.Element {
       <div className="container">
         <div className="flex gap-x-8 justify-center mt-32 max-w-xl mx-auto">
           {OUR_SOCIALS.map((social) => (
-            <Link href={social.href} key={social.label} passHref>
-              <a className="flex items-center justify-center text-grey-lighte transition-colors no-underline h-12 w-12 text-grey-lighter bg-beige-inactive rounded-full hover:text-beige-inactive hover:bg-grey-lighter">
-                {social.icon}
-              </a>
-            </Link>
+            (<Link
+              href={social.href}
+              key={social.label}
+              passHref
+              className="flex items-center justify-center text-grey-lighte transition-colors no-underline h-12 w-12 text-grey-lighter bg-beige-inactive rounded-full hover:text-beige-inactive hover:bg-grey-lighter">
+
+              {social.icon}
+
+            </Link>)
           ))}
         </div>
 
         <div className="flex gap-x-8 justify-center mt-8 max-w-xl mx-auto">
           {FOOTER_NAVIGATION.map((social) => (
-            <Link href={social.href} key={social.label} passHref>
-              <a className="flex text-beige text-center hover:text-beige-accent transition-colors no-underline">
-                {social.label}
-              </a>
-            </Link>
+            (<Link
+              href={social.href}
+              key={social.label}
+              passHref
+              className="flex text-beige text-center hover:text-beige-accent transition-colors no-underline">
+
+              {social.label}
+
+            </Link>)
           ))}
         </div>
 

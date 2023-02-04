@@ -160,11 +160,11 @@ export default function LoadoutBuilder({
       />
 
       <nav className="mb-8">
-        <Link href="/loadouts" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>See all loadouts</span>
-          </a>
+        <Link href="/loadouts" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>See all loadouts</span>
+
         </Link>
       </nav>
 

@@ -113,10 +113,12 @@ export default function EventsSlider({
           </div>
           {activeEvent && (
             <div className="relative">
-              <Link href={`/event/${activeEvent.slug}`}>
-                <a className="btn absolute bottom-6 sm:bottom-5 left-1/2 transform -translate-x-1/2 z-20">
+              <Link
+                href={`/event/${activeEvent.slug}`}
+                className="btn absolute bottom-6 sm:bottom-5 left-1/2 transform -translate-x-1/2 z-20">
+                
                   See Event
-                </a>
+                
               </Link>
             </div>
           )}
@@ -153,41 +155,41 @@ export default function EventsSlider({
               .filter((event) => event.slug !== activeEvent.slug)
               .slice(0, 3)
               .map((event) => (
-                <Link
+                (<Link
                   key={event.slug}
                   href={`/event/${event.slug}`}
                   passHref={true}
-                >
-                  <a className="slider__other-event">
-                    <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
-                      <Image
-                        layout="fill"
-                        objectFit="cover"
-                        height={128}
-                        width={232}
-                        src={
-                          event.image.formats?.medium?.url ??
-                          event.image.formats?.small.url ??
-                          event.image.formats?.thumbnail?.url
-                        }
-                        alt={`Thumbnail ${event.title}`}
-                        placeholder="blur"
-                        blurDataURL={
-                          event.image.formats?.medium?.hash ??
-                          event.image.formats?.small.hash ??
-                          event.image.formats?.thumbnail?.hash
-                        }
-                      />
-                    </div>
-                  </a>
-                </Link>
+                  className="slider__other-event">
+
+                  <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
+                    <Image
+                      layout="fill"
+                      objectFit="cover"
+                      height={128}
+                      width={232}
+                      src={
+                        event.image.formats?.medium?.url ??
+                        event.image.formats?.small.url ??
+                        event.image.formats?.thumbnail?.url
+                      }
+                      alt={`Thumbnail ${event.title}`}
+                      placeholder="blur"
+                      blurDataURL={
+                        event.image.formats?.medium?.hash ??
+                        event.image.formats?.small.hash ??
+                        event.image.formats?.thumbnail?.hash
+                      }
+                    />
+                  </div>
+
+                </Link>)
               ))}
           </div>
         </div>
       </div>
 
       <div className="flex justify-center mt-8">
-        <Link href="/events" passHref>
+        <Link href="/events" passHref legacyBehavior>
           <BtnSecondary>See all events</BtnSecondary>
         </Link>
       </div>

@@ -30,7 +30,7 @@ export default function Notifications({
 
       {hasBtn && (
         <div className="flex justify-center mt-8">
-          <Link href="/notices" passHref>
+          <Link href="/notices" passHref legacyBehavior>
             <BtnSecondary>See more notices</BtnSecondary>
           </Link>
         </div>

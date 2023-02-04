@@ -117,10 +117,14 @@ export default function TierlistListingItem({
         </p>
       </div>
 
-      <Link href={`/tierlist/${slug}`} passHref>
-        <a title={title} className="absolute inset-0 z-10">
-          <span className="sr-only">See more about {title}</span>
-        </a>
+      <Link
+        href={`/tierlist/${slug}`}
+        passHref
+        title={title}
+        className="absolute inset-0 z-10">
+
+        <span className="sr-only">See more about {title}</span>
+
       </Link>
     </div>
   );

@@ -89,10 +89,10 @@ export default function LoadoutListinItem({
         )) || <Element size={24} type={attribute} />}
       </div>
 
-      <Link href={`/loadout/${slug}`} passHref>
-        <a className="absolute inset-0 z-10">
-          <span className="sr-only">See more about {title}</span>
-        </a>
+      <Link href={`/loadout/${slug}`} passHref className="absolute inset-0 z-10">
+
+        <span className="sr-only">See more about {title}</span>
+
       </Link>
     </div>
   );

@@ -30,20 +30,21 @@ export function CurrentRelease() {
   if (releases) {
     const release = releases[0];
     return (
-      <Link
+      (<Link
         href="https://github.com/NieR-Rein-Guide/nierrein.guide/releases/"
         passHref
-      >
-        <a title="See releases" className="hover:underline">
-          {release.tag_name}
-          <span className="hidden sm:inline md:text-sm">
-            - Published{" "}
-            {formatDistanceToNow(new Date(release.published_at), {
-              addSuffix: true,
-            })}
-          </span>
-        </a>
-      </Link>
+        title="See releases"
+        className="hover:underline">
+
+        {release.tag_name}
+        <span className="hidden sm:inline md:text-sm">
+          - Published{" "}
+          {formatDistanceToNow(new Date(release.published_at), {
+            addSuffix: true,
+          })}
+        </span>
+
+      </Link>)
     );
   }
 }

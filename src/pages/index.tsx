@@ -133,8 +133,8 @@ export default function Home({
               eventsDisplayType === "timeline" ? "mb-4" : ""
             )}
           >
-            <Link href="/events" passHref>
-              <a className="btn">See all events</a>
+            <Link href="/events" passHref className="btn">
+              See all events
             </Link>
 
             <ToggleButtonGroup
@@ -178,8 +178,8 @@ export default function Home({
                   />
                   <p className="mt-4">Sorry, no loadouts found.</p>
                   <div className="flex justify-center mt-4">
-                    <Link href="/tools/loadout-builder" passHref>
-                      <a className="btn">Create one!</a>
+                    <Link href="/tools/loadout-builder" passHref className="btn">
+                      Create one!
                     </Link>
                   </div>
                 </div>
@@ -191,7 +191,7 @@ export default function Home({
             </div>
           </section>
           <div className="flex justify-center mt-8">
-            <Link href="/loadouts" passHref>
+            <Link href="/loadouts" passHref legacyBehavior>
               <BtnSecondary>See all loadouts</BtnSecondary>
             </Link>
           </div>

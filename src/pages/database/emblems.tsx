@@ -90,12 +90,12 @@ export default function EmblemsPage({
                       <Link
                         href={`/characters/${cost.character.slug}/${cost.slug}`}
                         passHref
-                      >
-                        <a className="absolute inset-0 z-10">
-                          <span className="sr-only">
-                            See more about {cost.title}
-                          </span>
-                        </a>
+                        className="absolute inset-0 z-10">
+
+                        <span className="sr-only">
+                          See more about {cost.title}
+                        </span>
+
                       </Link>
                     </CostumeThumbnail>
                   );

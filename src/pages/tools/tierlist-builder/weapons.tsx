@@ -390,11 +390,11 @@ export default function TierlistBuilder({
       />
 
       <nav className="mb-8">
-        <Link href="/tierlists" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>See all tier lists</span>
-          </a>
+        <Link href="/tierlists" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>See all tier lists</span>
+
         </Link>
       </nav>
 

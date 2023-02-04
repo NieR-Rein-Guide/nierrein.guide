@@ -60,10 +60,13 @@ export default function ListingLoadout({
       <section>
         <h2 className="overlap">Community loadouts</h2>
 
-        <Link href="/tools/loadout-builder" passHref>
-          <a className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
+        <Link
+          href="/tools/loadout-builder"
+          passHref
+          className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
+          
             Create a loadout
-          </a>
+          
         </Link>
 
         <div className="flex flex-col items-center md:flex-row gap-y-4 gap-x-4 bg-grey-dark border border-beige border-opacity-50 p-4 mb-8">
@@ -138,8 +141,8 @@ export default function ListingLoadout({
             />
             <p className="mt-4">Sorry, no loadouts found.</p>
             <div className="flex justify-center mt-4">
-              <Link href="/tools/loadout-builder" passHref>
-                <a className="btn">Create one!</a>
+              <Link href="/tools/loadout-builder" passHref className="btn">
+                Create one!
               </Link>
             </div>
           </div>

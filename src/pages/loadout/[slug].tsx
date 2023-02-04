@@ -54,11 +54,11 @@ export default function Loadout({ loadout, slots }: LoadoutProps): JSX.Element {
       <Meta title={loadout.title} description={loadout.description} />
 
       <nav className="mb-8">
-        <Link href="/loadouts" passHref>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Go back to loadouts</span>
-          </a>
+        <Link href="/loadouts" passHref className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Go back to loadouts</span>
+
         </Link>
       </nav>
 

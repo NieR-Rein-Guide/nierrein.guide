@@ -79,11 +79,11 @@ export default function CostumeAbility({
       />
 
       <nav className="mb-16">
-        <Link href="/database/abilities" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Abilities</span>
-          </a>
+        <Link href="/database/abilities" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Return to Abilities</span>
+
         </Link>
       </nav>
 
@@ -147,8 +147,8 @@ export default function CostumeAbility({
               />
               <p className="mt-4">Sorry, no costumes found.</p>
               <div className="flex justify-center mt-4">
-                <Link href="/database/abilities" passHref>
-                  <a className="btn">See all abilities</a>
+                <Link href="/database/abilities" passHref className="btn">
+                  See all abilities
                 </Link>
               </div>
             </div>
@@ -176,13 +176,13 @@ export default function CostumeAbility({
                     <Link
                       href={`/characters/${costume.costume.character.slug}/${costume.costume.slug}`}
                       passHref
-                    >
-                      <a className="mb-1 hover:underline">
-                        {costume.costume.is_ex_costume && (
-                          <span className="text-rarity-4">EX </span>
-                        )}
-                        {costume.costume.title}
-                      </a>
+                      className="mb-1 hover:underline">
+
+                      {costume.costume.is_ex_costume && (
+                        <span className="text-rarity-4">EX </span>
+                      )}
+                      {costume.costume.title}
+
                     </Link>
                     <ul className="flex gap-x-4 text-sm">
                       <li className="flex items-center gap-x-1">
@@ -256,15 +256,13 @@ export default function CostumeAbility({
                               href={`/ability/costume/${slug(
                                 costumeAbility.costume_ability.name
                               )}-${costumeAbility.costume_ability.ability_id}`}
-                            >
-                              <a
-                                title={costumeAbility.costume_ability.name}
-                                className="absolute inset-0"
-                              >
-                                <span className="sr-only">
-                                  see {costumeAbility.costume_ability.name}
-                                </span>
-                              </a>
+                              title={costumeAbility.costume_ability.name}
+                              className="absolute inset-0">
+
+                              <span className="sr-only">
+                                see {costumeAbility.costume_ability.name}
+                              </span>
+
                             </Link>
                           </li>
                         )

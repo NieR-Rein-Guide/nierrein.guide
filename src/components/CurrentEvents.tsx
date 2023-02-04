@@ -41,8 +41,8 @@ export default function CurrentEvents({
               {event.title}
             </h3>
             Ends in {formatDistanceToNow(new Date(event.end_date))}
-            <Link href={`/event/${event.slug}`} passHref={true}>
-              <a className="mt-2 btn">See Event</a>
+            <Link href={`/event/${event.slug}`} passHref={true} className="mt-2 btn">
+              See Event
             </Link>
           </div>
         ))}

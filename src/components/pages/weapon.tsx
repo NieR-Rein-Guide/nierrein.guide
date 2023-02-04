@@ -53,11 +53,11 @@ export default function WeaponPage({
       />
 
       <nav className="flex flex-col md:flex-row items-center justify-between gap-2 mb-4">
-        <Link href="/weapons" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Weapons</span>
-          </a>
+        <Link href="/weapons" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Return to Weapons</span>
+
         </Link>
 
         <div className="flex items-center flex-wrap justify-around gap-4 bg-grey-dark px-4 py-6 mb-6 bordered relative">

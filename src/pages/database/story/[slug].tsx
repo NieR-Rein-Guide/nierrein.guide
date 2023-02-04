@@ -30,11 +30,11 @@ export default function SingleGuide({ story }: StoryProps): JSX.Element {
       )}
 
       <nav className="mb-8">
-        <Link href="/database/stories" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Go back to all Stories</span>
-          </a>
+        <Link href="/database/stories" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Go back to all Stories</span>
+
         </Link>
       </nav>
 

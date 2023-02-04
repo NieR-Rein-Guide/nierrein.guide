@@ -14,11 +14,11 @@ export default function DatabaseStories(): JSX.Element {
       />
 
       <nav className="mb-16">
-        <Link href="/database" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Database</span>
-          </a>
+        <Link href="/database" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Return to Database</span>
+
         </Link>
       </nav>
 
@@ -30,8 +30,8 @@ export default function DatabaseStories(): JSX.Element {
         />
         <p className="mt-4">Sorry, this page is being reworked.</p>
         <div className="flex justify-center mt-4">
-          <Link href="/characters" passHref>
-            <a className="btn">Go to characters page to see artworks</a>
+          <Link href="/characters" passHref className="btn">
+            Go to characters page to see artworks
           </Link>
         </div>
       </div>

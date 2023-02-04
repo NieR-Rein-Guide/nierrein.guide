@@ -50,11 +50,11 @@ export default function SingleEvent({
       )}
 
       <nav className="mb-8">
-        <Link href="/events" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Go back</span>
-          </a>
+        <Link href="/events" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Go back</span>
+
         </Link>
       </nav>
 
@@ -169,12 +169,12 @@ export default function SingleEvent({
                       <Link
                         href={`/characters/${cost.character.slug}/${cost.slug}`}
                         passHref
-                      >
-                        <a className="absolute inset-0 z-10">
-                          <span className="sr-only">
-                            See more about {cost.title}
-                          </span>
-                        </a>
+                        className="absolute inset-0 z-10">
+
+                        <span className="sr-only">
+                          See more about {cost.title}
+                        </span>
+
                       </Link>
                     </CostumeThumbnail>
                     <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">

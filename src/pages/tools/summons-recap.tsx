@@ -122,11 +122,11 @@ export default function SummonsRecap({
       />
 
       <nav className="mb-8">
-        <Link href="/tools" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Tools</span>
-          </a>
+        <Link href="/tools" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Return to Tools</span>
+
         </Link>
       </nav>
 

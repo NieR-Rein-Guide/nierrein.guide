@@ -266,13 +266,16 @@ export function WeaponsTable({
               </span>
 
               {!onRowClick && (
-                <Link href={`/weapons/${weapon.slug}`} passHref>
-                  <a className="absolute inset-0 z-10">
-                    <span className="sr-only">
-                      See more about {weapon.name}
-                    </span>
-                  </a>
-                </Link>
+                (<Link
+                  href={`/weapons/${weapon.slug}`}
+                  passHref
+                  className="absolute inset-0 z-10">
+
+                  <span className="sr-only">
+                    See more about {weapon.name}
+                  </span>
+
+                </Link>)
               )}
 
               {weapon.costume && (
@@ -725,12 +728,12 @@ export function WeaponsGrid({
                       imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
                       costume={weap.costume}
                     />
-                    <Link href={`/weapons/${weap.slug}`} passHref>
-                      <a className="absolute inset-0 z-10">
-                        <span className="sr-only">
-                          See more about {weap.name}
-                        </span>
-                      </a>
+                    <Link href={`/weapons/${weap.slug}`} passHref className="absolute inset-0 z-10">
+
+                      <span className="sr-only">
+                        See more about {weap.name}
+                      </span>
+
                     </Link>
                   </div>
                   <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">

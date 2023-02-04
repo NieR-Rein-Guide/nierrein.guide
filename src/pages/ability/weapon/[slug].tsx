@@ -104,11 +104,11 @@ export default function WeaponAbility({
       />
 
       <nav className="mb-16">
-        <Link href="/database/abilities" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Abilities</span>
-          </a>
+        <Link href="/database/abilities" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Return to Abilities</span>
+
         </Link>
       </nav>
 
@@ -172,8 +172,8 @@ export default function WeaponAbility({
               />
               <p className="mt-4">Sorry, no weapons found.</p>
               <div className="flex justify-center mt-4">
-                <Link href="/database/abilities" passHref>
-                  <a className="btn">See all abilities</a>
+                <Link href="/database/abilities" passHref className="btn">
+                  See all abilities
                 </Link>
               </div>
             </div>
@@ -213,13 +213,13 @@ export default function WeaponAbility({
                   />
                   <div className="ml-4 flex flex-col gap-y-2 flex-1">
                     <div className="flex flex-col sm:flex-row justify-between mb-1">
-                      <Link href={weaponSlug} passHref>
-                        <a className="mb-1 hover:underline">
-                          {weapon.weapon.is_ex_weapon && (
-                            <span className="text-rarity-4">EX </span>
-                          )}
-                          {weapon.weapon.name}
-                        </a>
+                      <Link href={weaponSlug} passHref className="mb-1 hover:underline">
+
+                        {weapon.weapon.is_ex_weapon && (
+                          <span className="text-rarity-4">EX </span>
+                        )}
+                        {weapon.weapon.name}
+
                       </Link>
 
                       <ul className="flex gap-x-4 text-sm">
@@ -291,15 +291,13 @@ export default function WeaponAbility({
                                 href={`/ability/weapon/${slug(
                                   weaponAbility.weapon_ability.name
                                 )}-${weaponAbility.weapon_ability.ability_id}`}
-                              >
-                                <a
-                                  title={weaponAbility.weapon_ability.name}
-                                  className="absolute inset-0"
-                                >
-                                  <span className="sr-only">
-                                    see {weaponAbility.weapon_ability.name}
-                                  </span>
-                                </a>
+                                title={weaponAbility.weapon_ability.name}
+                                className="absolute inset-0">
+
+                                <span className="sr-only">
+                                  see {weaponAbility.weapon_ability.name}
+                                </span>
+
                               </Link>
                             </li>
                           )

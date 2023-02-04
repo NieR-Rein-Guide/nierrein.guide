@@ -23,11 +23,11 @@ export default function SingleNotice({
       />
 
       <nav className="mb-8">
-        <Link href="/notices" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Go back to all notices</span>
-          </a>
+        <Link href="/notices" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Go back to all notices</span>
+
         </Link>
       </nav>
 

@@ -57,10 +57,13 @@ export default function NewWeapons({ weapons }: { weapons: weapon[] }) {
                     </span>
                   </div>
                   <WeaponArtwork weapon={weapon} />
-                  <Link href={`/weapons/${slug(weapon.name)}`} passHref>
-                    <a className="btn absolute z-50 -bottom-2 transform -translate-x-1/2 left-1/2">
+                  <Link
+                    href={`/weapons/${slug(weapon.name)}`}
+                    passHref
+                    className="btn absolute z-50 -bottom-2 transform -translate-x-1/2 left-1/2">
+                    
                       See weapon
-                    </a>
+                    
                   </Link>
                 </div>
               </SwiperSlide>
@@ -68,11 +71,11 @@ export default function NewWeapons({ weapons }: { weapons: weapon[] }) {
         </Swiper>
       </div>
       <div className="absolute left-1/2 transform -translate-x-1/2 md:left-auto md:translate-x-0 mt-11">
-        <Link href="/weapons" passHref>
-          <a className="btn">
-            <span>See all weapons</span>
-            <SVG src="/decorations/arrow-right.svg" className="h-6" />
-          </a>
+        <Link href="/weapons" passHref className="btn">
+
+          <span>See all weapons</span>
+          <SVG src="/decorations/arrow-right.svg" className="h-6" />
+
         </Link>
       </div>
     </div>

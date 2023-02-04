@@ -126,7 +126,7 @@ export default function EventsTimeline({
       <div className="min-h-[10rem]" ref={visualization}></div>
       {hasBtn && (
         <div className="flex justify-center mt-8">
-          <Link href="/events" passHref>
+          <Link href="/events" passHref legacyBehavior>
             <BtnSecondary>See all events</BtnSecondary>
           </Link>
         </div>

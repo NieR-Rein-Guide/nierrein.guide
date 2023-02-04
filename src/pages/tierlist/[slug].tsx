@@ -84,11 +84,11 @@ export default function TierList({
       />
 
       <nav className="mb-16">
-        <Link href="/tierlists/community" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Go back to tierlists</span>
-          </a>
+        <Link href="/tierlists/community" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Go back to tierlists</span>
+
         </Link>
       </nav>
 

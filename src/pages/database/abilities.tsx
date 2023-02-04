@@ -87,15 +87,13 @@ export default function CompanionsPage({
                             ability.ability_id
                           )}`}
                           passHref
-                        >
-                          <a
-                            title="Go to ability page"
-                            className="absolute inset-0 z-10"
-                          >
-                            <span className="sr-only">
-                              See more about {ability.name}
-                            </span>
-                          </a>
+                          title="Go to ability page"
+                          className="absolute inset-0 z-10">
+
+                          <span className="sr-only">
+                            See more about {ability.name}
+                          </span>
+
                         </Link>
                       </div>
                     ),
@@ -217,10 +215,11 @@ export default function CompanionsPage({
                           ability.ability_id
                         )}`}
                         passHref
-                      >
-                        <a className="btn" title="Go to ability page">
+                        className="btn"
+                        title="Go to ability page">
+                        
                           See ability page
-                        </a>
+                        
                       </Link>
                     ),
                   },
@@ -274,15 +273,13 @@ export default function CompanionsPage({
                             ability.ability_id
                           }`}
                           passHref
-                        >
-                          <a
-                            title="Go to ability page"
-                            className="absolute inset-0 z-10"
-                          >
-                            <span className="sr-only">
-                              See more about {ability.name}
-                            </span>
-                          </a>
+                          title="Go to ability page"
+                          className="absolute inset-0 z-10">
+
+                          <span className="sr-only">
+                            See more about {ability.name}
+                          </span>
+
                         </Link>
                       </div>
                     ),
@@ -359,10 +356,11 @@ export default function CompanionsPage({
                           ability.ability_id
                         }`}
                         passHref
-                      >
-                        <a className="btn" title="Go to ability page">
+                        className="btn"
+                        title="Go to ability page">
+                        
                           See ability page
-                        </a>
+                        
                       </Link>
                     ),
                   },

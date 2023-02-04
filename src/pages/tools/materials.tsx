@@ -135,11 +135,11 @@ export default function MaterialsCalculator(): JSX.Element {
       />
 
       <nav className="mb-16">
-        <Link href="/tools" passHref>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Tools</span>
-          </a>
+        <Link href="/tools" passHref className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Return to Tools</span>
+
         </Link>
       </nav>
 

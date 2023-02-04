@@ -55,11 +55,11 @@ export default function DatabaseStories(): JSX.Element {
       />
 
       <nav className="mb-16">
-        <Link href="/database" passHref={true}>
-          <a className="btn">
-            <SVG src="/decorations/arrow-left.svg" className="h-6" />
-            <span>Return to Database</span>
-          </a>
+        <Link href="/database" passHref={true} className="btn">
+
+          <SVG src="/decorations/arrow-left.svg" className="h-6" />
+          <span>Return to Database</span>
+
         </Link>
       </nav>
 
@@ -78,27 +78,28 @@ export function StoriesNavbar() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-4 p-4 bg-grey-foreground border border-beige border-opacity-30">
       {ITEMS.map((item) => (
-        <Link key={item.label} href={item.href}>
-          <a
+        (<Link
+          key={item.label}
+          href={item.href}
+          className={classNames(
+            "flex items-center justify-center text-center p-4 transition-colors ease-out-cubic relative bordered",
+            router.asPath.includes(item.href)
+              ? "active bg-beige active"
+              : "bg-grey-lighter"
+          )}>
+
+          <span
             className={classNames(
-              "flex items-center justify-center text-center p-4 transition-colors ease-out-cubic relative bordered",
+              "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
               router.asPath.includes(item.href)
-                ? "active bg-beige active"
-                : "bg-grey-lighter"
+                ? "text-grey-lighter"
+                : "text-beige"
             )}
           >
-            <span
-              className={classNames(
-                "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic",
-                router.asPath.includes(item.href)
-                  ? "text-grey-lighter"
-                  : "text-beige"
-              )}
-            >
-              {item.label}
-            </span>
-          </a>
-        </Link>
+            {item.label}
+          </span>
+
+        </Link>)
       ))}
     </div>
   );

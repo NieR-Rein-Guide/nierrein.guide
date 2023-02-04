@@ -12,7 +12,7 @@ function Card(): JSX.Element {
 
 function CharacterCard({ costume }: { costume: Costume }): JSX.Element {
   return (
-    <Link
+    (<Link
       href={`/characters/${slugify(
         `${costume.character}/${costume.costume.name.en}`,
         {
@@ -22,37 +22,37 @@ function CharacterCard({ costume }: { costume: Costume }): JSX.Element {
     >
       {/* Eventually replace with this */}
       {/* ${slugify(`${costume.character}/${costume.name.en}`, { lower: true, remove: /[*+~.()'"!:@]/g })}`}> */}
-      <a>
-        <div className={`card rarity${RARITY[costume.costume.rarity]}`}>
-          <div className="card-art">
-            <div className="squares-container">
-              <Squares />
-            </div>
-            <div className="weapon-and-element-container">
-              <img src="/icons/elements/dark.png" alt=""></img>
-              <img src="/icons/weapons/gun.png" alt=""></img>
-            </div>
-            <div className="star-container">
-              {Array.from(Array(RARITY[costume.costume.rarity]), () => {
-                return (
-                  <img
-                    src={`/icons/stars/${
-                      RARITY[costume.costume.rarity]
-                    }_star_single.svg`}
-                    alt=""
-                  ></img>
-                );
-              })}
-            </div>
-            <Image
-              src={`/character_medium/${costume.ids.actor}_full-1920-1080.png`}
-              alt={`${costume.character} (${costume.costume.name.en}) illustration`}
-              className="card-art"
-              layout="fill"
-            />
+
+      <div className={`card rarity${RARITY[costume.costume.rarity]}`}>
+        <div className="card-art">
+          <div className="squares-container">
+            <Squares />
           </div>
+          <div className="weapon-and-element-container">
+            <img src="/icons/elements/dark.png" alt=""></img>
+            <img src="/icons/weapons/gun.png" alt=""></img>
+          </div>
+          <div className="star-container">
+            {Array.from(Array(RARITY[costume.costume.rarity]), () => {
+              return (
+                <img
+                  src={`/icons/stars/${
+                    RARITY[costume.costume.rarity]
+                  }_star_single.svg`}
+                  alt=""
+                ></img>
+              );
+            })}
+          </div>
+          <Image
+            src={`/character_medium/${costume.ids.actor}_full-1920-1080.png`}
+            alt={`${costume.character} (${costume.costume.name.en}) illustration`}
+            className="card-art"
+            layout="fill"
+          />
         </div>
-      </a>
-    </Link>
+      </div>
+
+    </Link>)
   );
 }

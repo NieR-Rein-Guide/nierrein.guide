@@ -76,10 +76,13 @@ export default function TierlistsPageProps({
           <h2 className="overlap">Tierlists</h2>
 
           <div className="text-right hidden lg:block">
-            <Link href="/tools/tierlist-builder" passHref>
-              <a className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
+            <Link
+              href="/tools/tierlist-builder"
+              passHref
+              className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
+              
                 Create a tierlist
-              </a>
+              
             </Link>
           </div>
 
@@ -106,10 +109,13 @@ export default function TierlistsPageProps({
         <h2 className="overlap">Tierlists</h2>
 
         <div className="text-right hidden lg:block">
-          <Link href="/tools/tierlist-builder" passHref>
-            <a className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
+          <Link
+            href="/tools/tierlist-builder"
+            passHref
+            className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
+            
               Create a tierlist
-            </a>
+            
           </Link>
         </div>
 

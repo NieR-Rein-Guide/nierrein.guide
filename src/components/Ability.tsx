@@ -84,11 +84,11 @@ export default function Ability({
           </div>
 
           {href && !fullLink && (
-            <Link href={href} passHref>
-              <a className="absolute inset-0 z-10">
-                <span className="sr-only">See ability {name}</span>
-              </a>
-            </Link>
+            (<Link href={href} passHref className="absolute inset-0 z-10">
+
+              <span className="sr-only">See ability {name}</span>
+
+            </Link>)
           )}
         </div>
         <div className="flex flex-col items-start">

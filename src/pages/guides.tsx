@@ -20,15 +20,15 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
         cover="https://nierrein.guide/cover-guides.jpg"
       />
 
-      <Link href="/faq" passHref>
-        <a className="inline-block mx-auto">
-          <div className="mb-20 flex items-center">
-            <Image src={`/mama.png`} alt="Mama" height="60" width="60" />
-            <span className="relative bordered text-xl ml-4 bg-grey-lighter hover:bg-grey-dark p-8 transition-colors ease-out-cubic">
-              Read our FAQ
-            </span>
-          </div>
-        </a>
+      <Link href="/faq" passHref className="inline-block mx-auto">
+
+        <div className="mb-20 flex items-center">
+          <Image src={`/mama.png`} alt="Mama" height="60" width="60" />
+          <span className="relative bordered text-xl ml-4 bg-grey-lighter hover:bg-grey-dark p-8 transition-colors ease-out-cubic">
+            Read our FAQ
+          </span>
+        </div>
+
       </Link>
 
       <section className="mb-24">

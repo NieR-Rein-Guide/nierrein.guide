@@ -28,8 +28,8 @@ export default function FeaturedGuides({
       </div>
 
       <div className="flex justify-center mt-6">
-        <Link href="/guides" passHref={true}>
-          <a className="btn">Show More</a>
+        <Link href="/guides" passHref={true} className="btn">
+          Show More
         </Link>
       </div>
     </section>
