@@ -373,11 +373,14 @@ export function CostumesTable({
                   isDark={costume.is_ex_costume}
                 />
                 <p>
-                  <span className="flex gap-x-1 text-xs">
+                  <span className="flex items-center gap-x-1 text-xs">
                     {costume.is_ex_costume && (
                       <span className="text-rarity-4">EX</span>
                     )}
-                    {costume.character.name}
+                    <span>{costume.character.name}</span>
+                    {costume.link.is_limited && (
+                      <LimitedCostume isSmall events={costume.link.events} />
+                    )}
                   </span>
                   <span className="text-sm inline-block pr-12 line-clamp-2">
                     {costume.title}

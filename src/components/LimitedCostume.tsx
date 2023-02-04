@@ -3,46 +3,53 @@ import classNames from "classnames";
 
 interface ILimitedCostume {
   events: number[];
-  textClasses: string | string[];
-  isLogoOnly?: boolean;
+  imgClasses?: string | string[];
+  textClasses?: string | string[];
+  isSmall?: boolean;
 }
 
 export function LimitedCostume({
   events,
+  imgClasses,
   textClasses = "font-display text-lg font-semibold text-rarity-4 leading-none",
-  isLogoOnly,
+  isSmall,
 }: ILimitedCostume) {
   return (
     <Tooltip
       title={
         <div className="flex flex-col text-center">
-          <a href="#sources" className="text-blue-300 underline-dotted">
-            Obtainable from {events.length} source
-            {events.length > 1 ? "s" : ""}
-          </a>
+          {events && events.length > 0 && (
+            <a href="#sources" className="text-blue-300 underline-dotted">
+              Limited costume obtainable from {events.length} source
+              {events.length > 1 ? "s" : ""}
+            </a>
+          )}
 
           <img
             loading="lazy"
-            className="h-16 object-contain"
+            className={classNames("h-16 object-contain", imgClasses)}
             src="/images/yudilbroke.webp"
             alt="Yudil broke"
           />
         </div>
       }
     >
-      {(isLogoOnly && (
+      {(isSmall && (
         <img
           loading="lazy"
-          className="h-8 object-contain z-20 rounded-full"
+          className={classNames(
+            "h-5 object-contain z-20 rounded-full",
+            imgClasses
+          )}
           src="/icons/lunar-tear.png"
           alt="Limited"
         />
       )) || (
         <div className="inline-flex rounded-full bg-white bg-opacity-10 px-2 py-1 cursor-help">
-          <div className="flex px-2">
+          <div className="flex items-center gap-x-1 px-2">
             <img
               loading="lazy"
-              className="h-4 object-contain"
+              className={classNames("h-4 object-contain", imgClasses)}
               src="/icons/lunar-tear.png"
               alt="Limited"
             />
