@@ -1,15 +1,8 @@
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import prisma from "@libs/prisma";
-import dynamic from "next/dynamic";
 import { notification } from "@prisma/client";
-
-const NotificationsWithNoSSR = dynamic(
-  () => import("../components/Notifications"),
-  {
-    ssr: false,
-  }
-);
+import Notifications from "../components/Notifications";
 
 interface NoticesProps {
   notifications: notification[];
@@ -24,7 +17,7 @@ export default function Events({ notifications }: NoticesProps): JSX.Element {
         cover="https://nierrein.guide/cover-notices.jpg"
       />
 
-      <NotificationsWithNoSSR hasBtn={false} notifications={notifications} />
+      <Notifications hasBtn={false} notifications={notifications} />
     </Layout>
   );
 }
@@ -52,6 +45,6 @@ export async function getStaticProps() {
         notifications,
       })
     ),
-    revalidate: 30, // 12 hours in seconds (2 updates per day)
+    revalidate: 30,
   };
 }

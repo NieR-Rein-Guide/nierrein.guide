@@ -1,10 +1,8 @@
 import "tailwindcss/tailwind.css";
 import "@styles/index.scss";
-import "@reach/accordion/styles.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import "@reach/menu-button/styles.css";
 import "rc-slider/assets/index.css";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";

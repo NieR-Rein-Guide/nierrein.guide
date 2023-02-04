@@ -1,11 +1,9 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import Link from "next/link";
 import Image from "next/image";
-import SVG from "react-inlinesvg";
 import prisma from "@libs/prisma";
 import { CDN_URL } from "@config/constants";
-import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
+import * as Tabs from "@radix-ui/react-tabs";
 import TierListTab from "@components/tierlist/TierListTab";
 import slug from "slugg";
 import { useState } from "react";
@@ -214,132 +212,67 @@ export default function MemoirsPage({
       <section className="p-6">
         <DatabaseNavbar />
 
-        <Tabs
+        <Tabs.Root
           className="mt-4"
-          defaultIndex={tabIndex}
+          defaultValue={TABS[0].slug}
           onChange={(index) => setTabIndex(index)}
         >
-          <TabList className="grid md:grid-cols-3 gap-8 mb-8">
+          <Tabs.List className="grid md:grid-cols-3 gap-8 mb-8">
             {TABS.map((tab) => (
-              <TierListTab key={tab.index} index={tab.index}>
+              <TierListTab key={tab.slug} index={tab.slug}>
                 {tab.label}
               </TierListTab>
             ))}
-          </TabList>
+          </Tabs.List>
 
-          <TabPanels>
-            <TabPanel className="space-y-16">
-              {memoirsByDungeons.map((dungeon) => (
-                <div key={dungeon.name}>
-                  <div className="flex flex-col justify-center items-center">
-                    <Image
-                      src={dungeon.image_path}
-                      layout="intrinsic"
-                      height={424}
-                      width={348}
-                    />
+          <Tabs.Content value={TABS[0].slug} className="space-y-16">
+            {memoirsByDungeons.map((dungeon) => (
+              <div key={dungeon.name}>
+                <div className="flex flex-col justify-center items-center">
+                  <Image
+                    src={dungeon.image_path}
+                    layout="intrinsic"
+                    height={424}
+                    width={348}
+                  />
 
-                    <h3 className="text-3xl mt-2 mb-6">{dungeon.name}</h3>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {dungeon.memoirs.map((serie) => (
-                      <div
-                        key={serie.memoir_series_id}
-                        className="flex flex-col items-center justify-center bg-grey-dark border border-beige border-opacity-50 p-4 w-full"
-                      >
-                        <h3 className="text-beige text-center text-3xl mb-2">
-                          {serie.name}
-                        </h3>
-                        <div className="hidden md:flex flex-col items-center gap-2 mt-1">
-                          <Chip
-                            label={serie.large_set_description}
-                            color="primary"
-                          />
-                          <Chip
-                            className="text-xs"
-                            label={`2 pieces: ${serie.small_set_description}`}
-                            variant="outlined"
-                          />
-                        </div>
-
-                        <div className="md:hidden text-center">
-                          <p className="text-sm text-beige-text">
-                            {serie.large_set_description}
-                          </p>
-                          <p className="text-xs text-beige-text mt-2">
-                            2 pieces: {serie.small_set_description}
-                          </p>
-                        </div>
-                        <div
-                          key={serie.memoir_series_id}
-                          className="flex flex-wrap justify-center gap-4 mt-6 max-w-sm mx-auto border-beige border-opacity-20"
-                        >
-                          {serie.memoir.map((memoir) => (
-                            <div className="relative" key={memoir.memoir_id}>
-                              <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
-                                <Image
-                                  layout="responsive"
-                                  width={96}
-                                  height={96}
-                                  src={`${CDN_URL}${memoir.image_path_base}full.png`}
-                                  alt={memoir.name}
-                                />
-                              </div>
-                              <a
-                                href={`/database/stories/memoirs?memoir_series_id=${memoir.memoir_series_id}`}
-                                className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
-                              >
-                                {memoir.name}
-                              </a>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
+                  <h3 className="text-3xl mt-2 mb-6">{dungeon.name}</h3>
                 </div>
-              ))}
-            </TabPanel>
-            <TabPanel className="space-y-16">
-              {memoirsByVariations.map((variation) => (
-                <div key={variation.name}>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <EventItem {...variation.event} />
 
+                <div className="grid md:grid-cols-2 gap-8">
+                  {dungeon.memoirs.map((serie) => (
                     <div
-                      key={variation.eventId}
+                      key={serie.memoir_series_id}
                       className="flex flex-col items-center justify-center bg-grey-dark border border-beige border-opacity-50 p-4 w-full"
                     >
-                      <h3 className="text-beige text-3xl">
-                        {variation.memoirs[0].serie.name}
+                      <h3 className="text-beige text-center text-3xl mb-2">
+                        {serie.name}
                       </h3>
                       <div className="hidden md:flex flex-col items-center gap-2 mt-1">
                         <Chip
-                          label={
-                            variation.memoirs[0].serie.large_set_description
-                          }
+                          label={serie.large_set_description}
                           color="primary"
                         />
                         <Chip
                           className="text-xs"
-                          label={`2 pieces: ${variation.memoirs[0].serie.small_set_description}`}
+                          label={`2 pieces: ${serie.small_set_description}`}
                           variant="outlined"
                         />
                       </div>
 
                       <div className="md:hidden text-center">
                         <p className="text-sm text-beige-text">
-                          {variation.memoirs[0].serie.large_set_description}
+                          {serie.large_set_description}
                         </p>
                         <p className="text-xs text-beige-text mt-2">
-                          2 pieces:{" "}
-                          {variation.memoirs[0].serie.small_set_description}
+                          2 pieces: {serie.small_set_description}
                         </p>
                       </div>
-
-                      <div className="flex flex-wrap justify-center gap-4 mt-2 max-w-sm mx-auto border-beige border-opacity-20">
-                        {variation.memoirs.map((memoir) => (
+                      <div
+                        key={serie.memoir_series_id}
+                        className="flex flex-wrap justify-center gap-4 mt-6 max-w-sm mx-auto border-beige border-opacity-20"
+                      >
+                        {serie.memoir.map((memoir) => (
                           <div className="relative" key={memoir.memoir_id}>
                             <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
                               <Image
@@ -360,97 +293,158 @@ export default function MemoirsPage({
                         ))}
                       </div>
                     </div>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </TabPanel>
-            <TabPanel>
-              <div className="grid grid-cols-1 md:grid-cols-2 place-items-center text-center gap-8">
-                {memoirs.map((memoir) => (
+              </div>
+            ))}
+          </Tabs.Content>
+          <Tabs.Content value={TABS[1].slug} className="space-y-16">
+            {memoirsByVariations.map((variation) => (
+              <div key={variation.name}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  <EventItem {...variation.event} />
+
                   <div
-                    key={memoir.memoir_series_id}
-                    className="bg-grey-dark border border-beige border-opacity-50 p-4 w-full"
+                    key={variation.eventId}
+                    className="flex flex-col items-center justify-center bg-grey-dark border border-beige border-opacity-50 p-4 w-full"
                   >
-                    <h3 className="text-beige text-3xl">{memoir.name}</h3>
+                    <h3 className="text-beige text-3xl">
+                      {variation.memoirs[0].serie.name}
+                    </h3>
                     <div className="hidden md:flex flex-col items-center gap-2 mt-1">
                       <Chip
-                        label={memoir.large_set_description}
+                        label={variation.memoirs[0].serie.large_set_description}
                         color="primary"
                       />
                       <Chip
                         className="text-xs"
-                        label={`2 pieces: ${memoir.small_set_description}`}
+                        label={`2 pieces: ${variation.memoirs[0].serie.small_set_description}`}
                         variant="outlined"
                       />
                     </div>
 
                     <div className="md:hidden text-center">
                       <p className="text-sm text-beige-text">
-                        {memoir.large_set_description}
+                        {variation.memoirs[0].serie.large_set_description}
                       </p>
                       <p className="text-xs text-beige-text mt-2">
-                        2 pieces: {memoir.small_set_description}
+                        2 pieces:{" "}
+                        {variation.memoirs[0].serie.small_set_description}
                       </p>
                     </div>
 
-                    <div className="flex justify-center gap-2 mt-4">
-                      {memoir.memoir
-                        .filter((memoir) => !memoir.is_variation_memoir)
-                        .map((memoir) => (
-                          <div className="relative" key={memoir.memoir_id}>
-                            <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
-                              <Image
-                                layout="responsive"
-                                width={96}
-                                height={96}
-                                src={`${CDN_URL}${memoir.image_path_base}full.png`}
-                                alt={memoir.name}
-                              />
-                            </div>
-                            <a
-                              href={`/database/stories/memoirs?memoir_series_id=${memoir.memoir_series_id}`}
-                              className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
-                            >
-                              {memoir.name}
-                            </a>
+                    <div className="flex flex-wrap justify-center gap-4 mt-2 max-w-sm mx-auto border-beige border-opacity-20">
+                      {variation.memoirs.map((memoir) => (
+                        <div className="relative" key={memoir.memoir_id}>
+                          <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
+                            <Image
+                              layout="responsive"
+                              width={96}
+                              height={96}
+                              src={`${CDN_URL}${memoir.image_path_base}full.png`}
+                              alt={memoir.name}
+                            />
                           </div>
-                        ))}
-                    </div>
-                    {memoir.memoir.some((mem) => mem.is_variation_memoir) && (
-                      <h2 className="text-beige text-2xl mt-4 underline">
-                        Variation memoirs
-                      </h2>
-                    )}
-                    <div className="flex flex-wrap justify-center gap-4 mt-2 max-w-sm mx-auto border-l border-r border-beige border-opacity-20">
-                      {memoir.memoir
-                        .filter((mem) => mem.is_variation_memoir)
-                        .sort((a, b) => a.memoir_id - b.memoir_id)
-                        .map((mem) => (
-                          <div className="relative" key={mem.memoir_id}>
-                            <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
-                              <Image
-                                layout="responsive"
-                                width={96}
-                                height={96}
-                                src={`${CDN_URL}${mem.image_path_base}full.png`}
-                                alt={mem.name}
-                              />
-                            </div>
-                            <a
-                              href={`/database/stories/memoirs?memoir_series_id=${mem.memoir_series_id}`}
-                              className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
-                            >
-                              {mem.name}
-                            </a>
-                          </div>
-                        ))}
+                          <a
+                            href={`/database/stories/memoirs?memoir_series_id=${memoir.memoir_series_id}`}
+                            className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
+                          >
+                            {memoir.name}
+                          </a>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
-            </TabPanel>
-          </TabPanels>
-        </Tabs>
+            ))}
+          </Tabs.Content>
+          <Tabs.Content value={TABS[2].slug}>
+            <div className="grid grid-cols-1 md:grid-cols-2 place-items-center text-center gap-8">
+              {memoirs.map((memoir) => (
+                <div
+                  key={memoir.memoir_series_id}
+                  className="bg-grey-dark border border-beige border-opacity-50 p-4 w-full"
+                >
+                  <h3 className="text-beige text-3xl">{memoir.name}</h3>
+                  <div className="hidden md:flex flex-col items-center gap-2 mt-1">
+                    <Chip
+                      label={memoir.large_set_description}
+                      color="primary"
+                    />
+                    <Chip
+                      className="text-xs"
+                      label={`2 pieces: ${memoir.small_set_description}`}
+                      variant="outlined"
+                    />
+                  </div>
+
+                  <div className="md:hidden text-center">
+                    <p className="text-sm text-beige-text">
+                      {memoir.large_set_description}
+                    </p>
+                    <p className="text-xs text-beige-text mt-2">
+                      2 pieces: {memoir.small_set_description}
+                    </p>
+                  </div>
+
+                  <div className="flex justify-center gap-2 mt-4">
+                    {memoir.memoir
+                      .filter((memoir) => !memoir.is_variation_memoir)
+                      .map((memoir) => (
+                        <div className="relative" key={memoir.memoir_id}>
+                          <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
+                            <Image
+                              layout="responsive"
+                              width={96}
+                              height={96}
+                              src={`${CDN_URL}${memoir.image_path_base}full.png`}
+                              alt={memoir.name}
+                            />
+                          </div>
+                          <a
+                            href={`/database/stories/memoirs?memoir_series_id=${memoir.memoir_series_id}`}
+                            className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
+                          >
+                            {memoir.name}
+                          </a>
+                        </div>
+                      ))}
+                  </div>
+                  {memoir.memoir.some((mem) => mem.is_variation_memoir) && (
+                    <h2 className="text-beige text-2xl mt-4 underline">
+                      Variation memoirs
+                    </h2>
+                  )}
+                  <div className="flex flex-wrap justify-center gap-4 mt-2 max-w-sm mx-auto border-l border-r border-beige border-opacity-20">
+                    {memoir.memoir
+                      .filter((mem) => mem.is_variation_memoir)
+                      .sort((a, b) => a.memoir_id - b.memoir_id)
+                      .map((mem) => (
+                        <div className="relative" key={mem.memoir_id}>
+                          <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
+                            <Image
+                              layout="responsive"
+                              width={96}
+                              height={96}
+                              src={`${CDN_URL}${mem.image_path_base}full.png`}
+                              alt={mem.name}
+                            />
+                          </div>
+                          <a
+                            href={`/database/stories/memoirs?memoir_series_id=${mem.memoir_series_id}`}
+                            className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
+                          >
+                            {mem.name}
+                          </a>
+                        </div>
+                      ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Tabs.Content>
+        </Tabs.Root>
       </section>
     </Layout>
   );

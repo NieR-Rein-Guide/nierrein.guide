@@ -1,9 +1,9 @@
-import { useTabsContext, Tab } from "@reach/tabs";
+import * as Tabs from "@radix-ui/react-tabs";
 import classNames from "classnames";
 
 interface TierlistTabProps {
   children;
-  index: number;
+  index: number | string;
   className?: string | string[];
   style?: React.CSSProperties;
 }
@@ -14,25 +14,22 @@ export default function TierlistTab({
   className,
   style,
 }: TierlistTabProps): JSX.Element {
-  const { selectedIndex } = useTabsContext();
-
   return (
-    <Tab
+    <Tabs.Trigger
+      value={index?.toString()}
       className={classNames(
         "p-4 transition-colors ease-out-cubic relative bordered",
-        selectedIndex === index ? "active bg-beige" : "bg-grey-foreground",
         className
       )}
       style={style}
     >
       <span
         className={classNames(
-          "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic line-clamp-1",
-          selectedIndex === index ? "text-grey-lighter" : "text-beige"
+          "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic line-clamp-1"
         )}
       >
         {children}
       </span>
-    </Tab>
+    </Tabs.Trigger>
   );
 }

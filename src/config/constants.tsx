@@ -488,7 +488,7 @@ export const FEATURED_TIERLISTS = {
 
 export const SEA_FEATURED_TIERLISTS = {
   pve: [71, 70],
-  pvp: [],
+  pvp: [72],
 };
 
 /**

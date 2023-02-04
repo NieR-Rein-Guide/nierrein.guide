@@ -178,7 +178,11 @@ export default function Home({
                   />
                   <p className="mt-4">Sorry, no loadouts found.</p>
                   <div className="flex justify-center mt-4">
-                    <Link href="/tools/loadout-builder" passHref className="btn">
+                    <Link
+                      href="/tools/loadout-builder"
+                      passHref
+                      className="btn"
+                    >
                       Create one!
                     </Link>
                   </div>
@@ -272,7 +276,7 @@ export async function getStaticProps() {
         prisma.nrg.loadouts.findMany({
           take: 6,
           orderBy: {
-            votes: "desc",
+            created_at: "desc",
           },
         }),
       ]);

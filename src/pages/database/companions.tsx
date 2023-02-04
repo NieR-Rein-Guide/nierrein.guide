@@ -52,7 +52,7 @@ export default function CompanionsPage({
   );
 
   return (
-    <Layout hasContainer={false} className="overflow-x-auto">
+    <Layout className="overflow-x-auto">
       <Meta
         title="Companions - Database"
         description="List of companions."

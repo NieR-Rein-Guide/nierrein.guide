@@ -1,0 +1,7 @@
+[data-radix-collection-item] {
+  @apply bg-grey-foreground text-beige;
+}
+
+[data-radix-collection-item][data-state="active"] {
+  @apply active bg-beige text-grey-lighter;
+}

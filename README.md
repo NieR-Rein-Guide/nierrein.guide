@@ -30,18 +30,27 @@ You can join our Discord server to chat and contribute : https://discord.gg/swgH
 
 #### Front-end
 
-- [Next.js](https://nextjs.org/) (React)
+- [React 18](https://reactjs.org/)
+- [Next.js 13](https://nextjs.org/)
 - [TypeScript](https://www.typescriptlang.org/)
 - [TailwindCSS](https://tailwindcss.com/)
 
 #### Back-end
 
-- [Wasabi](https://wasabi.com/) (S3 storage, but cheaper)
-- [Strapi](https://strapi.io/) (CMS)
+- [Strapi v4](https://strapi.io/) (CMS)
+  - Event
+  - Guide
+  - Lore
+  - FAQ
+- [Postgres](https://www.postgresql.org/)
+  - Dump database populated by [nier-rein-dump](https://github.com/NieR-Rein-Guide/nier-rein-apps)
+  - Main database (contains tierlists, loadouts...)
+- [Wasabi](https://wasabi.com/) (S3 storage)
+  - Stores all in game assets, including 3D models
 
 ### Requirements
 
-- Node.js (>16.17)
+- Node.js (>18.13.x)
 
 1. Copy the `.env.example` file to `.env`
 

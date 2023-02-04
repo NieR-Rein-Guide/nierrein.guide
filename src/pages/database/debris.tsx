@@ -83,7 +83,7 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
   }, [showUnreleasedContent, region]);
 
   return (
-    <Layout hasContainer={false} className="overflow-x-auto">
+    <Layout className="overflow-x-auto">
       <Meta
         title="Debris - Database"
         description="List of debris."

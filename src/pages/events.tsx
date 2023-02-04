@@ -1,12 +1,11 @@
 import Meta from "@components/Meta";
-import { Tabs, TabList, TabPanels, TabPanel } from "@reach/tabs";
+import * as Tabs from "@radix-ui/react-tabs";
 import Image from "next/image";
 import Link from "next/link";
 import Layout from "@components/Layout";
 import { getAllEvents } from "@models/event";
 import { Event } from "@models/types";
 import { differenceInDays, formatDistanceToNow } from "date-fns";
-import { useState } from "react";
 import TierlistTab from "@components/tierlist/TierListTab";
 import classNames from "classnames";
 import { FiClock } from "react-icons/fi";
@@ -24,8 +23,6 @@ interface GuidesProps {
 }
 
 export default function Events({ events, groups }: GuidesProps): JSX.Element {
-  const [tabIndex] = useState(0);
-
   const GROUPS = Object.entries(groups);
 
   return (
@@ -38,12 +35,12 @@ export default function Events({ events, groups }: GuidesProps): JSX.Element {
 
       <section>
         <h2 className="overlap">Events</h2>
-        <Tabs
+        <Tabs.Root
           className="grid items-start md:grid-cols-12"
-          defaultIndex={tabIndex}
+          defaultValue="All"
         >
-          <TabList className="md:col-span-2 md:sticky md:top-16">
-            <TierlistTab className="w-full" index={0}>
+          <Tabs.List className="md:col-span-2 md:sticky md:top-16">
+            <TierlistTab className="w-full" index="All">
               <span className="text-base text-shadow text-white">All</span>
             </TierlistTab>
 
@@ -55,8 +52,8 @@ export default function Events({ events, groups }: GuidesProps): JSX.Element {
 
               return (
                 <TierlistTab
-                  key={index + 1}
-                  index={index + 1}
+                  key={value.label}
+                  index={value.label}
                   className="w-full"
                 >
                   <span className="text-base text-shadow text-white">
@@ -73,30 +70,30 @@ export default function Events({ events, groups }: GuidesProps): JSX.Element {
                 </TierlistTab>
               );
             })}
-          </TabList>
+          </Tabs.List>
 
-          <TabPanels className="mt-12 md:mt-0 md:col-span-10">
-            <TabPanel>
+          <div className="mt-12 md:mt-0 md:col-span-10">
+            <Tabs.Content value="All">
               <EventsListing
                 type="all"
                 containerClasses="md:px-12"
                 label="All events"
                 events={events}
               />
-            </TabPanel>
+            </Tabs.Content>
 
-            {GROUPS.map(([type, value], index) => (
-              <TabPanel key={index}>
+            {GROUPS.map(([type, value]) => (
+              <Tabs.Content key={value.label} value={value.label}>
                 <EventsListing
                   type={type}
                   containerClasses="md:px-12"
                   label={value.label}
                   events={value.events}
                 />
-              </TabPanel>
+              </Tabs.Content>
             ))}
-          </TabPanels>
-        </Tabs>
+          </div>
+        </Tabs.Root>
       </section>
     </Layout>
   );
@@ -247,10 +244,9 @@ export function EventItem({
           href={`/event/${attributes.slug}`}
           passHref={true}
           title="View event"
-          className="absolute inset-0">
-
+          className="absolute inset-0"
+        >
           <span className="sr-only">View event</span>
-
         </Link>
 
         {isNearlyEnded && !isEnded && (
