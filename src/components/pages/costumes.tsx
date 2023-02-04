@@ -119,6 +119,8 @@ export function filterCostumes(
     skills = [],
     ownedCostumes = [],
     showInventory,
+    showUnreleasedContent,
+    region,
   }
 ) {
   const allowLinks = [];
@@ -133,6 +135,22 @@ export function filterCostumes(
   }
 
   let filteredCostumes: ICostume[] = costumes;
+
+  if (!showUnreleasedContent) {
+    filteredCostumes = filteredCostumes.filter((costume) => {
+      return new Date() >= new Date(costume.release_time);
+    });
+  }
+
+  /**
+   * SEA REGION
+   * Hide GLOBAL/JP costumes
+   */
+  if (!showUnreleasedContent && region === "SEA") {
+    filteredCostumes = filteredCostumes.filter((costume) =>
+      hideSEASpoiler(costume.release_time)
+    );
+  }
 
   if (showInventory) {
     filteredCostumes = filteredCostumes.filter((cost) => {
@@ -175,6 +193,7 @@ export default function CharactersPage({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
+  const region = useSettingsStore((state) => state.region);
   const showInventory = useSettingsStore((state) => state.showInventory);
   const order = useSettingsStore((state) => state.order);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
@@ -196,6 +215,8 @@ export default function CharactersPage({
     skills,
     ownedCostumes,
     showInventory,
+    showUnreleasedContent,
+    region,
   });
 
   /**
