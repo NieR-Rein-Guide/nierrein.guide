@@ -138,19 +138,65 @@ export default function TierlistsPageProps({
           {region === "SEA" && (
             <>
               {/* PvE */}
-              <Tabs.Content value="0" className="mt-8">
-                <TierlistContent
-                  tierlist={seaPveTierlists[0].tierlist}
-                  items={seaPveTierlists[0].items}
-                />
+              <Tabs.Content value="0">
+                <Tabs.Root
+                  defaultValue={tabIndex?.toString()}
+                  onChange={handleTabsChange}
+                >
+                  <Tabs.List className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
+                    {seaPveTierlists.map((tierlist, index) => (
+                      <TierListTab
+                        index={index?.toString()}
+                        key={tierlist.tierlist.tierlist_id}
+                      >
+                        {tierlist.tierlist.title}
+                      </TierListTab>
+                    ))}
+                  </Tabs.List>
+
+                  {seaPvpTierlists.map((tierlist, index) => (
+                    <Tabs.Content
+                      value={index.toString()}
+                      key={tierlist.tierlist.tierlist_id}
+                    >
+                      <TierlistContent
+                        tierlist={tierlist.tierlist}
+                        items={tierlist.items}
+                      />
+                    </Tabs.Content>
+                  ))}
+                </Tabs.Root>
               </Tabs.Content>
 
               {/* PvP */}
-              <Tabs.Content value="1" className="mt-8">
-                <TierlistContent
-                  tierlist={seaPvpTierlists[0].tierlist}
-                  items={seaPvpTierlists[0].items}
-                />
+              <Tabs.Content value="1">
+                <Tabs.Root
+                  defaultValue={pvpTabIndex?.toString()}
+                  onChange={handlePvpTabsChange}
+                >
+                  <Tabs.List className="grid grid-cols-1 md:grid-cols-4 gap-y-1 mb-8">
+                    {seaPvpTierlists.map((tierlist, index) => (
+                      <TierListTab
+                        index={index?.toString()}
+                        key={tierlist.tierlist.tierlist_id}
+                      >
+                        {tierlist.tierlist.title}
+                      </TierListTab>
+                    ))}
+                  </Tabs.List>
+
+                  {seaPvpTierlists.map((tierlist, index) => (
+                    <Tabs.Content
+                      value={index?.toString()}
+                      key={tierlist.tierlist.tierlist_id}
+                    >
+                      <TierlistContent
+                        tierlist={tierlist.tierlist}
+                        items={tierlist.items}
+                      />
+                    </Tabs.Content>
+                  ))}
+                </Tabs.Root>
               </Tabs.Content>
             </>
           )}
