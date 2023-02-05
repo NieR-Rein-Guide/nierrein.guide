@@ -37,9 +37,8 @@ import getBaseRarity from "@utils/getBaseRarity";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import SkillThumbnail from "@components/SkillThumbnail";
 import { hideSEASpoiler } from "@utils/hideSEASpoiler";
-import { useFilteredWeapons } from "@hooks/useFilteredWeapons";
 
-type Weapon = weapon & {
+export type IWeapon = weapon & {
   weapon_ability_link: (weapon_ability_link & {
     weapon_ability: weapon_ability;
   })[];
@@ -50,7 +49,7 @@ type Weapon = weapon & {
 };
 
 interface CharactersPageProps {
-  weapons: Weapon[];
+  weapons: IWeapon[];
   abilitiesLookup: { [key: string]: string };
 }
 
@@ -78,10 +77,10 @@ export const rarityLookup = {
 };
 
 export function filterWeapons(
-  weapons: Weapon[],
+  weapons: IWeapon[],
   { ownedWeapons = [], showInventory, showUnreleasedContent, region = "GLOBAL" }
 ) {
-  let filteredWeapons: Weapon[] = weapons;
+  let filteredWeapons: IWeapon[] = weapons;
 
   if (!showUnreleasedContent) {
     filteredWeapons = filteredWeapons.filter((costume) => {
@@ -266,16 +265,13 @@ export function WeaponsTable({
               </span>
 
               {!onRowClick && (
-                (<Link
+                <Link
                   href={`/weapons/${weapon.slug}`}
                   passHref
-                  className="absolute inset-0 z-10">
-
-                  <span className="sr-only">
-                    See more about {weapon.name}
-                  </span>
-
-                </Link>)
+                  className="absolute inset-0 z-10"
+                >
+                  <span className="sr-only">See more about {weapon.name}</span>
+                </Link>
               )}
 
               {weapon.costume && (
@@ -728,12 +724,14 @@ export function WeaponsGrid({
                       imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
                       costume={weap.costume}
                     />
-                    <Link href={`/weapons/${weap.slug}`} passHref className="absolute inset-0 z-10">
-
+                    <Link
+                      href={`/weapons/${weap.slug}`}
+                      passHref
+                      className="absolute inset-0 z-10"
+                    >
                       <span className="sr-only">
                         See more about {weap.name}
                       </span>
-
                     </Link>
                   </div>
                   <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">

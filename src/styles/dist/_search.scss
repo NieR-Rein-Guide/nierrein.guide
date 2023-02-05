@@ -1,0 +1,35 @@
+.ais-SearchBox-submit, .ais-SearchBox-reset {
+  @apply hidden;
+}
+
+.ais-SearchBox {
+  @apply w-full;
+}
+
+.ais-Stats {
+  @apply mb-4 text-beige font-display text-3xl;
+}
+
+.ais-SearchBox-input {
+  @apply bg-grey-lighter border-b border-beige transition ease-out-cubic p-4 w-full;
+
+  &:focus {
+    @apply outline-none border-white;
+  }
+}
+
+.ais-InfiniteHits-list {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4;
+}
+
+.ais-InfiniteHits-loadMore {
+  @extend .btn;
+  @apply mt-4;
+}
+
+.ais-Highlight-nonHighlighted {
+  @apply leading-none;
+}
+.ais-Highlight-highlighted {
+  @apply bg-yellow-300 bg-opacity-30 px-1 not-italic;
+}

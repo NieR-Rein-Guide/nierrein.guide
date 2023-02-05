@@ -4,14 +4,16 @@
   clip-path: polygon(10% 0, 90% 1%, 100% 50%, 90% 100%, 10% 100%, 0 50%);
   background-color: #e6e2cf;
 
-  &:hover,
-  &.active,
-  &[aria-selected="true"] {
-    clip-path: polygon(0% 0, 100% 1%, 100% 50%, 100% 100%, 0% 100%, 0 50%);
+  :not([disabled]) {
+    &:hover,
+    &.active,
+    &[aria-selected="true"] {
+      clip-path: polygon(0% 0, 100% 1%, 100% 50%, 100% 100%, 0% 100%, 0 50%);
+    }
   }
 
   &[disabled] {
-    @apply bg-beige-darker cursor-not-allowed;
+    @apply bg-beige-darker text-grey-detail cursor-not-allowed;
   }
 
   svg {
