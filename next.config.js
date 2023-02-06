@@ -4,6 +4,9 @@ const withPWA = require('next-pwa')({
 
 module.exports = withPWA({
   reactStrictMode: true,
+  experimental: {
+    largePageDataBytes: 1028 * 1000,
+  },
   images: {
     domains: [
       "reinguide-assets.s3.eu-central-1.wasabisys.com",
