@@ -256,7 +256,7 @@ export async function getStaticProps() {
     console.time("Homepage props");
     const [events, recentCostumes, notificationsData, loadouts] =
       await Promise.all([
-        getAllEvents(),
+        getAllEvents({}),
         prisma.dump.costume.findMany({
           orderBy: {
             release_time: "desc",

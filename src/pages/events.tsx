@@ -292,7 +292,7 @@ function EventCostumes({ id }: { id: number }) {
 }
 
 export async function getStaticProps() {
-  const events = await getAllEvents();
+  const events = await getAllEvents({});
 
   const groups = {};
 
