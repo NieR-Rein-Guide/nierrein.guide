@@ -2,9 +2,18 @@ import axios from "axios";
 import { env } from "../env";
 import { Event } from "./types";
 
-async function getAllEvents(): Promise<Event[]> {
+async function getAllEvents({
+  includesDraft = false,
+}: {
+  includesDraft?: boolean;
+}): Promise<Event[]> {
   const { data } = await axios.get(
-    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/events?sort[0]=start_date:desc&populate=*`,);
+    `${
+      env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT
+    }/events?sort[0]=start_date:desc&populate=*${
+      includesDraft ? "&publicationState=preview" : ""
+    }`
+  );
 
   const events: Event[] = data.data;
 
@@ -23,7 +32,8 @@ async function getEventBySlug(slug: string): Promise<Event> {
 
 async function getEventById(id: number): Promise<Event> {
   const { data } = await axios.get(
-    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/events/${id}?populate=*`);
+    `${env.NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT}/events/${id}?populate=*`
+  );
 
   const event = data.data;
 

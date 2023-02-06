@@ -232,7 +232,7 @@ export default function AdminCostumesLink({
                   (link) => link.costume_id === costume.costume_id
                 );
 
-                const linkedEvents = link.events as Prisma.JsonArray;
+                const linkedEvents = (link?.events as Prisma.JsonArray) || [];
 
                 const costumeEvents = events.filter((event) =>
                   linkedEvents.includes(event.id)
@@ -264,7 +264,7 @@ export default function AdminCostumesLink({
               (weapon) => weapon.weapon_id === link?.weapon_id
             );
 
-            const linkedEvents = link.events as Prisma.JsonArray;
+            const linkedEvents = (link?.events as Prisma.JsonArray) || [];
 
             const costumeEvents = events.filter((event) =>
               linkedEvents.includes(event.id)
@@ -417,7 +417,9 @@ export async function getServerSideProps() {
     (a, b) => -b.weapon_type.localeCompare(a.weapon_type)
   );
 
-  const events = await getAllEvents();
+  const events = await getAllEvents({
+    includesDraft: true,
+  });
 
   return {
     props: JSON.parse(
