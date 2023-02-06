@@ -208,6 +208,13 @@ function CostumeDetails({
         </div>
       )}
 
+      {new Date(costume.release_time) > new Date() && (
+        <p className="text-2xl font-display text-center p-8 bg-grey-dark border border-red-300 border-opacity-50 mt-4 md:mt-0 mb-4">
+          As a courtesy to other fans, please refrain from sharing unreleased
+          costumes on public platforms.
+        </p>
+      )}
+
       <div
         className={classNames({
           "filter blur-xl opacity-50": isSpoiler,
@@ -526,10 +533,9 @@ function CostumeDetails({
                     href={`/tierlist/${item.tiers.tierslists.slug}?highlight=${costume.costume_id}`}
                     passHref
                     title="View tierlist"
-                    className="absolute inset-0">
-
+                    className="absolute inset-0"
+                  >
                     <span className="sr-only">View tierlist</span>
-
                   </Link>
                 </li>
               );
