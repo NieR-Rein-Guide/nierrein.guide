@@ -47,7 +47,12 @@ export default function Skill({
       </span>
       <div className="flex flex-col md:flex-row items-center">
         <div className="relative mr-4">
-          <SVG src="/decorations/frame.svg" className="h-24 w-24" />
+          <SVG
+            height="96"
+            width="96"
+            src="/decorations/frame.svg"
+            className="h-24 w-24"
+          />
           <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <Image
               layout="fixed"

@@ -3,7 +3,7 @@ const withPWA = require('next-pwa')({
 })
 
 module.exports = withPWA({
-  reactStrictMode: false,
+  reactStrictMode: true,
   images: {
     domains: [
       "reinguide-assets.s3.eu-central-1.wasabisys.com",
