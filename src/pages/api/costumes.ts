@@ -1,8 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "@libs/prisma";
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method === 'GET') {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  if (req.method === "GET") {
     try {
       const costumes = await prisma.dump.costume.findMany({
         orderBy: {
@@ -17,19 +20,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   ability_level: 4,
                   AND: {
                     ability_slot: {
-                      lte: 2
-                    }
-                  }
+                      lte: 2,
+                    },
+                  },
                 },
                 {
                   ability_level: 1,
                   AND: {
                     ability_slot: {
                       equals: 3,
-                    }
-                  }
-                }
-              ]
+                    },
+                  },
+                },
+              ],
             },
             orderBy: {
               ability_slot: "asc",
@@ -48,6 +51,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           },
           costume_stat: {
             take: 1,
+            where: {
+              awakening_step: 0,
+            },
             orderBy: {
               level: "desc",
             },
@@ -55,11 +61,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         },
       });
 
-      return res.status(200).json(costumes)
+      return res.status(200).json(costumes);
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
   } else {
-    return res.status(405).json({ message: 'Method Not Allowed' })
+    return res.status(405).json({ message: "Method Not Allowed" });
   }
 }
