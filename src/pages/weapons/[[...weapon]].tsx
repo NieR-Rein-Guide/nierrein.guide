@@ -141,6 +141,9 @@ export async function getStaticProps(context) {
    */
   let events = [];
 
+  /**
+   * Only weapons released after global release date because we don't want to link events to release stuff
+   */
   if (
     selectedWeapon[selectedWeapon.length - 1].release_time > GLOBAL_RELEASE_DATE
   ) {
