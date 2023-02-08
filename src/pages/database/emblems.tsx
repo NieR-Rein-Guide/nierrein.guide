@@ -90,12 +90,11 @@ export default function EmblemsPage({
                       <Link
                         href={`/characters/${cost.character.slug}/${cost.slug}`}
                         passHref
-                        className="absolute inset-0 z-10">
-
+                        className="absolute inset-0 z-10"
+                      >
                         <span className="sr-only">
                           See more about {cost.title}
                         </span>
-
                       </Link>
                     </CostumeThumbnail>
                   );
@@ -131,10 +130,18 @@ export async function getStaticProps() {
   const emblems = await prisma.dump.emblem.findMany({
     include: {
       costume: {
+        where: {
+          release_time: {
+            lt: new Date(),
+          },
+        },
         include: {
           character: true,
         },
       },
+    },
+    orderBy: {
+      emblem_id: "asc",
     },
   });
 
