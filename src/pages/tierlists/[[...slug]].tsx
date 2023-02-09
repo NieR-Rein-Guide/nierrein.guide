@@ -154,7 +154,7 @@ export default function TierlistsPageProps({
                     ))}
                   </Tabs.List>
 
-                  {seaPvpTierlists.map((tierlist, index) => (
+                  {seaPveTierlists.map((tierlist, index) => (
                     <Tabs.Content
                       value={index.toString()}
                       key={tierlist.tierlist.tierlist_id}
