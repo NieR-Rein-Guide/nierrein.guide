@@ -143,7 +143,7 @@ export default function TierlistsPageProps({
                   defaultValue={tabIndex?.toString()}
                   onChange={handleTabsChange}
                 >
-                  <Tabs.List className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
+                  <Tabs.List className="grid grid-cols-1 md:grid-cols-2 gap-y-1 mb-8">
                     {seaPveTierlists.map((tierlist, index) => (
                       <TierListTab
                         index={index?.toString()}
