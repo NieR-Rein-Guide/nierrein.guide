@@ -82,8 +82,8 @@ export default function Skill({
             <span>{description}</span>
           </p>
           {SkillCooltimeValue && (
-            <p className="flex  items-end text-xs mt-2">
-              <span
+            <div className="flex  items-end text-xs mt-2">
+              <div
                 className={classNames(
                   "px-2 py-1 mr-2",
                   isWeapon ? "bg-brown" : "relative bg-grey-dark border",
@@ -113,13 +113,13 @@ export default function Skill({
                       </ul>
                     }
                   >
-                    <div className="absolute -top-2 -right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-4 w-4 text-xs font-labor">
+                    <span className="absolute -top-2 -right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-4 w-4 text-xs font-labor">
                       ?
-                    </div>
+                    </span>
                   </Tooltip>
                 )}
-              </span>
-            </p>
+              </div>
+            </div>
           )}
         </div>
       </div>
