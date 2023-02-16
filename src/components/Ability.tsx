@@ -70,10 +70,19 @@ export default function Ability({
             href ? "cursor-pointer hover:scale-105 transition transform" : ""
           )}
         >
-          <SVG
-            src="/decorations/frame-ability.svg"
-            className={classNames(isSmall ? "h-12 w-12" : "h-16 w-16")}
-          />
+          <div
+            className={classNames(
+              "relative",
+              isSmall ? "h-12 w-12" : "h-16 w-16"
+            )}
+          >
+            <SVG
+              height={isSmall ? "48" : "64"}
+              width={isSmall ? "48" : "64"}
+              src="/decorations/frame-ability.svg"
+              className="absolute inset-0"
+            />
+          </div>
           <div
             className={classNames(
               "absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center",
@@ -84,11 +93,9 @@ export default function Ability({
           </div>
 
           {href && !fullLink && (
-            (<Link href={href} passHref className="absolute inset-0 z-10">
-
+            <Link href={href} passHref className="absolute inset-0 z-10">
               <span className="sr-only">See ability {name}</span>
-
-            </Link>)
+            </Link>
           )}
         </div>
         <div className="flex flex-col items-start">
