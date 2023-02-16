@@ -80,7 +80,7 @@ export default function Ability({
               height={isSmall ? "48" : "64"}
               width={isSmall ? "48" : "64"}
               src="/decorations/frame-ability.svg"
-              className="absolute inset-0"
+              className="absolute inset-0 w-full h-full"
             />
           </div>
           <div
