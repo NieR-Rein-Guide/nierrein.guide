@@ -147,6 +147,7 @@ export function EventItem({
 }: Event & { cardClasses?: string[] }) {
   const endDate = new Date(attributes.end_date);
   const startDate = new Date(attributes.start_date);
+  const isInFuture = startDate > new Date();
   const isEnded = endDate.getTime() <= Date.now();
   const isNearlyEnded = differenceInDays(endDate, new Date()) <= 7;
   const [ref, { entry }] = useIntersectionObserver();
@@ -159,9 +160,12 @@ export function EventItem({
           cardClasses,
           "relative bg-grey-dark border transition-all hover:border-opacity-100",
           {
-            "border-beige border-opacity-20": isEnded,
-            "border-green-300 border-opacity-60": !isEnded && !isNearlyEnded,
-            "border-orange-300 border-opacity-60": isNearlyEnded && !isEnded,
+            "border-beige border-opacity-20": isEnded && !isInFuture,
+            "border-green-300 border-opacity-60":
+              !isEnded && !isNearlyEnded && !isInFuture,
+            "border-orange-300 border-opacity-60":
+              isNearlyEnded && !isEnded && !isInFuture,
+            "border-violet-400": isInFuture,
           }
         )}
       >
@@ -169,9 +173,10 @@ export function EventItem({
           <h3 className="flex items-baseline gap-x-2 text-2xl text-beige mb-2 md:mb-0">
             <span
               className={classNames("inline-block rounded-full h-3 w-3", {
-                "bg-red-300": isEnded,
-                "bg-green-300": !isEnded && !isNearlyEnded,
-                "bg-orange-300": isNearlyEnded && !isEnded,
+                "bg-red-300": isEnded && !isInFuture,
+                "bg-green-300": !isEnded && !isNearlyEnded && !isInFuture,
+                "bg-orange-300": isNearlyEnded && !isEnded && !isInFuture,
+                "bg-violet-400": isInFuture,
               })}
             ></span>
             <span className="flex-1">{attributes.title}</span>
@@ -252,6 +257,12 @@ export function EventItem({
         {isNearlyEnded && !isEnded && (
           <span className="inline-block py-1 px-2 bg-orange-300 text-black absolute -top-4 md:-right-4 text-sm">
             Ends in {formatDistanceToNow(endDate)}!
+          </span>
+        )}
+
+        {isInFuture && (
+          <span className="inline-block py-1 px-2 bg-grey-dark text-violet-400 absolute -top-4 md:-right-4 text-sm border border-violet-400 border-opacity-50">
+            Starts in {formatDistanceToNow(startDate)}!
           </span>
         )}
       </div>
