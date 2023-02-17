@@ -16,8 +16,6 @@ import CostumeThumbnail from "./CostumeThumbnail";
 import { CDN_URL } from "@config/constants";
 import AbilityThumbnail from "./AbilityThumbnail";
 import SkillThumbnail from "./SkillThumbnail";
-import { IWeapon } from "./pages/weapons";
-import WeaponThumbnail from "./WeaponThumbnail";
 
 export function Search({ isOpen, setIsOpen }) {
   function toggleSearchPanel() {
@@ -53,29 +51,6 @@ export function Search({ isOpen, setIsOpen }) {
           <InfiniteHits hitComponent={CostumeHit} />
         </div>
       </InstantSearch>
-
-      {/* <InstantSearch indexName="weapons" searchClient={searchClient}>
-        <div className="flex items-center gap-x-4 border-b border-beige border-opacity-50 p-8">
-          <SearchBox />
-          <button
-            className="flex items-center transform transition ease-out-cubic hover:scale-95"
-            onClick={toggleSearchPanel}
-            title="Close"
-          >
-            <Image
-              height={36}
-              width={67}
-              objectFit="contain"
-              src={CloseBtnIcon}
-              alt="Close"
-            />
-          </button>
-        </div>
-        <div className="p-8 max-w-7xl mx-auto overflow-y-auto border-b border-beige border-opacity-50 max-h-[1000px]">
-          <Stats />
-          <InfiniteHits hitComponent={WeaponHit} />
-        </div>
-      </InstantSearch> */}
     </div>
   );
 }
