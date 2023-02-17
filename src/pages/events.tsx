@@ -9,7 +9,7 @@ import { differenceInDays, formatDistanceToNow } from "date-fns";
 import TierlistTab from "@components/tierlist/TierListTab";
 import classNames from "classnames";
 import { FiClock } from "react-icons/fi";
-import { MdHourglassTop } from "react-icons/md";
+import { MdHourglassEmpty, MdHourglassTop } from "react-icons/md";
 import { FaCalendarCheck } from "react-icons/fa";
 import { CostumeThumbnailPin } from "@components/characters/CostumeThumbnailPin";
 import useSWR from "swr";
@@ -183,10 +183,16 @@ export function EventItem({
           </h3>
           <div>
             <p className="text-sm flex gap-x-1 items-center">
-              {!isEnded && (
+              {!isEnded && !isInFuture && (
                 <>
                   <MdHourglassTop />{" "}
                   <span>Ends in {formatDistanceToNow(endDate)}</span>
+                </>
+              )}
+              {isInFuture && (
+                <>
+                  <MdHourglassEmpty />{" "}
+                  <span>Starts in {formatDistanceToNow(startDate)}</span>
                 </>
               )}
               {isEnded && (
@@ -254,7 +260,7 @@ export function EventItem({
           <span className="sr-only">View event</span>
         </Link>
 
-        {isNearlyEnded && !isEnded && (
+        {isNearlyEnded && !isEnded && !isInFuture && (
           <span className="inline-block py-1 px-2 bg-orange-300 text-black absolute -top-4 md:-right-4 text-sm">
             Ends in {formatDistanceToNow(endDate)}!
           </span>
