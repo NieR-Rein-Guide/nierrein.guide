@@ -121,7 +121,7 @@ export default function AdminCostumesLink({
     setNewLinks(
       produce(newLinks, (draft) => {
         const linkedCostume = draft.find(
-          (link) => link.costume_id === costume.costume_id
+          (link) => link?.costume_id === costume.costume_id
         );
 
         if (!linkedCostume) {
@@ -200,7 +200,7 @@ export default function AdminCostumesLink({
               type: "string",
               render: (costume) => {
                 const link = newLinks.find(
-                  (link) => link.costume_id === costume.costume_id
+                  (link) => link?.costume_id === costume.costume_id
                 );
 
                 const weaponLinked = weapons.find(
@@ -229,7 +229,7 @@ export default function AdminCostumesLink({
               type: "string",
               render: (costume) => {
                 const link = newLinks.find(
-                  (link) => link.costume_id === costume.costume_id
+                  (link) => link?.costume_id === costume.costume_id
                 );
 
                 const linkedEvents = (link?.events as Prisma.JsonArray) || [];
@@ -245,7 +245,7 @@ export default function AdminCostumesLink({
                         <h2>{event.attributes.title}</h2>
                         <img
                           className="w-40 h-auto object-contain"
-                          src={event.attributes.image.data.attributes?.url}
+                          src={event.attributes?.image?.data?.attributes?.url}
                           alt="event"
                         />
                       </div>
@@ -257,7 +257,7 @@ export default function AdminCostumesLink({
           ]}
           detailPanel={({ rowData: costume }) => {
             const link = newLinks.find(
-              (link) => link.costume_id === costume.costume_id
+              (link) => link?.costume_id === costume.costume_id
             );
 
             const weaponLinked = weapons.find(
@@ -313,7 +313,7 @@ export default function AdminCostumesLink({
                           className="object-contain"
                           loading="lazy"
                           width="200"
-                          src={option.attributes.image.data.attributes.url}
+                          src={option.attributes?.image?.data?.attributes?.url}
                         />
                         {option.attributes.title}
                       </Box>
@@ -332,7 +332,7 @@ export default function AdminCostumesLink({
 
                   <div className="ml-4 mb-2">
                     <Checkbox
-                      isChecked={link.is_limited}
+                      isChecked={link?.is_limited}
                       setState={(e) =>
                         updateField(costume, "is_limited", e.target.checked)
                       }
@@ -342,7 +342,7 @@ export default function AdminCostumesLink({
 
                   <div className="ml-4 mb-2">
                     <Checkbox
-                      isChecked={link.is_collab}
+                      isChecked={link?.is_collab}
                       setState={(e) =>
                         updateField(costume, "is_collab", e.target.checked)
                       }
@@ -352,7 +352,7 @@ export default function AdminCostumesLink({
 
                   <div className="ml-4 mb-2">
                     <Checkbox
-                      isChecked={link.is_story}
+                      isChecked={link?.is_story}
                       setState={(e) =>
                         updateField(costume, "is_story", e.target.checked)
                       }
@@ -364,8 +364,8 @@ export default function AdminCostumesLink({
                     <FormControl className="mt-8 md:mt-0">
                       <InputLabel id="sort-select-label">Chapter</InputLabel>
                       <InputBase
-                        defaultValue={link.chapter}
-                        disabled={!link.is_story}
+                        defaultValue={link?.chapter}
+                        disabled={!link?.is_story}
                         onBlur={(e) =>
                           updateField(
                             costume,
@@ -410,7 +410,7 @@ export async function getServerSideProps() {
       },
     }),
     getAllWeapons(),
-    prisma.nrg.costumes_link.findMany({}),
+    prisma.nrg.costumes_link?.findMany({}),
   ]);
 
   const selectWeapons = [...weaponsData.weapons].sort(

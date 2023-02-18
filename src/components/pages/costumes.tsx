@@ -173,9 +173,9 @@ export function filterCostumes(
       }
 
       const hasLinks = [
-        costume.link.is_collab ? "is_collab" : undefined,
-        costume.link.is_limited ? "is_limited" : undefined,
-        costume.link.is_story ? "is_story" : undefined,
+        costume?.link?.is_collab ? "is_collab" : undefined,
+        costume?.link?.is_limited ? "is_limited" : undefined,
+        costume?.link?.is_story ? "is_story" : undefined,
       ];
       return allowLinks.some((link) => hasLinks.includes(link));
     });
@@ -391,7 +391,7 @@ export function CostumesTable({
                       <span className="text-rarity-4">EX</span>
                     )}
                     <span>{costume.character.name}</span>
-                    {costume.link.is_limited && (
+                    {costume?.link?.is_limited && (
                       <LimitedCostume isSmall events={costume.link.events} />
                     )}
                   </span>
@@ -816,12 +816,9 @@ export function CostumesGrid({
                   <Link
                     href={`/characters/${cost.character.slug}/${cost.slug}`}
                     passHref
-                    className="absolute inset-0 z-10">
-
-                    <span className="sr-only">
-                      See more about {cost.title}
-                    </span>
-
+                    className="absolute inset-0 z-10"
+                  >
+                    <span className="sr-only">See more about {cost.title}</span>
                   </Link>
                 </CostumeThumbnail>
                 <div className="bg-grey-dark border border-beige border-opacity-50 h-12 flex items-center pt-2 justify-center">
