@@ -28,6 +28,10 @@ export const eventsTypes = {
     label: "Variation",
     icon: <img src="/icons/variation-ticket.png" alt="tower" />,
   },
+  fate_board: {
+    label: "Fate Board",
+    icon: null,
+  },
   anecdote: {
     label: "Anecdote",
     icon: (
