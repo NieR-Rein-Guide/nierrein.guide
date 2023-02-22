@@ -339,6 +339,12 @@ export const RECOMMENDED_YOUTUBE_CHANNELS: YouTubeChannel[] = [
     avatarUrl: "/images/channels/farplane.jpg",
   },
   {
+    name: "Ziggy1x Gaming",
+    url: "https://www.youtube.com/@ziggy1xgaming",
+    tags: ["Commentary", "Culture", "Guides", "Arena"],
+    avatarUrl: "/images/channels/ziggy1x.jpg",
+  },
+  {
     name: "JpBear",
     url: "https://www.youtube.com/@jpbearjpbear4510",
     tags: ["Subjugation", "Not updated"],
