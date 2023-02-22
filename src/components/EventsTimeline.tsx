@@ -8,15 +8,9 @@ import { BtnSecondary } from "./btn";
 import { useMedia } from "react-use";
 import { EventsListing } from "pages/events";
 import { useSettingsStore } from "@store/settings";
+import { eventsTypes } from "@utils/eventsTypes";
 
-const GROUPS = [
-  "Record",
-  "Premium Summons",
-  "Weekly Summons",
-  "Abyss Tower",
-  "Variation",
-  "Anecdote",
-];
+const GROUPS = Object.entries(eventsTypes).map(([, group]) => group.label);
 
 const groups = GROUPS.map((group, id) => ({
   id,
