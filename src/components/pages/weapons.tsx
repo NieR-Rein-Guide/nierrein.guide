@@ -84,11 +84,21 @@ function filterWeaponsBySkill(weapons: IWeapon[], filters) {
 
   for (const filter of filters) {
     filteredWeapons = filteredWeapons.filter((weapon) => {
-      return filter.options.some((option) =>
-        weapon.weapon_skill_link[0].weapon_skill.name
-          .toLowerCase()
-          .includes(option.toLowerCase())
-      );
+      return filter.options.some((option) => {
+        const firstName =
+          weapon.weapon_skill_link[0].weapon_skill.name.toLowerCase();
+        const secondName =
+          weapon.weapon_skill_link[1].weapon_skill.name.toLowerCase();
+
+        if (
+          firstName.includes(option.toLowerCase()) ||
+          secondName.includes(option.toLowerCase())
+        ) {
+          return true;
+        }
+
+        return false;
+      });
     });
   }
 

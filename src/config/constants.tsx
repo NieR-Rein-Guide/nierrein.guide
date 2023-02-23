@@ -1127,12 +1127,24 @@ export const WEAPONS_SKILLS_TYPES = [
     options: ["blaze crush"],
   },
   {
+    label: "Tempest Crush",
+    options: ["tempest crush"],
+  },
+  {
     label: "Lucid Crush",
     options: ["lucid crush"],
   },
   {
+    label: "Void Crush",
+    options: ["void crush"],
+  },
+  {
     label: "Boon",
     options: ["boon"],
+  },
+  {
+    label: "Void Boon",
+    options: ["void boon"],
   },
   {
     label: "Lucid Boon",
@@ -1146,7 +1158,11 @@ export const WEAPONS_SKILLS_TYPES = [
     label: "Tempest Boon",
     options: ["tempest boon"],
   },
-].sort((a, b) => b.label.localeCompare(a.label));
+  {
+    label: "Liquid Boon",
+    options: ["liquid boon"],
+  },
+].sort((a, b) => a.label.localeCompare(b.label));
 
 /**
  * "REPLACES" COSTUMES
