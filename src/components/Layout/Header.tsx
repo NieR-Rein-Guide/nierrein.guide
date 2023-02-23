@@ -145,7 +145,10 @@ export default function Header(): JSX.Element {
           </span>
 
           <div className="flex items-center gap-x-4 absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
-            <RegionSelect size="small" className="transform scale-75" />
+            <RegionSelect
+              size="small"
+              className="transform scale-75 hidden lg:block"
+            />
             <SettingsModal />
           </div>
         </div>
@@ -169,7 +172,7 @@ export default function Header(): JSX.Element {
                 className="h-16 w-16"
               />
             </span>
-            <h1 className="text-3xl z-10 drop-shadow-xl mt-2 lg:mt-4">
+            <h1 className="text-3xl z-10 drop-shadow-xl mt-2 hidden lg:inline-block lg:mt-4">
               NieR Re[in]
               <p className="inline lg:block">Guide</p>
             </h1>
