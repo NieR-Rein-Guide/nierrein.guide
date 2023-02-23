@@ -1135,10 +1135,6 @@ export const WEAPONS_SKILLS_TYPES = [
     options: ["lucid crush"],
   },
   {
-    label: "Void Crush",
-    options: ["void crush"],
-  },
-  {
     label: "Boon",
     options: ["boon"],
   },
