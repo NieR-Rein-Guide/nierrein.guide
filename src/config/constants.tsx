@@ -872,7 +872,7 @@ export const AWAKENING_LEVEL = {
 };
 
 /**
- * SKILLS TYPES
+ * COSTUMES CHARACTER SKILLS TYPES
  */
 export const SKILLS_TYPES = [
   // Attributes
@@ -959,7 +959,198 @@ export const SKILLS_TYPES = [
 ];
 
 /**
- * REPLACES COSTUMES
+ * WEAPONS SKILLS TYPES
+ */
+export const WEAPONS_SKILLS_TYPES = [
+  {
+    label: "Assault",
+    options: ["assault"],
+  },
+  {
+    label: "Ambush",
+    options: ["ambush"],
+  },
+  {
+    label: "Aegis",
+    options: ["aegis"],
+  },
+  {
+    label: "Blitz",
+    options: ["blitz"],
+  },
+  {
+    label: "Burn",
+    options: ["burn"],
+  },
+  {
+    label: "Scorching",
+    options: ["scorching"],
+  },
+  {
+    label: "Woe (ailment affected)",
+    options: ["woe"],
+  },
+  {
+    label: "Toxin",
+    options: ["toxin"],
+  },
+  {
+    label: "Def",
+    options: ["def"],
+  },
+  {
+    label: "Darkness",
+    options: ["darkness"],
+  },
+  {
+    label: "Strike",
+    options: ["strike"],
+  },
+  {
+    label: "Rule (target poisoned)",
+    options: ["Rule"],
+  },
+  {
+    label: "Vigor",
+    options: ["vigor"],
+  },
+  {
+    label: "Rescue",
+    options: ["rescue"],
+  },
+  {
+    label: "Leadfoot",
+    options: ["leadfoot"],
+  },
+  {
+    label: "Shredflash",
+    options: ["shredflash"],
+  },
+  {
+    label: "Gougeflash",
+    options: ["gougeflash"],
+  },
+  {
+    label: "Flash (AoE)",
+    options: ["flash"],
+  },
+  {
+    label: "Vertigo (stun)",
+    options: ["vertigo"],
+  },
+  {
+    label: "Valiance",
+    options: ["valiance"],
+  },
+  {
+    label: "Support",
+    options: ["support"],
+  },
+  {
+    label: "Ire",
+    options: ["ire"],
+  },
+  {
+    label: "Sting",
+    options: ["sting"],
+  },
+  {
+    label: "Poison",
+    options: ["poison"],
+  },
+  {
+    label: "Pursuit",
+    options: ["pursuit"],
+  },
+  {
+    label: "Caged Vigor",
+    options: ["caged vigor"],
+  },
+  {
+    label: "Bold Vigor",
+    options: ["bold vigor"],
+  },
+  {
+    label: "Soldier",
+    options: ["soldier"],
+  },
+  {
+    label: "Ward",
+    options: ["ward"],
+  },
+  {
+    label: "Fleetfoot",
+    options: ["fleetfoot"],
+  },
+  {
+    label: "Enticement",
+    options: ["enticement"],
+  },
+  {
+    label: "Ripper",
+    options: ["ripper"],
+  },
+  {
+    label: "Render",
+    options: ["render"],
+  },
+  {
+    label: "Price",
+    options: ["price"],
+  },
+  {
+    label: "Recovery",
+    options: ["recovery"],
+  },
+  {
+    label: "Mending",
+    options: ["mending"],
+  },
+  {
+    label: "Crush",
+    options: ["crush"],
+  },
+  {
+    label: "Fatality",
+    options: ["fatality"],
+  },
+  {
+    label: "Void Crush",
+    options: ["void crush"],
+  },
+  {
+    label: "Liquid Crush",
+    options: ["liquid crush"],
+  },
+  {
+    label: "Blaze Crush",
+    options: ["blaze crush"],
+  },
+  {
+    label: "Lucid Crush",
+    options: ["lucid crush"],
+  },
+  {
+    label: "Boon",
+    options: ["boon"],
+  },
+  {
+    label: "Lucid Boon",
+    options: ["lucid boon"],
+  },
+  {
+    label: "Blaze Boon",
+    options: ["blaze boon"],
+  },
+  {
+    label: "Tempest Boon",
+    options: ["tempest boon"],
+  },
+].sort((a, b) => b.label.localeCompare(a.label));
+
+/**
+ * "REPLACES" COSTUMES
+ * Replace: has an alternate costume asset
  * (alternative costume asset_id ending in "_replace")
  */
 export const REPLACE_COSTUME_IDS = [10113, 10114];

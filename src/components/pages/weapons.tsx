@@ -3,7 +3,6 @@ import Meta from "@components/Meta";
 import Layout from "@components/Layout";
 import React, { useEffect, useState } from "react";
 import MaterialTable from "@material-table/core";
-import { ExportCsv, ExportPdf } from "@material-table/exporters";
 import Element from "@components/Element";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import Image from "next/legacy/image";
@@ -29,6 +28,7 @@ import {
   VALUED_TYPES,
   VALUED_TYPES_LABEL,
   VALUED_WEAPONS,
+  WEAPONS_SKILLS_TYPES,
 } from "@config/constants";
 import Radio from "@components/form/Radio";
 import classNames from "classnames";
@@ -37,6 +37,9 @@ import getBaseRarity from "@utils/getBaseRarity";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import SkillThumbnail from "@components/SkillThumbnail";
 import { hideSEASpoiler } from "@utils/hideSEASpoiler";
+import { Button, Chip, Modal } from "@mui/material";
+import { MdFilterAlt } from "react-icons/md";
+import { useWeaponsFilters } from "@store/weapons-filters";
 
 export type IWeapon = weapon & {
   weapon_ability_link: (weapon_ability_link & {
@@ -76,15 +79,38 @@ export const rarityLookup = {
   SS_RARE: "4*",
 };
 
+function filterWeaponsBySkill(weapons: IWeapon[], filters) {
+  let filteredWeapons: IWeapon[] = weapons;
+
+  for (const filter of filters) {
+    filteredWeapons = filteredWeapons.filter((weapon) => {
+      return filter.options.some((option) =>
+        weapon.weapon_skill_link[0].weapon_skill.name
+          .toLowerCase()
+          .includes(option.toLowerCase())
+      );
+    });
+  }
+
+  return filteredWeapons;
+}
+
 export function filterWeapons(
   weapons: IWeapon[],
-  { ownedWeapons = [], showInventory, showUnreleasedContent, region = "GLOBAL" }
+  {
+    ownedWeapons = [],
+    showInventory,
+    showUnreleasedContent,
+    region = "GLOBAL",
+    skills = [],
+  }
 ) {
   let filteredWeapons: IWeapon[] = weapons;
 
   if (!showUnreleasedContent) {
+    const now = new Date();
     filteredWeapons = filteredWeapons.filter((costume) => {
-      return new Date() >= new Date(costume.release_time);
+      return now >= new Date(costume.release_time);
     });
   }
 
@@ -104,6 +130,10 @@ export function filterWeapons(
     });
   }
 
+  if (skills.length > 0) {
+    filteredWeapons = filterWeaponsBySkill(filteredWeapons, skills);
+  }
+
   return filteredWeapons;
 }
 
@@ -111,9 +141,16 @@ export default function WeaponsPage({
   weapons,
   abilitiesLookup,
 }: CharactersPageProps): JSX.Element {
+  const showUnreleasedContent = useSettingsStore(
+    (state) => state.showUnreleasedContent
+  );
+  const region = useSettingsStore((state) => state.region);
   const showInventory = useSettingsStore((state) => state.showInventory);
   const ownedWeapons = useInventoryStore((state) => state.weapons);
   const order = useSettingsStore((state) => state.order);
+  const skills = useWeaponsFilters((state) => state.skills);
+  const hasFilters = useWeaponsFilters((state) => state.computed.hasFilters);
+
   /**
    * Using a state and useEffect here because Next.js is
    * complaining about differences between Server/Client
@@ -164,12 +201,33 @@ export default function WeaponsPage({
           </div>
         )}
 
-        <DatabaseNavbar />
+        <DatabaseNavbar
+          middleChildren={
+            hasFilters ? (
+              <div className="relative bg-grey-dark rounded-lg px-4 pt-4 pb-2 flex gap-x-2 min-w-[280px] max-w-2xl">
+                <h3 className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-shadow text-xl line-clamp-1">
+                  Filters applied
+                </h3>
+                {skills.map((skill) => (
+                  <Chip key={skill.label} color="success" label={skill.label} />
+                ))}
+              </div>
+            ) : null
+          }
+        >
+          <WeaponsSkillsFilters />
+        </DatabaseNavbar>
 
         {displayType === "table" && (
           <WeaponsTable
             key="table"
-            weapons={weapons}
+            weapons={filterWeapons(weapons, {
+              skills,
+              showInventory,
+              showUnreleasedContent,
+              region,
+              ownedWeapons,
+            })}
             abilitiesLookup={abilitiesLookup}
             valuedWeaponType={valuedWeaponType}
           />
@@ -178,7 +236,13 @@ export default function WeaponsPage({
         {displayType !== "table" && (
           <WeaponsGrid
             key="grid"
-            weapons={weapons}
+            weapons={filterWeapons(weapons, {
+              skills,
+              showInventory,
+              showUnreleasedContent,
+              region,
+              ownedWeapons,
+            })}
             isSmall={displayType === "compact"}
             isLibrary={order === "library"}
           />
@@ -780,6 +844,63 @@ export function WeaponsGrid({
             </div>
           );
         })}
+    </div>
+  );
+}
+
+export function WeaponsSkillsFilters() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const skills = useWeaponsFilters((state) => state.skills);
+  const toggleSkill = useWeaponsFilters((state) => state.toggleSkill);
+
+  return (
+    <div className="md:col-span-2">
+      <Button
+        className="w-full"
+        variant={skills.length > 0 ? "contained" : "outlined"}
+        onClick={() => setIsOpen(true)}
+        component="label"
+        startIcon={
+          <SVG
+            src="/decorations/frame-ability.svg"
+            className="h-4 w-auto transform rotate-45"
+          />
+        }
+      >
+        {(skills.length > 0 && (
+          <span>Filtered: {skills.map((skill) => skill.label).join(", ")}</span>
+        )) || <span>Filter by Skill</span>}
+      </Button>
+      <Modal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <div className="bg-grey-dark p-8 absolute bordered top-0 left-0 md:top-1/2 md:left-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 w-full md:max-w-xl lg:max-w-4xl space-y-8 overflow-y-auto pt-12 md:pt-8">
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <h3 className="flex items-center gap-x-2 text-2xl">
+                <MdFilterAlt /> Filter weapons by Skill
+              </h3>
+            </div>
+            <button className="btn" onClick={() => setIsOpen(false)}>
+              Close
+            </button>
+          </div>
+          <div className="grid grid-cols-3 gap-4">
+            {WEAPONS_SKILLS_TYPES.map((skill) => (
+              <Checkbox
+                key={skill.label}
+                label={skill.label}
+                isChecked={skills.some((sk) => sk.label === skill.label)}
+                setState={() => toggleSkill(skill)}
+              />
+            ))}
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
