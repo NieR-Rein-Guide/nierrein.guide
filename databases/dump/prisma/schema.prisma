@@ -12,8 +12,12 @@ model character {
   slug                 String?
   name                 String?
   image_path           String?
+  debris_id            Int?
+  debris               debris?                @relation(fields: [debris_id], references: [debris_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_character_debris_debris_id")
   character_rank_bonus character_rank_bonus[]
   costume              costume[]
+
+  @@index([debris_id], map: "ix_character_debris_id")
 }
 
 model character_rank_bonus {
@@ -26,14 +30,13 @@ model character_rank_bonus {
   amount           Int
   character        character @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_character_rank_bonus_character_character_id")
 
-  @@id([rank_bonus_id, rank_bonus_level], map: "pk_character_rank_bonus")
-  @@index([character_id], map: "ix_character_rank_bonus_character_id")
+  @@id([character_id, rank_bonus_id, rank_bonus_level], map: "pk_character_rank_bonus")
 }
 
 model companion {
   companion_id           Int                      @id(map: "pk_companion") @default(autoincrement())
   attribute              String?
-  type                   String?
+  type                   Int
   release_time           DateTime                 @db.Timestamptz(6)
   name                   String?
   story                  String?
@@ -49,6 +52,7 @@ model companion_ability {
   name                   String?
   description            String?
   image_path_base        String?
+  behaviour_types        String[]
   companion_ability_link companion_ability_link[]
 
   @@id([ability_id, ability_level], map: "pk_companion_ability")
@@ -74,6 +78,8 @@ model companion_skill {
   description          String?
   short_description    String?
   image_path           String?
+  act_type             String?
+  behaviour_types      String[]
   companion_skill_link companion_skill_link[]
 
   @@id([skill_id, skill_level], map: "pk_companion_skill")
@@ -107,18 +113,19 @@ model costume {
   character_id         Int
   asset_id             String?
   emblem_id            Int?
-  debris_id            Int
+  debris_id            Int?
   weapon_type          String?
   rarity               String?
   release_time         DateTime               @db.Timestamptz(6)
   is_ex_costume        Boolean
+  is_rd_costume        Boolean
   slug                 String?
   title                String?
   description          String?
   image_path_base      String?
   character            character              @relation(fields: [character_id], references: [character_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_character_character_id")
-  debris               debris                 @relation(fields: [debris_id], references: [debris_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_debris_debris_id")
-  emblem               emblem?                @relation(fields: [emblem_id], references: [emblem_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_costume_emblem_emblem_id")
+  debris               debris?                @relation(fields: [debris_id], references: [debris_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_costume_debris_debris_id")
+  emblem               emblem?                @relation(fields: [emblem_id], references: [emblem_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_costume_emblem_emblem_id")
   costume_ability_link costume_ability_link[]
   costume_skill_link   costume_skill_link[]
   costume_stat         costume_stat[]
@@ -134,6 +141,7 @@ model costume_ability {
   name                 String?
   description          String?
   image_path_base      String?
+  behaviour_types      String[]
   costume_ability_link costume_ability_link[]
 
   @@id([ability_id, ability_level], map: "pk_costume_ability")
@@ -144,6 +152,7 @@ model costume_ability_link {
   ability_slot    Int
   ability_id      Int
   ability_level   Int
+  is_awaken       Boolean
   costume_ability costume_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_ability_link_costume_ability_costume_ability_abilit")
   costume         costume         @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_ability_link_costume_costume_id")
 
@@ -160,6 +169,8 @@ model costume_skill {
   description        String?
   short_description  String?
   image_path         String?
+  act_type           String?
+  behaviour_types    String[]
   costume_skill_link costume_skill_link[]
 
   @@id([skill_id, skill_level], map: "pk_costume_skill")
@@ -193,13 +204,14 @@ model costume_stat {
 }
 
 model debris {
-  debris_id         Int       @id(map: "pk_debris") @default(autoincrement())
-  rarity            Int
-  release_time      DateTime  @db.Timestamptz(6)
+  debris_id         Int         @id(map: "pk_debris") @default(autoincrement())
+  rarity            String?
+  release_time      DateTime    @db.Timestamptz(6)
   name              String?
   description_short String?
   description_long  String?
   image_path_base   String?
+  character         character[]
   costume           costume[]
 }
 
@@ -213,19 +225,18 @@ model emblem {
 }
 
 model memoir {
-  memoir_id           Int
-  lottery_id          Int
-  rarity              String?
-  release_time        DateTime       @db.Timestamptz(6)
-  name                String?
-  story               String?
-  image_path_base     String?
-  is_variation_memoir Boolean
-  memoir_series_id    Int?
-  memoir_series       memoir_series? @relation(fields: [memoir_series_id], references: [memoir_series_id], onDelete: Restrict, onUpdate: NoAction, map: "fk_memoir_memoir_series_memoir_series_id")
+  memoir_id       Int
+  lottery_id      Int
+  series_id       Int
+  rarity          String?
+  release_time    DateTime      @db.Timestamptz(6)
+  name            String?
+  story           String?
+  image_path_base String?
+  memoir_series   memoir_series @relation(fields: [series_id], references: [memoir_series_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_memoir_memoir_series_series_id")
 
   @@id([memoir_id, lottery_id], map: "pk_memoir")
-  @@index([memoir_series_id], map: "ix_memoir_memoir_series_id")
+  @@index([series_id], map: "ix_memoir_series_id")
 }
 
 model memoir_series {
@@ -246,22 +257,24 @@ model notification {
 }
 
 model weapon {
-  weapon_id           Int                   @id(map: "pk_weapon") @default(autoincrement())
-  asset_id            String?
-  evolution_group_id  Int
-  evolution_order     Int
-  weapon_type         String?
-  rarity              String?
-  attribute           String?
-  is_ex_weapon        Boolean
-  release_time        DateTime?             @db.Timestamptz(6)
-  slug                String?
-  name                String?
-  image_path          String?
-  weapon_ability_link weapon_ability_link[]
-  weapon_skill_link   weapon_skill_link[]
-  weapon_stat         weapon_stat[]
-  weapon_story_link   weapon_story_link[]
+  weapon_id             Int                   @id(map: "pk_weapon") @default(autoincrement())
+  asset_id              String?
+  evolution_group_id    Int
+  evolution_order       Int
+  weapon_type           String?
+  rarity                String?
+  attribute             String?
+  is_ex_weapon          Boolean
+  is_subjugation_weapon Boolean
+  is_rd_weapon          Boolean
+  release_time          DateTime?             @db.Timestamptz(6)
+  slug                  String?
+  name                  String?
+  image_path            String?
+  weapon_ability_link   weapon_ability_link[]
+  weapon_skill_link     weapon_skill_link[]
+  weapon_stat           weapon_stat[]
+  weapon_story_link     weapon_story_link[]
 
   @@unique([evolution_group_id, evolution_order], map: "ak_weapon_evolution_group_id_evolution_order")
 }
@@ -272,6 +285,7 @@ model weapon_ability {
   name                String?
   description         String?
   image_path_base     String?
+  behaviour_types     String[]
   weapon_ability_link weapon_ability_link[]
 
   @@id([ability_id, ability_level], map: "pk_weapon_ability")
@@ -282,6 +296,7 @@ model weapon_ability_link {
   slot_number    Int
   ability_id     Int
   ability_level  Int
+  is_awaken      Boolean
   weapon_ability weapon_ability @relation(fields: [ability_id, ability_level], references: [ability_id, ability_level], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_ability_link_weapon_ability_weapon_ability_ability_i")
   weapon         weapon         @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_ability_link_weapon_weapon_id")
 
@@ -297,6 +312,8 @@ model weapon_skill {
   description       String?
   short_description String?
   image_path        String?
+  act_type          String?
+  behaviour_types   String[]
   weapon_skill_link weapon_skill_link[]
 
   @@id([skill_id, skill_level], map: "pk_weapon_skill")
