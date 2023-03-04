@@ -61,6 +61,7 @@ export default function Skill({
               width={64}
               height={64}
               alt=""
+              objectFit="contain"
               src={`${CDN_URL}${imagePathBase}`}
             />
             <div className="absolute -top-1 right-1">
