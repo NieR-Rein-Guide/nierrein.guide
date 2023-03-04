@@ -11,15 +11,15 @@ interface DebrisThumbnailProps extends debris {
 }
 
 const DEBRIS_RARITY = {
-  20: 2,
-  30: 3,
-  40: 4,
+  RARE: 2,
+  S_RARE: 3,
+  SS_RARE: 4,
 };
 
 export default function DebrisThumbnail({
   image_path_base,
   name,
-  rarity = 20,
+  rarity,
   className,
   imgClasses,
   sizeClasses = "h-20 w-20",
