@@ -53,7 +53,7 @@ export default function Ability({
           </span>
         </span>
       )}
-      {level && (
+      {level > 0 && (
         <span
           className={classNames(
             "absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1",

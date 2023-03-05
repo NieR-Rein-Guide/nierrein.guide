@@ -145,7 +145,11 @@ export async function getStaticProps(context) {
    * Only weapons released after global release date because we don't want to link events to release stuff
    */
   if (
-    selectedWeapon[selectedWeapon.length - 1].release_time > GLOBAL_RELEASE_DATE
+    selectedWeapon[selectedWeapon.length - 1].release_time >
+      GLOBAL_RELEASE_DATE &&
+    !selectedWeapon[selectedWeapon.length - 1].is_ex_weapon &&
+    !selectedWeapon[selectedWeapon.length - 1].is_rd_weapon &&
+    !selectedWeapon[selectedWeapon.length - 1].is_subjugation_weapon
   ) {
     const releaseTimeGte = sub(
       selectedWeapon[selectedWeapon.length - 1].release_time,

@@ -4,10 +4,8 @@ import RARITY from "@utils/rarity";
 import Star from "@components/decorations/Star";
 import Lines from "@components/decorations/Lines";
 import Element from "@components/Element";
-import Radio from "@components/form/Radio";
 import Skill from "@components/Skill";
 import Ability from "@components/Ability";
-import Slider from "rc-slider";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 import { CDN_URL } from "@config/constants";
@@ -68,9 +66,6 @@ export default function WeaponInfo({
   const [isShowingModel, setIsShowingModel] = useState(false);
   const [selectedWeapon, setSelectedWeapon] = useState(weapons[evolutionStage]);
 
-  /* // 0 is Lv. 1 and 14 is Lv. 15
-  const [skillAbilitiesLevel, setSkillAbilitiesLevel] = useState(14); */
-
   useEffect(() => {
     setSelectedWeapon(weapons[evolutionStage]);
   }, [evolutionStage, weapons]);
@@ -125,17 +120,33 @@ export default function WeaponInfo({
           </div>
 
           <div className="bg-grey-dark bordered relative p-4 text-sm max-w-xl mx-auto text-center mb-8">
-            {events.length === 0 && !selectedWeapon.is_ex_weapon && (
-              <span>Sorry, no potential event source found.</span>
-            )}
-
+            {events.length === 0 &&
+              !selectedWeapon.is_ex_weapon &&
+              !selectedWeapon.is_rd_weapon &&
+              !selectedWeapon.is_subjugation_weapon && (
+                <span>Sorry, no potential event source found.</span>
+              )}
             {selectedWeapon.is_ex_weapon && (
               <span>
                 This weapon can be obtained while clearing the story. (hard
                 mode)
               </span>
             )}
-
+            {selectedWeapon.is_rd_weapon && (
+              <span>
+                This weapon can be obtained in the "Recollections of Dusk" game
+                mode. See{" "}
+                <a href="https://nierrein.guide/guide/recollections-of-dusk">
+                  Recollections of Dusk guide
+                </a>
+              </span>
+            )}
+            {selectedWeapon.is_subjugation_weapon && (
+              <span>
+                This weapon can be obtained while playing the "Subjugation" game
+                mode.
+              </span>
+            )}
             {events.length > 0 && (
               <div>
                 <p>
@@ -149,12 +160,13 @@ export default function WeaponInfo({
               </div>
             )}
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {events.map((event) => (
-              <EventItem key={event.id} {...event} />
-            ))}
-          </div>
+          {events.length > 0 && (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {events.map((event) => (
+                <EventItem key={event.id} {...event} />
+              ))}
+            </div>
+          )}
         </div>
 
         {selectedWeapon.weapon_story_link.length > 0 && (
@@ -391,7 +403,6 @@ export function SingleWeapon({
 
         {weapon.weapon_ability_link
           .sort((a, b) => a.slot_number - b.slot_number)
-          .filter((ability) => ability.ability_level === abilityLevel)
           .slice(3, 4).length > 0 && (
           <Lines
             className="mb-2 mt-8"
@@ -403,7 +414,6 @@ export function SingleWeapon({
         )}
         {weapon.weapon_ability_link
           .sort((a, b) => a.slot_number - b.slot_number)
-          .filter((ability) => ability.ability_level === abilityLevel)
           .slice(3, 4)
           .map((ability) => (
             <Ability
