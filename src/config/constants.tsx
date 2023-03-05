@@ -227,6 +227,13 @@ export const CREDITS = [
   {
     name: "emulsifier",
   },
+  {
+    name: "dnbeez",
+  },
+  {
+    name: "Billy/Gwyn",
+    link: "https://github.com/BillyCool",
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const GITHUB_REPO_LINK =

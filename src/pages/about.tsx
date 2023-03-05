@@ -24,6 +24,18 @@ export default function AboutPage(): JSX.Element {
           <ul>
             <li>
               <p>
+                (March 2023) Billy/Gwyn has taken over the maintenance of the
+                datamining tool onepiecefreak3 made.{" "}
+                <a
+                  href="https://github.com/NieR-Rein-Guide/nier-rein-apps"
+                  rel="noopener roferrer"
+                >
+                  NieR-Rein-Guide/nier-rein-apps
+                </a>
+              </p>
+            </li>
+            <li>
+              <p>
                 (April 2022) Datamined data is now coming from the dump tool
                 created by{" "}
                 <a
