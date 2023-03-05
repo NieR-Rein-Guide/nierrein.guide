@@ -3,6 +3,10 @@ import { create } from 'zustand';
 
 export const useWeaponsFilters = create((set, get) => ({
   skills: [],
+  isRefinable: false,
+  isEX: false,
+  isRD: false,
+  isSubjugation: false,
   clear: () => set({
     skills: [],
   }),
@@ -35,4 +39,8 @@ export const useWeaponsFilters = create((set, get) => ({
         skills: newSkills
       };
     }),
+  setIsRefinable: (isRefinable) => set({ isRefinable }),
+  setIsEX: (isEX) => set({ isEX }),
+  setIsRD: (isRD) => set({ isRD }),
+  setIsSubjugation: (isSubjugation) => set({ isSubjugation }),
 }));

@@ -113,15 +113,39 @@ export function filterWeapons(
     showUnreleasedContent,
     region = "GLOBAL",
     skills = [],
+    isRefinable,
+    isEX,
+    isRD,
+    isSubjugation,
   }
 ) {
   let filteredWeapons: IWeapon[] = weapons;
 
   if (!showUnreleasedContent) {
     const now = new Date();
-    filteredWeapons = filteredWeapons.filter((costume) => {
-      return now >= new Date(costume.release_time);
+    filteredWeapons = filteredWeapons.filter((weapon) => {
+      return now >= new Date(weapon.release_time);
     });
+  }
+
+  if (isRefinable) {
+    filteredWeapons = filteredWeapons.filter(
+      (weapon) => weapon.weapon_ability_link[3]
+    );
+  }
+
+  if (isEX) {
+    filteredWeapons = filteredWeapons.filter((weapon) => weapon.is_ex_weapon);
+  }
+
+  if (isRD) {
+    filteredWeapons = filteredWeapons.filter((weapon) => weapon.is_rd_weapon);
+  }
+
+  if (isSubjugation) {
+    filteredWeapons = filteredWeapons.filter(
+      (weapon) => weapon.is_subjugation_weapon
+    );
   }
 
   /**
@@ -129,8 +153,8 @@ export function filterWeapons(
    * Hide GLOBAL/JP costumes
    */
   if (!showUnreleasedContent && region === "SEA") {
-    filteredWeapons = filteredWeapons.filter((costume) =>
-      hideSEASpoiler(costume.release_time)
+    filteredWeapons = filteredWeapons.filter((weapon) =>
+      hideSEASpoiler(weapon.release_time)
     );
   }
 
@@ -160,6 +184,14 @@ export default function WeaponsPage({
   const order = useSettingsStore((state) => state.order);
   const skills = useWeaponsFilters((state) => state.skills);
   const hasFilters = useWeaponsFilters((state) => state.computed.hasFilters);
+  const isRefinable = useWeaponsFilters((state) => state.isRefinable);
+  const setIsRefinable = useWeaponsFilters((state) => state.setIsRefinable);
+  const isEX = useWeaponsFilters((state) => state.isEX);
+  const isRD = useWeaponsFilters((state) => state.isRD);
+  const isSubjugation = useWeaponsFilters((state) => state.isSubjugation);
+  const setIsEX = useWeaponsFilters((state) => state.setIsEX);
+  const setIsRD = useWeaponsFilters((state) => state.setIsRD);
+  const setIsSubjugation = useWeaponsFilters((state) => state.setIsSubjugation);
 
   /**
    * Using a state and useEffect here because Next.js is
@@ -225,6 +257,27 @@ export default function WeaponsPage({
             ) : null
           }
         >
+          <Checkbox
+            isChecked={isRefinable}
+            setState={(e) => setIsRefinable(e.target.checked)}
+            label="Is refinable?"
+          />
+          <Checkbox
+            isChecked={isEX}
+            setState={(e) => setIsEX(e.target.checked)}
+            label="Is EX?"
+          />
+          <Checkbox
+            isChecked={isRD}
+            setState={(e) => setIsRD(e.target.checked)}
+            label="Is RoD?"
+          />
+          <Checkbox
+            isChecked={isSubjugation}
+            setState={(e) => setIsSubjugation(e.target.checked)}
+            label="Is Subjugation?"
+          />
+
           <WeaponsSkillsFilters />
         </DatabaseNavbar>
 
@@ -237,6 +290,10 @@ export default function WeaponsPage({
               showUnreleasedContent,
               region,
               ownedWeapons,
+              isRefinable,
+              isEX,
+              isRD,
+              isSubjugation,
             })}
             abilitiesLookup={abilitiesLookup}
             valuedWeaponType={valuedWeaponType}
@@ -252,6 +309,10 @@ export default function WeaponsPage({
               showUnreleasedContent,
               region,
               ownedWeapons,
+              isRefinable,
+              isEX,
+              isRD,
+              isSubjugation,
             })}
             isSmall={displayType === "compact"}
             isLibrary={order === "library"}
@@ -298,6 +359,15 @@ export function WeaponsTable({
   showUnreleasedContent: boolean;
   valuedWeaponType?: string;
 }) {
+  const refiningAbilitiesLookup = {};
+  weapons
+    .filter((weapon) => (weapon.weapon_ability_link[3] ? true : false))
+    .forEach((weapon) => {
+      refiningAbilitiesLookup[
+        weapon.weapon_ability_link[3].weapon_ability.name
+      ] = weapon.weapon_ability_link[3].weapon_ability.name;
+    });
+
   return (
     <MaterialTable
       title={title ?? `${weapons.length} weapons in the database.`}
@@ -581,7 +651,7 @@ export function WeaponsTable({
           cellStyle: {
             textAlign: "center",
           },
-          lookup: abilitiesLookup,
+          lookup: refiningAbilitiesLookup,
           customFilterAndSearch: (term, weapon) => {
             if (term.length === 0) return true;
             return term.includes(
