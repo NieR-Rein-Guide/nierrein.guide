@@ -24,6 +24,7 @@ import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import slug from "slugg";
 import * as Tabs from "@radix-ui/react-tabs";
+import { abilitiesBehaviorsTypes } from "@utils/behaviorTypes";
 
 interface CompanionsPageProps {
   weaponAbilities: (weapon_ability & {
@@ -204,19 +205,30 @@ export default function CompanionsPage({
                   },
                 },
                 {
-                  field: "",
-                  title: "Actions",
+                  title: "Type",
+                  field: "behaviors",
+                  lookup: {
+                    PASSIVE_SKILL: abilitiesBehaviorsTypes.PASSIVE_SKILL.label,
+                    STATUS: abilitiesBehaviorsTypes.STATUS.label,
+                    BLESS: abilitiesBehaviorsTypes.BLESS.label,
+                  },
+                  customFilterAndSearch: (term, ability) => {
+                    if (term.length === 0) return true;
+                    return ability.behaviour_types.every((type) =>
+                      term.includes(type)
+                    );
+                  },
                   render: (ability) => (
-                    <Link
-                      href={`/ability/weapon/${slug(ability.name)}-${slug(
-                        ability.ability_id
-                      )}`}
-                      passHref
-                      className="btn"
-                      title="Go to ability page"
-                    >
-                      See ability page
-                    </Link>
+                    <div className="flex gap-x-2">
+                      {ability.behaviour_types.map((type) => (
+                        <span
+                          className="bg-grey-dark border border-beige border-opacity-50 py-1 px-2"
+                          key={type}
+                        >
+                          {abilitiesBehaviorsTypes[type].label}
+                        </span>
+                      ))}
+                    </div>
                   ),
                 },
               ]}
@@ -343,19 +355,30 @@ export default function CompanionsPage({
                   },
                 },
                 {
-                  field: "",
-                  title: "Actions",
+                  title: "Type",
+                  field: "behaviors",
+                  lookup: {
+                    PASSIVE_SKILL: abilitiesBehaviorsTypes.PASSIVE_SKILL.label,
+                    STATUS: abilitiesBehaviorsTypes.STATUS.label,
+                    BLESS: abilitiesBehaviorsTypes.BLESS.label,
+                  },
+                  customFilterAndSearch: (term, ability) => {
+                    if (term.length === 0) return true;
+                    return ability.behaviour_types.every((type) =>
+                      term.includes(type)
+                    );
+                  },
                   render: (ability) => (
-                    <Link
-                      href={`/ability/costume/${slug(ability.name)}-${
-                        ability.ability_id
-                      }`}
-                      passHref
-                      className="btn"
-                      title="Go to ability page"
-                    >
-                      See ability page
-                    </Link>
+                    <div className="flex gap-x-2">
+                      {ability.behaviour_types.map((type) => (
+                        <span
+                          className="bg-grey-dark border border-beige border-opacity-50 py-1 px-2"
+                          key={type}
+                        >
+                          {abilitiesBehaviorsTypes[type].label}
+                        </span>
+                      ))}
+                    </div>
                   ),
                 },
               ]}

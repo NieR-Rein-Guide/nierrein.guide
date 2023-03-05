@@ -197,7 +197,6 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
                 <Checkbox checked={thought.character.length > 0} />
               ),
               customFilterAndSearch: (term, thought) => {
-                console.log(term);
                 if (term === "checked") {
                   return thought.character.length > 0;
                 }
