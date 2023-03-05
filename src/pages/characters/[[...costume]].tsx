@@ -146,7 +146,11 @@ export async function getStaticProps(context) {
         character_id: currentCharacter.character_id,
       },
       include: {
-        character: true,
+        character: {
+          include: {
+            debris: true,
+          },
+        },
         emblem: true,
         debris: true,
         costume_ability_link: {

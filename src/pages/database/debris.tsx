@@ -25,12 +25,15 @@ import classNames from "classnames";
 import { useSettingsStore } from "@store/settings";
 import { useEffect, useState } from "react";
 import { hideSEASpoiler } from "@utils/hideSEASpoiler";
+import { CharacterDiamond } from "@components/characters/CharacterRows";
+import { Checkbox } from "@mui/material";
 
 interface DebrisPageProps {
   debris: (debris & {
     costume: (costume & {
       character: character;
     })[];
+    character: character[];
   })[];
   links: costumes_link[];
   costumes: (costume & {
@@ -112,7 +115,7 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
             },
             {
               field: "costume",
-              title: "Costume",
+              title: "Costume or Character",
               render: (thought) => {
                 return (
                   <div className="flex items-center gap-x-4 w-80">
@@ -149,6 +152,14 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
                         </button>
                       </div>
                     ))}
+
+                    {thought.character.map((character) => (
+                      <CharacterDiamond
+                        key={character.character_id}
+                        character={character}
+                        active={false}
+                      />
+                    ))}
                   </div>
                 );
               },
@@ -174,6 +185,25 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
                   <Star rarity={DEBRIS_RARITY[thought.rarity]} />
                 </div>
               ),
+            },
+            {
+              field: "has_characters",
+              title: "Is Exalt?",
+              cellStyle: {
+                textAlign: "center",
+              },
+              type: "boolean",
+              render: (thought) => (
+                <Checkbox checked={thought.character.length > 0} />
+              ),
+              customFilterAndSearch: (term, thought) => {
+                console.log(term);
+                if (term === "checked") {
+                  return thought.character.length > 0;
+                }
+
+                return true;
+              },
             },
           ]}
           options={{
@@ -213,6 +243,7 @@ export async function getStaticProps() {
           character: true,
         },
       },
+      character: true,
     },
   });
 

@@ -88,7 +88,9 @@ function CostumeDetails({
       costume_skill: costume_skill;
     })[];
     costume_stat: costume_stat[];
-    character: character;
+    character: character & {
+      debris: debris;
+    };
     emblem: emblem;
     debris: debris;
     weapon: weapon & {
@@ -233,6 +235,11 @@ function CostumeDetails({
                 </div>
                 {costume.is_ex_costume && (
                   <span className="text-rarity-4">EX</span>
+                )}
+                {costume.is_rd_costume && (
+                  <Tooltip title="Recollections of Dusk costume">
+                    <span className="text-rarity-rd">RoD</span>
+                  </Tooltip>
                 )}
                 <span className="uppercase px-2 text-black bg-beige">
                   {character.name}
@@ -691,6 +698,38 @@ function CostumeDetails({
             )}
           </div>
         )}
+
+        <div key={costume.costume_id}>
+          <Lines
+            className="mb-2"
+            containerClass="justify-center"
+            svgClass="w-96 xl:w-42"
+          >
+            <h2 className="text-2xl text-center">
+              Character Exalt Debris (Lv.100)
+            </h2>
+          </Lines>
+          <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
+            <div className="flex items-center">
+              <div className="relative mr-4">
+                <DebrisThumbnail
+                  sizeClasses="h-16 w-16"
+                  {...costume.character.debris}
+                />
+              </div>
+              <div className="flex flex-col items-start">
+                <strong className="font-display text-2xl text-beige">
+                  {costume.character.debris?.name ?? "WIP"}
+                </strong>
+                <p className="text-beige-text">
+                  <span>
+                    {costume.character.debris?.description_long ?? "WIP"}
+                  </span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
 
         {/* Source */}
         <div className="relative">

@@ -34,7 +34,9 @@ type Costume = costume & {
     costume_skill: costume_skill;
   })[];
   costume_stat: costume_stat[];
-  character: character;
+  character: character & {
+    debris: debris;
+  };
   emblem: emblem;
 };
 

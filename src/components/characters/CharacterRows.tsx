@@ -5,7 +5,7 @@ import { character } from "@prisma/client";
 import { useSettingsStore } from "@store/settings";
 import { Tooltip } from "@mui/material";
 
-function CharacterDiamond({
+export function CharacterDiamond({
   character,
   active,
 }: {
