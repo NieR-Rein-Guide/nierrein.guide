@@ -374,6 +374,37 @@ export function SingleWeapon({
         {weapon.weapon_ability_link
           .sort((a, b) => a.slot_number - b.slot_number)
           .filter((ability) => ability.ability_level === abilityLevel)
+          .slice(0, 3)
+          .map((ability) => (
+            <Ability
+              key={ability.ability_id}
+              href={`/ability/weapon/${slug(ability.weapon_ability.name)}-${
+                ability.weapon_ability.ability_id
+              }`}
+              name={ability.weapon_ability.name}
+              description={ability.weapon_ability.description}
+              imagePathBase={ability.weapon_ability.image_path_base}
+              level={ability.ability_level}
+              maxLevel={15}
+            />
+          ))}
+
+        {weapon.weapon_ability_link
+          .sort((a, b) => a.slot_number - b.slot_number)
+          .filter((ability) => ability.ability_level === abilityLevel)
+          .slice(3, 4).length > 0 && (
+          <Lines
+            className="mb-2 mt-8"
+            containerClass="justify-center"
+            svgClass="w-96 xl:w-42"
+          >
+            <h2 className="text-2xl">Refining Ability</h2>
+          </Lines>
+        )}
+        {weapon.weapon_ability_link
+          .sort((a, b) => a.slot_number - b.slot_number)
+          .filter((ability) => ability.ability_level === abilityLevel)
+          .slice(3, 4)
           .map((ability) => (
             <Ability
               key={ability.ability_id}

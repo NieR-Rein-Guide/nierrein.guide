@@ -44,7 +44,7 @@ export default function AbilityThumbnail({
       </div>
 
       {children || (
-        <span className="mt-1 text-sm text-center leading-none">
+        <span className="mt-1 text-xs text-center leading-none">
           {ability.name}
         </span>
       )}

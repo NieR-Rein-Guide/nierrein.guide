@@ -361,6 +361,8 @@ export function WeaponsTable({
               )}
             </div>
           ),
+          customFilterAndSearch: (term, weapon) =>
+            weapon.name.toLowerCase().includes(term?.toLowerCase()),
         },
         {
           field: "weapon_stat[0].hp",
@@ -568,18 +570,56 @@ export function WeaponsTable({
               {(weapon.weapon_ability_link?.[2]?.weapon_ability && (
                 <AbilityThumbnail
                   ability={weapon.weapon_ability_link[2].weapon_ability}
-                >
-                  <span className="inline-block mt-1 text-xs text-center leading-none w-28">
-                    {
-                      weapon.weapon_ability_link[2].weapon_ability.name.split(
-                        "Barrier:"
-                      )[1]
-                    }
-                  </span>
-                </AbilityThumbnail>
+                />
               )) || <span className="text-beige-dark">N/A</span>}
             </>
           ),
+        },
+        {
+          field: "weapon_ability_link[3].weapon_ability.name",
+          title: "Refining Ability",
+          cellStyle: {
+            textAlign: "center",
+          },
+          lookup: abilitiesLookup,
+          customFilterAndSearch: (term, weapon) => {
+            if (term.length === 0) return true;
+            return term.includes(
+              weapon.weapon_ability_link?.[3]?.weapon_ability.name
+            );
+          },
+          render: (weapon) => {
+            const isValued = VALUED_WEAPONS[valuedWeaponType]
+              .filter(
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY
+              )
+              .find((valuedAbility) =>
+                weapon.weapon_ability_link[3].weapon_ability.name.includes(
+                  valuedAbility.value
+                )
+              );
+
+            if (weapon.name.includes("horn")) {
+              console.log(
+                weapon.weapon_ability_link?.[3]?.weapon_ability?.name
+              );
+            }
+
+            return (
+              <div
+                className={classNames(
+                  "relative flex flex-col justify-center items-center",
+                  isValued ? "text-green-300" : ""
+                )}
+              >
+                {(weapon.weapon_ability_link[3] && (
+                  <AbilityThumbnail
+                    ability={weapon.weapon_ability_link[3].weapon_ability}
+                  />
+                )) || <span className="text-beige-dark">N/A</span>}
+              </div>
+            );
+          },
         },
         {
           field: "weapon_skill_link[0].weapon_skill.cooldown_time",
@@ -702,7 +742,6 @@ export function WeaponsTable({
       ]}
       options={{
         actionsColumnIndex: -1,
-        grouping: true,
         searchFieldAlignment: "right",
         filtering: true,
         pageSize: 25,
