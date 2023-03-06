@@ -486,9 +486,7 @@ export async function getStaticProps() {
         .filter((memoir) => variation.memoirs_ids.includes(memoir.memoir_id))
         .map((mem) => ({
           ...mem,
-          serie: memoirs.find(
-            (m) => m.memoir_series_id === mem.memoir_series_id
-          ),
+          serie: memoirs.find((m) => m.memoir_series_id === mem.series_id),
         }));
 
       const event = await getEventById(variation.eventId);
