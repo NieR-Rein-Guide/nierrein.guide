@@ -402,8 +402,8 @@ export function SingleWeapon({
           ))}
 
         {weapon.weapon_ability_link
-          .sort((a, b) => a.slot_number - b.slot_number)
-          .slice(3, 4).length > 0 && (
+          .filter((a) => a.slot_number === 4)
+          .sort((a, b) => a.slot_number - b.slot_number) && (
           <Lines
             className="mb-2 mt-8"
             containerClass="justify-center"
@@ -413,8 +413,8 @@ export function SingleWeapon({
           </Lines>
         )}
         {weapon.weapon_ability_link
+          .filter((a) => a.slot_number === 4)
           .sort((a, b) => a.slot_number - b.slot_number)
-          .slice(3, 4)
           .map((ability) => (
             <Ability
               key={ability.ability_id}
