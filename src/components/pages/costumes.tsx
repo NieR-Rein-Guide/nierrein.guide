@@ -52,6 +52,7 @@ import { useCostumesFilters } from "@store/costumes-filters";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import { LimitedCostume } from "@components/LimitedCostume";
 import { hideSEASpoiler } from "@utils/hideSEASpoiler";
+import { Gauge } from "@components/Gauge";
 
 export type ICostume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -555,7 +556,14 @@ export function CostumesTable({
           },
           render: (costume) => (
             <SkillThumbnail skill={costume.costume_skill_link[0].costume_skill}>
-              <span className="text-xs line-clamp-2 z-10 text-shadow">
+              <span
+                className={classNames(
+                  "text-xs line-clamp-2 z-10 text-shadow",
+                  skillGaugeColors[
+                    costume.costume_skill_link[0].costume_skill.gauge_rise_speed
+                  ]
+                )}
+              >
                 {costume.costume_skill_link[0].costume_skill.name}
               </span>
             </SkillThumbnail>
@@ -694,25 +702,7 @@ export function CostumesTable({
             textAlign: "center",
           },
           render: (costume) => (
-            <Tooltip
-              enterTouchDelay={0}
-              title="Lower number means skill charge faster."
-            >
-              <div
-                className={classNames(
-                  skillGaugeColors[
-                    costume.costume_skill_link[0].costume_skill.gauge_rise_speed
-                  ]
-                )}
-              >
-                <span className="block">
-                  {costume.costume_skill_link[0].costume_skill.gauge_rise_speed}
-                </span>
-                <span className="block text-xs">
-                  {costume.costume_skill_link[0].costume_skill.cooldown_time}
-                </span>
-              </div>
-            </Tooltip>
+            <Gauge {...costume.costume_skill_link[0].costume_skill} />
           ),
         },
         {

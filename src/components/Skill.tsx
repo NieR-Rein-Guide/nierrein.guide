@@ -7,6 +7,7 @@ import skillGaugeColors, {
 import classNames from "classnames";
 import Image from "next/legacy/image";
 import SVG from "react-inlinesvg";
+import { Gauge } from "./Gauge";
 
 interface SkillProps {
   name: string;
@@ -84,46 +85,11 @@ export default function Skill({
           <p className="text-beige-text text-left mb-1 md:pr-16">
             <span>{description}</span>
           </p>
-          {SkillCooltimeValue && (
-            <div className="flex  items-end text-xs mt-2">
-              <div
-                className={classNames(
-                  "px-2 py-1 mr-2",
-                  isWeapon ? "bg-brown" : "relative bg-grey-dark border",
-                  !isWeapon && skillGaugeColors[gaugeRiseSpeed],
-                  !isWeapon && skillGaugeBorderColors[gaugeRiseSpeed]
-                )}
-              >
-                {!isWeapon &&
-                  `Gauge Level: ${getGaugeLevel(SkillCooltimeValue)}`}
-                {isWeapon && `Cooldown: ${SkillCooltimeValue / 30}s`}
-
-                {!isWeapon && (
-                  <Tooltip
-                    enterTouchDelay={0}
-                    className="cursor-help"
-                    title={
-                      <ul>
-                        <li>A lower number means that it charges faster</li>
-                        <li>
-                          <span>Default: {SkillCooltimeValue}</span>
-                        </li>
-                        <li>
-                          {isMaxAscended && (
-                            <span>Max asc: {SkillCooltimeValue * 0.8}</span>
-                          )}
-                        </li>
-                      </ul>
-                    }
-                  >
-                    <span className="absolute -top-2 -right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-4 w-4 text-xs font-labor">
-                      ?
-                    </span>
-                  </Tooltip>
-                )}
-              </div>
-            </div>
-          )}
+          <Gauge
+            isWeapon={isWeapon}
+            cooldown_time={SkillCooltimeValue}
+            gauge_rise_speed={gaugeRiseSpeed}
+          />
         </div>
       </div>
     </div>
