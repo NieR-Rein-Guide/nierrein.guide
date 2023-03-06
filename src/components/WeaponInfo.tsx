@@ -156,7 +156,7 @@ export default function WeaponInfo({
                 <p>
                   <u>These may be incorrect</u>, please check each of them
                 </p>
-                <p className="text-xs">(experimental)</p>
+                <p className="mt-2 text-xs">⚠️ experimental</p>
               </div>
             )}
           </div>

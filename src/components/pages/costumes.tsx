@@ -28,7 +28,18 @@ import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
 import Checkbox from "@components/form/Checkbox";
 import classNames from "classnames";
-import { Button, Chip, Modal, Tooltip } from "@mui/material";
+import {
+  Button,
+  Chip,
+  FormControl,
+  InputLabel,
+  ListItemText,
+  MenuItem,
+  Modal,
+  Select,
+  Tooltip,
+  Checkbox as MuiCheckbox,
+} from "@mui/material";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import Stat from "@components/Stat";
 import WeaponThumbnail from "@components/WeaponThumbnail";
@@ -618,9 +629,61 @@ export function CostumesTable({
           ),
         },
         {
-          field: "costume_skill_link[0].costume_skill.gauge_rise_speed",
+          field: "costume_skill_link[0].costume_skill.cooldown_time",
           title: "CS Gauge",
-          lookup: gaugeLookup,
+          type: "numeric",
+          filterComponent: ({ columnDef, onFilterChanged }) => {
+            const [selectedFilter, setSelectedFilter] = useState(
+              columnDef.tableData.filterValue || []
+            );
+
+            useEffect(() => {
+              setSelectedFilter(columnDef.tableData.filterValue || []);
+            }, [columnDef.tableData.filterValue]);
+
+            return (
+              <FormControl style={{ width: "100%" }}>
+                <InputLabel
+                  htmlFor={"select-multiple-checkbox" + columnDef.tableData.id}
+                  style={{ marginTop: -16 }}
+                ></InputLabel>
+                <Select
+                  multiple
+                  value={selectedFilter}
+                  onClose={() => {
+                    if (columnDef.filterOnItemSelect !== true) {
+                      onFilterChanged(columnDef.tableData.id, selectedFilter);
+                    }
+                  }}
+                  onChange={(event) => {
+                    setSelectedFilter(event.target.value);
+                    if (columnDef.filterOnItemSelect === true) {
+                      onFilterChanged(
+                        columnDef.tableData.id,
+                        event.target.value
+                      );
+                    }
+                  }}
+                  labelId={"select-multiple-checkbox" + columnDef.tableData.id}
+                  renderValue={(selectedArr) =>
+                    selectedArr
+                      .map((selected) => gaugeLookup[selected])
+                      .join(", ")
+                  }
+                  style={{ marginTop: 0 }}
+                >
+                  {Object.keys(gaugeLookup).map((key) => (
+                    <MenuItem key={key} value={key}>
+                      <MuiCheckbox
+                        checked={selectedFilter.indexOf(key.toString()) > -1}
+                      />
+                      <ListItemText primary={gaugeLookup[key]} />
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            );
+          },
           customFilterAndSearch: (term, costume) => {
             if (term.length === 0) return true;
             return term.includes(

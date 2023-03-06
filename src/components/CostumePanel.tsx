@@ -29,6 +29,11 @@ import Ability from "./Ability";
 import slug from "slugg";
 import SVG from "react-inlinesvg";
 import { useState } from "react";
+import skillGaugeColors, {
+  skillGaugeBorderColors,
+} from "@utils/skillGaugeColors";
+import { Tooltip } from "@mui/material";
+import getGaugeLevel from "@utils/getGaugeLevel";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -143,9 +148,32 @@ export function CostumePanel({ costumeId }) {
                   />
                 </div>
               </div>
-              <p className="text-xs">
-                {costume.costume_skill_link[0].costume_skill.short_description}
-              </p>
+              <div className="flex flex-col items-start text-xs">
+                <div
+                  className={classNames(
+                    "px-2 py-1 mr-2 relative bg-grey-dark border",
+                    skillGaugeColors[
+                      costume.costume_skill_link[0].costume_skill
+                        .gauge_rise_speed
+                    ],
+                    skillGaugeBorderColors[
+                      costume.costume_skill_link[0].costume_skill
+                        .gauge_rise_speed
+                    ]
+                  )}
+                >
+                  Gauge Level:{" "}
+                  {getGaugeLevel(
+                    costume.costume_skill_link[0].costume_skill.cooldown_time
+                  )}
+                </div>
+                <p>
+                  {
+                    costume.costume_skill_link[0].costume_skill
+                      .short_description
+                  }
+                </p>
+              </div>
             </div>
             {costume.costume_ability_link.map((ability) => (
               <Ability
