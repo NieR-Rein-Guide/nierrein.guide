@@ -7,12 +7,14 @@ export const useCostumesFilters = create((set, get) => ({
   limited: false,
   collab: false,
   story: false,
+  rod: false,
   clear: () => set({
     characters: [],
     skills: [],
     limited: false,
     collab: false,
     story: false,
+    rod: false,
   }),
   computed: {
     get hasFilters() {
@@ -21,6 +23,7 @@ export const useCostumesFilters = create((set, get) => ({
       !!get().limited ||
       !!get().collab ||
       !!get().story ||
+      !!get().rod ||
       !!get().showInventory;
     },
     get activeCount() {
@@ -42,6 +45,9 @@ export const useCostumesFilters = create((set, get) => ({
         count++;
       }
       if (!!get().showInventory) {
+        count++;
+      }
+      if (!!get().rod) {
         count++;
       }
 
@@ -81,4 +87,5 @@ export const useCostumesFilters = create((set, get) => ({
   setLimited: (limited) => set({ limited }),
   setCollab: (collab) => set({ collab }),
   setStory: (story) => set({ story }),
+  setRod: (rod) => set({ rod }),
 }));

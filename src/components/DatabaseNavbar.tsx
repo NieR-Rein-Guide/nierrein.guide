@@ -133,7 +133,7 @@ export default function DatabaseNavbar({
               </Popover.Root>
             )}
 
-            {databaseDisplayType !== "table" && (
+            {["grid", "compact"].includes(databaseDisplayType) && (
               <Checkbox
                 label="Library view"
                 isChecked={order === "library"}

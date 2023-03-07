@@ -70,9 +70,9 @@ export function Gauge({ cooldown_time, gauge_rise_speed }: GaugeProps) {
             skillGaugeBorderColors[gauge_rise_speed]
           )}
         >
-          <span className="absolute -top-2 -right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-4 w-4 text-xs font-labor">
+          <div className="absolute -top-2 -right-2 z-20 flex items-center justify-center bg-grey-lighter text-beige border border-beige rounded-full h-4 w-4 font-labor">
             ?
-          </span>
+          </div>
           Gauge: {getGaugeLevel(cooldown_time)}
         </div>
 

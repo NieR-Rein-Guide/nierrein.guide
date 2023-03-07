@@ -161,11 +161,9 @@ export default function CostumeThumbnail({
       />
 
       {href && (
-        (<Link href={href} passHref className="absolute inset-0 z-10">
-
+        <Link href={href} passHref className="absolute inset-0 z-10">
           <span className="sr-only">See costume</span>
-
-        </Link>)
+        </Link>
       )}
     </div>
   );

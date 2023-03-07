@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   character,
   costume,
@@ -133,6 +133,7 @@ export function filterCostumes(
     showInventory,
     showUnreleasedContent,
     region,
+    rod,
   }
 ) {
   const allowLinks = [];
@@ -167,6 +168,12 @@ export function filterCostumes(
   if (showInventory) {
     filteredCostumes = filteredCostumes.filter((cost) => {
       return ownedCostumes.includes(cost.costume_id);
+    });
+  }
+
+  if (rod) {
+    filteredCostumes = filteredCostumes.filter((cost) => {
+      return cost.is_rd_costume;
     });
   }
 
@@ -217,19 +224,38 @@ export default function CharactersPage({
   const setCollab = useCostumesFilters((state) => state.setCollab);
   const story = useCostumesFilters((state) => state.story);
   const setStory = useCostumesFilters((state) => state.setStory);
+  const rod = useCostumesFilters((state) => state.rod);
+  const setRod = useCostumesFilters((state) => state.setRod);
   const hasFilters = useCostumesFilters((state) => state.computed.hasFilters);
 
-  const filteredCostumes = filterCostumes(costumes, {
-    limited,
-    collab,
-    story,
-    characters: filteredCharacters,
-    skills,
-    ownedCostumes,
-    showInventory,
-    showUnreleasedContent,
-    region,
-  });
+  const filteredCostumes = useMemo(
+    () =>
+      filterCostumes(costumes, {
+        limited,
+        collab,
+        story,
+        characters: filteredCharacters,
+        skills,
+        ownedCostumes,
+        showInventory,
+        showUnreleasedContent,
+        region,
+        rod,
+      }),
+    [
+      costumes,
+      limited,
+      collab,
+      story,
+      characters,
+      skills,
+      ownedCostumes,
+      showInventory,
+      showUnreleasedContent,
+      region,
+      rod,
+    ]
+  );
 
   /**
    * Using a state and useEffect here because Next.js is
@@ -272,6 +298,7 @@ export default function CharactersPage({
                 {limited && <Chip label="Limited" color="info" />}
                 {collab && <Chip label="Collab" color="warning" />}
                 {story && <Chip label="Story" color="error" />}
+                {rod && <Chip label="RoD" color="primary" />}
                 {filteredCharacters.map((character) => (
                   <Tooltip key={character.name} title={character.name}>
                     <div className="flex justify-center items-center rounded-full h-8 w-8 bg-white bg-opacity-20">
@@ -312,6 +339,12 @@ export default function CharactersPage({
             label="Story/EX costumes"
           />
 
+          <Checkbox
+            isChecked={rod}
+            setState={(e) => setRod(e.target.checked)}
+            label="RoD costumes"
+          />
+
           <CostumesCharactersFilters characters={characters} />
           <CostumesSkillsFilters />
         </DatabaseNavbar>
@@ -338,7 +371,7 @@ export default function CharactersPage({
           />
         )}
 
-        {displayType !== "table" && (
+        {["grid", "compact"].includes(displayType) && (
           <CostumesGrid
             costumes={filteredCostumes}
             abilitiesLookup={abilitiesLookup}

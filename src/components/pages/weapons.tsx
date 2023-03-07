@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import MaterialTable from "@material-table/core";
 import Element from "@components/Element";
 import WeaponThumbnail from "@components/WeaponThumbnail";
@@ -193,6 +193,33 @@ export default function WeaponsPage({
   const setIsRD = useWeaponsFilters((state) => state.setIsRD);
   const setIsSubjugation = useWeaponsFilters((state) => state.setIsSubjugation);
 
+  const filteredWeapons = useMemo(
+    () =>
+      filterWeapons(weapons, {
+        skills,
+        showInventory,
+        showUnreleasedContent,
+        region,
+        ownedWeapons,
+        isRefinable,
+        isEX,
+        isRD,
+        isSubjugation,
+      }),
+    [
+      weapons,
+      skills,
+      showInventory,
+      showUnreleasedContent,
+      region,
+      ownedWeapons,
+      isRefinable,
+      isEX,
+      isRD,
+      isSubjugation,
+    ]
+  );
+
   /**
    * Using a state and useEffect here because Next.js is
    * complaining about differences between Server/Client
@@ -250,6 +277,10 @@ export default function WeaponsPage({
                 <h3 className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-shadow text-xl line-clamp-1">
                   Filters applied
                 </h3>
+                {isRefinable && <Chip label="Refinable" color="warning" />}
+                {isEX && <Chip label="EX" color="info" />}
+                {isRD && <Chip label="RoD" color="primary" />}
+                {isSubjugation && <Chip label="Subjugation" color="error" />}
                 {skills.map((skill) => (
                   <Chip key={skill.label} color="success" label={skill.label} />
                 ))}
@@ -284,17 +315,7 @@ export default function WeaponsPage({
         {displayType === "table" && (
           <WeaponsTable
             key="table"
-            weapons={filterWeapons(weapons, {
-              skills,
-              showInventory,
-              showUnreleasedContent,
-              region,
-              ownedWeapons,
-              isRefinable,
-              isEX,
-              isRD,
-              isSubjugation,
-            })}
+            weapons={filteredWeapons}
             abilitiesLookup={abilitiesLookup}
             valuedWeaponType={valuedWeaponType}
           />
@@ -303,17 +324,7 @@ export default function WeaponsPage({
         {displayType !== "table" && (
           <WeaponsGrid
             key="grid"
-            weapons={filterWeapons(weapons, {
-              skills,
-              showInventory,
-              showUnreleasedContent,
-              region,
-              ownedWeapons,
-              isRefinable,
-              isEX,
-              isRD,
-              isSubjugation,
-            })}
+            weapons={filteredWeapons}
             isSmall={displayType === "compact"}
             isLibrary={order === "library"}
           />
@@ -664,7 +675,7 @@ export function WeaponsTable({
                 (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY
               )
               .find((valuedAbility) =>
-                weapon.weapon_ability_link[3].weapon_ability.name.includes(
+                weapon.weapon_ability_link?.[3]?.weapon_ability.name.includes(
                   valuedAbility.value
                 )
               );
