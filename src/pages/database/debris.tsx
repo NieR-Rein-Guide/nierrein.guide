@@ -49,9 +49,9 @@ interface DebrisPageProps {
 }
 
 export const DEBRIS_RARITY = {
-  20: 2,
-  30: 3,
-  40: 4,
+  RARE: 2,
+  S_RARE: 3,
+  SS_RARE: 4,
 };
 
 export const rarityLookup = {
