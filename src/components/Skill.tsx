@@ -85,11 +85,24 @@ export default function Skill({
           <p className="text-beige-text text-left mb-1 md:pr-16">
             <span>{description}</span>
           </p>
-          <Gauge
-            isWeapon={isWeapon}
-            cooldown_time={SkillCooltimeValue}
-            gauge_rise_speed={gaugeRiseSpeed}
-          />
+          {SkillCooltimeValue && isWeapon && (
+            <div className="flex  items-end text-xs mt-2">
+              <div
+                className={classNames(
+                  "px-2 py-1 mr-2",
+                  isWeapon ? "bg-brown" : "relative bg-grey-dark border"
+                )}
+              >
+                {isWeapon && `Cooldown: ${SkillCooltimeValue / 30}s`}
+              </div>
+            </div>
+          )}
+          {SkillCooltimeValue && !isWeapon && (
+            <Gauge
+              gauge_rise_speed={gaugeRiseSpeed}
+              cooldown_time={SkillCooltimeValue}
+            />
+          )}
         </div>
       </div>
     </div>
