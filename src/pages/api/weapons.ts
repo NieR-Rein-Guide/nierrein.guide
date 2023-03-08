@@ -33,7 +33,14 @@ export default async function handler(
           },
           weapon_ability_link: {
             where: {
-              ability_level: 15,
+              OR: [
+                {
+                  slot_number: 4,
+                },
+                {
+                  ability_level: 15,
+                },
+              ],
             },
             orderBy: {
               slot_number: "asc",
