@@ -261,7 +261,7 @@ export async function getStaticProps(context) {
       },
     });
 
-    costume.link = link;
+    costume.link = link || {};
 
     await Promise.all([
       alterCostumeToAddWeapon(costume), // Add costume's weapon

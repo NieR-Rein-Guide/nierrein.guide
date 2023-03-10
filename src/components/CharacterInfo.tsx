@@ -246,10 +246,10 @@ function CostumeDetails({
                 </span>
               </div>
               <span className="uppercase text-beige">{costume.title}</span>
-              {costume.link.is_limited && (
+              {costume.link?.is_limited && (
                 <LimitedCostume isLogoOnly events={costume.link.events} />
               )}
-              {costume.link.is_collab && (
+              {costume.link?.is_collab && (
                 <div className="inline-flex rounded-full bg-white bg-opacity-10 px-2 py-1">
                   <p className="font-display text-lg font-semibold text-rarity-collab leading-none">
                     Collab
@@ -745,20 +745,20 @@ function CostumeDetails({
               <EventItem key={event.id} {...event} />
             ))}
 
-            {costume.sources.length === 0 && !costume.link.is_story && (
+            {costume.sources.length === 0 && !costume.link?.is_story && (
               <h3 className="md:col-span-2 font-display text-2xl text-center">
                 Work in Progress...
               </h3>
             )}
 
-            {costume.link.is_story && (
+            {costume.link?.is_story && (
               <div className="md:col-span-2 flex flex-col gap-y-4 items-center justify-center p-8">
                 <img
-                  src={chaptersIcons[costume.link.chapter]}
+                  src={chaptersIcons[costume.link?.chapter]}
                   alt="chapter icon"
                 />
                 <h3 className="font-display text-2xl text-center">
-                  Chapter n°{costume.link.chapter}
+                  Chapter n°{costume.link?.chapter}
                   {costume.is_ex_costume ? (
                     <p>
                       EX Character Quests {">"} Dark Memory Quests {">"}
