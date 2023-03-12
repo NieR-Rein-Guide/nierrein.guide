@@ -26,12 +26,8 @@ export default function SettingsModal() {
     (state) => state.setShowUnreleasedContent
   );
 
-  const databaseDisplayType = useSettingsStore(
-    (state) => state.databaseDisplayType
-  );
-  const setDatabaseDisplayType = useSettingsStore(
-    (state) => state.setDatabaseDisplayType
-  );
+  const isExalted = useSettingsStore((state) => state.isExalted);
+  const setIsExalted = useSettingsStore((state) => state.setIsExalted);
 
   const showCharactersSelection = useSettingsStore(
     (state) => state.showCharactersSelection
@@ -103,6 +99,17 @@ export default function SettingsModal() {
             />
           </div>
           <div className="flex flex-col sm:flex-row justify-between">
+            <label htmlFor="exalt" className="text-beige cursor-pointer">
+              Show Exalted stats by default
+            </label>
+            <Switch
+              id="exalt"
+              size="small"
+              onChange={(e) => setIsExalted(e.target.checked)}
+              checked={isExalted}
+            />
+          </div>
+          <div className="flex flex-col sm:flex-row justify-between">
             <div className="pr-12">
               <p className="text-beige">Awakening level</p>
               <p className="text-grey-detail text-xs">
@@ -131,29 +138,6 @@ export default function SettingsModal() {
               </p>
             </div>
             <CursedGodSlabsSelect />
-          </div>
-          <div>
-            <p className="text-beige">Database display</p>
-            <p className="text-grey-detail text-xs">
-              The grid view is preferable on mobile. Filtering on Table view is
-              better on desktop.
-            </p>
-            <div className="flex space-x-8 mt-4">
-              <Radio
-                name="Table"
-                value="table"
-                isChecked={databaseDisplayType === "table"}
-                setState={setDatabaseDisplayType}
-                labelClassname="inline-block text-center md:w-24"
-              />
-              <Radio
-                name="Grid"
-                value="grid"
-                isChecked={databaseDisplayType === "grid"}
-                setState={setDatabaseDisplayType}
-                labelClassname="inline-block text-center md:w-24"
-              />
-            </div>
           </div>
         </div>
       </Modal>

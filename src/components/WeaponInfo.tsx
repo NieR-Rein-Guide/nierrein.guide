@@ -403,7 +403,7 @@ export function SingleWeapon({
 
         {weapon.weapon_ability_link
           .filter((a) => a.slot_number === 4)
-          .sort((a, b) => a.slot_number - b.slot_number) && (
+          .sort((a, b) => a.slot_number - b.slot_number).length > 0 && (
           <Lines
             className="mb-2 mt-8"
             containerClass="justify-center"

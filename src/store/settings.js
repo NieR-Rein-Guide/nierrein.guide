@@ -14,6 +14,7 @@ export const useSettingsStore = create(
       stoneTowerSlabsPercent: 0, // 0 | 33 | 67 | 100
       cursedGodSlabsPercent: 0, // 0 | 33 | 67 | 100
       awakeningLevel: 0, // 0 | 1 | 2 | 3 | 4 | 5
+      isExalted: false,
       setShowUnreleasedContent: (showUnreleasedContent) =>
         set({ showUnreleasedContent }),
       setShowCharactersSelection: (showCharactersSelection) =>
@@ -34,6 +35,8 @@ export const useSettingsStore = create(
         set({ order }),
       setRegion: (region) =>
         set({ region }),
+      setIsExalted: (isExalted) =>
+        set({ isExalted }),
     }),
     {
       name: "settings",

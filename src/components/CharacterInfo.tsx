@@ -147,6 +147,7 @@ function CostumeDetails({
   const stoneTowerSlabsPercent = useSettingsStore(
     (state) => state.stoneTowerSlabsPercent
   );
+  const isExalted = useSettingsStore((state) => state.isExalted);
 
   useEffect(() => {
     setDateRelative(
@@ -180,19 +181,19 @@ function CostumeDetails({
     return isPve || isPvp;
   });
 
-  const { base, maxNoAsc, maxWithAsc } = getCostumeLevelsByRarity(
-    costume.rarity
-  );
+  const { maxNoAsc, maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
 
-  const stats1 = [...stats]
-    .filter((stat) => stat.level === base)
-    .sort((a, b) => a.awakening_step - b.awakening_step);
   const stats70 = [...stats]
     .filter((stat) => stat.level === maxNoAsc)
     .sort((a, b) => a.awakening_step - b.awakening_step);
   const stats90 = [...stats]
     .filter((stat) => stat.level === maxWithAsc)
     .sort((a, b) => a.awakening_step - b.awakening_step);
+  const stats100 = [...stats]
+    .filter((stat) => stat.level === maxWithAsc + 10)
+    .sort((a, b) => a.awakening_step - b.awakening_step);
+
+  const selectedStats = isExalted ? stats100 : stats90;
 
   return (
     <div>
@@ -264,10 +265,19 @@ function CostumeDetails({
           </div>
 
           <div className="grid grid-cols-2 xs:flex gap-x-4 gap-y-2">
-            <StatDisplay type="hp" value={stats90[awakeningLevel]?.hp} />
-            <StatDisplay type="atk" value={stats90[awakeningLevel]?.atk} />
-            <StatDisplay type="vit" value={stats90[awakeningLevel]?.vit} />
-            <StatDisplay type="agi" value={stats90[awakeningLevel]?.agi} />
+            <StatDisplay type="hp" value={selectedStats[awakeningLevel]?.hp} />
+            <StatDisplay
+              type="atk"
+              value={selectedStats[awakeningLevel]?.atk}
+            />
+            <StatDisplay
+              type="vit"
+              value={selectedStats[awakeningLevel]?.vit}
+            />
+            <StatDisplay
+              type="agi"
+              value={selectedStats[awakeningLevel]?.agi}
+            />
           </div>
         </div>
 
@@ -577,16 +587,20 @@ function CostumeDetails({
             </div>
 
             <div className="flex flex-col-reverse md:flex-row mt-3 gap-6 mx-4">
-              <StatsOfLevel stats={stats1} label="Level 1" />
               <StatsOfLevel
                 stats={stats70}
-                label="Level 70"
+                label={`Level ${maxNoAsc}`}
                 description="No ascension"
               />
               <StatsOfLevel
                 stats={stats90}
-                label="Level 90"
+                label={`Level ${maxWithAsc}`}
                 description="Max ascension"
+              />
+              <StatsOfLevel
+                stats={stats100}
+                label={`Level ${maxWithAsc + 10}`}
+                description="Max ascension + Exalted"
               />
             </div>
 

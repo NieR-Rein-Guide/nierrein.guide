@@ -22,6 +22,7 @@ export default function Stat({ type, value }: StatProps) {
     (state) => state.cursedGodSlabsPercent
   );
   const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+  const isExalted = useSettingsStore((state) => state.isExalted);
 
   const addedStats = {
     stoneTowerSlabs: 0,
@@ -49,7 +50,9 @@ export default function Stat({ type, value }: StatProps) {
   }
 
   const isModified =
-    (STATS_VALUES.includes(type) && value !== finalStat) || awakeningLevel > 0;
+    (STATS_VALUES.includes(type) && value !== finalStat) ||
+    awakeningLevel > 0 ||
+    isExalted;
 
   return (
     <Tooltip
@@ -59,6 +62,10 @@ export default function Stat({ type, value }: StatProps) {
           {Object.entries(addedStats)
             .map(([key, value]) => `${key}: ${Math.round(value)}`)
             .join("\n")}
+          <br />
+          Awakening lv. {awakeningLevel}
+          <br />
+          Exalted: {isExalted ? "Yes" : "No"}
         </p>
       }
     >

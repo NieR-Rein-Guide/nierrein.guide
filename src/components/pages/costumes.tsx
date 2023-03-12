@@ -401,6 +401,7 @@ export function CostumesTable({
 }) {
   const addCostumePanel = usePanelStore((state) => state.addCostume);
   const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+  const isExalted = useSettingsStore((state) => state.isExalted);
 
   return (
     <MaterialTable
@@ -487,16 +488,18 @@ export function CostumesTable({
           filterPlaceholder: "> HP",
           customFilterAndSearch: (term, costume) => {
             const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
             const stats = costume.costume_stat
-              .filter((stat) => stat.level === maxWithAsc)
+              .filter((stat) => stat.level === selectedLevel)
               .sort((a, b) => a.awakening_step - b.awakening_step);
 
             return stats[awakeningLevel].hp >= Number(term);
           },
           render: (costume) => {
             const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
             const stats = costume.costume_stat
-              .filter((stat) => stat.level === maxWithAsc)
+              .filter((stat) => stat.level === selectedLevel)
               .sort((a, b) => a.awakening_step - b.awakening_step);
 
             return <Stat type="hp" value={stats[awakeningLevel].hp} />;
@@ -513,16 +516,18 @@ export function CostumesTable({
           filterPlaceholder: "> ATK",
           customFilterAndSearch: (term, costume) => {
             const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
             const stats = costume.costume_stat
-              .filter((stat) => stat.level === maxWithAsc)
+              .filter((stat) => stat.level === selectedLevel)
               .sort((a, b) => a.awakening_step - b.awakening_step);
 
             return stats[awakeningLevel].atk >= Number(term);
           },
           render: (costume) => {
             const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
             const stats = costume.costume_stat
-              .filter((stat) => stat.level === maxWithAsc)
+              .filter((stat) => stat.level === selectedLevel)
               .sort((a, b) => a.awakening_step - b.awakening_step);
 
             return <Stat type="atk" value={stats[awakeningLevel].atk} />;
@@ -539,16 +544,18 @@ export function CostumesTable({
           filterPlaceholder: "> DEF",
           customFilterAndSearch: (term, costume) => {
             const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
             const stats = costume.costume_stat
-              .filter((stat) => stat.level === maxWithAsc)
+              .filter((stat) => stat.level === selectedLevel)
               .sort((a, b) => a.awakening_step - b.awakening_step);
 
             return stats[awakeningLevel].vit >= Number(term);
           },
           render: (costume) => {
             const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
             const stats = costume.costume_stat
-              .filter((stat) => stat.level === maxWithAsc)
+              .filter((stat) => stat.level === selectedLevel)
               .sort((a, b) => a.awakening_step - b.awakening_step);
 
             return <Stat type="vit" value={stats[awakeningLevel].vit} />;
@@ -565,16 +572,18 @@ export function CostumesTable({
           filterPlaceholder: "> AGI",
           customFilterAndSearch: (term, costume) => {
             const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
             const stats = costume.costume_stat
-              .filter((stat) => stat.level === maxWithAsc)
+              .filter((stat) => stat.level === selectedLevel)
               .sort((a, b) => a.awakening_step - b.awakening_step);
 
             return stats[awakeningLevel].agi >= Number(term);
           },
           render: (costume) => {
             const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+            const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
             const stats = costume.costume_stat
-              .filter((stat) => stat.level === maxWithAsc)
+              .filter((stat) => stat.level === selectedLevel)
               .sort((a, b) => a.awakening_step - b.awakening_step);
 
             return <Stat type="agi" value={stats[awakeningLevel].agi} />;

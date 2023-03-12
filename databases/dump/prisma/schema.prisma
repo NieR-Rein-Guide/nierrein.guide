@@ -333,12 +333,13 @@ model weapon_skill_link {
 }
 
 model weapon_stat {
-  weapon_id Int
-  level     Int
-  atk       Int
-  hp        Int
-  vit       Int
-  weapon    weapon @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_stat_weapon_weapon_id")
+  weapon_id  Int
+  level      Int
+  atk        Int
+  hp         Int
+  vit        Int
+  is_refined Boolean
+  weapon     weapon  @relation(fields: [weapon_id], references: [weapon_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_weapon_stat_weapon_weapon_id")
 
   @@id([weapon_id, level], map: "pk_weapon_stat")
 }

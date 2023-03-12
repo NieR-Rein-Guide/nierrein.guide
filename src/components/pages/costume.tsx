@@ -25,6 +25,7 @@ import { useSettingsStore } from "store/settings";
 import Slider from "rc-slider";
 import CharacterRows from "@components/characters/CharacterRows";
 import classNames from "classnames";
+import { Switch } from "@mui/material";
 
 type Costume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -70,6 +71,9 @@ export default function CostumePage({
   const [skillLevel, setSkillLevel] = useState(14);
   const [ascendLevel, setAscendLevel] = useState(4);
 
+  const isExalted = useSettingsStore((state) => state.isExalted);
+  const setIsExalted = useSettingsStore((state) => state.setIsExalted);
+
   // Select the first costume if the character changes
   useEffect(() => {
     if (selectedCostume) return;
@@ -107,7 +111,18 @@ export default function CostumePage({
           <span>Return to Characters</span>
         </a>
 
-        <div className="flex items-center gap-x-4 w-full md:w-auto">
+        <div className="flex flex-col-reverse sm:flex-row items-center gap-x-4 w-full md:w-auto">
+          <div className="flex items-center sm:items-start sm:flex-col h-9">
+            <label htmlFor="exalt" className="text-beige cursor-pointer">
+              Exalted Stats
+            </label>
+            <Switch
+              id="exalt"
+              size="small"
+              onChange={(e) => setIsExalted(e.target.checked)}
+              checked={isExalted}
+            />
+          </div>
           <div className="hidden md:block mr-4 w-32">
             <p className="text-beige">Skill Lv. {skillLevel + 1}</p>
             <Slider
