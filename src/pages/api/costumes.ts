@@ -50,12 +50,8 @@ export default async function handler(
             },
           },
           costume_stat: {
-            take: 1,
-            where: {
-              awakening_step: 0,
-            },
             orderBy: {
-              level: "desc",
+              awakening_step: "asc",
             },
           },
           emblem: true,
