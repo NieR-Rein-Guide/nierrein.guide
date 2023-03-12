@@ -19,9 +19,8 @@ export default async function alterCostumeToAddWeapon(costume) {
     include: {
       weapon_stat: {
         orderBy: {
-          level: "desc",
+          level: "asc",
         },
-        take: 1,
       },
       weapon_ability_link: {
         where: {
