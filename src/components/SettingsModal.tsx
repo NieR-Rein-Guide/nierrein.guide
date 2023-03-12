@@ -100,7 +100,7 @@ export default function SettingsModal() {
           </div>
           <div className="flex flex-col sm:flex-row justify-between">
             <label htmlFor="exalt" className="text-beige cursor-pointer">
-              Show Exalted stats by default
+              Show Exalted/Refined stats by default
             </label>
             <Switch
               id="exalt"

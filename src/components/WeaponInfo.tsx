@@ -30,6 +30,7 @@ import StatDisplay from "./StatDisplay";
 import { Event } from "../models/types";
 import { EventItem } from "pages/events";
 import CostumeThumbnail from "./CostumeThumbnail";
+import { useSettingsStore } from "@store/settings";
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
@@ -79,7 +80,6 @@ export default function WeaponInfo({
           setIsShowingModel={setIsShowingModel}
           abilityLevel={abilityLevel}
           skillLevel={skillLevel}
-          statsIndex={2}
         />
 
         <div className="flex flex-col gap-y-4 mt-6">
@@ -96,12 +96,14 @@ export default function WeaponInfo({
               />
               <StatsOfLevel
                 stats={selectedWeapon.weapon_stat[1]}
-                label={`Level ${selectedWeapon.weapon_stat[1].level} (No ascension)`}
+                label={`Level ${selectedWeapon.weapon_stat[1].level} (Max Limit Break)`}
               />
-              <StatsOfLevel
-                stats={selectedWeapon.weapon_stat[2]}
-                label={`Level ${selectedWeapon.weapon_stat[2].level} (Max ascension)`}
-              />
+              {selectedWeapon.weapon_stat[2] && (
+                <StatsOfLevel
+                  stats={selectedWeapon.weapon_stat[2]}
+                  label={`Level ${selectedWeapon.weapon_stat[2].level} (MLB + Refined)`}
+                />
+              )}
             </div>
 
             <p className="bg-grey-dark bordered relative p-4 text-sm mt-8 max-w-xl mx-auto text-center">
@@ -203,17 +205,26 @@ export function SingleWeapon({
   setIsShowingModel,
   abilityLevel = 15,
   skillLevel = 15,
-  statsIndex,
 }: {
   weapon: IWeapon;
   isShowingModel: boolean;
   setIsShowingModel;
   abilityLevel: number;
   skillLevel: number;
-  statsIndex: number;
 }) {
   const ownedWeapons = useInventoryStore((state) => state.weapons);
   const toggleFromInventory = useInventoryStore((state) => state.toggleWeapon);
+  const isExalted = useSettingsStore((state) => state.isExalted);
+
+  let stats = weapon.weapon_stat.filter((row) => !row.is_refined).pop();
+
+  if (isExalted) {
+    const hasRefined = weapon.weapon_stat.find((row) => row.is_refined);
+
+    if (hasRefined) {
+      stats = hasRefined;
+    }
+  }
 
   return (
     <div className="grid md:grid-cols-2 gap-x-4">
@@ -346,9 +357,9 @@ export function SingleWeapon({
         </div>
 
         <div className="flex justify-center md:justify-start gap-y-2 gap-x-4">
-          <StatDisplay type="hp" value={weapon.weapon_stat[statsIndex].hp} />
-          <StatDisplay type="atk" value={weapon.weapon_stat[statsIndex].atk} />
-          <StatDisplay type="vit" value={weapon.weapon_stat[statsIndex].vit} />
+          <StatDisplay type="hp" value={stats.hp} />
+          <StatDisplay type="atk" value={stats.atk} />
+          <StatDisplay type="vit" value={stats.vit} />
         </div>
 
         <Lines

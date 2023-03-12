@@ -40,6 +40,7 @@ import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 import { Button, Chip, Modal } from "@mui/material";
 import { MdFilterAlt } from "react-icons/md";
 import { useWeaponsFilters } from "@store/weapons-filters";
+import Stat from "@components/Stat";
 
 export type IWeapon = weapon & {
   weapon_ability_link: (weapon_ability_link & {
@@ -379,6 +380,8 @@ export function WeaponsTable({
       ] = weapon.weapon_ability_link[3].weapon_ability.name;
     });
 
+  const isExalted = useSettingsStore((state) => state.isExalted);
+
   return (
     <MaterialTable
       title={title ?? `${weapons.length} weapons in the database.`}
@@ -454,8 +457,40 @@ export function WeaponsTable({
           },
           hideFilterIcon: true,
           filterPlaceholder: "> HP",
-          customFilterAndSearch: (term, weapon) =>
-            weapon.weapon_stat[0].hp >= Number(term),
+          customFilterAndSearch: (term, weapon) => {
+            let stats = weapon.weapon_stat
+              .filter((row) => !row.is_refined)
+              .pop();
+
+            if (isExalted) {
+              const hasRefined = weapon.weapon_stat.find(
+                (row) => row.is_refined
+              );
+
+              if (hasRefined) {
+                stats = hasRefined;
+              }
+            }
+
+            return stats.hp >= Number(term);
+          },
+          render: (weapon) => {
+            let stats = weapon.weapon_stat
+              .filter((row) => !row.is_refined)
+              .pop();
+
+            if (isExalted) {
+              const hasRefined = weapon.weapon_stat.find(
+                (row) => row.is_refined
+              );
+
+              if (hasRefined) {
+                stats = hasRefined;
+              }
+            }
+
+            return <Stat type="hp" value={stats.hp} />;
+          },
         },
         {
           field: "weapon_stat[0].atk",
@@ -467,8 +502,40 @@ export function WeaponsTable({
           },
           hideFilterIcon: true,
           filterPlaceholder: "> ATK",
-          customFilterAndSearch: (term, weapon) =>
-            weapon.weapon_stat[0].atk >= Number(term),
+          customFilterAndSearch: (term, weapon) => {
+            let stats = weapon.weapon_stat
+              .filter((row) => !row.is_refined)
+              .pop();
+
+            if (isExalted) {
+              const hasRefined = weapon.weapon_stat.find(
+                (row) => row.is_refined
+              );
+
+              if (hasRefined) {
+                stats = hasRefined;
+              }
+            }
+
+            return stats.atk >= Number(term);
+          },
+          render: (weapon) => {
+            let stats = weapon.weapon_stat
+              .filter((row) => !row.is_refined)
+              .pop();
+
+            if (isExalted) {
+              const hasRefined = weapon.weapon_stat.find(
+                (row) => row.is_refined
+              );
+
+              if (hasRefined) {
+                stats = hasRefined;
+              }
+            }
+
+            return <Stat type="atk" value={stats.atk} />;
+          },
         },
         {
           field: "weapon_stat[0].vit",
@@ -480,8 +547,40 @@ export function WeaponsTable({
           },
           hideFilterIcon: true,
           filterPlaceholder: "> DEF",
-          customFilterAndSearch: (term, weapon) =>
-            weapon.weapon_stat[0].vit >= Number(term),
+          customFilterAndSearch: (term, weapon) => {
+            let stats = weapon.weapon_stat
+              .filter((row) => !row.is_refined)
+              .pop();
+
+            if (isExalted) {
+              const hasRefined = weapon.weapon_stat.find(
+                (row) => row.is_refined
+              );
+
+              if (hasRefined) {
+                stats = hasRefined;
+              }
+            }
+
+            return stats.vit >= Number(term);
+          },
+          render: (weapon) => {
+            let stats = weapon.weapon_stat
+              .filter((row) => !row.is_refined)
+              .pop();
+
+            if (isExalted) {
+              const hasRefined = weapon.weapon_stat.find(
+                (row) => row.is_refined
+              );
+
+              if (hasRefined) {
+                stats = hasRefined;
+              }
+            }
+
+            return <Stat type="vit" value={stats.vit} />;
+          },
         },
         {
           field: "weapon_skill_link[0].weapon_skill.description",

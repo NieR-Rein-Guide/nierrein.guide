@@ -19,6 +19,8 @@ import {
 import Radio from "@components/form/Radio";
 import Slider from "rc-slider";
 import { Event } from "../../models/types";
+import { Switch } from "@mui/material";
+import { useSettingsStore } from "@store/settings";
 
 interface CharactersPageProps {
   weapon: (weapon & {
@@ -44,6 +46,9 @@ export default function WeaponPage({
   const [skillLevel, setSkillLevel] = useState(15);
   const [evolutionStage, setEvolutionStage] = useState(weapon.length - 1);
 
+  const isExalted = useSettingsStore((state) => state.isExalted);
+  const setIsExalted = useSettingsStore((state) => state.setIsExalted);
+
   return (
     <Layout>
       <Meta
@@ -54,13 +59,23 @@ export default function WeaponPage({
 
       <nav className="flex flex-col md:flex-row items-center justify-between gap-2 mb-4">
         <Link href="/weapons" passHref={true} className="btn">
-
           <SVG src="/decorations/arrow-left.svg" className="h-6" />
           <span>Return to Weapons</span>
-
         </Link>
 
         <div className="flex items-center flex-wrap justify-around gap-4 bg-grey-dark px-4 py-6 mb-6 bordered relative">
+          <div className="flex items-center sm:items-start sm:flex-col h-9">
+            <label htmlFor="exalt" className="text-beige cursor-pointer">
+              Refined Stats
+            </label>
+            <Switch
+              id="exalt"
+              size="small"
+              onChange={(e) => setIsExalted(e.target.checked)}
+              checked={isExalted}
+            />
+          </div>
+
           <div className="hidden md:block mr-4 w-32">
             <p className="text-beige">Skill Lv. {skillLevel}</p>
             <Slider

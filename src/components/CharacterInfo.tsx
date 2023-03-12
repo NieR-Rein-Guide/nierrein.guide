@@ -568,7 +568,7 @@ function CostumeDetails({
         </div>
 
         {/* Costume's weapon */}
-        <SingleWeapon weapon={costume.weapon} statsIndex={0} />
+        <SingleWeapon weapon={costume.weapon} />
 
         {/* Detailed Stats */}
         {stats && (

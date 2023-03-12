@@ -14,9 +14,8 @@ export async function getAllWeapons() {
     include: {
       weapon_stat: {
         orderBy: {
-          level: "desc",
+          level: "asc",
         },
-        take: 1,
       },
       weapon_ability_link: {
         where: {
@@ -64,9 +63,8 @@ export async function getAllWeapons() {
     include: {
       weapon_stat: {
         orderBy: {
-          level: "desc",
+          level: "asc",
         },
-        take: 1,
       },
       weapon_ability_link: {
         where: {
