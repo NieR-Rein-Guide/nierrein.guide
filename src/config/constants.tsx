@@ -948,6 +948,10 @@ export const SKILLS_TYPES = [
     options: ["reduce def", "decrease their def", "reduce enemy defense"],
   },
   {
+    label: "Reduce attack (Ripper)",
+    options: ["reduce atk", "reduce attack"],
+  },
+  {
     label: "Cooldown",
     options: ["cooldown"],
   },
