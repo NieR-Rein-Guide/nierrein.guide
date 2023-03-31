@@ -68,6 +68,8 @@ model tiers_items {
   position             Int
   tooltip              String?
   tooltip_is_important Boolean?
+  awakening_step       Int      @default(0)
+  attribute            String?  @db.VarChar
   tiers                tiers    @relation(fields: [tier_id], references: [id], onDelete: Cascade)
 }
 

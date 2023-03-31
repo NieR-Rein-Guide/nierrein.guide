@@ -31,7 +31,16 @@ import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
 import Image from "next/legacy/image";
-import { Autocomplete, Modal, TextField, Tooltip } from "@mui/material";
+import {
+  Autocomplete,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Modal,
+  TextField,
+  Tooltip,
+  Select,
+} from "@mui/material";
 import { BtnSecondary } from "@components/btn";
 import axios from "axios";
 import Wysiwyg from "@components/Wysiwyg";
@@ -41,6 +50,8 @@ import CostumeSelect from "@components/characters/CostumeSelect";
 import Checkbox from "@components/form/Checkbox";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 import { useFilteredCostumes } from "@hooks/useFilteredCostumes";
+import ATTRIBUTES from "@utils/attributes";
+import Element from "@components/Element";
 
 const DEFAULT_DESCRIPTION = "<p>My awesome (and objective) tierlist.</p>";
 
@@ -312,6 +323,8 @@ export default function TierlistBuilder({
         id: `${costume.character.character_id}-${costume.costume_id}`,
         tooltip: "",
         tooltip_is_important: false,
+        awakening_step: 0,
+        attribute: "",
       }));
 
     return filtered;
@@ -390,10 +403,8 @@ export default function TierlistBuilder({
 
       <nav className="mb-8">
         <Link href="/tierlists" passHref={true} className="btn">
-
           <SVG src="/decorations/arrow-left.svg" className="h-6" />
           <span>See all tier lists</span>
-
         </Link>
       </nav>
 
@@ -553,6 +564,28 @@ export default function TierlistBuilder({
                                           alt={`${item.title} thumbnail`}
                                           rarity={RARITY[item.rarity]}
                                         />
+                                        {item.awakening_step > 0 && (
+                                          <span className="absolute -top-2 right-0 text-xs mt-2 transform scale-90 z-20">
+                                            <img
+                                              src={
+                                                item.awakening_step === 5
+                                                  ? "/icons/costumes/awaken_rank_icon_rainbow.png"
+                                                  : "/icons/costumes/awaken_rank_icon_default.png"
+                                              }
+                                            />
+                                            <span className="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 font-semibold text-lg">
+                                              {item.awakening_step}
+                                            </span>
+                                          </span>
+                                        )}
+                                        {item.attribute && (
+                                          <span className="absolute top-6 right-0 text-xs mt-2">
+                                            <Element
+                                              type={item.attribute}
+                                              size={30}
+                                            />
+                                          </span>
+                                        )}
                                         {ind === state.length - 1 && (
                                           <div className="text-xxs text-center mt-1">
                                             <p className="mb-0 leading-none">
@@ -625,6 +658,8 @@ export default function TierlistBuilder({
                                       id: new Date().toISOString(),
                                       tooltip: "",
                                       tooltip_is_important: false,
+                                      awakening_step: 0,
+                                      attribute: "",
                                     });
                                   })
                                 );
@@ -710,6 +745,60 @@ export default function TierlistBuilder({
                 setState(newState);
               }}
             />
+          </div>
+          <div className="flex items-center mt-4 gap-4">
+            <FormControl className="w-full">
+              <InputLabel id="awakening-step">
+                Preferred Awakening Level
+              </InputLabel>
+              <Select
+                labelId="awakening-step"
+                value={
+                  state[currentIndex]?.items[currentItemIndex]?.awakening_step
+                }
+                label="Type"
+                onChange={(e) => {
+                  const newState = produce(state, (draft) => {
+                    draft[currentIndex].items[currentItemIndex].awakening_step =
+                      Number(e.target.value);
+                  });
+
+                  setState(newState);
+                }}
+              >
+                <MenuItem value="0">Lv. 0</MenuItem>
+                <MenuItem value="1">Lv. 1</MenuItem>
+                <MenuItem value="2">Lv. 2</MenuItem>
+                <MenuItem value="3">Lv. 3</MenuItem>
+                <MenuItem value="4">Lv. 4</MenuItem>
+                <MenuItem value="5">Lv. 5</MenuItem>
+              </Select>
+            </FormControl>
+            <FormControl className="w-full">
+              <InputLabel id="preferred-attribute">
+                Preferred Attribute
+              </InputLabel>
+              <Select
+                labelId="preferred-attribute"
+                value={state[currentIndex]?.items[currentItemIndex]?.attribute}
+                label="Type"
+                onChange={(e) => {
+                  const newState = produce(state, (draft) => {
+                    draft[currentIndex].items[currentItemIndex].attribute =
+                      e.target.value;
+                  });
+
+                  setState(newState);
+                }}
+              >
+                <MenuItem value="">Remove Attribute</MenuItem>
+                {ATTRIBUTES.map((attribute) => (
+                  <MenuItem key={attribute} value={attribute}>
+                    {attribute}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
           </div>
           <div className="flex justify-center mt-4">
             <button onClick={handleTooltipModalClose} className="btn">

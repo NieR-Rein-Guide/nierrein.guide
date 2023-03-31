@@ -38,6 +38,7 @@ import { AiOutlinePushpin } from "react-icons/ai";
 import { usePanelStore } from "@store/panels";
 import { useSettingsStore } from "@store/settings";
 import { hideSEASpoiler } from "@utils/hideSEASpoiler";
+import Element from "@components/Element";
 
 /* const COSTUME_STAT_PROPERTIES = [
   "atk",
@@ -85,10 +86,8 @@ export default function TierList({
 
       <nav className="mb-16">
         <Link href="/tierlists/community" passHref={true} className="btn">
-
           <SVG src="/decorations/arrow-left.svg" className="h-6" />
           <span>Go back to tierlists</span>
-
         </Link>
       </nav>
 
@@ -347,6 +346,47 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                               <div className="absolute -top-2 right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-6 w-6 text-lg font-labor">
                                 {tierItem.tooltip_is_important ? "!" : "?"}
                               </div>
+                            </Tooltip>
+                          )}
+                          {tierItem.awakening_step > 0 && (
+                            <Tooltip
+                              enterTouchDelay={0}
+                              className="cursor-help"
+                              title={
+                                <p>
+                                  Preferred Awakening Level for this costume is
+                                  Lv. {tierItem.awakening_step}
+                                </p>
+                              }
+                            >
+                              <span className="absolute -top-4 right-1 text-xs mt-2 transform scale-90 z-20">
+                                <img
+                                  src={
+                                    tierItem.awakening_step === 5
+                                      ? "/icons/costumes/awaken_rank_icon_rainbow.png"
+                                      : "/icons/costumes/awaken_rank_icon_default.png"
+                                  }
+                                />
+                                <span className="absolute left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 font-semibold text-lg">
+                                  {tierItem.awakening_step}
+                                </span>
+                              </span>
+                            </Tooltip>
+                          )}
+                          {tierItem.attribute && (
+                            <Tooltip
+                              enterTouchDelay={0}
+                              className="cursor-help"
+                              title={
+                                <p>
+                                  Preferred Attribute for this costume is{" "}
+                                  {tierItem.attribute}
+                                </p>
+                              }
+                            >
+                              <span className="absolute top-4 right-1 text-xs mt-2 z-10">
+                                <Element type={tierItem.attribute} size={30} />
+                              </span>
                             </Tooltip>
                           )}
                           <CostumeThumbnail
