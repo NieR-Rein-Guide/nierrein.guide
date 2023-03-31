@@ -65,6 +65,7 @@ import switchImg from "../../public/icons/switch.png";
 import { chaptersIcons } from "@utils/chaptersIcons";
 import { LimitedCostume } from "./LimitedCostume";
 import { SingleWeapon } from "./WeaponInfo";
+import Element from "./Element";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -227,6 +228,30 @@ function CostumeDetails({
           <div>
             <div className="flex items-center gap-x-2 text-xl mt-4">
               <div className="flex items-center gap-x-2">
+                <Tooltip
+                  enterTouchDelay={0}
+                  className="cursor-help"
+                  title={
+                    <div>
+                      <p>
+                        Primary weapons whose affinity matches a costume's
+                        Proficient Affinity provide +5,000 HP, and matching
+                        secondary weapons provide +2,500 HP, for a maximum
+                        increase of +10,000 HP.{" "}
+                      </p>
+                      <Link
+                        className="text-blue-300 underline"
+                        href="https://nierrein.guide/notice/1043"
+                      >
+                        Learn more about Proficient Affinity
+                      </Link>
+                    </div>
+                  }
+                >
+                  <div className="w-8">
+                    <Element size={32} type={costume.attribute} />
+                  </div>
+                </Tooltip>
                 <div className="w-8">
                   <Image
                     layout="responsive"

@@ -114,6 +114,7 @@ model costume {
   asset_id             String?
   emblem_id            Int?
   debris_id            Int?
+  attribute            String?
   weapon_type          String?
   rarity               String?
   release_time         DateTime               @db.Timestamptz(6)
