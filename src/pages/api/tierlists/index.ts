@@ -58,7 +58,7 @@ export default async function handler(
             tooltip: item.tooltip ?? undefined,
             tooltip_is_important: item.tooltip_is_important ?? false,
             awakening_step: item.awakening_step ?? 0,
-            attribute: item.attribute ?? "",
+            attribute: item.preferred_attribute ?? "",
           })),
         });
       }
@@ -150,7 +150,7 @@ export default async function handler(
           tooltip: item.tooltip ?? undefined,
           tooltip_is_important: item.tooltip_is_important ?? false,
           awakening_step: item.awakening_step ?? 0,
-          attribute: item.attribute ?? "",
+          attribute: item.preferred_attribute ?? "",
         })),
       });
     }

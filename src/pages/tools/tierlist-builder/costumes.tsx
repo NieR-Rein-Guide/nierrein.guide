@@ -324,7 +324,7 @@ export default function TierlistBuilder({
         tooltip: "",
         tooltip_is_important: false,
         awakening_step: 0,
-        attribute: "",
+        preferred_attribute: "",
       }));
 
     return filtered;
@@ -659,7 +659,7 @@ export default function TierlistBuilder({
                                       tooltip: "",
                                       tooltip_is_important: false,
                                       awakening_step: 0,
-                                      attribute: "",
+                                      preferred_attribute: "",
                                     });
                                   })
                                 );
@@ -780,12 +780,16 @@ export default function TierlistBuilder({
               </InputLabel>
               <Select
                 labelId="preferred-attribute"
-                value={state[currentIndex]?.items[currentItemIndex]?.attribute}
+                value={
+                  state[currentIndex]?.items[currentItemIndex]
+                    ?.preferred_attribute
+                }
                 label="Type"
                 onChange={(e) => {
                   const newState = produce(state, (draft) => {
-                    draft[currentIndex].items[currentItemIndex].attribute =
-                      e.target.value;
+                    draft[currentIndex].items[
+                      currentItemIndex
+                    ].preferred_attribute = e.target.value;
                   });
 
                   setState(newState);
