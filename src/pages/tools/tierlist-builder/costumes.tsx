@@ -578,10 +578,10 @@ export default function TierlistBuilder({
                                             </span>
                                           </span>
                                         )}
-                                        {item.attribute && (
+                                        {item.preferred_attribute && (
                                           <span className="absolute top-6 right-0 text-xs mt-2">
                                             <Element
-                                              type={item.attribute}
+                                              type={item.preferred_attribute}
                                               size={30}
                                             />
                                           </span>
