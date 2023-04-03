@@ -6,22 +6,25 @@ export interface CostumeLink {
   weapon_id?: number;
 }
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const { id } = req.query
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
+  const { id } = req.query;
 
-  if (req.method === 'GET') {
+  if (req.method === "GET") {
     try {
       if (!id) {
         return res.status(400).json({
-          error: 'Missing id.',
-        })
+          error: "Missing id.",
+        });
       }
 
       const link = await prisma.nrg.costumes_link.findFirst({
         where: {
           weapon_id: Number(id),
-        }
-      })
+        },
+      });
 
       const costume = await prisma.dump.costume.findUnique({
         where: {
@@ -36,19 +39,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   ability_level: 4,
                   AND: {
                     ability_slot: {
-                      lte: 2
-                    }
-                  }
+                      lte: 2,
+                    },
+                  },
                 },
                 {
                   ability_level: 1,
                   AND: {
                     ability_slot: {
                       equals: 3,
-                    }
-                  }
-                }
-              ]
+                    },
+                  },
+                },
+              ],
             },
             orderBy: {
               ability_slot: "asc",
@@ -66,20 +69,19 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             },
           },
           costume_stat: {
-            take: 1,
             orderBy: {
-              level: "desc",
+              level: "asc",
             },
           },
         },
-      })
+      });
 
-      return res.status(200).json(costume)
+      return res.status(200).json(costume);
     } catch (error) {
-      console.error(error)
+      console.error(error);
       return res.status(500).json({
         error: error.message,
-      })
+      });
     }
   }
 }

@@ -19,19 +19,19 @@ export async function getAllCostumes({
               ability_level: 4,
               AND: {
                 ability_slot: {
-                  lte: 2
-                }
-              }
+                  lte: 2,
+                },
+              },
             },
             {
               ability_level: 1,
               AND: {
                 ability_slot: {
                   equals: 3,
-                }
-              }
-            }
-          ]
+                },
+              },
+            },
+          ],
         },
         orderBy: {
           ability_slot: "asc",
@@ -50,7 +50,7 @@ export async function getAllCostumes({
       },
       costume_stat: {
         orderBy: {
-          awakening_step: 'asc',
+          awakening_step: "asc",
         },
       },
       debris: true,
@@ -58,7 +58,7 @@ export async function getAllCostumes({
   });
 
   for (const costume of costumes) {
-    await alterCostumeToAddWeapon(costume)
+    await alterCostumeToAddWeapon(costume);
 
     const link = await prisma.nrg.costumes_link.findUnique({
       where: {
@@ -107,7 +107,7 @@ export async function getAllCostumes({
 export async function getCostume(costumeId: number) {
   const costume = await prisma.dump.costume.findUnique({
     where: {
-      costume_id: costumeId
+      costume_id: costumeId,
     },
     include: {
       character: true,
@@ -118,19 +118,19 @@ export async function getCostume(costumeId: number) {
               ability_level: 4,
               AND: {
                 ability_slot: {
-                  lte: 2
-                }
-              }
+                  lte: 2,
+                },
+              },
             },
             {
               ability_level: 1,
               AND: {
                 ability_slot: {
                   equals: 3,
-                }
-              }
-            }
-          ]
+                },
+              },
+            },
+          ],
         },
         orderBy: {
           ability_slot: "asc",
@@ -148,9 +148,8 @@ export async function getCostume(costumeId: number) {
         },
       },
       costume_stat: {
-        take: 1,
         orderBy: {
-          level: "desc",
+          level: "asc",
         },
       },
     },
@@ -158,5 +157,5 @@ export async function getCostume(costumeId: number) {
 
   return {
     costume,
-  }
+  };
 }
