@@ -1,5 +1,5 @@
 import Image from "next/legacy/image";
-import { formatDistanceToNow } from "date-fns";
+import { formatDistanceToNow, differenceInDays } from "date-fns";
 import { tiers, tiers_items, tierlists } from "@prisma/client-nrg";
 import { NextPageContext } from "next";
 import { character, costume } from "@prisma/client";
@@ -39,19 +39,6 @@ import { usePanelStore } from "@store/panels";
 import { useSettingsStore } from "@store/settings";
 import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 import Element from "@components/Element";
-
-/* const COSTUME_STAT_PROPERTIES = [
-  "atk",
-  "vit",
-  "agi",
-  "hp",
-  "crit_atk",
-  "crit_rate",
-  "eva_rate",
-  "level",
-];
-
-const WEAPON_STAT_PROPERTIES = ["atk", "vit", "hp", "level"]; */
 
 const DEFAULT_COSTUME_STAT_PROPERTIES = ["atk", "vit", "agi", "hp"];
 
@@ -331,6 +318,29 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                               : ""
                           )}
                         >
+                          {differenceInDays(
+                            new Date(),
+                            new Date(costume.release_time)
+                          ) <= 31 && (
+                            <Tooltip
+                              enterTouchDelay={0}
+                              className="cursor-help"
+                              title={
+                                <p>
+                                  This costume has been released{" "}
+                                  {formatDistanceToNow(
+                                    new Date(costume.release_time),
+                                    { addSuffix: true }
+                                  )}
+                                </p>
+                              }
+                            >
+                              <span className="absolute -top-4 text-xs mt-2 z-10 bg-green-300 text-black py-1 px-2 rounded-full font-semibold">
+                                NEW
+                              </span>
+                            </Tooltip>
+                          )}
+
                           {tierItem.tooltip && !showNotesInline && (
                             <Tooltip
                               enterTouchDelay={0}
@@ -389,6 +399,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                               </span>
                             </Tooltip>
                           )}
+
                           <CostumeThumbnail
                             href={`/characters/${costume.character.slug}/${costume.slug}`}
                             src={`${CDN_URL}${costume.image_path_base}battle.png`}

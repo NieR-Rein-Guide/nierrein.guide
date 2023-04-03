@@ -63,18 +63,13 @@ export default function CharactersPage({
   abilitiesLookup,
   charactersLookup,
 }: CharactersPageProps): JSX.Element {
-  const { filteredCharacters, filteredCostumes } = useFilteredCostumes({
-    costumes,
-    characters,
-  });
-
   if (!isIndex) {
     return (
       <Costume
         currentCharacter={currentCharacter}
         selectedCostume={selectedCostume}
-        characters={filteredCharacters}
-        costumes={filteredCostumes}
+        characters={characters}
+        costumes={costumes}
         abilities={abilities}
         skills={skills}
         stats={stats}
@@ -82,6 +77,27 @@ export default function CharactersPage({
       />
     );
   }
+
+  return (
+    <IndexFiltered
+      costumes={costumes}
+      characters={characters}
+      abilitiesLookup={abilitiesLookup}
+      charactersLookup={charactersLookup}
+    />
+  );
+}
+
+function IndexFiltered({
+  costumes,
+  characters,
+  abilitiesLookup,
+  charactersLookup,
+}) {
+  const { filteredCharacters, filteredCostumes } = useFilteredCostumes({
+    costumes,
+    characters,
+  });
 
   return (
     <Index

@@ -45,18 +45,22 @@ export default function TierlistsPageProps({
   const [pvpTabIndex] = useState(defaultPvpTab);
 
   const handleTabsChange = (index) => {
-    router.push(`/tierlists/${TABS_MAPPING[index]}`, null, {
-      shallow: true,
-      scroll: false,
-    });
+    if (TABS_MAPPING[index]) {
+      router.push(`/tierlists/${TABS_MAPPING[index]}`, null, {
+        shallow: true,
+        scroll: false,
+      });
+    }
   };
 
   const handlePvpTabsChange = (index) => {
-    history.replaceState(
-      null,
-      null,
-      `/tierlists/pvp/${pvp[index].tierlist.slug}`
-    );
+    if (pvp?.[index]?.tierlist?.slug) {
+      history.replaceState(
+        null,
+        null,
+        `/tierlists/pvp/${pvp[index].tierlist.slug}`
+      );
+    }
   };
 
   // Database is empty.
@@ -119,7 +123,7 @@ export default function TierlistsPageProps({
 
         <Tabs.Root
           defaultValue={tabIndex?.toString()}
-          onChange={handleTabsChange}
+          onValueChange={handleTabsChange}
         >
           <Tabs.List className="relative bordered bg-grey-dark p-4 grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-8">
             <TierListTab index={0}>
@@ -141,7 +145,7 @@ export default function TierlistsPageProps({
               <Tabs.Content value="0">
                 <Tabs.Root
                   defaultValue={tabIndex?.toString()}
-                  onChange={handleTabsChange}
+                  onValueChange={handleTabsChange}
                 >
                   <Tabs.List className="grid grid-cols-1 md:grid-cols-2 gap-y-1 mb-8">
                     {seaPveTierlists.map((tierlist, index) => (
@@ -172,7 +176,7 @@ export default function TierlistsPageProps({
               <Tabs.Content value="1">
                 <Tabs.Root
                   defaultValue={pvpTabIndex?.toString()}
-                  onChange={handlePvpTabsChange}
+                  onValueChange={handlePvpTabsChange}
                 >
                   <Tabs.List className="grid grid-cols-1 md:grid-cols-4 gap-y-1 mb-8">
                     {seaPvpTierlists.map((tierlist, index) => (
@@ -216,7 +220,7 @@ export default function TierlistsPageProps({
                 <Tabs.Root
                   className="mt-4 md:mt-0"
                   defaultValue={pvpTabIndex?.toString()}
-                  onChange={handlePvpTabsChange}
+                  onValueChange={handlePvpTabsChange}
                 >
                   <Tabs.List className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
                     {pvp.map((tierlist, index) => (

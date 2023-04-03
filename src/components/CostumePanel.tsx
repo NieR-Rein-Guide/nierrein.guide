@@ -17,24 +17,17 @@ import {
 import { Event } from "@models/types";
 import Image from "next/legacy/image";
 import weaponsIcons from "@utils/weaponsIcons";
-import { format } from "date-fns";
-import Skill from "./Skill";
 import classNames from "classnames";
 import { CDN_URL } from "@config/constants";
-import getBaseRarity from "@utils/getBaseRarity";
-import WeaponThumbnail from "./WeaponThumbnail";
 import CostumeThumbnail from "./CostumeThumbnail";
 import StatDisplay from "./StatDisplay";
 import Ability from "./Ability";
 import slug from "slugg";
 import SVG from "react-inlinesvg";
 import { useState } from "react";
-import skillGaugeColors, {
-  skillGaugeBorderColors,
-} from "@utils/skillGaugeColors";
-import { Tooltip } from "@mui/material";
-import getGaugeLevel from "@utils/getGaugeLevel";
 import { Gauge } from "./Gauge";
+import { useInventoryStore } from "@store/inventory";
+import Checkbox from "./form/Checkbox";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -71,6 +64,9 @@ export function CostumePanel({ costumeId }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const closePanel = usePanelStore((state) => state.addCostume);
+
+  const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
+  const ownedCostumes = useInventoryStore((state) => state.costumes);
 
   return (
     <div
@@ -125,6 +121,17 @@ export function CostumePanel({ costumeId }) {
                 </span>
               </span>
               <span className="text-sm text-beige">{costume.title}</span>
+              <div className="flex items-center mt-2">
+                <Checkbox
+                  label={
+                    ownedCostumes.includes(costume.costume_id)
+                      ? "Owned"
+                      : "Owned?"
+                  }
+                  isChecked={ownedCostumes.includes(costume.costume_id)}
+                  setState={() => toggleFromInventory(costume.costume_id)}
+                />
+              </div>
             </div>
           </div>
 
