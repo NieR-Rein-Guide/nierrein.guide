@@ -284,7 +284,7 @@ export default function MemoirsPage({
                               />
                             </div>
                             <a
-                              href={`/database/stories/memoirs?memoir_series_id=${memoir.memoir_series_id}`}
+                              href={`/database/stories/memoirs?memoir_series_id=${memoir.series_id}`}
                               className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
                             >
                               {memoir.name}
@@ -346,7 +346,7 @@ export default function MemoirsPage({
                             />
                           </div>
                           <a
-                            href={`/database/stories/memoirs?memoir_series_id=${memoir.memoir_series_id}`}
+                            href={`/database/stories/memoirs?memoir_series_id=${memoir.series_id}`}
                             className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
                           >
                             {memoir.name}
@@ -363,7 +363,7 @@ export default function MemoirsPage({
             <div className="grid grid-cols-1 md:grid-cols-2 place-items-center text-center gap-8">
               {memoirs.map((memoir) => (
                 <div
-                  key={memoir.memoir_series_id}
+                  key={memoir.series_id}
                   className="bg-grey-dark border border-beige border-opacity-50 p-4 w-full"
                 >
                   <h3 className="text-beige text-3xl">{memoir.name}</h3>
@@ -403,7 +403,7 @@ export default function MemoirsPage({
                             />
                           </div>
                           <a
-                            href={`/database/stories/memoirs?memoir_series_id=${memoir.memoir_series_id}`}
+                            href={`/database/stories/memoirs?memoir_series_id=${memoir.series_id}`}
                             className="hidden text-xs font-mono z-10 text-shadow text-beige md:inline-block md:w-28 text-center hover:underline"
                           >
                             {memoir.name}
