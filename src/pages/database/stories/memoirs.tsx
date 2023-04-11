@@ -135,7 +135,10 @@ export async function getServerSideProps(context: NextPageContext) {
   };
 
   if (context.query.memoir_series_id) {
-    where["memoir_series_id"] = Number(context.query.memoir_series_id);
+    where["memoir_series"] = {};
+    where["memoir_series"]["memoir_series_id"] = Number(
+      context.query.memoir_series_id
+    );
   }
 
   const memoirs = await prisma.dump.memoir.findMany({
