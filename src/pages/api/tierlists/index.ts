@@ -185,7 +185,7 @@ export default async function handler(
 
           return {
             ...tierItem,
-            preferred_attribute: item?.preferred_attribute ?? null,
+            preferred_attribute: item?.attribute ?? null,
             ...item,
             id: `${tierItem.id}`,
           };
