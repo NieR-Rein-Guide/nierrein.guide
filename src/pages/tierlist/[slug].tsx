@@ -353,7 +353,17 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                                 ></div>
                               }
                             >
-                              <div className="absolute -top-2 right-2 z-20 flex items-center justify-center bg-white text-black rounded-full h-6 w-6 text-lg font-labor">
+                              <div
+                                className={classNames(
+                                  "absolute bottom-12 right-2 z-20 flex items-center justify-center rounded-full h-6 w-6 text-lg font-labor",
+                                  tierItem.tooltip_is_important
+                                    ? "bg-red-500 text-white font-black"
+                                    : "",
+                                  !tierItem.tooltip_is_important
+                                    ? "bg-white text-black"
+                                    : ""
+                                )}
+                              >
                                 {tierItem.tooltip_is_important ? "!" : "?"}
                               </div>
                             </Tooltip>
