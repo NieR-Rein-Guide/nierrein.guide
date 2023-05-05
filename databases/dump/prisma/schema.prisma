@@ -365,46 +365,14 @@ model weapon_story_link {
   @@index([weapon_story_id], map: "ix_weapon_story_link_weapon_story_id")
 }
 
-model main_quest_chapters {
-  chapter_id            Int
-  chapter_text_asset_id Int
-  route_id              Int
-  chapter_number        String?
-  chapter_title         String?
-  order                 Decimal           @db.Decimal
-  stories               Json?
-  main_quest_routes     main_quest_routes @relation(fields: [route_id], references: [route_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_main_quest_chapters_main_quest_routes_route_id")
-
-  @@id([chapter_id, chapter_text_asset_id], map: "pk_main_quest_chapters")
-  @@index([route_id], map: "ix_main_quest_chapters_route_id")
-}
-
-model main_quest_routes {
-  route_id            Int                   @id(map: "pk_main_quest_routes") @default(autoincrement())
-  season_id           Int
-  route_name          String?
-  order               Int
-  main_quest_chapters main_quest_chapters[]
-  main_quest_seasons  main_quest_seasons    @relation(fields: [season_id], references: [season_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_main_quest_routes_main_quest_seasons_season_id")
-
-  @@index([season_id], map: "ix_main_quest_routes_season_id")
-}
-
-model main_quest_seasons {
-  season_id         Int                 @id(map: "pk_main_quest_seasons") @default(autoincrement())
-  season_name       String?
-  order             Int
-  main_quest_routes main_quest_routes[]
-}
-
-model card_stories {
-  id      Int     @id(map: "pk_card_stories") @default(autoincrement())
+model card_story {
+  id      Int     @id(map: "pk_card_story") @default(autoincrement())
   name    String?
   stories Json?
 }
 
-model events {
-  id         Int      @id(map: "pk_events") @default(autoincrement())
+model event {
+  id         Int      @id(map: "pk_event") @default(autoincrement())
   name       String?
   image_path String?
   start_date DateTime @db.Timestamptz(6)
@@ -412,10 +380,43 @@ model events {
   stories    Json?
 }
 
-model lost_archives {
-  id         Int     @id(map: "pk_lost_archives") @default(autoincrement())
+model lost_archive {
+  id         Int     @id(map: "pk_lost_archive") @default(autoincrement())
   name       String?
   number     String?
+  order      Int
   story      String?
   image_path String?
+}
+
+model main_quest_chapter {
+  chapter_id            Int
+  chapter_text_asset_id Int
+  route_id              Int
+  chapter_number        String?
+  chapter_title         String?
+  order                 Decimal          @db.Decimal
+  stories               Json?
+  main_quest_route      main_quest_route @relation(fields: [route_id], references: [route_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_main_quest_chapter_main_quest_route_route_id")
+
+  @@id([chapter_id, chapter_text_asset_id], map: "pk_main_quest_chapter")
+  @@index([route_id], map: "ix_main_quest_chapter_route_id")
+}
+
+model main_quest_route {
+  route_id           Int                  @id(map: "pk_main_quest_route") @default(autoincrement())
+  season_id          Int
+  route_name         String?
+  order              Int
+  main_quest_chapter main_quest_chapter[]
+  main_quest_season  main_quest_season    @relation(fields: [season_id], references: [season_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_main_quest_route_main_quest_season_season_id")
+
+  @@index([season_id], map: "ix_main_quest_route_season_id")
+}
+
+model main_quest_season {
+  season_id        Int                @id(map: "pk_main_quest_season") @default(autoincrement())
+  season_name      String?
+  order            Int
+  main_quest_route main_quest_route[]
 }
