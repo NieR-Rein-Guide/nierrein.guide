@@ -18,6 +18,7 @@ import { NextPageContext } from "next";
 import { Box } from "@mui/system";
 import { StoriesNavbar } from "./index";
 import { useSettingsStore } from "@store/settings";
+import StoriesLayout from "@components/Layout/StoriesLayout";
 
 interface DatabaseStoriesCostumesProps {
   costumes: costume[];
@@ -96,11 +97,7 @@ export default function DatabaseStoriesCostumes({
         cover="https://nierrein.guide/cover-stories.jpg"
       />
 
-      <section>
-        <h2 className="overlap">Costumes stories</h2>
-
-        <StoriesNavbar />
-
+      <StoriesLayout>
         <div className="flex flex-col items-center md:flex-row gap-y-4 gap-x-4 bg-grey-dark border border-beige border-opacity-50 p-4 mb-8">
           <Autocomplete
             onChange={(e, character) => {
@@ -164,7 +161,6 @@ export default function DatabaseStoriesCostumes({
             />
           </LocalizationProvider>
         </div>
-
         <div>
           {costumes
             .filter((costume) => {
@@ -215,7 +211,7 @@ export default function DatabaseStoriesCostumes({
             </div>
           )}
         </div>
-      </section>
+      </StoriesLayout>
     </Layout>
   );
 }

@@ -11,6 +11,7 @@ import { Box } from "@mui/system";
 import { StoriesNavbar } from "./index";
 import { useSettingsStore } from "@store/settings";
 import CompanionThumbnail from "@components/CompanionThumbnail";
+import StoriesLayout from "@components/Layout/StoriesLayout";
 
 interface DatabaseStoriesCompanionsProps {
   companions: companion[];
@@ -56,11 +57,7 @@ export default function DatabaseStoriesCompanions({
         cover="https://nierrein.guide/cover-stories.jpg"
       />
 
-      <section>
-        <h2 className="overlap">Companions stories</h2>
-
-        <StoriesNavbar />
-
+      <StoriesLayout>
         <div className="flex flex-col items-center md:flex-row gap-y-4 gap-x-4 bg-grey-dark border border-beige border-opacity-50 p-4 mb-8">
           <Autocomplete
             onChange={(e, companion: companion) => {
@@ -127,7 +124,7 @@ export default function DatabaseStoriesCompanions({
               </div>
             ))}
         </div>
-      </section>
+      </StoriesLayout>
     </Layout>
   );
 }
