@@ -2,16 +2,42 @@ import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import Link from "next/link";
 import SVG from "react-inlinesvg";
-import prisma from "@libs/prisma";
 import classNames from "classnames";
 import { useRouter } from "next/router";
-import {
-  main_quest_chapters,
-  main_quest_routes,
-  main_quest_seasons,
-} from "@prisma/client";
 
 const ITEMS = [
+  {
+    label: "Main story",
+    href: "/database/stories/main",
+  },
+  {
+    label: "Characters",
+    href: "/database/stories/character",
+  },
+  {
+    label: "EX characters",
+    href: "/database/stories/ex-character",
+  },
+  {
+    label: "Recollections of Dusk",
+    href: "/database/stories/rod-character",
+  },
+  {
+    label: "Events",
+    href: "/database/stories/events",
+  },
+  {
+    label: "Anecdotes",
+    href: "/database/stories/anecdotes",
+  },
+  {
+    label: "Hidden stories",
+    href: "/database/stories/hidden-stories",
+  },
+  {
+    label: "Lost archives",
+    href: "/database/stories/lost-archives",
+  },
   {
     label: "Costumes",
     href: "/database/stories/costumes",
@@ -30,17 +56,7 @@ const ITEMS = [
   },
 ];
 
-interface Props {
-  main_quest_seasons: (main_quest_seasons & {
-    main_quest_routes: (main_quest_routes & {
-      main_quest_chapters: main_quest_chapters[];
-    })[];
-  })[];
-}
-
-export default function DatabaseStories({
-  main_quest_seasons,
-}: Props): JSX.Element {
+export default function DatabaseStories(): JSX.Element {
   return (
     <Layout>
       <Meta
@@ -61,40 +77,6 @@ export default function DatabaseStories({
 
         <div className="grid-cols-2">
           <StoriesNavbar />
-
-          <div className="bg-black">
-            {main_quest_seasons.map((season) => (
-              <div key={season.season_id}>
-                <h2 className="text-5xl">{season.season_name}</h2>
-
-                <div className="pl-4">
-                  {season.main_quest_routes.map((route) => (
-                    <div key={route.route_id}>
-                      <h3 className="text-3xl text-beige">
-                        {route.route_name}
-                      </h3>
-
-                      {route.main_quest_chapters.map((chapter) => (
-                        <div className="pl-4" key={chapter.chapter_id}>
-                          <h4 className="text-2xl text-beige">
-                            {chapter.chapter_title}
-                          </h4>
-                          {chapter.stories.map((story, index) => (
-                            <div key={index}>
-                              <p
-                                className="whitespace-pre mb-4 pl-4"
-                                dangerouslySetInnerHTML={{ __html: story }}
-                              ></p>
-                            </div>
-                          ))}
-                        </div>
-                      ))}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
     </Layout>
@@ -131,28 +113,4 @@ export function StoriesNavbar() {
       ))}
     </aside>
   );
-}
-
-export async function getStaticProps() {
-  const main_quest_seasons = await prisma.dump.main_quest_seasons.findMany({
-    orderBy: {
-      order: "asc",
-    },
-    include: {
-      main_quest_routes: {
-        include: {
-          main_quest_chapters: true,
-        },
-      },
-    },
-  });
-
-  return {
-    props: JSON.parse(
-      JSON.stringify({
-        main_quest_seasons,
-      })
-    ),
-    revalidate: 86400,
-  };
 }
