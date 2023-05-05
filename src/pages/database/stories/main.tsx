@@ -102,7 +102,7 @@ export default function DatabaseStories({
 
       <StoriesLayout>
         <div className="relative">
-          <div className="flex flex-wrap gap-x-4 mb-4">
+          <div className="flex items-center gap-y-4 gap-x-4 bg-grey-dark border border-beige border-opacity-50 p-4 mb-8">
             <FormControl className="flex-1">
               <InputLabel id="season-index">Arc</InputLabel>
               <Select
@@ -163,7 +163,6 @@ export default function DatabaseStories({
               </Select>
             </FormControl>
           </div>
-
           <article>
             {main_quest_season
               .filter((season, index) => index === seasonIndex)
@@ -213,7 +212,6 @@ export default function DatabaseStories({
                 </div>
               ))}
           </article>
-
           <nav className="sticky bottom-0 bg-grey-lighter rounded-t-xl flex border-t border-beige justify-between mt-4 w-full left-0 right-0 p-4 z-10">
             <Button
               disabled={
