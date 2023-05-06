@@ -30,7 +30,6 @@ const ITEMS = [
   {
     label: "Hidden stories",
     href: "/database/stories/hidden-stories",
-    disabled: true,
   },
   {
     label: "Lost archives",
@@ -66,7 +65,6 @@ export default function StoriesLayout({ children }): JSX.Element {
             href={item.href}
             className={classNames(
               "flex items-center justify-center text-center p-4 transition-colors ease-out-cubic relative bordered",
-              item.disabled ? "pointer-events-none opacity-40" : "",
               router.asPath.includes(item.href)
                 ? "active bg-beige active"
                 : "bg-grey-lighter"
