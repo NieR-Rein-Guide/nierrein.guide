@@ -65,7 +65,6 @@ export default function DatabaseStories({ characters }: Props): JSX.Element {
               .filter((character) => character.character_id === characterIndex)
               .map((character) => (
                 <div key={character.character_id}>
-                  <pre>{JSON.stringify(character.hidden_stories, null, 2)}</pre>
                   {character.hidden_stories.map(
                     ({ name, number, story, image_path }, index) => (
                       <div key={index} className="my-4">
