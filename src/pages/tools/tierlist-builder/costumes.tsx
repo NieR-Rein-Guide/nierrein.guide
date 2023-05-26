@@ -318,9 +318,9 @@ export default function TierlistBuilder({
         return ownedCostumes.includes(cost.costume_id);
       })
       .sort((a, b) => -b.character.name.localeCompare(a.character.name))
-      .map((costume) => ({
+      .map((costume, index) => ({
         ...costume,
-        id: `${costume.character.character_id}-${costume.costume_id}`,
+        id: `${costume.character.character_id}-${costume.costume_id}-${index}`,
         tooltip: "",
         tooltip_is_important: false,
         awakening_step: 0,
@@ -368,6 +368,21 @@ export default function TierlistBuilder({
     try {
       setLoading(true);
 
+      const formattedTiers = state.slice(0, state.length - 1).map((tiers) => {
+        const newItems = tiers.items.map((item) => ({
+          costume_id: item.costume_id,
+          tooltip: item.tooltip,
+          tooltip_is_important: item.tooltip_is_important,
+          awakening_step: item.awakening_step,
+          attribute: item.preferred_attribute,
+        }));
+
+        return {
+          ...tiers,
+          items: newItems,
+        };
+      });
+
       const response = await axios({
         url: "/api/tierlists",
         method: router.query.edit_key ? "PUT" : "POST",
@@ -376,7 +391,7 @@ export default function TierlistBuilder({
           description,
           type: "costumes",
           attribute: "all",
-          tiers: state.slice(0, state.length - 1),
+          tiers: formattedTiers,
           edit_key: router.query.edit_key,
         },
       });
@@ -655,7 +670,9 @@ export default function TierlistBuilder({
                                   produce(state, (draft) => {
                                     draft[draft.length - 1].items.push({
                                       ...costume,
-                                      id: new Date().toISOString(),
+                                      id: `${
+                                        costume.character.character_id
+                                      }-${Date.now()}`,
                                       tooltip: "",
                                       tooltip_is_important: false,
                                       awakening_step: 0,
