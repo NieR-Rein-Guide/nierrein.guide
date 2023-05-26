@@ -7,6 +7,9 @@ module.exports = withPWA({
   experimental: {
     largePageDataBytes: 1028 * 1000,
   },
+  api: {
+    responseLimit: "16mb",
+  },
   images: {
     domains: [
       "reinguide-assets.s3.eu-central-1.wasabisys.com",
