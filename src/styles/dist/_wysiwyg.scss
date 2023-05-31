@@ -1,4 +1,5 @@
 /*! wysiwyg.css v0.0.3 | MIT License | github.com/jgthms/wysiwyg.css */
+.MuiTooltip-tooltip,
 .wysiwyg {
   @apply font-labor overflow-hidden;
   line-height: 1.6;
@@ -281,7 +282,6 @@
     margin-top: 0.875em;
   }
 
-
   .table {
     @apply block overflow-auto max-h-96;
 
@@ -290,7 +290,8 @@
     }
   }
 
-  table, .table {
+  table,
+  .table {
     @apply w-full;
 
     img {
@@ -310,7 +311,8 @@
     padding: 0.7em;
     line-height: 1.4;
 
-    figure, img {
+    figure,
+    img {
       @apply mx-auto;
     }
   }

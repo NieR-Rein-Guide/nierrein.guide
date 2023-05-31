@@ -487,7 +487,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
 
                         {showNotesInline && (
                           <div
-                            className="flex-1 ml-4 max-w-xl"
+                            className="wysiwyg flex-1 ml-4 max-w-xl"
                             dangerouslySetInnerHTML={{
                               __html: tierItem.tooltip,
                             }}
