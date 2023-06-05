@@ -36,6 +36,10 @@ const ITEMS = [
     href: "/database/stories/lost-archives",
   },
   {
+    label: "Remnants",
+    href: "/database/stories/remnants",
+  },
+  {
     label: "Costumes",
     href: "/database/stories/costumes",
   },

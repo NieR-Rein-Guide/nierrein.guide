@@ -7,6 +7,8 @@ import Link from "next/link";
 import WeaponThumbnail from "./WeaponThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
 import { weapon } from "@prisma/client";
+import Element from "@components/Element";
+import { ElementTypes } from "@models/types";
 
 type WeaponType = "SWORD" | "BIG_SWORD" | "SPEAR" | "FIST" | "STAFF" | "GUN";
 
@@ -24,6 +26,7 @@ interface CostumeThumbnailProps {
   href?: string;
   sizeClasses?: string;
   weapon?: weapon;
+  attribute?: ElementTypes | string;
 }
 
 export default function CostumeThumbnail({
@@ -40,6 +43,7 @@ export default function CostumeThumbnail({
   href,
   sizeClasses = "min-h-20 min-w-20 h-20 w-20",
   weapon,
+  attribute,
 }: CostumeThumbnailProps): JSX.Element {
   const costumeRarity = typeof rarity === "number" ? rarity : RARITY[rarity];
   const emptyBackground = isLarge
@@ -79,6 +83,7 @@ export default function CostumeThumbnail({
             {isDark && (
               <SVG src="/icons/weapons/dark.svg" className="h-10 w-10" />
             )}
+            {attribute && <Element size={40} type={attribute} />}
           </div>
         </div>
 
@@ -149,6 +154,17 @@ export default function CostumeThumbnail({
           }}
         >
           <Image layout="fill" src={weaponsIcons[weaponType]} alt={alt} />
+        </div>
+      )}
+      {attribute && (
+        <div
+          className="z-10 h-6 w-6 absolute"
+          style={{
+            top: "26px",
+            left: "1px",
+          }}
+        >
+          <Element size={24} type={attribute} />
         </div>
       )}
 

@@ -420,3 +420,13 @@ model main_quest_season {
   order            Int
   main_quest_route main_quest_route[]
 }
+
+model remnant {
+  id            Int     @id(map: "pk_remnant") @default(autoincrement())
+  name          String?
+  effect        String?
+  category_type String?
+  order         Int
+  story         String?
+  image_path    String?
+}

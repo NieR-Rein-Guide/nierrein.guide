@@ -16,12 +16,13 @@ import CostumeSelect from "@components/characters/CostumeSelect";
 import { useRouter } from "next/router";
 import { NextPageContext } from "next";
 import { Box } from "@mui/system";
-import { StoriesNavbar } from "./index";
 import { useSettingsStore } from "@store/settings";
 import StoriesLayout from "@components/Layout/StoriesLayout";
 
 interface DatabaseStoriesCostumesProps {
-  costumes: costume[];
+  costumes: (costume & {
+    character: character;
+  })[];
   selectCostumes: {
     release_time: Date;
     slug: string;
@@ -174,6 +175,7 @@ export default function DatabaseStoriesCostumes({
               >
                 <div className="ml-auto mr-auto mb-4 md:mb-0 md:ml-0 md:mr-0">
                   <CostumeThumbnail
+                    href={`/characters/${costume.character.slug}/${costume.slug}`}
                     src={`${CDN_URL}${costume.image_path_base}battle.png`}
                     alt={`${costume.title} thumbnail`}
                     rarity={RARITY[costume.rarity]}
@@ -248,6 +250,9 @@ export async function getServerSideProps(context: NextPageContext) {
     orderBy: {
       release_time: "desc",
     },
+    include: {
+      character: true,
+    },
   });
 
   /**
@@ -259,12 +264,8 @@ export async function getServerSideProps(context: NextPageContext) {
       orderBy: {
         costume_id: "asc",
       },
-      select: {
+      include: {
         character: true,
-        title: true,
-        slug: true,
-        image_path_base: true,
-        release_time: true,
       },
     }),
     prisma.dump.character.findMany({

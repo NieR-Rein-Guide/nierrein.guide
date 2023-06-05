@@ -423,6 +423,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                                 ? "border-2 border-green-300"
                                 : ""
                             )}
+                            attribute={costume.attribute}
                           />
                           <p className="text-center text-sm mb-0 leading-none">
                             {costume.is_ex_costume && (

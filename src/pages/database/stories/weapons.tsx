@@ -14,7 +14,6 @@ import { sub } from "date-fns";
 import { useRouter } from "next/router";
 import { NextPageContext } from "next";
 import { Box } from "@mui/system";
-import { StoriesNavbar } from "./index";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import { useSettingsStore } from "@store/settings";
 import StoriesLayout from "@components/Layout/StoriesLayout";
@@ -150,6 +149,7 @@ export default function DatabaseStoriesWeapons({
               >
                 <div className="ml-auto mr-auto mb-4 md:mb-0 md:ml-0 md:mr-0">
                   <WeaponThumbnail
+                    href={`/weapons/${weapon.slug}`}
                     image_path={weapon.image_path}
                     alt={`${weapon.name} thumbnail`}
                     rarity={RARITY[weapon.rarity]}

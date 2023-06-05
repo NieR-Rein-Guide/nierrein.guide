@@ -430,6 +430,7 @@ export function CostumesTable({
                   rarity={RARITY[costume.rarity]}
                   weaponType={costume.weapon_type}
                   isDark={costume.is_ex_costume}
+                  attribute={costume.attribute}
                 />
                 <p>
                   <span className="flex items-center gap-x-1 text-xs">
@@ -907,6 +908,7 @@ export function CostumesGrid({
                   className="group"
                   imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
                   weapon={cost.weapon}
+                  attribute={costume.attribute}
                 >
                   <Link
                     href={`/characters/${cost.character.slug}/${cost.slug}`}
@@ -948,6 +950,7 @@ export function CostumesGrid({
                 rarity={cost.rarity}
                 weaponType={cost?.weapon_type}
                 isDark={cost?.is_ex_costume}
+                attribute={costume.attribute}
               />
               <p className="text-center text-sm mb-0 leading-none">
                 {cost.is_ex_costume && (
