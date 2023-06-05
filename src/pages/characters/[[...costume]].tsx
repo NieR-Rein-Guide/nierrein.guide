@@ -325,11 +325,13 @@ export async function getStaticPaths() {
 
   const characters = await prisma.dump.character.findMany({});
 
-  const costumesPaths = costumes.map((costume) => ({
-    params: {
-      costume: [costume.character.slug, costume.slug],
-    },
-  }));
+  const costumesPaths = costumes
+    .filter((costume) => costume.title)
+    .map((costume) => ({
+      params: {
+        costume: [costume.character.slug, costume.slug],
+      },
+    }));
 
   const charactersPaths = characters.map((character) => ({
     params: {

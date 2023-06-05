@@ -220,11 +220,13 @@ export async function getStaticPaths() {
     (a, b) => new Date(b.release_time) - new Date(a.release_time)
   );
 
-  const weaponsPaths = allWeapons.map((weapon) => ({
-    params: {
-      weapon: [weapon.slug],
-    },
-  }));
+  const weaponsPaths = allWeapons
+    .filter((weapon) => weapon.slug)
+    .map((weapon) => ({
+      params: {
+        weapon: [weapon.slug],
+      },
+    }));
 
   return {
     paths: [
