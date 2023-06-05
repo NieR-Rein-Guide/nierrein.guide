@@ -593,7 +593,9 @@ function CostumeDetails({
         </div>
 
         {/* Costume's weapon */}
-        <SingleWeapon weapon={costume.weapon} />
+        {(costume?.weapon && <SingleWeapon weapon={costume.weapon} />) || (
+          <p className="text-center">The weapon hasn't been linked yet.</p>
+        )}
 
         {/* Detailed Stats */}
         {stats && (
