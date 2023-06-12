@@ -13,7 +13,15 @@ import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 import { useTierlistsVotes } from "@store/tierlist-votes";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Button, Tooltip } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  InputLabel,
+  MenuItem,
+  Select,
+  Tooltip,
+} from "@mui/material";
 import { FiArrowDown, FiEdit, FiThumbsUp } from "react-icons/fi";
 import { useCreatedTierlists } from "@store/created-tierlists";
 import Link from "next/link";
@@ -39,6 +47,9 @@ import { usePanelStore } from "@store/panels";
 import { useSettingsStore } from "@store/settings";
 import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 import Element from "@components/Element";
+import ATTRIBUTES from "@utils/attributes";
+import prisma from "@libs/prisma";
+import { Checkbox as MuiCheckbox } from "@mui/material";
 
 const DEFAULT_COSTUME_STAT_PROPERTIES = ["atk", "vit", "agi", "hp"];
 
@@ -53,11 +64,13 @@ interface TierListProps {
   items: (costume & {
     character: character;
   })[];
+  characters: character[];
 }
 
 export default function TierList({
   tierlist,
   items,
+  characters,
 }: TierListProps): JSX.Element {
   return (
     <Layout>
@@ -79,13 +92,21 @@ export default function TierList({
       </nav>
 
       <section className="pt-8">
-        <TierlistContent tierlist={tierlist} items={items} />
+        <TierlistContent
+          tierlist={tierlist}
+          items={items}
+          characters={characters}
+        />
       </section>
     </Layout>
   );
 }
 
-export function TierlistContent({ tierlist, items }: TierListProps) {
+export function TierlistContent({
+  tierlist,
+  items,
+  characters,
+}: TierListProps) {
   const router = useRouter();
   const region = useSettingsStore((state) => state.region);
   const localVotes = useTierlistsVotes((state) => state.votes);
@@ -102,13 +123,16 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
   const [hasReadMore, setHasReadMore] = useState(false);
   const [showNotesInline, setShowNotesInline] = useState(false);
   const [showOnlyInventory, setShowOnlyInventory] = useState(false);
-  const [isStatsEnabled, setIsStatsEnabled] = useState(false);
   const [shownStats] = useState(
     tierlist.type === "weapons"
       ? DEFAULT_WEAPON_STAT_PROPERTIES
       : DEFAULT_COSTUME_STAT_PROPERTIES
   );
+  const [isStatsEnabled, setIsStatsEnabled] = useState(false);
   const [isContentExpanded, setIsContentExpanded] = useState(false);
+  const [attribute, setAttribute] = useState("all");
+  const [hidingMode, setHidingMode] = useState<"dim" | "hide">("dim");
+  const [characterId, setCharacterId] = useState<number | string>("all");
 
   const wysiwyg = useRef<HTMLDivElement>(null);
 
@@ -175,7 +199,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
 
   return (
     <>
-      <div className="grid lg:grid-cols-12 bg-grey-dark p-8 rounded-xl mb-12">
+      <div className="grid lg:grid-cols-12 bg-grey-dark p-8 rounded-t-xl">
         <div className="flex flex-col items-start justify-between lg:col-span-8">
           <div>
             {!router.asPath.startsWith("/tierlists") && (
@@ -213,19 +237,6 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
               </>
             )}
           </div>
-
-          <Button
-            onClick={hasVoted ? undefined : vote}
-            variant={hasVoted ? "text" : "outlined"}
-            color={hasVoted ? "success" : "primary"}
-            startIcon={<FiThumbsUp className="pl-1" />}
-            className={classNames(
-              hasVoted ? "pointer-events-none" : "",
-              "hidden lg:flex mt-4"
-            )}
-          >
-            {hasVoted ? "Liked" : "Like"} ({tierlist.votes})
-          </Button>
         </div>
 
         <div className="flex flex-col mt-6 gap-y-8 lg:mt-0 lg:items-end lg:gap-y-4 lg:col-span-4">
@@ -243,23 +254,41 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
             </div>
           )}
 
-          <Checkbox
-            label="Highlight owned"
-            isChecked={showOnlyInventory}
-            setState={(e) => setShowOnlyInventory(e.target.checked)}
-          />
+          <FormControl className="w-36 mt-8 md:mt-0">
+            <InputLabel id="attribute-select-label">Hiding mode</InputLabel>
+            <Select
+              labelId="attribute-select-label"
+              value={hidingMode}
+              label="Hiding mode"
+              onChange={(e) => setHidingMode(e.target.value)}
+            >
+              <MenuItem value="dim">Dim</MenuItem>
+              <MenuItem value="hide">Hide</MenuItem>
+            </Select>
+          </FormControl>
 
-          <Checkbox
-            label="Show notes inline"
-            isChecked={showNotesInline}
-            setState={(e) => setShowNotesInline(e.target.checked)}
-          />
+          <div className="block lg:hidden">
+            <Checkbox
+              label={`${hidingMode === "dim" ? "Highlight" : "Show"} owned`}
+              isChecked={showOnlyInventory}
+              setState={(e) => setShowOnlyInventory(e.target.checked)}
+            />
+          </div>
+          <div className="block lg:hidden">
+            <Checkbox
+              label="Show notes inline"
+              isChecked={showNotesInline}
+              setState={(e) => setShowNotesInline(e.target.checked)}
+            />
+          </div>
 
-          <Checkbox
-            label="Show stats"
-            isChecked={isStatsEnabled}
-            setState={() => setIsStatsEnabled(!isStatsEnabled)}
-          />
+          <div className="block lg:hidden">
+            <Checkbox
+              label="Show stats"
+              isChecked={isStatsEnabled}
+              setState={() => setIsStatsEnabled(!isStatsEnabled)}
+            />
+          </div>
         </div>
 
         <div className="flex justify-center mt-6 lg:hidden">
@@ -275,7 +304,108 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
         </div>
       </div>
 
-      <div className="flex flex-col gap-y-8 relative">
+      <div className="z-50 fixed bottom-0 left-0 rounded-t-xl w-full lg:sticky lg:top-0 bg-grey-dark p-4 lg:rounded-b-xl lg:rounded-t-none flex gap-x-2 justify-between items-center">
+        <div className="flex gap-4 items-center overflow-hidden">
+          <FormControl className="w-36 mt-2 lg:mt-4 md:mt-0">
+            <InputLabel id="attribute-select-label">Character</InputLabel>
+            <Select
+              labelId="attribute-select-label"
+              value={characterId}
+              label="Character"
+              onChange={(e) => setCharacterId(e.target.value)}
+            >
+              <MenuItem value="all">All</MenuItem>
+              {characters.map((character) => (
+                <MenuItem
+                  key={character.character_id}
+                  value={character.character_id}
+                >
+                  <img
+                    style={{
+                      minWidth: "24px",
+                      maxWidth: "24px",
+                      minHeight: "24px",
+                      maxHeight: "24px",
+                    }}
+                    className="select-none object-contain"
+                    alt={character.name}
+                    title={character.name}
+                    src={`${CDN_URL}${character.image_path}`}
+                  />
+                  <span className="inline-block ml-1">{character.name}</span>
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl className="w-36 mt-2 lg:mt-4 md:mt-0">
+            <InputLabel id="attribute-select-label">Attribute</InputLabel>
+            <Select
+              labelId="attribute-select-label"
+              value={attribute}
+              label="Attribute"
+              onChange={(e) => setAttribute(e.target.value)}
+            >
+              <MenuItem value="all">All</MenuItem>
+              {ATTRIBUTES.map((attribute) => (
+                <MenuItem key={attribute} value={attribute}>
+                  <Element size={24} type={attribute} />
+                  <span className="inline-block ml-1">{attribute}</span>
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <div className="lg:hidden">
+            <FormControlLabel
+              value={showOnlyInventory}
+              checked={showOnlyInventory}
+              onChange={(e) => setShowOnlyInventory(e.target.checked)}
+              control={<MuiCheckbox />}
+              label="Inventory"
+              labelPlacement="bottom"
+            />
+          </div>
+
+          <div className="hidden lg:block">
+            <Checkbox
+              label={`${hidingMode === "dim" ? "Highlight" : "Show"} owned`}
+              isChecked={showOnlyInventory}
+              setState={(e) => setShowOnlyInventory(e.target.checked)}
+            />
+          </div>
+          <div className="hidden lg:block">
+            <Checkbox
+              label="Show notes inline"
+              isChecked={showNotesInline}
+              setState={(e) => setShowNotesInline(e.target.checked)}
+            />
+          </div>
+
+          <div className="hidden lg:block">
+            <Checkbox
+              label="Show stats"
+              isChecked={isStatsEnabled}
+              setState={() => setIsStatsEnabled(!isStatsEnabled)}
+            />
+          </div>
+        </div>
+
+        <Button
+          onClick={hasVoted ? undefined : vote}
+          variant={hasVoted ? "text" : "outlined"}
+          color={hasVoted ? "success" : "primary"}
+          startIcon={<FiThumbsUp className="pl-1" />}
+          className={classNames(
+            hasVoted ? "pointer-events-none" : "",
+            "hidden lg:flex"
+          )}
+        >
+          {hasVoted ? "Liked" : "Like"} ({tierlist.votes})
+        </Button>
+      </div>
+
+      <div className="flex flex-col gap-y-8 relative mt-12">
         {tierlist.tiers.map((tier) => (
           <div className="tierlist__row" key={tier.tier}>
             <div className="mb-4 md:mb-0">
@@ -300,11 +430,35 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                       isSpoiler = !hideSEASpoiler(costume.release_time);
                     }
 
+                    let isDimmed = false;
+
+                    if (
+                      showOnlyInventory &&
+                      !ownedCostumes.includes(tierItem.item_id)
+                    ) {
+                      isDimmed = true;
+                    }
+
+                    if (
+                      characterId !== "all" &&
+                      costume.character_id !== characterId
+                    ) {
+                      isDimmed = true;
+                    }
+
+                    if (
+                      attribute !== "all" &&
+                      costume.attribute !== attribute
+                    ) {
+                      isDimmed = true;
+                    }
+
                     return (
                       <div
                         className={classNames(
                           showNotesInline ? "col-span-3 flex w-full" : "",
-                          isSpoiler ? "hidden" : ""
+                          isSpoiler ? "hidden" : "",
+                          isDimmed && hidingMode === "hide" ? "hidden" : ""
                         )}
                         key={costume.costume_id}
                       >
@@ -312,8 +466,7 @@ export function TierlistContent({ tierlist, items }: TierListProps) {
                           id={`${tierItem.id}-${costume.costume_id}`}
                           className={classNames(
                             "group relative flex flex-col items-center gap-y-2 w-28 font-mono filter transition ease-out-cubic",
-                            showOnlyInventory &&
-                              !ownedCostumes.includes(tierItem.item_id)
+                            isDimmed && hidingMode === "dim"
                               ? "brightness-50"
                               : ""
                           )}
@@ -687,17 +840,18 @@ function CusdisComments({ pageId, pageTitle }) {
 }
 
 export async function getServerSideProps(context: NextPageContext) {
-  context.res.setHeader("Cache-Control", "public, maxage=86400");
-
   const { tierlist, items } = await getTierlist({
     slug: context.query.slug,
   });
+
+  const characters = await prisma.dump.character.findMany({});
 
   return {
     props: JSON.parse(
       JSON.stringify({
         tierlist,
         items,
+        characters,
       })
     ),
   };

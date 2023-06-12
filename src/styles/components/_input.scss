@@ -44,3 +44,9 @@ input[type="checkbox"]:not(.PrivateSwitchBase-input) {
     @apply bg-beige-active;
   }
 }
+
+.MuiSelect-select.MuiInputBase-input {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}

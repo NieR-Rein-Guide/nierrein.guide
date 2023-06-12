@@ -85,20 +85,6 @@ async function getTiers() {
       })
     )
   );
-  const seaPveTierlists = await Promise.all(
-    SEA_FEATURED_TIERLISTS.pve.map((tierlist_id) =>
-      getTierlist({
-        tierlist_id,
-      })
-    )
-  );
-  const seaPvpTierlists = await Promise.all(
-    SEA_FEATURED_TIERLISTS.pvp.map((tierlist_id) =>
-      getTierlist({
-        tierlist_id,
-      })
-    )
-  );
 
   /**
    * Legacy tierlist
@@ -122,8 +108,6 @@ async function getTiers() {
     tier: subjugationTier,
     pve: pveTierlists,
     pvp: pvpTierlists,
-    seaPveTierlists,
-    seaPvpTierlists,
   };
 }
 

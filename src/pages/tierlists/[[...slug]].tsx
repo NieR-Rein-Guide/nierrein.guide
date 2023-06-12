@@ -12,8 +12,10 @@ import prisma from "@libs/prisma";
 import Link from "next/link";
 import { FEATURED_TIERLISTS, SEA_FEATURED_TIERLISTS } from "@config/constants";
 import { useSettingsStore } from "@store/settings";
+import { character } from "@prisma/client";
 
 interface TierlistsPageProps {
+  characters: character[];
   defaultTab: number;
   defaultPvpTab: number;
   pve: Tierlist[];
@@ -35,9 +37,8 @@ export default function TierlistsPageProps({
   defaultPvpTab = 0,
   pve,
   pvp,
-  seaPveTierlists,
-  seaPvpTierlists,
   tierlists,
+  characters,
 }: TierlistsPageProps): JSX.Element {
   const router = useRouter();
   const region = useSettingsStore((state) => state.region);
@@ -140,69 +141,9 @@ export default function TierlistsPageProps({
           </Tabs.List>
 
           {region === "SEA" && (
-            <>
-              {/* PvE */}
-              <Tabs.Content value="0">
-                <Tabs.Root
-                  defaultValue={tabIndex?.toString()}
-                  onValueChange={handleTabsChange}
-                >
-                  <Tabs.List className="grid grid-cols-1 md:grid-cols-2 gap-y-1 mb-8">
-                    {seaPveTierlists.map((tierlist, index) => (
-                      <TierListTab
-                        index={index?.toString()}
-                        key={tierlist.tierlist.tierlist_id}
-                      >
-                        {tierlist.tierlist.title}
-                      </TierListTab>
-                    ))}
-                  </Tabs.List>
-
-                  {seaPveTierlists.map((tierlist, index) => (
-                    <Tabs.Content
-                      value={index.toString()}
-                      key={tierlist.tierlist.tierlist_id}
-                    >
-                      <TierlistContent
-                        tierlist={tierlist.tierlist}
-                        items={tierlist.items}
-                      />
-                    </Tabs.Content>
-                  ))}
-                </Tabs.Root>
-              </Tabs.Content>
-
-              {/* PvP */}
-              <Tabs.Content value="1">
-                <Tabs.Root
-                  defaultValue={pvpTabIndex?.toString()}
-                  onValueChange={handlePvpTabsChange}
-                >
-                  <Tabs.List className="grid grid-cols-1 md:grid-cols-4 gap-y-1 mb-8">
-                    {seaPvpTierlists.map((tierlist, index) => (
-                      <TierListTab
-                        index={index?.toString()}
-                        key={tierlist.tierlist.tierlist_id}
-                      >
-                        {tierlist.tierlist.title}
-                      </TierListTab>
-                    ))}
-                  </Tabs.List>
-
-                  {seaPvpTierlists.map((tierlist, index) => (
-                    <Tabs.Content
-                      value={index?.toString()}
-                      key={tierlist.tierlist.tierlist_id}
-                    >
-                      <TierlistContent
-                        tierlist={tierlist.tierlist}
-                        items={tierlist.items}
-                      />
-                    </Tabs.Content>
-                  ))}
-                </Tabs.Root>
-              </Tabs.Content>
-            </>
+            <p className="mt-8">
+              SEA has been shutdown. Please change your region to "Global"
+            </p>
           )}
 
           {region !== "SEA" && (
@@ -212,6 +153,7 @@ export default function TierlistsPageProps({
                 <TierlistContent
                   tierlist={pve[0].tierlist}
                   items={pve[0].items}
+                  characters={characters}
                 />
               </Tabs.Content>
 
@@ -241,6 +183,7 @@ export default function TierlistsPageProps({
                       <TierlistContent
                         tierlist={tierlist.tierlist}
                         items={tierlist.items}
+                        characters={characters}
                       />
                     </Tabs.Content>
                   ))}
@@ -259,16 +202,16 @@ export default function TierlistsPageProps({
 }
 
 export async function getServerSideProps(context: NextPageContext) {
-  const { pve, pvp, seaPveTierlists, seaPvpTierlists } = await getTiers();
+  const { pve, pvp } = await getTiers();
+  const characters = await prisma.dump.character.findMany({});
 
   const props = {
+    characters,
     defaultTab: 0,
     defaultPvpTab: 0,
     pve,
     pvp,
     tierlists: [],
-    seaPveTierlists,
-    seaPvpTierlists,
   };
 
   /**
