@@ -4,6 +4,7 @@ import Weapons from "../../components/pages/weapons";
 import Weapon from "../../components/pages/weapon";
 import prisma from "@libs/prisma";
 import {
+  character,
   weapon,
   weapon_ability,
   weapon_ability_link,
@@ -22,6 +23,7 @@ import { add, sub } from "date-fns";
 import { objectToURLSearchParams } from "@studiometa/js-toolkit/utils";
 import { Event } from "../../models/types";
 import { GLOBAL_RELEASE_DATE } from "@config/constants";
+import { useCostumesFilters } from "@store/costumes-filters";
 
 interface WeaponsPageProps {
   isIndex: boolean;
@@ -48,6 +50,7 @@ interface WeaponsPageProps {
   })[];
   abilitiesLookup: { [key: string]: string };
   events: Event[];
+  characters: character[];
 }
 
 export default function WeaponsPage({
@@ -56,15 +59,24 @@ export default function WeaponsPage({
   events,
   selectedWeapon,
   abilitiesLookup,
+  characters,
 }: WeaponsPageProps): JSX.Element {
-  const { filteredWeapons } = useFilteredWeapons({ weapons });
+  const filteredCharacters = useCostumesFilters((state) => state.characters);
+  const { filteredWeapons } = useFilteredWeapons({
+    weapons,
+    filteredCharacters,
+  });
 
   if (!isIndex) {
     return <Weapon weapon={selectedWeapon} events={events} />;
   }
 
   return (
-    <Weapons weapons={filteredWeapons} abilitiesLookup={abilitiesLookup} />
+    <Weapons
+      weapons={filteredWeapons}
+      abilitiesLookup={abilitiesLookup}
+      characters={characters}
+    />
   );
 }
 
@@ -72,6 +84,7 @@ export async function getStaticProps(context) {
   // No route parameters, show index page
   if (Object.entries(context.params).length === 0) {
     const { weapons, abilitiesLookup } = await getAllWeapons();
+    const characters = await prisma.dump.character.findMany({});
 
     return {
       props: JSON.parse(
@@ -80,6 +93,7 @@ export async function getStaticProps(context) {
           selectedWeapon: null,
           weapons,
           abilitiesLookup,
+          characters,
         })
       ),
     };

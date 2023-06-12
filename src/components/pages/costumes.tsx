@@ -1036,8 +1036,10 @@ export function CostumesSkillsFilters() {
 
 export function CostumesCharactersFilters({
   characters,
+  label = "Filter costumes by Character",
 }: {
   characters: character[];
+  label?: string;
 }) {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -1076,7 +1078,7 @@ export function CostumesCharactersFilters({
           <div className="flex items-center justify-between mb-4">
             <div>
               <h3 className="flex items-center gap-x-2 text-2xl">
-                <MdFilterAlt /> Filter costumes by Character
+                <MdFilterAlt /> {label}
               </h3>
             </div>
             <button className="btn" onClick={() => setIsOpen(false)}>

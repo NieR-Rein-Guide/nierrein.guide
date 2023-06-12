@@ -1,4 +1,5 @@
 import { filterWeapons } from "@components/pages/weapons";
+import { character } from "@prisma/client";
 import { useInventoryStore } from "@store/inventory";
 import { useSettingsStore } from "@store/settings";
 import { hideSEASpoiler } from "@utils/hideSEASpoiler";
@@ -6,9 +7,13 @@ import { useEffect, useState } from "react";
 
 interface FilteredWeapons {
   weapons;
+  filteredCharacters: character[];
 }
 
-export function useFilteredWeapons({ weapons }: FilteredWeapons) {
+export function useFilteredWeapons({
+  weapons,
+  filteredCharacters,
+}: FilteredWeapons) {
   const region = useSettingsStore((state) => state.region);
   const [filteredWeapons, setFilteredWeapons] = useState(
     weapons.filter((weapon) => {
@@ -33,9 +38,16 @@ export function useFilteredWeapons({ weapons }: FilteredWeapons) {
         showUnreleasedContent,
         showInventory,
         region,
+        filteredCharacters,
       })
     );
-  }, [ownedWeapons, showUnreleasedContent, showInventory, region]);
+  }, [
+    ownedWeapons,
+    showUnreleasedContent,
+    showInventory,
+    region,
+    filteredCharacters,
+  ]);
 
   return {
     filteredWeapons,

@@ -11,6 +11,7 @@ import SVG from "react-inlinesvg";
 import Star from "@components/decorations/Star";
 import RARITY from "@utils/rarity";
 import {
+  character,
   weapon,
   weapon_ability,
   weapon_ability_link,
@@ -41,6 +42,7 @@ import { Button, Chip, Modal } from "@mui/material";
 import { MdFilterAlt } from "react-icons/md";
 import { useWeaponsFilters } from "@store/weapons-filters";
 import Stat from "@components/Stat";
+import { CostumesCharactersFilters } from "@components/pages/costumes";
 
 export type IWeapon = weapon & {
   weapon_ability_link: (weapon_ability_link & {
@@ -55,6 +57,7 @@ export type IWeapon = weapon & {
 interface CharactersPageProps {
   weapons: IWeapon[];
   abilitiesLookup: { [key: string]: string };
+  characters: character[];
 }
 
 export const attributesLookup = {
@@ -118,6 +121,7 @@ export function filterWeapons(
     isEX,
     isRD,
     isSubjugation,
+    filteredCharacters,
   }
 ) {
   let filteredWeapons: IWeapon[] = weapons;
@@ -126,6 +130,14 @@ export function filterWeapons(
     const now = new Date();
     filteredWeapons = filteredWeapons.filter((weapon) => {
       return now >= new Date(weapon.release_time);
+    });
+  }
+
+  if (filteredCharacters?.length > 0) {
+    filteredWeapons = filteredWeapons.filter((weapon) => {
+      return filteredCharacters.some(
+        (char) => weapon?.costume?.character_id === char.character_id
+      );
     });
   }
 
@@ -175,6 +187,7 @@ export function filterWeapons(
 export default function WeaponsPage({
   weapons,
   abilitiesLookup,
+  characters,
 }: CharactersPageProps): JSX.Element {
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
@@ -309,7 +322,10 @@ export default function WeaponsPage({
             setState={(e) => setIsSubjugation(e.target.checked)}
             label="Is Subjugation?"
           />
-
+          <CostumesCharactersFilters
+            characters={characters || []}
+            label="Filter weapons by character"
+          />
           <WeaponsSkillsFilters />
         </DatabaseNavbar>
 
