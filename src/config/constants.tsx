@@ -1075,11 +1075,11 @@ export const WEAPONS_SKILLS_TYPES = [
   },
   {
     label: "Caged Vigor",
-    options: ["caged vigor"],
+    options: ["caged vigor", "c. vigor"],
   },
   {
     label: "Bold Vigor",
-    options: ["bold vigor"],
+    options: ["bold vigor", "b. vigor"],
   },
   {
     label: "Soldier",
@@ -1151,23 +1151,23 @@ export const WEAPONS_SKILLS_TYPES = [
   },
   {
     label: "Void Boon",
-    options: ["void boon"],
+    options: ["void boon", "v. boon"],
   },
   {
     label: "Lucid Boon",
-    options: ["lucid boon"],
+    options: ["lucid boon", "l. boon"],
   },
   {
     label: "Blaze Boon",
-    options: ["blaze boon"],
+    options: ["blaze boon", "b. boon"],
   },
   {
     label: "Tempest Boon",
-    options: ["tempest boon"],
+    options: ["tempest boon", "t. boon"],
   },
   {
     label: "Liquid Boon",
-    options: ["liquid boon"],
+    options: ["liquid boon", "l. boon"],
   },
 ].sort((a, b) => a.label.localeCompare(b.label));
 
