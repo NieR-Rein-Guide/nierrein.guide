@@ -22,6 +22,8 @@ export function Search({ isOpen, setIsOpen }) {
     setIsOpen(!isOpen);
   }
 
+  return null;
+
   return (
     <div
       className={classNames(
