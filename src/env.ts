@@ -48,4 +48,5 @@ export const env = envsafe({
    * Post new events on Discord
    */
   DISCORD_EVENTS_WEBHOOK_URL: url({}),
+  DISCORD_TIERLISTS_UPDATE_CHANNEL_WEBHOOK: url({}),
 });

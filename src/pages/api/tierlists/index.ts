@@ -3,6 +3,10 @@ import prisma from "@libs/prisma";
 import slug from "slugg";
 import { uid } from "uid";
 import { getTierlist } from "@models/tiers";
+import { EmbedBuilder } from "@discordjs/builders";
+import { Colors, WebhookClient } from "discord.js";
+import { env } from "../../../env";
+import { FEATURED_TIERLISTS } from "@config/constants";
 
 export default async function handler(
   req: NextApiRequest,
@@ -152,6 +156,26 @@ export default async function handler(
           awakening_step: item.awakening_step ?? 0,
           attribute: item.preferred_attribute ?? "",
         })),
+      });
+    }
+
+    if (
+      (FEATURED_TIERLISTS.pve.includes(tierlist.tierlist_id) ||
+        FEATURED_TIERLISTS.pvp.includes(tierlist.tierlist_id)) &&
+      env.DISCORD_TIERLISTS_UPDATE_CHANNEL_WEBHOOK
+    ) {
+      const discordWebhook = new WebhookClient({
+        url: env.DISCORD_TIERLISTS_UPDATE_CHANNEL_WEBHOOK,
+      });
+
+      const embed = new EmbedBuilder()
+        .setTitle(`"${tierlist.title}" tierlist has been updated.`)
+        .setURL(`https://nierrein.guide/tierlist/${tierlist.slug}`)
+        .setThumbnail("https://nierrein.guide/ui/search/search_rank_sss.png")
+        .setColor(Colors.Green);
+
+      await discordWebhook.send({
+        embeds: [embed],
       });
     }
 
