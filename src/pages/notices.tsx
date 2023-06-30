@@ -8,7 +8,7 @@ interface NoticesProps {
   notifications: notification[];
 }
 
-export default function Events({ notifications }: NoticesProps): JSX.Element {
+export default function Notices({ notifications }: NoticesProps): JSX.Element {
   return (
     <Layout>
       <Meta
@@ -25,19 +25,18 @@ export default function Events({ notifications }: NoticesProps): JSX.Element {
 export async function getStaticProps() {
   console.log("Revalidating notices data props.");
 
-  const notificationsData = await prisma.nrg.notification.findMany({
+  const notifications = await prisma.nrg.notification.findMany({
     orderBy: {
       release_time: "desc",
     },
+    select: {
+      information_type: true,
+      notification_id: true,
+      release_time: true,
+      thumbnail_path: true,
+      title: true,
+    },
   });
-
-  const notifications = notificationsData.map((notification) => ({
-    ...notification,
-    body: notification.body.replaceAll(
-      "/images/",
-      "https://web.app.nierreincarnation.com/images/"
-    ),
-  }));
 
   return {
     props: JSON.parse(
