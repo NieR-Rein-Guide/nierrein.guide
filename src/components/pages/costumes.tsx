@@ -908,7 +908,7 @@ export function CostumesGrid({
                   className="group"
                   imgClasses="transform transition-transform ease-out-cubic group-hover:scale-110"
                   weapon={cost.weapon}
-                  attribute={costume.attribute}
+                  attribute={cost.attribute}
                 >
                   <Link
                     href={`/characters/${cost.character.slug}/${cost.slug}`}
@@ -950,7 +950,7 @@ export function CostumesGrid({
                 rarity={cost.rarity}
                 weaponType={cost?.weapon_type}
                 isDark={cost?.is_ex_costume}
-                attribute={costume.attribute}
+                attribute={cost.attribute}
               />
               <p className="text-center text-sm mb-0 leading-none">
                 {cost.is_ex_costume && (
