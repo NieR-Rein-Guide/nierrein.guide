@@ -234,6 +234,12 @@ export const CREDITS = [
     name: "Billy/Gwyn",
     link: "https://github.com/BillyCool",
   },
+  {
+    name: "Jammer",
+  },
+  {
+    name: "Titania",
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const GITHUB_REPO_LINK =
@@ -324,38 +330,51 @@ interface YouTubeChannel {
   tags: string[];
   avatarUrl: string;
   note?: string;
+  isNotUpdated: boolean;
 }
 
 export const RECOMMENDED_YOUTUBE_CHANNELS: YouTubeChannel[] = [
   {
-    name: "gottem11111",
-    url: "https://www.youtube.com/@MrGottem11111",
-    tags: ["Subjugation", "Reviews", "Recap", "Guides"],
-    avatarUrl: "/images/channels/gottem1111.jpg",
-  },
-  {
-    name: "Yung Geesus",
-    url: "https://www.youtube.com/@YungGeesus",
-    tags: ["Subjugation", "Reviews"],
-    avatarUrl: "/images/channels/yunggeesus.jpg",
+    name: "Ziggy1x Gaming",
+    url: "https://www.youtube.com/@ziggy1xgaming",
+    tags: ["Commentary", "Culture", "Guides", "Arena"],
+    avatarUrl: "/images/channels/ziggy1x.jpg",
+    isNotUpdated: false,
   },
   {
     name: "Farplane",
     url: "https://www.youtube.com/@farplanegaming",
     tags: ["Arena", "Reviews", "Stream"],
     avatarUrl: "/images/channels/farplane.jpg",
+    isNotUpdated: false,
   },
   {
-    name: "Ziggy1x Gaming",
-    url: "https://www.youtube.com/@ziggy1xgaming",
-    tags: ["Commentary", "Culture", "Guides", "Arena"],
-    avatarUrl: "/images/channels/ziggy1x.jpg",
+    name: "Siro Tube",
+    url: "https://www.youtube.com/@sirotube336",
+    tags: ["Subjugation", "Arena", "Fate Board"],
+    avatarUrl: "/images/channels/sirotube.jpg",
+    isNotUpdated: false,
+  },
+  {
+    name: "gottem11111",
+    url: "https://www.youtube.com/@MrGottem11111",
+    tags: ["Subjugation", "Reviews", "Recap", "Guides"],
+    avatarUrl: "/images/channels/gottem1111.jpg",
+    isNotUpdated: true,
+  },
+  {
+    name: "Yung Geesus",
+    url: "https://www.youtube.com/@YungGeesus",
+    tags: ["Subjugation", "Reviews"],
+    avatarUrl: "/images/channels/yunggeesus.jpg",
+    isNotUpdated: true,
   },
   {
     name: "JpBear",
     url: "https://www.youtube.com/@jpbearjpbear4510",
-    tags: ["Subjugation", "Not updated"],
+    tags: ["Subjugation"],
     avatarUrl: "/images/channels/jpbear.jpg",
+    isNotUpdated: true,
   },
 ];
 
