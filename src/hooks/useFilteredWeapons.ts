@@ -2,7 +2,6 @@ import { filterWeapons } from "@components/pages/weapons";
 import { character } from "@prisma/client";
 import { useInventoryStore } from "@store/inventory";
 import { useSettingsStore } from "@store/settings";
-import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 import { useEffect, useState } from "react";
 
 interface FilteredWeapons {
@@ -17,9 +16,6 @@ export function useFilteredWeapons({
   const region = useSettingsStore((state) => state.region);
   const [filteredWeapons, setFilteredWeapons] = useState(
     weapons.filter((weapon) => {
-      if (region === "SEA") {
-        return hideSEASpoiler(weapon.release_time);
-      }
       return new Date() >= new Date(weapon.release_time);
     })
   );

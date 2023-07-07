@@ -10,7 +10,7 @@ export default function StoneSlabsSelect() {
   );
 
   return (
-    <FormControl className="w-32 mt-8 md:mt-0">
+    <FormControl className="bg-grey-dark">
       <InputLabel id="attribute-select-label">Stone Monument Slabs</InputLabel>
       <Select
         labelId="attribute-select-label"

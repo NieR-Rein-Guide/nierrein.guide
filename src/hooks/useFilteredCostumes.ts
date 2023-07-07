@@ -1,7 +1,6 @@
 import { filterCostumes } from "@components/pages/costumes";
 import { useInventoryStore } from "@store/inventory";
 import { useSettingsStore } from "@store/settings";
-import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 import { useEffect, useState } from "react";
 
 interface IFilteredCostumes {
@@ -16,9 +15,6 @@ export function useFilteredCostumes({
   const region = useSettingsStore((state) => state.region);
   const [filteredCostumes, setFilteredCostumes] = useState(
     costumes.filter((costume) => {
-      if (region === "SEA") {
-        return hideSEASpoiler(costume.release_time);
-      }
       return new Date() >= new Date(costume.release_time);
     })
   );

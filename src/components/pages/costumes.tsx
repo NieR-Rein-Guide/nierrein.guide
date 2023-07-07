@@ -51,8 +51,8 @@ import { MdFilterAlt } from "react-icons/md";
 import { useCostumesFilters } from "@store/costumes-filters";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import { LimitedCostume } from "@components/LimitedCostume";
-import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 import { Gauge } from "@components/Gauge";
+import DatabaseLayout from "@components/Layout/Database";
 
 export type ICostume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -155,16 +155,6 @@ export function filterCostumes(
     });
   }
 
-  /**
-   * SEA REGION
-   * Hide GLOBAL/JP costumes
-   */
-  if (!showUnreleasedContent && region === "SEA") {
-    filteredCostumes = filteredCostumes.filter((costume) =>
-      hideSEASpoiler(costume.release_time)
-    );
-  }
-
   if (showInventory) {
     filteredCostumes = filteredCostumes.filter((cost) => {
       return ownedCostumes.includes(cost.costume_id);
@@ -226,7 +216,6 @@ export default function CharactersPage({
   const setStory = useCostumesFilters((state) => state.setStory);
   const rod = useCostumesFilters((state) => state.rod);
   const setRod = useCostumesFilters((state) => state.setRod);
-  const hasFilters = useCostumesFilters((state) => state.computed.hasFilters);
 
   const filteredCostumes = useMemo(
     () =>
@@ -248,6 +237,7 @@ export default function CharactersPage({
       collab,
       story,
       characters,
+      filteredCharacters,
       skills,
       ownedCostumes,
       showInventory,
@@ -272,9 +262,39 @@ export default function CharactersPage({
   }, [databaseDisplayType]);
 
   return (
-    <Layout
+    <DatabaseLayout
       hasContainer={displayType === "table" ? false : true}
       className={classNames(displayType === "table" ? "overflow-x-auto" : "")}
+      aside={
+        <>
+          <CostumesCharactersFilters characters={characters} />
+          <CostumesSkillsFilters />
+
+          <Checkbox
+            isChecked={limited}
+            setState={(e) => setLimited(e.target.checked)}
+            label="Limited"
+          />
+
+          <Checkbox
+            isChecked={collab}
+            setState={(e) => setCollab(e.target.checked)}
+            label="Collab"
+          />
+
+          <Checkbox
+            isChecked={story}
+            setState={(e) => setStory(e.target.checked)}
+            label="Story/EX"
+          />
+
+          <Checkbox
+            isChecked={rod}
+            setState={(e) => setRod(e.target.checked)}
+            label="RoD"
+          />
+        </>
+      }
     >
       <Meta
         title="Costumes"
@@ -282,73 +302,12 @@ export default function CharactersPage({
         cover="https://nierrein.guide/cover-characters.jpg"
       />
 
-      <section
+      <div
         className={classNames(
-          "mx-auto p-6",
+          "mx-auto",
           displayType !== "table" ? "w-full" : ""
         )}
       >
-        <DatabaseNavbar
-          middleChildren={
-            hasFilters ? (
-              <div className="relative bg-grey-dark rounded-lg px-4 pt-4 pb-2 flex gap-x-2 min-w-[280px] max-w-2xl">
-                <h3 className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-shadow text-xl line-clamp-1">
-                  Filters applied
-                </h3>
-                {limited && <Chip label="Limited" color="info" />}
-                {collab && <Chip label="Collab" color="warning" />}
-                {story && <Chip label="Story" color="error" />}
-                {rod && <Chip label="RoD" color="primary" />}
-                {filteredCharacters.map((character) => (
-                  <Tooltip key={character.name} title={character.name}>
-                    <div className="flex justify-center items-center rounded-full h-8 w-8 bg-white bg-opacity-20">
-                      <img
-                        className="h-6 object-contain"
-                        src={`${CDN_URL}${character.image_path}`}
-                        alt={character.name}
-                      />
-                    </div>
-                  </Tooltip>
-                ))}
-                {skills.map((skill) => (
-                  <Chip
-                    key={skill.label}
-                    color="success"
-                    label={`CS: ${skill.label}`}
-                  />
-                ))}
-              </div>
-            ) : null
-          }
-        >
-          <Checkbox
-            isChecked={limited}
-            setState={(e) => setLimited(e.target.checked)}
-            label="Limited costumes"
-          />
-
-          <Checkbox
-            isChecked={collab}
-            setState={(e) => setCollab(e.target.checked)}
-            label="Collab costumes"
-          />
-
-          <Checkbox
-            isChecked={story}
-            setState={(e) => setStory(e.target.checked)}
-            label="Story/EX costumes"
-          />
-
-          <Checkbox
-            isChecked={rod}
-            setState={(e) => setRod(e.target.checked)}
-            label="RoD costumes"
-          />
-
-          <CostumesCharactersFilters characters={characters} />
-          <CostumesSkillsFilters />
-        </DatabaseNavbar>
-
         {showInventory && ownedCostumes.length === 0 && (
           <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
             <img
@@ -358,6 +317,10 @@ export default function CharactersPage({
             />
             <p className="mt-4">
               Sorry, you have not yet added costumes to your inventory.
+            </p>
+            <p>
+              If you want to add costumes to your inventory please select the
+              "grid" view and check the costumes.
             </p>
           </div>
         )}
@@ -381,8 +344,8 @@ export default function CharactersPage({
             isLibrary={order === "library"}
           />
         )}
-      </section>
-    </Layout>
+      </div>
+    </DatabaseLayout>
   );
 }
 
@@ -746,26 +709,6 @@ export function CostumesTable({
           },
           render: (costume) => (
             <Gauge {...costume.costume_skill_link[0].costume_skill} />
-          ),
-        },
-        {
-          field: "is_ex_costume",
-          title: "EX",
-          cellStyle: {
-            textAlign: "center",
-          },
-          type: "boolean",
-          render: (costume) => (
-            <>
-              {costume.is_ex_costume ? (
-                <SVG
-                  src="/icons/weapons/dark.svg"
-                  className="h-8 w-8 mx-auto"
-                />
-              ) : (
-                <span>No</span>
-              )}
-            </>
           ),
         },
         {

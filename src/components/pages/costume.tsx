@@ -151,12 +151,10 @@ export default function CostumePage({
         </div>
       </nav>
 
-      <div className={classNames(region === "SEA" ? "hidden" : "")}>
-        <CharacterRows
-          characters={characters}
-          currentCharacter={currentCharacter}
-        />
-      </div>
+      <CharacterRows
+        characters={characters}
+        currentCharacter={currentCharacter}
+      />
 
       <div className="hidden md:block">
         <CharacterCostumes

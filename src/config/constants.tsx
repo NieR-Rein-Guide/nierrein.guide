@@ -271,7 +271,6 @@ export const INSTAGRAM_URL = "https://www.instagram.com/nierreinguide/";
 export const MAMA_INVITE_URL =
   "https://discord.com/oauth2/authorize?client_id=892519460638965811&permissions=379968&scope=bot%20applications.commands";
 
-export const SEA_DATE_DIFFERENCE = 39477600000;
 export const GLOBAL_RELEASE_DATE = new Date("2021-07-28T22:00:00.000Z");
 
 /**
@@ -516,11 +515,6 @@ export const VALUED_WEAPONS = {
 export const FEATURED_TIERLISTS = {
   pve: [52],
   pvp: [49, 59, 58],
-};
-
-export const SEA_FEATURED_TIERLISTS = {
-  pve: [71, 70],
-  pvp: [72, 73, 74, 76],
 };
 
 /**
@@ -985,6 +979,10 @@ export const SKILLS_TYPES = [
   {
     label: "Gauge increase from start",
     options: ["gauge increase", "gauge up at battle start"],
+  },
+  {
+    label: "Dauntless",
+    options: ["dauntless"],
   },
 ];
 

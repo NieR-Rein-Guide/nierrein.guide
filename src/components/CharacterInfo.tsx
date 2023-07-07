@@ -226,7 +226,7 @@ function CostumeDetails({
       >
         <div className="flex flex-col md:flex-row justify-between gap-y-6">
           <div>
-            <div className="flex items-center gap-x-2 text-xl mt-4">
+            <div className="flex flex-wrap items-center gap-2 text-xl mt-4">
               <div className="flex items-center gap-x-2">
                 <Tooltip
                   enterTouchDelay={0}
@@ -248,9 +248,7 @@ function CostumeDetails({
                     </div>
                   }
                 >
-                  <div className="w-8">
-                    <Element size={32} type={costume.attribute} />
-                  </div>
+                  <Element size={32} type={costume.attribute} />
                 </Tooltip>
                 <div className="w-8">
                   <Image

@@ -17,7 +17,6 @@ export function RegionSelect({ size = "medium", className = "w-32" }) {
         onChange={(e) => setRegion(e.target.value)}
       >
         <MenuItem value="GLOBAL">GLOBAL</MenuItem>
-        <MenuItem value="SEA">SEA</MenuItem>
         <MenuItem value="JP">JP</MenuItem>
       </Select>
     </FormControl>

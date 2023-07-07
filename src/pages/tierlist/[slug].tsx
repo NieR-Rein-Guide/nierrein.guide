@@ -45,7 +45,6 @@ import Lines from "@components/decorations/Lines";
 import { AiOutlinePushpin } from "react-icons/ai";
 import { usePanelStore } from "@store/panels";
 import { useSettingsStore } from "@store/settings";
-import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 import Element from "@components/Element";
 import ATTRIBUTES from "@utils/attributes";
 import prisma from "@libs/prisma";
@@ -422,13 +421,9 @@ export function TierlistContent({
                       (item) => item.costume_id === tierItem.item_id
                     );
 
-                    let isSpoiler =
+                    const isSpoiler =
                       !showUnreleasedContent &&
                       new Date() < new Date(costume.release_time);
-
-                    if (region === "SEA" && !showUnreleasedContent) {
-                      isSpoiler = !hideSEASpoiler(costume.release_time);
-                    }
 
                     let isDimmed = false;
 

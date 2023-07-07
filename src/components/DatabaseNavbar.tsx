@@ -87,8 +87,6 @@ export default function DatabaseNavbar({
   const setDatabaseDisplayType = useSettingsStore(
     (state) => state.setDatabaseDisplayType
   );
-  const showInventory = useSettingsStore((state) => state.showInventory);
-  const setShowInventory = useSettingsStore((state) => state.setShowInventory);
   const order = useSettingsStore((state) => state.order);
   const setOrder = useSettingsStore((state) => state.setOrder);
   const hasFilters = useCostumesFilters((state) => state.computed.hasFilters);
@@ -99,12 +97,6 @@ export default function DatabaseNavbar({
       <div className="flex flex-col gap-y-4">
         <div className="flex items-center flex-col-reverse gap-y-4 sm:flex-row justify-between mb-2">
           <div className="flex gap-x-4">
-            <Checkbox
-              label="Only inventory"
-              isChecked={showInventory}
-              setState={(e) => setShowInventory(e.target.checked)}
-            />
-
             {children && (
               <Popover.Root>
                 <Popover.Trigger asChild>
@@ -143,31 +135,6 @@ export default function DatabaseNavbar({
           </div>
 
           {middleChildren}
-
-          <ToggleButtonGroup
-            value={databaseDisplayType}
-            exclusive
-            onChange={(e, newValue) => setDatabaseDisplayType(newValue)}
-            aria-label="View"
-          >
-            <ToggleButton
-              defaultChecked={databaseDisplayType === "table"}
-              value="table"
-              aria-label="table"
-            >
-              <MdFilterAlt /> <p className="ml-2">Table</p>
-            </ToggleButton>
-            <ToggleButton value="grid" aria-label="grid">
-              <MdViewColumn /> <p className="ml-2">Comfy</p>
-            </ToggleButton>
-            <ToggleButton
-              defaultChecked={databaseDisplayType === "compact"}
-              value="compact"
-              aria-label="compact"
-            >
-              <MdViewComfy /> <p className="ml-2">Compact</p>
-            </ToggleButton>
-          </ToggleButtonGroup>
         </div>
       </div>
     );

@@ -28,8 +28,9 @@ import { useState } from "react";
 import { Gauge } from "./Gauge";
 import { useInventoryStore } from "@store/inventory";
 import Checkbox from "./form/Checkbox";
-
-const fetcher = (url) => fetch(url).then((res) => res.json());
+import { fetcher } from "@utils/fetcher";
+import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
+import { useSettingsStore } from "@store/settings";
 
 type CostumeData = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -67,6 +68,15 @@ export function CostumePanel({ costumeId }) {
 
   const toggleFromInventory = useInventoryStore((state) => state.toggleCostume);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
+
+  const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
+  const isExalted = useSettingsStore((state) => state.isExalted);
+
+  const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+  const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
+  const stats = costume.costume_stat
+    .filter((stat) => stat.level === selectedLevel)
+    .sort((a, b) => a.awakening_step - b.awakening_step);
 
   return (
     <div
@@ -136,10 +146,10 @@ export function CostumePanel({ costumeId }) {
           </div>
 
           <div className="grid grid-cols-2 gap-y-2">
-            <StatDisplay type="hp" value={costume.costume_stat[0].hp} />
-            <StatDisplay type="atk" value={costume.costume_stat[0].atk} />
-            <StatDisplay type="vit" value={costume.costume_stat[0].vit} />
-            <StatDisplay type="agi" value={costume.costume_stat[0].agi} />
+            <StatDisplay type="hp" value={stats[awakeningLevel].hp} />
+            <StatDisplay type="atk" value={stats[awakeningLevel].atk} />
+            <StatDisplay type="vit" value={stats[awakeningLevel].vit} />
+            <StatDisplay type="agi" value={stats[awakeningLevel].agi} />
           </div>
 
           <div className="flex flex-col gap-y-2">

@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
-import Layout from "@components/Layout";
 import React, { useEffect, useMemo, useState } from "react";
 import MaterialTable from "@material-table/core";
 import Element from "@components/Element";
@@ -19,7 +18,6 @@ import {
   weapon_skill_link,
   weapon_stat,
 } from "@prisma/client";
-import DatabaseNavbar from "@components/DatabaseNavbar";
 import { useSettingsStore } from "@store/settings";
 import Link from "next/link";
 import { useInventoryStore } from "@store/inventory";
@@ -31,18 +29,24 @@ import {
   VALUED_WEAPONS,
   WEAPONS_SKILLS_TYPES,
 } from "@config/constants";
-import Radio from "@components/form/Radio";
 import classNames from "classnames";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import getBaseRarity from "@utils/getBaseRarity";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import SkillThumbnail from "@components/SkillThumbnail";
-import { hideSEASpoiler } from "@utils/hideSEASpoiler";
-import { Button, Chip, Modal } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Modal,
+  Select,
+} from "@mui/material";
 import { MdFilterAlt } from "react-icons/md";
 import { useWeaponsFilters } from "@store/weapons-filters";
 import Stat from "@components/Stat";
 import { CostumesCharactersFilters } from "@components/pages/costumes";
+import DatabaseLayout from "@components/Layout/Database";
 
 export type IWeapon = weapon & {
   weapon_ability_link: (weapon_ability_link & {
@@ -161,16 +165,6 @@ export function filterWeapons(
     );
   }
 
-  /**
-   * SEA REGION
-   * Hide GLOBAL/JP costumes
-   */
-  if (!showUnreleasedContent && region === "SEA") {
-    filteredWeapons = filteredWeapons.filter((weapon) =>
-      hideSEASpoiler(weapon.release_time)
-    );
-  }
-
   if (showInventory) {
     filteredWeapons = filteredWeapons.filter((weapon) => {
       return ownedWeapons.includes(weapon.weapon_id);
@@ -197,7 +191,6 @@ export default function WeaponsPage({
   const ownedWeapons = useInventoryStore((state) => state.weapons);
   const order = useSettingsStore((state) => state.order);
   const skills = useWeaponsFilters((state) => state.skills);
-  const hasFilters = useWeaponsFilters((state) => state.computed.hasFilters);
   const isRefinable = useWeaponsFilters((state) => state.isRefinable);
   const setIsRefinable = useWeaponsFilters((state) => state.setIsRefinable);
   const isEX = useWeaponsFilters((state) => state.isEX);
@@ -251,11 +244,57 @@ export default function WeaponsPage({
   }, [databaseDisplayType]);
 
   return (
-    <Layout
+    <DatabaseLayout
       hasContainer={databaseDisplayType === "table" ? false : true}
       className={classNames(
         databaseDisplayType === "table" ? "overflow-x-auto" : ""
       )}
+      aside={
+        <>
+          <CostumesCharactersFilters
+            characters={characters || []}
+            label="Filter weapons by character"
+          />
+          <WeaponsSkillsFilters />
+          {displayType === "table" && (
+            <FormControl className="bg-grey-dark">
+              <InputLabel id="attribute-select-label">Highlight</InputLabel>
+              <Select
+                labelId="view-select"
+                value={valuedWeaponType}
+                label="Type"
+                onChange={(e) => setValuedWeaponType(e.target.value)}
+              >
+                {Object.entries(VALUED_WEAPONS).map(([key], index) => (
+                  <MenuItem key={`${key}-${index}`} value={key}>
+                    {VALUED_TYPES_LABEL[key].label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          )}
+          <Checkbox
+            isChecked={isRefinable}
+            setState={(e) => setIsRefinable(e.target.checked)}
+            label="Refinable"
+          />
+          <Checkbox
+            isChecked={isEX}
+            setState={(e) => setIsEX(e.target.checked)}
+            label="EX"
+          />
+          <Checkbox
+            isChecked={isRD}
+            setState={(e) => setIsRD(e.target.checked)}
+            label="RoD"
+          />
+          <Checkbox
+            isChecked={isSubjugation}
+            setState={(e) => setIsSubjugation(e.target.checked)}
+            label="Subjugation"
+          />
+        </>
+      }
     >
       <Meta
         title="Weapons"
@@ -263,71 +302,28 @@ export default function WeaponsPage({
         cover="https://nierrein.guide/cover-weapons.jpg"
       />
 
-      <section className="mx-auto p-6">
-        {displayType === "table" && (
-          <div>
-            <p>What are you looking for?</p>
-            <p className="text-beige-dark text-sm mb-3">
-              Highlight good weapons candidates.
+      <div
+        className={classNames(
+          "mx-auto",
+          displayType !== "table" ? "w-full" : ""
+        )}
+      >
+        {showInventory && ownedWeapons.length === 0 && (
+          <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
+            <img
+              className="inline-block"
+              src="/decorations/fio-confused.png"
+              alt="Fio confused"
+            />
+            <p className="mt-4">
+              Sorry, you have not yet added weapons to your inventory.
             </p>
-            <div className="flex gap-x-4 mb-8">
-              {Object.entries(VALUED_WEAPONS).map(([key], index) => (
-                <Radio
-                  key={`${key}-${index}`}
-                  name={VALUED_TYPES_LABEL[key].label}
-                  value={key}
-                  isChecked={valuedWeaponType === key}
-                  setState={setValuedWeaponType}
-                />
-              ))}
-            </div>
+            <p>
+              If you want to add weapons to your inventory please select the
+              "grid" view and check the weapons.
+            </p>
           </div>
         )}
-
-        <DatabaseNavbar
-          middleChildren={
-            hasFilters ? (
-              <div className="relative bg-grey-dark rounded-lg px-4 pt-4 pb-2 flex gap-x-2 min-w-[280px] max-w-2xl">
-                <h3 className="absolute -top-3 left-1/2 transform -translate-x-1/2 text-shadow text-xl line-clamp-1">
-                  Filters applied
-                </h3>
-                {isRefinable && <Chip label="Refinable" color="warning" />}
-                {isEX && <Chip label="EX" color="info" />}
-                {isRD && <Chip label="RoD" color="primary" />}
-                {isSubjugation && <Chip label="Subjugation" color="error" />}
-                {skills.map((skill) => (
-                  <Chip key={skill.label} color="success" label={skill.label} />
-                ))}
-              </div>
-            ) : null
-          }
-        >
-          <Checkbox
-            isChecked={isRefinable}
-            setState={(e) => setIsRefinable(e.target.checked)}
-            label="Is refinable?"
-          />
-          <Checkbox
-            isChecked={isEX}
-            setState={(e) => setIsEX(e.target.checked)}
-            label="Is EX?"
-          />
-          <Checkbox
-            isChecked={isRD}
-            setState={(e) => setIsRD(e.target.checked)}
-            label="Is RoD?"
-          />
-          <Checkbox
-            isChecked={isSubjugation}
-            setState={(e) => setIsSubjugation(e.target.checked)}
-            label="Is Subjugation?"
-          />
-          <CostumesCharactersFilters
-            characters={characters || []}
-            label="Filter weapons by character"
-          />
-          <WeaponsSkillsFilters />
-        </DatabaseNavbar>
 
         {displayType === "table" && (
           <WeaponsTable
@@ -346,21 +342,8 @@ export default function WeaponsPage({
             isLibrary={order === "library"}
           />
         )}
-
-        {showInventory && ownedWeapons.length === 0 && (
-          <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg">
-            <img
-              className="inline-block"
-              src="/decorations/fio-confused.png"
-              alt="Fio confused"
-            />
-            <p className="mt-4">
-              Sorry, you have not yet added weapons to your inventory.
-            </p>
-          </div>
-        )}
-      </section>
-    </Layout>
+      </div>
+    </DatabaseLayout>
   );
 }
 
@@ -902,26 +885,6 @@ export function WeaponsTable({
           ),
         },
         {
-          field: "is_ex_weapon",
-          title: "EX",
-          cellStyle: {
-            textAlign: "center",
-          },
-          type: "boolean",
-          render: (weapon) => (
-            <>
-              {weapon.is_ex_weapon ? (
-                <SVG
-                  src="/icons/weapons/dark.svg"
-                  className="h-8 w-8 mx-auto"
-                />
-              ) : (
-                <span>No</span>
-              )}
-            </>
-          ),
-        },
-        {
           field: "base_rarity",
           title: "Base Rarity",
           lookup: rarityLookup,
@@ -939,8 +902,9 @@ export function WeaponsTable({
       options={{
         actionsColumnIndex: -1,
         searchFieldAlignment: "right",
-        filtering: true,
         pageSize: 25,
+        search: false,
+        filtering: true,
         pageSizeOptions: [25, 50, 100, 200, 500],
       }}
       onRowClick={onRowClick}

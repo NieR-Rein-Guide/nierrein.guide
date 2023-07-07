@@ -17,7 +17,6 @@ import {
 } from "@prisma/client";
 import DatabaseNavbar from "@components/DatabaseNavbar";
 import { useSettingsStore } from "@store/settings";
-import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 
 interface CompanionsPageProps {
   companions: (companion & {
@@ -65,9 +64,6 @@ export default function CompanionsPage({
           title={`${companions.length} companions in the database.`}
           data={companions.filter((companion) => {
             if (showUnreleasedContent) return true;
-            if (region === "SEA") {
-              return hideSEASpoiler(companion.release_time);
-            }
             return new Date() > new Date(companion.release_time);
           })}
           columns={[

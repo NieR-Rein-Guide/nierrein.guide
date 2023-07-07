@@ -24,7 +24,6 @@ import { usePanelStore } from "@store/panels";
 import classNames from "classnames";
 import { useSettingsStore } from "@store/settings";
 import { useEffect, useState } from "react";
-import { hideSEASpoiler } from "@utils/hideSEASpoiler";
 import { CharacterDiamond } from "@components/characters/CharacterRows";
 import { Checkbox } from "@mui/material";
 
@@ -77,9 +76,6 @@ export default function DebrisPage({ debris }: DebrisPageProps): JSX.Element {
     setFilteredDebris(
       debris.filter((thought) => {
         if (showUnreleasedContent) return true;
-        if (region === "SEA") {
-          return hideSEASpoiler(thought.release_time);
-        }
         return new Date() > new Date(thought.release_time);
       })
     );

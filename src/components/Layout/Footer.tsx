@@ -15,31 +15,44 @@ export default function Footer(): JSX.Element {
       />
 
       <div className="container">
-        <div className="flex gap-x-8 justify-center mt-32 max-w-xl mx-auto">
+        <div className="flex justify-center mt-32 mb-8">
+          <a
+            className=""
+            href="https://ko-fi.com/A0A35V520"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              height="36"
+              className="border-none h-8"
+              src="https://storage.ko-fi.com/cdn/kofi1.png?v=3"
+              alt="Buy Me a Coffee at ko-fi.com"
+            />
+          </a>
+        </div>
+        <div className="flex gap-x-8 justify-center max-w-xl mx-auto">
           {OUR_SOCIALS.map((social) => (
-            (<Link
+            <Link
               href={social.href}
               key={social.label}
               passHref
-              className="flex items-center justify-center text-grey-lighte transition-colors no-underline h-12 w-12 text-grey-lighter bg-beige-inactive rounded-full hover:text-beige-inactive hover:bg-grey-lighter">
-
+              className="flex items-center justify-center text-grey-lighte transition-colors no-underline h-12 w-12 text-grey-lighter bg-beige-inactive rounded-full hover:text-beige-inactive hover:bg-grey-lighter"
+            >
               {social.icon}
-
-            </Link>)
+            </Link>
           ))}
         </div>
 
         <div className="flex gap-x-8 justify-center mt-8 max-w-xl mx-auto">
           {FOOTER_NAVIGATION.map((social) => (
-            (<Link
+            <Link
               href={social.href}
               key={social.label}
               passHref
-              className="flex text-beige text-center hover:text-beige-accent transition-colors no-underline">
-
+              className="flex text-beige text-center hover:text-beige-accent transition-colors no-underline"
+            >
               {social.label}
-
-            </Link>)
+            </Link>
           ))}
         </div>
 

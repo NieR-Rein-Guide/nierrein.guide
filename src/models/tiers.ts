@@ -1,6 +1,6 @@
 import prisma from "@libs/prisma";
 import tierlistSubjugation from "../data/tierlist_subjugation.json";
-import { FEATURED_TIERLISTS, SEA_FEATURED_TIERLISTS } from "@config/constants";
+import { FEATURED_TIERLISTS } from "@config/constants";
 import { tiers, tiers_items } from "@prisma/client-nrg";
 
 export async function getTierlist(where) {

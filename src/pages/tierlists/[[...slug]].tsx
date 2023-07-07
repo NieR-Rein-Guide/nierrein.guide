@@ -10,7 +10,7 @@ import { NextPageContext } from "next";
 import CommunityTierlists from "@components/CommunityTierlists";
 import prisma from "@libs/prisma";
 import Link from "next/link";
-import { FEATURED_TIERLISTS, SEA_FEATURED_TIERLISTS } from "@config/constants";
+import { FEATURED_TIERLISTS } from "@config/constants";
 import { useSettingsStore } from "@store/settings";
 import { character } from "@prisma/client";
 
@@ -127,70 +127,56 @@ export default function TierlistsPageProps({
           onValueChange={handleTabsChange}
         >
           <Tabs.List className="relative bordered bg-grey-dark p-4 grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-8">
-            <TierListTab index={0}>
-              {region === "SEA" ? "(SEA) " : ""} PvE
-            </TierListTab>
+            <TierListTab index={0}>PvE</TierListTab>
 
-            <TierListTab index={1}>
-              {region === "SEA" ? "(SEA) " : ""} PvP
-            </TierListTab>
+            <TierListTab index={1}>PvP</TierListTab>
 
             <TierListTab className="col-span-2 md:col-span-1" index={2}>
               Community
             </TierListTab>
           </Tabs.List>
 
-          {region === "SEA" && (
-            <p className="mt-8">
-              SEA has been shutdown. Please change your region to "Global"
-            </p>
-          )}
+          {/* PvE */}
+          <Tabs.Content value="0" className="mt-8">
+            <TierlistContent
+              tierlist={pve[0].tierlist}
+              items={pve[0].items}
+              characters={characters}
+            />
+          </Tabs.Content>
 
-          {region !== "SEA" && (
-            <>
-              {/* PvE */}
-              <Tabs.Content value="0" className="mt-8">
-                <TierlistContent
-                  tierlist={pve[0].tierlist}
-                  items={pve[0].items}
-                  characters={characters}
-                />
-              </Tabs.Content>
+          {/* PvP */}
+          <Tabs.Content value="1">
+            <Tabs.Root
+              className="mt-4 md:mt-0"
+              defaultValue={pvpTabIndex?.toString()}
+              onValueChange={handlePvpTabsChange}
+            >
+              <Tabs.List className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
+                {pvp.map((tierlist, index) => (
+                  <TierListTab
+                    index={index}
+                    key={tierlist.tierlist.tierlist_id}
+                  >
+                    {tierlist.tierlist.title}
+                  </TierListTab>
+                ))}
+              </Tabs.List>
 
-              {/* PvP */}
-              <Tabs.Content value="1">
-                <Tabs.Root
-                  className="mt-4 md:mt-0"
-                  defaultValue={pvpTabIndex?.toString()}
-                  onValueChange={handlePvpTabsChange}
+              {pvp.map((tierlist, index) => (
+                <Tabs.Content
+                  value={index?.toString()}
+                  key={tierlist.tierlist.tierlist_id}
                 >
-                  <Tabs.List className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
-                    {pvp.map((tierlist, index) => (
-                      <TierListTab
-                        index={index}
-                        key={tierlist.tierlist.tierlist_id}
-                      >
-                        {tierlist.tierlist.title}
-                      </TierListTab>
-                    ))}
-                  </Tabs.List>
-
-                  {pvp.map((tierlist, index) => (
-                    <Tabs.Content
-                      value={index?.toString()}
-                      key={tierlist.tierlist.tierlist_id}
-                    >
-                      <TierlistContent
-                        tierlist={tierlist.tierlist}
-                        items={tierlist.items}
-                        characters={characters}
-                      />
-                    </Tabs.Content>
-                  ))}
-                </Tabs.Root>
-              </Tabs.Content>
-            </>
-          )}
+                  <TierlistContent
+                    tierlist={tierlist.tierlist}
+                    items={tierlist.items}
+                    characters={characters}
+                  />
+                </Tabs.Content>
+              ))}
+            </Tabs.Root>
+          </Tabs.Content>
 
           <Tabs.Content value="2">
             <CommunityTierlists tierlists={tierlists} />
@@ -243,12 +229,7 @@ export async function getServerSideProps(context: NextPageContext) {
 
   // Exclude pinned tierlists
   where.tierlist_id = {
-    notIn: [
-      ...FEATURED_TIERLISTS.pve,
-      ...FEATURED_TIERLISTS.pvp,
-      ...SEA_FEATURED_TIERLISTS.pve,
-      ...SEA_FEATURED_TIERLISTS.pvp,
-    ],
+    notIn: [...FEATURED_TIERLISTS.pve, ...FEATURED_TIERLISTS.pvp],
   };
 
   // Exclude unlisted tierlists

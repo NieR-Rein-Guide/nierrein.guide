@@ -7,20 +7,12 @@ import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
-import SettingsModal from "@components/SettingsModal";
-import { Modal } from "@mui/material";
-import { BiDonateHeart } from "react-icons/bi";
+// import SettingsModal from "@components/Settings";
 import { ITEMS } from "@components/DatabaseNavbar";
 import { CurrentRelease } from "@components/Header/CurrentVersion";
-import { RegionSelect } from "@components/RegionSelect";
-import { Search } from "@components/Search";
-import SearchBtnIcon from "../../../public/icons/search-btn.png";
-import SearchIcon from "../../../public/icons/search.png";
 
 export default function Header(): JSX.Element {
-  const [isWhySupportModalOpen, setIsWhySupportModalOpen] = useState(false);
   const [isNavOpened, setIsNavOpened] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const router = useRouter();
   const defaultAnimationPosition = 18;
   const [isAnimating, setIsAnimating] = useState(false);
@@ -47,115 +39,14 @@ export default function Header(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (isSearchOpen) {
-      document.body.classList.add("overflow-y-hidden");
-    } else {
-      document.body.classList.remove("overflow-y-hidden");
-    }
-  }, [isSearchOpen]);
-
   function handleNavToggle() {
     setIsNavOpened(!isNavOpened);
   }
 
-  function toggleSearchPanel() {
-    setIsSearchOpen(!isSearchOpen);
-  }
-
   return (
     <>
-      <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
-      <div className="absolute xl:fixed right-0 left-0 top-0 mx-auto z-50">
-        <div className="relative flex justify-start md:justify-center items-center gap-x-2 px-4 py-2 bg-grey-lighter text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50">
-          <div className="hidden absolute left-4 md:flex items-center">
-            <a
-              className=""
-              href="https://ko-fi.com/A0A35V520"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img
-                height="36"
-                className="border-none h-8"
-                src="https://storage.ko-fi.com/cdn/kofi1.png?v=3"
-                alt="Buy Me a Coffee at ko-fi.com"
-              />
-            </a>
-
-            <button
-              onClick={() => setIsWhySupportModalOpen(true)}
-              className="inline-block ml-2 underline text-xs"
-            >
-              why?
-            </button>
-
-            <Modal
-              open={isWhySupportModalOpen}
-              onClose={() => setIsWhySupportModalOpen(false)}
-              aria-labelledby="modal-modal-title"
-              aria-describedby="modal-modal-description"
-            >
-              <div className="bg-grey-dark p-8 absolute border border-beige border-opacity-50 top-0 left-0 md:top-1/2 md:left-1/2 transform md:-translate-x-1/2 md:-translate-y-1/2 w-full md:max-w-3xl space-y-8 overflow-y-auto pt-12 md:pt-8 max-h-screen">
-                <div className="flex items-center justify-between mb-4 pt-12">
-                  <h3 className="flex items-center gap-x-2 text-3xl">
-                    <BiDonateHeart /> Why donate?
-                  </h3>
-                  <button
-                    className="btn"
-                    onClick={() => setIsWhySupportModalOpen(false)}
-                  >
-                    Close
-                  </button>
-                </div>
-
-                <p>
-                  I have been maintaining this website since August 18 2021, and
-                  didn't want to put ads since then.
-                </p>
-                <p>
-                  I don't mind paying for the hosting of all the services that
-                  make this site work but these last months are particularly
-                  complicated for me and I would like to reduce the expenses of
-                  my personal projects, that's why I'm putting this ko-fi link
-                  publicly as of now.
-                </p>
-                <p>
-                  I am sorry if that bothers some of you. Hope the website is
-                  useful to you! {"<3"}
-                </p>
-                <p>Here are some expenses for all services I maintain:</p>
-                <p className="font-display text-xl">
-                  Monthly hosting expense (total includes other side projects)
-                </p>
-                <img
-                  src="/images/donating-modal/railway.png"
-                  alt="Railway"
-                ></img>
-                <p className="font-display text-xl">
-                  Monthly assets expense (including 3D models)
-                </p>
-                <img src="/images/donating-modal/wasabi.png" alt="Wasabi"></img>
-              </div>
-            </Modal>
-          </div>
-
-          <span className="text-xs md:text-base">
-            <CurrentRelease />
-          </span>
-
-          <div className="flex items-center gap-x-4 absolute top-1/2 transform -translate-y-1/2 right-4 z-50">
-            <RegionSelect
-              size="small"
-              className="transform scale-75 hidden lg:block"
-            />
-            <SettingsModal />
-          </div>
-        </div>
-      </div>
-
       <header className="container relative">
-        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 xl:mt-20 mb-12">
+        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-12">
           <Link
             href="/"
             passHref={true}
@@ -174,28 +65,12 @@ export default function Header(): JSX.Element {
             </span>
             <h1 className="text-3xl z-10 drop-shadow-xl mt-2 hidden lg:inline-block lg:mt-4">
               NieR Re[in]
-              <p className="inline lg:block">Guide</p>
+              <p className="inline-flex items-center lg:flex gap-2">
+                Guide{" "}
+                <CurrentRelease className="inline-block text-xs font-mono bg-grey-dark border border-beige border-opacity-50 p-1" />
+              </p>
             </h1>
           </Link>
-
-          <div className="flex gap-x-2 xl:hidden">
-            <button
-              className="flex items-center transform transition ease-out-cubic hover:scale-95"
-              onClick={toggleSearchPanel}
-              title="Global search"
-            >
-              <Image
-                height={36}
-                width={67}
-                objectFit="contain"
-                src={SearchBtnIcon}
-                alt="Search"
-              />
-            </button>
-            <button onClick={handleNavToggle}>
-              <SVG src="/decorations/menu.svg" />
-            </button>
-          </div>
 
           <nav className="hidden xl:block nav justify-center items-center w-full nav-is-closed xl:w-auto inset-0 relative transform">
             <div className="overflow-hidden h-full w-full pointer-events-auto">
@@ -207,7 +82,7 @@ export default function Header(): JSX.Element {
                   <SVG src="/decorations/menu-close.svg" />
                 </button>
               </div>
-              <ul className="grid gap-y-8 grid-cols-6 mx-0">
+              <ul className="grid gap-y-8 grid-cols-5 mx-0">
                 {NAVIGATION.map((nav) => (
                   <li key={nav.label} className="nav-item flex justify-center">
                     <Link
@@ -234,30 +109,15 @@ export default function Header(): JSX.Element {
                     </Link>
                   </li>
                 ))}
-                <li className="flex justify-center">
-                  <button
-                    onClick={toggleSearchPanel}
-                    className={classNames(
-                      "flex flex-col items-center justify-center"
-                    )}
-                  >
-                    <div className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-16 xl:w-16 transform transition ease-out-cubic hover:scale-95">
-                      <Image
-                        height={94}
-                        width={94}
-                        objectFit="contain"
-                        src={SearchIcon}
-                        alt="Search"
-                      />
-                    </div>
-                    <span className="text-lg mt-2 text-center font-display xl:text-xl xl:w-28">
-                      Search
-                    </span>
-                  </button>
-                </li>
               </ul>
             </div>
           </nav>
+
+          <div className="flex gap-x-2 xl:hidden">
+            <button onClick={handleNavToggle}>
+              <SVG src="/decorations/menu.svg" />
+            </button>
+          </div>
         </div>
       </header>
 

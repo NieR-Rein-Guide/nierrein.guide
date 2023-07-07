@@ -4,7 +4,7 @@ import { persist } from "zustand/middleware";
 export const useSettingsStore = create(
   persist(
     (set) => ({
-      region: 'GLOBAL', // 'GLOBAL' | 'SEA' | 'JP'
+      region: 'GLOBAL', // 'GLOBAL' | 'JP'
       eventsDisplayType: 'listing', // 'timeline' | 'listing'
       databaseDisplayType: "table", // 'table' | 'grid'
       showCharactersSelection: false,
