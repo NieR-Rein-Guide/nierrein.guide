@@ -2,7 +2,7 @@ import { fetcher } from "@utils/fetcher";
 import classNames from "classnames";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
-import useSWR from "swr";
+import useSWR from "swr/immutable";
 
 export function CurrentRelease({ className }: { className?: string }) {
   const {
@@ -11,16 +11,11 @@ export function CurrentRelease({ className }: { className?: string }) {
     isLoading,
   } = useSWR(
     "https://api.github.com/repos/NieR-Rein-Guide/nierrein.guide/releases?per_page=1?page=1",
-    fetcher,
-    {
-      revalidateOnFocus: false,
-      revalidateIfStale: false,
-      revalidateOnReconnect: false,
-    }
+    fetcher
   );
 
   if (isLoading) {
-    return <span>Fetching latest release...</span>;
+    return null;
   }
 
   if (error) {

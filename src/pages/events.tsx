@@ -231,25 +231,27 @@ export function EventItem({
           </div>
         </div>
 
-        <Image
-          layout="responsive"
-          src={
-            attributes.image?.data.attributes.formats?.large?.url ??
-            attributes.image?.data.attributes.formats?.medium?.url ??
-            attributes.image?.data.attributes.formats?.small?.url
-          }
-          alt={`${attributes.title} thumbnail`}
-          height={
-            attributes.image?.data.attributes.formats?.large?.height ??
-            attributes.image?.data.attributes.formats?.medium?.height ??
-            attributes.image?.data.attributes.formats?.small?.height
-          }
-          width={
-            attributes.image?.data.attributes.formats?.large?.width ??
-            attributes.image?.data.attributes.formats?.medium?.width ??
-            attributes.image?.data.attributes.formats?.small?.width
-          }
-        />
+        {attributes?.image && (
+          <Image
+            layout="responsive"
+            src={
+              attributes.image?.data?.attributes?.formats?.large?.url ??
+              attributes.image?.data?.attributes?.formats?.medium?.url ??
+              attributes.image?.data?.attributes?.formats?.small?.url
+            }
+            alt={`${attributes.title} thumbnail`}
+            height={
+              attributes.image?.data?.attributes?.formats?.large?.height ??
+              attributes.image?.data?.attributes?.formats?.medium?.height ??
+              attributes.image?.data?.attributes?.formats?.small?.height
+            }
+            width={
+              attributes.image?.data?.attributes?.formats?.large?.width ??
+              attributes.image?.data?.attributes?.formats?.medium?.width ??
+              attributes.image?.data?.attributes?.formats?.small?.width
+            }
+          />
+        )}
 
         <Link
           href={`/event/${attributes.slug}`}
