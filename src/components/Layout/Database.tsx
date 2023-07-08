@@ -64,17 +64,17 @@ function DatabaseLayout({
               <MdViewComfy /> <p className="ml-2">Compact</p>
             </ToggleButton>
           </ToggleButtonGroup>
+          <Button
+            onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+            className="mx-4 mb-4 xl:hidden"
+            color="primary"
+            variant="contained"
+            component="label"
+            startIcon={<FiFilter />}
+          >
+            <span>Filter & Stats settings</span>
+          </Button>
         </div>
-        <Button
-          onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-          className="mx-4 mb-4 xl:hidden"
-          color="primary"
-          variant="contained"
-          component="label"
-          startIcon={<FiFilter />}
-        >
-          <span>Filter & Stats settings</span>
-        </Button>
         <aside
           className={classNames(
             isFiltersOpen
