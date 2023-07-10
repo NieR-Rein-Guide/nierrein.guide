@@ -66,10 +66,10 @@ export default function DatabaseStories({ characters }: Props): JSX.Element {
               .map((character) => (
                 <div key={character.character_id}>
                   {character.hidden_stories.map(
-                    ({ name, number, story, image_path }, index) => (
+                    ({ Name, Number, story, image_path }, index) => (
                       <div key={index} className="my-4">
                         <h3 className="text-3xl font-medium text-beige mb-4">
-                          {name} ({number})
+                          {Name} ({Number})
                         </h3>
                         <img
                           className="mb-4"

@@ -58,7 +58,7 @@ export const ITEMS = [
   },
   {
     label: "Stories",
-    href: "/database/stories/costumes",
+    href: "/database/stories/main",
     icon: storiesIcon,
   },
   {
