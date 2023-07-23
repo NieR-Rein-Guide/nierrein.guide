@@ -72,11 +72,11 @@ export function CostumePanel({ costumeId }) {
   const awakeningLevel = useSettingsStore((state) => state.awakeningLevel);
   const isExalted = useSettingsStore((state) => state.isExalted);
 
-  const { maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
+  const { maxWithAsc } = getCostumeLevelsByRarity(costume?.rarity);
   const selectedLevel = maxWithAsc + (isExalted ? 10 : 0);
-  const stats = costume.costume_stat
-    .filter((stat) => stat.level === selectedLevel)
-    .sort((a, b) => a.awakening_step - b.awakening_step);
+  const stats = costume?.costume_stat
+    ?.filter((stat) => stat.level === selectedLevel)
+    ?.sort((a, b) => a.awakening_step - b.awakening_step);
 
   return (
     <div
