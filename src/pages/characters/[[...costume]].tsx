@@ -79,32 +79,11 @@ export default function CharactersPage({
   }
 
   return (
-    <IndexFiltered
-      costumes={costumes}
-      characters={characters}
-      abilitiesLookup={abilitiesLookup}
-      charactersLookup={charactersLookup}
-    />
-  );
-}
-
-function IndexFiltered({
-  costumes,
-  characters,
-  abilitiesLookup,
-  charactersLookup,
-}) {
-  const { filteredCharacters, filteredCostumes } = useFilteredCostumes({
-    costumes,
-    characters,
-  });
-
-  return (
     <Index
-      costumes={filteredCostumes}
+      costumes={costumes}
       abilitiesLookup={abilitiesLookup}
       charactersLookup={charactersLookup}
-      characters={filteredCharacters}
+      characters={characters}
     />
   );
 }

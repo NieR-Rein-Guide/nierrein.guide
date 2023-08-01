@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import Meta from "@components/Meta";
-import Layout from "@components/Layout";
 import { useEffect, useMemo, useState } from "react";
 import {
   character,
@@ -24,20 +23,17 @@ import Star from "@components/decorations/Star";
 import { useSettingsStore } from "../../store/settings";
 import { useInventoryStore } from "../../store/inventory";
 import { usePanelStore } from "../../store/panels";
-import DatabaseNavbar from "@components/DatabaseNavbar";
 import Link from "next/link";
 import Checkbox from "@components/form/Checkbox";
 import classNames from "classnames";
 import {
   Button,
-  Chip,
   FormControl,
   InputLabel,
   ListItemText,
   MenuItem,
   Modal,
   Select,
-  Tooltip,
   Checkbox as MuiCheckbox,
 } from "@mui/material";
 import AbilityThumbnail from "@components/AbilityThumbnail";
@@ -53,6 +49,8 @@ import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
 import { LimitedCostume } from "@components/LimitedCostume";
 import { Gauge } from "@components/Gauge";
 import DatabaseLayout from "@components/Layout/Database";
+import ATTRIBUTES from "@utils/attributes";
+import Element from "@components/Element";
 
 export type ICostume = costume & {
   costume_ability_link: (costume_ability_link & {
@@ -132,8 +130,8 @@ export function filterCostumes(
     ownedCostumes = [],
     showInventory,
     showUnreleasedContent,
-    region,
     rod,
+    affinity,
   }
 ) {
   const allowLinks = [];
@@ -152,6 +150,12 @@ export function filterCostumes(
   if (!showUnreleasedContent) {
     filteredCostumes = filteredCostumes.filter((costume) => {
       return new Date() >= new Date(costume.release_time);
+    });
+  }
+
+  if (affinity !== "all") {
+    filteredCostumes = filteredCostumes.filter((cost) => {
+      return cost.attribute === affinity;
     });
   }
 
@@ -202,7 +206,6 @@ export default function CharactersPage({
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
   );
-  const region = useSettingsStore((state) => state.region);
   const showInventory = useSettingsStore((state) => state.showInventory);
   const order = useSettingsStore((state) => state.order);
   const ownedCostumes = useInventoryStore((state) => state.costumes);
@@ -216,6 +219,7 @@ export default function CharactersPage({
   const setStory = useCostumesFilters((state) => state.setStory);
   const rod = useCostumesFilters((state) => state.rod);
   const setRod = useCostumesFilters((state) => state.setRod);
+  const [affinity, setAffinity] = useState("all");
 
   const filteredCostumes = useMemo(
     () =>
@@ -228,8 +232,8 @@ export default function CharactersPage({
         ownedCostumes,
         showInventory,
         showUnreleasedContent,
-        region,
         rod,
+        affinity,
       }),
     [
       costumes,
@@ -242,8 +246,8 @@ export default function CharactersPage({
       ownedCostumes,
       showInventory,
       showUnreleasedContent,
-      region,
       rod,
+      affinity,
     ]
   );
 
@@ -269,6 +273,24 @@ export default function CharactersPage({
         <>
           <CostumesCharactersFilters characters={characters} />
           <CostumesSkillsFilters />
+
+          <FormControl className="">
+            <InputLabel id="attribute-select-label">Affinity</InputLabel>
+            <Select
+              labelId="attribute-select-label"
+              value={affinity}
+              label="Attribute"
+              onChange={(e) => setAffinity(e.target.value)}
+            >
+              <MenuItem value="all">All</MenuItem>
+              {ATTRIBUTES.map((attribute) => (
+                <MenuItem key={attribute} value={attribute}>
+                  <Element size={24} type={attribute} />
+                  <span className="inline-block ml-1">{attribute}</span>
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
 
           <Checkbox
             isChecked={limited}
