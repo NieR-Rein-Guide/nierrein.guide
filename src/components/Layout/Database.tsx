@@ -39,7 +39,7 @@ function DatabaseLayout({
       <Header />
 
       <div className="grid grid-cols-1 xl:mb-0 xl:grid-cols-12 gap-2">
-        <div className="flex justify-center xl:hidden">
+        <div className="flex flex-col gap-4 items-center justify-center xl:hidden">
           <ToggleButtonGroup
             value={databaseDisplayType}
             exclusive
