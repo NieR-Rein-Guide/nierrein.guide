@@ -16,7 +16,6 @@ import Link from "next/link";
 import { getAllCostumes } from "@models/costume";
 import { useSettingsStore } from "../../../store/settings";
 import { useCreatedTierlists } from "../../../store/created-tierlists";
-import { useInventoryStore } from "@store/inventory";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { useEffect, useState } from "react";
 import {
@@ -49,7 +48,6 @@ import { useRouter } from "next/router";
 import CostumeSelect from "@components/characters/CostumeSelect";
 import Checkbox from "@components/form/Checkbox";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
-import { useFilteredCostumes } from "@hooks/useFilteredCostumes";
 import ATTRIBUTES from "@utils/attributes";
 import Element from "@components/Element";
 
@@ -107,7 +105,6 @@ export default function TierlistBuilder({
   costumes,
 }: TierlistBuilderProps): JSX.Element {
   const router = useRouter();
-  const { filteredCostumes } = useFilteredCostumes({ costumes });
 
   const showUnreleasedContent = useSettingsStore(
     (state) => state.showUnreleasedContent
@@ -118,8 +115,7 @@ export default function TierlistBuilder({
   /**
    * Inventory
    */
-  const [showOnlyInventory, setShowOnlyInventory] = useState(false);
-  const ownedCostumes = useInventoryStore((state) => state.costumes);
+  const [show4StarsOnly, setShow4StarsOnly] = useState(true);
 
   /**
    * Costumes
@@ -193,7 +189,7 @@ export default function TierlistBuilder({
         draft[draft.length - 1].items = filteredSelection;
       })
     );
-  }, [filteredCostumes]);
+  }, [costumes]);
 
   function onDragEnd(result) {
     const { source, destination } = result;
@@ -308,14 +304,10 @@ export default function TierlistBuilder({
   }
 
   function getCostumesSelection() {
-    const filtered = filteredCostumes
+    const filtered = costumes
       .filter((costume) => {
         if (showUnreleasedContent) return true;
         return new Date() > new Date(costume.release_time);
-      })
-      .filter((cost) => {
-        if (!showOnlyInventory) return true;
-        return ownedCostumes.includes(cost.costume_id);
       })
       .sort((a, b) => -b.character.name.localeCompare(a.character.name))
       .map((costume, index) => ({
@@ -517,10 +509,10 @@ export default function TierlistBuilder({
                           <div className="col-span-10 flex justify-between w-full mb-4">
                             <p>Drag & Drop costumes into the tiers.</p>
                             <Checkbox
-                              label="Only inventory"
-                              isChecked={showOnlyInventory}
+                              label="Show only 4 stars"
+                              isChecked={show4StarsOnly}
                               setState={(e) =>
-                                setShowOnlyInventory(e.target.checked)
+                                setShow4StarsOnly(e.target.checked)
                               }
                             />
                           </div>
@@ -559,7 +551,13 @@ export default function TierlistBuilder({
                                 >
                                   {(provided, snapshot) => (
                                     <div
-                                      className="relative flex"
+                                      className={classNames(
+                                        "relative flex",
+                                        show4StarsOnly &&
+                                          item.rarity !== "SS_RARE"
+                                          ? "hidden"
+                                          : ""
+                                      )}
                                       ref={provided.innerRef}
                                       {...provided.draggableProps}
                                       {...provided.dragHandleProps}
@@ -655,7 +653,7 @@ export default function TierlistBuilder({
                           <div className="flex justify-center mt-8">
                             <CostumeSelect
                               label="Add a costume..."
-                              costumes={[...filteredCostumes].sort(
+                              costumes={[...costumes].sort(
                                 (a, b) =>
                                   -b.character.name.localeCompare(
                                     a.character.name
