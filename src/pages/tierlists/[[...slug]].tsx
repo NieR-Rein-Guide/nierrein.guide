@@ -41,7 +41,6 @@ export default function TierlistsPageProps({
   characters,
 }: TierlistsPageProps): JSX.Element {
   const router = useRouter();
-  const region = useSettingsStore((state) => state.region);
   const [tabIndex] = useState(defaultTab);
   const [pvpTabIndex] = useState(defaultPvpTab);
 

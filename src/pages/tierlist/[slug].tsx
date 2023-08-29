@@ -4,7 +4,7 @@ import { tiers, tiers_items, tierlists } from "@prisma/client-nrg";
 import { NextPageContext } from "next";
 import { character, costume } from "@prisma/client";
 import CostumeThumbnail from "@components/CostumeThumbnail";
-import { CDN_URL } from "@config/constants";
+import { CDN_URL, FEATURED_TIERLISTS } from "@config/constants";
 import RARITY from "@utils/rarity";
 import Meta from "@components/Meta";
 import Layout from "@components/Layout";
@@ -107,7 +107,9 @@ export function TierlistContent({
   characters,
 }: TierListProps) {
   const router = useRouter();
-  const region = useSettingsStore((state) => state.region);
+  const isFeatured =
+    FEATURED_TIERLISTS.pve.includes(tierlist.tierlist_id) ||
+    FEATURED_TIERLISTS.pvp.includes(tierlist.tierlist_id);
   const localVotes = useTierlistsVotes((state) => state.votes);
   const addVote = useTierlistsVotes((state) => state.addVote);
   const createdTierlist = useCreatedTierlists((state) => state.tierlists);
@@ -198,6 +200,15 @@ export function TierlistContent({
 
   return (
     <>
+      {isFeatured && (
+        <div className="flex gap-x-2 bg-grey-lighter border border-red-400 p-2 mb-4 max-w-lg mx-auto">
+          <p>⚠️</p>
+          <p>
+            Some units have the karma advantage temporarily. Instead of
+            reshuffling the list we won't take them into account.
+          </p>
+        </div>
+      )}
       <div className="grid lg:grid-cols-12 bg-grey-dark p-8 rounded-t-xl">
         <div className="flex flex-col items-start justify-between lg:col-span-8">
           <div>

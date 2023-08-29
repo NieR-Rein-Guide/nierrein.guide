@@ -171,7 +171,7 @@ export default async function handler(
       const embed = new EmbedBuilder()
         .setTitle(`"${tierlist.title}" tierlist has been updated.`)
         .setURL(`https://nierrein.guide/tierlist/${tierlist.slug}`)
-        .setThumbnail("https://nierrein.guide/ui/search/search_rank_sss.png")
+        .setThumbnail("https://nierrein.guide/ui/search/search_rank_x.png")
         .setColor(Colors.Green);
 
       await discordWebhook.send({
