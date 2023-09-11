@@ -182,7 +182,7 @@ export default function WeaponInfo({
               key={selectedWeapon.weapon_id}
               className="flex flex-col gap-4 bg-grey-dark bordered relative p-4"
             >
-              {selectedWeapon.weapon_story_link.reverse().map((story) => (
+              {selectedWeapon.weapon_story_link.map((story) => (
                 <div
                   key={story.weapon_story_id}
                   className="text-beige-text whitespace-pre-wrap text-base mt-2 mb-4"
