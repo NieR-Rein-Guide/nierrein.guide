@@ -56,9 +56,22 @@ export function Gauge({ cooldown_time, gauge_rise_speed }: GaugeProps) {
               />
             </div>
           </div>
-          <p className="text-xs">a skill fills 250 gauge points.</p>
-          <p className="text-xs">an auto attack fills 50 gauge points.</p>
-          <p className="text-xs">a companion skill fills 400 gauge points.</p>
+
+          <div>
+            <span className="block">
+              <span className="text-beige">Weapon skill</span> fills 250 gauge
+              points.
+            </span>
+            <span className="block text-beige">Auto-attacks</span>
+            <span className="block ml-2">a 3 chain is 50+50+50 (150)</span>
+            <span className="block ml-2">a 4 chain is 50+50+50+25 (175)</span>
+            <span className="block ml-2">
+              a 5 chain is 50+50+50+25+25 (200)
+            </span>
+            <span className="block text-beige">
+              Companion skill fills 400 gauge points.
+            </span>
+          </div>
         </div>
       }
     >

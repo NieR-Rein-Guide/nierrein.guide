@@ -200,15 +200,6 @@ export function TierlistContent({
 
   return (
     <>
-      {isFeatured && (
-        <div className="flex gap-x-2 bg-grey-lighter border border-red-400 p-2 mb-4 max-w-lg mx-auto">
-          <p>⚠️</p>
-          <p>
-            Some units have the karma advantage temporarily. Instead of
-            reshuffling the list we won't take them into account.
-          </p>
-        </div>
-      )}
       <div className="grid lg:grid-cols-12 bg-grey-dark p-8 rounded-t-xl">
         <div className="flex flex-col items-start justify-between lg:col-span-8">
           <div>
