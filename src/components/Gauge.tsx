@@ -68,8 +68,9 @@ export function Gauge({ cooldown_time, gauge_rise_speed }: GaugeProps) {
             <span className="block ml-2">
               a 5 chain is 50+50+50+25+25 (200)
             </span>
-            <span className="block text-beige">
-              Companion skill fills 400 gauge points.
+            <span className="block">
+              <span className="text-beige">Companion</span> skill fills 400
+              gauge points.
             </span>
           </div>
         </div>
