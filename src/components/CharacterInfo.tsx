@@ -26,6 +26,7 @@ import {
   costume,
   costume_ability,
   costume_ability_link,
+  costume_karma_slot,
   costume_skill,
   costume_skill_link,
   costume_stat,
@@ -71,6 +72,12 @@ const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
 });
 
+export const KARMA_ICONS_PATHS = {
+  RARE: "lottery_effect_thumbnail_bg_silver",
+  S_RARE: "lottery_effect_thumbnail_bg_gold",
+  SS_RARE: "lottery_effect_thumbnail_bg_rainbow",
+};
+
 function CostumeDetails({
   costume,
   abilities,
@@ -110,6 +117,7 @@ function CostumeDetails({
     })[];
     sources: Event[];
     link: costumes_link;
+    costume_karma_slot: costume_karma_slot[];
   };
   abilities;
   skill;
@@ -552,35 +560,75 @@ function CostumeDetails({
 
         {/* Tier lists */}
         {officialTiers?.length > 0 && (
-          <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-4 mb-8">
-            {officialTiers.map((item) => {
-              const isPvp = FEATURED_TIERLISTS.pvp.includes(
-                item.tiers.tierslists.tierlist_id
-              );
+          <div>
+            <ul className="grid grid-cols-1 mb-8">
+              {officialTiers
+                .filter((item) => item.tooltip)
+                .map((item) => {
+                  const isPvp = FEATURED_TIERLISTS.pvp.includes(
+                    item.tiers.tierslists.tierlist_id
+                  );
 
-              return (
-                <li
-                  key={item.id}
-                  className="relative flex flex-col bg-grey-dark bordered px-2 py-4 transform transition-transform hover:scale-95 ease-out-cubic"
-                >
-                  <h4 className="text-2xl text-beige text-center mb-2">
-                    {isPvp ? "PvP" : ""} {item.tiers.tierslists.title}
-                  </h4>
-                  <div className="flex flex-1 items-center justify-center text-center">
-                    <TierLogo tier={item.tiers.tier} />
-                  </div>
-                  <Link
-                    href={`/tierlist/${item.tiers.tierslists.slug}?highlight=${costume.costume_id}`}
-                    passHref
-                    title="View tierlist"
-                    className="absolute inset-0"
-                  >
-                    <span className="sr-only">View tierlist</span>
-                  </Link>
-                </li>
-              );
-            })}
-          </ul>
+                  return (
+                    <li key={item.id} className="grid grid-cols-12 gap-4">
+                      <div className="col-span-4 relative flex flex-col bg-grey-dark bordered px-2 py-4 transform transition-transform hover:scale-95 ease-out-cubic">
+                        <h4 className="text-2xl text-beige text-center mb-2">
+                          {isPvp ? "PvP" : ""} {item.tiers.tierslists.title}
+                        </h4>
+                        <div className="flex flex-1 items-center justify-center text-center">
+                          <TierLogo tier={item.tiers.tier} />
+                        </div>
+                        <Link
+                          href={`/tierlist/${item.tiers.tierslists.slug}?highlight=${costume.costume_id}`}
+                          passHref
+                          title="View tierlist"
+                          className="absolute inset-0"
+                        >
+                          <span className="sr-only">View tierlist</span>
+                        </Link>
+                      </div>
+                      {item.tooltip && (
+                        <div
+                          className="p-4 col-span-8"
+                          dangerouslySetInnerHTML={{ __html: item.tooltip }}
+                        ></div>
+                      )}
+                    </li>
+                  );
+                })}
+            </ul>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 mt-4 mb-8">
+              {officialTiers
+                .filter((item) => !item.tooltip)
+                .map((item) => {
+                  const isPvp = FEATURED_TIERLISTS.pvp.includes(
+                    item.tiers.tierslists.tierlist_id
+                  );
+
+                  return (
+                    <li
+                      key={item.id}
+                      className="relative flex flex-col bg-grey-dark bordered px-2 py-4 transform transition-transform hover:scale-95 ease-out-cubic"
+                    >
+                      <h4 className="text-2xl text-beige text-center mb-2">
+                        {isPvp ? "PvP" : ""} {item.tiers.tierslists.title}
+                      </h4>
+                      <div className="flex flex-1 items-center justify-center text-center">
+                        <TierLogo tier={item.tiers.tier} />
+                      </div>
+                      <Link
+                        href={`/tierlist/${item.tiers.tierslists.slug}?highlight=${costume.costume_id}`}
+                        passHref
+                        title="View tierlist"
+                        className="absolute inset-0"
+                      >
+                        <span className="sr-only">View tierlist</span>
+                      </Link>
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
         )}
 
         <div className="relative mt-12">
@@ -735,40 +783,59 @@ function CostumeDetails({
                 </div>
               </div>
             )}
+
+            {costume.costume_karma_slot.length > 0 && (
+              <div className="relative mb-8">
+                <div className="mt-12">
+                  <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+                    Karma
+                  </h2>
+                  <HR className="my-8" />
+                </div>
+
+                <div className="grid overflow-x-auto grid-cols-1 md:grid-cols-3 mt-8 gap-6">
+                  {costume.costume_karma_slot
+                    .sort((a, b) => a.order - b.order)
+                    .map((slot) => (
+                      <div
+                        key={`karma-slot-${slot.order}`}
+                        className="karma-list text-center"
+                      >
+                        <h4 className="mb-4 text-xl">Slot n°{slot.order}</h4>
+                        <ul className="flex flex-col gap-2 relative bordered p-4">
+                          {slot.karma_items
+                            .sort((a, b) => a.order - b.order)
+                            .map((item, index) => (
+                              <li
+                                key={`karma-ability-${item.order}`}
+                                className="flex items-center gap-4"
+                              >
+                                <div className="relative h-16 w-16">
+                                  <img
+                                    src={`/icons/${
+                                      KARMA_ICONS_PATHS[item.rarity]
+                                    }.png`}
+                                    alt=""
+                                    loading="lazy"
+                                  />
+                                  <img
+                                    className="absolute z-10 left-1/2 top-1/2 transform -translate-y-1/2 -translate-x-1/2 w-8 h-auto"
+                                    src={`${CDN_URL}${item.image_path}`}
+                                    alt=""
+                                    loading="lazy"
+                                  />
+                                </div>
+                                <p className="flex-1 text-sm">{item.text}</p>
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
-
-        <div key={costume.costume_id}>
-          <Lines
-            className="mb-2"
-            containerClass="justify-center"
-            svgClass="w-96 xl:w-42"
-          >
-            <h2 className="text-2xl text-center">
-              Character Exalt Debris (Lv.100)
-            </h2>
-          </Lines>
-          <div className="flex gap-4 bg-grey-dark p-4 relative bordered">
-            <div className="flex items-center">
-              <div className="relative mr-4">
-                <DebrisThumbnail
-                  sizeClasses="h-16 w-16"
-                  {...costume.character.debris}
-                />
-              </div>
-              <div className="flex flex-col items-start">
-                <strong className="font-display text-2xl text-beige">
-                  {costume.character.debris?.name ?? "WIP"}
-                </strong>
-                <p className="text-beige-text">
-                  <span>
-                    {costume.character.debris?.description_long ?? "WIP"}
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
 
         {/* Source */}
         <div className="relative">

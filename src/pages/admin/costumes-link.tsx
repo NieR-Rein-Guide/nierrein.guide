@@ -2,9 +2,7 @@ import Layout from "@components/Layout";
 import Meta from "@components/Meta";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import CostumeThumbnail from "@components/CostumeThumbnail";
-import DebrisThumbnail from "@components/DebrisThumbnail";
 import prisma from "@libs/prisma";
-import { FixedSizeList as List } from "react-window";
 import toast from "react-hot-toast";
 import {
   character,

@@ -132,6 +132,7 @@ model costume {
   debris               debris?                @relation(fields: [debris_id], references: [debris_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_costume_debris_debris_id")
   emblem               emblem?                @relation(fields: [emblem_id], references: [emblem_id], onDelete: NoAction, onUpdate: NoAction, map: "fk_costume_emblem_emblem_id")
   costume_ability_link costume_ability_link[]
+  costume_karma_slot   costume_karma_slot[]
   costume_skill_link   costume_skill_link[]
   costume_stat         costume_stat[]
 
@@ -254,12 +255,13 @@ model memoir_series {
 }
 
 model notification {
-  notification_id  Int       @id(map: "pk_notification") @default(autoincrement())
-  information_type String?
-  title            String?
-  body             String?
-  release_time     DateTime? @db.Timestamptz(6)
-  thumbnail_path   String?
+  notification_id      Int       @id(map: "pk_notification") @default(autoincrement())
+  information_type     String?
+  title                String?
+  body                 String?
+  release_time         DateTime  @db.Timestamptz(6)
+  postscript_date_time DateTime? @db.Timestamptz(6)
+  thumbnail_path       String?
 }
 
 model weapon {
@@ -429,4 +431,14 @@ model remnant {
   order         Int
   story         String?
   image_path    String?
+}
+
+model costume_karma_slot {
+  costume_id   Int
+  order        Int
+  release_time DateTime @db.Timestamptz(6)
+  karma_items  Json?
+  costume      costume  @relation(fields: [costume_id], references: [costume_id], onDelete: Cascade, onUpdate: NoAction, map: "fk_costume_karma_slot_costume_costume_id")
+
+  @@id([costume_id, order], map: "pk_costume_karma_slot")
 }

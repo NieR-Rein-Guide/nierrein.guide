@@ -17,7 +17,6 @@ import {
 import { getAllCostumes } from "@models/costume";
 import alterCostumeToAddWeapon from "@utils/alterCostumeToAddWeapon";
 import alterCostumeToAddSources from "@utils/alterCostumeToAddSources";
-import { useFilteredCostumes } from "@hooks/useFilteredCostumes";
 
 interface CharactersPageProps {
   isIndex: boolean;
@@ -189,6 +188,7 @@ export async function getStaticProps(context) {
             awakening_step: "asc",
           },
         },
+        costume_karma_slot: true,
       },
     }),
     prisma.dump.character_rank_bonus.findMany({

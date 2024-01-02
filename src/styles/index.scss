@@ -1,6 +1,6 @@
-@import 'nprogress.scss';
-@import 'components';
-@import 'dist';
+@import "nprogress.scss";
+@import "components";
+@import "dist";
 
 html,
 body {
@@ -25,13 +25,13 @@ h5,
 h6,
 .serif {
   letter-spacing: -0.5px;
-  font-family: 'Cormorant', serif;
+  font-family: "Cormorant", serif;
   line-height: 1;
   font-weight: 500;
 }
 
 .serif {
-  font-family: 'Cormorant', serif;
+  font-family: "Cormorant", serif;
 }
 
 code {
@@ -42,7 +42,7 @@ svg {
   width: auto;
 }
 
-.darken-img img{
+.darken-img img {
   filter: brightness(0.8) contrast(1.2);
 }
 
@@ -70,7 +70,7 @@ svg {
     .iso {
       height: 50px;
       width: 50px;
-      background-color: theme('colors.beige.darker');
+      background-color: theme("colors.beige.darker");
       transform: rotate(45deg);
 
       img {
@@ -115,11 +115,11 @@ svg {
 
 .iso-bg {
   border: 2px solid;
-  border-color: theme('colors.beige.darker');
+  border-color: theme("colors.beige.darker");
   &.active {
-    border-color: theme('colors.beige.DEFAULT');
+    border-color: theme("colors.beige.DEFAULT");
   }
-  background-color: theme('colors.beige.darker');
+  background-color: theme("colors.beige.darker");
   width: 56px;
   height: 56px;
   // margin-left: 24px;
@@ -151,7 +151,7 @@ section {
   &:hover,
   &:focus,
   &.active,
-  &[aria-selected='true'] {
+  &[aria-selected="true"] {
     background-color: rgba(255, 255, 255, 0.1);
   }
 }
@@ -278,15 +278,15 @@ section {
 }
 
 .rc-slider-rail {
-  background-color: theme('colors.beige.dark') !important;
+  background-color: theme("colors.beige.dark") !important;
 }
 
 .rc-slider-track {
-  background-color: theme('colors.beige.active') !important;
+  background-color: theme("colors.beige.active") !important;
 }
 
 .rc-slider-handle {
-  border-color: theme('colors.beige.active') !important;
+  border-color: theme("colors.beige.active") !important;
   border-radius: 0 !important;
   transform: rotate(45deg) !important;
 }
@@ -295,7 +295,6 @@ canvas {
   background-color: black;
 }
 
-
 /* width */
 ::-webkit-scrollbar {
   width: 0.5rem;
@@ -303,17 +302,17 @@ canvas {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  background: theme('colors.grey.dark');
+  background: theme("colors.grey.dark");
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: theme('colors.beige.DEFAULT');
+  background: theme("colors.beige.DEFAULT");
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: theme('colors.grey.detail');
+  background: theme("colors.grey.detail");
 }
 
 .MuiModal-root {
@@ -343,7 +342,7 @@ canvas {
 }
 
 .MuiTooltip-tooltip {
-  background-color: theme('colors.grey.dark') !important;
+  background-color: theme("colors.grey.dark") !important;
   color: white !important;
   padding: 1rem !important;
   position: relative !important;
@@ -352,7 +351,7 @@ canvas {
 }
 
 .vis-timeline {
-  border: 1px solid theme('colors.beige.DEFAULT') !important;
+  border: 1px solid theme("colors.beige.DEFAULT") !important;
 }
 
 .vis-grid.vis-vertical {
@@ -363,8 +362,9 @@ canvas {
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
 }
 
-.vis-text, .vis-label {
-  color: theme('colors.beige.DEFAULT') !important;
+.vis-text,
+.vis-label {
+  color: theme("colors.beige.DEFAULT") !important;
 }
 
 .vis-item {
@@ -381,37 +381,43 @@ canvas {
   width: 100%;
   height: 100%;
 
- > a {
-  @apply absolute inset-0 transform ease-out-cubic transition;
+  > a {
+    @apply absolute inset-0 transform ease-out-cubic transition;
 
     &:hover {
       @apply brightness-150;
     }
 
-  h4 {
-    font-size: 1.5rem;
-    @apply z-10 absolute top-1/2 transform -translate-y-1/2 left-4 text-white;
-  }
+    h4 {
+      font-size: 1.5rem;
+      @apply z-10 absolute top-1/2 transform -translate-y-1/2 left-4 text-white;
+    }
 
-  img {
-    @apply object-cover w-full h-full brightness-30;
+    img {
+      @apply object-cover w-full h-full brightness-30;
+    }
   }
- }
 }
 
 .recharts-tooltip-wrapper {
   @apply z-50;
 
   .recharts-default-tooltip {
-    background: theme('colors.black.DEFAULT') !important;
+    background: theme("colors.black.DEFAULT") !important;
   }
 }
 
 .costume-panel {
-  scrollbar-color: theme('colors.beige.DEFAULT') theme('colors.grey.dark');
+  scrollbar-color: theme("colors.beige.DEFAULT") theme("colors.grey.dark");
   scrollbar-width: thin;
 }
 
 [data-radix-popper-content-wrapper] {
   z-index: 30 !important;
+}
+
+.karma-list {
+  li:nth-child(3n) {
+    margin-bottom: 2rem;
+  }
 }
