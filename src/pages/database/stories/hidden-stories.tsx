@@ -64,34 +64,43 @@ export default function DatabaseStories({ characters }: Props): JSX.Element {
             {characters
               .filter((character) => character.character_id === characterIndex)
               .map((character) => (
-                <div key={character.character_id}>
-                  {character.hidden_stories.map(
-                    ({ Name, Number, story, image_path }, index) => (
-                      <div key={index} className="my-4">
-                        <h3 className="text-3xl font-medium text-beige mb-4">
-                          {Name} ({Number})
-                        </h3>
-                        <img
-                          className="mb-4"
-                          src={`${CDN_URL}${image_path}`}
-                          alt={`Story ${index + 1} image`}
-                          loading="lazy"
-                        />
-                        <p
-                          className="whitespace-pre-wrap mb-4 pl-4"
-                          dangerouslySetInnerHTML={{
-                            __html: story.replaceAll("\\n", "<br>"),
-                          }}
-                        ></p>
-                      </div>
-                    )
-                  )}
-                </div>
+                <CharacterHiddenStory
+                  key={character.character_id}
+                  character={character}
+                />
               ))}
           </article>
         </div>
       </StoriesLayout>
     </Layout>
+  );
+}
+
+export function CharacterHiddenStory({ character }: { character: character }) {
+  return (
+    <div key={character.character_id}>
+      {character.hidden_stories.map(
+        ({ Name, Number, story, image_path }, index) => (
+          <div key={index} className="my-4">
+            <h3 className="text-3xl font-medium text-beige mb-4">
+              {Name} ({Number})
+            </h3>
+            <img
+              className="mb-4"
+              src={`${CDN_URL}${image_path}`}
+              alt={`Story ${index + 1} image`}
+              loading="lazy"
+            />
+            <p
+              className="whitespace-pre-wrap mb-4 pl-4"
+              dangerouslySetInnerHTML={{
+                __html: story.replaceAll("\\n", "<br>"),
+              }}
+            ></p>
+          </div>
+        )
+      )}
+    </div>
   );
 }
 
