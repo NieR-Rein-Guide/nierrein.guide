@@ -9,7 +9,6 @@ import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 // import SettingsModal from "@components/Settings";
 import { ITEMS } from "@components/DatabaseNavbar";
-import { CurrentRelease } from "@components/Header/CurrentVersion";
 
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
@@ -65,10 +64,7 @@ export default function Header(): JSX.Element {
             </span>
             <h1 className="text-3xl z-10 drop-shadow-xl mt-2 hidden lg:inline-block lg:mt-4">
               NieR Re[in]
-              <p className="inline-flex items-center lg:flex gap-2">
-                Guide{" "}
-                <CurrentRelease className="inline-block text-xs font-mono bg-grey-dark border border-beige border-opacity-50 p-1" />
-              </p>
+              <p className="inline-flex items-center lg:flex gap-2">Guide</p>
             </h1>
           </Link>
 

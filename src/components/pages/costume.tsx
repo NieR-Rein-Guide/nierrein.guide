@@ -8,7 +8,6 @@ import CostumeSelect from "@components/characters/CostumeSelect";
 import slug from "slugg";
 import { useRouter } from "next/router";
 import { CDN_URL } from "@config/constants";
-import Link from "next/link";
 import SVG from "react-inlinesvg";
 import {
   character,
@@ -24,7 +23,6 @@ import {
 import { useSettingsStore } from "store/settings";
 import Slider from "rc-slider";
 import CharacterRows from "@components/characters/CharacterRows";
-import classNames from "classnames";
 import { Switch } from "@mui/material";
 
 type Costume = costume & {
@@ -67,7 +65,6 @@ export default function CostumePage({
   const [currentCostume, setCurrentCostume] = useState<
     Costume | costume | null
   >(selectedCostume || costumes[0]);
-  const region = useSettingsStore((state) => state.region);
   const [skillLevel, setSkillLevel] = useState(14);
   const [ascendLevel, setAscendLevel] = useState(4);
 

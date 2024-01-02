@@ -59,36 +59,43 @@ export default function DatabaseStories({ characters }: Props): JSX.Element {
             </FormControl>
           </div>
 
-          <article className="relative bordered bg-grey-dark p-4 rounded-lg">
-            <Squares />
-            {characters
-              .filter((character) => character.character_id === characterIndex)
-              .map((character) => (
-                <div key={character.character_id}>
-                  {character.character_stories.map(
-                    ({ story, image_path }, index) => (
-                      <div key={index} className="my-4">
-                        <img
-                          className="mb-4"
-                          src={`${CDN_URL}${image_path}`}
-                          alt={`Story ${index + 1} image`}
-                          loading="lazy"
-                        />
-                        <p
-                          className="whitespace-pre-wrap mb-4 pl-4"
-                          dangerouslySetInnerHTML={{
-                            __html: story,
-                          }}
-                        ></p>
-                      </div>
-                    )
-                  )}
-                </div>
-              ))}
-          </article>
+          {characters
+            .filter((character) => character.character_id === characterIndex)
+            .map((character) => (
+              <CharacterStory
+                key={character.character_id}
+                character={character}
+              />
+            ))}
         </div>
       </StoriesLayout>
     </Layout>
+  );
+}
+
+export function CharacterStory({ character }: { character: character }) {
+  return (
+    <article className="relative bordered bg-grey-dark p-4 rounded-lg">
+      <Squares />
+      <div key={character.character_id}>
+        {character.character_stories.map(({ story, image_path }, index) => (
+          <div key={index} className="my-4">
+            <img
+              className="mb-4"
+              src={`${CDN_URL}${image_path}`}
+              alt={`Story ${index + 1} image`}
+              loading="lazy"
+            />
+            <p
+              className="whitespace-pre-wrap mb-4 pl-4"
+              dangerouslySetInnerHTML={{
+                __html: story,
+              }}
+            ></p>
+          </div>
+        ))}
+      </div>
+    </article>
   );
 }
 

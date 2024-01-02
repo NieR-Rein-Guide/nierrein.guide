@@ -26,6 +26,7 @@ import {
   costume,
   costume_ability,
   costume_ability_link,
+  costume_karma_slot,
   costume_skill,
   costume_skill_link,
   costume_stat,
@@ -66,6 +67,9 @@ import { chaptersIcons } from "@utils/chaptersIcons";
 import { LimitedCostume } from "./LimitedCostume";
 import { SingleWeapon } from "./WeaponInfo";
 import Element from "./Element";
+import { CharacterStory } from "pages/database/stories/characters";
+import { ExCharacterStory } from "pages/database/stories/ex-characters";
+import { RodCharacterStory } from "pages/database/stories/rod-characters";
 
 const ModelWithNoSSR = dynamic(() => import("@components/Model"), {
   ssr: false,
@@ -110,6 +114,7 @@ function CostumeDetails({
     })[];
     sources: Event[];
     link: costumes_link;
+    costume_karma_slot: costume_karma_slot[];
   };
   abilities;
   skill;
@@ -181,6 +186,7 @@ function CostumeDetails({
 
     return isPve || isPvp;
   });
+  console.log(costume);
 
   const { maxNoAsc, maxWithAsc } = getCostumeLevelsByRarity(costume.rarity);
 
@@ -569,6 +575,10 @@ function CostumeDetails({
                   <div className="flex flex-1 items-center justify-center text-center">
                     <TierLogo tier={item.tiers.tier} />
                   </div>
+                      className="p-4"
+                      dangerouslySetInnerHTML={{ __html: item.tooltip }}
+                    ></div>
+                  )}
                   <Link
                     href={`/tierlist/${item.tiers.tierslists.slug}?highlight=${costume.costume_id}`}
                     passHref
@@ -735,6 +745,46 @@ function CostumeDetails({
                 </div>
               </div>
             )}
+
+            {costume.costume_karma_slot.length > 0 && (
+              <div className="relative mb-8">
+                <div className="mt-12">
+                  <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
+                    Karma
+                  </h2>
+                  <HR className="my-8" />
+                </div>
+
+                <div className="flex overflow-x-auto md:grid md:grid-cols-3 mt-8 gap-6">
+                  {costume.costume_karma_slot
+                    .sort((a, b) => a.order - b.order)
+                    .map((slot) => (
+                      <div
+                        key={`karma-slot-${slot.order}`}
+                        className="relative bordered p-4"
+                      >
+                        <ul>
+                          {slot.karma_items
+                            .sort((a, b) => a.order - b.order)
+                            .map((item) => (
+                              <li
+                                key={`karma-ability-${item.order}`}
+                                className="flex items-center gap-4"
+                              >
+                                <img
+                                  src={`${CDN_URL}${item.image_path}`}
+                                  alt=""
+                                />
+                                {item.rarity}
+                                {item.text}({item.order})
+                              </li>
+                            ))}
+                        </ul>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            )}
           </div>
         )}
 
@@ -816,7 +866,7 @@ function CostumeDetails({
         <div id="sources" className="relative">
           <div className="mt-12">
             <h2 className="text-3xl absolute -top-8 md:-top-6 left-1/2 transform -translate-x-1/2">
-              Costume story
+              Stories
             </h2>
             <HR className="my-8" />
           </div>
@@ -838,6 +888,10 @@ function CostumeDetails({
               ></p>
             </div>
           </div>
+
+          <CharacterStory character={character} />
+          <ExCharacterStory character={character} />
+          <RodCharacterStory character={character} />
         </div>
       </div>
     </div>

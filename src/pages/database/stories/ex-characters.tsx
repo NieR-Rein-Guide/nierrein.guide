@@ -64,29 +64,35 @@ export default function DatabaseStories({ characters }: Props): JSX.Element {
             {characters
               .filter((character) => character.character_id === characterIndex)
               .map((character) => (
-                <div key={character.character_id}>
-                  {character.ex_stories.map(({ story, image_path }, index) => (
-                    <div key={index} className="my-4">
-                      <img
-                        className="mb-4"
-                        src={`${CDN_URL}${image_path}`}
-                        alt={`Story ${index + 1} image`}
-                        loading="lazy"
-                      />
-                      <p
-                        className="whitespace-pre-wrap mb-4 pl-4"
-                        dangerouslySetInnerHTML={{
-                          __html: story,
-                        }}
-                      ></p>
-                    </div>
-                  ))}
-                </div>
+                <ExCharacterStory character={character} />
               ))}
           </article>
         </div>
       </StoriesLayout>
     </Layout>
+  );
+}
+
+export function ExCharacterStory({ character }: { character: character }) {
+  return (
+    <div>
+      {character.ex_stories.map(({ story, image_path }, index) => (
+        <div key={index} className="my-4">
+          <img
+            className="mb-4"
+            src={`${CDN_URL}${image_path}`}
+            alt={`Story ${index + 1} image`}
+            loading="lazy"
+          />
+          <p
+            className="whitespace-pre-wrap mb-4 pl-4"
+            dangerouslySetInnerHTML={{
+              __html: story,
+            }}
+          ></p>
+        </div>
+      ))}
+    </div>
   );
 }
 
