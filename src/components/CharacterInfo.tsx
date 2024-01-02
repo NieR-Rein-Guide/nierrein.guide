@@ -575,6 +575,8 @@ function CostumeDetails({
                   <div className="flex flex-1 items-center justify-center text-center">
                     <TierLogo tier={item.tiers.tier} />
                   </div>
+                  {item.tooltip && (
+                    <div
                       className="p-4"
                       dangerouslySetInnerHTML={{ __html: item.tooltip }}
                     ></div>
