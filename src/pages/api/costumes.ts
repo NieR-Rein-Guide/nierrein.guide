@@ -55,6 +55,8 @@ export default async function handler(
             },
           },
           emblem: true,
+          costume_karma_slot: true,
+          debris: true,
         },
       });
 
