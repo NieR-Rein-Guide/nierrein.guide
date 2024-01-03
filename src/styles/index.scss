@@ -347,7 +347,10 @@ canvas {
   padding: 1rem !important;
   position: relative !important;
   font-size: 0.8rem !important;
-  @apply bordered;
+  max-height: 33vh;
+  overflow-y: auto;
+  max-width: 500px;
+  border: 1px solid theme("colors.beige.DEFAULT");
 }
 
 .vis-timeline {
