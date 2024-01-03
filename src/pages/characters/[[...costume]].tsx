@@ -292,6 +292,7 @@ export async function getStaticProps(context) {
         rankBonus,
       })
     ),
+    revalidate: 900,
   };
 }
 
