@@ -67,7 +67,6 @@ export async function getStaticProps(context) {
     props: {
       story,
     },
-    revalidate: 86400,
   };
 }
 

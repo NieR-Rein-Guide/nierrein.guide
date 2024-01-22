@@ -29,19 +29,18 @@ export default function DatabaseStories({
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-12 gap-8 lg:gap-20">
           {stories.map((story) => (
-            (<Link
+            <Link
               href={`/database/story/${story.attributes.slug}`}
               key={story.attributes.slug}
-              className="transform transition-transform ease-out-cubic hover:scale-105">
-
+              className="transform transition-transform ease-out-cubic hover:scale-105"
+            >
               <Image
                 objectFit="cover"
                 objectPosition="center"
                 src={
                   story.attributes.cover?.data.attributes.formats?.medium
                     ?.url ??
-                  story.attributes.cover?.data.attributes.formats?.small
-                    ?.url ??
+                  story.attributes.cover?.data.attributes.formats?.small?.url ??
                   story.attributes.cover?.data.attributes.formats?.thumbnail
                     ?.url ??
                   coverStory
@@ -53,8 +52,7 @@ export default function DatabaseStories({
               <h3 className="text-2xl lg:text-3xl mt-2 text-beige">
                 {story.attributes.title}
               </h3>
-
-            </Link>)
+            </Link>
           ))}
         </div>
       </section>
@@ -69,6 +67,5 @@ export async function getStaticProps() {
     props: {
       stories,
     },
-    revalidate: 86400,
   };
 }

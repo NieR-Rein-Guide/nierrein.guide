@@ -836,7 +836,7 @@ function CusdisComments({ pageId, pageTitle }) {
   );
 }
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getStaticProps(context: NextPageContext) {
   const { tierlist, items } = await getTierlist({
     slug: context.query.slug,
   });

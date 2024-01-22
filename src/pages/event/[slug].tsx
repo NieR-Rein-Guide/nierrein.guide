@@ -240,7 +240,6 @@ export async function getStaticProps(context) {
         costumes,
       })
     ),
-    revalidate: 30, // Revalidate every 30s
   };
 }
 

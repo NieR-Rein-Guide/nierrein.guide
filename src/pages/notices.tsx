@@ -44,6 +44,5 @@ export async function getStaticProps() {
         notifications,
       })
     ),
-    revalidate: 30,
   };
 }

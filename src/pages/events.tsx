@@ -329,6 +329,5 @@ export async function getStaticProps() {
         groups,
       })
     ),
-    revalidate: 30, // Revalidate every 30s
   };
 }

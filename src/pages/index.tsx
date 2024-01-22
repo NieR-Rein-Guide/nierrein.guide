@@ -285,7 +285,6 @@ export async function getStaticProps() {
           loadouts,
         })
       ),
-      revalidate: 30, // Revalidate every 30s
     };
   } catch (error) {
     console.log("Homepage: ", error.message);
