@@ -186,7 +186,7 @@ export default function TierlistsPageProps({
   );
 }
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getStaticProps() {
   const { pve, pvp } = await getTiers();
   const characters = await prisma.dump.character.findMany({});
 

@@ -199,7 +199,7 @@ export default function DatabaseStoriesWeapons({
   );
 }
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getStaticProps(context: NextPageContext) {
   const where = {
     evolution_order: 1,
   };

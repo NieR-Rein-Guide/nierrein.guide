@@ -218,7 +218,7 @@ export default function DatabaseStoriesCostumes({
   );
 }
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getStaticProps(context: NextPageContext) {
   const where = {};
 
   if (Object.keys(context.query).length === 0) {

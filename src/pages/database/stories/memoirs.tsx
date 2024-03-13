@@ -121,7 +121,7 @@ export default function DatabaseStoriesMemoirs({
   );
 }
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getStaticProps(context: NextPageContext) {
   /**
    * Filters
    */

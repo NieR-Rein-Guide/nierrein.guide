@@ -7,19 +7,6 @@ export const env = envsafe({
   }),
 
   /**
-   * S3 Configuration
-   */
-  S3_ACCESS_KEY: str({
-    docs: "https://discord.com/channels/877257901146775603/877323861123809300/879707546372440104",
-  }),
-  S3_SECRET_KEY: str({
-    docs: "https://discord.com/channels/877257901146775603/877323861123809300/879707546372440104",
-  }),
-  S3_ENDPOINT: str({
-    default: "s3.eu-central-1.wasabisys.com",
-  }),
-
-  /**
    * API
    */
   NEXT_PUBLIC_API_ENDPOINT: url({

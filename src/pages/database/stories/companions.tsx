@@ -129,7 +129,7 @@ export default function DatabaseStoriesCompanions({
   );
 }
 
-export async function getServerSideProps(context: NextPageContext) {
+export async function getStaticProps(context: NextPageContext) {
   /**
    * Filters
    */
