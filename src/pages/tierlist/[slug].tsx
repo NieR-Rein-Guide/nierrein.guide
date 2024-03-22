@@ -1,7 +1,6 @@
 import Image from "next/legacy/image";
 import { formatDistanceToNow, differenceInDays } from "date-fns";
 import { tiers, tiers_items, tierlists } from "@prisma/client-nrg";
-import { NextPageContext } from "next";
 import { character, costume } from "@prisma/client";
 import CostumeThumbnail from "@components/CostumeThumbnail";
 import { CDN_URL, FEATURED_TIERLISTS } from "@config/constants";
@@ -11,7 +10,6 @@ import Layout from "@components/Layout";
 import WeaponThumbnail from "@components/WeaponThumbnail";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 import { useTierlistsVotes } from "@store/tierlist-votes";
-import axios from "axios";
 import { useRouter } from "next/router";
 import {
   Button,
@@ -150,22 +148,6 @@ export function TierlistContent({
 
   const hasVoted = localVotes.includes(tierlist.tierlist_id);
 
-  async function vote() {
-    if (hasVoted) {
-      return;
-    }
-
-    await axios.post("/api/tierlists/vote", {
-      tierlist_id: tierlist.tierlist_id,
-    });
-
-    addVote(tierlist.tierlist_id);
-
-    router.replace(router.asPath, undefined, {
-      scroll: false,
-    });
-  }
-
   function toggleContent() {
     wysiwyg.current.classList.toggle("max-h-36");
     setIsContentExpanded(!isContentExpanded);
@@ -294,7 +276,6 @@ export function TierlistContent({
 
         <div className="flex justify-center mt-6 lg:hidden">
           <Button
-            onClick={hasVoted ? undefined : vote}
             variant={hasVoted ? "text" : "outlined"}
             color={hasVoted ? "success" : "primary"}
             startIcon={<FiThumbsUp className="pl-1" />}
@@ -393,7 +374,6 @@ export function TierlistContent({
         </div>
 
         <Button
-          onClick={hasVoted ? undefined : vote}
           variant={hasVoted ? "text" : "outlined"}
           color={hasVoted ? "success" : "primary"}
           startIcon={<FiThumbsUp className="pl-1" />}
@@ -836,9 +816,9 @@ function CusdisComments({ pageId, pageTitle }) {
   );
 }
 
-export async function getStaticProps(context: NextPageContext) {
+export async function getStaticProps({ params }) {
   const { tierlist, items } = await getTierlist({
-    slug: context.query.slug,
+    slug: params.slug,
   });
 
   const characters = await prisma.dump.character.findMany({});
@@ -851,6 +831,25 @@ export async function getStaticProps(context: NextPageContext) {
         characters,
       })
     ),
+  };
+}
+
+export async function getStaticPaths() {
+  const tierlists = await prisma.nrg.tierlists.findMany({
+    select: {
+      slug: true,
+    }
+  })
+
+  const paths = tierlists.map((tierlist) => ({
+    params: {
+      slug: tierlist.slug,
+    },
+  }));
+
+  return {
+    paths,
+    fallback: false,
   };
 }
 

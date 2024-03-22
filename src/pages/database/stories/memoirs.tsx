@@ -6,10 +6,7 @@ import { memoir, memoir_series } from "@prisma/client";
 import { Autocomplete } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import { useRouter } from "next/router";
-import { NextPageContext } from "next";
 import { Box } from "@mui/system";
-import { StoriesNavbar } from "./index";
-import { useSettingsStore } from "@store/settings";
 import MemoirThumbnail from "@components/MemoirThumbnail";
 import StoriesLayout from "@components/Layout/StoriesLayout";
 
@@ -24,28 +21,7 @@ export default function DatabaseStoriesMemoirs({
   memoirs,
   memoirsSeries,
 }: DatabaseStoriesMemoirsProps): JSX.Element {
-  const router = useRouter();
-  const firstUpdate = useRef(true);
-
   const [serieId, setSerieId] = useState<number | string>("all");
-
-  useEffect(() => {
-    if (firstUpdate.current) return;
-    const params = new URLSearchParams();
-
-    if (serieId !== "all") {
-      params.append("memoir_series_id", serieId.toString());
-    }
-
-    router.push(`/database/stories/memoirs?${params.toString()}`);
-  }, [serieId]);
-
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
-  }, []);
 
   return (
     <Layout>
@@ -94,7 +70,12 @@ export default function DatabaseStoriesMemoirs({
         </div>
 
         <div>
-          {memoirs.map((memoir) => (
+          {memoirs
+            .filter((memoir) => {
+              if (serieId === 'all') return true;
+              return memoir.series_id === serieId;
+            })
+            .map((memoir) => (
             <div
               key={memoir.memoir_id}
               className="lg:col-start-3 lg:col-span-8 flex flex-col md:flex-row gap-x-4 bg-grey-dark bordered relative p-4"
@@ -121,7 +102,7 @@ export default function DatabaseStoriesMemoirs({
   );
 }
 
-export async function getStaticProps(context: NextPageContext) {
+export async function getStaticProps() {
   /**
    * Filters
    */
@@ -130,13 +111,6 @@ export async function getStaticProps(context: NextPageContext) {
     lottery_id: 5,
     rarity: "SS_RARE",
   };
-
-  if (context.query.memoir_series_id) {
-    where["memoir_series"] = {};
-    where["memoir_series"]["memoir_series_id"] = Number(
-      context.query.memoir_series_id
-    );
-  }
 
   const memoirs = await prisma.dump.memoir.findMany({
     where,

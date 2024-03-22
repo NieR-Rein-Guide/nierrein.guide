@@ -15,4 +15,9 @@ export const env = envsafe({
   NIERREINGUIDE_DATABASE_URL: str({
     desc: "Main database (loadouts...)",
   }),
+
+  /**
+   * API
+   */
+  NEXT_PUBLIC_STRAPI_REST_API_ENDPOINT: url({}),
 });

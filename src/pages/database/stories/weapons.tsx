@@ -1,21 +1,15 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import prisma from "@libs/prisma";
 import { weapon, weapon_story, weapon_story_link } from "@prisma/client";
 import { CDN_URL } from "@config/constants";
 import RARITY from "@utils/rarity";
 import { Autocomplete } from "@mui/material";
 import TextField from "@mui/material/TextField";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { sub } from "date-fns";
-import { useRouter } from "next/router";
-import { NextPageContext } from "next";
 import { Box } from "@mui/system";
 import WeaponThumbnail from "@components/WeaponThumbnail";
-import { useSettingsStore } from "@store/settings";
 import StoriesLayout from "@components/Layout/StoriesLayout";
 
 interface DatabaseStoriesWeaponsProps {
@@ -39,38 +33,9 @@ export default function DatabaseStoriesWeapons({
   weapons,
   selectWeapons,
 }: DatabaseStoriesWeaponsProps): JSX.Element {
-  const router = useRouter();
-  const firstUpdate = useRef(true);
-
-  const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
-  );
-
-  const [fromDate, setFromDate] = useState<Date | null>(DEFAULT_FROM_DATE);
   const [weaponSlug, setWeaponSlug] = useState("all");
 
-  useEffect(() => {
-    if (firstUpdate.current) return;
-    const params = new URLSearchParams();
-
-    if (weaponSlug !== "all") {
-      params.append("weapon", weaponSlug);
-    } else {
-      params.append("from", fromDate.toISOString());
-    }
-
-    router.push(`/database/stories/weapons?${params.toString()}`);
-  }, [weaponSlug, fromDate]);
-
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
-  }, []);
-
   function resetFilters() {
-    setFromDate(DEFAULT_FROM_DATE);
     setWeaponSlug("all");
   }
 
@@ -124,23 +89,13 @@ export default function DatabaseStoriesWeapons({
               />
             )}
           />
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <MobileDatePicker
-              className="mt-4 md:mt-0"
-              label="Created after"
-              inputFormat="MM/dd/yyyy"
-              value={fromDate}
-              onChange={(newValue) => setFromDate(newValue)}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
         </div>
 
         <div>
           {weapons
-            .filter((costume) => {
-              if (showUnreleasedContent) return true;
-              return new Date() > new Date(costume.release_time);
+            .filter((weapon) => {
+              if (weaponSlug === 'all') return true;
+              return weapon.slug === weaponSlug;
             })
             .map((weapon) => (
               <div
@@ -199,27 +154,10 @@ export default function DatabaseStoriesWeapons({
   );
 }
 
-export async function getStaticProps(context: NextPageContext) {
+export async function getStaticProps() {
   const where = {
     evolution_order: 1,
   };
-
-  if (Object.keys(context.query).length === 0) {
-    where["release_time"] = {};
-    where["release_time"]["gte"] = DEFAULT_FROM_DATE;
-  }
-
-  /**
-   * Filters
-   */
-  if (context.query.from && !context.query.weapon) {
-    where["release_time"] = {};
-    where["release_time"]["gte"] = context.query.from;
-  }
-
-  if (context.query.weapon) {
-    where["slug"] = context.query.weapon;
-  }
 
   const weapons = await prisma.dump.weapon.findMany({
     where,

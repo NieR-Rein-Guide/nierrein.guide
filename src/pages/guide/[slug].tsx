@@ -92,8 +92,8 @@ export default function SingleGuide({ guide }: GuideProps): JSX.Element {
   );
 }
 
-export async function getStaticProps(context) {
-  const guide = await getGuideBySlug(context.params.slug);
+export async function getStaticProps({ params }) {
+  const guide = await getGuideBySlug(params.slug);
 
   return {
     props: {
@@ -111,6 +111,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: "blocking",
+    fallback: false,
   };
 }

@@ -6,12 +6,10 @@ import { getTiers, Tierlist } from "@models/tiers";
 import Meta from "@components/Meta";
 import { useRouter } from "next/router";
 import { TierlistContent } from "pages/tierlist/[slug]";
-import { NextPageContext } from "next";
 import CommunityTierlists from "@components/CommunityTierlists";
 import prisma from "@libs/prisma";
 import Link from "next/link";
 import { FEATURED_TIERLISTS } from "@config/constants";
-import { useSettingsStore } from "@store/settings";
 import { character } from "@prisma/client";
 
 interface TierlistsPageProps {
@@ -40,62 +38,8 @@ export default function TierlistsPageProps({
   tierlists,
   characters,
 }: TierlistsPageProps): JSX.Element {
-  const router = useRouter();
   const [tabIndex] = useState(defaultTab);
   const [pvpTabIndex] = useState(defaultPvpTab);
-
-  const handleTabsChange = (index) => {
-    if (TABS_MAPPING[index]) {
-      router.push(`/tierlists/${TABS_MAPPING[index]}`, null, {
-        shallow: true,
-        scroll: false,
-      });
-    }
-  };
-
-  const handlePvpTabsChange = (index) => {
-    if (pvp?.[index]?.tierlist?.slug) {
-      history.replaceState(
-        null,
-        null,
-        `/tierlists/pvp/${pvp[index].tierlist.slug}`
-      );
-    }
-  };
-
-  // Database is empty.
-  if (pve?.[0].items?.length === 0) {
-    return (
-      <Layout>
-        <Meta
-          title="Tier Lists"
-          cover={
-            defaultTab === 0
-              ? "https://nierrein.guide/tierlists/cover-pve.jpg"
-              : "https://nierrein.guide/tierlists/cover-pvp.jpg"
-          }
-        />
-
-        <section>
-          <h2 className="overlap">Tierlists</h2>
-
-          <div className="text-right hidden lg:block">
-            <Link
-              href="/tools/tierlist-builder"
-              passHref
-              className="btn mb-4 md:mb-0 top-3 right-4 md:absolute"
-            >
-              Create a tierlist
-            </Link>
-          </div>
-
-          <h2 className="text-center text-2xl">
-            Database is being updated... Try again in 10 minutes.
-          </h2>
-        </section>
-      </Layout>
-    );
-  }
 
   return (
     <Layout>
@@ -123,7 +67,6 @@ export default function TierlistsPageProps({
 
         <Tabs.Root
           defaultValue={tabIndex?.toString()}
-          onValueChange={handleTabsChange}
         >
           <Tabs.List className="relative bordered bg-grey-dark p-4 grid grid-cols-2 md:grid-cols-3 gap-y-2 gap-x-8">
             <TierListTab index={0}>PvE</TierListTab>
@@ -149,7 +92,6 @@ export default function TierlistsPageProps({
             <Tabs.Root
               className="mt-4 md:mt-0"
               defaultValue={pvpTabIndex?.toString()}
-              onValueChange={handlePvpTabsChange}
             >
               <Tabs.List className="grid grid-cols-1 md:grid-cols-3 gap-y-1 mb-8">
                 {pvp.map((tierlist, index) => (
@@ -209,23 +151,6 @@ export async function getStaticProps() {
   };
   let orderBy = {};
 
-  /**
-   * Filters
-   */
-  if (context.query.attribute) {
-    if (context.query.attribute !== "all") {
-      where["attribute"] = context.query.attribute;
-    }
-  }
-
-  if (context.query.type !== "all") {
-    where["type"] = context.query.type;
-  }
-
-  if (context.query.from) {
-    where.updated_at.gte = context.query.from;
-  }
-
   // Exclude pinned tierlists
   where.tierlist_id = {
     notIn: [...FEATURED_TIERLISTS.pve, ...FEATURED_TIERLISTS.pvp],
@@ -238,15 +163,9 @@ export async function getStaticProps() {
    * Order by
    */
 
-  if (context.query.sortBy) {
-    orderBy = {
-      [context.query.sortBy as string]: "desc",
-    };
-  } else {
-    orderBy = {
-      votes: "desc",
-    };
-  }
+  orderBy = {
+    votes: "desc",
+  };
 
   const tierlists = await prisma.nrg.tierlists.findMany({
     orderBy,
@@ -254,30 +173,6 @@ export async function getStaticProps() {
   });
 
   props.tierlists = tierlists;
-
-  /**
-   * /tierlists/pve | /tierlists/pvp
-   */
-  if (context.query.slug) {
-    const [type] = context.query.slug;
-
-    const tabsMappings = Object.entries(TABS_MAPPING);
-    const index = tabsMappings.findIndex(([, value]) => value === type);
-    props.defaultTab = index;
-  }
-
-  /**
-   * /tierlists/pvp/[slug]
-   */
-  if (context.query.slug?.length > 1) {
-    const [, slug] = context.query.slug;
-
-    const defaultPvpTab = pvp.findIndex(
-      (tierlist) => tierlist.tierlist.slug === slug
-    );
-
-    props.defaultPvpTab = defaultPvpTab;
-  }
 
   return JSON.parse(
     JSON.stringify({

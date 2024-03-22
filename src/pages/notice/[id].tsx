@@ -76,10 +76,10 @@ export default function SingleNotice({
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps({ params }) {
   const notification = await prisma.nrg.notification.findFirst({
     where: {
-      notification_id: Number(context.params.id),
+      notification_id: Number(params.id),
     },
   });
 
@@ -105,6 +105,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: "blocking",
+    fallback: false,
   };
 }

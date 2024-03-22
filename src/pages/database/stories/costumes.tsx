@@ -14,7 +14,6 @@ import { MobileDatePicker } from "@mui/x-date-pickers/MobileDatePicker";
 import { sub } from "date-fns";
 import CostumeSelect from "@components/characters/CostumeSelect";
 import { useRouter } from "next/router";
-import { NextPageContext } from "next";
 import { Box } from "@mui/system";
 import { useSettingsStore } from "@store/settings";
 import StoriesLayout from "@components/Layout/StoriesLayout";
@@ -46,46 +45,10 @@ export default function DatabaseStoriesCostumes({
   selectCostumes,
   selectCharacters,
 }: DatabaseStoriesCostumesProps): JSX.Element {
-  const router = useRouter();
-  const firstUpdate = useRef(true);
-  const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
-  );
-
-  const [fromDate, setFromDate] = useState<Date | null>(DEFAULT_FROM_DATE);
   const [costumeSlug, setCostumeSlug] = useState("all");
   const [characterSlug, setCharacterSlug] = useState("all");
 
-  useEffect(() => {
-    if (firstUpdate.current) return;
-    const params = new URLSearchParams();
-
-    if (characterSlug !== "all" && costumeSlug === "all") {
-      params.append("character", characterSlug);
-    }
-    if (costumeSlug !== "all") {
-      params.append("costume", costumeSlug);
-    }
-    if (costumeSlug !== "all" && characterSlug !== "all") {
-      setCharacterSlug("all");
-      return;
-    }
-    if (costumeSlug === "all") {
-      params.append("from", fromDate.toISOString());
-    }
-
-    router.push(`/database/stories/costumes?${params.toString()}`);
-  }, [characterSlug, costumeSlug, fromDate]);
-
-  useEffect(() => {
-    if (firstUpdate.current) {
-      firstUpdate.current = false;
-      return;
-    }
-  }, []);
-
   function resetFilters() {
-    setFromDate(DEFAULT_FROM_DATE);
     setCostumeSlug("all");
     setCharacterSlug("all");
   }
@@ -142,7 +105,10 @@ export default function DatabaseStoriesCostumes({
           />
           <p>or</p>
           <CostumeSelect
-            costumes={selectCostumes}
+            costumes={selectCostumes.filter((costume) => {
+              if (characterSlug === 'all') return true;
+              return costume.character.slug === characterSlug;
+            })}
             onSelect={(e, costume) => {
               if (!costume) {
                 setCostumeSlug("all");
@@ -151,22 +117,16 @@ export default function DatabaseStoriesCostumes({
               setCostumeSlug(costume.slug);
             }}
           />
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <MobileDatePicker
-              className="mt-4 md:mt-0"
-              label="Created after"
-              inputFormat="MM/dd/yyyy"
-              value={fromDate}
-              onChange={(newValue) => setFromDate(newValue)}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
         </div>
         <div>
           {costumes
             .filter((costume) => {
-              if (showUnreleasedContent) return true;
-              return new Date() > new Date(costume.release_time);
+              if (costumeSlug === 'all') return true;
+              return costume.slug === costumeSlug;
+            })
+            .filter((costume) => {
+              if (characterSlug === 'all') return true;
+              return costume.character.slug === characterSlug;
             })
             .map((costume) => (
               <div
@@ -218,35 +178,8 @@ export default function DatabaseStoriesCostumes({
   );
 }
 
-export async function getStaticProps(context: NextPageContext) {
-  const where = {};
-
-  if (Object.keys(context.query).length === 0) {
-    where["release_time"] = {};
-    where["release_time"]["gte"] = DEFAULT_FROM_DATE;
-  }
-
-  /**
-   * Filters
-   */
-  if (context.query.from && !context.query.character) {
-    where["release_time"] = {};
-    where["release_time"]["gte"] = context.query.from;
-  }
-
-  if (context.query.costume) {
-    if (context.query.costume !== "all") {
-      where["slug"] = context.query.costume;
-    }
-  }
-
-  if (context.query.character) {
-    where["character"] = {};
-    where["character"]["slug"] = context.query.character;
-  }
-
+export async function getStaticProps() {
   const costumes = await prisma.dump.costume.findMany({
-    where,
     orderBy: {
       release_time: "desc",
     },

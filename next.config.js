@@ -3,12 +3,10 @@ const withPWA = require('next-pwa')({
 })
 
 module.exports = withPWA({
+  output: 'export',
   reactStrictMode: false,
   experimental: {
     largePageDataBytes: 1028 * 1000,
-  },
-  api: {
-    responseLimit: "16mb",
   },
   images: {
     domains: [
