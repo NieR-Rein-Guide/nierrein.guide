@@ -24,22 +24,6 @@ export default function LoadoutListinItem({
 
   const hasVoted = localVotes.includes(loadout_id);
 
-  async function vote() {
-    if (hasVoted) {
-      return;
-    }
-
-    await axios.post("/api/loadouts/vote", {
-      loadout_id,
-    });
-
-    addVote(loadout_id);
-
-    router.replace(router.asPath, undefined, {
-      scroll: false,
-    });
-  }
-
   return (
     <div
       key={loadout_id}
@@ -52,7 +36,6 @@ export default function LoadoutListinItem({
         >
           <Chip
             className="pl-2"
-            onClick={hasVoted ? undefined : vote}
             color={hasVoted ? "success" : "default"}
             variant={hasVoted ? "outlined" : "filled"}
             label={votes}

@@ -107,7 +107,6 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-easing"),
-    require("@tailwindcss/line-clamp"),
     require("@tailwindcss/aspect-ratio"),
   ],
 };

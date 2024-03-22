@@ -211,8 +211,8 @@ export default function SingleEvent({
   );
 }
 
-export async function getStaticProps(context) {
-  const event = await getEventBySlug(context.params.slug);
+export async function getStaticProps({ params }) {
+  const event = await getEventBySlug(params.slug);
 
   const linked = await prisma.nrg.costumes_link.findMany({
     where: {
@@ -252,6 +252,6 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: "blocking",
+    fallback: false,
   };
 }

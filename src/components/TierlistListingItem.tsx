@@ -21,27 +21,8 @@ export default function TierlistListingItem({
   created_at,
   updated_at,
 }: tierlists) {
-  const router = useRouter();
   const localVotes = useTierlistsVotes((state) => state.votes);
-  const addVote = useTierlistsVotes((state) => state.addVote);
-
   const hasVoted = localVotes.includes(tierlist_id);
-
-  async function vote() {
-    if (hasVoted) {
-      return;
-    }
-
-    await axios.post("/api/tierlists/vote", {
-      tierlist_id,
-    });
-
-    addVote(tierlist_id);
-
-    router.replace(router.asPath, undefined, {
-      scroll: false,
-    });
-  }
 
   return (
     <div
@@ -55,7 +36,6 @@ export default function TierlistListingItem({
         >
           <Chip
             className="pl-2"
-            onClick={hasVoted ? undefined : vote}
             color={hasVoted ? "success" : "default"}
             variant={hasVoted ? "outlined" : "filled"}
             label={votes}
