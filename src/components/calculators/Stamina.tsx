@@ -74,7 +74,7 @@ function StaminaCalculator(): JSX.Element {
       </div>
       <div className="bg-grey-dark border border-beige-inactive p-2">
         <div className="flex my-2">
-          <Image layout="fixed" src={staminaImg} alt="Stamina" />
+          <img layout="fixed" src={staminaImg} alt="Stamina" />
           <div className="flex flex-1 flex-col">
             <div className="mt-6 mb-4">
               <input

@@ -12,7 +12,7 @@ export default function Credits(): JSX.Element {
 
       <div className="px-8">
         <Lines className="mb-12" containerClass="justify-center mt-10 md:mt-0">
-          <Image src={mamaImg} height={148} width={148} alt="Mama" />
+          <img src={mamaImg} height={148} width={148} alt="Mama" />
         </Lines>
 
         <ul className="grid grid-cols-1 place-items-center sm:grid-cols-2 sm:place-items-start md:grid-cols-3 lg:grid-cols-4 gap-y-6 mt-8 md:mt-0">
@@ -29,7 +29,7 @@ function Contributor({ credit, children }): JSX.Element {
   function Content({ children }: { children?: JSX.Element }) {
     return (
       <li className="flex items-center gap-x-6 hover-bg w-full p-2">
-        <Image
+        <img
           height="64"
           width="64"
           className="h-16"

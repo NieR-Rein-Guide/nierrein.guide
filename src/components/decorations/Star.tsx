@@ -18,5 +18,5 @@ interface StarProps {
 }
 
 export default function Star({ rarity }: StarProps): JSX.Element {
-  return <Image src={STAR_RARITY[rarity]} alt={`Star rarity lvl ${rarity}`} />;
+  return <img src={STAR_RARITY[rarity]} alt={`Star rarity lvl ${rarity}`} />;
 }

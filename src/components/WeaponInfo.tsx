@@ -307,7 +307,7 @@ export function SingleWeapon({
               <Element type={weapon.attribute} />
             </div>
             <div className="w-16 h-16">
-              <Image
+              <img
                 src={weaponsIcons[weapon.weapon_type]}
                 alt={weapon.weapon_type}
               />
@@ -456,7 +456,7 @@ function SingleStat({ name, value, icon }): JSX.Element {
   return (
     <div className="flex items-center justify-between pl-4 pr-8">
       <div className="flex items-center gap text-beige-light">
-        <Image
+        <img
           layout="intrinsic"
           src={icon}
           alt={name}

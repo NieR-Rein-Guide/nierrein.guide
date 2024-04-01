@@ -214,7 +214,7 @@ export default function MaterialsCalculator(): JSX.Element {
         <div className="grid grid-cols-2 gap-y-8 sm:grid-cols-4 bg-grey-dark p-8 relative bordered">
           <div className="flex flex-col items-center">
             <span>Jewels</span>
-            <Image
+            <img
               src="https://reinguide-assets.s3.eu-central-1.wasabisys.com/material321007_standard_a0f783b80b.png"
               layout="intrinsic"
               height="80"
@@ -225,7 +225,7 @@ export default function MaterialsCalculator(): JSX.Element {
           </div>
           <div className="flex flex-col items-center">
             <span>Recalling Light</span>
-            <Image
+            <img
               src="https://reinguide-assets.s3.eu-central-1.wasabisys.com/material321101_standard_2e26c66670.png"
               layout="intrinsic"
               height="80"
@@ -236,7 +236,7 @@ export default function MaterialsCalculator(): JSX.Element {
           </div>
           <div className="flex flex-col items-center">
             <span>Light of Memory</span>
-            <Image
+            <img
               src="https://reinguide-assets.s3.eu-central-1.wasabisys.com/material322001_standard_8180f70356.png"
               layout="intrinsic"
               height="80"
@@ -247,7 +247,7 @@ export default function MaterialsCalculator(): JSX.Element {
           </div>
           <div className="flex flex-col items-center">
             <span>Zenith's Brilliance</span>
-            <Image
+            <img
               src="https://reinguide-assets.s3.eu-central-1.wasabisys.com/material322002_standard_2f3bf13c63.png"
               layout="intrinsic"
               height="80"
@@ -268,7 +268,7 @@ export default function MaterialsCalculator(): JSX.Element {
           </ul>
           <div>
             <div className="flex items-center">
-              <Image
+              <img
                 src="/ui/consumable_item/consumable300001_standard.png"
                 alt="Small pots"
                 layout="fixed"
@@ -278,7 +278,7 @@ export default function MaterialsCalculator(): JSX.Element {
               {staminaForZeniths / smallPot} small pots.
             </div>
             <div className="flex items-center">
-              <Image
+              <img
                 src="/ui/consumable_item/consumable300002_standard.png"
                 alt="Small pots"
                 layout="fixed"
@@ -288,7 +288,7 @@ export default function MaterialsCalculator(): JSX.Element {
               {staminaForZeniths / mediumPot} medium pots.
             </div>
             <div className="flex items-center">
-              <Image
+              <img
                 src="/ui/consumable_item/consumable300003_standard.png"
                 alt="Small pots"
                 layout="fixed"

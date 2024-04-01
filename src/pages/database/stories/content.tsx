@@ -34,7 +34,7 @@ export default function DatabaseStories({
               key={story.attributes.slug}
               className="transform transition-transform ease-out-cubic hover:scale-105"
             >
-              <Image
+              <img
                 objectFit="cover"
                 objectPosition="center"
                 src={

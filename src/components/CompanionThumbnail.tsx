@@ -56,7 +56,7 @@ export default function CompanionThumbnail({
         }}
       >
         {companion?.name && (
-          <Image
+          <img
             className="z-10"
             layout="fill"
             src={`/decorations/corners_rarity_2.png`}

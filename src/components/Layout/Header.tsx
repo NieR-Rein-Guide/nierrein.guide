@@ -91,7 +91,7 @@ export default function Header(): JSX.Element {
                       )}
                     >
                       <div className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-16 xl:w-16">
-                        <Image
+                        <img
                           height={94}
                           width={94}
                           placeholder="blur"
@@ -135,7 +135,7 @@ export default function Header(): JSX.Element {
                   : "text-beige"
               )}
             >
-              <Image
+              <img
                 className={classNames(
                   "transition ease-out-cubic group-hover:opacity-100",
                   router.asPath === item.href ? "opacity-100" : "opacity-50"
@@ -166,7 +166,7 @@ export default function Header(): JSX.Element {
                 : "text-beige"
             )}
           >
-            <Image
+            <img
               className={classNames(
                 "transition ease-out-cubic group-hover:opacity-100",
                 router.asPath === item.href ? "opacity-100" : "opacity-50"

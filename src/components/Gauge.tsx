@@ -44,7 +44,7 @@ export function Gauge({ cooldown_time, gauge_rise_speed }: GaugeProps) {
             Max asc: {getGaugeLevel(cooldown_time * 0.8)} ({cooldown_time * 0.8}
             )
             <div className="absolute top-1/2 right-2 transform -translate-y-1/2">
-              <Image
+              <img
                 className={classNames(
                   "transform transition-transform ease-out-cubic"
                 )}

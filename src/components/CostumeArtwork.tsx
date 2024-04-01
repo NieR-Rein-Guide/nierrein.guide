@@ -40,7 +40,7 @@ export default function CostumeArtwork({
               path={getModelPath("character", "costume.costume_id")}
             />
           )) || (
-            <Image
+            <img
               layout="fill"
               objectFit="cover"
               src={`${CDN_URL}${costume.image_path_base}full.png`}

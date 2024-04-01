@@ -19,7 +19,7 @@ export default function StatDisplay({ type, value }) {
         <div className={classNames("relative mr-4")}>
           <SVG src="/decorations/frame-ability.svg" className="h-12 w-12" />
           <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
-            <Image alt={type} src={statsIcons[type]} />
+            <img alt={type} src={statsIcons[type]} />
           </div>
         </div>
         <div className="flex flex-col items-start">

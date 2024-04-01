@@ -224,7 +224,7 @@ export default function WeaponAbility({
 
                       <ul className="flex gap-x-4 text-sm">
                         <li className="flex items-center gap-x-1">
-                          <Image
+                          <img
                             layout="intrinsic"
                             src={statsIcons.largeHp}
                             alt="HP"
@@ -234,7 +234,7 @@ export default function WeaponAbility({
                           {weapon.weapon.weapon_stat[0].hp}
                         </li>
                         <li className="flex items-center gap-x-1 text-red-300">
-                          <Image
+                          <img
                             layout="intrinsic"
                             src={statsIcons.largeAtk}
                             alt="HP"
@@ -244,7 +244,7 @@ export default function WeaponAbility({
                           {weapon.weapon.weapon_stat[0].atk}
                         </li>
                         <li className="flex items-center gap-x-1 text-blue-300">
-                          <Image
+                          <img
                             layout="intrinsic"
                             src={statsIcons.largeDef}
                             alt="HP"

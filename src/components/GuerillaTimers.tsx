@@ -84,7 +84,7 @@ const guerillaTypes = (dayOfWeek: number, startHour: number): string[] => {
         {guerillaTypes(endDate.getDay(), guerilla.start[1]).map(
           (weapon, index) => (
             <div key={index} className="w-16 h-16 relative">
-              <Image
+              <img
                 key={index}
                 src={weaponToIcon(weapon)}
                 alt={`${weapon} icon`}

@@ -62,7 +62,7 @@ export default function CostumeThumbnail({
       >
         {children}
         <div className="mt-1 ml-1">
-          <Image
+          <img
             className="z-10 pointer-events-none"
             layout="fixed"
             width={148}
@@ -79,7 +79,7 @@ export default function CostumeThumbnail({
           }}
         >
           <div className="flex flex-col w-10">
-            <Image src={weaponsIcons[weaponType]} alt={alt} />
+            <img src={weaponsIcons[weaponType]} alt={alt} />
             {isDark && (
               <SVG src="/icons/weapons/dark.svg" className="h-10 w-10" />
             )}
@@ -109,7 +109,7 @@ export default function CostumeThumbnail({
             height: "336px",
           }}
         >
-          <Image
+          <img
             layout="fill"
             objectFit="cover"
             objectPosition="top"
@@ -138,7 +138,7 @@ export default function CostumeThumbnail({
       }}
     >
       {src && (
-        <Image
+        <img
           className="z-10"
           layout="fill"
           src={`/decorations/corners_rarity_${costumeRarity}.png`}
@@ -153,7 +153,7 @@ export default function CostumeThumbnail({
             left: "1px",
           }}
         >
-          <Image layout="fill" src={weaponsIcons[weaponType]} alt={alt} />
+          <img layout="fill" src={weaponsIcons[weaponType]} alt={alt} />
         </div>
       )}
       {attribute && (
@@ -168,7 +168,7 @@ export default function CostumeThumbnail({
         </div>
       )}
 
-      <Image
+      <img
         className={classNames("z-0", imgClasses)}
         layout="fill"
         objectFit="contain"

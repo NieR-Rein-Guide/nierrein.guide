@@ -145,7 +145,7 @@ export default function TierList({ tier }): JSX.Element {
       {tier.tiers.map((tier) => (
         <div className="tierlist__row" key={tier.label}>
           {(RANK_THUMBNAILS[tier.label] && (
-            <Image src={RANK_THUMBNAILS[tier.label]} alt={tier.label} />
+            <img src={RANK_THUMBNAILS[tier.label]} alt={tier.label} />
           )) || <h2 className="text-2xl">{tier.label}</h2>}
 
           <div className="flex flex-wrap justify-center md:justify-start gap-4">

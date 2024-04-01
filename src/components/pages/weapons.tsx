@@ -876,7 +876,7 @@ export function WeaponsTable({
           },
           render: (weapon) => (
             <div className="w-8">
-              <Image
+              <img
                 layout="responsive"
                 src={weaponsIcons[weapon.weapon_type]}
                 alt={weapon.weapon_type}

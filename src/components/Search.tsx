@@ -39,7 +39,7 @@ export function Search({ isOpen, setIsOpen }) {
             onClick={toggleSearchPanel}
             title="Close"
           >
-            <Image
+            <img
               height={36}
               width={67}
               objectFit="contain"

@@ -32,7 +32,7 @@ export default function MemoirThumbnail({
       }}
     >
       {image_path_base && (
-        <Image
+        <img
           className="z-10"
           layout="fill"
           src={`/decorations/corners_rarity_${memoirRarity}.png`}

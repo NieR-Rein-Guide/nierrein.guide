@@ -141,13 +141,13 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
         <div className="flex flex-wrap col-span-2">
           {gems.map((gem, index) => (
             <div key={index} className="relative h-20 w-20">
-              <Image src={gemToIcon(gem)} alt={`${gem} icon`} title={gem} />
+              <img src={gemToIcon(gem)} alt={`${gem} icon`} title={gem} />
             </div>
           ))}
 
           {enhancementMaterials.map((weapon, index) => (
             <div key={index} className="relative h-20 w-20">
-              <Image
+              <img
                 src={weaponToIcon(weapon)}
                 alt={`${weapon} icon`}
                 title={weapon}
@@ -165,7 +165,7 @@ function DailyRow({ dayOfWeek }: DailyRowProps): JSX.Element {
         <div className="flex flex-wrap col-span-2">
           {weaponUpgrades.map((weaponUpgrade, index) => (
             <div key={index} className="relative h-20 w-20">
-              <Image
+              <img
                 src={weaponToIcon(weaponUpgrade)}
                 alt={`${weaponUpgrade} icon`}
                 title={weaponUpgrade}

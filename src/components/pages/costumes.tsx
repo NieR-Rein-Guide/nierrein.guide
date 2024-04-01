@@ -746,7 +746,7 @@ export function CostumesTable({
           },
           render: (weapon) => (
             <div className="w-8 mx-auto">
-              <Image
+              <img
                 layout="responsive"
                 src={weaponsIcons[weapon.weapon_type]}
                 alt={weapon.weapon_type}

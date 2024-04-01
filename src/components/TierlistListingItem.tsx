@@ -48,7 +48,7 @@ export default function TierlistListingItem({
       <div className="flex justify-between mt-4">
         <div className="flex items-center justify-center w-7 h-7 bg-grey-lighter text-beige border border-beige-inactive border-opacity-50 rounded-full">
           {type === "costumes" && (
-            <Image
+            <img
               src={`${CDN_URL}ui/character/character001004/character001004_standard.png`}
               height={24}
               width={24}
@@ -56,7 +56,7 @@ export default function TierlistListingItem({
             />
           )}
           {type === "weapons" && (
-            <Image
+            <img
               src={`${CDN_URL}ui/weapon/wp001504/wp001504_standard.png`}
               height={24}
               width={24}

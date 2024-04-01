@@ -27,7 +27,7 @@ export default function Database(): JSX.Element {
           href="/database/abilities"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"
@@ -46,7 +46,7 @@ export default function Database(): JSX.Element {
           href="/database/memoirs"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"
@@ -65,7 +65,7 @@ export default function Database(): JSX.Element {
           href="/database/companions"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"
@@ -84,7 +84,7 @@ export default function Database(): JSX.Element {
           href="/database/debris"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"
@@ -103,7 +103,7 @@ export default function Database(): JSX.Element {
           href="/notices"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"
@@ -122,7 +122,7 @@ export default function Database(): JSX.Element {
           href="/events"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"
@@ -141,7 +141,7 @@ export default function Database(): JSX.Element {
           href="/database/stories/costumes"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"
@@ -160,7 +160,7 @@ export default function Database(): JSX.Element {
           href="/database/assets"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"
@@ -179,7 +179,7 @@ export default function Database(): JSX.Element {
           href="/database/emblems"
           className="flex justify-center items-center px-4 py-2 h-24 md:h-52 relative z-10 border-2 border-beige-text border-opacity-60 transform transition-transform ease-out-cubic hover:scale-105">
 
-          <Image
+          <img
             height={350}
             width={200}
             layout="fill"

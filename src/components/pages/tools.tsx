@@ -28,7 +28,7 @@ function ListingItem({ href, src, label, classes }) {
         classes
       )}>
 
-      <Image
+      <img
         height={350}
         width={200}
         layout="fill"

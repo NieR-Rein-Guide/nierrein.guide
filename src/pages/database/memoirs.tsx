@@ -229,7 +229,7 @@ export default function MemoirsPage({
             {memoirsByDungeons.map((dungeon) => (
               <div key={dungeon.name}>
                 <div className="flex flex-col justify-center items-center">
-                  <Image
+                  <img
                     src={dungeon.image_path}
                     layout="intrinsic"
                     height={424}
@@ -275,7 +275,7 @@ export default function MemoirsPage({
                         {serie.memoir.map((memoir) => (
                           <div className="relative" key={memoir.memoir_id}>
                             <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
-                              <Image
+                              <img
                                 layout="responsive"
                                 width={96}
                                 height={96}
@@ -337,7 +337,7 @@ export default function MemoirsPage({
                       {variation.memoirs.map((memoir) => (
                         <div className="relative" key={memoir.memoir_id}>
                           <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
-                            <Image
+                            <img
                               layout="responsive"
                               width={96}
                               height={96}
@@ -394,7 +394,7 @@ export default function MemoirsPage({
                       .map((memoir) => (
                         <div className="relative" key={memoir.memoir_id}>
                           <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
-                            <Image
+                            <img
                               layout="responsive"
                               width={96}
                               height={96}
@@ -423,7 +423,7 @@ export default function MemoirsPage({
                       .map((mem) => (
                         <div className="relative" key={mem.memoir_id}>
                           <div className="mx-auto h-16 w-16 md:h-24 md:w-24">
-                            <Image
+                            <img
                               layout="responsive"
                               width={96}
                               height={96}

@@ -21,7 +21,7 @@ export default function StrapiImage({
 }): JSX.Element {
   const usedFormat = chooseFormat(formats, expectedWidth);
   return (
-    <Image
+    <img
       quality={100}
       layout={layout}
       src={usedFormat?.url}

@@ -259,7 +259,7 @@ function CostumeDetails({
                   <Element size={32} type={costume.attribute} />
                 </Tooltip>
                 <div className="w-8">
-                  <Image
+                  <img
                     layout="responsive"
                     src={weaponsIcons[costume.weapon_type]}
                     alt={costume.weapon_type}
@@ -459,7 +459,7 @@ function CostumeDetails({
                     "opacity-0 pointer-events-none": isShowingModel,
                   })}
                 >
-                  <Image
+                  <img
                     key={`${CDN_URL}${costume.image_path_base}full${
                       isReplaced ? "_replace" : ""
                     }.png`}
@@ -535,7 +535,7 @@ function CostumeDetails({
                   title="Switch costume artwork"
                   onClick={() => setIsReplaced(!isReplaced)}
                 >
-                  <Image
+                  <img
                     objectFit="contain"
                     src={switchImg}
                     alt="Switch costume design"
@@ -923,7 +923,7 @@ function SingleStat({ name, value, type, icon }): JSX.Element {
   return (
     <div className="flex items-center justify-between pl-4 pr-8">
       <div className="flex items-center gap text-beige-light">
-        <Image
+        <img
           layout="intrinsic"
           src={icon}
           alt={name}

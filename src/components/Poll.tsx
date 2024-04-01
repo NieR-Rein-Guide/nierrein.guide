@@ -13,7 +13,7 @@ export default function Poll({ event }: PollProps): JSX.Element {
       </h2>
 
       <div key={event.title} className="flex flex-col relative">
-        <Image
+        <img
           layout="responsive"
           src={event.image.formats.small.url}
           alt={`${event.title} thumbnail`}

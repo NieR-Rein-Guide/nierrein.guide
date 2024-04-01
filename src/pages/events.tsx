@@ -232,7 +232,7 @@ export function EventItem({
         </div>
 
         {attributes?.image && (
-          <Image
+          <img
             layout="responsive"
             src={
               attributes.image?.data?.attributes?.formats?.large?.url ??

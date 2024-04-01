@@ -391,7 +391,7 @@ export function TierlistContent({
           <div className="tierlist__row" key={tier.tier}>
             <div className="mb-4 md:mb-0">
               {(RANK_THUMBNAILS[tier.tier] && (
-                <Image src={RANK_THUMBNAILS[tier.tier]} alt={tier.tier} />
+                <img src={RANK_THUMBNAILS[tier.tier]} alt={tier.tier} />
               )) || <h2 className="text-2xl">{tier.tier}</h2>}
             </div>
 

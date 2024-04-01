@@ -20,7 +20,7 @@ export default function Element({
   const attribute = type && type.toLowerCase();
 
   return (
-    <Image
+    <img
       src={`/elements/${attribute}.png`}
       height={size}
       width={size}

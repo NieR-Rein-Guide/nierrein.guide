@@ -60,7 +60,7 @@ export default function EventsSlider({
                       <SVG src="/decorations/inner-square.svg" />
                     </div>
                   </div>
-                  <Image
+                  <img
                     layout="responsive"
                     objectFit="cover"
                     height={500}
@@ -99,7 +99,7 @@ export default function EventsSlider({
                       <SVG src="/decorations/inner-square.svg" />
                     </div>
                   </div>
-                  <Image
+                  <img
                     layout="responsive"
                     objectFit="cover"
                     height={500}
@@ -116,9 +116,9 @@ export default function EventsSlider({
               <Link
                 href={`/event/${activeEvent.slug}`}
                 className="btn absolute bottom-6 sm:bottom-5 left-1/2 transform -translate-x-1/2 z-20">
-                
+
                   See Event
-                
+
               </Link>
             </div>
           )}
@@ -162,7 +162,7 @@ export default function EventsSlider({
                   className="slider__other-event">
 
                   <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
-                    <Image
+                    <img
                       layout="fill"
                       objectFit="cover"
                       height={128}

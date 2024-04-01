@@ -48,7 +48,7 @@ export default function NewCostumes({ costumes }) {
                     <div className="flex gap-x-2 flex-1">
                       <div className="flex items-center gap-x-2">
                         <div className="w-8">
-                          <Image
+                          <img
                             layout="responsive"
                             src={weaponsIcons[costume.weapon_type]}
                             alt={costume.weapon_type}
@@ -76,9 +76,9 @@ export default function NewCostumes({ costumes }) {
                     )}`}
                     passHref
                     className="btn absolute z-50 -bottom-2 transform -translate-x-1/2 left-1/2">
-                    
+
                       See costume
-                    
+
                   </Link>
                 </div>
               </SwiperSlide>

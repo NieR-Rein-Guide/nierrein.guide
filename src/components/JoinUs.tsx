@@ -21,7 +21,7 @@ function JoinUs(): JSX.Element {
         </div>
       </div>
       <div className="pointer-events-none">
-        <Image
+        <img
           className="opacity-10 filter blur-sm"
           layout="fill"
           objectFit="cover"

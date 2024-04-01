@@ -30,7 +30,7 @@ export default function Guides({ guides }: GuidesProps): JSX.Element {
             <div className="flex flex-col gap-y-14 xl:gap-y-24 mt-4 ml-16 sm:ml-16 lg:ml-36">
               <Link href="/faq" passHref className="inline-block">
                 <div className="flex items-center">
-                  <Image src={`/mama.png`} alt="Mama" height="60" width="60" />
+                  <img src={`/mama.png`} alt="Mama" height="60" width="60" />
                   <span className="relative bordered text-xl ml-4 bg-grey-dark hover:bg-grey-lighter  p-8 transition-colors ease-out-cubic">
                     Read our FAQ
                   </span>

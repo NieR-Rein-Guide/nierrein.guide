@@ -239,7 +239,7 @@ function CharacterCalculator(): JSX.Element {
             {singleMaterialValues.map((item, index) => (
               <tr key={index}>
                 <td className="flex items-center gap-x-4">
-                  <Image
+                  <img
                     src={`/ui/material/${enhancementsIcons[item.name]}.png`}
                     alt={item.name}
                     height="48"

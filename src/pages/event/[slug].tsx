@@ -65,7 +65,7 @@ export default function SingleEvent({
               </h2>
             </div>
 
-            <Image
+            <img
               layout="responsive"
               src={
                 event.attributes.image.data.attributes?.formats?.large?.url ??

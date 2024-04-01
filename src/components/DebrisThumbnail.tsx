@@ -43,7 +43,7 @@ export default function DebrisThumbnail({
       }}
     >
       {image_path_base && (
-        <Image
+        <img
           className="z-10"
           layout="fill"
           src={`/decorations/corners_rarity_${debrisRarity}.png`}
@@ -51,7 +51,7 @@ export default function DebrisThumbnail({
         />
       )}
 
-      <Image
+      <img
         layout="fill"
         className={classNames("z-0", imgClasses)}
         src={

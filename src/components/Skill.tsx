@@ -57,7 +57,7 @@ export default function Skill({
             />
           </div>
           <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-            <Image
+            <img
               layout="fixed"
               width={64}
               height={64}
@@ -66,7 +66,7 @@ export default function Skill({
               src={`${CDN_URL}${imagePathBase}`}
             />
             <div className="absolute -top-1 right-1">
-              <Image
+              <img
                 className={classNames(
                   "transform transition-transform ease-out-cubic",
                   isMaxAscended ? "scale-100" : "scale-0"

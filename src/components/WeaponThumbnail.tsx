@@ -60,7 +60,7 @@ export default function WeaponThumbnail({
       >
         {children}
         <div className="mt-1 ml-1">
-          <Image
+          <img
             className="z-10"
             layout="fixed"
             width={148}
@@ -78,7 +78,7 @@ export default function WeaponThumbnail({
         >
           <div className="flex flex-col w-8">
             <Element type={element} />
-            <Image src={weaponsIcons[type]} alt={alt} />
+            <img src={weaponsIcons[type]} alt={alt} />
             {isDark && (
               <SVG src="/icons/weapons/dark.svg" className="h-8 w-8" />
             )}
@@ -106,7 +106,7 @@ export default function WeaponThumbnail({
             height: "336px",
           }}
         >
-          <Image
+          <img
             layout="fill"
             objectFit="contain"
             className={classNames("z-0", imgClasses)}
@@ -140,7 +140,7 @@ export default function WeaponThumbnail({
       }}
     >
       {image_path && (
-        <Image
+        <img
           className="z-10"
           layout="fill"
           src={`/decorations/corners_rarity_${weaponRarity}.png`}
@@ -168,7 +168,7 @@ export default function WeaponThumbnail({
             left: "1px",
           }}
         >
-          <Image src={weaponsIcons[type]} alt={alt} />
+          <img src={weaponsIcons[type]} alt={alt} />
         </div>
       )}
 
@@ -184,7 +184,7 @@ export default function WeaponThumbnail({
         </div>
       )}
 
-      <Image
+      <img
         layout="fill"
         objectFit="contain"
         className={classNames("z-0", imgClasses)}

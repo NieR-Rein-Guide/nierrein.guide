@@ -120,7 +120,7 @@ export function CostumePanel({ costumeId }) {
             <div className="flex flex-col gap-x-2 ml-2">
               <span className="inline-flex items-center gap-x-2">
                 <span className="inline-block w-8">
-                  <Image
+                  <img
                     layout="responsive"
                     src={weaponsIcons[costume.weapon_type]}
                     alt={costume.weapon_type}
@@ -157,7 +157,7 @@ export function CostumePanel({ costumeId }) {
               <div className="relative mr-4">
                 <SVG src="/decorations/frame.svg" className="h-16 w-16" />
                 <div className="h-8 w-8 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                  <Image
+                  <img
                     layout="fixed"
                     width={32}
                     height={32}

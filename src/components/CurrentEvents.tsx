@@ -20,7 +20,7 @@ export default function CurrentEvents({
         {events.map((event) => (
           <div key={event.title} className="flex flex-col place-items-center">
             <div className="w-full relative">
-              <Image
+              <img
                 layout="responsive"
                 src={
                   event.image.formats.medium?.url ??
