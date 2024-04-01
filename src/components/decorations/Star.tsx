@@ -3,7 +3,7 @@ import two from "../../../public/icons/stars/2_star_single.svg";
 import three from "../../../public/icons/stars/3_star_single.svg";
 import four from "../../../public/icons/stars/4_star_single.svg";
 import five from "../../../public/icons/stars/5_star_single.svg";
-import Image from "next/legacy/image";
+
 
 const STAR_RARITY = {
   1: one,

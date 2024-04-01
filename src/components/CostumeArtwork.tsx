@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+
 import SVG from "react-inlinesvg";
 import getModelPath from "@utils/getModelPath";
 import Star from "@components/decorations/Star";
@@ -41,8 +41,7 @@ export default function CostumeArtwork({
             />
           )) || (
             <img
-              layout="fill"
-              objectFit="cover"
+              className="object-cover"
               src={`${CDN_URL}${costume.image_path_base}full.png`}
               alt={`${costume.title} (${costume.title}) illustration`}
             />

@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+
 import HR from "./decorations/HR";
 import Star from "./decorations/Star";
 import SVG from "react-inlinesvg";
@@ -62,7 +62,6 @@ import { Event } from "../models/types/index";
 import { EventItem } from "pages/events";
 import StatDisplay from "./StatDisplay";
 import getCostumeLevelsByRarity from "@utils/getCostumeLevelsByRarity";
-import switchImg from "../../public/icons/switch.png";
 import { chaptersIcons } from "@utils/chaptersIcons";
 import { LimitedCostume } from "./LimitedCostume";
 import { SingleWeapon } from "./WeaponInfo";
@@ -260,7 +259,6 @@ function CostumeDetails({
                 </Tooltip>
                 <div className="w-8">
                   <img
-                    layout="responsive"
                     src={weaponsIcons[costume.weapon_type]}
                     alt={costume.weapon_type}
                   />
@@ -464,7 +462,7 @@ function CostumeDetails({
                       isReplaced ? "_replace" : ""
                     }.png`}
                     layout="fill"
-                    objectFit="contain"
+                    className="object-contain"
                     src={`${CDN_URL}${costume.image_path_base}full${
                       isReplaced ? "_replace" : ""
                     }.png`}
@@ -536,8 +534,8 @@ function CostumeDetails({
                   onClick={() => setIsReplaced(!isReplaced)}
                 >
                   <img
-                    objectFit="contain"
-                    src={switchImg}
+                    className="object-contain"
+                    src="/icons/switch.png"
                     alt="Switch costume design"
                   />
                 </button>
@@ -924,7 +922,6 @@ function SingleStat({ name, value, type, icon }): JSX.Element {
     <div className="flex items-center justify-between pl-4 pr-8">
       <div className="flex items-center gap text-beige-light">
         <img
-          layout="intrinsic"
           src={icon}
           alt={name}
           width={48}

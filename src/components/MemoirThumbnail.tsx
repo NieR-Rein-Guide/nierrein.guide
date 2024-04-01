@@ -1,6 +1,6 @@
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
-import Image from "next/legacy/image";
+
 import { CDN_URL } from "@config/constants";
 import { memoir } from "@prisma/client";
 

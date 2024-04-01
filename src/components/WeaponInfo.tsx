@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+
 import weaponsIcons from "@utils/weaponsIcons";
 import RARITY from "@utils/rarity";
 import Star from "@components/decorations/Star";

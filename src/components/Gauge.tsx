@@ -4,7 +4,6 @@ import skillGaugeColors, {
   skillGaugeBorderColors,
 } from "@utils/skillGaugeColors";
 import classNames from "classnames";
-import Image from "next/image";
 
 interface GaugeProps {
   cooldown_time: number;

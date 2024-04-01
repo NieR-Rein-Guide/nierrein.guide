@@ -1,11 +1,12 @@
-import homeIcon from "../../public/icons/home.png";
-import guidesIcon from "../../public/icons/guides.png";
-import loadoutsIcon from "../../public/icons/loadout.png";
-import tierlistIcon from "../../public/icons/tierlist.png";
-import databaseIcon from "../../public/icons/database.png";
 import { RiRedditFill, RiGithubFill, RiTwitterFill } from "react-icons/ri";
 import { FaDiscord } from "react-icons/fa";
 import { FiGithub } from "react-icons/fi";
+
+const homeIcon = "/icons/home.png";
+const guidesIcon = "/icons/guides.png";
+const loadoutsIcon = "/icons/loadout.png";
+const tierlistIcon = "/icons/tierlist.png";
+const databaseIcon = "/icons/database.png";
 
 /**
  * NAVIGATION LINKS

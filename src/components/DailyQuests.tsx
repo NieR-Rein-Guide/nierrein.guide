@@ -1,7 +1,7 @@
 import { GAME_TIMEZONE } from "@config/constants";
 import { utcToZonedTime } from "date-fns-tz";
 import React from "react";
-import Image from "next/legacy/image";
+
 import Disclosure from "@components/Disclosure";
 
 // used for listing all daily types
@@ -80,11 +80,11 @@ const dailyTypes = (dayOfWeek: number): DailyInfo => {
   }
 };
 
-import tanzaniteIcon from "../../public/ui/material/material321011_standard.png";
-import topazIcon from "../../public/ui/material/material321010_standard.png";
-import emeraldIcon from "../../public/ui/material/material321009_standard.png";
-import aquamarineIcon from "../../public/ui/material/material321008_standard.png";
-import rubyIcon from "../../public/ui/material/material321007_standard.png";
+const tanzaniteIcon = "/ui/material/material321011_standard.png";
+const topazIcon = "/ui/material/material321010_standard.png";
+const emeraldIcon = "/ui/material/material321009_standard.png";
+const aquamarineIcon = "/ui/material/material321008_standard.png";
+const rubyIcon = "/ui/material/material321007_standard.png";
 
 const gemToIcon = (gem: string) => {
   switch (gem) {
@@ -101,13 +101,13 @@ const gemToIcon = (gem: string) => {
   }
 };
 
-import swordIcon from "../../public/ui/material/material321001_standard.png";
-import greatswordIcon from "../../public/ui/material/material321002_standard.png";
-import spearIcon from "../../public/ui/material/material321003_standard.png";
-import fistIcon from "../../public/ui/material/material321004_standard.png";
-import staffIcon from "../../public/ui/material/material321005_standard.png";
-import gunIcon from "../../public/ui/material/material321006_standard.png";
-import { format } from "date-fns";
+const swordIcon = "/ui/material/material321001_standard.png";
+const greatswordIcon = "/ui/material/material321002_standard.png";
+const spearIcon = "/ui/material/material321003_standard.png";
+const fistIcon = "/ui/material/material321004_standard.png";
+const staffIcon = "/ui/material/material321005_standard.png";
+const gunIcon = "/ui/material/material321006_standard.png";
+const { format } from "date-fns";
 
 const weaponToIcon = (weapon: string): StaticImageData => {
   switch (weapon) {

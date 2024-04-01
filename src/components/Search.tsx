@@ -1,14 +1,8 @@
 import classNames from "classnames";
-import Image from "next/legacy/image";
-import CloseBtnIcon from "../../public/icons/close-btn.png";
+
 import {
-  InstantSearch,
-  InfiniteHits,
-  SearchBox,
-  Stats,
   Highlight,
 } from "react-instantsearch-dom";
-import { searchClient } from "@libs/search";
 import { ICostume } from "./pages/costumes";
 import { usePanelStore } from "@store/panels";
 import { AiOutlinePushpin } from "react-icons/ai";
@@ -18,43 +12,7 @@ import AbilityThumbnail from "./AbilityThumbnail";
 import SkillThumbnail from "./SkillThumbnail";
 
 export function Search({ isOpen, setIsOpen }) {
-  function toggleSearchPanel() {
-    setIsOpen(!isOpen);
-  }
-
   return null;
-
-  return (
-    <div
-      className={classNames(
-        "fixed top-0 left-0 right-0 w-full z-panels bg-grey-dark transform transition ease-out-cubic",
-        isOpen ? "" : "-translate-y-full"
-      )}
-    >
-      <InstantSearch indexName="costumes" searchClient={searchClient}>
-        <div className="flex items-center gap-x-4 border-b border-beige border-opacity-50 p-8">
-          <SearchBox />
-          <button
-            className="flex items-center transform transition ease-out-cubic hover:scale-95"
-            onClick={toggleSearchPanel}
-            title="Close"
-          >
-            <img
-              height={36}
-              width={67}
-              objectFit="contain"
-              src={CloseBtnIcon}
-              alt="Close"
-            />
-          </button>
-        </div>
-        <div className="p-8 max-w-7xl mx-auto overflow-y-auto border-b border-beige border-opacity-50 max-h-[1000px]">
-          <Stats />
-          <InfiniteHits hitComponent={CostumeHit} />
-        </div>
-      </InstantSearch>
-    </div>
-  );
 }
 
 function CostumeHit({ hit }: { hit: ICostume }) {

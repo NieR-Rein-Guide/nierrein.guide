@@ -1,7 +1,7 @@
 import localforage from "localforage";
-import Image from "next/legacy/image";
+
 import { memo, useEffect, useState } from "react";
-import staminaImg from "../../../public/ui/consumable_item/consumable300003_standard.png";
+const staminaImg = "/ui/consumable_item/consumable300003_standard.png";
 
 const STAMINA_REGENERATION_RATE = 180000; // 1 stamina per 3 minutes
 

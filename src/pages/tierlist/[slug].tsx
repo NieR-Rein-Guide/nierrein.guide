@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+
 import { formatDistanceToNow, differenceInDays } from "date-fns";
 import { tiers, tiers_items, tierlists } from "@prisma/client-nrg";
 import { character, costume } from "@prisma/client";

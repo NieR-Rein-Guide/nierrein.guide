@@ -1,17 +1,17 @@
-import atkIcon from "../../public/stats/atk.png";
-import agilityIcon from "../../public/stats/agility.png";
-import cdIcon from "../../public/stats/cd.png";
-import crIcon from "../../public/stats/cr.png";
-import defIcon from "../../public/stats/def.png";
-import hpIcon from "../../public/stats/hp.png";
-import evasionIcon from "../../public/stats/evasion.png";
+const atkIcon = "/stats/atk.png";
+const agilityIcon = "/stats/agility.png";
+const cdIcon = "/stats/cd.png";
+const crIcon = "/stats/cr.png";
+const defIcon = "/stats/def.png";
+const hpIcon = "/stats/hp.png";
+const evasionIcon = "/stats/evasion.png";
 
-import largeAtkIcon from "../../public/icons/stats/atk.png";
-import largeAgiIcon from "../../public/icons/stats/agi.png";
-import largeCdIcon from "../../public/icons/stats/cd.png";
-import largeCrIcon from "../../public/icons/stats/cr.png";
-import largeDefIcon from "../../public/icons/stats/def.png";
-import largeHpIcon from "../../public/icons/stats/hp.png";
+const largeAtkIcon = "/icons/stats/atk.png";
+const largeAgiIcon = "/icons/stats/agi.png";
+const largeCdIcon = "/icons/stats/cd.png";
+const largeCrIcon = "/icons/stats/cr.png";
+const largeDefIcon = "/icons/stats/def.png";
+const largeHpIcon = "/icons/stats/hp.png";
 
 const statsIcons = {
   atk: atkIcon,

@@ -15,7 +15,7 @@ import {
   weapon,
 } from "@prisma/client";
 import { Event } from "@models/types";
-import Image from "next/legacy/image";
+
 import weaponsIcons from "@utils/weaponsIcons";
 import classNames from "classnames";
 import { CDN_URL } from "@config/constants";

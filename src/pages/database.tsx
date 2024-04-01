@@ -1,17 +1,16 @@
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";
-import Image from "next/legacy/image";
 import Link from "next/link";
 
-import storiesImg from "../../public/database/stories.jpg";
-import assetsImg from "../../public/database/assets.jpg";
-import emblemsImg from "../../public/database/emblems.jpg";
-import memoirsImg from "../../public/database/memoirs.jpg";
-import companionsImg from "../../public/database/companions.jpg";
-import debrisImg from "../../public/database/debris.jpg";
-import noticesImg from "../../public/database/notices.jpg";
-import eventsImg from "../../public/database/events.jpg";
-import abilitiesImg from "../../public/database/abilities.jpg";
+const storiesImg = "/database/stories.jpg";
+const assetsImg = "/database/assets.jpg";
+const emblemsImg = "/database/emblems.jpg";
+const memoirsImg = "/database/memoirs.jpg";
+const companionsImg = "/database/companions.jpg";
+const debrisImg = "/database/debris.jpg";
+const noticesImg = "/database/notices.jpg";
+const eventsImg = "/database/events.jpg";
+const abilitiesImg = "/database/abilities.jpg";
 
 export default function Database(): JSX.Element {
   return (
@@ -30,9 +29,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={abilitiesImg}
             alt="Abilties thumbnail"
           />
@@ -49,9 +46,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={memoirsImg}
             alt="Memoirs thumbnail"
           />
@@ -68,9 +63,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={companionsImg}
             alt="Companions thumbnail"
           />
@@ -87,9 +80,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={debrisImg}
             alt="Debris thumbnail"
           />
@@ -106,9 +97,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={noticesImg}
             alt="Notices thumbnail"
           />
@@ -125,9 +114,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={eventsImg}
             alt="Events thumbnail"
           />
@@ -144,9 +131,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={storiesImg}
             alt="Stories thumbnail"
           />
@@ -163,9 +148,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={assetsImg}
             alt="Assets thumbnail"
           />
@@ -182,9 +165,7 @@ export default function Database(): JSX.Element {
           <img
             height={350}
             width={200}
-            layout="fill"
-            objectFit="cover"
-            className="-z-1 filter brightness-50"
+            className="-z-1 filter brightness-50 object-cover"
             src={emblemsImg}
             alt="Emblems thumbnail"
           />

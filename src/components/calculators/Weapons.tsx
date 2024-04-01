@@ -1,6 +1,6 @@
 import { memo, useState, useEffect } from "react";
 import WeaponThumbnail from "@components/WeaponThumbnail";
-import Image from "next/legacy/image";
+
 
 class Material {
   name: string;

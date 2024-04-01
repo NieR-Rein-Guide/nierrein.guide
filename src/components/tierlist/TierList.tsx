@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+
 import { formatDistanceToNow } from "date-fns";
 import { RANK_THUMBNAILS } from "@utils/rankThumbnails";
 

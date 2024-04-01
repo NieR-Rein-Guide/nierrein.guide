@@ -3,20 +3,21 @@ import { useRouter } from "next/router";
 import { MdFilterAlt, MdViewColumn, MdViewComfy } from "react-icons/md";
 import * as Popover from "@radix-ui/react-popover";
 
-import loadoutsIcon from "../../public/icons/loadout.png";
-import charactersIcon from "../../public/icons/characters.png";
-import abilitiesIcon from "../../public/icons/abilities.png";
-import debrisIcon from "../../public/icons/debris.png";
-import companionsIcon from "../../public/icons/companions.png";
-import memoirsIcon from "../../public/icons/memoirs.png";
-import emblemsIcon from "../../public/icons/emblems.png";
-import storiesIcon from "../../public/icons/stories.png";
-import noticesIcon from "../../public/icons/notices.png";
-import eventsIcon from "../../public/icons/events.png";
 import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import Checkbox from "./form/Checkbox";
 import { FiFilter } from "react-icons/fi";
 import { useCostumesFilters } from "@store/costumes-filters";
+
+const loadoutsIcon = "/icons/loadout.png";
+const charactersIcon = "/icons/characters.png";
+const abilitiesIcon = "/icons/abilities.png";
+const debrisIcon = "/icons/debris.png";
+const companionsIcon = "/icons/companions.png";
+const memoirsIcon = "/icons/memoirs.png";
+const emblemsIcon = "/icons/emblems.png";
+const storiesIcon = "/icons/stories.png";
+const noticesIcon = "/icons/notices.png";
+const eventsIcon = "/icons/events.png";
 
 const SUPPORTED_MULTIPLE_DISPLAY = ["/characters", "/weapons"];
 

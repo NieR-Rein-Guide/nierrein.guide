@@ -1,6 +1,6 @@
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
-import Image from "next/legacy/image";
+
 import Element from "@components/Element";
 import { ElementTypes, WeaponType } from "@models/types";
 import weaponsIcons from "@utils/weaponsIcons";
@@ -107,9 +107,7 @@ export default function WeaponThumbnail({
           }}
         >
           <img
-            layout="fill"
-            objectFit="contain"
-            className={classNames("z-0", imgClasses)}
+            className={classNames("z-0 object-contain", imgClasses)}
             src={
               image_path
                 ? `${CDN_URL}${image_path}full.png`
@@ -185,9 +183,7 @@ export default function WeaponThumbnail({
       )}
 
       <img
-        layout="fill"
-        objectFit="contain"
-        className={classNames("z-0", imgClasses)}
+        className={classNames("z-0 object-contain", imgClasses)}
         src={
           image_path
             ? `${CDN_URL}${image_path}standard.png`

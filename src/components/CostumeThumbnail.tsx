@@ -1,7 +1,7 @@
 import weaponsIcons from "@utils/weaponsIcons";
 import RARITY from "@utils/rarity";
 import classNames from "classnames";
-import Image from "next/legacy/image";
+
 import SVG from "react-inlinesvg";
 import Link from "next/link";
 import WeaponThumbnail from "./WeaponThumbnail";
@@ -110,10 +110,7 @@ export default function CostumeThumbnail({
           }}
         >
           <img
-            layout="fill"
-            objectFit="cover"
-            objectPosition="top"
-            className={classNames("z-0", imgClasses)}
+            className={classNames("z-0 object-cover object-top", imgClasses)}
             src={src}
             alt={alt}
           />
@@ -129,7 +126,7 @@ export default function CostumeThumbnail({
         "relative",
         sizeClasses,
         onClick || href
-          ? "cursor-pointer hover:scale-105 transition transform"
+          ? "cursor-pointer hover:scale-105 transition transform overflow-hidden"
           : "",
         className
       )}
@@ -137,10 +134,15 @@ export default function CostumeThumbnail({
         backgroundImage: `url(/decorations/background_rarity_${costumeRarity}.png)`,
       }}
     >
+      <img
+        className={classNames("-z-1 object-contain absolute bottom-0", imgClasses)}
+        src={src ?? emptyBackground}
+        alt={alt}
+      />
+
       {src && (
         <img
           className="z-10"
-          layout="fill"
           src={`/decorations/corners_rarity_${costumeRarity}.png`}
           alt=""
         />
@@ -153,7 +155,7 @@ export default function CostumeThumbnail({
             left: "1px",
           }}
         >
-          <img layout="fill" src={weaponsIcons[weaponType]} alt={alt} />
+          <img src={weaponsIcons[weaponType]} alt={alt} />
         </div>
       )}
       {attribute && (
@@ -167,14 +169,6 @@ export default function CostumeThumbnail({
           <Element size={24} type={attribute} />
         </div>
       )}
-
-      <img
-        className={classNames("z-0", imgClasses)}
-        layout="fill"
-        objectFit="contain"
-        src={src ?? emptyBackground}
-        alt={alt}
-      />
 
       {href && (
         <Link href={href} passHref className="absolute inset-0 z-10">

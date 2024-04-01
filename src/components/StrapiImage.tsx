@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+
 import {
   StrapiImage as StrapiImageType,
   StrapiImageFormats,

@@ -1,5 +1,5 @@
 import { Event } from "@models/types";
-import Image from "next/legacy/image";
+
 
 interface PollProps {
   event: Event;

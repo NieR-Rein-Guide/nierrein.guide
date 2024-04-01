@@ -20,7 +20,7 @@ import classNames from "classnames";
 import AbilityThumbnail from "@components/AbilityThumbnail";
 import slug from "slugg";
 import SVG from "react-inlinesvg";
-import Image from "next/legacy/image";
+
 import statsIcons from "@utils/statsIcons";
 import { Chip } from "@mui/material";
 import dynamic from "next/dynamic";

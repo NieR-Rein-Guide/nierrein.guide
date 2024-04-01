@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+
 import { ElementTypes } from "@models/types";
 // import { ElementTypes } from "@models/types";
 // import darkIcon from "../../public/elements/dark.png";

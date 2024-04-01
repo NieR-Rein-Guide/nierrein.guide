@@ -7,7 +7,7 @@ import slug from "slugg";
 import classNames from "classnames";
 import { useMedia } from "react-use";
 import SVG from "react-inlinesvg";
-import Image from "next/legacy/image";
+
 import weaponsIcons from "@utils/weaponsIcons";
 import { formatDistanceToNow } from "date-fns";
 

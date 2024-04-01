@@ -1,6 +1,6 @@
 import { TOOLS } from "@config/constants";
 import classNames from "classnames";
-import Image from "next/legacy/image";
+
 import Link from "next/link";
 
 function ListingTools() {
@@ -31,9 +31,7 @@ function ListingItem({ href, src, label, classes }) {
       <img
         height={350}
         width={200}
-        layout="fill"
-        objectFit="cover"
-        className="-z-1 filter brightness-50"
+        className="-z-1 filter brightness-50 object-cover"
         src={src}
         alt={label}
       />

@@ -1,5 +1,5 @@
 import { DISCORD_URL } from "@config/constants";
-import Image from "next/legacy/image";
+
 
 function JoinUs(): JSX.Element {
   return (
@@ -22,9 +22,7 @@ function JoinUs(): JSX.Element {
       </div>
       <div className="pointer-events-none">
         <img
-          className="opacity-10 filter blur-sm"
-          layout="fill"
-          objectFit="cover"
+          className="opacity-10 filter blur-sm object-cover"
           src="/launched.jpg"
           alt=""
         />

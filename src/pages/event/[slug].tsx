@@ -1,5 +1,5 @@
 import SVG from "react-inlinesvg";
-import Image from "next/legacy/image";
+
 import Link from "next/link";
 import Layout from "@components/Layout";
 import Meta from "@components/Meta";

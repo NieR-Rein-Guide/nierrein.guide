@@ -4,7 +4,7 @@ import Article from "@components/Article";
 import { getAllGuides } from "@models/guide";
 import { Guide } from "@models/types";
 import Link from "next/link";
-import Image from "next/legacy/image";
+
 import { RECOMMENDED_YOUTUBE_CHANNELS } from "@config/constants";
 import classNames from "classnames";
 import { RiYoutubeFill } from "react-icons/ri";

@@ -1,15 +1,15 @@
-import rankS from "../../../public/ui/search/search_rank_1.png";
-import rankA from "../../../public/ui/search/search_rank_2.png";
-import rankB from "../../../public/ui/search/search_rank_3.png";
-import rankC from "../../../public/ui/search/search_rank_4.png";
-import rankD from "../../../public/ui/search/search_rank_5.png";
-import rankE from "../../../public/ui/search/search_rank_6.png";
-import Image from "next/legacy/image";
+const rankS = "/ui/search/search_rank_1.png";
+const rankA = "/ui/search/search_rank_2.png";
+const rankB = "/ui/search/search_rank_3.png";
+const rankC = "/ui/search/search_rank_4.png";
+const rankD = "/ui/search/search_rank_5.png";
+const rankE = "/ui/search/search_rank_6.png";
+
 
 type ranks = "S" | "A" | "B" | "C" | "D" | "E";
 
 export default function Rank({ rank }: { rank: ranks }): JSX.Element {
-  let img: StaticImageData;
+  let img: string;
   switch (rank) {
     case "S":
       img = rankS;

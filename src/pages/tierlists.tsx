@@ -4,13 +4,13 @@ import Layout from "@components/Layout";
 import TierListTab from "@components/tierlist/TierListTab";
 import { getTiers, Tierlist } from "@models/tiers";
 import Meta from "@components/Meta";
-import { useRouter } from "next/router";
 import { TierlistContent } from "pages/tierlist/[slug]";
 import CommunityTierlists from "@components/CommunityTierlists";
 import prisma from "@libs/prisma";
 import Link from "next/link";
 import { FEATURED_TIERLISTS } from "@config/constants";
 import { character } from "@prisma/client";
+import classNames from "classnames";
 
 interface TierlistsPageProps {
   characters: character[];
@@ -23,12 +23,6 @@ interface TierlistsPageProps {
   tier;
   tierlists;
 }
-
-const TABS_MAPPING = {
-  0: "pve",
-  1: "pvp",
-  2: "community",
-};
 
 export default function TierlistsPageProps({
   defaultTab = 0,
@@ -73,9 +67,20 @@ export default function TierlistsPageProps({
 
             <TierListTab index={1}>PvP</TierListTab>
 
-            <TierListTab className="col-span-2 md:col-span-1" index={2}>
-              Community
-            </TierListTab>
+            <a
+              href="/community-tierlists"
+              className={classNames(
+                "p-4 transition-colors ease-out-cubic relative bordered text-center",
+              )}
+            >
+              <span
+                className={classNames(
+                  "font-display font-bold text-xl tracking-wider transition-colors ease-out-cubic line-clamp-1"
+                )}
+              >
+                Community
+              </span>
+            </a>
           </Tabs.List>
 
           {/* PvE */}
@@ -118,10 +123,6 @@ export default function TierlistsPageProps({
               ))}
             </Tabs.Root>
           </Tabs.Content>
-
-          <Tabs.Content value="2">
-            <CommunityTierlists tierlists={tierlists} />
-          </Tabs.Content>
         </Tabs.Root>
       </section>
     </Layout>
@@ -140,39 +141,6 @@ export async function getStaticProps() {
     pvp,
     tierlists: [],
   };
-
-  /**
-   * Community tierlists filters
-   */
-  const where = {
-    updated_at: {
-      gte: undefined,
-    },
-  };
-  let orderBy = {};
-
-  // Exclude pinned tierlists
-  where.tierlist_id = {
-    notIn: [...FEATURED_TIERLISTS.pve, ...FEATURED_TIERLISTS.pvp],
-  };
-
-  // Exclude unlisted tierlists
-  where.is_unlisted = false;
-
-  /**
-   * Order by
-   */
-
-  orderBy = {
-    votes: "desc",
-  };
-
-  const tierlists = await prisma.nrg.tierlists.findMany({
-    orderBy,
-    where,
-  });
-
-  props.tierlists = tierlists;
 
   return JSON.parse(
     JSON.stringify({

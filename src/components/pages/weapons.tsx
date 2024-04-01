@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import MaterialTable from "@material-table/core";
 import Element from "@components/Element";
 import WeaponThumbnail from "@components/WeaponThumbnail";
-import Image from "next/legacy/image";
+
 import weaponsIcons from "@utils/weaponsIcons";
 import SVG from "react-inlinesvg";
 import Star from "@components/decorations/Star";

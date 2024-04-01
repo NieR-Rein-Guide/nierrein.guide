@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+
 import SVG from "react-inlinesvg";
 import getModelPath from "@utils/getModelPath";
 import dynamic from "next/dynamic";

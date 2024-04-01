@@ -3,7 +3,7 @@ import Meta from "@components/Meta";
 import { getAllStories } from "@models/stories";
 import { Story } from "@models/types";
 import Link from "next/link";
-import Image from "next/legacy/image";
+
 import coverStory from "../../../../public/cover-story.jpg";
 import { StoriesNavbar } from "./index";
 
@@ -35,8 +35,7 @@ export default function DatabaseStories({
               className="transform transition-transform ease-out-cubic hover:scale-105"
             >
               <img
-                objectFit="cover"
-                objectPosition="center"
+                className="object-cover object-center"
                 src={
                   story.attributes.cover?.data.attributes.formats?.medium
                     ?.url ??

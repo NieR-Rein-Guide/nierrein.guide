@@ -5,7 +5,7 @@ import skillGaugeColors, {
   skillGaugeBorderColors,
 } from "@utils/skillGaugeColors";
 import classNames from "classnames";
-import Image from "next/legacy/image";
+
 import SVG from "react-inlinesvg";
 import { Gauge } from "./Gauge";
 
@@ -58,11 +58,10 @@ export default function Skill({
           </div>
           <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <img
-              layout="fixed"
+              className="object-contain"
               width={64}
               height={64}
               alt=""
-              objectFit="contain"
               src={`${CDN_URL}${imagePathBase}`}
             />
             <div className="absolute -top-1 right-1">

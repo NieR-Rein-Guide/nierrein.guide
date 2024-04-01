@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation, A11y } from "swiper";
 import { Event } from "@models/types";
-import Image from "next/legacy/image";
+
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import SVG from "react-inlinesvg";
 import { useState } from "react";
@@ -61,8 +61,7 @@ export default function EventsSlider({
                     </div>
                   </div>
                   <img
-                    layout="responsive"
-                    objectFit="cover"
+                    className="object-cover"
                     height={500}
                     width={800}
                     src={
@@ -100,8 +99,7 @@ export default function EventsSlider({
                     </div>
                   </div>
                   <img
-                    layout="responsive"
-                    objectFit="cover"
+                    className="object-cover"
                     height={500}
                     width={800}
                     src="/tierlists/weapons.jpg"
@@ -163,8 +161,7 @@ export default function EventsSlider({
 
                   <div className="border-2 border-beige-text border-opacity-60 hover:border-beige transition-colors relative select-none h-32">
                     <img
-                      layout="fill"
-                      objectFit="cover"
+                      className="object-cover"
                       height={128}
                       width={232}
                       src={
