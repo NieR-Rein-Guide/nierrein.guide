@@ -1,7 +1,7 @@
 import { GAME_TIMEZONE } from "@config/constants";
 import { utcToZonedTime } from "date-fns-tz";
 import React from "react";
-
+import { format } from "date-fns";
 import Disclosure from "@components/Disclosure";
 
 // used for listing all daily types
@@ -107,7 +107,6 @@ const spearIcon = "/ui/material/material321003_standard.png";
 const fistIcon = "/ui/material/material321004_standard.png";
 const staffIcon = "/ui/material/material321005_standard.png";
 const gunIcon = "/ui/material/material321006_standard.png";
-const { format } from "date-fns";
 
 const weaponToIcon = (weapon: string): StaticImageData => {
   switch (weapon) {
