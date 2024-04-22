@@ -169,7 +169,7 @@ export default function CostumeThumbnail({
       )}
 
       <Image
-        className={classNames("z-0", imgClasses)}
+        className={classNames("z-0 absolute top-0", imgClasses)}
         layout="fill"
         objectFit="contain"
         src={src ?? emptyBackground}

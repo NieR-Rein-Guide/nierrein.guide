@@ -27,8 +27,8 @@ class MyDocument extends Document {
             <script
               async
               defer
-              data-website-id="5267c73d-8fd5-4a8a-9177-1a21b5526e1b"
-              src="https://analytics.nierrein.guide/umami.js"
+              data-website-id="08a4d8e2-bbe0-42bf-bbc1-ecb59d36402b"
+              src="https://umami.keziahmoselle.fr/script.js"
             ></script>
           )}
           {/* Comment system */}

@@ -187,7 +187,7 @@ export default function WeaponThumbnail({
       <Image
         layout="fill"
         objectFit="contain"
-        className={classNames("z-0", imgClasses)}
+        className={classNames("z-0 absolute top-0", imgClasses)}
         src={
           image_path
             ? `${CDN_URL}${image_path}standard.png`
