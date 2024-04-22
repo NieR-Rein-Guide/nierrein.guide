@@ -135,14 +135,14 @@ export default function CostumeThumbnail({
       }}
     >
       <img
-        className={classNames("-z-1 object-contain absolute bottom-0", imgClasses)}
+        className={classNames("object-contain absolute bottom-0", imgClasses)}
         src={src ?? emptyBackground}
         alt={alt}
       />
 
       {src && (
         <img
-          className="z-10"
+          className="z-[2] relative"
           src={`/decorations/corners_rarity_${costumeRarity}.png`}
           alt=""
         />
