@@ -183,7 +183,7 @@ export default function WeaponThumbnail({
       )}
 
       <img
-        className={classNames("z-0 object-contain", imgClasses)}
+        className={classNames("z-0 object-contain absolute top-0", imgClasses)}
         src={
           image_path
             ? `${CDN_URL}${image_path}standard.png`
