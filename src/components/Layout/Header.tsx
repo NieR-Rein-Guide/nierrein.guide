@@ -44,6 +44,41 @@ export default function Header(): JSX.Element {
 
   return (
     <>
+      <div className="absolute xl:fixed right-0 left-0 top-0 mx-auto z-menu">
+        <div className="relative flex gap-y-2 justify-start md:justify-center items-center px-4 py-2 bg-grey-lighter text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 divide-x divide-beige-inactive">
+          <a
+            href="https://nier.fandom.com/wiki/NieR_Reincarnation"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            NieR Wiki
+          </a>
+          <a
+            href="https://accords-library.com/"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            Accord's Library
+          </a>
+          <a
+            href="https://reinlibrary.neocities.org/"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            Re[in] Library
+          </a>
+          <a
+            href="https://www.youtube.com/@BillyCoolGR/featured"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            BillyCool (YT)
+          </a>
+          <a
+            href="https://www.youtube.com/@naotohex/videos"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            Naoto Hex (YT)
+          </a>
+        </div>
+      </div>
+
       <header className="container relative">
         <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-12">
           <Link
