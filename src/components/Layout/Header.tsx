@@ -44,7 +44,7 @@ export default function Header(): JSX.Element {
 
   return (
     <>
-      <div className="absolute xl:fixed right-0 left-0 top-0 mx-auto z-menu">
+      <div className="absolute xl:fixed right-0 left-0 top-0 mx-auto z-menu mb-4">
         <div className="relative flex gap-y-2 justify-start md:justify-center items-center px-4 py-2 bg-grey-lighter text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 divide-x divide-beige-inactive">
           <a
             href="https://nier.fandom.com/wiki/NieR_Reincarnation"
@@ -63,6 +63,12 @@ export default function Header(): JSX.Element {
             className="text-xs md:text-base px-2 hover:underline"
           >
             Re[in] Library
+          </a>
+          <a
+            href="https://nierrein.com/"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            nierrein.com
           </a>
           <a
             href="https://www.youtube.com/@BillyCoolGR/featured"
@@ -116,9 +122,8 @@ export default function Header(): JSX.Element {
               <ul className="grid gap-y-8 grid-cols-5 mx-0">
                 {NAVIGATION.map((nav) => (
                   <li key={nav.label} className="nav-item flex justify-center">
-                    <Link
+                    <a
                       href={nav.href}
-                      passHref={true}
                       className={classNames(
                         "flex flex-col items-center justify-center",
                         router.asPath === nav.href ? "active" : null,
@@ -137,7 +142,7 @@ export default function Header(): JSX.Element {
                       <span className="text-lg mt-2 text-center font-display xl:text-xl xl:w-28">
                         {nav.label}
                       </span>
-                    </Link>
+                    </a>
                   </li>
                 ))}
               </ul>
