@@ -1,9 +1,10 @@
+import Image from "next/image";
+
 import one from "../../../public/icons/stars/1_star_single.svg";
 import two from "../../../public/icons/stars/2_star_single.svg";
 import three from "../../../public/icons/stars/3_star_single.svg";
 import four from "../../../public/icons/stars/4_star_single.svg";
 import five from "../../../public/icons/stars/5_star_single.svg";
-
 
 const STAR_RARITY = {
   1: one,
@@ -18,5 +19,5 @@ interface StarProps {
 }
 
 export default function Star({ rarity }: StarProps): JSX.Element {
-  return <img src={STAR_RARITY[rarity]} alt={`Star rarity lvl ${rarity}`} />;
+  return <Image src={STAR_RARITY[rarity]} alt={`Star rarity lvl ${rarity}`} />;
 }

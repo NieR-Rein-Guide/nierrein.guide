@@ -1,10 +1,9 @@
 import { DISCORD_URL } from "@config/constants";
 
-
 function JoinUs(): JSX.Element {
   return (
-    <section className="relative bg-grey-dark border-opacity-50 p-8 md:max-w-5xl md:mx-auto">
-      <div className="flex flex-col items-center">
+    <section className="relative bg-grey-dark border-opacity-50 p-8 md:max-w-6xl md:mx-auto">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
         <p className="mb-4 leading-loose text-center">
           We are building this website in the open
           <br />

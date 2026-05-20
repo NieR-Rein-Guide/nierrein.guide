@@ -1,4 +1,3 @@
-
 import SVG from "react-inlinesvg";
 import getModelPath from "@utils/getModelPath";
 import Star from "@components/decorations/Star";
@@ -41,7 +40,7 @@ export default function CostumeArtwork({
             />
           )) || (
             <img
-              className="object-cover"
+              className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-cover"
               src={`${CDN_URL}${costume.image_path_base}full.png`}
               alt={`${costume.title} (${costume.title}) illustration`}
             />
