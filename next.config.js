@@ -1,6 +1,6 @@
-const withPWA = require('next-pwa')({
-  dest: 'public'
-})
+const withPWA = require("next-pwa")({
+  dest: "public",
+});
 
 module.exports = withPWA({
   output: 'export',
@@ -8,6 +8,8 @@ module.exports = withPWA({
   staticPageGenerationTimeout: 1000,
   experimental: {
     largePageDataBytes: 1028 * 1000,
+    workerThreads: false,
+    cpus: 2,
   },
   images: {
     domains: [
