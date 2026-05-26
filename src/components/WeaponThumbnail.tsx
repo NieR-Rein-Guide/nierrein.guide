@@ -62,7 +62,6 @@ export default function WeaponThumbnail({
         <div className="mt-1 ml-1">
           <img
             className="z-10"
-            layout="fixed"
             width={148}
             height={328}
             src={`/decorations/corners_rarity_${weaponRarity}_large.png`}
@@ -107,7 +106,10 @@ export default function WeaponThumbnail({
           }}
         >
           <img
-            className={classNames("z-0 object-contain", imgClasses)}
+            className={classNames(
+              "z-0 object-contain h-full mx-auto",
+              imgClasses
+            )}
             src={
               image_path
                 ? `${CDN_URL}${image_path}full.png`
@@ -183,7 +185,10 @@ export default function WeaponThumbnail({
       )}
 
       <img
-        className={classNames("z-0 object-contain absolute top-0", imgClasses)}
+        className={classNames(
+          "z-0 object-contain absolute top-1/2 transform -translate-y-1/2",
+          imgClasses
+        )}
         src={
           image_path
             ? `${CDN_URL}${image_path}standard.png`
@@ -193,11 +198,9 @@ export default function WeaponThumbnail({
       />
 
       {href && (
-        (<Link href={href} passHref className="absolute inset-0 z-10">
-
+        <Link href={href} passHref className="absolute inset-0 z-10">
           <span className="sr-only">See weapon</span>
-
-        </Link>)
+        </Link>
       )}
     </div>
   );

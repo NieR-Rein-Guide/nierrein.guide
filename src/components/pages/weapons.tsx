@@ -232,7 +232,7 @@ export default function WeaponsPage({
    * complaining about differences between Server/Client
    * And cause rehydration issues that breaks the layout.
    */
-  const [displayType, setDisplayType] = useState("table");
+  const [displayType, setDisplayType] = useState("grid");
   const databaseDisplayType = useSettingsStore(
     (state) => state.databaseDisplayType
   );

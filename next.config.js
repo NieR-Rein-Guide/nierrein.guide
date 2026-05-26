@@ -3,7 +3,6 @@ const withPWA = require("next-pwa")({
 });
 
 module.exports = withPWA({
-  output: 'export',
   reactStrictMode: false,
   staticPageGenerationTimeout: 1000,
   experimental: {

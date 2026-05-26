@@ -1,4 +1,3 @@
-
 import SVG from "react-inlinesvg";
 import getModelPath from "@utils/getModelPath";
 import dynamic from "next/dynamic";
@@ -76,7 +75,7 @@ export default function CompanionThumbnail({
         )}
 
         <img
-          className="z-0 h-full w-auto mx-auto p-1"
+          className="absolute top-0 left-1/2 transform -translate-x-1/2 z-0 h-full w-autop-1"
           src={
             companion?.image_path_base
               ? `${CDN_URL}${companion?.image_path_base}full.png`

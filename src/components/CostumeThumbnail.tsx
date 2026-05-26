@@ -135,7 +135,10 @@ export default function CostumeThumbnail({
       }}
     >
       <img
-        className={classNames("object-contain absolute bottom-0", imgClasses)}
+        className={classNames(
+          "object-contain absolute bottom-0 h-full w-auto left-1/2 transform -translate-x-1/2",
+          imgClasses
+        )}
         src={src ?? emptyBackground}
         alt={alt}
       />

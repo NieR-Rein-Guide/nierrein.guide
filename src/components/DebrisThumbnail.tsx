@@ -44,7 +44,7 @@ export default function DebrisThumbnail({
     >
       {image_path_base && (
         <img
-          className="z-10"
+          className="z-10 absolute"
           layout="fill"
           src={`/decorations/corners_rarity_${debrisRarity}.png`}
           alt={name}

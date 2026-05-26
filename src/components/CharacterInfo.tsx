@@ -1,4 +1,3 @@
-
 import HR from "./decorations/HR";
 import Star from "./decorations/Star";
 import SVG from "react-inlinesvg";
@@ -461,8 +460,7 @@ function CostumeDetails({
                     key={`${CDN_URL}${costume.image_path_base}full${
                       isReplaced ? "_replace" : ""
                     }.png`}
-                    layout="fill"
-                    className="object-contain"
+                    className="h-full object-contain absolute top-1/2 transform -translate-y-1/2"
                     src={`${CDN_URL}${costume.image_path_base}full${
                       isReplaced ? "_replace" : ""
                     }.png`}
@@ -688,7 +686,7 @@ function CostumeDetails({
                   ].abilities.map((ability) => (
                     <div
                       key={ability.name}
-                      className="flex gap-4 bg-grey-dark p-4 relative bordered"
+                      className="flex flex-col md:flex-row gap-4 bg-grey-dark p-4 relative bordered"
                     >
                       <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
                         Lv. {ability.level}
@@ -731,7 +729,7 @@ function CostumeDetails({
                   ].abilities.map((ability) => (
                     <div
                       key={ability.name}
-                      className="flex gap-4 bg-grey-dark p-4 relative bordered"
+                      className="flex flex-column md:flex-row gap-4 bg-grey-dark p-4 relative bordered"
                     >
                       <span className="absolute top-2 right-4 text-xs mt-2 bg-brown px-2 py-1">
                         Lv. {ability.level}
@@ -742,7 +740,7 @@ function CostumeDetails({
                             src="/decorations/frame-ability.svg"
                             className="h-16 w-16"
                           />
-                          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+                          <div className="h-16 w-16">
                             <img alt="" src={ability.icon_url} />
                           </div>
                         </div>
@@ -921,12 +919,7 @@ function SingleStat({ name, value, type, icon }): JSX.Element {
   return (
     <div className="flex items-center justify-between pl-4 pr-8">
       <div className="flex items-center gap text-beige-light">
-        <img
-          src={icon}
-          alt={name}
-          width={48}
-          height={48}
-        />
+        <img src={icon} alt={name} width={48} height={48} />
         {name}
       </div>
       <div className={classNames("font-light", colors[name])}>

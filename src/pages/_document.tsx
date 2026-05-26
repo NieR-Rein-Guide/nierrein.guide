@@ -23,6 +23,7 @@ class MyDocument extends Document {
           <link rel="shortcut icon" href="/favicon.png" />
           <link rel="apple-touch-icon" sizes="64x64" href="/favicon.png" />
           <link rel="icon" type="image/png" sizes="64x64" href="/favicon.png" />
+          <meta charSet="utf-8" />
           {env.NODE_ENV === "production" && (
             <script
               async
@@ -31,14 +32,6 @@ class MyDocument extends Document {
               src="https://umami.keziahmoselle.fr/script.js"
             ></script>
           )}
-          {/* Comment system */}
-          <script async src="/scripts/cusdis.js"></script>
-
-          <script
-            async
-            src="https://cdn.strawpoll.com/dist/widgets.js"
-            charSet="utf-8"
-          ></script>
         </Head>
         <body>
           <Main />

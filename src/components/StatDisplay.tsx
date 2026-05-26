@@ -18,7 +18,7 @@ export default function StatDisplay({ type, value }) {
       <div className="flex items-center">
         <div className={classNames("relative mr-4")}>
           <SVG src="/decorations/frame-ability.svg" className="h-12 w-12" />
-          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center justify-center">
+          <div className="h-16 w-16 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
             <img alt={type} src={statsIcons[type]} />
           </div>
         </div>

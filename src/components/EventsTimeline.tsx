@@ -34,12 +34,12 @@ export default function EventsTimeline({
    * Events listing
    */
   const eventsGroups = GROUPS.reduce((acc, group) => {
-    const list = items.filter((item) => {
-      return (
-        item.attributes.title.includes(group) &&
-        new Date(item.attributes.end_date).getTime() > Date.now()
-      );
-    });
+    const list = items
+      .filter((item) => {
+        return item.attributes.title.includes(group);
+      })
+      .reverse()
+      .slice(-2);
 
     acc[group] = list;
     return acc;
