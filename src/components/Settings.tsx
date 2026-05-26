@@ -13,20 +13,20 @@ import Checkbox from "@components/form/Checkbox";
 
 export default function SettingsModal() {
   const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
+    (state) => state.showUnreleasedContent,
   );
   const setShowUnreleasedContent = useSettingsStore(
-    (state) => state.setShowUnreleasedContent
+    (state) => state.setShowUnreleasedContent,
   );
   const showInventory = useSettingsStore((state) => state.showInventory);
   const setShowInventory = useSettingsStore((state) => state.setShowInventory);
   const isExalted = useSettingsStore((state) => state.isExalted);
   const setIsExalted = useSettingsStore((state) => state.setIsExalted);
   const databaseDisplayType = useSettingsStore(
-    (state) => state.databaseDisplayType
+    (state) => state.databaseDisplayType,
   );
   const setDatabaseDisplayType = useSettingsStore(
-    (state) => state.setDatabaseDisplayType
+    (state) => state.setDatabaseDisplayType,
   );
 
   return (
@@ -61,19 +61,6 @@ export default function SettingsModal() {
           checked={showUnreleasedContent}
         />
       </div>
-      <FormControl className="bg-grey-dark hidden xl:flex">
-        <InputLabel id="attribute-select-label">View</InputLabel>
-        <Select
-          labelId="view-select"
-          value={databaseDisplayType}
-          label="Type"
-          onChange={(e) => setDatabaseDisplayType(e.target.value)}
-        >
-          <MenuItem value="table">Table (Filtering)</MenuItem>
-          <MenuItem value="grid">Grid</MenuItem>
-          <MenuItem value="compact">Compact</MenuItem>
-        </Select>
-      </FormControl>
     </>
   );
 }

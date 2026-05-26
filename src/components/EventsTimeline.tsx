@@ -26,7 +26,7 @@ export default function EventsTimeline({
 }) {
   const isMobile = useMedia("(max-width: 1279px)", true);
   const eventsDisplayType = useSettingsStore(
-    (state) => state.eventsDisplayType
+    (state) => state.eventsDisplayType,
   );
   const visualization = useRef(null);
 
@@ -34,12 +34,12 @@ export default function EventsTimeline({
    * Events listing
    */
   const eventsGroups = GROUPS.reduce((acc, group) => {
-    const list = items.filter((item) => {
-      return (
-        item.attributes.title.includes(group) &&
-        new Date(item.attributes.end_date).getTime() > Date.now()
-      );
-    });
+    const list = items
+      .filter((item) => {
+        return item.attributes.title.includes(group);
+      })
+      .reverse()
+      .slice(-2);
 
     acc[group] = list;
     return acc;
@@ -50,7 +50,7 @@ export default function EventsTimeline({
    */
   const visItems = items.map((item, id) => {
     const associatedGroup = groups.find((group) =>
-      item.attributes.title.includes(group.content)
+      item.attributes.title.includes(group.content),
     );
 
     const visItem = {
@@ -79,10 +79,11 @@ export default function EventsTimeline({
     }
 
     const timeline = new Timeline(visualization.current, visItems, {
-      start: sub(new Date(), { weeks: 1 }),
+      start: visItems[visItems.length - 1].end,
       horizontalScroll: true,
       zoomKey: "ctrlKey",
       orientation: "top",
+      zoomMax: 31 * 24 * 60 * 60 * 1000,
       dataAttributes: ["image"],
       template: (item) => {
         return `<a href="/event/${item.slug}">
@@ -107,6 +108,7 @@ export default function EventsTimeline({
               events={events}
               containerClasses="my-8"
               cardClasses="grid grid-cols-1"
+              type={group}
               cardContainerClasses="grid lg:grid-cols-2 gap-16"
             />
           );

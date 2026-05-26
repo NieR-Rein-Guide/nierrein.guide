@@ -54,10 +54,10 @@ export default function Home({
   loadouts = [],
 }: HomeProps): JSX.Element {
   const eventsDisplayType = useSettingsStore(
-    (state) => state.eventsDisplayType
+    (state) => state.eventsDisplayType,
   );
   const setEventsDisplayType = useSettingsStore(
-    (state) => state.setEventsDisplayType
+    (state) => state.setEventsDisplayType,
   );
 
   return (
@@ -91,7 +91,7 @@ export default function Home({
           <div
             className={classNames(
               "hidden lg:flex items-center justify-between",
-              eventsDisplayType === "timeline" ? "mb-4" : ""
+              eventsDisplayType === "timeline" ? "mb-4" : "",
             )}
           >
             <Link href="/events" passHref className="btn">
@@ -125,10 +125,10 @@ export default function Home({
           </div>
         </div>
 
-        {/* NEW LOADOUTS */}
+        {/* LOADOUTS */}
         <div className="container">
           <section>
-            <h2 className="overlap">New community loadouts</h2>
+            <h2 className="overlap">Most popular loadouts</h2>
             <div className="grid grid-cols-1 place-items-center md:grid-cols-2 lg:grid-cols-3 gap-8">
               {loadouts.length === 0 && (
                 <div className="bg-grey-dark text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 p-8 text-center rounded-lg md:col-span-2 lg:col-span-3">
@@ -237,7 +237,7 @@ export async function getStaticProps() {
         prisma.nrg.loadouts.findMany({
           take: 6,
           orderBy: {
-            created_at: "desc",
+            votes: "desc",
           },
         }),
       ]);
@@ -265,7 +265,7 @@ export async function getStaticProps() {
       ...notification,
       body: notification.body.replaceAll(
         "/images/",
-        "https://web.app.nierreincarnation.com/images/"
+        "https://web.app.nierreincarnation.com/images/",
       ),
     }));
 
@@ -283,7 +283,7 @@ export async function getStaticProps() {
           notifications,
           recentWeapons,
           loadouts,
-        })
+        }),
       ),
     };
   } catch (error) {

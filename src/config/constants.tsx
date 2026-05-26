@@ -359,21 +359,21 @@ export const RECOMMENDED_YOUTUBE_CHANNELS: YouTubeChannel[] = [
     url: "https://www.youtube.com/@MrGottem11111",
     tags: ["Subjugation", "Reviews", "Recap", "Guides"],
     avatarUrl: "/images/channels/gottem1111.jpg",
-    isNotUpdated: true,
+    isNotUpdated: false,
   },
   {
     name: "Yung Geesus",
     url: "https://www.youtube.com/@YungGeesus",
     tags: ["Subjugation", "Reviews"],
     avatarUrl: "/images/channels/yunggeesus.jpg",
-    isNotUpdated: true,
+    isNotUpdated: false,
   },
   {
     name: "JpBear",
     url: "https://www.youtube.com/@jpbearjpbear4510",
     tags: ["Subjugation"],
     avatarUrl: "/images/channels/jpbear.jpg",
-    isNotUpdated: true,
+    isNotUpdated: false,
   },
 ];
 

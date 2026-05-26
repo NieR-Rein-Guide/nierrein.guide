@@ -29,7 +29,7 @@ export default function ListingLoadout({
     months: 1,
   });
 
-  const [sortBy, setSortBy] = useState("created_at");
+  const [sortBy, setSortBy] = useState("votes");
   const [fromDate, setFromDate] = useState<Date | null>(defaultFromDate);
   const [attribute, setAttribute] = useState("all");
   const [type, setType] = useState("all");
@@ -38,7 +38,7 @@ export default function ListingLoadout({
     if (firstUpdate.current) return;
 
     router.push(
-      `/loadouts?attribute=${attribute}&type=${type}&from=${fromDate.toISOString()}&sortBy=${sortBy}`
+      `/loadouts?attribute=${attribute}&type=${type}&from=${fromDate.toISOString()}&sortBy=${sortBy}`,
     );
   }, [attribute, type, fromDate, sortBy]);
 
@@ -63,10 +63,9 @@ export default function ListingLoadout({
         <Link
           href="/tools/loadout-builder"
           passHref
-          className="btn mb-4 md:mb-0 top-3 right-4 md:absolute">
-          
-            Create a loadout
-          
+          className="btn mb-4 md:mb-0 top-3 right-4 md:absolute"
+        >
+          Create a loadout
         </Link>
 
         <div className="flex flex-col items-center md:flex-row gap-y-4 gap-x-4 bg-grey-dark border border-beige border-opacity-50 p-4 mb-8">
@@ -82,16 +81,6 @@ export default function ListingLoadout({
               <MenuItem value="votes">Votes</MenuItem>
             </Select>
           </FormControl>
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <MobileDatePicker
-              className="mt-4 md:mt-0"
-              label="Created after"
-              inputFormat="MM/dd/yyyy"
-              value={fromDate}
-              onChange={(newValue) => setFromDate(newValue)}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
           <FormControl className="w-32 mt-8 md:mt-0">
             <InputLabel id="attribute-select-label">Type</InputLabel>
             <Select
@@ -169,11 +158,6 @@ export async function getServerSideProps(context: NextPageContext) {
     where["type"] = context.query.type;
   }
 
-  if (context.query.from) {
-    where["created_at"] = {};
-    where["created_at"]["gte"] = context.query.from;
-  }
-
   /**
    * Order by
    */
@@ -184,7 +168,7 @@ export async function getServerSideProps(context: NextPageContext) {
     };
   } else {
     orderBy = {
-      created_at: "desc",
+      votes: "desc",
     };
   }
 
@@ -197,7 +181,7 @@ export async function getServerSideProps(context: NextPageContext) {
     props: JSON.parse(
       JSON.stringify({
         loadouts,
-      })
+      }),
     ),
   };
 }

@@ -6,7 +6,7 @@ export const useSettingsStore = create(
     (set) => ({
       region: 'GLOBAL', // 'GLOBAL' | 'JP'
       eventsDisplayType: 'listing', // 'timeline' | 'listing'
-      databaseDisplayType: "table", // 'table' | 'grid'
+      databaseDisplayType: "grid", // 'table' | 'grid'
       showCharactersSelection: false,
       showUnreleasedContent: false,
       showInventory: false,

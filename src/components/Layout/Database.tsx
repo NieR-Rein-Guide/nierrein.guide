@@ -6,13 +6,22 @@ import { usePanelStore } from "@store/panels";
 import { CostumePanel } from "@components/CostumePanel";
 import ErrorBoundary from "@components/Error";
 import Settings from "@components/Settings";
-import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  ToggleButton,
+  ToggleButtonGroup,
+} from "@mui/material";
 import { FiFilter } from "react-icons/fi";
 import { useState } from "react";
 import { MdFilterAlt, MdViewColumn, MdViewComfy } from "react-icons/md";
 import { useSettingsStore } from "@store/settings";
 
 interface LayoutProps {
+  title: string;
   children: React.ReactNode;
   aside?: React.ReactNode;
   className?: string;
@@ -20,6 +29,7 @@ interface LayoutProps {
 }
 
 function DatabaseLayout({
+  title,
   children,
   className,
   hasContainer = true,
@@ -28,10 +38,10 @@ function DatabaseLayout({
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const panelCostumes = usePanelStore((state) => state.costumes);
   const databaseDisplayType = useSettingsStore(
-    (state) => state.databaseDisplayType
+    (state) => state.databaseDisplayType,
   );
   const setDatabaseDisplayType = useSettingsStore(
-    (state) => state.setDatabaseDisplayType
+    (state) => state.setDatabaseDisplayType,
   );
 
   return (
@@ -39,31 +49,7 @@ function DatabaseLayout({
       <Header />
 
       <div className="grid grid-cols-1 xl:mb-0 xl:grid-cols-12 gap-2">
-        <div className="flex flex-col gap-4 items-center justify-center xl:hidden">
-          <ToggleButtonGroup
-            value={databaseDisplayType}
-            exclusive
-            onChange={(e, newValue) => setDatabaseDisplayType(newValue)}
-            aria-label="View"
-          >
-            <ToggleButton
-              defaultChecked={databaseDisplayType === "table"}
-              value="table"
-              aria-label="table"
-            >
-              <MdFilterAlt /> <p className="ml-2">Table</p>
-            </ToggleButton>
-            <ToggleButton value="grid" aria-label="grid">
-              <MdViewColumn /> <p className="ml-2">Comfy</p>
-            </ToggleButton>
-            <ToggleButton
-              defaultChecked={databaseDisplayType === "compact"}
-              value="compact"
-              aria-label="compact"
-            >
-              <MdViewComfy /> <p className="ml-2">Compact</p>
-            </ToggleButton>
-          </ToggleButtonGroup>
+        <div className="flex flex-col gap-4 items-end justify-center xl:hidden">
           <Button
             onClick={() => setIsFiltersOpen(!isFiltersOpen)}
             className="mx-4 mb-4 xl:hidden"
@@ -80,7 +66,7 @@ function DatabaseLayout({
             isFiltersOpen
               ? "border-l-0 rounded-tr-md rounded-br-md"
               : "opacity-0 pointer-events-none xl:opacity-100 xl:pointer-events-auto",
-            "fixed mt-12 flex flex-col gap-y-4 px-4 xl:sticky xl:top-8 xl:flex xl:col-span-2 xl:self-start z-50 transition-all ease-out-cubic bg-grey-dark py-2 border border-beige border-opacity-20 max-h-[70vh] overflow-y-auto"
+            "fixed mt-12 flex flex-col gap-y-4 px-4 xl:sticky xl:top-8 xl:flex xl:col-span-2 xl:self-start z-50 transition-all ease-out-cubic bg-grey-dark py-2 border border-beige border-opacity-20 max-h-[70vh] overflow-y-auto",
           )}
         >
           {aside}
@@ -90,10 +76,37 @@ function DatabaseLayout({
           className={classNames(
             "flex flex-col w-full flex-1 xl:col-span-10",
             hasContainer ? "container" : "",
-            className
+            className,
           )}
         >
           <ErrorBoundary>
+            <div className="flex items-center justify-between mb-4 px-2">
+              <h2 className="text-3xl font-display">{title}</h2>
+              <ToggleButtonGroup
+                value={databaseDisplayType}
+                exclusive
+                onChange={(e, newValue) => setDatabaseDisplayType(newValue)}
+                aria-label="View"
+              >
+                <ToggleButton
+                  defaultChecked={databaseDisplayType === "table"}
+                  value="table"
+                  aria-label="table"
+                >
+                  <MdFilterAlt /> <p className="ml-2">Table</p>
+                </ToggleButton>
+                <ToggleButton value="grid" aria-label="grid">
+                  <MdViewColumn /> <p className="ml-2">Comfy</p>
+                </ToggleButton>
+                <ToggleButton
+                  defaultChecked={databaseDisplayType === "compact"}
+                  value="compact"
+                  aria-label="compact"
+                >
+                  <MdViewComfy /> <p className="ml-2">Compact</p>
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </div>
             <div>{children}</div>
           </ErrorBoundary>
         </main>

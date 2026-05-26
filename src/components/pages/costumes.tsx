@@ -101,7 +101,7 @@ function filterCostumesBySkill(costumes: ICostume[], filters) {
       return filter.options.some((option) =>
         cost.costume_skill_link[0].costume_skill.description
           .toLowerCase()
-          .includes(option)
+          .includes(option),
       );
     });
   }
@@ -115,7 +115,7 @@ function filterCostumesByCharacter(costumes: ICostume[], filters: character[]) {
   const charactersIds = filters.map((character) => character.character_id);
 
   return costumes.filter((costume) =>
-    charactersIds.includes(costume.character_id)
+    charactersIds.includes(costume.character_id),
   );
 }
 
@@ -132,7 +132,7 @@ export function filterCostumes(
     showUnreleasedContent,
     rod,
     affinity,
-  }
+  },
 ) {
   const allowLinks = [];
   if (limited) {
@@ -204,7 +204,7 @@ export default function CharactersPage({
   characters,
 }: CharactersPageProps): JSX.Element {
   const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
+    (state) => state.showUnreleasedContent,
   );
   const showInventory = useSettingsStore((state) => state.showInventory);
   const order = useSettingsStore((state) => state.order);
@@ -248,7 +248,7 @@ export default function CharactersPage({
       showUnreleasedContent,
       rod,
       affinity,
-    ]
+    ],
   );
 
   /**
@@ -256,9 +256,9 @@ export default function CharactersPage({
    * complaining about differences between Server/Client
    * And cause rehydration issues that breaks the layout.
    */
-  const [displayType, setDisplayType] = useState("table");
+  const [displayType, setDisplayType] = useState("grid");
   const databaseDisplayType = useSettingsStore(
-    (state) => state.databaseDisplayType
+    (state) => state.databaseDisplayType,
   );
 
   useEffect(() => {
@@ -267,6 +267,7 @@ export default function CharactersPage({
 
   return (
     <DatabaseLayout
+      title="Costumes"
       hasContainer={displayType === "table" ? false : true}
       className={classNames(displayType === "table" ? "overflow-x-auto" : "")}
       aside={
@@ -327,7 +328,7 @@ export default function CharactersPage({
       <div
         className={classNames(
           "mx-auto",
-          displayType !== "table" ? "w-full" : ""
+          displayType !== "table" ? "w-full" : "",
         )}
       >
         {showInventory && ownedCostumes.length === 0 && (
@@ -459,7 +460,7 @@ export function CostumesTable({
           customFilterAndSearch: (term, costume) => {
             if (term.length === 0) return true;
             return `${costume.character.name.toLowerCase()} ${costume.title.toLowerCase()}`.includes(
-              term.toLowerCase()
+              term.toLowerCase(),
             );
           },
         },
@@ -589,7 +590,7 @@ export function CostumesTable({
                   "text-xs line-clamp-2 z-10 text-shadow",
                   skillGaugeColors[
                     costume.costume_skill_link[0].costume_skill.gauge_rise_speed
-                  ]
+                  ],
                 )}
               >
                 {costume.costume_skill_link[0].costume_skill.name}
@@ -605,10 +606,10 @@ export function CostumesTable({
             if (term.length === 0) return true;
             const hasAbilityInEitherSlot =
               term.includes(
-                costume.costume_ability_link[0].costume_ability.name
+                costume.costume_ability_link[0].costume_ability.name,
               ) ||
               term.includes(
-                costume.costume_ability_link[1].costume_ability.name
+                costume.costume_ability_link[1].costume_ability.name,
               );
             return hasAbilityInEitherSlot;
           },
@@ -629,10 +630,10 @@ export function CostumesTable({
             if (term.length === 0) return true;
             const hasAbilityInEitherSlot =
               term.includes(
-                costume.costume_ability_link[0].costume_ability.name
+                costume.costume_ability_link[0].costume_ability.name,
               ) ||
               term.includes(
-                costume.costume_ability_link[1].costume_ability.name
+                costume.costume_ability_link[1].costume_ability.name,
               );
             return hasAbilityInEitherSlot;
           },
@@ -652,7 +653,7 @@ export function CostumesTable({
           customFilterAndSearch: (term, costume) => {
             if (term.length === 0) return true;
             return term.includes(
-              costume.costume_ability_link[2].costume_ability.name
+              costume.costume_ability_link[2].costume_ability.name,
             );
           },
           cellStyle: {
@@ -670,7 +671,7 @@ export function CostumesTable({
           type: "numeric",
           filterComponent: ({ columnDef, onFilterChanged }) => {
             const [selectedFilter, setSelectedFilter] = useState(
-              columnDef.tableData.filterValue || []
+              columnDef.tableData.filterValue || [],
             );
 
             useEffect(() => {
@@ -696,7 +697,7 @@ export function CostumesTable({
                     if (columnDef.filterOnItemSelect === true) {
                       onFilterChanged(
                         columnDef.tableData.id,
-                        event.target.value
+                        event.target.value,
                       );
                     }
                   }}
@@ -723,7 +724,7 @@ export function CostumesTable({
           customFilterAndSearch: (term, costume) => {
             if (term.length === 0) return true;
             return term.includes(
-              costume.costume_skill_link[0].costume_skill.gauge_rise_speed
+              costume.costume_skill_link[0].costume_skill.gauge_rise_speed,
             );
           },
           cellStyle: {
@@ -817,7 +818,7 @@ export function CostumesGrid({
         "grid mt-8",
         isSmall
           ? "grid-cols-3 xs:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4"
-          : "grid-cols-2 xs:grid-cols-3 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8"
+          : "grid-cols-2 xs:grid-cols-3 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8",
       )}
     >
       {costumes
@@ -841,7 +842,7 @@ export function CostumesGrid({
                   "group relative",
                   isLibrary && !ownedCostumes.includes(cost.costume_id)
                     ? "opacity-50"
-                    : ""
+                    : "",
                 )}
                 key={cost.costume_id}
               >
@@ -904,7 +905,7 @@ export function CostumesGrid({
                 "group flex flex-col items-center gap-y-2 relative font-mono",
                 isLibrary && !ownedCostumes.includes(cost.costume_id)
                   ? "opacity-50"
-                  : ""
+                  : "",
               )}
               key={cost.costume_id}
             >
@@ -1066,7 +1067,7 @@ export function CostumesCharactersFilters({
                 <Checkbox
                   label={character.name}
                   isChecked={filteredCharacters.some(
-                    (ch) => ch.name === character.name
+                    (ch) => ch.name === character.name,
                   )}
                   setState={() => toggleCharacter(character)}
                 />

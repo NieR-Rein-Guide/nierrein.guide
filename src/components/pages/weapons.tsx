@@ -126,7 +126,7 @@ export function filterWeapons(
     isRD,
     isSubjugation,
     filteredCharacters,
-  }
+  },
 ) {
   let filteredWeapons: IWeapon[] = weapons;
 
@@ -140,14 +140,14 @@ export function filterWeapons(
   if (filteredCharacters?.length > 0) {
     filteredWeapons = filteredWeapons.filter((weapon) => {
       return filteredCharacters.some(
-        (char) => weapon?.costume?.character_id === char.character_id
+        (char) => weapon?.costume?.character_id === char.character_id,
       );
     });
   }
 
   if (isRefinable) {
     filteredWeapons = filteredWeapons.filter(
-      (weapon) => weapon.weapon_ability_link[3]
+      (weapon) => weapon.weapon_ability_link[3],
     );
   }
 
@@ -161,7 +161,7 @@ export function filterWeapons(
 
   if (isSubjugation) {
     filteredWeapons = filteredWeapons.filter(
-      (weapon) => weapon.is_subjugation_weapon
+      (weapon) => weapon.is_subjugation_weapon,
     );
   }
 
@@ -184,7 +184,7 @@ export default function WeaponsPage({
   characters,
 }: CharactersPageProps): JSX.Element {
   const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
+    (state) => state.showUnreleasedContent,
   );
   const region = useSettingsStore((state) => state.region);
   const showInventory = useSettingsStore((state) => state.showInventory);
@@ -224,7 +224,7 @@ export default function WeaponsPage({
       isEX,
       isRD,
       isSubjugation,
-    ]
+    ],
   );
 
   /**
@@ -232,9 +232,9 @@ export default function WeaponsPage({
    * complaining about differences between Server/Client
    * And cause rehydration issues that breaks the layout.
    */
-  const [displayType, setDisplayType] = useState("table");
+  const [displayType, setDisplayType] = useState("grid");
   const databaseDisplayType = useSettingsStore(
-    (state) => state.databaseDisplayType
+    (state) => state.databaseDisplayType,
   );
 
   const [valuedWeaponType, setValuedWeaponType] = useState("none");
@@ -245,9 +245,10 @@ export default function WeaponsPage({
 
   return (
     <DatabaseLayout
+      title="Weapons"
       hasContainer={databaseDisplayType === "table" ? false : true}
       className={classNames(
-        databaseDisplayType === "table" ? "overflow-x-auto" : ""
+        databaseDisplayType === "table" ? "overflow-x-auto" : "",
       )}
       aside={
         <>
@@ -305,7 +306,7 @@ export default function WeaponsPage({
       <div
         className={classNames(
           "mx-auto",
-          displayType !== "table" ? "w-full" : ""
+          displayType !== "table" ? "w-full" : "",
         )}
       >
         {showInventory && ownedWeapons.length === 0 && (
@@ -463,7 +464,7 @@ export function WeaponsTable({
 
             if (isExalted) {
               const hasRefined = weapon.weapon_stat.find(
-                (row) => row.is_refined
+                (row) => row.is_refined,
               );
 
               if (hasRefined) {
@@ -480,7 +481,7 @@ export function WeaponsTable({
 
             if (isExalted) {
               const hasRefined = weapon.weapon_stat.find(
-                (row) => row.is_refined
+                (row) => row.is_refined,
               );
 
               if (hasRefined) {
@@ -508,7 +509,7 @@ export function WeaponsTable({
 
             if (isExalted) {
               const hasRefined = weapon.weapon_stat.find(
-                (row) => row.is_refined
+                (row) => row.is_refined,
               );
 
               if (hasRefined) {
@@ -525,7 +526,7 @@ export function WeaponsTable({
 
             if (isExalted) {
               const hasRefined = weapon.weapon_stat.find(
-                (row) => row.is_refined
+                (row) => row.is_refined,
               );
 
               if (hasRefined) {
@@ -553,7 +554,7 @@ export function WeaponsTable({
 
             if (isExalted) {
               const hasRefined = weapon.weapon_stat.find(
-                (row) => row.is_refined
+                (row) => row.is_refined,
               );
 
               if (hasRefined) {
@@ -570,7 +571,7 @@ export function WeaponsTable({
 
             if (isExalted) {
               const hasRefined = weapon.weapon_stat.find(
-                (row) => row.is_refined
+                (row) => row.is_refined,
               );
 
               if (hasRefined) {
@@ -591,12 +592,12 @@ export function WeaponsTable({
           render: (weapon) => {
             const isValued = VALUED_WEAPONS[valuedWeaponType]
               .filter(
-                (valuedAbility) => valuedAbility.type === VALUED_TYPES.SKILL
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.SKILL,
               )
               .find((valuedAbility) =>
                 weapon.weapon_skill_link[0].weapon_skill.name
                   .toLowerCase()
-                  .includes(valuedAbility.value.toLowerCase())
+                  .includes(valuedAbility.value.toLowerCase()),
               );
 
             return (
@@ -604,7 +605,7 @@ export function WeaponsTable({
                 <span
                   className={classNames(
                     "text-xs line-clamp-2 z-10 text-shadow",
-                    isValued ? "text-green-300" : ""
+                    isValued ? "text-green-300" : "",
                   )}
                 >
                   {weapon.weapon_skill_link[0].weapon_skill.name}
@@ -623,12 +624,12 @@ export function WeaponsTable({
           render: (weapon) => {
             const isValued = VALUED_WEAPONS[valuedWeaponType]
               .filter(
-                (valuedAbility) => valuedAbility.type === VALUED_TYPES.SKILL
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.SKILL,
               )
               .find((valuedAbility) =>
                 weapon.weapon_skill_link[1].weapon_skill.name
                   .toLowerCase()
-                  .includes(valuedAbility.value.toLowerCase())
+                  .includes(valuedAbility.value.toLowerCase()),
               );
 
             return (
@@ -636,7 +637,7 @@ export function WeaponsTable({
                 <span
                   className={classNames(
                     "text-xs line-clamp-2 z-10 text-shadow",
-                    isValued ? "text-green-300" : ""
+                    isValued ? "text-green-300" : "",
                   )}
                 >
                   {weapon.weapon_skill_link[1].weapon_skill.name}
@@ -656,29 +657,29 @@ export function WeaponsTable({
             if (term.length === 0) return true;
             const hasAbilityInEitherSlot =
               term.includes(
-                weapon.weapon_ability_link?.[0]?.weapon_ability.name
+                weapon.weapon_ability_link?.[0]?.weapon_ability.name,
               ) ||
               term.includes(
-                weapon.weapon_ability_link?.[1]?.weapon_ability.name
+                weapon.weapon_ability_link?.[1]?.weapon_ability.name,
               );
             return hasAbilityInEitherSlot;
           },
           render: (weapon) => {
             const isValued = VALUED_WEAPONS[valuedWeaponType]
               .filter(
-                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY,
               )
               .find((valuedAbility) =>
                 weapon.weapon_ability_link[0].weapon_ability.name.includes(
-                  valuedAbility.value
-                )
+                  valuedAbility.value,
+                ),
               );
 
             return (
               <div
                 className={classNames(
                   "relative flex flex-col justify-center items-center",
-                  isValued ? "text-green-300" : ""
+                  isValued ? "text-green-300" : "",
                 )}
               >
                 <AbilityThumbnail
@@ -699,29 +700,29 @@ export function WeaponsTable({
             if (term.length === 0) return true;
             const hasAbilityInEitherSlot =
               term.includes(
-                weapon.weapon_ability_link?.[0]?.weapon_ability.name
+                weapon.weapon_ability_link?.[0]?.weapon_ability.name,
               ) ||
               term.includes(
-                weapon.weapon_ability_link?.[1]?.weapon_ability.name
+                weapon.weapon_ability_link?.[1]?.weapon_ability.name,
               );
             return hasAbilityInEitherSlot;
           },
           render: (weapon) => {
             const isValued = VALUED_WEAPONS[valuedWeaponType]
               .filter(
-                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY,
               )
               .find((valuedAbility) =>
                 weapon.weapon_ability_link[1].weapon_ability.name.includes(
-                  valuedAbility.value
-                )
+                  valuedAbility.value,
+                ),
               );
 
             return (
               <div
                 className={classNames(
                   "relative flex flex-col justify-center items-center",
-                  isValued ? "text-green-300" : ""
+                  isValued ? "text-green-300" : "",
                 )}
               >
                 <AbilityThumbnail
@@ -741,7 +742,7 @@ export function WeaponsTable({
           customFilterAndSearch: (term, weapon) => {
             if (term.length === 0) return true;
             return term.includes(
-              weapon.weapon_ability_link?.[2]?.weapon_ability.name
+              weapon.weapon_ability_link?.[2]?.weapon_ability.name,
             );
           },
           render: (weapon) => (
@@ -764,23 +765,23 @@ export function WeaponsTable({
           customFilterAndSearch: (term, weapon) => {
             if (term.length === 0) return true;
             return term.includes(
-              weapon.weapon_ability_link?.[3]?.weapon_ability.name
+              weapon.weapon_ability_link?.[3]?.weapon_ability.name,
             );
           },
           render: (weapon) => {
             const isValued = VALUED_WEAPONS[valuedWeaponType]
               .filter(
-                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY
+                (valuedAbility) => valuedAbility.type === VALUED_TYPES.ABILITY,
               )
               .find((valuedAbility) =>
                 weapon.weapon_ability_link?.[3]?.weapon_ability.name.includes(
-                  valuedAbility.value
-                )
+                  valuedAbility.value,
+                ),
               );
 
             if (weapon.name.includes("horn")) {
               console.log(
-                weapon.weapon_ability_link?.[3]?.weapon_ability?.name
+                weapon.weapon_ability_link?.[3]?.weapon_ability?.name,
               );
             }
 
@@ -788,7 +789,7 @@ export function WeaponsTable({
               <div
                 className={classNames(
                   "relative flex flex-col justify-center items-center",
-                  isValued ? "text-green-300" : ""
+                  isValued ? "text-green-300" : "",
                 )}
               >
                 {(weapon.weapon_ability_link[3] && (
@@ -812,7 +813,7 @@ export function WeaponsTable({
             const isValued =
               VALUED_WEAPONS[valuedWeaponType].filter(
                 (valuedAbility) =>
-                  valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN
+                  valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN,
               )[0]?.value >= cooldown;
 
             return (
@@ -837,7 +838,7 @@ export function WeaponsTable({
             const isValued =
               VALUED_WEAPONS[valuedWeaponType].filter(
                 (valuedAbility) =>
-                  valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN
+                  valuedAbility.type === VALUED_TYPES.SKILL_COOLDOWN,
               )[0]?.value >= cooldown;
 
             return (
@@ -940,7 +941,7 @@ export function WeaponsGrid({
         "relative grid mt-8",
         isSmall
           ? "grid-cols-3 xs:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-4"
-          : "grid-cols-2 xs:grid-cols-3 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8"
+          : "grid-cols-2 xs:grid-cols-3 place-items-center md:grid-cols-4 lg:grid-cols-6 gap-8",
       )}
     >
       {weapons
@@ -972,7 +973,7 @@ export function WeaponsGrid({
                   "relative flex flex-col items-center",
                   isLibrary && !ownedWeapons.includes(weap.weapon_id)
                     ? "opacity-50"
-                    : ""
+                    : "",
                 )}
                 key={weap.weapon_id}
               >
@@ -1029,7 +1030,7 @@ export function WeaponsGrid({
                 "relative flex flex-col justify-between items-center",
                 isLibrary && !ownedWeapons.includes(weap.weapon_id)
                   ? "opacity-50"
-                  : ""
+                  : "",
               )}
               key={weap.weapon_id}
             >

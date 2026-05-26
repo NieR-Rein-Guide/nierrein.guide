@@ -2,13 +2,17 @@ import classNames from "classnames";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/legacy/image";
+import dynamic from "next/dynamic";
 import { NAVIGATION } from "config/constants";
-import Lottie from "react-lottie-player";
 import logoData from "../../lottie/logo.json";
 import { useEffect, useState } from "react";
 import SVG from "react-inlinesvg";
 // import SettingsModal from "@components/Settings";
 import { ITEMS } from "@components/DatabaseNavbar";
+
+const Lottie = dynamic(() => import("react-lottie-player"), {
+  ssr: false,
+});
 
 export default function Header(): JSX.Element {
   const [isNavOpened, setIsNavOpened] = useState(false);
@@ -44,8 +48,49 @@ export default function Header(): JSX.Element {
 
   return (
     <>
+      <div className="absolute xl:fixed right-0 left-0 top-0 mx-auto z-menu">
+        <div className="relative flex gap-y-2 justify-start md:justify-center items-center px-4 py-2 bg-grey-lighter text-beige transition-colors w-full border-b border-beige-inactive border-opacity-50 divide-x divide-beige-inactive whitespace-nowrap">
+          <a
+            href="https://nier.fandom.com/wiki/NieR_Reincarnation"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            NieR Wiki
+          </a>
+          <a
+            href="https://accords-library.com/"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            Accord's Library
+          </a>
+          <a
+            href="https://reinlibrary.neocities.org/"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            Re[in] Library
+          </a>
+          <a
+            href="https://nierrein.com/"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            nierrein.com
+          </a>
+          <a
+            href="https://www.youtube.com/@BillyCoolGR/featured"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            BillyCool (YT)
+          </a>
+          <a
+            href="https://www.youtube.com/@naotohex/videos"
+            className="text-xs md:text-base px-2 hover:underline"
+          >
+            Naoto Hex (YT)
+          </a>
+        </div>
+      </div>
+
       <header className="container relative">
-        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-12">
+        <div className="flex justify-between items-center flex-wrap gap-y-8 mt-12 mb-12 lg:mt-16">
           <Link
             href="/"
             passHref={true}
@@ -53,7 +98,7 @@ export default function Header(): JSX.Element {
             onMouseEnter={start}
             onMouseLeave={done}
           >
-            <span className="transform scale-100 group-hover:scale-110 transition-transform ease-out-cubic">
+            <span className="inline-block h-16 w-16 transform scale-100 group-hover:scale-110 transition-transform ease-out-cubic">
               <Lottie
                 animationData={logoData}
                 play={isAnimating}
@@ -87,7 +132,7 @@ export default function Header(): JSX.Element {
                       className={classNames(
                         "flex flex-col items-center justify-center",
                         router.asPath === nav.href ? "active" : null,
-                        router.asPath !== nav.href ? "inactive" : null
+                        router.asPath !== nav.href ? "inactive" : null,
                       )}
                     >
                       <div className="h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24 xl:h-16 xl:w-16">
@@ -120,7 +165,7 @@ export default function Header(): JSX.Element {
       <nav
         className={classNames(
           "xl:flex flex-col gap-y-3 xl:flex-row justify-center gap-x-6 w-full relative bg-grey-dark border-y py-4 border-beige border-opacity-50 -mt-8 xl:mt-0 mb-16 transition ease-out-cubic transform origin-top xl:scale-y-100 xl:max-h-full px-4 xl:px-0",
-          isNavOpened ? "flex" : "hidden"
+          isNavOpened ? "flex" : "hidden",
         )}
       >
         <div className="grid grid-cols-3 gap-4 xl:hidden">
@@ -132,13 +177,13 @@ export default function Header(): JSX.Element {
                 "group flex gap-x-2 items-center transition ease-out-cubic hover:text-white",
                 router.asPath === item.href
                   ? "text-white pointer-events-none"
-                  : "text-beige"
+                  : "text-beige",
               )}
             >
               <Image
                 className={classNames(
                   "transition ease-out-cubic group-hover:opacity-100",
-                  router.asPath === item.href ? "opacity-100" : "opacity-50"
+                  router.asPath === item.href ? "opacity-100" : "opacity-50",
                 )}
                 height={32}
                 width={32}
@@ -163,13 +208,13 @@ export default function Header(): JSX.Element {
               "group flex gap-x-2 items-center transition ease-out-cubic hover:text-white",
               router.asPath === item.href
                 ? "text-white pointer-events-none"
-                : "text-beige"
+                : "text-beige",
             )}
           >
             <Image
               className={classNames(
                 "transition ease-out-cubic group-hover:opacity-100",
-                router.asPath === item.href ? "opacity-100" : "opacity-50"
+                router.asPath === item.href ? "opacity-100" : "opacity-50",
               )}
               height={28}
               width={28}

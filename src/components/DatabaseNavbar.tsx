@@ -1,6 +1,5 @@
 import { useSettingsStore } from "@store/settings";
 import { useRouter } from "next/router";
-import { MdFilterAlt, MdViewColumn, MdViewComfy } from "react-icons/md";
 import * as Popover from "@radix-ui/react-popover";
 
 import loadoutsIcon from "../../public/icons/loadout.png";
@@ -13,7 +12,7 @@ import emblemsIcon from "../../public/icons/emblems.png";
 import storiesIcon from "../../public/icons/stories.png";
 import noticesIcon from "../../public/icons/notices.png";
 import eventsIcon from "../../public/icons/events.png";
-import { Button, ToggleButton, ToggleButtonGroup } from "@mui/material";
+import { Button } from "@mui/material";
 import Checkbox from "./form/Checkbox";
 import { FiFilter } from "react-icons/fi";
 import { useCostumesFilters } from "@store/costumes-filters";
@@ -82,10 +81,10 @@ export default function DatabaseNavbar({
 }) {
   const router = useRouter();
   const databaseDisplayType = useSettingsStore(
-    (state) => state.databaseDisplayType
+    (state) => state.databaseDisplayType,
   );
   const setDatabaseDisplayType = useSettingsStore(
-    (state) => state.setDatabaseDisplayType
+    (state) => state.setDatabaseDisplayType,
   );
   const order = useSettingsStore((state) => state.order);
   const setOrder = useSettingsStore((state) => state.setOrder);

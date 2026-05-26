@@ -43,6 +43,9 @@ export default function CostumeArtwork({
             <Image
               layout="fill"
               objectFit="cover"
+              placeholder="blur"
+              loading="lazy"
+              blurDataURL="/decorations/corners_rarity_4.png"
               src={`${CDN_URL}${costume.image_path_base}full.png`}
               alt={`${costume.title} (${costume.title}) illustration`}
             />
@@ -99,7 +102,7 @@ export default function CostumeArtwork({
           className="opacity-30 absolute inset-0 h-full object-cover"
           src={`${getEmblemPath(
             costume.emblem.emblem_id.toString(),
-            "background"
+            "background",
           )}`}
           alt=""
         />

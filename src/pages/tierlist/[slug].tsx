@@ -116,7 +116,7 @@ export function TierlistContent({
   const ownedCostumes = useInventoryStore((state) => state.costumes);
   const ownedWeapons = useInventoryStore((state) => state.weapons);
   const showUnreleasedContent = useSettingsStore(
-    (state) => state.showUnreleasedContent
+    (state) => state.showUnreleasedContent,
   );
 
   const addCostumePanel = usePanelStore((state) => state.addCostume);
@@ -127,7 +127,7 @@ export function TierlistContent({
   const [shownStats] = useState(
     tierlist.type === "weapons"
       ? DEFAULT_WEAPON_STAT_PROPERTIES
-      : DEFAULT_COSTUME_STAT_PROPERTIES
+      : DEFAULT_COSTUME_STAT_PROPERTIES,
   );
   const [isStatsEnabled, setIsStatsEnabled] = useState(false);
   const [isContentExpanded, setIsContentExpanded] = useState(false);
@@ -145,7 +145,7 @@ export function TierlistContent({
   };
 
   const isOwner = createdTierlist.find(
-    (tier) => tier.tierlist_id === tierlist.tierlist_id
+    (tier) => tier.tierlist_id === tierlist.tierlist_id,
   );
 
   const hasVoted = localVotes.includes(tierlist.tierlist_id);
@@ -229,7 +229,7 @@ export function TierlistContent({
                       <FiArrowDown
                         className={classNames(
                           "transform transition",
-                          isContentExpanded ? "rotate-180" : ""
+                          isContentExpanded ? "rotate-180" : "",
                         )}
                       />
                     </button>
@@ -399,7 +399,7 @@ export function TierlistContent({
           startIcon={<FiThumbsUp className="pl-1" />}
           className={classNames(
             hasVoted ? "pointer-events-none" : "",
-            "hidden lg:flex"
+            "hidden lg:flex",
           )}
         >
           {hasVoted ? "Liked" : "Like"} ({tierlist.votes})
@@ -420,7 +420,7 @@ export function TierlistContent({
                 <>
                   {tier.tiers_items.map((tierItem) => {
                     const costume = items.find(
-                      (item) => item.costume_id === tierItem.item_id
+                      (item) => item.costume_id === tierItem.item_id,
                     );
 
                     const isSpoiler =
@@ -455,7 +455,7 @@ export function TierlistContent({
                         className={classNames(
                           showNotesInline ? "col-span-3 flex w-full" : "",
                           isSpoiler ? "hidden" : "",
-                          isDimmed && hidingMode === "hide" ? "hidden" : ""
+                          isDimmed && hidingMode === "hide" ? "hidden" : "",
                         )}
                         key={costume.costume_id}
                       >
@@ -465,12 +465,12 @@ export function TierlistContent({
                             "group relative flex flex-col items-center gap-y-2 w-28 font-mono filter transition ease-out-cubic",
                             isDimmed && hidingMode === "dim"
                               ? "brightness-50"
-                              : ""
+                              : "",
                           )}
                         >
                           {differenceInDays(
                             new Date(),
-                            new Date(costume.release_time)
+                            new Date(costume.release_time),
                           ) <= 31 && (
                             <Tooltip
                               enterTouchDelay={0}
@@ -480,7 +480,7 @@ export function TierlistContent({
                                   This costume has been released{" "}
                                   {formatDistanceToNow(
                                     new Date(costume.release_time),
-                                    { addSuffix: true }
+                                    { addSuffix: true },
                                   )}
                                 </p>
                               }
@@ -511,7 +511,7 @@ export function TierlistContent({
                                     : "",
                                   !tierItem.tooltip_is_important
                                     ? "bg-white text-black"
-                                    : ""
+                                    : "",
                                 )}
                               >
                                 {tierItem.tooltip_is_important ? "!" : "?"}
@@ -571,7 +571,7 @@ export function TierlistContent({
                               router.query.highlight ===
                                 costume.costume_id.toString()
                                 ? "border-2 border-green-300"
-                                : ""
+                                : "",
                             )}
                             attribute={costume.attribute}
                           />
@@ -624,7 +624,7 @@ export function TierlistContent({
                                             ["atk", "vit", "agi"].includes(stat)
                                               ? "fill-white text-shadow"
                                               : "fill-black",
-                                            "text-xs"
+                                            "text-xs",
                                           )}
                                         />
                                       </Bar>
@@ -654,7 +654,7 @@ export function TierlistContent({
                 <>
                   {tier.tiers_items.map((tierItem, index) => {
                     const weapon = items.find(
-                      (item) => item.weapon_id === tierItem.item_id
+                      (item) => item.weapon_id === tierItem.item_id,
                     );
 
                     return (
@@ -668,7 +668,7 @@ export function TierlistContent({
                             showOnlyInventory &&
                               !ownedWeapons.includes(tierItem.item_id)
                               ? "brightness-50"
-                              : ""
+                              : "",
                           )}
                         >
                           {tierItem.tooltip && (
@@ -748,7 +748,7 @@ export function TierlistContent({
                                             ["atk", "vit", "agi"].includes(stat)
                                               ? "fill-white text-shadow"
                                               : "fill-black",
-                                            "text-xs"
+                                            "text-xs",
                                           )}
                                         />
                                       </Bar>
@@ -836,9 +836,30 @@ function CusdisComments({ pageId, pageTitle }) {
   );
 }
 
+export async function getStaticPaths() {
+  const tierlists = await prisma.nrg.tierlists.findMany({
+    where: {
+      is_unlisted: false,
+      votes: {
+        gt: 10,
+      },
+    },
+    select: {
+      slug: true,
+    },
+  });
+
+  return {
+    paths: tierlists.map((tierlist) => ({
+      params: { slug: tierlist.slug },
+    })),
+    fallback: "blocking",
+  };
+}
+
 export async function getStaticProps(context: NextPageContext) {
   const { tierlist, items } = await getTierlist({
-    slug: context.query.slug,
+    slug: context.params.slug,
   });
 
   const characters = await prisma.dump.character.findMany({});
@@ -849,7 +870,7 @@ export async function getStaticProps(context: NextPageContext) {
         tierlist,
         items,
         characters,
-      })
+      }),
     ),
   };
 }

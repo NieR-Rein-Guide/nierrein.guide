@@ -116,6 +116,9 @@ export default function CostumeThumbnail({
             className={classNames("z-0", imgClasses)}
             src={src}
             alt={alt}
+            placeholder="blur"
+            loading="lazy"
+            blurDataURL="/decorations/corners_rarity_4.png"
           />
         </div>
       </div>
@@ -131,7 +134,7 @@ export default function CostumeThumbnail({
         onClick || href
           ? "cursor-pointer hover:scale-105 transition transform"
           : "",
-        className
+        className,
       )}
       style={{
         backgroundImage: `url(/decorations/background_rarity_${costumeRarity}.png)`,
