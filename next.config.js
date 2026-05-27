@@ -4,8 +4,11 @@ const withPWA = require('next-pwa')({
 
 module.exports = withPWA({
   reactStrictMode: false,
+  staticPageGenerationTimeout: 1000,
   experimental: {
     largePageDataBytes: 1028 * 1000,
+    workerThreads: false,
+    cpus: 2,
   },
   api: {
     responseLimit: "16mb",
