@@ -155,7 +155,13 @@ export default function Header(): JSX.Element {
           </nav>
 
           <div className="flex gap-x-2 xl:hidden">
-            <button onClick={handleNavToggle}>
+            <button
+              onClick={handleNavToggle}
+              className={classNames(
+                "transform active:scale-90 transition-transform ease-out-cubic",
+                isNavOpened ? "scale-90" : "scale-100",
+              )}
+            >
               <SVG src="/decorations/menu.svg" />
             </button>
           </div>
