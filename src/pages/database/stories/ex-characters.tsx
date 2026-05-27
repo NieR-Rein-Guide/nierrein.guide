@@ -16,7 +16,7 @@ interface Props {
 
 export default function DatabaseStories({ characters }: Props): JSX.Element {
   const [characterIndex, setCharacterIndex] = useState(
-    characters[0].character_id
+    characters[0].character_id,
   );
 
   return (
@@ -64,7 +64,10 @@ export default function DatabaseStories({ characters }: Props): JSX.Element {
             {characters
               .filter((character) => character.character_id === characterIndex)
               .map((character) => (
-                <ExCharacterStory character={character} />
+                <ExCharacterStory
+                  key={character.character_id}
+                  character={character}
+                />
               ))}
           </article>
         </div>
@@ -103,9 +106,9 @@ export async function getStaticProps() {
     props: JSON.parse(
       JSON.stringify({
         characters: characters.filter(
-          (character) => character.ex_stories.length > 0
+          (character) => character.ex_stories.length > 0,
         ),
-      })
+      }),
     ),
   };
 }
