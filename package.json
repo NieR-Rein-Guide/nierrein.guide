@@ -22,7 +22,7 @@
     "@emotion/styled": "^11.10.6",
     "@lukeed/uuid": "^2.0.1",
     "@material-table/core": "^6.1.15",
-    "@material-table/exporters": "^1.0.12",
+    "@material-table/exporters": "^1.2.21",
     "@meilisearch/instant-meilisearch": "^0.12.0",
     "@mui/material": "^5.11.15",
     "@mui/x-date-pickers": "^6.0.4",
