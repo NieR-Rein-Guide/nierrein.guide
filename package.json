@@ -70,7 +70,7 @@
     "react-resizable-panels": "^0.0.39",
     "react-spring": "^9.7.1",
     "react-tooltip": "^5.10.5",
-    "react-use": "^17.4.0",
+    "react-use": "^17.6.1",
     "react-window": "^1.8.8",
     "recharts": "^2.5.0",
     "sharp": "^0.32.0",
